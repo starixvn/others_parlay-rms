@@ -68,6 +68,7 @@
             return this.Json(new { code = result.Code, message = result.Message, menuId = menuId });
         }
 
+        // GET: ~/ManangeMenu/EditMenu
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult EditMenu(int menuId)
         {
