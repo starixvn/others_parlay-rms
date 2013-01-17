@@ -92,6 +92,8 @@
             return this.PartialView(model);
         }
 
+        // POST: ~/ManangeMenu/SaveUpdateMenu
+        [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult SaveUpdateMenu(EditMenuModel model)
         {
