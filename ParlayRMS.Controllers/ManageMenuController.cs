@@ -53,6 +53,7 @@
             return this.PartialView(model);
         }
 
+        // POST: ~/ManangeMenu/CreateMenu
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Create)]
         public ActionResult CreateMenu(CreateMenuModel model)
