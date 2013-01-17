@@ -1,0 +1,92 @@
+﻿@using ParlayRMS.DTO.TopWinners
+@{
+    int id = 0;
+}
+@model IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail>
+<div class="details" custid="@ViewBag.CustId">
+    <table class="sub" style="width: 100%">
+        <colgroup>
+            <col style="width: 30px" />
+            <col style="width: 221px" />
+            <col style="width: 90px" />
+            <col style="width: 120px" />
+            <col style="width: 150px" />
+            <col style="width: 90px" />
+            <col style="width: 120px" />
+            <col style="width: 150px" />
+            <col style="width: 80px" />
+            <col />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewLang.BetID
+                </th>
+                <th>
+                    @ViewLang.Stake
+                </th>
+                <th>
+                    @ViewLang.WinningAmount
+                </th>
+                <th>
+                    @ViewLang.CompanyLoseAmount
+                </th>
+                <th>
+                    @ViewLang.Stake
+                </th>
+                <th>
+                    @ViewLang.WinningAmount
+                </th>
+                <th>
+                    @ViewLang.CompanyLoseAmount
+                </th>
+                <th>
+                    @ViewLang.TotalCombo
+                </th>
+                <th>
+                    @ViewLang.WinOdds
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(++id)
+                    </td>
+                    <td class="numeric">
+                        @item.TransId
+                    </td>
+                    <td class="numeric columneven">
+                        @item.Stake.ToString("#,##0")
+                    </td>
+                    <td class="numeric columneven">
+                        @item.Winlost.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric columneven">
+                        @item.Company_Winlost.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric columnodd">
+                        @item.Stake_BaseRM.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric columnodd">
+                        @item.Winlost_BaseRM.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric columnodd">
+                        @item.Company_Winlost_BaseRM.ToString("#,##0.00")
+                    </td>
+                    <td>
+                        @item.Combo
+                    </td>
+                    <td class="numeric">
+                        @item.Odds.ToString("#,##0.00")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

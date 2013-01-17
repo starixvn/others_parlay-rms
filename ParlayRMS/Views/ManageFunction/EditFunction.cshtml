@@ -1,0 +1,69 @@
+﻿@using ParlayRMS.Models.Functions
+@using ParlayRMS.ViewModel.ManageFunction
+@{
+    var functionList = ViewBag.FunctionList as IEnumerable<Function>;
+    var functionSelectList = functionList.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text = x.Name
+    }).ToList();
+    functionSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+}
+@model EditFunctionModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ViewLang.EditFunction
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Name, ViewLang.Name)
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.Name, Model.Name, new { @class = "inputtext w330" })
+                </div>
+                <div class="label_areatext">
+                    @Html.LabelFor(m => m.Description, ViewLang.Description)
+                </div>
+                <div class="field_areatext">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "areatext", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.DisplayOrder, ViewLang.Order)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.DisplayOrder, Model.DisplayOrder.ToString(), new { @class = "inputtext w100" })
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.ParentId, ViewLang.Parent)
+                </div>
+                <div class="fieldNoneBorder">
+                    @Html.DropDownListFor(m => m.ParentId, functionSelectList)
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        @Html.Action("_LoadingInPopUp", "Shared")
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmitEditFunction" onclick="javascript:SaveUpdateFunction();">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSubmitEditFunction').addClass("button");
+    });
+</script>

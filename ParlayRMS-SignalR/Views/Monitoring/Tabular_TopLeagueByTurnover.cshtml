@@ -1,0 +1,40 @@
+﻿@using ParlayRMS.Utility
+@model IEnumerable<ParlayRMS.ViewModel.Monitoring.TopLeagueByTurnover>
+<div class="tabular">
+    <div id="tabLeagueByTurnover" class="toptitle">
+        <div id="leagueTitle" class="minimizecontent">
+        </div>
+        <div id="Loading_Tabular_League" class="tabloading">
+        </div>
+        <div id="tabular_topLeagueByTurnover_dataminimize" class="minimize" onclick="Minimize('tabular_topLeagueByTurnover','tabular_topLeagueByTurnover_dataminimize', 'tabLeagueByTurnover');">
+            -
+        </div>
+    </div>
+    <div id="tabular_topLeagueByTurnover" class="tabularcontainer">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 70%">
+                        @ParlayRMS.Utility.ViewLang.League
+                    </th>
+                    <th>
+                        @ParlayRMS.Utility.ViewLang.Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.LeagueName
+                        </td>
+                        <td>
+                            @item.Turnover.ToStringFormat()
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

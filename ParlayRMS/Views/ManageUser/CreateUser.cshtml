@@ -1,0 +1,62 @@
+﻿@model ParlayRMS.ViewModel.ManageUser.CreateUserModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ViewLang.NewUser
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.UserName, ViewLang.Username)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "inputtext w230" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Password, ViewLang.Password)
+                </div>
+                <div class="field">
+                    @Html.PasswordFor(m => m.Password, new { @class = "inputtext w230" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.FirstName, ViewLang.Firstname)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "inputtext w230" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.LastName, ViewLang.Lastname)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "inputtext w230" })
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.GroupName, ViewLang.GroupName)
+                </div>
+                <div class="fieldNoneBorder">
+                    @Html.DropDownListFor(m => m.GroupName, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "w230" })
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        @Html.Action("_LoadingInPopUp", "Shared")
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmit" onclick="javascript:CreateUserPost()">
+                                <span class="text">@ViewLang.Submit</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").addClass("button");
+    });
+</script>

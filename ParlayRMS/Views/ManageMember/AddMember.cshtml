@@ -1,0 +1,59 @@
+﻿@model ParlayRMS.ViewModel.ManageMember.AddMemberModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ViewLang.AddSpecialMember
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.UserName, ViewLang.Username)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.UserName, string.Empty, new { @class = "inputtext w175" })
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.Level, ViewLang.Level)
+                </div>
+                <div class="fieldNoneBorder">
+                    <div class="level level1">
+                        <span id="addNewLevelName">Level 1</span> <span id="getColor" class="arrowDown" valcolor="1"
+                            title="Click to change level"></span>
+                    </div>
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        @Html.Action("_LoadingInPopUp", "Shared")
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmitAddMember" onclick="javascript:saveSpecialMember();">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmitAddMember").addClass("button");
+
+        $("#getColor").contextMenu({
+            menu: 'LevelList'
+        }, function (elOption, elMenu, pos) {
+            $("#addNewLevelName").text(elOption.html());
+            var currentClass = $(elMenu).parent().attr('class');
+            $(elMenu).parent().removeClass(currentClass);
+            $(elMenu).parent().addClass("level " + elOption.attr('color'));
+            $(elMenu).attr('valColor', elOption.attr('level'));
+        });
+
+    });
+</script>

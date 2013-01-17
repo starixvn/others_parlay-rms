@@ -1,0 +1,115 @@
+﻿.Pager
+{
+    clear: both;
+    line-height: 20px;
+    padding-top: 5px;
+    text-align: center;
+}
+.Pager span.PageSize
+{
+    width: 50px;
+    float: left;
+    text-align: center;
+    margin: 0px 5px 0px 5px;
+    border-radius: 20px;
+}
+.Pager span.PageSize select
+{
+    border: solid 1px #3F536B;
+    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    min-width: 50px;
+    padding: 2px;
+    width: auto;
+    border-radius: 20px;
+    color: White;
+}
+.Pager div.PagerItem
+{
+    height: 30px;
+    margin: 0 auto;
+    display: inline-block;
+}
+.Pager span.Next_Previous_Disabled
+{
+    width: 20px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    background-color: #7F7F7F;
+    margin: 0px 5px 0px 5px;
+    color: White;
+    border-radius: 20px;
+}
+.Pager span.Next_Previous
+{
+    width: 20px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    margin: 0px 5px 0px 5px;
+    color: White;
+    border-radius: 20px;
+}
+.Pager span.Next_Previous:hover
+{
+    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+}
+.Pager span.First_Last_Disabled
+{
+    width: 40px;
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    background-color: #7F7F7F;
+    margin: 0px 5px 0px 5px;
+    color: White;
+    border-radius: 20px;
+    padding-bottom: 2px;
+}
+.Pager span.First_Last
+{
+    width: 40px;
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    margin: 0px 5px 0px 5px;
+    color: White;
+    border-radius: 20px;
+    padding-bottom: 2px;
+}
+.Pager span.First_Last:hover
+{
+    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+}
+
+.Pager span.Number
+{
+    width: 20px;
+    float: left;
+    margin: 0px 5px 0px 5px;
+    cursor: pointer;
+    text-align: center;
+    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    color: White;
+    border-radius: 20px;
+    display: inline-block;
+}
+.Pager span.Number:hover
+{
+    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+}
+.Pager span.ActiveNumber
+{
+    width: 20px;
+    display: inline-block;
+    float: left;
+    margin: 0px 5px 0px 5px;
+    text-align: center;
+    color: White;
+    border-radius: 20px;
+    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+}

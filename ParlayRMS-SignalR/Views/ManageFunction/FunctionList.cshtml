@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Function Management";
+    ViewBag.isShowTitle = true;
+    var functionList = ViewBag.FunctionList as IEnumerable<Function>;
+}
+@{
+    Html.RenderPartial("NewBar");
+}
+<div class="scrollGridBorder">
+    <div class="scrollGridHeader">
+        <table class="scrollGrid">
+            <tr>
+                <td style="width: 190px">
+                    @ParlayRMS.Utility.ViewLang.Name
+                </td>
+                <td style="width: 190px">
+                    @ParlayRMS.Utility.ViewLang.Key
+                </td>
+                <td style="width: auto">
+                    @ParlayRMS.Utility.ViewLang.Description
+                </td>
+                <td style="width: 190px">
+                    @ParlayRMS.Utility.ViewLang.Parent
+                </td>
+                <td style="width: 50px">
+                    @ParlayRMS.Utility.ViewLang.Order
+                </td>
+                <td style="width: 170px">
+                    @ParlayRMS.Utility.ViewLang.Lastmodified
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="groupScrollGrid" class="scrollGridContent">
+        <table id="tblFunctionList" class="scrollGrid">
+            @{ foreach (var function in functionList)
+               {
+                <tr>
+                    <td style="width: 190px">
+                        @if (function.Parent != null)
+                        {
+                            <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="subfunction">
+                                - @function.Name</span> </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="function">@function.Name</span></a>
+                        }
+                    </td>
+                    <td style="width: 190px">
+                        @if (function.Parent != null)
+                        {
+                            <span class="subfunction">- @function.Key</span>
+                        }
+                        else
+                        {
+                            <span class="function">@function.Key</span>
+                        }
+                    </td>
+                    <td style="width: auto">
+                        @function.Description
+                    </td>
+                    <td style="width: 190px">
+                        @(function.Parent != null ? function.Parent.Name : "")
+                    </td>
+                    <td style="width: 50px; text-align: center">
+                        @function.DisplayOrder
+                    </td>
+                    <td style="width: 170px; text-align: center">
+                        @function.ModifiedDate
+                    </td>
+                </tr>
+               }
+            }
+        </table>
+    </div>
+</div>
+@section Script{
+    @if (ParlayRMS.Utility.AppSetting.IsDebug)
+    {
+        <script src="@Url.Content("~/Scripts/ManageFunction.js")" type="text/javascript"></script>
+    }
+    else
+    {
+        <script src="@Url.Content("~/Scripts/ManageFunction.js")" type="text/javascript"></script>
+    }
+}

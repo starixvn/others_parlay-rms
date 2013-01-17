@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C8CB1E7B-E68A-4065-AE30-3F8FB371974A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ParlayRMS.ViewModel</RootNamespace>
+    <AssemblyName>ParlayRMS.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\LoginModel.cs" />
+    <Compile Include="ManageUser\CreateExistingUserModel.cs" />
+    <Compile Include="ManageUser\CreateUserModel.cs" />
+    <Compile Include="ManageUser\EditUserPolicyModel.cs" />
+    <Compile Include="ManageUser\IndexModel.cs" />
+    <Compile Include="ManageUser\ResetPasswordModel.cs" />
+    <Compile Include="ManageUser\EditUserModel.cs" />
+    <Compile Include="Extension\DisplayAttribute.cs" />
+    <Compile Include="Extension\MaxStringLengthAttribute.cs" />
+    <Compile Include="Extension\MinStringLengthAttribute.cs" />
+    <Compile Include="Extension\PropertiesMustMatchAttribute.cs" />
+    <Compile Include="ManageFunction\CreateFunctionModel.cs" />
+    <Compile Include="ManageFunction\EditFunctionModel.cs" />
+    <Compile Include="ManageGroup\CreateGroupPolicyModel.cs" />
+    <Compile Include="ManageGroup\EditGroupModel.cs" />
+    <Compile Include="ManageGroup\CreateGroupModel.cs" />
+    <Compile Include="ManageMember\AddMemberModel.cs" />
+    <Compile Include="ManageMember\UpdateLevel.cs" />
+    <Compile Include="ManageMenu\CreateMenuModel.cs" />
+    <Compile Include="ManageMenu\EditMenuModel.cs" />
+    <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
+    <Compile Include="ManageUser\UpdateStatusModel.cs" />
+    <Compile Include="Monitoring\MixParlayBetDetails.cs" />
+    <Compile Include="Monitoring\MixParlayBetDetailsOptions.cs" />
+    <Compile Include="Monitoring\MonitoringCacheModel.cs" />
+    <Compile Include="Monitoring\MonitoringDetailModel.cs" />
+    <Compile Include="Monitoring\MonitoringEventModel.cs" />
+    <Compile Include="Monitoring\MonitoringSummaryModel.cs" />
+    <Compile Include="Monitoring\TopLeagueByTicket.cs" />
+    <Compile Include="Monitoring\TopLeagueByTurnover.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Monitor\MixParlayFilter.cs" />
+    <Compile Include="Report\BetDetails.cs" />
+    <Compile Include="Report\BetDetailsOptions.cs" />
+    <Compile Include="Report\TopWinnerDetailsOptions.cs" />
+    <Compile Include="Report\TopWinnersOptions.cs" />
+    <Compile Include="Shared\MenuItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\ParlayRMS.Utility.csproj">
+      <Project>{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}</Project>
+      <Name>ParlayRMS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

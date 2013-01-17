@@ -1,0 +1,15 @@
+﻿@using ParlayRMS.Common.Models
+<ul id="LevelList" class="contextMenu">
+    @foreach (var level in ModelsHelper.GetMemberLevels())
+    {
+        if (level.LevelId == 0)
+        {
+        <li class="@level.LevelColor"  title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">
+            @ViewLang.None</a></li>
+        }
+        else
+        {
+        <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">@level.LevelValue</a></li>
+        }
+    }
+</ul>

@@ -1,0 +1,35 @@
+﻿@using ParlayRMS.DTO;
+@using ParlayRMS.DTO.Members;
+@using ParlayRMS.Utility;
+@model IEnumerable<RMS_CustomerSel>
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.MemberManagement;
+    string levelName = string.Empty;
+}
+@{
+    Html.RenderPartial("NewBar");
+    Html.RenderPartial("SearchBar");
+}
+<div class="scrollGridBorder" style="width: 560px">
+    <div class="scrollGridHeader" style="width: 542px">
+        <table class="scrollGrid" style="width: 542px">
+            <tr>
+                <td style="width: 30px">
+                    @ViewLang.No
+                </td>
+                <td style="width: auto">
+                    @ViewLang.Username
+                </td>
+                <td style="width: 130px">
+                    @ViewLang.Level
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="content">
+    </div>
+</div>
+@section Script{
+    <script src="@Url.Content("~/Scripts/ManageMember.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Search.js")" type="text/javascript"></script>
+}

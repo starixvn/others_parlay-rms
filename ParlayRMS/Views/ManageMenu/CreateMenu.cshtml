@@ -1,0 +1,89 @@
+﻿@using ParlayRMS.Models.Functions
+@using ParlayRMS.Models.Menus
+@{
+    var functionList = ViewBag.FunctionList as IEnumerable<Function>;
+
+    var menuList = ViewBag.MenuList as IEnumerable<Menu>;
+    var menuSelectList = menuList.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text = x.Name
+    }).ToList();
+    menuSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+}
+@model ParlayRMS.ViewModel.ManageMenu.CreateMenuModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ViewLang.NewMenu
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Name)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "inputtext w230" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Url, "URL")
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.Url, string.Empty, new { @class = "inputtext  w230" })
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.FunctionId)
+                </div>
+                <div class="fieldNoneBorder">
+                    <select id="Function" name="Function">
+                        @foreach (Function function in ViewBag.FunctionList)
+                        {
+                            <option value='@function.Id' @(function.Parent != null ? "class=sub" : "")>@function.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.ParentId)
+                </div>
+                <div class="fieldNoneBorder">
+                    @Html.DropDownListFor(m => m.ParentId, menuSelectList)
+                </div>
+                <div class="label_areatext">
+                    @Html.LabelFor(m => m.Description)
+                </div>
+                <div class="field_areatext">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "areatext", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.DisplayOrder)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "inputtext" })
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        <div id="lineloading" class="line-loading">
+                            <img alt="" src="../../Images/Content/ajax-loader-line-2.gif" />
+                        </div>
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmitNewMenu" onclick="javascript:CreateMenuPost();">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSubmitNewMenu').addClass("button");
+    });
+</script>

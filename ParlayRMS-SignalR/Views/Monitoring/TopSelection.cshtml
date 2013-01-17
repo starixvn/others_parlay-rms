@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.isShowTitle = false;
+    ViewBag.Title = "Top Selection";
+}
+@{
+    Html.RenderPartial("FilterControl");
+}
+<div class="topSelection">
+    <div id="topSelectionByTicket">
+    </div>
+    <div id="seperateDiv" style="clear: both">
+    </div>
+    <div id="topSelectionByTurnover">
+    </div>
+    <div style="clear: both">
+    </div>
+    <div style="display: none" id="detailTitle" class="detailTitle">
+        <span id="detailFrom"></span>
+        <div class="lineDiv">
+        </div>
+    </div>
+    <div id="topSelectionByCurrency">
+    </div>
+    <div id="topSelectionByLeague">
+    </div>
+    <div style="clear: both">
+    </div>
+    <div style="display: none" id="detailTitle2" class="detailTitle">
+        <span id="detailFrom2"></span>
+        <div class="lineDiv">
+        </div>
+    </div>
+    <div id="popularEvent">
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSearch').click(function () { RenderChartByFilter(null) });
+        enableCache(@ViewBag.IsCache);
+
+        $('#rdbfavouritechoice').click(function(){
+            loadingHelper.Run(1);
+            window.location.href = '../../Monitoring/FavouriteChoice';
+        });
+
+        $('#rdbselection').click(function(){
+            loadingHelper.Run(1);
+            window.location.href = '../../Monitoring/TopSelection';
+        });
+
+        $('#rdbselection').attr('checked', true);
+    });
+    var _resource = {
+        'ticket':'@ParlayRMS.Utility.ViewLang.DetailsFromTickets',
+        'turnover':'@ParlayRMS.Utility.ViewLang.DetailsFromTurnover',
+        'detailLeagues':'@ParlayRMS.Utility.ViewLang.DetailFromTopLeagues',
+        'detailCurrencies':'@ParlayRMS.Utility.ViewLang.DetailFromTopCurrencies',
+        'topLeagues':'@ParlayRMS.Utility.ViewLang.TopLeagues',
+        'topCurrencies':'@ParlayRMS.Utility.ViewLang.TopCurrencies',
+        'selections':'@ParlayRMS.Utility.ViewLang.Selection',
+        'allSports':'@ParlayRMS.Utility.ViewLang.Allsports',
+        'soccerOnly':'@ParlayRMS.Utility.ViewLang.Socceronly',
+        'combinedSports':'@ParlayRMS.Utility.ViewLang.Combinedsports',
+        'otherSports':'@ParlayRMS.Utility.ViewLang.Othersports',
+        'byturnover' : '@ParlayRMS.Utility.ViewLang.byturnover',
+        'byticket' : '@ParlayRMS.Utility.ViewLang.bynoofticket',
+         };
+</script>
+@section Script{
+    @if (ParlayRMS.Utility.AppSetting.IsDebug)
+    {
+        <script src="@Url.Content("~/Scripts/Data.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Tabular.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Chart.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Cache.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Monitoring.js")" type="text/javascript"></script>
+    }
+    else
+    {
+        <script src="@Url.Content("~/Scripts/Data.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Tabular.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Chart.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Cache.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Monitoring.js")" type="text/javascript"></script>
+    }
+}

@@ -1,0 +1,17 @@
+﻿<div id="authInfo">
+    <div class="content">
+        <a href="@Url.Content("~/")" class="logo"></a>
+        <div class="auth-nav">
+            <div>
+                @ParlayRMS.Utility.ViewLang.Loggedinas: <span style="color: #ff6300; font-weight: bold">@Session[CurrentSession.PARLAYRMS_USERNAME].ToString()</span></div>
+            <div>
+                |</div>
+            <div>
+                <a href="javascript:ChangePassword(@CurrentSession.Instance.UserId, @CurrentSession.Instance.UserId, '@CurrentSession.Instance.UserName');">@ParlayRMS.Utility.ViewLang.ChangePassword</a></div>
+            <div>
+                |</div>
+            <div>
+                <a href="javascript:logOff()">@ParlayRMS.Utility.ViewLang.Logout</a></div>
+        </div>
+    </div>
+</div>

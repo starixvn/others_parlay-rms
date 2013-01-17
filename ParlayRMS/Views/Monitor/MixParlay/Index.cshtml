@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.MixParlayMonitor;
+}
+<div class="filter">
+    <div class="filter-control" style="border: 1px solid black; width: 1054px;">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width: 30px">
+                                @Html.Label("combo", ViewLang.Combo, new { @class = "lable" })
+                            </td>
+                            <td style="width: 100px">
+                                @Html.DropDownList("combo", (List<SelectListItem>)ViewBag.Combos)
+                            </td>
+                            <td style="width: 90px">
+                                @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
+                            </td>
+                            <td style="width: 150px">
+                                @Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes)
+                            </td>
+                            <td style="width: 145px">
+                                @Html.Label("maxPayout", ViewLang.MaxPayoutAfterPT, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.TextBox("maxPayout", "", new { @maxlength = 20 })
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("level", @ViewLang.Level, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("level", (List<SelectListItem>)ViewBag.Levels)
+                            </td>
+                            <td>
+                                @Html.Label("selectTop", @ViewLang.SelectTop, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
+                            </td>
+                            <td>
+                                @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes)
+                                @ViewLang.Seconds
+                            </td>
+                            <td>
+                                <div id="refreshNow" style="width: 140px">
+                                    @ViewLang.RefreshNow
+                                    <div id="timer" style="float: right; width: 30px; padding-left: 2px;">
+                                        [60]</div>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.CheckBox("pause", new { style = "float:left; margin-top: 7px;" })
+                                @Html.Label("pause", @ViewLang.Pause, new { @class = "lable" })
+                            </td>
+                            <td>
+                                <button id="submit" class="button">
+                                    <span class="text">@ViewLang.Submit</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both; display: none" id="divResult">
+    <div style="width: 1120px">
+        <table class="main">
+            <colgroup>
+                <col width='150px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='180px' />
+                <col width='120px' />
+                <col width='100px' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        @ViewLang.TransTime
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Username
+                    </th>
+                    <th>
+                        @ViewLang.Odds
+                    </th>
+                    <th>
+                        @ViewLang.StakeAfterPT
+                    </th>
+                    <th>
+                        @ViewLang.MaxPayoutAfterPT
+                    </th>
+                    <th>
+                        @ViewLang.TotalCombo
+                    </th>
+                    <th>
+                        @ViewLang.BetDetails
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 710px; width: 1110px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='150px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='180px' />
+                <col width='120px' />
+                <col width='100px' />
+            </colgroup>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/Monitor/MixParlay.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Member/Core.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var _resource = {
+        'allSports': '@ViewLang.Allsports',
+        'soccerOnly': '@ViewLang.Socceronly',
+        'combinedSports': '@ViewLang.Combinedsports',
+        'otherSports': '@ViewLang.Othersports'
+    };
+</script>

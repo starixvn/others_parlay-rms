@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Menu Management";
+    var menuList = ViewBag.MenuList as IEnumerable<Menu>;
+    ViewBag.isShowTitle = true;
+}
+@{
+    Html.RenderPartial("NewBar");
+}
+<div class="scrollGridBorder">
+    <div class="scrollGridHeader">
+        <table class="scrollGrid">
+            <tr>
+                <td style="width: 180px">
+                    @ParlayRMS.Utility.ViewLang.Name
+                </td>
+                <td style="width: auto">
+                    @ParlayRMS.Utility.ViewLang.Description
+                </td>
+                <td style="width: 140px">
+                    @ParlayRMS.Utility.ViewLang.Parent
+                </td>
+                <td style="width: 240px">
+                    @ParlayRMS.Utility.ViewLang.Url
+                </td>
+                <td style="width: 140px">
+                    @ParlayRMS.Utility.ViewLang.Function
+                </td>
+                <td style="width: 50px">
+                    @ParlayRMS.Utility.ViewLang.Order
+                </td>
+                <td style="width: 50px">
+                    @ParlayRMS.Utility.ViewLang.Active
+                </td>
+                <td style="width: 170px">
+                    @ParlayRMS.Utility.ViewLang.Lastmodified
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="groupScrollGrid" class="scrollGridContent">
+        <table id="tblFunctionList" class="scrollGrid">
+            @{ foreach (var menu in menuList)
+               {
+                <tr>
+                    <td style="width: 180px">
+                        @if (menu.Parent != null)
+                        {
+                            <a href="#" onclick="javascript:EditMenu('@menu.Id');"><span class="subfunction">- @menu.Name</span></a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="javascript:EditMenu('@menu.Id');"><span class="function">@menu.Name</span></a>
+                        }
+                    </td>
+                    <td style="width: auto">
+                        @menu.Description
+                    </td>
+                    <td style="width: 140px">
+                        @(menu.Parent != null ? menu.Parent.Name : "")
+                    </td>
+                    <td style="width: 240px">
+                        @menu.Url
+                    </td>
+                    <td style="width: 140px">
+                        @menu.Function.Name
+                    </td>
+                    <td style="width: 50px; text-align: center">
+                        @menu.DisplayOrder
+                    </td>
+                    <td style="width: 50px; text-align: center">
+                        <div onclick="javascript:ToggleActive(this, '@menu.Id', '@menu.Name')" class="@ParlayRMS.Utility.Utils.ResolveCheckBox(menu.IsActive)">
+                    </td>
+                    <td style="width: 170px; text-align: center">
+                        @menu.ModifiedDate
+                    </td>
+                </tr>
+               }
+            }
+        </table>
+    </div>
+</div>
+@section Script{
+    @if (ParlayRMS.Utility.AppSetting.IsDebug)
+    {
+        <script src="@Url.Content("~/Scripts/ManageMenu.js")" type="text/javascript"></script>
+    }
+    else
+    {
+        <script src="@Url.Content("~/Scripts/ManageMenu.js")" type="text/javascript"></script>
+    }
+}

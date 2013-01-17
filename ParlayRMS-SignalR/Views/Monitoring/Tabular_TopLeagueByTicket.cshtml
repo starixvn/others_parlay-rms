@@ -1,0 +1,40 @@
+﻿@using ParlayRMS.Utility
+@model IEnumerable<ParlayRMS.ViewModel.Monitoring.TopLeagueByTicket>
+<div class="tabular">
+    <div id="tabLeagueByTicket" class="toptitle">
+        <div id="leagueTitle" class="minimizecontent">
+        </div>
+        <div id="Loading_Tabular_League" class="tabloading">
+        </div>
+        <div id="tabular_toLeagueByTicket_dataminimize" class="minimize" onclick="Minimize('tabular_toLeagueByTicket','tabular_toLeagueByTicket_dataminimize', 'tabLeagueByTicket');">
+            -
+        </div>
+    </div>
+    <div id="tabular_toLeagueByTicket" class="tabularcontainer">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 70%">
+                        @ParlayRMS.Utility.ViewLang.League
+                    </th>
+                    <th>
+                        @ParlayRMS.Utility.ViewLang.Tickets
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.LeagueName
+                        </td>
+                        <td>
+                            @item.NumberOfTickets.ToStringFormat()
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

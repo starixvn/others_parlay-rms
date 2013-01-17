@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8996A3CA-B459-4301-81A7-0E8624D3828C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ParlayRMS.Services.Interface</RootNamespace>
+    <AssemblyName>ParlayRMS.Services.Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.BetList.Core">
+      <HintPath>..\..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Users\IAuthorizationService.cs" />
+    <Compile Include="BetList\IBetListService.cs" />
+    <Compile Include="Common\ICommonService.cs" />
+    <Compile Include="Members\IMembersService.cs" />
+    <Compile Include="Functions\IFunctionsService.cs" />
+    <Compile Include="Groups\IGroupsService.cs" />
+    <Compile Include="Menus\IMenusService.cs" />
+    <Compile Include="Charts\IChartsService.cs" />
+    <Compile Include="Users\IUsersService.cs" />
+    <Compile Include="MixParlayMonitor\IMixParlayMonitorService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimilarBets\ISimilarBetsService.cs" />
+    <Compile Include="TopWinners\ITopWinnersService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
+      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
+      <Name>ParlayRMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
+      <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
+      <Name>ParlayRMS.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.Models\ParlayRMS.Models.csproj">
+      <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
+      <Name>ParlayRMS.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

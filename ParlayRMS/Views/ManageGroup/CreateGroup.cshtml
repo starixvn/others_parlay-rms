@@ -1,0 +1,44 @@
+﻿@model ParlayRMS.ViewModel.ManageGroup.CreateGroupModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ViewLang.NewGroup
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.GroupName)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.GroupName, new { @class = "inputtext w330" })
+                </div>
+                <div class="label_areatext">
+                    @Html.LabelFor(m => m.Description)
+                </div>
+                <div class="field_areatext">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "areatext w330", rows = "7", maxlength = "330", onkeyup = "limitInput(this)" })
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmitNewGroup" onclick="javascript:CreateGroupPost();">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmitNewGroup").addClass("button");
+    });
+</script>

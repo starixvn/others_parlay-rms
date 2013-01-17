@@ -1,0 +1,100 @@
+﻿@using ParlayRMS.Models.Functions
+@model IEnumerable<Function>
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.FunctionManagement;
+}
+@section Script{
+    <script src="@Url.Content("~/Scripts/ManageFunction.js")" type="text/javascript"></script>
+}
+@{
+    Html.RenderPartial("NewBar");
+}
+<div class="scrollGridBorder">
+    <div class="scrollGridHeader">
+        <table class="scrollGrid">
+            <colgroup>
+                <col style="width: 190px" />
+                <col style="width: 190px" />
+                <col style="width: auto" />
+                <col style="width: 190px" />
+                <col style="width: 70px" />
+                <col style="width: 170px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        @ViewLang.Name
+                    </td>
+                    <td>
+                        @ViewLang.Key
+                    </td>
+                    <td>
+                        @ViewLang.Description
+                    </td>
+                    <td>
+                        @ViewLang.Parent
+                    </td>
+                    <td>
+                        @ViewLang.Order
+                    </td>
+                    <td>
+                        @ViewLang.Lastmodified
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="groupScrollGrid" class="scrollGridContent">
+        <table id="tblFunctionList" class="scrollGrid">
+            <colgroup>
+                <col style="width: 190px" />
+                <col style="width: 190px" />
+                <col style="width: auto" />
+                <col style="width: 190px" />
+                <col style="width: 70px" />
+                <col style="width: 170px" />
+            </colgroup>
+            <tbody>
+                @{ foreach (Function function in Model)
+                   {
+                    <tr>
+                        <td>
+                            @if (function.Parent != null)
+                            {
+                                <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="subfunction">
+                                    - @function.Name</span> </a>
+                            }
+                            else
+                            {
+                                <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="function">@function.Name</span></a>
+                            }
+                        </td>
+                        <td>
+                            @if (function.Parent != null)
+                            {
+                                <span class="subfunction">- @function.Key</span>
+                            }
+                            else
+                            {
+                                <span class="function">@function.Key</span>
+                            }
+                        </td>
+                        <td>
+                            @function.Description
+                        </td>
+                        <td>
+                            @(function.Parent != null ? function.Parent.Name : "")
+                        </td>
+                        <td style="text-align: center">
+                            @function.DisplayOrder
+                        </td>
+                        <td style="text-align: center">
+                            @function.ModifiedDate
+                        </td>
+                    </tr>
+                   }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

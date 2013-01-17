@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.TopSelection;
+}
+@{
+    Html.RenderPartial("FilterControl");
+}
+<div class="topSelection">
+    <div id="topSelectionByTicket">
+    </div>
+    <div id="seperateDiv" style="clear: both">
+    </div>
+    <div id="topSelectionByTurnover">
+    </div>
+    <div style="clear: both">
+    </div>
+    <div style="display: none" id="detailTitle" class="detailTitle">
+        <span id="detailFrom"></span>
+        <div class="lineDiv">
+        </div>
+    </div>
+    <div id="topSelectionByCurrency">
+    </div>
+    <div id="topSelectionByLeague">
+    </div>
+    <div style="clear: both">
+    </div>
+    <div style="display: none" id="detailTitle2" class="detailTitle">
+        <span id="detailFrom2"></span>
+        <div class="lineDiv">
+        </div>
+    </div>
+    <div id="popularEvent">
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSearch').click(function () { RenderChartByFilter(null) });
+        enableCache(@ViewBag.IsCache);
+
+        $('#rdbfavouritechoice').click(function(){
+            window.location.href = '@Url.Content("~/FavouriteChoice")';
+        });
+
+        $('#rdbselection').click(function(){
+            window.location.href = '@Url.Content("~/TopSelection")';
+        });
+
+        $('#rdbselection').attr('checked', true);
+    });
+    var _resource = {
+        'ticket':'@ViewLang.DetailsFromTickets',
+        'turnover':'@ViewLang.DetailsFromTurnover',
+        'detailLeagues':'@ViewLang.DetailFromTopLeagues',
+        'detailCurrencies':'@ViewLang.DetailFromTopCurrencies',
+        'topLeagues':'@ViewLang.TopLeagues',
+        'topCurrencies':'@ViewLang.TopCurrencies',
+        'selections':'@ViewLang.Selection',
+        'allSports':'@ViewLang.Allsports',
+        'soccerOnly':'@ViewLang.Socceronly',
+        'combinedSports':'@ViewLang.Combinedsports',
+        'otherSports':'@ViewLang.Othersports',
+        'byturnover' : '@ViewLang.byturnover',
+        'byticket' : '@ViewLang.bynoofticket',
+         };
+</script>
+@section Script{
+    <script src="@Url.Content("~/Scripts/Data.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Tabular.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Chart.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Cache.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Monitoring.js")" type="text/javascript"></script>
+}

@@ -1,0 +1,40 @@
+﻿@using ParlayRMS.Utility
+@model IEnumerable<ParlayRMS.DTO.RMS_Monitor_Parlay_SelectionbyTicket_Currency>
+<div class="tabular">
+    <div id="tabCurrencyByTicket" class="toptitle">
+        <div id="currencyTitle" class="minimizecontent">
+        </div>
+        <div id="Loading_Tabular_Currency" class="tabloading">
+        </div>
+        <div id="tabular_topCurrencyByTicket_dataminimize" class="minimize" onclick="Minimize('tabular_topCurrencyByTicket','tabular_topCurrencyByTicket_dataminimize', 'tabCurrencyByTicket');">
+            -
+        </div>
+    </div>
+    <div id="tabular_topCurrencyByTicket" class="tabularcontainer">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%">
+                        @ParlayRMS.Utility.ViewLang.Currency
+                    </th>
+                    <th>
+                        @ParlayRMS.Utility.ViewLang.Tickets
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Currency
+                        </td>
+                        <td>
+                            @Utils.ToStringFormat(item.NoTickets)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

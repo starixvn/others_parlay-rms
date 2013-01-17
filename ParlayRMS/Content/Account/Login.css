@@ -1,0 +1,101 @@
+﻿html, body
+{
+    font-family: Sans-Serif, Tahoma, Arial , Verdana;
+    font-size: 11px;
+    color: #627491;
+    margin: 0;
+    padding: 0;
+}
+.content
+{
+    height: auto;
+    width: auto;
+    z-index: -1;
+}
+.content .loginheader
+{
+    background-color: #10243C;
+    padding-top: 200px;
+    height: 100px;
+}
+.content .loginheader .loginlogo
+{
+    background-position: center center;
+    background-image: url("../../Images/Login/logo.png");
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 76px;
+    clear: both;
+    margin: 0px auto;
+}
+.content .loginboder
+{
+    width: auto;
+    height: 221px;
+    margin: 0px auto;
+    width: 700px;
+}
+
+.content .loginboder div
+{
+    margin: 10px auto;
+    float: left;
+    padding-right: 5px;
+}
+
+.content .loginboder div label
+{
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+input.inputLogin
+{
+    width: 230px;
+    height: 20px;
+    border: 1px solid #10243C;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #10243C;
+    color: #fff;
+}
+
+.button
+{
+    width: 70px;
+    height: 25px;
+    border: 1px solid #B32936;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #fff;
+    background: url("../../Images/Content/red_bt_bg.png") repeat-x center center;
+    cursor: pointer;
+    font-family: Verdana, Sans-Serif, Tahoma, Arial;
+    font-size: 11px;
+    padding: 0 7px;
+}
+.button:hover
+{
+    background: url("../../Images/Content/hoverbg.png") repeat-x center center;
+}
+.errmsg
+{
+    font-size: 12px;
+    height: 18px;
+    text-align: left;
+    color: Red;
+    height: auto;
+    margin: 0px auto;
+    padding-left: 70px;
+    clear: both;
+    width: 100%;
+}
+.blank
+{
+    clear: left;
+    height: 20px;
+    width: 100px;
+    margin: 0px auto;
+}

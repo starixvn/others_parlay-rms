@@ -1,0 +1,53 @@
+﻿@{
+    Pager pager = ViewBag.Pager;
+}
+<div class="Pager">
+    <div class="PagerItem">
+        @{
+            if (pager.NumberOfPages > 1)
+            {
+                if (pager.HasPreviousPage)
+                {
+            <span class="First_Last" onclick="MovePage(@pager.FirstPageIndex);">@ViewLang.First
+            </span>
+            <span class="Next_Previous" onclick="MovePage(@pager.PreviousPageIndex);">< </span>
+                }
+                else
+                {
+            <span class="First_Last_Disabled">@ViewLang.First </span>
+            <span class="Next_Previous_Disabled">< </span>
+                }
+
+                foreach (int page in pager)
+                {
+                    if (page == pager.CurrentPageIndex)
+                    {
+            <span class="ActiveNumber">
+                @page
+            </span>
+                    }
+                    else
+                    {
+            <span class="Number" onclick="MovePage(@page);">
+                @page
+            </span>
+                    }
+                }
+
+                if (pager.HasNextPage)
+                {
+            <span class="Next_Previous" onclick="MovePage(@pager.NextPageIndex);">> </span>
+            <span class="First_Last" onclick="MovePage(@pager.LastPageIndex);">@ViewLang.Last
+            </span>
+                }
+                else
+                {
+            <span class="Next_Previous_Disabled">> </span>
+            <span class="First_Last_Disabled">@ViewLang.Last </span>
+                }
+            }
+
+        }
+    </div>
+</div>
+<script src="../../Scripts/Pager.js" type="text/javascript"></script>

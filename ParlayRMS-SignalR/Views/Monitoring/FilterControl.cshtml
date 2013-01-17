@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "FilterControl";
+}
+<div class="filter">
+    <div class="data" style="width: 402px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ParlayRMS.Utility.ViewLang.Summary</div>
+            <div id="waiting" class="tabloading">
+            </div>
+            <div id="dataminimize" class="minimize" onclick="Minimize('dataSum','dataminimize');">
+                -
+            </div>
+        </div>
+        <div class="container" id="dataSum">
+        </div>
+    </div>
+    <div class="filter-control" style="width: 575px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ParlayRMS.Utility.ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="view">
+                <div class="lable">
+                    @ParlayRMS.Utility.ViewLang.View
+                </div>
+                <div class="control">
+                    <input type="radio" id="rdbtabular" name="viewcontrol" />
+                    <span id="lbltabular">@ParlayRMS.Utility.ViewLang.Tabular</span>
+                    <input type="radio" id="rdbchart" checked="checked" name="viewcontrol" />
+                    @ParlayRMS.Utility.ViewLang.Chart
+                </div>
+            </div>
+            <div class="time">
+                <div class="lable">
+                    @ParlayRMS.Utility.ViewLang.Refreshtime
+                </div>
+                <div class="control">
+                    <select id="selRefreshTime">
+                        <option value="0">@ParlayRMS.Utility.ViewLang.None</option>
+                        <option selected="selected" value="30000">30</option>
+                        <option value="60000">60</option>
+                        <option value="120000">120</option>
+                    </select>
+                    @ParlayRMS.Utility.ViewLang.Seconds
+                </div>
+                @* <div class="control">
+                    <button class="button-disable" id="btnrefreshnow" onclick="#">@ParlayRMS.Utility.ViewLang.RefreshNow [<span
+                        id="spRefreshTime">5s</span>]</button>
+                </div>*@
+            </div>
+            <div class="bettype">
+                <div class="lable">
+                    @ParlayRMS.Utility.ViewLang.Bettype
+                </div>
+                <div class="control">
+                    <select id="selBetType">
+                        <option value="9">@ParlayRMS.Utility.ViewLang.MixparLay</option>
+                    </select>
+                </div>
+            </div>
+            <div class="dimensions">
+                <div class="lable">
+                    @ParlayRMS.Utility.ViewLang.Dimensions
+                </div>
+                <div class="control">
+                    <input type="radio" id="rdbselection" name="dimensionscontrol" />
+                    <label for="rdbselection">@ParlayRMS.Utility.ViewLang.Selection</label>
+                    <input type="radio" id="rdbfavouritechoice" name="dimensionscontrol" />
+                    <label for="rdbfavouritechoice">@ParlayRMS.Utility.ViewLang.FavouriteChoice</label>
+                    @*  <input type="radio" id="rdbevent" name="dimensionscontrol" />
+                    @ParlayRMS.Utility.ViewLang.Event
+                    <input type="radio" id="rdbteam" name="dimensionscontrol" />
+                    @ParlayRMS.Utility.ViewLang.Team
+                    <input type="radio" id="rdbleague" name="dimensionscontrol" />
+                    @ParlayRMS.Utility.ViewLang.League*@
+                </div>
+            </div>
+            <div class="action">
+                <button id="btnSearch">
+                    <span class="text">@ParlayRMS.Utility.ViewLang.Submit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSearch").addClass("button");
+    });
+</script>

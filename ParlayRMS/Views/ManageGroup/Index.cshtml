@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ParlayRMS.Models.Groups.Group>
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.GroupManagement;
+}
+<div class="bar new-cmd title">
+    <div class="group">
+        <button id="btnNewGroup" onclick="javascript:CreateGroup();">
+            <span class="addNewGroup"></span><span class="text">@ViewLang.NewGroup</span>
+        </button>
+    </div>
+    <div class="user">
+        <button id="btnNewUser" onclick="javascript:CreateUser();">
+            <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
+        </button>
+    </div>
+</div>
+<div class="scrollGridBorder">
+    <div class="scrollGridHeader">
+        <table class="scrollGrid">
+            <colgroup>
+                <col style="width: 200px" />
+                <col style="width: 100px" />
+                <col style="width: auto" />
+                <col style="width: 100px" />
+                <col style="width: 170px" />
+                <col style="width: 100px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        @ViewLang.GroupName
+                    </td>
+                    <td>
+                        @ViewLang.NumberOfUser
+                    </td>
+                    <td>
+                        @ViewLang.Remark
+                    </td>
+                    <td>
+                        @ViewLang.Creator
+                    </td>
+                    <td>
+                        @ViewLang.CreatedDate
+                    </td>
+                    <td>
+                        @ViewLang.Permission
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="groupScrollGrid" class="scrollGridContent">
+        <table id="tblGroupList" class="scrollGrid">
+            <colgroup>
+                <col style="width: 200px" />
+                <col style="width: 100px" />
+                <col style="width: auto" />
+                <col style="width: 100px" />
+                <col style="width: 170px" />
+                <col style="width: 100px" />
+            </colgroup>
+            <tbody>
+                @foreach (var group in @Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="#" onclick="javascript:EditGroup('@group.Id');">@group.Name</a>
+                        </td>
+                        <th>
+                            <button style="width: 60px;" onclick="javascript:GetUserByGroup(@group.Id)">
+                                @group.NumberOfMember
+                            </button>
+                        </th>
+                        <td>
+                            @group.Description
+                        </td>
+                        <td>
+                            @group.Creator.Name
+                        </td>
+                        <th>
+                            @group.CreateDate
+                        </th>
+                        <th>
+                            <button onclick="javascript:CreateGroupPolicy('@group.Id','@group.Name')">
+                                ...
+                            </button>
+                        </th>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Script{
+    <script src="@Url.Content("~/Scripts/ManageGroup.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ManageUser.js")" type="text/javascript"></script>
+}

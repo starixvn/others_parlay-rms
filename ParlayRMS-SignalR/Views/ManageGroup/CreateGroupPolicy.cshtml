@@ -1,0 +1,143 @@
+﻿@model ParlayRMS.ViewModel.ManageGroup.CreateGroupPolicyModel
+@{
+    ViewBag.Title = "Create Group Policy";
+}
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ParlayRMS.Utility.ViewLang.GrantPermission: <span style="color: #ff6300">@ViewBag.GroupName</span>
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="fieldbar">
+                    <table id="tblfuntion" width="100%">
+                        <tr>
+                            <th rowspan="2">
+                                @ParlayRMS.Utility.ViewLang.Functions
+                            </th>
+                            <th colspan="2">
+                                @ParlayRMS.Utility.ViewLang.GroupPermission
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                @ParlayRMS.Utility.ViewLang.Read
+                            </th>
+                            <th>
+                                @ParlayRMS.Utility.ViewLang.Write
+                            </th>
+                        </tr>
+                        @foreach (Function fn in ViewBag.Function)
+                        {
+
+                            string activeR = "inactive";
+                            string activeW = "inactive";
+                            string val = "0";
+                            if (fn.GroupPolicy != null)
+                            {
+                                if (fn.GroupPolicy.Write)
+                                {
+                                    activeR = activeW = "active";
+                                    val = "2";
+                                }
+                                else if (fn.GroupPolicy.Read)
+                                {
+                                    activeR = "active";
+                                    activeW = "inactive";
+                                    val = "1";
+                                }
+                                else
+                                {
+                                    activeR = activeW = "inactive";
+
+                                }
+                            }
+
+                            <tr>
+                                <td>
+                                    <span class="function">@fn.Name</span>
+                                </td>
+                                <td>
+                                    <div id="r-@fn.Id" class="@activeR" parent="r-@fn.Id" permission="1" onclick="grantPermissionsRead(this);">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="w-@fn.Id" class="@activeW" parent="w-@fn.Id" val="@val" permission="2" onclick="grantPermissionsWrite(this);">
+                                    </div>
+                                </td>
+                            </tr>
+                            foreach (Function subfn in ViewBag.subFunction)
+                            {
+                                if (fn.Id == subfn.Parent.Id)
+                                {
+
+                                    string SubactiveR = "inactive";
+                                    string SubactiveW = "inactive";
+                                    string Subval = "0";
+                                    if (subfn.GroupPolicy != null)
+                                    {
+                                        if (subfn.GroupPolicy.Write)
+                                        {
+                                            SubactiveR = SubactiveW = "active";
+                                            Subval = "2";
+                                        }
+                                        else if (subfn.GroupPolicy.Read)
+                                        {
+                                            SubactiveR = "active";
+                                            SubactiveW = "inactive";
+                                            Subval = "1";
+                                        }
+                                        else
+                                        {
+                                            SubactiveR = SubactiveW = "inactive";
+
+                                        }
+                                    }
+                            <tr>
+                                <td>
+                                    <span class="subfunction">- @subfn.Name</span>
+                                </td>
+                                <td>
+                                    <div id="r-@subfn.Id" parent="r-@subfn.Parent.Id" permission="1" class="@SubactiveR"onclick="grantPermissions(this);">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="w-@subfn.Id" parent="w-@subfn.Parent.Id" val="@Subval"  permission="2" class="@SubactiveW" onclick="grantPermissions(this);">
+                                    </div>
+                                </td>
+                            </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        @Html.Action("_LoadingInPopUp", "Shared")
+                        <div class="button-action">
+                            <button id="btnSubmitNewGroupPolicy" onclick="javascript:saveGroupPolicy();">
+                                <span class="text">@ParlayRMS.Utility.ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.HiddenFor(m => m.GroupId, "groupid")
+@Html.HiddenFor(m => m.GroupPolicy, "grouppolicy")
+<script type="text/javascript">
+
+    $(function () {
+        $("#btnSubmitNewGroupPolicy").addClass("button");
+
+    });
+
+</script>

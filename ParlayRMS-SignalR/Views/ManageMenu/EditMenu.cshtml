@@ -1,0 +1,94 @@
+﻿@{
+
+    var functionList = ViewBag.FunctionList as IEnumerable<Function>;
+    //var functionSelectList = functionList.Select(x => new SelectListItem
+    //{
+    //    Value = x.Id.ToString(),
+    //    Text = x.Name
+    //}).ToList();
+
+    var menuList = ViewBag.MenuList as IEnumerable<Menu>;
+    var menuSelectList = menuList.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text = x.Name
+    }).ToList();
+    menuSelectList.Insert(0, new SelectListItem { Value = "0", Text = ParlayRMS.Utility.ViewLang.None });
+}
+@model ParlayRMS.ViewModel.ManageMenu.EditMenuModel
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField">
+                <div class="title">
+                    @ParlayRMS.Utility.ViewLang.EditMenu
+                </div>
+                <div class="lineTop">
+                </div>
+                <div class="lineBottom">
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Name, ParlayRMS.Utility.ViewLang.Name)
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.Name, Model.Name, new { @class = "inputtext w230" })
+                </div>
+                <div class="label_areatext">
+                    @Html.LabelFor(m => m.Description, ParlayRMS.Utility.ViewLang.Description)
+                </div>
+                <div class="field_areatext">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "areatext", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.Url, "URL")
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.Url, Model.Url, new { @class = "inputtext w230" })
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.FunctionId, ParlayRMS.Utility.ViewLang.Function)
+                </div>
+                <div class="fieldNoneBorder">
+                    <select id="FunctionId" name="FunctionId">
+                        @foreach (var function in functionList)
+                        {
+                            <option value='@function.Id' @(function.Id == Model.FunctionId ? "selected=selected" : "") @(function.Parent != null ? "class=sub" : "")>@function.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="labelNoneBorder">
+                    @Html.LabelFor(m => m.ParentId, ParlayRMS.Utility.ViewLang.Parent)
+                </div>
+                <div class="fieldNoneBorder">
+                    @Html.DropDownListFor(m => m.ParentId, menuSelectList)
+                </div>
+                <div class="label">
+                    @Html.LabelFor(m => m.DisplayOrder, ParlayRMS.Utility.ViewLang.Order)
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.DisplayOrder, Model.DisplayOrder.ToString(), new { @class = "inputtext" })
+                </div>
+                <div class="actionbar">
+                    <div class="actionbar-line">
+                        <div id="lineloading" class="line-loading">
+                            <img alt="" src="../../Images/Content/ajax-loader-line-2.gif" />
+                        </div>
+                        <div id="errMsg" class="warningmsg">
+                        </div>
+                        <div class="button-action">
+                            <button id="btnSubmitEditMenu" onclick="javascript:SaveUpdateMenu();">
+                                <span class="text">@ParlayRMS.Utility.ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSubmitEditMenu').addClass("button");
+    });
+</script>

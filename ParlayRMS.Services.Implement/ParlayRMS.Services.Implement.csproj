@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ParlayRMS.Services.Implement</RootNamespace>
+    <AssemblyName>ParlayRMS.Services.Implement</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Caching">
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR">
+      <HintPath>..\Dependencies\SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalR.Hosting.Common">
+      <HintPath>..\Dependencies\SignalR.Hosting.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UMControllerLibrary">
+      <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Users\AuthorizationService.cs" />
+    <Compile Include="BetList\BetListService.cs" />
+    <Compile Include="Systems\CachingService.cs" />
+    <Compile Include="Common\CommonService.cs" />
+    <Compile Include="MixParlayMonitor\MixParlayMonitorCacheService.cs" />
+    <Compile Include="MixParlayMonitor\MixParlayMonitorService.cs" />
+    <Compile Include="Members\MembersService.cs" />
+    <Compile Include="Functions\FunctionsService.cs" />
+    <Compile Include="Groups\GroupsService.cs" />
+    <Compile Include="MixParlayMonitor\MixParlayMonitorHub.cs" />
+    <Compile Include="Systems\MaintenanceService.cs" />
+    <Compile Include="Menus\MenusService.cs" />
+    <Compile Include="Charts\ChartsCacheService.cs" />
+    <Compile Include="Charts\ChartsService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimilarBets\SimilarBetsService.cs" />
+    <Compile Include="TopWinners\TopWinnersService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Users\UsersService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
+      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
+      <Name>ParlayRMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.DataAccess.Implement\ParlayRMS.DataAccess.Implement.csproj">
+      <Project>{B3E2DDD4-8234-4E4C-A7A0-00B98E57CD17}</Project>
+      <Name>ParlayRMS.DataAccess.Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.DataAccess.Interface\ParlayRMS.DataAccess.Interface.csproj">
+      <Project>{B77B0E05-2BC3-4F0A-B814-3243E90D4A7F}</Project>
+      <Name>ParlayRMS.DataAccess.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
+      <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
+      <Name>ParlayRMS.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.Models\ParlayRMS.Models.csproj">
+      <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
+      <Name>ParlayRMS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.Services.Interface\ParlayRMS.Services.Interface.csproj">
+      <Project>{8996A3CA-B459-4301-81A7-0E8624D3828C}</Project>
+      <Name>ParlayRMS.Services.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.Web\ParlayRMS.Web.csproj">
+      <Project>{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}</Project>
+      <Name>ParlayRMS.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\ParlayRMS.Utility.csproj">
+      <Project>{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}</Project>
+      <Name>ParlayRMS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

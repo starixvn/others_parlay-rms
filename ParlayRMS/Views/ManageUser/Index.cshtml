@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.UserManagement;
+}
+@{
+    Html.RenderPartial("NewBar");
+    Html.RenderPartial("_SearchBar", "Shared");
+}
+<div class="scrollGridBorder">
+    <div class="scrollGridHeader">
+        <table class="scrollGrid">
+            <colgroup>
+                <col style="width: 200px" />
+                <col style="width: auto" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 120px" />
+                <col style="width: 100px" />
+                <col style="width: 90px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        @ViewLang.Username
+                    </td>
+                    <td>
+                        @ViewLang.Firstname
+                    </td>
+                    <td>
+                        @ViewLang.Lastname
+                    </td>
+                    <td>
+                        @ViewLang.GroupName
+                    </td>
+                    <td>
+                        @ViewLang.Creator
+                    </td>
+                    <td>
+                        @ViewLang.CreatedDate
+                    </td>
+                    <td>
+                        @ViewLang.Permission
+                    </td>
+                    <td>
+                        @ViewLang.Active
+                    </td>
+                    <td>
+                        @ViewLang.Password
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="groupScrollGrid" class="scrollGridContent">
+        <table id="tblGroupList" class="scrollGrid">
+            <colgroup>
+                <col style="width: 200px" />
+                <col style="width: auto" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 150px" />
+                <col style="width: 120px" />
+                <col style="width: 100px" />
+                <col style="width: 90px" />
+            </colgroup>
+            <tbody>
+                @foreach (var user in ViewBag.UserList)
+                {
+                    <tr>
+                        <td>
+                            <a href="javascript:EditUser(@user.Id, '@user.Name', '@user.FirstName', '@user.LastName', @user.Group.Id)">@user.Name</a>
+                        </td>
+                        <td>
+                            @user.FirstName
+                        </td>
+                        <td>
+                            @user.LastName
+                        </td>
+                        <td>
+                            @user.Group.Name
+                        </td>
+                        <td>
+                            @user.Creator.Name
+                        </td>
+                        <td style="text-align: center">
+                            @user.CreatedDate
+                        </td>
+                        <td style="text-align: center">
+                            <button onclick="javascript:EditUserPolicy(@user.Id, '@user.Name')">
+                                ...
+                            </button>
+                        </td>
+                        <td>
+                            <div onclick="javascript:ProcessCheckBox(@user.Id, '@user.Name', this)" class="@Utils.ResolveCheckBox(user.IsActive)">
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="javascript:ResetPassword(@user.Id, '@user.Name')" class="resetPassword">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="display: none">
+    <label id="active">@ViewBag.ActiveUser</label>
+    <label id="inactive">@ViewBag.InactiveUser</label>
+</div>
+@section Script{
+    <script src="@Url.Content("~/Scripts/ManageUser.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Search.js")" type="text/javascript"></script>
+}

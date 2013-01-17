@@ -1,0 +1,2 @@
+﻿/* File Created: June 26, 2012 */
+require(["jquery", "../Scripts/Lib/HighChart/highcharts.js", "../Scripts/Data.js", "../Scripts/Tabular.js", "../Scripts/Chart.js", "../Scripts/Cache.js", "../Scripts/jQueryExtension.js", "../Scripts/Monitoring.js"], function ($) { });
