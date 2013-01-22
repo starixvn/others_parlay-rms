@@ -14,7 +14,7 @@ function CreateGroup() {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -26,17 +26,13 @@ function CreateGroup() {
 }
 
 function CreateGroupPost() {
-    var groupNameElement = $("#GroupName");
-    if ($.trim(groupNameElement.val()) == '' || $.trim(groupNameElement.val()) == 'This field is required') {
-        Validators.show(groupNameElement.get(0), 'This field is required');
+    if (validator.validateRequired("#GroupName")) {
         return;
     }
-
     var data = {
         GroupName: $.trim($("#GroupName").val()),
         Description: $.trim($("#Description").val())
     };
-
     $.ajax({
         url: resolveClientUrl("ManageGroup/CreateGroup"),
         type: 'POST',
@@ -44,22 +40,21 @@ function CreateGroupPost() {
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                setTimeout("CreateGroupPolicy('" + json.groupid + "','" + $.trim($("#Name").val()) + "');", 2000);
-            }
+            EditGroupPolicy(json.groupid, $("#GroupName").val());
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }
@@ -78,7 +73,7 @@ function EditGroup(groupid) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -90,8 +85,7 @@ function EditGroup(groupid) {
 }
 
 function EditGroupPost() {
-    if ($.trim($("#GroupName").val()) == '' || $.trim($("#GroupName").val()) == 'This field is required') {
-        Validators.animateText($('#GroupName').get(0), 'This field is required');
+    if (validator.validateRequired("#GroupName")) {
         return;
     }
     var data = {
@@ -99,7 +93,6 @@ function EditGroupPost() {
         GroupName: $.trim($("#GroupName").val()),
         Description: $.trim($("#Description").val())
     };
-
     $.ajax({
         url: resolveClientUrl('ManageGroup/EditGroup'),
         type: 'POST',
@@ -107,22 +100,21 @@ function EditGroupPost() {
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl('ManageGroup', 3000);
-            }
+            navigateToUrl('ManageGroup', 3000);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }
@@ -137,7 +129,7 @@ function CreateUser() {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -148,13 +140,13 @@ function CreateUser() {
     });
 }
 
-function CreateGroupPolicy(groupId, groupName) {
+function EditGroupPolicy(groupId, groupName) {
     var data = {
         GroupId: groupId,
         GroupName: groupName
     };
     $.ajax({
-        url: resolveClientUrl("ManageGroup/CreateGroupPolicy"),
+        url: resolveClientUrl("ManageGroup/EditGroupPolicy"),
         data: data,
         type: 'GET',
         dataType: 'html',
@@ -163,7 +155,7 @@ function CreateGroupPolicy(groupId, groupName) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -174,36 +166,33 @@ function CreateGroupPolicy(groupId, groupName) {
     });
 }
 
-function CreateGroupPolicyPost() {
-    var groupPolicy = getGroupPolicy();
+function EditGroupPolicyPost() {
     var data = {
         groupId: $.trim($("#GroupId").val()),
-        groupPolicy: groupPolicy
+        groupPolicy: getGroupPolicy()
     };
-
     $.ajax({
-        url: resolveClientUrl("ManageGroup/CreateGroupPolicy"),
+        url: resolveClientUrl("ManageGroup/EditGroupPolicy"),
         type: 'POST',
         data: data,
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl('ManageGroup', 2000);
-            }
+            navigateToUrl('ManageGroup', 2000);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }

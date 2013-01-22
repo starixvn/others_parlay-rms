@@ -1,15 +1,20 @@
-﻿@using ParlayRMS.DTO;
-@using ParlayRMS.DTO.Members;
+﻿@using ParlayRMS.DTO.Members;
 @using ParlayRMS.Utility;
 @model IEnumerable<RMS_CustomerSel>
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.MemberManagement;
     string levelName = string.Empty;
 }
-@{
-    Html.RenderPartial("NewBar");
-    Html.RenderPartial("SearchBar");
-}
+<div id="barSpecialMember" class="bar new-cmd title" style="width: 550px;">
+    <div style="float: left;">
+        <button id="btnAddSpecialMember" onclick="javascript:AddMember();">
+            <span class="addNewUSer"></span><span class="text">@ViewLang.AddSpecialMember</span>
+        </button>
+    </div>
+    <div class="excel" onclick="ExportExcel();" title="Export Excel">
+    </div>
+</div>
+@Html.Action("SearchBar")
 <div class="scrollGridBorder" style="width: 560px">
     <div class="scrollGridHeader" style="width: 542px">
         <table class="scrollGrid" style="width: 542px">

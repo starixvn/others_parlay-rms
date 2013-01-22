@@ -7,7 +7,7 @@
 
     public interface IMembersDataAccess
     {
-        IEnumerable<RMS_CustomerSel> RMS_CustomerSel(string username, int level);
+        IEnumerable<RMS_CustomerSel> RMS_CustomerSel(string username, int? level);
 
         Result RMS_CustomerIns(string userName, int level, int adminId, string ip);
 

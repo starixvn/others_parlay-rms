@@ -7,10 +7,10 @@
     using Fanex.Data;
     using ParlayRMS.Common.Models;
     using ParlayRMS.DataAccess.Interface.Members;
+    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Members;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO;
 
     public class MembersDataAccess : BaseDataAccess, IMembersDataAccess
     {
@@ -20,7 +20,7 @@
         /// <param name="username"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public IEnumerable<RMS_CustomerSel> RMS_CustomerSel(string username, int level)
+        public IEnumerable<RMS_CustomerSel> RMS_CustomerSel(string username, int? level)
         {
             var result = new List<RMS_CustomerSel>();
 
@@ -33,7 +33,7 @@
                         db.AddInParameter("username", DbType.String, username);
                     }
 
-                    if (level != -1)
+                    if (level != null)
                     {
                         db.AddInParameter("level", DbType.Int32, level);
                     }

@@ -8,7 +8,7 @@
 
     public interface IMembersService
     {
-        IEnumerable<RMS_CustomerSel> GetListCustomer(string username, int level);
+        IEnumerable<RMS_CustomerSel> GetListCustomer(string username, int? level);
 
         Result AddCustomer(string userName, int level, int adminId, string ip);
 

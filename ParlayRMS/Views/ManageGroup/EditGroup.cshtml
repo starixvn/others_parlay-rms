@@ -1,45 +1,19 @@
 ﻿@model ParlayRMS.ViewModel.ManageGroup.EditGroupModel
-<div class="boxMain">
-    <div class="container">
-        <div class="content">
-            <div class="allField">
-                <div class="title">
-                    @ViewLang.EditGroup
-                </div>
-                <div class="lineTop">
-                </div>
-                <div class="lineBottom">
-                </div>
-                <div class="label">
-                    @Html.LabelFor(m => m.GroupName)
-                    @Html.HiddenFor(m => m.GroupId, "groupid")
-                </div>
-                <div class="field">
-                    @Html.TextBoxFor(m => m.GroupName, new { @class = "inputtext w330" })
-                </div>
-                <div class="label_areatext">
-                    @Html.LabelFor(m => m.Description)
-                </div>
-                <div class="field_areatext">
-                    @Html.TextAreaFor(m => m.Description, new { @class = "areatext w330", rows = "7", maxlength = "330", onkeyup = "limitInput(this)" })
-                </div>
-                <div class="actionbar">
-                    <div class="actionbar-line">
-                        <div id="errMsg" class="warningmsg">
-                        </div>
-                        <div class="button-action">
-                            <button id="btnSubmitEditGroup" onclick="EditGroupPost()">
-                                <span class="text">@ViewLang.Submit</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@{
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+    ViewBag.Title = ViewLang.EditGroup;
+    ViewBag.Submit = "EditGroupPost()";
+}
+<div class="label">
+    @Html.LabelFor(m => m.GroupName)
+    @Html.HiddenFor(m => m.GroupId, "groupid")
 </div>
-<script type="text/javascript">
-    $(function () {
-        $("#btnSubmitEditGroup").addClass("button");
-    });
-</script>
+<div class="field">
+    @Html.TextBoxFor(m => m.GroupName, new { @class = "inputtext w330" })
+</div>
+<div class="label_areatext">
+    @Html.LabelFor(m => m.Description)
+</div>
+<div class="field_areatext">
+    @Html.TextAreaFor(m => m.Description, new { @class = "areatext w330", rows = "7", maxlength = "330", onkeyup = "limitInput(this)" })
+</div>

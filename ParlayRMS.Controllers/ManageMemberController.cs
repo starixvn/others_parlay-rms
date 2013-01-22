@@ -5,79 +5,82 @@
     using System.Web.Mvc;
     using PagedList;
     using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Services.Implement.Members;
+    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface.Members;
+    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageMember;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Services.Implement.Members;
-    using ParlayRMS.Services.Interface.Members;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Common.Models;
 
     public class ManageMemberController : BaseController
     {
-        public const string HIDDEN_GROUPS_KEY = "HiddenGroups";
         private readonly IUsersService userService = new UsersService();
         private readonly IMembersService customerService = new MembersService();
-        private int pagesize = Utility.AppSetting.PageSize;
+        private int pagesize = AppSetting.PageSize;
 
+        // GET: ~/ManangeMember/MemberList
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
-        [ValidateInput(false)]
-        public ActionResult SpecialMemberList()
+        public ActionResult MemberList(MemberListModel model)
         {
-            int level = string.IsNullOrEmpty(Request["level"]) ? -1 : DbConverter.ToInt32(Request["level"]);
-            string userName = DbConverter.ToString(Request["username"]);
-            int page = string.IsNullOrEmpty(Request["page"]) || DbConverter.ToInt32(Request["page"]) < 1 ? 1 : DbConverter.ToInt32(Request["page"]);
-
-            pagesize = string.IsNullOrEmpty(Request["pagesize"]) ? Utility.AppSetting.PageSize : DbConverter.ToInt32(Request["pagesize"]);
-
-            var specialMemberList = this.customerService.GetListCustomer(userName, level);
-            ViewBag.Pager = Pager.Items(specialMemberList.Count()).PerPage(pagesize).Move(page).Segment(5).Center();
-
+            var specialMemberList = this.customerService.GetListCustomer(model.UserName, model.Level);
+            int page = model.Page == null ? 1 : model.Page.Value;
+            ViewBag.Pager = Pager.Items(specialMemberList.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
             return this.View(specialMemberList.ToPagedList(page, pagesize));
         }
 
+        // GET: ~/ManangeMember
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
-        [ValidateInput(false)]
         public ActionResult Index()
         {
             return this.View();
         }
 
+        // GET: ~/ManangeMember/AddMember
+        [HttpGet]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Create)]
         public ActionResult AddMember()
         {
-            return this.PartialView(new AddMemberModel());
+            var model = new AddMemberModel();
+            return this.PartialView(model);
         }
 
+        // POST: ~/ManangeMember/AddMember
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Create)]
-        [ValidateInput(false)]
-        public ActionResult SaveMember(AddMemberModel model)
+        public ActionResult AddMember(AddMemberModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
             var result = this.customerService.AddCustomer(model.UserName, model.Level, CurrentSession.CustId, CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
+            return this.Json(result);
         }
 
+        // POST: ~/ManangeMember/UpdateLevel
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Update)]
         public ActionResult UpdateLevel(UpdateLevelModel model)
         {
-            var result = this.customerService.UpdateLevelCustomer(model.custId, model.level, CurrentSession.CustId, CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
+            var result = this.customerService.UpdateLevelCustomer(model.CustId, model.Level, CurrentSession.CustId, CurrentContext.Ip4Address);
+            return this.Json(result);
         }
 
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
+        // POST: ~/ManangeMember/ExportExcel
         [HttpGet]
-        [ValidateInput(false)]
-        public void ExportSpecialMembers()
+        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
+        public void ExportExcel(ExportExcelModel model)
         {
-            int level = string.IsNullOrEmpty(Request["level"]) ? -1 : DbConverter.ToInt32(Request["level"]);
-            string userName = Request["username"];
-
-            var specialMemberList = this.customerService.GetListCustomer(userName, level);
+            var specialMemberList = this.customerService.GetListCustomer(model.UserName, model.Level);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "ExcelTemplates\\SpecialMember.xls";
             var writer = new TemplateWriter(templatePath);
 
@@ -107,16 +110,23 @@
             Response.End();
         }
 
+        // POST: ~/ManangeMember/ChangeLevel
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Update)]
-        public ActionResult ChangeCustomerLevel()
+        public ActionResult ChangeLevel(ChangeLevelModel model)
         {
-            int custId = string.IsNullOrEmpty(Request["custid"]) ? 0 : DbConverter.ToInt32(Request["custid"]);
-            int level = string.IsNullOrEmpty(Request["level"]) ? -1 : DbConverter.ToInt32(Request["level"]);
-            string userName = Request["username"];
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
 
-            var result = this.customerService.ChangeLevelCustomer(custId, userName, level, CurrentSession.CustId, CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
+            var result = this.customerService.ChangeLevelCustomer(model.CustId, model.UserName, model.Level, CurrentSession.CustId, CurrentContext.Ip4Address);
+            return this.Json(result);
+        }
+
+        public ActionResult SearchBar(SearchBarModel model)
+        {
+            return this.PartialView(model);
         }
     }
 }

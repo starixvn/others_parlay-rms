@@ -3,17 +3,16 @@
     var custId = $(elMenu).attr('custid');
     var level = elOption.attr('level');
     var username = $(elMenu).attr('username');
-
-    var data = {
-        UserName: $.trim(username),
-        Level: level,
-        CustId: custId
-    };
     var title = "Confirmation";
     var content = "Are you sure you want to change level to " + (level == 0 ? "None" : level) + " ?";
     confirm(title, content, function () {
+        var data = {
+            UserName: $.trim(username),
+            Level: level,
+            CustId: custId
+        };
         $.ajax({
-            url: resolveClientUrl('ManageMember/ChangeCustomerLevel'),
+            url: resolveClientUrl('ManageMember/ChangeLevel'),
             type: 'POST',
             data: data,
             dataType: 'html',

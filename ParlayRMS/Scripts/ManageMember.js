@@ -2,7 +2,6 @@
 var isUpdateLevel = false;
 $(document).ready(function () {
     $("#btnAddSpecialMember").addClass("button");
-
     // Show menu when a list item is clicked
     $("#levelColor").contextMenu({
         menu: 'myColor'
@@ -13,19 +12,17 @@ $(document).ready(function () {
         $(elMenu).parent().addClass("level " + elOption.attr('color'));
         $(elMenu).attr('vallevel', elOption.attr('level'));
     });
-
-    LoadSpecialMember(null, null, null);
+    LoadSpecialMember($("#txtUserName").val(), $("#levelColor").attr('vallevel'), null);
 });
 
 function LoadSpecialMember(username, level, page) {
-    var url = "ManageMember/SpecialMemberList";
     var data = {
         Username: username,
         Level: level,
         Page: page
     };
     $.ajax({
-        url: resolveClientUrl(url),
+        url: resolveClientUrl("ManageMember/MemberList"),
         type: 'POST',
         data: data,
         dataType: 'html',
@@ -34,38 +31,35 @@ function LoadSpecialMember(username, level, page) {
             loading.show();
         },
         success: function (result) {
-            loading.hide();
             $("#content").html(result);
 
             $(".arrowDown_div").contextMenu({
                 menu: 'LevelList'
             }, function (elOption, elMenu, pos) {
-                updateLevel(elOption, elMenu);
+                UpdateLevel(elOption, elMenu);
             });
         },
         error: function (xhr, status, err) {
-            loading.hide();
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
         }
     });
 }
 
-function updateLevel(elOption, elMenu) {
-    var currentClass = $(elMenu).parent().attr('class');
-    var custId = $(elMenu).attr('custid');
+function UpdateLevel(elOption, elMenu) {
     var level = $(elOption).attr('level');
-
-    var url = "ManageMember/UpdateLevel";
-    var data = {
-        custid: custId,
-        Level: level
-    };
-
+    var custId = $(elMenu).attr('custid');
     var title = "Confirmation";
     var content = "Are you sure you want to change level to " + (level == 0 ? "None" : level) + " ?";
     confirm(title, content, function () {
+        var data = {
+            Custid: custId,
+            Level: level
+        };
         $.ajax({
-            url: resolveClientUrl(url),
+            url: resolveClientUrl("ManageMember/UpdateLevel"),
             type: 'POST',
             data: data,
             dataType: 'html',
@@ -75,11 +69,11 @@ function updateLevel(elOption, elMenu) {
             },
             success: function (result) {
                 var json = $.parseJSON(result);
-                loading.hide();
                 if (json.code != 0) {
-                    alertBox.show('Error Message', json.message);
+                    alertBox.show(json.message);
                 }
                 else {
+                    var currentClass = $(elMenu).parent().attr('class');
                     $("#levelName_" + custId).text(elOption.html());
                     $(elMenu).parent().removeClass(currentClass);
                     $(elMenu).parent().addClass("divcolor " + elOption.attr('color'));
@@ -87,18 +81,18 @@ function updateLevel(elOption, elMenu) {
                 }
             },
             error: function (xhr, status, err) {
-                loading.hide();
                 alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
             }
         });
     });
 }
 
-function addSpecialMember() {
-    var url = "ManageMember/AddMember";
-    var title = "Add Special Member";
+function AddMember() {
     $.ajax({
-        url: resolveClientUrl(url),
+        url: resolveClientUrl("ManageMember/AddMember"),
         type: 'GET',
         dataType: 'html',
         cache: false,
@@ -106,74 +100,69 @@ function addSpecialMember() {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
-            loading.hide();
+            popup.show(data);
         },
         error: function (xhr, status, err) {
-            loading.hide();
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
         }
     });
 }
 
-function saveSpecialMember() {
-    if ($.trim($("#UserName").val()) == '' || $.trim($("#UserName").val()) == 'This field is required') {
-        Validators.show($('#UserName').get(0), 'This field is required');
+function AddMemberPost() {
+    if (validator.validateRequired("#UserName")) {
         return;
     }
-    var url = "ManageMember/SaveMember";
     var data = {
         UserName: $.trim($("#UserName").val()),
         Level: $.trim($("#getColor").attr('valcolor'))
     };
-
     $.ajax({
-        url: resolveClientUrl(url),
+        url: resolveClientUrl("ManageMember/AddMember"),
         type: 'POST',
         data: data,
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            messagePopup.hide();
-            loadingInPopup.show();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                loadingInPopup.hide();
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                modalClose();
-                LoadSpecialMember(null, null, null);
-            }
+            location.reload();
         },
         error: function (xhr, status, err) {
-            loadingInPopup.hide();
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            popup.hideLoading();
         }
     });
 }
 
 function SearchMember_onclick() {
-    loading.show();
     var username = $.trim($('#txtUserName').val());
     var level = $('#levelColor').attr("vallevel");
     LoadSpecialMember(username, level, null);
 }
+
 function SearchAllMember_onclick() {
     $('#txtUserName').val('');
     $('#searchLevelName').html('All level');
-    $('#levelColor').attr('vallevel', '-1');
+    $('#levelColor').attr('vallevel', '');
     $('#levelColor').parent().addClass('level alllevel');
     LoadSpecialMember(null, null, null);
 }
+
 function ExportExcel() {
     var username = $.trim($('#txtUserName').val());
     var level = $('#levelColor').attr("vallevel");
-
-    var url = "ManageMember/ExportSpecialMembers/?username=" + username + "&level=" + level;
-
+    var url = "ManageMember/ExportExcel/?username=" + username + "&level=" + level;
     window.location.href = resolveClientUrl(url);
 }
 

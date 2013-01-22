@@ -1,8 +1,19 @@
 ﻿@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.UserManagement;
 }
+<div class="bar new-cmd title">
+    <div style="float: left;">
+        <button id="btnNewUser" onclick="javascript:CreateUser();">
+            <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
+        </button>
+    </div>
+    <div style="float: left; padding-left: 5px;">
+        <button id="btnExistUser" onclick="javascript:CreateExistingUser();">
+            <span class="addNewUSer"></span><span class="text">@ViewLang.ExistingUser</span>
+        </button>
+    </div>
+</div>
 @{
-    Html.RenderPartial("NewBar");
     Html.RenderPartial("_SearchBar", "Shared");
 }
 <div class="scrollGridBorder">
@@ -93,7 +104,7 @@
                             </button>
                         </td>
                         <td>
-                            <div onclick="javascript:ProcessCheckBox(@user.Id, '@user.Name', this)" class="@Utils.ResolveCheckBox(user.IsActive)">
+                            <div onclick="javascript:ToggleStatus(@user.Id, '@user.Name', this)" class="@Utils.ResolveCheckBox(user.IsActive)">
                             </div>
                         </td>
                         <td>

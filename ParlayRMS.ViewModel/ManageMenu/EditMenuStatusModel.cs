@@ -1,12 +1,13 @@
 ﻿namespace ParlayRMS.ViewModel.ManageMenu
 {
-    using System;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
 
     public class EditMenuStatusModel
     {
-        public int Id { get; set; }
+        [Required]
+        public int MenuId { get; set; }
 
+        [Required]
         public bool IsActive { get; set; }
     }
 }

@@ -6,9 +6,13 @@
 @section Script{
     <script src="@Url.Content("~/Scripts/ManageFunction.js")" type="text/javascript"></script>
 }
-@{
-    Html.RenderPartial("NewBar");
-}
+<div id="barFunction" class="bar new-cmd title">
+    <div style="float: left;">
+        <button id="btnNewFunction" onclick="javascript:CreateFunction();">
+            <span class="addNewFunction"></span><span class="text">@ViewLang.NewFunction</span>
+        </button>
+    </div>
+</div>
 <div class="scrollGridBorder">
     <div class="scrollGridHeader">
         <table class="scrollGrid">

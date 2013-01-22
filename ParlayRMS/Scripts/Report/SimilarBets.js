@@ -100,7 +100,7 @@ function ViewBetDetails(username, transId, refNo, originalRefNo) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
             $(".betdetails").css('overflow-y', 'auto');
             $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
         },

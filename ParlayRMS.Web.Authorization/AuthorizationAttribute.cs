@@ -5,15 +5,13 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
-    using ParlayRMS.Web.Session;
-    using ParlayRMS.Web.Context;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Implement;
     using ParlayRMS.Services.Implement.Systems;
+    using ParlayRMS.Web.Context;
+    using ParlayRMS.Web.Session;
 
     public class AuthorizationAttribute : AuthorizeAttribute
     {
-        private static readonly CachingService cachingService = new CachingService();
+        private readonly CachingService cachingService = new CachingService();
         private readonly ICurrentSession currentSession = CurrentSession.Instance;
         private readonly ICurrentContext currentContext = CurrentContext.Instance;
 

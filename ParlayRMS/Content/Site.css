@@ -2169,3 +2169,19 @@ th.headerSortDown
 {
 	background-image: url('../images/Content/tablesortdown.png')
 }
+
+/*Refactor Section: Begin*/
+div.popuploading {
+	float: left;
+	position: absolute;
+	z-index: 100000;
+	line-height: 30px;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	background: transparent;
+	min-height: 20px;
+	padding-top: 3px;
+	padding-left: 10px;
+	background-image: url('../images/Content/ajax-loader-line-2.gif')
+}
+/*Refactor Section: End*/

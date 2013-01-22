@@ -1,54 +1,44 @@
 ﻿@using ParlayRMS.Models.Members
 @using ParlayRMS.Common.Models
-@{
-    var un = string.IsNullOrEmpty(Request["username"]) ? string.Empty : Request["username"].ToString();
-    int lv = string.IsNullOrEmpty(Request["level"]) ? -1 : DbConverter.ToInt32(Request["level"]);
-    var cl = ModelsHelper.GetClassByMemberLevel(lv);
-    var lvName = "";
-    if (lv == -1)
-    {
-        lvName = ViewLang.AllLevel;
-    }
-    else if (lv == 0)
-    {
-        lvName = ViewLang.None;
-    }
-    else
-    {
-        lvName = "Level " + lv;
-    }
-}
+@model ParlayRMS.ViewModel.ManageMember.SearchBarModel
 <div class="search-content" style="width: 530px">
     <div class="search-input">
         @Html.Label("lblUserName", ViewLang.Username)
-        @Html.TextBox("txtUserName", un, new { @class = "inputtext w150" })
+        @Html.TextBox("txtUserName", @Model.UserName, new { @class = "inputtext w150" })
     </div>
-    <div class="level @cl">
+    <div class="level @Model.ClassName">
         <span id="searchLevelName">
-            @lvName
-        </span><span id="levelColor" class="arrowDown" vallevel="@lv" title="Click to change level">
+            @Model.LevelName
+        </span><span id="levelColor" class="arrowDown" vallevel="@Model.Level" title="Click to change level">
         </span>
     </div>
     <div class="search-button">
         <button onclick="SearchMember_onclick();">
-            @ViewLang.Search</button>&nbsp;
+            @ViewLang.Search
+        </button>
+        &nbsp;
         <button onclick="SearchAllMember_onclick();">
-            @ViewLang.ShowAll</button>
+            @ViewLang.ShowAll
+        </button>
     </div>
 </div>
 <ul id="myColor" class="contextMenu">
-    <li class="alllevel" title="Click to change level"><a href="#" level="-1" color="alllevel">
-        All Level</a></li>
+    <li class="alllevel" title="Click to change level"><a href="#" level="" color="alllevel">
+        @ViewLang.AllLevel
+    </a></li>
     @foreach (var level in ModelsHelper.GetMemberLevels())
     {
         if (level.LevelId == 0)
         {
         <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">
-            @ViewLang.None </a></li>
+            @ViewLang.None
+        </a></li>
         }
         else
         {
-        <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">@level.LevelValue</a></li>
+        <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">
+            @level.LevelValue
+        </a></li>
         }
     }
 </ul>

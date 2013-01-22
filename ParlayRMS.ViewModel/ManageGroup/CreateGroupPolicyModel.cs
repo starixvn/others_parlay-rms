@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Utility;
 
-    public class CreateGroupPolicyModel
+    public class EditGroupPolicyModel
     {
         [Required]
         public int GroupId { get; set; }

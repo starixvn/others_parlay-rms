@@ -8,5 +8,10 @@
         {
             return this.View();
         }
+
+        public ActionResult Test()
+        {
+            return this.View();
+        }
     }
 }

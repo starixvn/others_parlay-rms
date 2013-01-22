@@ -1,45 +1,21 @@
-﻿var loading = new Loading();
-var loadingInPopup = new LoadingInPopup();
-
-$(document).ready(function () {
-    loading.init();
-    loadingInPopup.init();
-});
-
-// Loading class
-function Loading() {
+﻿var loading = function () {
     var container;
-
-    this.init = function () {
-        container = $('#loading');
+    init = function () {
+        if (!container) {
+            container = $('#loading');
+        }
     }
-
-    this.show = function () {
-        container.show('fade');
+    return {
+        show: function () {
+            init();
+            container.show('fade');
+        },
+        hide: function () {
+            init();
+            container.hide('fade');
+        }
     }
-
-    this.hide = function () {
-        container.hide('fade');
-    }
-};
-
-// LoadingInPopup class
-function LoadingInPopup() {
-    var container;
-
-    this.init = function () {
-        container = $('#lineloading');
-    }
-
-    this.show = function () {
-        this.init();
-        container.show('fade');
-    }
-
-    this.hide = function () {
-        container.hide('fade');
-    }
-};
+} ();
 
 // loadingHelper object helps to show or hide loading based on running tasks
 var loadingHelper = function () {
@@ -229,4 +205,225 @@ var tableSorter = function () {
             });
         }
     }
+} ();
+
+var popup = function () {
+    var container;
+    var loadingContainer;
+    var messageContainer;
+
+    return {
+        show: function (data) {
+            container = $("#popup");
+            container.html(data);
+            container.modal({
+                opacity: 20,
+                overlayCss: { backgroundColor: "#000" },
+                onClose: function () {
+                    Validators.hide();
+                    $.modal.close();
+                }
+            });
+            messageContainer = container.find("#errMsg");
+            loadingContainer = container.find("#lineloading");
+        },
+        hide: function () {
+            container.modal.close();
+        },
+        showLoading: function () {
+            loading.show();
+            popup.hideErrorMessage();
+            loadingContainer.show('fade');
+        },
+        hideLoading: function () {
+            loadingContainer.hide('fade');
+            loading.hide();
+        },
+        showErrorMessage: function (msg) {
+            popup.hideLoading();
+            messageContainer.html(msg);
+            messageContainer.show('fade');
+        },
+        hideErrorMessage: function () {
+            messageContainer.hide('fade');
+            messageContainer.html('');
+        }
+    }
+} ();
+
+var validator = function () {
+    var hint = {
+        add: function (elementInput, expr, message) {
+            // Bind onchange event of input
+            // Validate with expr
+            // Show message and animate background color
+        },
+        show: function (elementInput, message, xPos, pointerXPos) {
+            // <span class="hint"><span>This is the message.<span><span class="hint-pointer">&nbsp;</span></span>
+            var hint = document.getElementById('fHint');
+            var hintPointer = null;
+            if (hint == null) {
+                var hint = document.createElement("SPAN");
+                hint.className = 'hint';
+                var hintMsg = document.createElement("SPAN");
+                hint.appendChild(hintMsg);
+                hintPointer = document.createElement("SPAN");
+                hintPointer.className = 'hint-pointer';
+                hint.appendChild(hintPointer);
+                hint.id = 'fHint';
+                hint.style.top = '10px';
+                hint.style.left = '10px';
+                hint.onclick = function () { // Hide onclick
+                    hint.style.display = 'none';
+                };
+                document.body.appendChild(hint);
+            };
+            hintPointer = hint.lastChild;
+            hint.firstChild.innerHTML = message;
+            if (this.timeOutHideTooltip) {
+                clearTimeout(this.timeOutHideTooltip);
+                this.timeOutHideTooltip = null;
+            };
+            this.timeOutHideTooltip = setTimeout(function () {
+                hint.style.display = 'none';
+            }, 10000); // Auto hide in 10s
+            if (elementInput != null) {
+                if (typeof xPos == 'undefined') {
+                    xPos = 0;
+                }
+                if (typeof pointerXPos == 'undefined') {
+                    pointerXPos = 10;
+                }
+
+                hint.style.backgroundPositionX = (pointerXPos + 'px');
+                hintPointer.style.left = (pointerXPos + 'px');
+
+                //var pos = Validators.utils.findPos(elementInput);
+                //hint.style.left = (pos[0] + xPos) + 'px';
+                //hint.style.top = (pos[1] - 40) + 'px';
+                var pos = $(elementInput).offset();
+                hint.style.left = (pos.left + xPos) + 'px';
+                hint.style.top = (pos.top - 40) + 'px';
+                elementInput.onchange = function () {
+                    hint.style.display = 'none';
+                };
+                elementInput.focus();
+            };
+            hint.style.display = 'block';
+        },
+        hide: function () {
+            if (document.getElementById('fHint')) {
+                var hint = document.getElementById('fHint');
+                hint.style.display = 'none';
+            }
+        },
+        animate: function (input) {
+            var previousColor = input.style.color;
+            var previousBackground = input.style.backgroundColor;
+            var c = 4;
+            if (this.intervalAnimate) {
+                clearInterval(this.intervalAnimate);
+                this.intervalAnimate = null;
+            }
+            var int = this.intervalAnimate = setInterval(function () {
+                c--;
+                if (input.style.backgroundColor == previousBackground) {
+                    input.style.backgroundColor = '#ff7700';
+                    input.style.color = '#ffffff';
+                } else {
+                    input.style.backgroundColor = previousBackground;
+                    input.style.color = previousColor;
+                }
+                if (c == 0) {
+                    clearInterval(int);
+                }
+            }, 300);
+        },
+        animateText: function (input, text) {
+            var previousColor = input.style.color;
+            var previousBackground = input.style.backgroundColor;
+            var previousText = input.value;
+            var preType = input.type;
+            var c = 6;
+            if (this.intervalAnimate) {
+                clearInterval(this.intervalAnimate);
+                this.intervalAnimate = null;
+            }
+            var int = this.intervalAnimate = setInterval(function () {
+                c--;
+                if (input.style.backgroundColor == previousBackground) {
+                    input.style.backgroundColor = '#fff7b2';
+                    input.style.color = '#fd1718';
+                    if (preType == 'password')
+                        input.type = 'text';
+                    input.value = text;
+                } else {
+                    input.type = preType;
+                    input.style.backgroundColor = previousBackground;
+                    input.style.color = previousColor;
+                    input.value = previousText;
+                }
+                if (c == 0) {
+                    clearInterval(int);
+                    input.focus();
+                }
+            }, 500);
+        },
+        utils: {
+            // findPos() by quirksmode.org
+            // Finds the absolute position of an element on a page
+            findPos: function (obj) {
+                var curleft = curtop = 0;
+                if (obj.offsetParent) {
+                    do {
+                        curleft += obj.offsetLeft;
+                        curtop += obj.offsetTop;
+                    } while (obj = obj.offsetParent);
+                }
+                return [curleft, curtop];
+            },
+            // getPageScroll() by quirksmode.org
+            // Finds the scroll position of a page
+            getPageScroll: function () {
+                var xScroll, yScroll;
+                if (self.pageYOffset) {
+                    yScroll = self.pageYOffset;
+                    xScroll = self.pageXOffset;
+                } else if (document.documentElement && document.documentElement.scrollTop) {
+                    yScroll = document.documentElement.scrollTop;
+                    xScroll = document.documentElement.scrollLeft;
+                } else if (document.body) { // all other Explorers
+                    yScroll = document.body.scrollTop;
+                    xScroll = document.body.scrollLeft;
+                }
+                return [xScroll, yScroll]
+            },
+            // Finds the position of an element relative to the viewport.
+            findPosRelativeToViewport: function (obj) {
+                var objPos = this.findPos(obj)
+                var scroll = this.getPageScroll()
+                return [objPos[0] - scroll[0], objPos[1] - scroll[1]]
+            }
+        }
+    };
+    return {
+        validateRequired: function (element) {
+            var value = $.trim($(element).val());
+            if (!value) {
+                $(element).focus();
+                hint.show($(element).get(0), 'This field is required');
+                return true;
+            }
+            return false;
+        },
+        validateInt: function (element) {
+            var value = $.trim($(element).val());
+            if (!isNumeric(value) || parseInt(value) < 0) {
+                $(element).focus();
+                hint.show($(element).get(0), 'Order value must be greater or than 0');
+                return true;
+            };
+            return false;
+        }
+    };
 } ();

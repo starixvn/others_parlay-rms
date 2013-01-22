@@ -7,14 +7,14 @@
 namespace ParlayRMS.Services.Implement.TopWinners
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using ParlayRMS.DataAccess.Implement.TopWinners;
     using ParlayRMS.DataAccess.Interface.TopWinners;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.TopWinners;
     using ParlayRMS.DTO.TopWinners;
     using ParlayRMS.Services.Implement.Common;
+    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Services.Interface.TopWinners;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,8 +34,8 @@ namespace ParlayRMS.Services.Implement.TopWinners
         /// <returns></returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(DateTime fromDate, DateTime toDate, int sportsType, int selectTop)
         {
-            var moveBetsDay = commonService.GetBalanceUpDayInfo().MoveBetsDay;
-            return this.topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners(fromDate, toDate, moveBetsDay, sportsType, selectTop);
+            var info = commonService.GetBalanceUpDayInfo();
+            return this.topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, sportsType, selectTop);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ParlayRMS.Services.Implement.TopWinners
                 {
                     return listEntity.Union(listEntity_old);
                 }
-                else if (listEntity_old.Count()!= 0 && listEntity.Count() <= 0)
+                else if (listEntity_old.Count() != 0 && listEntity.Count() <= 0)
                 {
                     return listEntity_old;
                 }

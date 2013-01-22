@@ -89,10 +89,10 @@
             return this.Json(new { code = result.Code, message = result.Message });
         }
 
-        // GET: ~/ManangeGroup/CreateGroupPolicy
+        // GET: ~/ManangeGroup/EditGroupPolicy
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Create)]
-        public ActionResult CreateGroupPolicy(CreateGroupPolicyModel model)
+        public ActionResult EditGroupPolicy(EditGroupPolicyModel model)
         {
             var functionList = this.groupService.GetFunctionsByGroupId(model.GroupId);
             ViewBag.Functions = functionList.Where(x => x.Parent.Id == 0);
@@ -100,10 +100,10 @@
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeGroup/CreateGroupPolicy
-        [HttpPost, ActionName("CreateGroupPolicy")]
+        // POST: ~/ManangeGroup/EditGroupPolicy
+        [HttpPost, ActionName("EditGroupPolicy")]
         [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Update)]
-        public ActionResult CreateGroupPolicyPost(CreateGroupPolicyModel model)
+        public ActionResult EditGroupPolicyPost(EditGroupPolicyModel model)
         {
             if (!ModelState.IsValid)
             {

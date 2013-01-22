@@ -32,8 +32,7 @@
         [Required]
         public bool IsActive { get; set; }
 
-        [Required]
-        [Range(1, int.MaxValue)]
+        [Required, Range(0, int.MaxValue)]
         [Display(Name = "Order", ResourceType = typeof(ViewLang))]
         public int DisplayOrder { get; set; }
     }

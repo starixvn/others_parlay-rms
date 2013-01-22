@@ -4,7 +4,6 @@ var tooltip;
 var kickOutIntId;
 var maxRetryTimes = 3;
 var curRetryTimes = 0;
-var messagePopup = null;
 
 String.Empty = ""; // Extend static string
 
@@ -17,8 +16,6 @@ $(document).ready(function () {
 
 function initValues() {
     tooltip = $('.tooltip');
-
-    messagePopup = new ErrorMessageInPopup();
 }
 function navigateToUrl(url, delayTime) {
     if (delayTime == undefined) delayTime = 2000;

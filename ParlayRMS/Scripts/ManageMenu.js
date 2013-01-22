@@ -8,7 +8,7 @@
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -20,21 +20,9 @@
 }
 
 function CreateMenuPost() {
-    if ($.trim($('#Name').val()) == '' || $.trim($('#Name').val()) == 'This field is required') {
-        Validators.show($('#Name').get(0), 'This field is required');
+    if (validator.validateRequired("#Name") || validator.validateRequired("#DisplayOrder") || validator.validateInt("#DisplayOrder")) {
         return;
-    };
-
-    if ($.trim($('#DisplayOrder').val()) == '' || $.trim($('#DisplayOrder').val()) == 'This field is required') {
-        Validators.show($('#DisplayOrder').get(0), 'This field is required');
-        return;
-    };
-    var displayOrder = $.trim($('#DisplayOrder').val());
-    if (!isNumeric(displayOrder) || parseInt(displayOrder) < 0) {
-        Validators.show($('#DisplayOrder').get(0), 'Order value must be greater or than 0');
-        return;
-    };
-
+    }
     var data = {
         Name: $.trim($("#Name").val()),
         Url: $.trim($("#Url").val()),
@@ -45,7 +33,6 @@ function CreateMenuPost() {
         IsActive: false,
         DisplayOrder: $.trim($("#DisplayOrder").val())
     };
-
     $.ajax({
         url: resolveClientUrl("ManageMenu/CreateMenu"),
         type: 'POST',
@@ -53,22 +40,21 @@ function CreateMenuPost() {
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl('ManageMenu');
-            }
+            navigateToUrl('ManageMenu');
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }
@@ -84,11 +70,10 @@ function ToggleStatus(target, menuId, menuName) {
         title = 'Active Menu';
         content = 'Are you sure to activate [' + menuName + '] menu?';
     }
-
     confirm(title, content,
     function () {
         var data = {
-            Id: menuId,
+            MenuId: menuId,
             IsActive: !isActive
         };
         $.ajax({
@@ -98,11 +83,13 @@ function ToggleStatus(target, menuId, menuName) {
             dataType: 'html',
             cache: false,
             beforeSend: function (xhr) {
+                loading.show();
             },
             success: function (result) {
                 var json = $.parseJSON(result);
                 if (json.code != 0) {
-                    messagePopup.show(json.message);
+                    div.className = classes;
+                    messageBox(title, json.Message);
                 }
                 else {
                     if (isActive) {
@@ -118,19 +105,12 @@ function ToggleStatus(target, menuId, menuName) {
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
             }
         })
     });
-}
-
-function ShowErrorMessage(responseText) {
-    var json = $.parseJSON(responseText);
-    if (json.code == 401) {
-        messageBox('Error', json.message);
-    }
-    else {
-        messageBox('Error', 'Error on edit menu!');
-    }
 }
 
 $(function () {
@@ -138,10 +118,12 @@ $(function () {
 });
 
 function EditMenu(menuId) {
-    var url = "ManageMenu/EditMenu?menuId=" + menuId;
-    var title = "Edit Menu";
+    var data = {
+        MenuId: menuId
+    };
     $.ajax({
-        url: resolveClientUrl(url),
+        url: resolveClientUrl("ManageMenu/EditMenu"),
+        data: data,
         type: 'GET',
         dataType: 'html',
         cache: false,
@@ -149,34 +131,24 @@ function EditMenu(menuId) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
-            loading.hide();
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
         }
     });
 }
 
-function SaveUpdateMenu() {
-    if ($.trim($('#Name').val()) == '' || $.trim($('#Name').val()) == 'This field is required') {
-        Validators.show($('#Name').get(0), 'This field is required');
+function EditMenuPost(menuId) {
+    if (validator.validateRequired('#MenuName') || validator.validateRequired('#DisplayOrder') || validator.validateInt('#DisplayOrder')) {
         return;
-    };
-    if ($.trim($('#DisplayOrder').val()) == '' || $.trim($('#DisplayOrder').val()) == 'This field is required') {
-        Validators.show($('#DisplayOrder').get(0), 'This field is required');
-        return;
-    };
-    var displayOrder = $.trim($('#DisplayOrder').val());
-    if (!isNumeric(displayOrder) || parseInt(displayOrder) < 0) {
-        Validators.show($('#DisplayOrder').get(0), 'Order value must be greater or than 0');
-        return;
-    };
-
-    var url = "ManageMenu/SaveUpdateMenu";
+    }
     var data = {
-        Id: $.trim($("#Id").val()),
-        Name: $.trim($("#Name").val()),
+        MenuId: menuId,
+        MenuName: $.trim($("#MenuName").val()),
         Description: $.trim($("#Description").val()),
         Url: $.trim($("#Url").val()),
         FunctionId: $.trim($("#FunctionId option:selected").val()),
@@ -184,29 +156,28 @@ function SaveUpdateMenu() {
         ParentName: $.trim($("#ParentId option:selected").text()),
         DisplayOrder: $.trim($("#DisplayOrder").val())
     };
-
     $.ajax({
-        url: resolveClientUrl(url),
+        url: resolveClientUrl("ManageMenu/EditMenu"),
         type: 'POST',
         data: data,
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loadingInPopup.show();
-            messagePopup.hide();
+            popup.showLoading();
         },
         success: function (result) {
             var json = $.parseJSON(result);
             if (json.code != 0) {
-                loadingInPopup.hide();
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl('ManageMenu');
-            }
+            navigateToUrl('ManageMenu');
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            popup.hideLoading();
         }
     });
 }

@@ -46,6 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\LoginModel.cs" />
+    <Compile Include="ManageMember\ChangeLevelModel.cs" />
+    <Compile Include="ManageMember\ExportExcelModel.cs" />
+    <Compile Include="ManageMember\MemberListModel.cs" />
+    <Compile Include="ManageMember\SearchBarModel.cs" />
     <Compile Include="ManageUser\CreateExistingUserModel.cs" />
     <Compile Include="ManageUser\CreateUserModel.cs" />
     <Compile Include="ManageUser\EditUserPolicyModel.cs" />
@@ -62,7 +66,7 @@
     <Compile Include="ManageGroup\EditGroupModel.cs" />
     <Compile Include="ManageGroup\CreateGroupModel.cs" />
     <Compile Include="ManageMember\AddMemberModel.cs" />
-    <Compile Include="ManageMember\UpdateLevel.cs" />
+    <Compile Include="ManageMember\UpdateLevelModel.cs" />
     <Compile Include="ManageMenu\CreateMenuModel.cs" />
     <Compile Include="ManageMenu\EditMenuModel.cs" />
     <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
@@ -85,6 +89,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
+      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
+      <Name>ParlayRMS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\ParlayRMS.Utility.csproj">
       <Project>{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}</Project>
       <Name>ParlayRMS.Utility</Name>

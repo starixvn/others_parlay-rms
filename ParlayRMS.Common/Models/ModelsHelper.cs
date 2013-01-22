@@ -60,7 +60,7 @@ namespace ParlayRMS.Common.Models
                 }
             }
 
-            return "alllevel";
+            return string.Empty;
         }
 
         public static List<MemberLevel> GetMemberLevels()

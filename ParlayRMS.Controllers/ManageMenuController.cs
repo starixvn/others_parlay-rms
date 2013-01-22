@@ -10,6 +10,7 @@
     using ParlayRMS.Services.Interface.Menus;
     using ParlayRMS.ViewModel.ManageMenu;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Utility;
 
     public class ManageMenuController : BaseController
     {
@@ -42,12 +43,17 @@
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Create)]
         public ActionResult CreateMenu()
         {
-            var functionList = this.functionService.GetAllFunctionsInOrder();
-            ViewBag.FunctionList = functionList;
+            ViewBag.FunctionList = this.functionService.GetAllFunctionsInOrder();
 
-            var menuList = this.menuService.GetAllMenus();
-            var rootMenuList = menuList.Where(x => x.Parent == null);
-            ViewBag.MenuList = rootMenuList;
+            var allMenus = this.menuService.GetAllMenus();
+            var parentMenus = allMenus.Where(x => x.Parent == null);
+            var menuSelectList = parentMenus.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+            menuSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+            ViewBag.MenuSelectList = menuSelectList;
 
             var model = new CreateMenuModel();
             return this.PartialView(model);
@@ -69,19 +75,28 @@
         }
 
         // GET: ~/ManangeMenu/EditMenu
+        [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult EditMenu(int menuId)
         {
             ViewBag.FunctionList = this.functionService.GetAllFunctionsInOrder();
 
-            var menuList = this.menuService.GetAllMenus();
-            var rootMenuList = menuList.Where(x => x.Parent == null && x.Id != menuId);
-            ViewBag.MenuList = rootMenuList;
-            var menu = menuList.Where(x => x.Id == menuId).FirstOrDefault();
+            var allMenus = this.menuService.GetAllMenus();
+            var parentMenus = allMenus.Where(x => x.Parent == null && x.Id != menuId);
+            var menu = allMenus.Where(x => x.Id == menuId).FirstOrDefault();
+
+            var menuSelectList = parentMenus.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+            menuSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+            ViewBag.MenuSelectList = menuSelectList;
+            
             var model = new EditMenuModel
             {
-                Id = menu.Id,
-                Name = menu.Name,
+                MenuId = menu.Id,
+                MenuName = menu.Name,
                 Url = menu.Url,
                 Description = menu.Description,
                 FunctionId = menu.Function.Id,
@@ -93,13 +108,18 @@
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeMenu/SaveUpdateMenu
+        // POST: ~/ManangeMenu/EditMenu
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
-        public ActionResult SaveUpdateMenu(EditMenuModel model)
+        public ActionResult EditMenu(EditMenuModel model)
         {
-            var result = this.menuService.UpdateMenu(model.Id, model.Name, model.Description, model.Url, model.FunctionId, model.ParentId, model.ParentName, model.DisplayOrder, this.CurrentSession.UserId, this.CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
+            var result = this.menuService.UpdateMenu(model.MenuId, model.MenuName, model.Description, model.Url, model.FunctionId, model.ParentId, model.ParentName, model.DisplayOrder, this.CurrentSession.UserId, this.CurrentContext.Ip4Address);
+            return this.Json(result);
         }
 
         // POST: ~/ManangeMenu/UpdateStatus
@@ -107,8 +127,13 @@
         [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult UpdateStatus(EditMenuStatusModel model)
         {
-            var result = this.menuService.UpdateMenuStatus(model.Id, model.IsActive, CurrentSession.UserId, CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
+            var result = this.menuService.UpdateMenuStatus(model.MenuId, model.IsActive, CurrentSession.UserId, CurrentContext.Ip4Address);
+            return this.Json(result);
         }
     }
 }

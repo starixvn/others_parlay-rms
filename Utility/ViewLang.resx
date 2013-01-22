@@ -666,4 +666,7 @@
   <data name="StakeAfterPT" xml:space="preserve">
     <value>Stake after PT</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
 </root>

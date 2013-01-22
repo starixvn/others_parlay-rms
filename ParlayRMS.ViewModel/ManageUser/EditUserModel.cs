@@ -22,7 +22,6 @@ namespace ParlayRMS.ViewModel.ManageUser
         [Required]
         public int UserId { get; set; }
 
-        [Required]
         [Display(Name = "Username", ResourceType = typeof(ViewLang))]
         public string UserName { get; set; }
 

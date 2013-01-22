@@ -22,7 +22,6 @@ function ResetPassword(userId, username) {
         UserId: userId,
         UserName: username
     };
-
     $.ajax({
         url: resolveClientUrl("ManageUser/ResetPassword"),
         data: data,
@@ -33,7 +32,7 @@ function ResetPassword(userId, username) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -52,7 +51,6 @@ function EditUser(userId, username, firstName, lastName, groupId) {
         LastName: lastName,
         GroupId: groupId
     };
-
     $.ajax({
         url: resolveClientUrl("ManageUser/EditUser"),
         data: data,
@@ -63,7 +61,7 @@ function EditUser(userId, username, firstName, lastName, groupId) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -81,30 +79,28 @@ function EditUserPost(userId) {
         LastName: $('#LastName').val(),
         GroupId: $('#GroupName').val()
     };
-
     $.ajax({
-        url: resolveClientUrl("ManageUser/UpdateUser"),
+        url: resolveClientUrl("ManageUser/EditUser"),
         data: data,
         type: 'POST',
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (data) {
             var json = $.parseJSON(data);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl("ManageUser", 2000);
-            }
+            navigateToUrl("ManageUser", 2000);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }
@@ -119,13 +115,50 @@ function CreateUser() {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
             loading.hide();
+        }
+    });
+}
+
+function CreateUserPost() {
+    if (validator.validateRequired("#popup #UserName") || validator.validateRequired("#Password")) {
+        return;
+    }
+    var data = {
+        UserName: $('#popup #UserName').val(),
+        Password: $('#Password').val(),
+        FirstName: $('#FirstName').val(),
+        LastName: $('#LastName').val(),
+        GroupId: $('#GroupName').val()
+    };
+    $.ajax({
+        url: resolveClientUrl("ManageUser/CreateUser"),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function (xhr) {
+            popup.showLoading();
+        },
+        success: function (data) {
+            var json = $.parseJSON(data);
+            if (json.code != 0) {
+                popup.showErrorMessage(json.message);
+                return;
+            }
+            navigateToUrl("ManageUser", 2000);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr);
+        },
+        complete: function () {
+            popup.hideLoading();
         }
     });
 }
@@ -140,60 +173,7 @@ function CreateExistingUser() {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
-        },
-        error: function (xhr, status, err) {
-            alertBox.showError(xhr);
-        },
-        complete: function () {
-            loading.hide();
-        }
-    });
-}
-
-function CreateUserPost() {
-    if ($('#Username').val() == '') {
-        $('#Username').focus();
-        Validators.show($('#Username').get(0), 'This field is required');
-        return false;
-    }
-
-    if ($('#Password').val() == '') {
-        $('#Password').focus();
-        Validators.show($('#Password').get(0), 'This field is required');
-        return false;
-    }
-
-    var password = $('#Password').val();
-    var username = $('#popup #UserName').val();
-    var firstName = $('#FirstName').val();
-    var lastName = $('#LastName').val();
-    var groupId = $('#GroupName').val();
-    var data = {
-        UserName: username,
-        Password: password,
-        FirstName: firstName,
-        LastName: lastName,
-        GroupId: groupId
-    };
-
-    $.ajax({
-        url: resolveClientUrl("ManageUser/CreateUser"),
-        type: 'POST',
-        data: data,
-        dataType: 'html',
-        cache: false,
-        beforeSend: function (xhr) {
-            loading.show();
-        },
-        success: function (data) {
-            var json = $.parseJSON(data);
-            if (json.code != 0) {
-                messagePopup.show(json.message);
-            }
-            else {
-                navigateToUrl("ManageUser", 2000);
-            }
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -205,17 +185,13 @@ function CreateUserPost() {
 }
 
 function CreateExistingUserPost() {
-    if ($('#Username').val() == '') {
-        $('#Username').focus();
-        Validators.show($('#Username').get(0), 'This field is required');
-        return false;
+    if (validator.validateRequired("#Username")) {
+        return;
     }
-
     var data = {
         UserName: $('#Username').val(),
         GroupId: $('#GroupName').val()
     };
-
     $.ajax({
         url: resolveClientUrl("ManageUser/CreateExistingUser"),
         data: data,
@@ -223,27 +199,26 @@ function CreateExistingUserPost() {
         dataType: 'html',
         cache: false,
         beforeSend: function (xhr) {
-            loading.show();
+            popup.showLoading();
         },
         success: function (data) {
             var json = $.parseJSON(data);
             if (json.code != 0) {
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
+                return;
             }
-            else {
-                navigateToUrl("ManageUser", 2000);
-            }
+            navigateToUrl("ManageUser", 2000);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
         },
         complete: function () {
-            loading.hide();
+            popup.hideLoading();
         }
     });
 }
 
-function ProcessCheckBox(userId, username, div) {
+function ToggleStatus(userId, username, div) {
     var isInactive = div.className.indexOf('inactive') > -1;
     var title = '';
     var content = '';
@@ -333,7 +308,7 @@ function EditUserPolicy(userId, userName) {
             loading.show();
         },
         success: function (data) {
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -344,9 +319,36 @@ function EditUserPolicy(userId, userName) {
     });
 }
 
-/*
-===================
-*/
+function EditUserPolicyPost(userId) {
+    var data = {
+        UserId: userId,
+        UserPolicy: getUserPolicy()
+    };
+    $.ajax({
+        url: resolveClientUrl("ManageUser/EditUserPolicy"),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function (xhr) {
+            popup.showLoading();
+        },
+        success: function (result) {
+            var json = $.parseJSON(result);
+            if (json.code != 0) {
+                popup.showErrorMessage(json.message);
+                return;
+            }
+            navigateToUrl('ManageUser', 2000);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr);
+        },
+        complete: function () {
+            popup.hideLoading();
+        }
+    });
+}
 
 function checkPermission(isCheck, target) {
     if (isCheck == true) {
@@ -518,36 +520,4 @@ function getUserPolicy() {
         }
     }
     return userPolicy.substring(0, userPolicy.length - 1);
-}
-function EditUserPolicyPost(userId) {
-    var userPolicy = getUserPolicy();
-    var data = {
-        UserId: userId,
-        UserPolicy: userPolicy
-    };
-    $.ajax({
-        url: resolveClientUrl("ManageUser/EditUserPolicy"),
-        type: 'POST',
-        data: data,
-        dataType: 'html',
-        cache: false,
-        beforeSend: function (xhr) {
-            loading.show();
-        },
-        success: function (result) {
-            var json = $.parseJSON(result);
-            if (json.code != 0) {
-                messagePopup.show(json.message);
-            }
-            else {
-                navigateToUrl('ManageUser', 2000);
-            }
-        },
-        error: function (xhr, status, err) {
-            alertBox.showError(xhr);
-        },
-        complete: function () {
-            loading.hide();
-        }
-    });
 }

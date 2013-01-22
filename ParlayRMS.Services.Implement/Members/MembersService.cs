@@ -1,23 +1,17 @@
 ﻿namespace ParlayRMS.Services.Implement.Members
 {
     using System.Collections.Generic;
-    using Fanex.Logging;
-    using ParlayRMS.DataAccess.Implement;
-    using ParlayRMS.DataAccess.Interface;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.Members;
-    using ParlayRMS.DataAccess.Interface.Members;
     using ParlayRMS.DataAccess.Implement.Members;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.DTO.Members;
+    using ParlayRMS.DataAccess.Interface.Members;
     using ParlayRMS.DTO;
+    using ParlayRMS.DTO.Members;
+    using ParlayRMS.Services.Interface.Members;
 
     public class MembersService : BaseService, IMembersService
     {
         private readonly IMembersDataAccess customerDataAccess = new MembersDataAccess();
 
-        public IEnumerable<RMS_CustomerSel> GetListCustomer(string username, int level)
+        public IEnumerable<RMS_CustomerSel> GetListCustomer(string username, int? level)
         {
             return this.customerDataAccess.RMS_CustomerSel(username, level);
         }

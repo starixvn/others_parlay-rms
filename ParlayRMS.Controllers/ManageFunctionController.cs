@@ -1,24 +1,18 @@
 ﻿namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.ViewModel.ManageFunction;
-
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Web;
-    using ParlayRMS.Services.Interface.Functions;
     using ParlayRMS.Services.Implement.Functions;
+    using ParlayRMS.Services.Interface.Functions;
+    using ParlayRMS.ViewModel.ManageFunction;
+    using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Utility;
 
     public class ManageFunctionController : BaseController
     {
         private readonly IFunctionsService functionService = new FunctionsService();
 
+        // GET: ~/ManangeFunction
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Read)]
         public ActionResult Index()
@@ -27,29 +21,58 @@
             return this.View(model);
         }
 
+        // GET: ~/ManangeFunction/CreateFunction
+        [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Create)]
         public ActionResult CreateFunction()
         {
-            ViewBag.FunctionList = this.functionService.GetRootFunctions();
-            return this.PartialView();
+            var allFunctions = this.functionService.GetAllFunctions();
+            var parentFunctions = allFunctions.Where(x => x.Parent == null);
+
+            var functionSelectList = parentFunctions.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+            functionSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+            ViewBag.FunctionSelectList = functionSelectList;
+
+            var model = new CreateFunctionModel();
+            return this.PartialView(model);
         }
 
+        // POST: ~/ManangeFunction/CreateFunction
+        [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Create)]
-        [ValidateInput(false)]
-        public ActionResult SaveNewFunction(CreateFunctionModel model)
+        public ActionResult CreateFunction(CreateFunctionModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
             int functionId = 0;
             var result = this.functionService.CreateFunction(model.Name, model.Key, model.Description, model.ParentId, model.ParentName, model.DisplayOrder, CurrentSession.UserId, CurrentContext.Ip4Address, out functionId);
             return this.Json(new { code = result.Code, message = result.Message, functionId = functionId });
         }
 
+        // GET: ~/ManangeFunction/EditFunction
+        [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Update)]
         public ActionResult EditFunction(int functionId)
         {
-            var functionList = this.functionService.GetAllFunctions();
-            var rootFunctionList = functionList.Where(x => x.Parent == null && x.Id != functionId);
-            ViewBag.FunctionList = rootFunctionList;
-            var function = functionList.Where(x => x.Id == functionId).FirstOrDefault();
+            var allFunctions = this.functionService.GetAllFunctions();
+            var parentFunctions = allFunctions.Where(x => x.Parent == null && x.Id != functionId);
+            var function = allFunctions.Where(x => x.Id == functionId).FirstOrDefault();
+
+            var functionSelectList = parentFunctions.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+            functionSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
+            ViewBag.FunctionSelectList = functionSelectList;
+
             var model = new EditFunctionModel
             {
                 Id = function.Id,
@@ -63,16 +86,18 @@
             return this.PartialView(model);
         }
 
+        // GET: ~/ManangeFunction/EditFunction
+        [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Update)]
-        public ActionResult SaveUpdateFunction(EditFunctionModel model)
+        public ActionResult EditFunction(EditFunctionModel model)
         {
-            var result = this.functionService.UpdateFunction(model.Id, model.Name, model.Description, model.ParentId, model.ParentName, model.DisplayOrder, CurrentSession.UserId, CurrentContext.Ip4Address);
-            return this.Json(new { code = result.Code, message = result.Message });
-        }
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
 
-        public PartialViewResult NewBar()
-        {
-            return this.PartialView();
+            var result = this.functionService.UpdateFunction(model.Id, model.Name, model.Description, model.ParentId, model.ParentName, model.DisplayOrder, CurrentSession.UserId, CurrentContext.Ip4Address);
+            return this.Json(result);
         }
     }
 }

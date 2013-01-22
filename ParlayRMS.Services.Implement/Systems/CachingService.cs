@@ -2,16 +2,13 @@
 {
     using System;
     using Fanex.Caching;
-    using ParlayRMS.DataAccess.Implement.Users;
-    using ParlayRMS.DataAccess.Interface.Users;
     using ParlayRMS.Models.Users;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface.Users;
 
     public class CachingService : BaseService
     {
-        private static readonly ICache userCache = CacheService.CreateInstance(CacheType.MemoryCache);
+        private readonly ICache userCache = CacheService.CreateInstance(CacheType.MemoryCache);
         private readonly IUsersService usersService = new UsersService();
 
         public UserCache GetUserCache(int userId)
