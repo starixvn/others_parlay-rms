@@ -2,17 +2,15 @@
 {
     using System.Web.UI;
     using System;
+    using ParlayRMS.Models.Users;
 
     public class CurrentSession : Page, ICurrentSession
     {
-        #region Constants
-
-        public const string ParlayRmsUsername = "ParlayRMSUsername";
-        public const string ParlayRmsCustId = "ParlayRMSCustId";
-        public const string ParlayRmsUserId = "ParlayRMSUserId";
-        public const string ParlayRmsOnUserId = "ParlayRMSOnUserId";
-
-        #endregion Constants
+        public const string ParlayRmsUsername = "RMS.Username";
+        public const string ParlayRmsCustId = "RMS.CustId";
+        public const string ParlayRmsUserId = "RMS.UserId";
+        public const string ParlayRmsOnUserId = "RMS.OnUserId";
+        public const string ParlayRmsUserPolicy = "RMS.UserPolicy";
 
         private static ICurrentSession instance = null;
 
@@ -21,6 +19,19 @@
             get
             {
                 return instance ?? new CurrentSession();
+            }
+        }
+
+        public UserCache UserPolicy
+        {
+            get
+            {
+                return (UserCache)this.Session[ParlayRmsUserPolicy];
+            }
+
+            set
+            {
+                this.Session[ParlayRmsUserPolicy] = value;
             }
         }
 

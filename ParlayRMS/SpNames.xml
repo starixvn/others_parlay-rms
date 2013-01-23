@@ -1,179 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="User">
-    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="main" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="main" Plain="0" />
-    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="main" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="main" Plain="0" />
-    <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserCheckIn" SpName="RMS_UserCheckIn" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserCheckPermission" SpName="RMS_UserCheckPermission" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserInfoSel" SpName="RMS_UserInfoSel" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserInfoSelByUserID" SpName="RMS_UserInfoSelByUserID" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdateUserGroup" SpName="RMS_UserInfoUpdateUserGroup" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdStatus" SpName="RMS_UserInfoUpdStatus" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.bodb02" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBTXN.bodb02" Plain="0" />
+    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBTXN.bodb02" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBTXN.bodb02" Plain="0" />
+    <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserCheckIn" SpName="RMS_UserCheckIn" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserCheckPermission" SpName="RMS_UserCheckPermission" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserInfoSel" SpName="RMS_UserInfoSel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserInfoSelByUserID" SpName="RMS_UserInfoSelByUserID" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdateUserGroup" SpName="RMS_UserInfoUpdateUserGroup" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdStatus" SpName="RMS_UserInfoUpdStatus" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Menu">
-    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Group">
-    <Setting Key="RMS_GroupInfoIns" SpName="RMS_GroupInfoIns" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupInfoUpd" SpName="RMS_GroupInfoUpd" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupPolicyUpd" SpName="RMS_GroupPolicyUpd" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupInfoSel" SpName="RMS_GroupInfoSel" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupInfoSelAllGroup" SpName="RMS_GroupInfoSelAllGroup" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupInfoSelByGroupID" SpName="RMS_GroupInfoSelByGroupID" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupInfoSelUserGroup" SpName="RMS_GroupInfoSelUserGroup" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_GroupPolicySel" SpName="RMS_GroupPolicySel" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoIns" SpName="RMS_GroupInfoIns" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoUpd" SpName="RMS_GroupInfoUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupPolicyUpd" SpName="RMS_GroupPolicyUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoSel" SpName="RMS_GroupInfoSel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoSelAllGroup" SpName="RMS_GroupInfoSelAllGroup" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoSelByGroupID" SpName="RMS_GroupInfoSelByGroupID" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupInfoSelUserGroup" SpName="RMS_GroupInfoSelUserGroup" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_GroupPolicySel" SpName="RMS_GroupPolicySel" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Function">
-    <Setting Key="RMS_FunctionIns" SpName="RMS_FunctionIns" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_FunctionSel" SpName="RMS_FunctionSel" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_FunctionUpd" SpName="RMS_FunctionUpd" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_FunctionIns" SpName="RMS_FunctionIns" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_FunctionSel" SpName="RMS_FunctionSel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_FunctionUpd" SpName="RMS_FunctionUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Menu">
-    <Setting Key="RMS_MenuIns" SpName="RMS_MenuIns" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_MenuSel" SpName="RMS_MenuSel" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_MenuUpd" SpName="RMS_MenuUpd" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_MenuUpdStatus" SpName="RMS_MenuUpdStatus" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_MenuIns" SpName="RMS_MenuIns" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_MenuSel" SpName="RMS_MenuSel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_MenuUpd" SpName="RMS_MenuUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_MenuUpdStatus" SpName="RMS_MenuUpdStatus" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Report">
-    <Setting Key="RMS_Monitor_Parlay_Sum" SpName="RMS_Monitor_Parlay_Sum" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="events" ObjectProperty="Events" />
-      <Mapping DataField="status" ObjectProperty="Status" />
-      <Mapping DataField="tickets" ObjectProperty="Tickets" />
-      <Mapping DataField="turnover" ObjectProperty="Turnover" />
-      <Mapping DataField="winloss" ObjectProperty="Winloss" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket" SpName="RMS_Monitor_Parlay_SelectionByTicket" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="selection" ObjectProperty="Selection" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Currency" SpName="RMS_Monitor_Parlay_SelectionByTicket_Currency" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="currency" ObjectProperty="Currency" />
-      <Mapping DataField="margin" ObjectProperty="Margin" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League" SpName="RMS_Monitor_Parlay_SelectionByTicket_League" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover" SpName="RMS_Monitor_Parlay_SelectionByTurnover" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="selection" ObjectProperty="Selection" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="currency" ObjectProperty="Currency" />
-      <Mapping DataField="margin" ObjectProperty="Margin" />
-      <Mapping DataField="turnover" ObjectProperty="Turnover" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="turnover" ObjectProperty="Turnover" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="awayid" ObjectProperty="Awayid" />
-      <Mapping DataField="homeid" ObjectProperty="Homeid" />
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="matchid" ObjectProperty="Matchid" />
-      <Mapping DataField="tickets" ObjectProperty="Tickets" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_League_Event" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="awayid" ObjectProperty="Awayid" />
-      <Mapping DataField="homeid" ObjectProperty="Homeid" />
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="matchid" ObjectProperty="Matchid" />
-      <Mapping DataField="tickets" ObjectProperty="Tickets" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="awayid" ObjectProperty="Awayid" />
-      <Mapping DataField="homeid" ObjectProperty="Homeid" />
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="matchid" ObjectProperty="Matchid" />
-      <Mapping DataField="turnover" ObjectProperty="Turnover" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" DbName="db052.bodb02" Plain="0">
-      <Mapping DataField="awayid" ObjectProperty="Awayid" />
-      <Mapping DataField="homeid" ObjectProperty="Homeid" />
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="matchid" ObjectProperty="Matchid" />
-      <Mapping DataField="turnover" ObjectProperty="Turnover" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="db052.bodb02" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist" DbName="db052.bodbRMS" Plain="0">
-      <Mapping DataField="transdate" ObjectProperty="TransDate" />
-      <Mapping DataField="transid" ObjectProperty="TransId" />
-      <Mapping DataField="refno" ObjectProperty="RefNo" />
-      <Mapping DataField="username" ObjectProperty="Username" />
-      <Mapping DataField="odds" ObjectProperty="Odds" />
-      <Mapping DataField="stake" ObjectProperty="Stake" />
-      <Mapping DataField="maxpayout" ObjectProperty="MaxPayout" />
-      <Mapping DataField="combo" ObjectProperty="Combo" />
-      <Mapping DataField="level" ObjectProperty="Level" />
-    </Setting>
-    <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_Parlay_TopWinners" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_Parlay_TopWinners_Details" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_Parlay_TopWinners_Details_old" DbName="db06.bodb02" Plain="0">
-      <Mapping DataField="combo" ObjectProperty="Combo" />
-      <Mapping DataField="company_winlost" ObjectProperty="Company_winlost" />
-      <Mapping DataField="company_winlost_baseRM" ObjectProperty="Company_winlost_baseRM" />
-      <Mapping DataField="odds" ObjectProperty="Odds" />
-      <Mapping DataField="sporttype" ObjectProperty="Sporttype" />
-      <Mapping DataField="stake" ObjectProperty="Stake" />
-      <Mapping DataField="stake_baseRM" ObjectProperty="Stake_baseRM" />
-      <Mapping DataField="transid" ObjectProperty="Transid" />
-      <Mapping DataField="winlost" ObjectProperty="Winlost" />
-      <Mapping DataField="winlost_baseRM" ObjectProperty="Winlost_baseRM" />
-    </Setting>
-    <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_Parlay_Betlist" DbName="db052.bodbRMS" Plain="0">
-      <Mapping DataField="cnt_bets" ObjectProperty="Cnt_bets" />
-      <Mapping DataField="combo" ObjectProperty="Combo" />
-      <Mapping DataField="max_payout" ObjectProperty="Max_payout" />
-      <Mapping DataField="odds" ObjectProperty="Odds" />
-      <Mapping DataField="refno" ObjectProperty="Refno" />
-      <Mapping DataField="stake" ObjectProperty="Stake" />
-      <Mapping DataField="transdate" ObjectProperty="Transdate" />
-      <Mapping DataField="transid" ObjectProperty="Transid" />
-      <Mapping DataField="username" ObjectProperty="Username" />
-    </Setting>
-    <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="db052.bodbRMS" Plain="0">
-      <Mapping DataField="awayid" ObjectProperty="Awayid" />
-      <Mapping DataField="betteam" ObjectProperty="Betteam" />
-      <Mapping DataField="bettype" ObjectProperty="Bettype" />
-      <Mapping DataField="hdp1" ObjectProperty="Hdp1" />
-      <Mapping DataField="hdp2" ObjectProperty="Hdp2" />
-      <Mapping DataField="homeid" ObjectProperty="Homeid" />
-      <Mapping DataField="leagueid" ObjectProperty="Leagueid" />
-      <Mapping DataField="liveawayscore" ObjectProperty="Liveawayscore" />
-      <Mapping DataField="livehomescore" ObjectProperty="Livehomescore" />
-      <Mapping DataField="liveindicator" ObjectProperty="Liveindicator" />
-      <Mapping DataField="matchcode" ObjectProperty="Matchcode" />
-      <Mapping DataField="matchid" ObjectProperty="Matchid" />
-      <Mapping DataField="odds" ObjectProperty="Odds" />
-      <Mapping DataField="sporttype" ObjectProperty="Sporttype" />
-      <Mapping DataField="statusid" ObjectProperty="Statusid" />
-      <Mapping DataField="transid" ObjectProperty="Transid" />
-      <Mapping DataField="betstatus" ObjectProperty="BetStatus" />
-    </Setting>
+    <Setting Key="RMS_Monitor_Parlay_Sum" SpName="RMS_Monitor_Parlay_Sum" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket" SpName="RMS_Monitor_Parlay_SelectionByTicket" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Currency" SpName="RMS_Monitor_Parlay_SelectionByTicket_Currency" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League" SpName="RMS_Monitor_Parlay_SelectionByTicket_League" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover" SpName="RMS_Monitor_Parlay_SelectionByTurnover" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_League_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_Parlay_TopWinners" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_Parlay_TopWinners_Details" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_Parlay_TopWinners_Details_old" DbName="DBARC.bodb_Archive" Plain="0" />
+    <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_Parlay_Betlist" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
   <Function Name="Member">
-    <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_CustomerUpd" SpName="RMS_CustomerUpd" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="db052.bodbRMS" Plain="0" />
-    <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="db052.bodbRMS" Plain="0">
-      <Mapping DataField="custid" ObjectProperty="Custid" />
-      <Mapping DataField="following" ObjectProperty="Following" />
-      <Mapping DataField="level" ObjectProperty="Level" />
-      <Mapping DataField="username" ObjectProperty="Username" />
-    </Setting>
-    <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="db052.bodbRMS" Plain="0" />
+    <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_CustomerUpd" SpName="RMS_CustomerUpd" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBRMS.bodb_RMS" Plain="0" />
+    <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBRMS.bodb_RMS" Plain="0" />
   </Function>
 </Functions>

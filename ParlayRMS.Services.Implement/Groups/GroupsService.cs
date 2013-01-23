@@ -88,14 +88,7 @@
 
         public Result EditGroupPolicy(string groupPolicy, int adminId, string ip, int groupId)
         {
-            Result result = this.groupDataAccess.RMS_GroupPolicyUpd(groupPolicy, adminId, ip, groupId);
-            if (result.IsSuccessful)
-            {
-                var cachingService = new CachingService();
-                cachingService.ClearUserCache();
-            }
-
-            return result;
+            return this.groupDataAccess.RMS_GroupPolicyUpd(groupPolicy, adminId, ip, groupId);
         }
     }
 }

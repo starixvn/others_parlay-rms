@@ -1,7 +1,9 @@
 ﻿namespace ParlayRMS.Controllers
 {
     using System.Web.Mvc;
+    using ParlayRMS.Web.Mvc;
 
+    [LogActionFilter]
     public class HomeController : BaseController
     {
         public ActionResult Index()

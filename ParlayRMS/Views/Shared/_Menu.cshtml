@@ -1,14 +1,11 @@
 ﻿@using ParlayRMS.Web.Session
-@{
-    var menuDict = ViewBag.MenuDict as Dictionary<string, ParlayRMS.ViewModel.Shared.MenuItem>;
-    var isFirst = true;
-}
+@model Dictionary<string, ParlayRMS.ViewModel.Shared.MenuItem>
 <div class="menu">
     <div class="content">
         <a href="@Url.Content("~/")" class="logo over-em"></a>
-        @foreach (var value in menuDict.Values)
+        @foreach (var value in Model.Values)
         {
-            <ul class="@(isFirst == true ? "nav nav_line" : "nav")">
+            <ul class="@(Model.Values.First() == value ? "nav nav_line" : "nav")">
                 <li class="tab"><a href="@(string.IsNullOrEmpty(value.Url) ? '#'.ToString() : @Url.Content(value.Url))">
                     <span>@value.Name</span></a>
                     @if (value.Children.Count > 0)
@@ -22,7 +19,6 @@
                     }
                 </li>
             </ul>
-                    isFirst = false;
         }
         <div class="welcome ">
             <div class="welcomehead">

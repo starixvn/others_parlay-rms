@@ -1,7 +1,11 @@
 ﻿namespace ParlayRMS.Web.Session
 {
+    using ParlayRMS.Models.Users;
+
     public interface ICurrentSession
     {
+        UserCache UserPolicy { get; set; }
+
         string UserName { get; set; }
 
         int CustId { get; set; }

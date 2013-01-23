@@ -84,22 +84,13 @@
 
         public Result UpdateUserPolicy(int adminId, int userId, string policy, string ip)
         {
-            Result result = this.usersDataAccess.RMS_UserPolicyUpd(adminId, userId, policy, ip);
-            if (result.IsSuccessful)
-            {
-                var cachingService = new CachingService();
-                cachingService.RemoveUserCache(userId);
-            }
-
-            return result;
+            return this.usersDataAccess.RMS_UserPolicyUpd(adminId, userId, policy, ip);
         }
 
         public UserCache GetUserCache(int userId)
         {
             var data = this.usersDataAccess.RMS_MenuSelByUserID(userId);
-            return new UserCache
-            {
-                Menus = data.Menus.Select(x => new Menu
+            var menus = data.Menus.Select(x => new Menu
                 {
                     Id = x.MenuId,
                     Name = x.MenuName,
@@ -110,15 +101,17 @@
                         Name = x.ParentName
                     },
                     DisplayOrder = x.DisplayOrder
-                }),
-                Functions = data.Functions.Select(x => new FunctionPolicy
-                {
-                    FunctionId = x.FuncId,
-                    FunctionName = x.FuncName,
-                    FunctionKey = x.FuncKey,
-                    Policy = new Policy(x.Policy)
-                })
-            };
+                });
+
+            var functions = data.Functions.Select(x => new FunctionPolicy
+            {
+                FunctionId = x.FuncId,
+                FunctionName = x.FuncName,
+                FunctionKey = x.FuncKey,
+                Policy = new Policy(x.Policy)
+            });
+
+            return new UserCache(menus, functions);
         }
     }
 }

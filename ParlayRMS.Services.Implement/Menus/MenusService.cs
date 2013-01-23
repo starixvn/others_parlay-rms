@@ -56,30 +56,12 @@
 
         public Result UpdateMenu(int id, string name, string description, string url, int functionId, int parentId, string parentName, int displayOrder, int adminId, string ip)
         {
-            Result result = this.menuDataAccess.RMS_MenuUpd(id, name, description, url, functionId, parentId, parentName, displayOrder, adminId, ip);
-            if (result.IsSuccessful)
-            {
-                this.OnMenuUpdated();
-            }
-
-            return result;
+            return this.menuDataAccess.RMS_MenuUpd(id, name, description, url, functionId, parentId, parentName, displayOrder, adminId, ip);
         }
 
         public Result UpdateMenuStatus(int id, bool isActive, int adminId, string ip)
         {
-            Result result = this.menuDataAccess.RMS_MenuUpdStatus(id, isActive, adminId, ip);
-            if (result.IsSuccessful)
-            {
-                this.OnMenuUpdated();
-            }
-
-            return result;
-        }
-
-        private void OnMenuUpdated()
-        {
-            var cachingService = new CachingService();
-            cachingService.ClearUserCache();
+            return this.menuDataAccess.RMS_MenuUpdStatus(id, isActive, adminId, ip);
         }
     }
 }

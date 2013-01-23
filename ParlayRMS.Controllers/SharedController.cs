@@ -67,9 +67,7 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            ViewBag.MenuDict = menuDict;
-
-            return this.PartialView();
+            return this.PartialView(menuDict);
         }
 
         /// <summary>
