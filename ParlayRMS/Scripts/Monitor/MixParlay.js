@@ -119,10 +119,14 @@ var timerController = function () {
                 loading.show();
             },
             success: function (result) {
-                var data = $.parseJSON(result);
-                maxTransId = data.MaxTransId;
+                var json = $.parseJSON(result);
+                if (json.code != 0) {
+                    alertBox.showErrorMessage(json.message);
+                    return;
+                }
+                maxTransId = json.MaxTransId;
                 var table = $('#result');
-                FillData(table, data);
+                FillData(table, json);
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);

@@ -13,14 +13,14 @@
             if (Model == null)
             {
             <tr>
-                <td colspan="3" style="text-align: center">@ViewLang.NoInformation
+                <td colspan="3" style="text-align: center">
+                    @ViewLang.NoInformation
                 </td>
             </tr>
             }
         }
         @foreach (var customer in Model)
         {
-
             <tr>
                 <td style="width: 30px; text-align: center">
                     @customer.No
@@ -38,7 +38,9 @@
                         levelName = "Level " + customer.Level;
                     }
                     <div class="divcolor @ModelsHelper.GetClassByMemberLevel(customer.Level)">
-                        <span id="levelName_@customer.Custid">@levelName</span> <span  title="Click to change level" class="arrowDown_div" level="@customer.Level" custid="@customer.Custid">
+                        <span id="levelName_@customer.Custid">
+                            @levelName
+                        </span><span title="Click to change level" class="arrowDown_div" level="@customer.Level" custid="@customer.Custid">
                         </span>
                     </div>
                 </td>
@@ -47,6 +49,4 @@
         }
     </table>
 </div>
-@{
-    Html.RenderPartial("_Pager", "Shared");
-}
+@Html.Partial("_Pager", (object)@ViewBag.Pager)

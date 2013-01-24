@@ -15,16 +15,14 @@ namespace ParlayRMS.Controllers
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
+    using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Services.Implement.MixParlayMonitor;
-    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.MixParlayMonitor;
     using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Monitor;
+    using ParlayRMS.ViewModel.MixPalayMonitor;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Implement.BetList;
 
     /// <summary>
     /// TODO: Update summary.
@@ -37,9 +35,7 @@ namespace ParlayRMS.Controllers
 
         #region Mix Parlay
 
-        [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.MixParlay, Policy = ePolicy.Read)]
-        public ActionResult MixParlay()
+        public ActionResult MixParlayFilter()
         {
             // Combo
             var combos = new List<SelectListItem>();
@@ -82,7 +78,7 @@ namespace ParlayRMS.Controllers
 
             ViewBag.SelectTops = selectTops;
 
-            // Refresh Times
+            // Refresh Time
             values = new List<int> { 30, 60, 120 };
             var refreshTimes = new List<SelectListItem>();
             foreach (var item in values)
@@ -92,38 +88,45 @@ namespace ParlayRMS.Controllers
 
             ViewBag.RefreshTimes = refreshTimes;
 
+            return this.PartialView("MixParlay/Filter");
+        }
+
+        [HttpGet]
+        [AuthorizationAttribute(Function = eFunction.MixParlay, Policy = ePolicy.Read)]
+        public ActionResult MixParlay()
+        {
             return this.View("MixParlay/Index");
         }
 
         [HttpPost]
         [AuthorizationAttribute(Function = eFunction.MixParlay, Policy = ePolicy.Read)]
-        public ActionResult MixParlayData(MixParlayFilter option)
+        public ActionResult MixParlayData(DataModel model)
         {
-            if (option.SelectTop > 100)
+            if (!ModelState.IsValid)
             {
-                option.SelectTop = 100;
+                return this.InvalidModelJson();
             }
 
             var service = GetMixParlayService();
-            var model = service.GetMixParlayMonitorTickets(option.Combos, option.SportsTypes, option.Levels, option.MaxPayout, option.SelectTop, option.MaxTransId);
-            long maxTransId = option.MaxTransId;
-            if (model.Count() > 0)
+            var data = service.GetMixParlayMonitorTickets(model.Combos, model.SportsTypes, model.Levels, model.MaxPayout, model.SelectTop, model.MaxTransId);
+            long maxTransId = model.MaxTransId;
+            if (data.Count() > 0)
             {
-                maxTransId = Math.Max(option.MaxTransId, model.First().TransId);
+                maxTransId = Math.Max(model.MaxTransId, data.First().TransId);
             }
 
             string title = string.Empty;
-            if (option.MaxTransId == 0)
+            if (model.MaxTransId == 0)
             {
                 var combosTitle = ViewLang.All;
-                var combos = option.Combos.Split(',');
+                var combos = model.Combos.Split(',');
                 if (combos.Length < 5)
                 {
                     combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
                 }
 
                 var sportsTypesTitle = "All";
-                var sportsTypes = option.SportsTypes.Split(',');
+                var sportsTypes = model.SportsTypes.Split(',');
                 if (sportsTypes.Length < 3)
                 {
                     var list = new List<string>();
@@ -154,7 +157,7 @@ namespace ParlayRMS.Controllers
                 }
 
                 var levelsTitle = ViewLang.All;
-                var levels = option.Levels.Split(',');
+                var levels = model.Levels.Split(',');
                 if (levels.Length < 11)
                 {
                     levelsTitle = string.Join(",", levels.Select(x => x == "0" ? ViewLang.None : x));
@@ -168,18 +171,18 @@ namespace ParlayRMS.Controllers
                     ViewLang.Level,
                     levelsTitle,
                     ViewLang.SelectTop,
-                    option.SelectTop);
+                    model.SelectTop);
 
-                if (option.MaxPayout > 0)
+                if (model.MaxPayout > 0)
                 {
-                    title += string.Format(" - {0} [{1}]", ViewLang.MaxPayout, Formatter.FormatNumber2(option.MaxPayout));
+                    title += string.Format(" - {0} [{1}]", ViewLang.MaxPayout, Formatter.FormatNumber2(model.MaxPayout));
                 }
             }
 
             return this.Json(new
             {
                 code = 0,
-                Records = model,
+                Records = data,
                 Title = title,
                 MaxTransId = maxTransId
             });

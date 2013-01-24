@@ -1,26 +1,26 @@
-﻿@{
-    Pager pager = ViewBag.Pager;
-}
+﻿@model Pager
 <div class="Pager">
     <div class="PagerItem">
         @{
-            if (pager.NumberOfPages > 1)
+            if (Model.NumberOfPages > 1)
             {
-                if (pager.HasPreviousPage)
+                if (Model.HasPreviousPage)
                 {
-            <span class="First_Last" onclick="MovePage(@pager.FirstPageIndex);">@ViewLang.First
+            <span class="First_Last" onclick="MovePage(@Model.FirstPageIndex);">
+                @ViewLang.First
             </span>
-            <span class="Next_Previous" onclick="MovePage(@pager.PreviousPageIndex);">< </span>
+            <span class="Next_Previous" onclick="MovePage(@Model.PreviousPageIndex);">< </span>
                 }
                 else
                 {
-            <span class="First_Last_Disabled">@ViewLang.First </span>
+            <span class="First_Last_Disabled">
+                @ViewLang.First
+            </span>
             <span class="Next_Previous_Disabled">< </span>
                 }
-
-                foreach (int page in pager)
+                foreach (int page in Model)
                 {
-                    if (page == pager.CurrentPageIndex)
+                    if (page == Model.CurrentPageIndex)
                     {
             <span class="ActiveNumber">
                 @page
@@ -33,17 +33,19 @@
             </span>
                     }
                 }
-
-                if (pager.HasNextPage)
+                if (Model.HasNextPage)
                 {
-            <span class="Next_Previous" onclick="MovePage(@pager.NextPageIndex);">> </span>
-            <span class="First_Last" onclick="MovePage(@pager.LastPageIndex);">@ViewLang.Last
+            <span class="Next_Previous" onclick="MovePage(@Model.NextPageIndex);">> </span>
+            <span class="First_Last" onclick="MovePage(@Model.LastPageIndex);">
+                @ViewLang.Last
             </span>
                 }
                 else
                 {
             <span class="Next_Previous_Disabled">> </span>
-            <span class="First_Last_Disabled">@ViewLang.Last </span>
+            <span class="First_Last_Disabled">
+                @ViewLang.Last
+            </span>
                 }
             }
 

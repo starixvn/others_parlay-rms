@@ -48,11 +48,11 @@ var loadingHelper = function () {
 
 // alert box
 var alertBox = {
-    show: function (titleText, textContent) {
-        $("#dialog-message").html(textContent);
+    show: function (title, message) {
+        $("#dialog-message").html(message);
         $("#dialog-message").dialog({
             modal: true,
-            title: titleText,
+            title: title,
             draggable: false,
             resizable: false,
             buttons: {
@@ -62,27 +62,21 @@ var alertBox = {
             }
         });
     },
+    showErrorMessage: function (message) {
+        this.show("Error", message);
+    },
     showError: function (xhr) {
+        var message = "";
         if (xhr.status == 403) {
-            $("#dialog-message").html("You don't have permission on this function!!!!");
+            message = "You don't have permission on this function!!!!";
         }
         else if (xhr.status == 401) {
-            $("#dialog-message").html("You are not authorized on this function!!!");
+            message = "You are not authorized on this function!!!";
         }
         else {
-            $("#dialog-message").html(xhr.statusText);
+            message = xhr.statusText;
         }
-        $("#dialog-message").dialog({
-            modal: true,
-            title: "Error Message",
-            draggable: false,
-            resizable: false,
-            buttons: {
-                Ok: function () {
-                    $(this).dialog("close");
-                }
-            }
-        });
+        this.show("Error", message);
     }
 };
 

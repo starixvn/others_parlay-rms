@@ -71,6 +71,7 @@
     <Compile Include="ManageMenu\EditMenuModel.cs" />
     <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
     <Compile Include="ManageUser\UpdateStatusModel.cs" />
+    <Compile Include="MixPalayMonitor\DataModel.cs" />
     <Compile Include="Monitoring\MixParlayBetDetails.cs" />
     <Compile Include="Monitoring\MixParlayBetDetailsOptions.cs" />
     <Compile Include="Monitoring\MonitoringCacheModel.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Monitoring\TopLeagueByTicket.cs" />
     <Compile Include="Monitoring\TopLeagueByTurnover.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="Monitor\MixParlayFilter.cs" />
+    <Compile Include="MixPalayMonitor\FilterModel.cs" />
     <Compile Include="Report\BetDetails.cs" />
     <Compile Include="Report\BetDetailsOptions.cs" />
     <Compile Include="Report\TopWinnerDetailsOptions.cs" />
@@ -92,6 +93,10 @@
     <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
       <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
       <Name>ParlayRMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.Web\ParlayRMS.Web.csproj">
+      <Project>{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}</Project>
+      <Name>ParlayRMS.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\ParlayRMS.Utility.csproj">
       <Project>{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}</Project>

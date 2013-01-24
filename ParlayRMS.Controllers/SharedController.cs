@@ -12,10 +12,10 @@ namespace ParlayRMS.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.ViewModel.Shared;
-    using ParlayRMS.Services.Interface.Menus;
     using ParlayRMS.Services.Implement.Menus;
+    using ParlayRMS.Services.Interface.Menus;
+    using ParlayRMS.ViewModel.Shared;
+using ParlayRMS.Utility;
 
     /// <summary>
     /// Shared controller object
@@ -23,6 +23,7 @@ namespace ParlayRMS.Controllers
     public class SharedController : BaseController
     {
         private readonly IMenusService menuService = new MenusService();
+
         /// <summary>
         /// Gets authentication information menu
         /// </summary>
@@ -71,42 +72,6 @@ namespace ParlayRMS.Controllers
         }
 
         /// <summary>
-        /// Gets footer menu
-        /// </summary>
-        /// <returns>ActionResult object</returns>
-        public ActionResult _Footer()
-        {
-            return this.PartialView();
-        }
-
-        /// <summary>
-        /// Gets popup form
-        /// </summary>
-        /// <returns>ActionResult object</returns>
-        public ActionResult _Popup()
-        {
-            return this.PartialView();
-        }
-
-        /// <summary>
-        /// Gets loading view
-        /// </summary>
-        /// <returns>ActionResult object</returns>
-        public ActionResult _Loading()
-        {
-            return this.PartialView();
-        }
-
-        /// <summary>
-        /// Gets loading in popup view
-        /// </summary>
-        /// <returns>ActionResult object</returns>
-        public ActionResult _LoadingInPopUp()
-        {
-            return this.PartialView();
-        }
-
-        /// <summary>
         /// Gets message box view
         /// </summary>
         /// <param name="title">Title of message box</param>
@@ -130,30 +95,12 @@ namespace ParlayRMS.Controllers
         }
 
         /// <summary>
-        /// Gets unauthorization form
-        /// </summary>
-        /// <returns>ActionResult object</returns>
-        public ActionResult Unauthorized()
-        {
-            return this.View();
-        }
-
-        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public ActionResult _Pager()
+        public ActionResult _Pager(Pager model)
         {
-            return this.PartialView();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _AlertBox()
-        {
-            return this.PartialView();
+            return this.PartialView(model);
         }
     }
 }

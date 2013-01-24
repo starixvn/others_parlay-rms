@@ -587,9 +587,6 @@
     <Content Include="Views\ManageMenu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Popup.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\ManageMenu\EditMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -624,7 +621,6 @@
     <Content Include="Views\TopSelection\FilterControl.cshtml" />
     <Content Include="Views\TopSelection\DataSum.cshtml" />
     <Content Include="Views\ManageUser\EditUserPolicy.cshtml" />
-    <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Shared\_ConfirmBox.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
@@ -666,9 +662,6 @@
     <Content Include="Views\Monitor\MixParlay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\Data.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Monitor\MixParlay\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -685,6 +678,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Monitor\MixParlay\Filter.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
