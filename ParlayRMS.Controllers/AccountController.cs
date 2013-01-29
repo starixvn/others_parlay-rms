@@ -21,8 +21,8 @@
     {
         private readonly IAuthorizationService authorizationService = new AuthorizationService();
         private readonly MaintenanceService maintenanceService = new MaintenanceService();
-        private readonly ICurrentSession currentSession = new CurrentSession();
-        private readonly ICurrentContext currentContext = new CurrentContext();
+        private readonly ICurrentSession currentSession = CurrentSession.Instance;
+        private readonly ICurrentContext currentContext = CurrentContext.Instance;
 
         #region Login
 

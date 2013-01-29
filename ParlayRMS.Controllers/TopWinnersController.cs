@@ -23,6 +23,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Common.Models;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Implement.BetList;
+    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// TODO: Update summary.

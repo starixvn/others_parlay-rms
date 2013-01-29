@@ -11,6 +11,7 @@
     using ParlayRMS.ViewModel.ManageMenu;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Utility;
+    using ParlayRMS.Models.Functions;
 
     public class ManageMenuController : BaseController
     {

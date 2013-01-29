@@ -1,14 +1,14 @@
 ﻿namespace ParlayRMS.Services.Interface.Users
 {
     using System.Collections.Generic;
-    using ParlayRMS.Models;
+    using ParlayRMS.DTO;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Users;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.DTO;
 
     public interface IUsersService
     {
+        User GetUserById(int userId);
+
         IEnumerable<User> GetListUser(string userName, int groupId);
 
         Result ResetPassword(int adminId, int userId, string password, string ip);

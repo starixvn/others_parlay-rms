@@ -13,6 +13,8 @@
     using ParlayRMS.ViewModel.ManageMember;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Common.Models;
+    using ParlayRMS.Models.Functions;
+    using System.Net;
 
     public class ManageMemberController : BaseController
     {
@@ -78,7 +80,7 @@
         // POST: ~/ManangeMember/ExportExcel
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
-        public void ExportExcel(ExportExcelModel model)
+        public ActionResult ExportExcel(ExportExcelModel model)
         {
             var specialMemberList = this.customerService.GetListCustomer(model.UserName, model.Level);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "ExcelTemplates\\SpecialMember.xls";
@@ -104,10 +106,8 @@
             writer.SyncColumnWidths(3);
 
             MemoryStream ms = writer.Render("SpecialMember");
-            Response.AddHeader("content-disposition", "attachment; filename=" + "SpecialMember.xls");
-            Response.AddHeader("content-type", "application/vnd.ms-excel");
-            Response.BinaryWrite(ms.ToArray());
-            Response.End();
+            ms.Seek(0, 0);
+            return base.File(ms, "application/vnd.ms-excel", "SpecialMember.xls");
         }
 
         // POST: ~/ManangeMember/ChangeLevel

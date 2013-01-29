@@ -5,26 +5,26 @@
     ViewBag.Submit = string.Format("EditUserPost({0})", Model.UserId);
 }
 <div class="labelNoneBorder">
-    @Html.LabelFor(m => m.UserName, ViewLang.Username)
+    @Html.LabelFor(m => m.UserName)
 </div>
 <div class="fieldNoneBorder">
     @Model.UserName
 </div>
 <div class="label">
-    @Html.LabelFor(m => m.FirstName, ViewLang.Firstname)
+    @Html.LabelFor(m => m.FirstName)
 </div>
 <div class="field">
     @Html.TextBoxFor(m => m.FirstName, new { @class = "inputtext w330" })
 </div>
 <div class="label">
-    @Html.LabelFor(m => m.LastName, ViewLang.Lastname)
+    @Html.LabelFor(m => m.LastName)
 </div>
 <div class="field">
     @Html.TextBoxFor(m => m.LastName, new { @class = "inputtext w330" })
 </div>
 <div class="labelNoneBorder">
-    @Html.LabelFor(m => m.GroupName, ViewLang.GroupName)
+    @Html.LabelFor(m => m.GroupId)
 </div>
 <div class="fieldNoneBorder">
-    @Html.DropDownListFor(m => m.GroupName, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "w330" })
+    @Html.DropDownListFor(m => m.GroupId, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "w330" })
 </div>

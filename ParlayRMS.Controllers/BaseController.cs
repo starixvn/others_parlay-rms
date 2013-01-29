@@ -29,12 +29,12 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Context of current logging in session
         /// </summary>
-        private readonly ICurrentContext currentContext = new CurrentContext();
+        private readonly ICurrentContext currentContext = ParlayRMS.Web.Context.CurrentContext.Instance;
 
         /// <summary>
         /// Session of logging in user
         /// </summary>
-        private readonly ICurrentSession currentSession = new CurrentSession();
+        private readonly ICurrentSession currentSession = ParlayRMS.Web.Session.CurrentSession.Instance;
 
         /// <summary>
         /// Gets current context of this session
@@ -129,21 +129,13 @@ namespace ParlayRMS.Controllers
 
         public bool HideGroup(out string[] hiddenGroupNameList)
         {
-            var authorizationService = new AuthorizationService();
-            hiddenGroupNameList = new string[0];
-            var hiddenGroupNameListString = AppSetting.HiddenGroups;
-
-            if (!string.IsNullOrEmpty(hiddenGroupNameListString))
+            var usersService = new UsersService();
+            var user = usersService.GetUserById(CurrentSession.UserId);
+            var groupName = user.Group.Name == null ? string.Empty : user.Group.Name;
+            hiddenGroupNameList = AppSetting.HiddenGroups;
+            if (hiddenGroupNameList.Contains<string>(groupName))
             {
-                hiddenGroupNameList = hiddenGroupNameListString.Split(';');
-
-                var user = authorizationService.GetUserById(CurrentSession.UserId);
-                var groupName = user.Group.Name == null ? string.Empty : user.Group.Name;
-
-                if (hiddenGroupNameList.Contains<string>(groupName))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;

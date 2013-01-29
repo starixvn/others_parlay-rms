@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.FunctionManagement;
 }
 @section Script{
-    <script src="@Url.Content("~/Scripts/ManageFunction.js")" type="text/javascript"></script>
+    @Scripts.Render("~/Scripts/ManageFunction/js")
 }
 <div id="barFunction" class="bar new-cmd title">
     <div style="float: left;">

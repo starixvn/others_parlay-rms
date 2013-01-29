@@ -77,7 +77,7 @@ function EditUserPost(userId) {
         UserId: userId,
         FirstName: $('#FirstName').val(),
         LastName: $('#LastName').val(),
-        GroupId: $('#GroupName').val()
+        GroupId: $('#GroupId').val()
     };
     $.ajax({
         url: resolveClientUrl("ManageUser/EditUser"),

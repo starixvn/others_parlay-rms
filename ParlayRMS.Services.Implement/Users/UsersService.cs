@@ -1,24 +1,44 @@
 ﻿namespace ParlayRMS.Services.Implement.Users
 {
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using ParlayRMS.DataAccess.Implement.Users;
     using ParlayRMS.DataAccess.Interface.Users;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Services.Implement.Groups;
-    using ParlayRMS.Models.Users;
-    using ParlayRMS.Models.Menus;
-    using ParlayRMS.Common.Models;
     using ParlayRMS.DTO;
-    using ParlayRMS.Services.Implement.Systems;
+    using ParlayRMS.Models;
+    using ParlayRMS.Models.Functions;
+    using ParlayRMS.Models.Groups;
+    using ParlayRMS.Models.Menus;
+    using ParlayRMS.Models.Users;
+    using ParlayRMS.Services.Implement.Groups;
+    using ParlayRMS.Services.Interface.Groups;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Utility;
+    using ParlayRMS.Web.Session;
 
     public class UsersService : BaseService, IUsersService
     {
         private readonly IUsersDataAccess usersDataAccess = new UsersDataAccess();
         private readonly IGroupsService groupsService = new GroupsService();
+        private readonly ICurrentSession currentSession = CurrentSession.Instance;
+
+        public User GetUserById(int userId)
+        {
+            var data = this.usersDataAccess.RMS_UserInfoSelByUserID(userId);
+            return new User
+            {
+                Id = userId,
+                Name = data.UserName,
+                FirstName = data.FirstName,
+                LastName = data.LastName,
+                IsActive = data.Enabled,
+                Group = new Group
+                {
+                    Id = data.GroupId,
+                    Name = data.GroupName
+                }
+            };
+        }
 
         public IEnumerable<User> GetListUser(string userName, int groupId)
         {
@@ -66,7 +86,13 @@
 
         public IEnumerable<Function> GetUserFunction(int userId)
         {
+            var user = this.GetUserById(currentSession.UserId);
             var data = this.usersDataAccess.RMS_UserPolicySel(userId);
+            if (!AppSetting.HiddenGroups.Contains(user.Group.Name))
+            {
+                data = data.Where(x => x.FuncId != (int)eFunction.ManageFunction && x.FuncId != (int)eFunction.ManageMenu);
+            }
+            
             return data.Select(x => new Function
             {
                 Id = x.FuncId,

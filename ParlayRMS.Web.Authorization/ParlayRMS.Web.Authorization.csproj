@@ -48,11 +48,6 @@
   <ItemGroup>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="AuthorizationAttribute.cs" />
-    <Compile Include="Functions.generated.cs">
-      <DependentUpon>Functions.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Policy.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,12 +74,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="Functions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Functions.generated.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

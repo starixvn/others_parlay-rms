@@ -93,6 +93,6 @@
     </div>
 </div>
 @section Script{
-    <script src="@Url.Content("~/Scripts/ManageGroup.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/ManageUser.js")" type="text/javascript"></script>
+    @Scripts.Render("~/Scripts/ManageGroup/js")
+    @Scripts.Render("~/Scripts/ManageUser/js")
 }

@@ -162,7 +162,7 @@ function SearchAllMember_onclick() {
 function ExportExcel() {
     var username = $.trim($('#txtUserName').val());
     var level = $('#levelColor').attr("vallevel");
-    var url = "ManageMember/ExportExcel/?username=" + username + "&level=" + level;
+    var url = "ManageMember/ExportExcel?username=" + username + "&level=" + level;
     window.location.href = resolveClientUrl(url);
 }
 

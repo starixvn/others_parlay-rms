@@ -6,7 +6,7 @@
 <#
 	string connectionString = "Persist Security Info=False;User ID=ageteam;Password=@lion#;Initial Catalog=bodb_RMS;Data Source=10.18.200.215";
 #>
-namespace ParlayRMS.Web.Authorization
+namespace ParlayRMS.Models.Functions
 {
 	public enum eFunction : int
 	{

@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Systems;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;

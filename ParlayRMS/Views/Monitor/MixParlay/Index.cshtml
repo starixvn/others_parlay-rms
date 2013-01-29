@@ -62,8 +62,8 @@
         </table>
     </div>
 </div>
-<script src="@Url.Content("~/Scripts/Monitor/MixParlay.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/Member/Core.js")" type="text/javascript"></script>
+@Scripts.Render("~/Scripts/Monitor/MixParlay/js")
+@Scripts.Render("~/Scripts/Member/Core/js")
 <script type="text/javascript">
     var _resource = {
         'allSports': '@ViewLang.Allsports',

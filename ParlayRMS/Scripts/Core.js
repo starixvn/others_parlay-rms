@@ -148,26 +148,16 @@ function Button() {
 }
 
 function ResetPasswordPost(userId) {
-    if ($('#NewPassword').val() == '') {
-        $('#NewPassword').focus();
-        Validators.show($('#NewPassword').get(0), 'This field is required');
-        return false;
-    }
-
-    if ($('#ConfirmPassword').val() == '') {
-        $('#ConfirmPassword').focus();
-        Validators.show($('#ConfirmPassword').get(0), 'This field is required');
-        return false;
+    if (validator.validateRequired('#NewPassword') || validator.validateRequired('#ConfirmPassword')) {
+        return;
     }
 
     if ($('#NewPassword').val() != $('#ConfirmPassword').val()) {
         $('#ConfirmPassword').focus();
-        Validators.show($('#ConfirmPassword').get(0), 'Passwords are not matched');
+        validator.show($('#ConfirmPassword').get(0), 'Passwords are not matched');
         return false;
     }
 
-    loadingInPopup.show();
-    messagePopup.hide();
     var password = $('#NewPassword').val();
     var data = {
         UserId: userId,
@@ -180,11 +170,13 @@ function ResetPasswordPost(userId) {
         type: 'POST',
         dataType: 'html',
         cache: false,
+        beforeSend: function (xhr) {
+            popup.showLoading();
+        },
         success: function (data) {
             var json = $.parseJSON(data);
             if (json.code != 0) {
-                loadingInPopup.hide();
-                messagePopup.show(json.message);
+                popup.showErrorMessage(json.message);
             }
             else {
                 navigateToUrl("ManageUser", 2000);
@@ -192,6 +184,9 @@ function ResetPasswordPost(userId) {
         },
         error: function () {
             ShowErrMsgInPopup('btnSubmit', 'Error on resetting password!');
+        },
+        complete: function () {
+            popup.hideLoading();
         }
     });
 }

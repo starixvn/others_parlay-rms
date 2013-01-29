@@ -16,7 +16,7 @@ namespace ParlayRMS.ViewModel.ManageMember
         [Required]
         public string UserName { get; set; }
 
-        [Required, Range(0, 10)]
-        public int Level { get; set; }
+        [Range(0, 10)]
+        public int? Level { get; set; }
     }
 }

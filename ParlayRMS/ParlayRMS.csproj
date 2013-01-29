@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
@@ -114,8 +117,8 @@
       <Private>True</Private>
       <HintPath>..\packages\AspNetMvc.4.0.20126.16343\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.Web.Optimization.1.0.0-beta\lib\net40\System.Web.Optimization.dll</HintPath>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers">
       <HintPath>..\packages\System.Web.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
@@ -148,6 +151,9 @@
     <Reference Include="TplCore">
       <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -168,7 +174,7 @@
     <Content Include="Content\Paging.css" />
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\Validators.css" />
-    <Content Include="Content\Account\Login.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -499,7 +505,6 @@
     <Content Include="Scripts\Search.js" />
     <Content Include="Scripts\ManageUser.js" />
     <Content Include="Scripts\ManageGroup.js" />
-    <Content Include="Scripts\Validators.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\ManageFunction.js" />
     <Content Include="Scripts\ManageMenu.js" />
@@ -507,6 +512,7 @@
     <Content Include="Scripts\Libs\bettertooltip\jquery.betterTooltip.js" />
     <Content Include="Scripts\Menu.js" />
     <Content Include="Scripts\Core.js" />
+    <Content Include="Scripts\Validators.js" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -530,7 +536,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Chart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

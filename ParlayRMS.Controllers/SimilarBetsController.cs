@@ -21,6 +21,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Implement.BetList;
+    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// TODO: Update summary.

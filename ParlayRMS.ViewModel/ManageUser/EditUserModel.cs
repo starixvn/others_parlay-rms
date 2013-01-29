@@ -32,9 +32,9 @@ namespace ParlayRMS.ViewModel.ManageUser
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "GroupName", ResourceType = typeof(ViewLang))]
         public int GroupId { get; set; }
 
-        [Display(Name = "Groupname", ResourceType = typeof(ViewLang))]
         public string GroupName { get; set; }
     }
 }

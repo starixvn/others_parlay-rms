@@ -31,12 +31,13 @@ function ChangePassword(adminId, userId, username) {
             loading.show();
         },
         success: function (data) {
-            loading.hide();
-            modalPopup(data);
+            popup.show(data);
         },
         error: function (xhr, status, err) {
-            loading.hide();
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
         }
     });
 }

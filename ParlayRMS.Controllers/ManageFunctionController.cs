@@ -7,6 +7,7 @@
     using ParlayRMS.ViewModel.ManageFunction;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Utility;
+    using ParlayRMS.Models.Functions;
 
     public class ManageFunctionController : BaseController
     {

@@ -9,17 +9,14 @@
     using System.Web.Security;
     using ParlayRMS.Web.Authorization;
 
-    //// Note: For instructions on enabling IIS6 or IIS7 classic mode,
-    //// visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }
 
-        public static void RegisterRoutes(RouteCollection routes)
+        private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -34,14 +31,94 @@
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
 
+        private static void RegisterBundles()
+        {
+            var bundles = BundleTable.Bundles;
+
+            // CSS
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").IncludeDirectory(
+                "~/Content/themes/base", "*.css"
+                ));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/BetList.css",
+                "~/Content/confirm.css",
+                "~/Content/Icon.css",
+                "~/Content/modalPopup.css",
+                "~/Content/Paging.css",
+                "~/Content/Site.css",
+                "~/Content/Validators.css"
+                ));
+            bundles.Add(new StyleBundle("~/Scripts/Libs/css").Include(
+                "~/Scripts/Libs/contextmenu/jquery.contextmenu.css",
+                "~/Scripts/Libs/multiselect/jquery.multiselect.css"
+                ));
+            bundles.Add(new StyleBundle("~/Content/Login/css").Include(
+                "~/Content/Login.css"
+                ));
+            bundles.Add(new StyleBundle("~/Content/Site/css").Include(
+                "~/Content/Site.css"
+                ));
+            bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
+                "~/Content/Validators.css"
+                ));
+
+            // JS
+            bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
+                "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
+                "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
+                "~/Scripts/Libs/cookie/jquery.cookie.js",
+                "~/Scripts/Libs/highcharts/highcharts.js",
+                "~/Scripts/Libs/jquery/jquery.js",
+                "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
+                "~/Scripts/Libs/moment/moment.js",
+                "~/Scripts/Libs/multiselect/jquery.multiselect.js",
+                "~/Scripts/Libs/numeral/numeral.js",
+                "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
+                "~/Scripts/Libs/sortElements/jquery.sortElements.js"
+                ));
+            bundles.Add(new ScriptBundle("~/Scripts/Core/js").Include(
+                "~/Scripts/Core.js",
+                "~/Scripts/Components.js",
+                "~/Scripts/Confirm.js",
+                "~/Scripts/Popup.js",
+                "~/Scripts/Menu.js",
+                "~/Scripts/Validators.js",
+                "~/Scripts/UpdateLevel.js"
+                ));
+            bundles.Add(new ScriptBundle("~/Scripts/Report/TopWinners/js").Include("~/Scripts/Report/TopWinners.js"));
+
+            // chart
+            bundles.Add(new ScriptBundle("~/Scripts/Data/js").Include("~/Scripts/Data.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Tabular/js").Include("~/Scripts/Tabular.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Chart/js").Include("~/Scripts/Chart.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Cache/js").Include("~/Scripts/Cache.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Monitoring/js").Include("~/Scripts/Monitoring.js"));
+
+            // report
+            bundles.Add(new ScriptBundle("~/Scripts/Member/Core/js").Include("~/Scripts/Member/Core.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Report/SimilarBets/js").Include("~/Scripts/Report/SimilarBets.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageMember/js").Include("~/Scripts/ManageMember.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Search/js").Include("~/Scripts/Search.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageGroup/js").Include("~/Scripts/ManageGroup.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/MixParlay/js").Include("~/Scripts/Monitor/MixParlay.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Pager/js").Include("~/Scripts/Pager.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/UnderMaintenance/js").Include("~/Scripts/UnderMaintenance.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Login/js").Include("~/Scripts/Login.js"));
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-
-            BundleTable.Bundles.EnableDefaultBundles();
+            RegisterBundles();
 
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
         }

@@ -175,7 +175,7 @@
         </table>
     </div>
 </div>
-<script src="@Url.Content("~/Scripts/Report/TopWinners.js")" type="text/javascript"></script>
+@Scripts.Render("~/Scripts/Report/TopWinners/js")
 <script type="text/javascript">
     var dateRanges = {
         Yesterday : @Convert.ToInt32(DateRange.Yesterday),

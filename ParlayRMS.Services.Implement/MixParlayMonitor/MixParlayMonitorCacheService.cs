@@ -23,7 +23,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
     public class MixParlayMonitorCacheService : BaseService, IMixParlayMonitorService
     {
         private static readonly ICache cacheService = CacheService.CreateInstance(CacheType.MemoryCache);
-        private static readonly ICurrentSession currentSession = new CurrentSession();
+        private static readonly ICurrentSession currentSession = CurrentSession.Instance;
         private static readonly IMixParlayMonitorService mixparlayService = new MixParlayMonitorService();
 
         /// <summary>

@@ -81,7 +81,6 @@
     <Compile Include="Monitoring\TopLeagueByTicket.cs" />
     <Compile Include="Monitoring\TopLeagueByTurnover.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="MixPalayMonitor\FilterModel.cs" />
     <Compile Include="Report\BetDetails.cs" />
     <Compile Include="Report\BetDetailsOptions.cs" />
     <Compile Include="Report\TopWinnerDetailsOptions.cs" />

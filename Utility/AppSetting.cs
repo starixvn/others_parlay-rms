@@ -30,11 +30,13 @@
         /// <summary>
         ///
         /// </summary>
-        public static string HiddenGroups
+        public static string[] HiddenGroups
         {
             get
             {
-                return GetValue("HiddenGroups");
+                var value = GetValue("HiddenGroups");
+                return value.Split(';');
+                //return ;
             }
         }
 

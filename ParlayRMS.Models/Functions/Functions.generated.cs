@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Web.Authorization
+﻿namespace ParlayRMS.Models.Functions
 {
 	public enum eFunction : int
 	{
@@ -15,8 +15,10 @@
 		FavouriteChoice = 8,
 		TopSelection = 7,
 		ManageCustomer = 10,
-		SimilarBets = 12,
 		TopWinners = 13,
-		MixParlay = 15
+		test = 17,
+		test1 = 22,
+		MixParlay = 15,
+		SimilarBets = 12
 			}
 }

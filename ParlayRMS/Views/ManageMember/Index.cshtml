@@ -35,6 +35,6 @@
     </div>
 </div>
 @section Script{
-    <script src="@Url.Content("~/Scripts/ManageMember.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Search.js")" type="text/javascript"></script>
+    @Scripts.Render("~/Scripts/ManageMember/js")
+    @Scripts.Render("~/Scripts/Search/js")
 }

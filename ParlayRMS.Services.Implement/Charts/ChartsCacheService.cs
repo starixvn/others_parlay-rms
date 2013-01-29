@@ -26,7 +26,7 @@
 
         private static readonly ICache cacheService = CacheService.CreateInstance(CacheType.MemoryCache);
         private static readonly IChartsService chartsService = new ChartsService();
-        private static readonly ICurrentSession currentSession = new CurrentSession();
+        private static readonly ICurrentSession currentSession = CurrentSession.Instance;
 
         private static object locker = new object();
 

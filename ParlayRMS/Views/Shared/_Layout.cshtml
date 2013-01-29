@@ -11,28 +11,12 @@
     <meta content="text/html" charset="utf-8" />
     <title>@title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/themes/base/css")" rel="stylesheet" type="text/css" />
-    <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/css")" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel" />
-    <link href="@Url.Content("~/Scripts/Libs/contextmenu/jquery.contextmenu.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Scripts/Libs/multiselect/jquery.multiselect.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/Libs/jquery/jquery.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/jquery-ui/jquery-ui.custom.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/highcharts/highcharts.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/moment/moment.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/numeral/numeral.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/multiselect/jquery.multiselect.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/contextmenu/jquery.contextmenu.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/simplemodal/jquery.simplemodal.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Libs/cookie/jquery.cookie.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Core.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Components.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Confirm.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Popup.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Menu.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Validators.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/UpdateLevel.js")" type="text/javascript"></script>
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/Libs/css")
+    @Scripts.Render("~/Scripts/Libs/js")
+    @Scripts.Render("~/Scripts/Core/js")
     <script type="text/javascript">
         function resolveClientUrl(relativeUrl) {
             return '@Url.Content("~/")' + relativeUrl;
@@ -70,8 +54,8 @@
     </div>
     <div id="dialog-message">
     </div>
+    @Html.Partial("_Language")
+    @Html.Partial("_ConfirmBox", "Shared")
+    @Html.Partial("_UpdateLevel", "Shared")
 </body>
 </html>
-@Html.Partial("_Language")
-@Html.Partial("_ConfirmBox", "Shared")
-@Html.Partial("_UpdateLevel", "Shared")

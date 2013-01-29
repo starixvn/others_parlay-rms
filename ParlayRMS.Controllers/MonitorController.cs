@@ -23,6 +23,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.MixPalayMonitor;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// TODO: Update summary.

@@ -5,8 +5,6 @@
 
     public interface IAuthorizationService
     {
-        User GetUserById(int userId);
-
         int LoginOnUser(int userId, string sessionId, string ip);
 
         void Logout(int userId, string userName);

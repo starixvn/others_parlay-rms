@@ -14,48 +14,30 @@
 
     public class AuthorizationService : BaseService, IAuthorizationService
     {
-        private readonly IUsersDataAccess authorizationDataAccess = new UsersDataAccess();
-
-        public User GetUserById(int userId)
-        {
-            var data = this.authorizationDataAccess.RMS_UserInfoSelByUserID(userId);
-            return new User
-            {
-                Id = userId,
-                Name = data.UserName,
-                FirstName = data.FirstName,
-                LastName = data.LastName,
-                IsActive = data.Enabled,
-                Group = new Group
-                {
-                    Id = data.GroupId,
-                    Name = data.GroupName
-                }
-            };
-        }
+        private readonly IUsersDataAccess usersDataAccess = new UsersDataAccess();
 
         public int LoginOnUser(int userId, string sessionId, string ip)
         {
-            return this.authorizationDataAccess.RMS_UserCheckIn(userId, sessionId, ip);
+            return this.usersDataAccess.RMS_UserCheckIn(userId, sessionId, ip);
         }
 
         public void Logout(int userId, string userName)
         {
             if (userId > 0)
             {
-                this.authorizationDataAccess.RMS_UserLogout(userId, userName);
+                this.usersDataAccess.RMS_UserLogout(userId, userName);
             }
         }
 
         public bool ReLogin(int userId)
         {
-            return this.authorizationDataAccess.RMS_UserRecheckIn(userId);
+            return this.usersDataAccess.RMS_UserRecheckIn(userId);
         }
 
         public User ValidateUser(string userName, string passWord, string netSessionId, Request request, out Result result, out int onUserId)
         {
             onUserId = 0;
-            var data = this.authorizationDataAccess.RMS_UserLogin(userName, passWord, request.Ip, request.Domain, request.Browser, request.Platform, request.CountryCode, request.Language, out result);
+            var data = this.usersDataAccess.RMS_UserLogin(userName, passWord, request.Ip, request.Domain, request.Browser, request.Platform, request.CountryCode, request.Language, out result);
 
             if (result.IsSuccessful)
             {

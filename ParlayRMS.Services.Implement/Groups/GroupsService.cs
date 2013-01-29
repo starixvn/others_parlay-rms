@@ -1,25 +1,23 @@
 ﻿namespace ParlayRMS.Services.Implement.Groups
 {
-    using System.Linq;
     using System.Collections.Generic;
-    using Fanex.Logging;
-    using ParlayRMS.DataAccess.Implement;
-    using ParlayRMS.DataAccess.Interface;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.DataAccess.Interface.Groups;
+    using System.Linq;
     using ParlayRMS.DataAccess.Implement.Groups;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.Models.Groups;
+    using ParlayRMS.DataAccess.Interface.Groups;
     using ParlayRMS.DTO;
-    using ParlayRMS.Services.Implement.Systems;
+    using ParlayRMS.Models;
+    using ParlayRMS.Models.Functions;
+    using ParlayRMS.Models.Groups;
     using ParlayRMS.Models.Users;
+    using ParlayRMS.Services.Interface.Groups;
+    using ParlayRMS.Web.Session;
+    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Utility;
 
     public class GroupsService : BaseService, IGroupsService
     {
         private readonly IGroupsDataAccess groupDataAccess = new GroupsDataAccess();
+        private readonly ICurrentSession currentSession = CurrentSession.Instance;
 
         public IEnumerable<Group> GetGroups()
         {
@@ -71,7 +69,14 @@
 
         public IEnumerable<Function> GetFunctionsByGroupId(int groupId)
         {
+            var userService = new UsersService();
+            var user = userService.GetUserById(currentSession.UserId);
             var data = this.groupDataAccess.RMS_GroupPolicySel(groupId);
+            if (!AppSetting.HiddenGroups.Contains(user.Group.Name))
+            {
+                data = data.Where(x => x.FuncId != (int)eFunction.ManageFunction && x.FuncId != (int)eFunction.ManageMenu);
+            }
+
             return data.Select(x => new Function
             {
                 Id = x.FuncId,

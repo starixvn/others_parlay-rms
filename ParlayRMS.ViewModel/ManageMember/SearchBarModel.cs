@@ -6,6 +6,7 @@
 
 namespace ParlayRMS.ViewModel.ManageMember
 {
+    using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Common.Models;
     using ParlayRMS.Utility;
 
@@ -22,6 +23,7 @@ namespace ParlayRMS.ViewModel.ManageMember
 
         public string UserName { get; set; }
 
+        [DisplayFormat(NullDisplayText = "")]
         public int? Level
         {
             get

@@ -20,6 +20,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.ViewModel.ManageUser;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// Manages user methods
@@ -108,15 +109,26 @@ namespace ParlayRMS.Controllers
         // GET: ~/ManangeUser/EditUser
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
-        public ActionResult EditUser(EditUserModel model)
+        public ActionResult EditUser(int userId)
         {
+            var user = userService.GetUserById(userId);
+            EditUserModel model = new EditUserModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserId = userId,
+                UserName = user.Name,
+                GroupId = user.Group.Id,
+                GroupName = user.Group.Name
+            };
+
             return this.PartialView(model);
         }
 
         // POST: ~/ManangeUser/EditUser
-        [HttpPost, ActionName("EditUser")]
+        [HttpPost]
         [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
-        public ActionResult EditUserPost(EditUserModel model)
+        public ActionResult EditUser(EditUserModel model)
         {
             if (!ModelState.IsValid)
             {
