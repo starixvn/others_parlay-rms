@@ -13,8 +13,6 @@
 
     public class MenusDataAccess : BaseDataAccess, IMenusDataAccess
     {
-        private static readonly ICache Cache = CacheService.CreateInstance(CacheType.MemoryCache);
-
         /// <summary>
         ///
         /// </summary>

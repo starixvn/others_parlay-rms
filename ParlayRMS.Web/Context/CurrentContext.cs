@@ -8,13 +8,11 @@
 
     public class CurrentContext : ICurrentContext
     {
-        private static ICurrentContext instance = null;
-
         public static ICurrentContext Instance
         {
             get
             {
-                return instance ?? new CurrentContext();
+                return new CurrentContext();
             }
         }
 

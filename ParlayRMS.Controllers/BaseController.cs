@@ -29,12 +29,12 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Context of current logging in session
         /// </summary>
-        private readonly ICurrentContext currentContext = ParlayRMS.Web.Context.CurrentContext.Instance;
+        private readonly ICurrentContext currentContext = new CurrentContext();
 
         /// <summary>
         /// Session of logging in user
         /// </summary>
-        private readonly ICurrentSession currentSession = ParlayRMS.Web.Session.CurrentSession.Instance;
+        private readonly ICurrentSession currentSession = new CurrentSession();
 
         /// <summary>
         /// Gets current context of this session

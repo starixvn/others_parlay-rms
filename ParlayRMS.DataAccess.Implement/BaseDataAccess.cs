@@ -22,9 +22,9 @@
         /// <returns></returns>
         public DbResult ExecSp(string name, Hashtable parameters, int timeOut)
         {
-            var setting = DbSettingProviderManager.Current.GetSetting(name);
-            string storeName = setting.SpName;
-            return DbHelper.ExecuteDbResult(storeName, parameters, timeOut);
+            //var setting = DbSettingProviderManager.Current.GetSetting(name);
+            //string storeName = setting.SpName;
+            return DbHelper.ExecuteDbResult(name, parameters, timeOut);
         }
 
         /// <summary>

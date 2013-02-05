@@ -12,13 +12,11 @@
         public const string ParlayRmsOnUserId = "RMS.OnUserId";
         public const string ParlayRmsUserPolicy = "RMS.UserPolicy";
 
-        private static ICurrentSession instance = null;
-
         public static ICurrentSession Instance
         {
             get
             {
-                return instance ?? new CurrentSession();
+                return new CurrentSession();
             }
         }
 

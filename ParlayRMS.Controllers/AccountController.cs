@@ -6,23 +6,21 @@
     using System.Web.Security;
     using ParlayRMS.DTO;
     using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Models.Users;
+    using ParlayRMS.Services.Implement.Systems;
+    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.ViewModel.Account;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Implement.Systems;
-    using ParlayRMS.Models.Users;
 
     public class AccountController : Controller
     {
         private readonly IAuthorizationService authorizationService = new AuthorizationService();
         private readonly MaintenanceService maintenanceService = new MaintenanceService();
-        private readonly ICurrentSession currentSession = CurrentSession.Instance;
-        private readonly ICurrentContext currentContext = CurrentContext.Instance;
+        private readonly ICurrentContext currentContext = new CurrentContext();
+        private readonly ICurrentSession currentSession = new CurrentSession();
 
         #region Login
 

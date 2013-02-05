@@ -9,12 +9,11 @@
     using ParlayRMS.Services.Implement.Systems;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;
+    using Fanex.Logging;
 
     public class AuthorizationAttribute : AuthorizeAttribute
     {
         private readonly CachingService cachingService = new CachingService();
-        private readonly ICurrentSession currentSession = CurrentSession.Instance;
-        private readonly ICurrentContext currentContext = CurrentContext.Instance;
 
         public eFunction Function { get; set; }
 
@@ -24,27 +23,43 @@
         {
             base.OnAuthorization(filterContext);
 
+            ICurrentSession currentSession = new CurrentSession();
+            ICurrentContext currentContext = new CurrentContext();
+         
+            //string actionName = filterContext.ActionDescriptor.ActionName;
+            //string controllerName = filterContext.Controller.ToString();
+
             try
             {
                 if (filterContext.HttpContext == null)
                 {
+                    //string msg5 = "msg5 filterContext.HttpContext == null";
+                    //WriteLog(msg5);
                     CloseConnection(filterContext);
                     return;
                 }
 
-                var principal = filterContext.HttpContext.User as Principal;
+                var principal = filterContext.HttpContext.User;
+                
 
-                if (ReferenceEquals(principal, null) || ReferenceEquals(principal.AuthInfo, null))
+                if (ReferenceEquals(principal, null) || ReferenceEquals(principal.Identity.AuthenticationType, null))
                 {
+                    //string msg6 = string.Format("msg6 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
+                    //WriteLog(msg6);
                     CloseConnection(filterContext);
                     return;
                 }
 
                 if (!FunctionAuthorization(currentSession.UserId, (int)this.Function))
                 {
+                    //string msg7 = string.Format("msg7 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
+                    //WriteLog(msg7);
                     CloseConnection(filterContext);
                     return;
                 }
+
+                //string msg8 = string.Format("msg8 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
+                //WriteLog(msg8);
             }
             catch (Exception ex)
             {
@@ -111,6 +126,7 @@
             var userCache = cachingService.GetUserCache(userId);
             var policyList = userCache.Functions;
             var foundItems = policyList.Where(x => x.FunctionId == functionId);
+            //WriteLog(string.Format("userId:{0}, functionId:{1}, policyList.Count()={2}, foundItems.Count()={3}", userId, functionId, policyList.Count(), foundItems.Count()));
             if (foundItems.Count() > 0)
             {
                 var firstItem = foundItems.First();
@@ -138,5 +154,10 @@
 
             return false;
         }
+
+        //private void WriteLog(string msg)
+        //{
+        //    LogService.Debug(msg, "PARLAY_RMS");
+        //}
     }
 }

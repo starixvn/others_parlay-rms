@@ -8,7 +8,7 @@
     public class CachingService : BaseService
     {
         private readonly IUsersService usersService = new UsersService();
-        private readonly ICurrentSession session = CurrentSession.Instance;
+        private readonly ICurrentSession session = new CurrentSession();
         //private readonly ICache userCache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         public UserCache GetUserCache(int userId)
