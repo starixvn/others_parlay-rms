@@ -26,5 +26,7 @@
         Result UpdateUserPolicy(int adminId, int userId, string policy, string ip);
 
         UserCache GetUserCache(int userId);
+
+        bool HasWritePermission(int userId, int functionId);
     }
 }

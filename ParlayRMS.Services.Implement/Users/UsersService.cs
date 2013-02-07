@@ -15,6 +15,7 @@
     using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Session;
+    using ParlayRMS.Services.Implement.Systems;
 
     public class UsersService : BaseService, IUsersService
     {
@@ -106,6 +107,24 @@
                 GroupPolicy = new Policy(x.GroupPolicy),
                 DisplayOrder = x.DisplayOrder
             });
+        }
+
+        public bool HasWritePermission(int userId, int functionId)
+        {
+            CachingService cachingService = new CachingService();
+            var userCache = cachingService.GetUserCache(userId);
+            var policyList = userCache.Functions;
+            var foundItems = policyList.Where(x => x.FunctionId == functionId);
+            if (foundItems.Count() > 0)
+            {
+                var firstItem = foundItems.First();
+                if (firstItem.Policy.Writable)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public Result UpdateUserPolicy(int adminId, int userId, string policy, string ip)

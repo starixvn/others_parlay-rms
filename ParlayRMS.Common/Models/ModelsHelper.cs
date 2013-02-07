@@ -9,6 +9,7 @@ namespace ParlayRMS.Common.Models
     using System.Collections.Generic;
     using ParlayRMS.Models.Members;
     using ParlayRMS.Utility;
+    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// TODO: Update summary.

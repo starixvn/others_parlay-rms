@@ -117,6 +117,14 @@
             }
         }
 
+        public static int UserPolicyCacheTime
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("UserPolicyCacheTime"));
+            }
+        }
+
         /// <summary>
         ///
         /// </summary>

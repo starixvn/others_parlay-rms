@@ -8,10 +8,18 @@
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Utility;
     using ParlayRMS.Models.Functions;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Services.Implement.Users;
 
     public class ManageFunctionController : BaseController
     {
         private readonly IFunctionsService functionService = new FunctionsService();
+        private readonly IUsersService userService = new UsersService();
+
+        public ManageFunctionController()
+        {
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageFunction);
+        }
 
         // GET: ~/ManangeFunction
         [HttpGet]

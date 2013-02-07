@@ -54,6 +54,7 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.GroupList = selectedItems;
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageUser);
         }
 
         // GET: ~/ManangeUser

@@ -9,17 +9,14 @@
     {
         private readonly IUsersService usersService = new UsersService();
         private readonly ICurrentSession session = new CurrentSession();
-        //private readonly ICache userCache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         public UserCache GetUserCache(int userId)
         {
-            //var result = userCache.Get<UserCache>(userId.ToString());
             var result = session.UserPolicy;
 
             if (result == null || result.IsExpired)
             {
                 result = this.usersService.GetUserCache(userId);
-                //userCache.Set<UserCache>(userId.ToString(), result, DateTime.Now.AddSeconds(30));
                 session.UserPolicy = result;
             }
 

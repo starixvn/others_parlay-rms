@@ -12,12 +12,20 @@
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageGroup;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Services.Implement.Users;
 
     public class ManageGroupController : BaseController
     {
         public const string HIDDEN_GROUPS_KEY = "HiddenGroups";
         
         private readonly IGroupsService groupService = new GroupsService();
+        private readonly IUsersService userService = new UsersService();
+
+        public ManageGroupController()
+        {
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageGroup);
+        }
 
         // GET: ~/ManangeGroup
         [HttpGet]

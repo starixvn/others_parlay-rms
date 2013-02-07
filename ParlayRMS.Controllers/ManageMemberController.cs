@@ -22,6 +22,11 @@
         private readonly IMembersService customerService = new MembersService();
         private int pagesize = AppSetting.PageSize;
 
+        public ManageMemberController()
+        {
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.MemberManagement);
+        }
+
         // GET: ~/ManangeMember/MemberList
         [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
         public ActionResult MemberList(MemberListModel model)

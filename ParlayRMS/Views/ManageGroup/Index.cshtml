@@ -2,18 +2,21 @@
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.GroupManagement;
 }
-<div class="bar new-cmd title">
-    <div class="group">
-        <button id="btnNewGroup" onclick="javascript:CreateGroup();">
-            <span class="addNewGroup"></span><span class="text">@ViewLang.NewGroup</span>
-        </button>
+@if (ViewBag.HasWritePermission)
+{ 
+    <div class="bar new-cmd title">
+        <div class="group">
+            <button id="btnNewGroup" onclick="javascript:CreateGroup();">
+                <span class="addNewGroup"></span><span class="text">@ViewLang.NewGroup</span>
+            </button>
+        </div>
+        <div class="user">
+            <button id="btnNewUser" onclick="javascript:CreateUser();">
+                <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
+            </button>
+        </div>
     </div>
-    <div class="user">
-        <button id="btnNewUser" onclick="javascript:CreateUser();">
-            <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
-        </button>
-    </div>
-</div>
+}
 <div class="scrollGridBorder">
     <div class="scrollGridHeader">
         <table class="scrollGrid">

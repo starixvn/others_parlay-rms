@@ -12,11 +12,19 @@
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Utility;
     using ParlayRMS.Models.Functions;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Services.Implement.Users;
 
     public class ManageMenuController : BaseController
     {
         private readonly IMenusService menuService = new MenusService();
         private readonly IFunctionsService functionService = new FunctionsService();
+        private readonly IUsersService userService = new UsersService();
+
+        public ManageMenuController()
+        {
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageMenu);
+        }
 
         // GET: ~/ManangeMenu
         [HttpGet]

@@ -1,18 +1,22 @@
-﻿@{
+﻿@using ParlayRMS.Services.Implement.Users
+@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.UserManagement;
 }
-<div class="bar new-cmd title">
-    <div style="float: left;">
-        <button id="btnNewUser" onclick="javascript:CreateUser();">
-            <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
-        </button>
+@if (ViewBag.HasWritePermission)
+{ 
+    <div class="bar new-cmd title">
+        <div style="float: left;">
+            <button id="btnNewUser" onclick="javascript:CreateUser();">
+                <span class="addNewUSer"></span><span class="text">@ViewLang.NewUser</span>
+            </button>
+        </div>
+        <div style="float: left; padding-left: 5px;">
+            <button id="btnExistUser" onclick="javascript:CreateExistingUser();">
+                <span class="addNewUSer"></span><span class="text">@ViewLang.ExistingUser</span>
+            </button>
+        </div>
     </div>
-    <div style="float: left; padding-left: 5px;">
-        <button id="btnExistUser" onclick="javascript:CreateExistingUser();">
-            <span class="addNewUSer"></span><span class="text">@ViewLang.ExistingUser</span>
-        </button>
-    </div>
-</div>
+}
 @{
     Html.RenderPartial("_SearchBar", "Shared");
 }

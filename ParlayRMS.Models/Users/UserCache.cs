@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Menus;
+    using ParlayRMS.Utility;
 
     public class UserCache
     {
@@ -13,7 +14,7 @@
         {
             get
             {
-                if (this.CreatedTime.AddMinutes(1) < DateTime.Now)
+                if (this.CreatedTime.AddSeconds(AppSetting.UserPolicyCacheTime) < DateTime.Now)
                 {
                     return true;
                 }

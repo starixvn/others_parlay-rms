@@ -36,6 +36,7 @@ namespace ParlayRMS.Controllers
 
         #region Mix Parlay
 
+        [AuthorizationAttribute(Function = eFunction.MixParlay, Policy = ePolicy.Read)]
         public ActionResult MixParlayFilter()
         {
             // Combo
