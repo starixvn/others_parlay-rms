@@ -40,7 +40,7 @@
                     <div class="divcolor @ModelsHelper.GetClassByMemberLevel(customer.Level)">
                         <span id="levelName_@customer.Custid">
                             @levelName
-                        </span><span title="Click to change level" class="arrowDown_div" level="@customer.Level" custid="@customer.Custid">
+                        </span><span title="Click to change level" class="arrowDown_div @Utils.ResolvePermission(ViewBag.HasWritePermission)" level="@customer.Level" custid="@customer.Custid">
                         </span>
                     </div>
                 </td>

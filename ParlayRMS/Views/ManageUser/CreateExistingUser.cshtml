@@ -4,15 +4,15 @@
     ViewBag.Title = ViewLang.ExistingUser;
     ViewBag.Submit = "CreateExistingUserPost()";
 }
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.UserName, ViewLang.Username)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.UserName, new { @class = "inputtext w215" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.UserName, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.GroupName, ViewLang.GroupName)
 </div>
-<div class="fieldNoneBorder">
-    @Html.DropDownListFor(m => m.GroupName, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "textbox w230" })
+<div class="popup-content-input2">
+    @Html.DropDownListFor(m => m.GroupName, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "popup-content-select w230" })
 </div>

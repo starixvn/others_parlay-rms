@@ -166,6 +166,7 @@ function ViewTopWinners(fromDate, toDate, sportsType, selectTop) {
         success: function (result) {
             var data = $.parseJSON(result);
             FillData($('#result'), data);
+            ParlayRMS.Core.ResolvePermission();
             loading.hide();
         },
         error: function (xhr, status, err) {
@@ -202,7 +203,11 @@ function FillData(table, data) {
 
             r[++j] = '<tr id="tr_' + item.CustId + '">';
             r[++j] = '<td class="center">' + (i + 1) + '</td>';
-            r[++j] = '<td class="' + className + '"><span>' + item.Username + '</span> <span class="arrowDown_table" title="Click to change level" username="' + item.Username + '" custid="' + item.CustId + '"></span></td>';
+            var disabled = 'disabled';
+            if (hasWritePermission) {
+                disabled = '';
+            }
+            r[++j] = '<td class="' + className + '"><span>' + item.Username + '</span> <span class="arrowDown_table ' + disabled + '" title="Click to change level" username="' + item.Username + '" custid="' + item.CustId + '"></span></td>';
             r[++j] = '<td>' + item.Currency + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0') + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Winlost).format('0,0.00') + '</td>';

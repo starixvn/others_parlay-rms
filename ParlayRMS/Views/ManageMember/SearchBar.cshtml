@@ -9,15 +9,15 @@
     <div class="level @Model.ClassName">
         <span id="searchLevelName">
             @Model.LevelName
-        </span><span id="levelColor" class="arrowDown" vallevel="@Html.DisplayTextFor(m=>m.Level)" title="Click to change level">
+        </span><span id="levelColor" class="arrowDown" vallevel="@Html.DisplayTextFor(m => m.Level)" title="Click to change level">
         </span>
     </div>
     <div class="search-button">
-        <button onclick="SearchMember_onclick();">
+        <button id="memberSearch" onclick="SearchMember_onclick();">
             @ViewLang.Search
         </button>
         &nbsp;
-        <button onclick="SearchAllMember_onclick();">
+        <button id="memberShowAll" onclick="SearchAllMember_onclick();">
             @ViewLang.ShowAll
         </button>
     </div>
@@ -50,6 +50,7 @@
             }
         });
 
-        return false;
+        $("#memberSearch").button();
+        $("#memberShowAll").button();
     });
 </script>

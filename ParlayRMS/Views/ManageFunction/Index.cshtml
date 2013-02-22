@@ -6,13 +6,16 @@
 @section Script{
     @Scripts.Render("~/Scripts/ManageFunction/js")
 }
-<div id="barFunction" class="bar new-cmd title">
-    <div style="float: left;">
-        <button id="btnNewFunction" onclick="javascript:CreateFunction();">
-            <span class="addNewFunction"></span><span class="text">@ViewLang.NewFunction</span>
-        </button>
+@if (ViewBag.HasWritePermission)
+{ 
+    <div id="barFunction" class="bar new-cmd title">
+        <div style="float: left;">
+            <button id="btnNewFunction" onclick="javascript:CreateFunction();">
+                <span class="addNewFunction"></span><span class="text">@ViewLang.NewFunction</span>
+            </button>
+        </div>
     </div>
-</div>
+}
 <div class="scrollGridBorder">
     <div class="scrollGridHeader">
         <table class="scrollGrid">
@@ -63,15 +66,16 @@
                    {
                     <tr>
                         <td>
-                            @if (function.Parent != null)
-                            {
-                                <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="subfunction">
-                                    - @function.Name</span> </a>
-                            }
-                            else
-                            {
-                                <a href="#" onclick="javascript:EditFunction('@function.Id');"><span class="function">@function.Name</span></a>
-                            }
+                            <a href="#" onclick="javascript:EditFunction('@function.Id');" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
+                                @if (function.Parent != null)
+                                { 
+                                    <span class="subfunction">- @function.Name</span>
+                                }
+                                else
+                                {
+                                    <span class="function">@function.Name</span>
+                                }
+                            </a>
                         </td>
                         <td>
                             @if (function.Parent != null)

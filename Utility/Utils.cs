@@ -26,6 +26,16 @@
             return ret < 0.0m ? "<font color=\"red\">" + valRet + "</font>" : valRet;
         }
 
+        public static string ResolvePermission(bool hasPermission)
+        {
+            if (!hasPermission)
+            {
+                return "disabled";
+            }
+
+            return "";
+        }
+
         /// <summary>
         /// Truncates a string to a certain length
         /// </summary>

@@ -24,6 +24,8 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Models.Functions;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Services.Implement.Users;
 
     /// <summary>
     /// TODO: Update summary.
@@ -32,6 +34,7 @@ namespace ParlayRMS.Controllers
     {
         private readonly ITopWinnersService topwinnersService = new TopWinnersService();
         private readonly IBetListService betlistService = new BetListService();
+        private readonly IUsersService userService = new UsersService();
 
         [AuthorizationAttribute(Function = eFunction.TopWinners, Policy = ePolicy.Read)]
         [HttpGet]
@@ -65,6 +68,8 @@ namespace ParlayRMS.Controllers
             sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() });
             sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
             ViewBag.SportsTypes = sportsTypes;
+
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageGroup);
 
             return this.View("Index");
         }

@@ -2,13 +2,16 @@
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.MenuManagement;
 }
-<div id="barFunction" class="bar new-cmd title">
-    <div style="float: left;">
-        <button id="btnNewMenu" onclick="javascript:CreateMenu();">
-            <span class="addNewMenu"></span><span class="text">@ViewLang.NewMenu</span>
-        </button>
+@if (ViewBag.HasWritePermission)
+{ 
+    <div id="barFunction" class="bar new-cmd title">
+        <div style="float: left;">
+            <button id="btnNewMenu" onclick="javascript:CreateMenu();">
+                <span class="addNewMenu"></span><span class="text">@ViewLang.NewMenu</span>
+            </button>
+        </div>
     </div>
-</div>
+}
 <div class="scrollGridBorder">
     <div class="scrollGridHeader">
         <table class="scrollGrid">
@@ -69,14 +72,16 @@
                    {
                     <tr>
                         <td>
-                            @if (menu.Parent != null)
-                            {
-                                <a href="#" onclick="javascript:EditMenu('@menu.Id');"><span class="subfunction">- @menu.Name</span></a>
-                            }
-                            else
-                            {
-                                <a href="#" onclick="javascript:EditMenu('@menu.Id');"><span class="function">@menu.Name</span></a>
-                            }
+                            <a href="#" onclick="javascript:EditMenu('@menu.Id');" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
+                                @if (menu.Parent != null)
+                                {
+                                    <span class="subfunction">- @menu.Name</span>
+                                }
+                                else
+                                { 
+                                    <span class="function">@menu.Name</span>
+                                }
+                            </a>
                         </td>
                         <td>
                             @menu.Description
@@ -94,7 +99,7 @@
                             @menu.DisplayOrder
                         </td>
                         <td style="text-align: center">
-                            <div onclick="javascript:ToggleStatus(this, '@menu.Id', '@menu.Name')" class="@Utils.ResolveCheckBox(menu.IsActive)" />
+                            <div onclick="javascript:ToggleStatus(this, '@menu.Id', '@menu.Name')" class="@Utils.ResolveCheckBox(menu.IsActive) @Utils.ResolvePermission(ViewBag.HasWritePermission)" />
                         </td>
                         <td style="text-align: center">
                             @menu.ModifiedDate

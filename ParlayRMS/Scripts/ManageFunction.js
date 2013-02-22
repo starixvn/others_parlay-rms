@@ -1,4 +1,9 @@
-﻿function CreateFunction() {
+﻿$(function () {
+    $("#btnNewFunction").addClass("button");
+    ParlayRMS.Core.ResolvePermission();
+});
+
+function CreateFunction() {
     $.ajax({
         url: resolveClientUrl("ManageFunction/CreateFunction"),
         type: 'GET',
@@ -120,7 +125,3 @@ function EditFunctionPost() {
         }
     });
 }
-
-$(function () {
-    $("#btnNewFunction").addClass("button");
-});

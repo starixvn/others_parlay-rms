@@ -187,5 +187,6 @@
         SpecificDate:  @Convert.ToInt32(DateRange.SpecificDate),
         LimitDataFromDate : '@AppSetting.LimitDataFromDate',
         NowDate: '@DateTime.Now'
-    }
+    };
+    var hasWritePermission = @JavascriptHelper.GetString(ViewBag.HasWritePermission);
 </script>

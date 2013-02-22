@@ -67,7 +67,7 @@
                 {
                     <tr>
                         <td>
-                            <a href="#" onclick="javascript:EditGroup('@group.Id');">@group.Name</a>
+                            <a href="#" onclick="javascript:EditGroup('@group.Id');" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">@group.Name</a>
                         </td>
                         <th>
                             <button style="width: 60px;" onclick="javascript:GetUserByGroup(@group.Id)">
@@ -84,7 +84,7 @@
                             @group.CreateDate
                         </th>
                         <th>
-                            <button onclick="javascript:EditGroupPolicy('@group.Id','@group.Name')">
+                            <button onclick="javascript:EditGroupPolicy('@group.Id','@group.Name')" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
                                 ...
                             </button>
                         </th>

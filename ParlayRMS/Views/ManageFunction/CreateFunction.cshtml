@@ -5,33 +5,33 @@
     ViewBag.Title = ViewLang.NewFunction;
     ViewBag.Submit = "CreateFunctionPost()";
 }
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.Name)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.Name, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.Name, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.Key)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.Key, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.Key, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="label_areatext">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.Description)
 </div>
-<div class="field_areatext">
-    @Html.TextAreaFor(m => m.Description, new { @class = "areatext", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
+<div class="popup-content-input2">
+    @Html.TextAreaFor(m => m.Description, new { @class = "popup-content-textarea w230", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
 </div>
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.DisplayOrder)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "inputtext w100" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.ParentId)
 </div>
-<div class="fieldNoneBorder">
-    @Html.DropDownListFor(m => m.ParentId, (IEnumerable<SelectListItem>)ViewBag.FunctionSelectList)
+<div class="popup-content-input2">
+    @Html.DropDownListFor(m => m.ParentId, (IEnumerable<SelectListItem>)ViewBag.FunctionSelectList, new { @class = "popup-content-select w230" })
 </div>

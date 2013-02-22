@@ -32,7 +32,7 @@ function LoadSpecialMember(username, level, page) {
         },
         success: function (result) {
             $("#content").html(result);
-
+            ParlayRMS.Core.ResolvePermission();
             $(".arrowDown_div").contextMenu({
                 menu: 'LevelList'
             }, function (elOption, elMenu, pos) {

@@ -35,28 +35,40 @@
         {
             var bundles = BundleTable.Bundles;
 
-            // CSS
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").IncludeDirectory(
-                "~/Content/themes/base", "*.css"
-                ));
+            bundles.Add(new StyleBundle("~/Content/Libs/jquery-ui/themes/base/css").Include(
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.accordion.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.autocomplete.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.button.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.core.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.datepicker.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.dialog.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.menu.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.progressbar.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.resizable.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.selectable.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.slider.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.spinner.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.tabs.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.theme.css",
+                "~/Content/Libs/jquery-ui/themes/base/jquery.ui.tooltip.css"));
+            bundles.Add(new StyleBundle("~/Content/Libs/css").Include(
+                "~/Content/Libs/jquery-ui/jquery-ui.more.css",
+                "~/Content/Libs/contextmenu/jquery.contextmenu.css",
+                "~/Scripts/Libs/multiselect/jquery.multiselect.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/BetList.css",
                 "~/Content/confirm.css",
                 "~/Content/Icon.css",
                 "~/Content/modalPopup.css",
                 "~/Content/Paging.css",
-                "~/Content/Site.css",
+                "~/Content/_Site.css",
                 "~/Content/Validators.css"
-                ));
-            bundles.Add(new StyleBundle("~/Scripts/Libs/css").Include(
-                "~/Scripts/Libs/contextmenu/jquery.contextmenu.css",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Login/css").Include(
                 "~/Content/Login.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Site/css").Include(
-                "~/Content/Site.css"
+                "~/Content/_Site.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
                 "~/Content/Validators.css"
@@ -70,6 +82,7 @@
                 "~/Scripts/Libs/highcharts/highcharts.js",
                 "~/Scripts/Libs/jquery/jquery.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
+                "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
                 "~/Scripts/Libs/moment/moment.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.js",
                 "~/Scripts/Libs/numeral/numeral.js",
@@ -100,7 +113,6 @@
 
             bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMember/js").Include("~/Scripts/ManageMember.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Search/js").Include("~/Scripts/Search.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageGroup/js").Include("~/Scripts/ManageGroup.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));

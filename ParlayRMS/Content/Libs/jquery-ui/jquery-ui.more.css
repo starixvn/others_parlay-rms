@@ -1,0 +1,18 @@
+﻿.ui-combobox
+{
+	position: relative;
+	display: inline-block;
+}
+.ui-combobox-toggle
+{
+	position: relative;
+	margin-left: -1px;
+	height: 22px;
+	float:right;
+}
+.ui-autocomplete-input
+{
+	padding: 3px 3px 3px 3px;
+	height: 16px;
+	margin: 0px;
+}

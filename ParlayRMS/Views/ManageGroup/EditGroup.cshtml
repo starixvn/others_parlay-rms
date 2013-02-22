@@ -4,16 +4,16 @@
     ViewBag.Title = ViewLang.EditGroup;
     ViewBag.Submit = "EditGroupPost()";
 }
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.GroupName)
     @Html.HiddenFor(m => m.GroupId, "groupid")
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.GroupName, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.GroupName, new { @class = "popup-content-textbox w330" })
 </div>
-<div class="label_areatext">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.Description)
 </div>
-<div class="field_areatext">
-    @Html.TextAreaFor(m => m.Description, new { @class = "areatext w330", rows = "7", maxlength = "330", onkeyup = "limitInput(this)" })
+<div class="popup-content-input2">
+    @Html.TextAreaFor(m => m.Description, new { @class = "popup-content-textarea w330", rows = "7", maxlength = "330", onkeyup = "limitInput(this)" })
 </div>

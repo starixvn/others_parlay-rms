@@ -1,4 +1,9 @@
-﻿function CreateMenu() {
+﻿$(function () {
+    $("#btnNewMenu").addClass("button");
+    ParlayRMS.Core.ResolvePermission();
+});
+
+function CreateMenu() {
     $.ajax({
         url: resolveClientUrl("ManageMenu/CreateMenu"),
         type: 'GET',
@@ -112,10 +117,6 @@ function ToggleStatus(target, menuId, menuName) {
         })
     });
 }
-
-$(function () {
-    $("#btnNewMenu").addClass("button");
-});
 
 function EditMenu(menuId) {
     var data = {

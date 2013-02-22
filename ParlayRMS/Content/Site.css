@@ -802,24 +802,6 @@ table.scrollGrid td span.function
 	padding-left: 10px;
 	border-left: 1px solid #D6D7D5;
 }
-.ui-combobox
-{
-	position: relative;
-	display: inline-block;
-}
-a.ui-button
-{
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin-left: -1px;
-	padding: 0; /* adjust styles for IE 6/7 */
-}
-.ui-autocomplete-input
-{
-	margin: 0;
-	padding: 0.3em;
-}
 
 /* Dialog Box ----------------------------------------------------------------*/
 
@@ -986,7 +968,7 @@ a.ui-button
 {
 	clear: left;
 	float: left;
-	min-width: 120px;
+	min-width: 116px;
 	text-align: left;
 	line-height: 34px;
 	border-left: 1px solid #D3D3D3;
@@ -1013,7 +995,6 @@ a.ui-button
 	clear: right;
 	float: left;
 	text-align: left;
-	line-height: 25px;
 	border-right: 1px solid #D3D3D3;
 	border-top: 1px solid #D3D3D3;
 	border-bottom: 1px solid #D3D3D3;
@@ -1110,7 +1091,6 @@ a.ui-button
 	clear: right;
 	float: left;
 	text-align: left;
-	line-height: 25px;
 	margin: 0px 0px 20px 0px;
 	height: 120px;
 	width: auto;

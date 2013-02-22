@@ -56,6 +56,7 @@
     <Compile Include="Cryptography.cs" />
     <Compile Include="Data\DataReaderExtension.cs" />
     <Compile Include="Formatter.cs" />
+    <Compile Include="JavascriptHelper.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

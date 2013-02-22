@@ -17,9 +17,7 @@
         </div>
     </div>
 }
-@{
-    Html.RenderPartial("_SearchBar", "Shared");
-}
+@Html.Partial("SearchBar")
 <div class="scrollGridBorder">
     <div class="scrollGridHeader">
         <table class="scrollGrid">
@@ -85,7 +83,7 @@
                 {
                     <tr>
                         <td>
-                            <a href="javascript:EditUser(@user.Id, '@user.Name', '@user.FirstName', '@user.LastName', @user.Group.Id)">@user.Name</a>
+                            <a href="javascript:EditUser(@user.Id, '@user.Name', '@user.FirstName', '@user.LastName', @user.Group.Id)" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">@user.Name</a>
                         </td>
                         <td>
                             @user.FirstName
@@ -103,16 +101,16 @@
                             @user.CreatedDate
                         </td>
                         <td style="text-align: center">
-                            <button onclick="javascript:EditUserPolicy(@user.Id, '@user.Name')">
+                            <button onclick="javascript:EditUserPolicy(@user.Id, '@user.Name')" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
                                 ...
                             </button>
                         </td>
                         <td>
-                            <div onclick="javascript:ToggleStatus(@user.Id, '@user.Name', this)" class="@Utils.ResolveCheckBox(user.IsActive)">
+                            <div onclick="javascript:ToggleStatus(@user.Id, '@user.Name', this)" class="@Utils.ResolveCheckBox(user.IsActive) @Utils.ResolvePermission(ViewBag.HasWritePermission)">
                             </div>
                         </td>
                         <td>
-                            <div onclick="javascript:ResetPassword(@user.Id, '@user.Name')" class="resetPassword">
+                            <div onclick="javascript:ResetPassword(@user.Id, '@user.Name')" class="resetPassword @Utils.ResolvePermission(ViewBag.HasWritePermission)">
                             </div>
                         </td>
                     </tr>
@@ -127,5 +125,4 @@
 </div>
 @section Script{
     @Scripts.Render("~/Scripts/ManageUser/js")
-    @Scripts.Render("~/Scripts/Search.js")
 }

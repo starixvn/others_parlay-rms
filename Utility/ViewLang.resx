@@ -669,4 +669,7 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="AllGroups" xml:space="preserve">
+    <value>All Groups</value>
+  </data>
 </root>

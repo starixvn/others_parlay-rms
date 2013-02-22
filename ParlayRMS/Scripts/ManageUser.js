@@ -9,6 +9,8 @@
     $("#btnNewUser").addClass("button");
     $("#btnExistUser").addClass("button");
     $("#btnSubmit").addClass("button");
+
+    ParlayRMS.Core.ResolvePermission();
 });
 
 function Search_onclick(UserName, SearchOption) {
@@ -185,11 +187,11 @@ function CreateExistingUser() {
 }
 
 function CreateExistingUserPost() {
-    if (validator.validateRequired("#Username")) {
+    if (validator.validateRequired("#popup #UserName")) {
         return;
     }
     var data = {
-        UserName: $('#Username').val(),
+        UserName: $('#popup #UserName').val(),
         GroupId: $('#GroupName').val()
     };
     $.ajax({
@@ -290,7 +292,7 @@ function ToggleStatus(userId, username, div) {
 }
 
 function GetUserByGroup(groupId) {
-    window.location.href = resolveClientUrl("ManageUser/?username=&groupId=" + groupId);
+    window.location.href = resolveClientUrl("ManageUser/?groupId=" + groupId);
 }
 
 function EditUserPolicy(userId, userName) {
@@ -339,7 +341,7 @@ function EditUserPolicyPost(userId) {
                 popup.showErrorMessage(json.message);
                 return;
             }
-            navigateToUrl('ManageUser', 2000);
+            ParlayRMS.Core.NavigateToUrl(document.URL, 2000);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -366,7 +368,7 @@ function grantPermissionsRead(target) {
     var isCheck = $(target).hasClass('inactive');
     var parentId = $(target).attr('parent');
 
-    var table = document.getElementById('tblfuntion');
+    var table = document.getElementById('tblFunction');
     var divs = table.getElementsByTagName("div");
 
     checkPermission(isCheck, target);
@@ -400,7 +402,7 @@ function grantPermissionsWrite(target) {
     if (!isCheck)
         $('#' + targetId).attr('val', '0');
 
-    var table = document.getElementById('tblfuntion');
+    var table = document.getElementById('tblFunction');
     var divs = table.getElementsByTagName("div");
 
     for (var i = 0; i < divs.length; i++) {
@@ -429,7 +431,7 @@ function grantPermissions(target) {
             checkPermission(false, $('#' + targetId.replace('r-', 'w-')).get(0));
             $('#' + targetId.replace('r-', 'w-')).attr('val', '0');
 
-            var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+            var divs = document.getElementById('tblFunction').getElementsByTagName("div");
 
             for (var i = 0; i < divs.length; i++) {
                 if ($(divs[i]).attr("id") == parentId) {
@@ -468,7 +470,7 @@ function grantPermissions(target) {
             $('#' + targetId.replace('r-', 'w-')).attr('val', '0');
             $('#' + targetId.replace('w-', 'r-')).attr('val', '0');
 
-            var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+            var divs = document.getElementById('tblFunction').getElementsByTagName("div");
 
             for (var i = 0; i < divs.length; i++) {
                 if ($(divs[i]).attr("id") == parentId) {
@@ -508,7 +510,7 @@ function grantPermissions(target) {
 }
 
 function getUserPolicy() {
-    var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+    var divs = document.getElementById('tblFunction').getElementsByTagName("div");
     var userPolicy = '';
     for (var i = 0; i < divs.length; i++) {
         if ($(divs[i]).attr("permission") == 2) {

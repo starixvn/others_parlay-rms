@@ -7,168 +7,166 @@
 {
     @ViewLang.GrantPermission: <span style="color: #ff6300">@Model.UserName</span>
 }
-<div class="fieldbar">
-    <table id="tblfuntion" style="width: 100%">
-        <tr>
-            <th rowspan="2">
-                @ViewLang.Functions
-            </th>
-            <th colspan="2">
-                @ViewLang.UserPermission
-            </th>
-            <th colspan="2">
-                @ViewLang.GroupPermission
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @ViewLang.Read
-            </th>
-            <th>
-                @ViewLang.Write
-            </th>
-            <th>
-                @ViewLang.Read
-            </th>
-            <th>
-                @ViewLang.Write
-            </th>
-        </tr>
-        @foreach (var fn in ViewBag.UserFunc)
+<table id="tblFunction" class="popup-content-table">
+    <tr>
+        <th rowspan="2">
+            @ViewLang.Functions
+        </th>
+        <th colspan="2">
+            @ViewLang.UserPermission
+        </th>
+        <th colspan="2">
+            @ViewLang.GroupPermission
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @ViewLang.Read
+        </th>
+        <th>
+            @ViewLang.Write
+        </th>
+        <th>
+            @ViewLang.Read
+        </th>
+        <th>
+            @ViewLang.Write
+        </th>
+    </tr>
+    @foreach (var fn in ViewBag.UserFunc)
+    {
+        string activeR = "inactive";
+        string activeW = "inactive";
+        string val = "0";
+
+        string activeGroupR = "inactive";
+        string activeGroupW = "inactive";
+
+        if (fn.UserPolicy != null)
         {
-            string activeR = "inactive";
-            string activeW = "inactive";
-            string val = "0";
-
-            string activeGroupR = "inactive";
-            string activeGroupW = "inactive";
-
-            if (fn.UserPolicy != null)
+            if (fn.UserPolicy.Writable)
             {
-                if (fn.UserPolicy.Writable)
-                {
-                    activeR = activeW = "active";
-                    val = "2";
-                }
-                else if (fn.UserPolicy.Readable)
-                {
-                    activeR = "active";
-                    activeW = "inactive";
-                    val = "1";
-                }
-                else
-                {
-                    activeR = activeW = "inactive";
-                }
+                activeR = activeW = "active";
+                val = "2";
             }
-
-            if (fn.GroupPolicy != null)
+            else if (fn.UserPolicy.Readable)
             {
-                if (fn.GroupPolicy.Writable)
-                {
-                    activeGroupR = activeGroupW = "active";
-                }
-                else if (fn.GroupPolicy.Readable)
-                {
-                    activeGroupR = "active";
-                    activeGroupW = "inactive";
-                }
-                else
-                {
-                    activeGroupR = activeGroupW = "inactive";
-                }
+                activeR = "active";
+                activeW = "inactive";
+                val = "1";
             }
-
-            <tr>
-                <td>
-                    <span class="function">@fn.Name</span>
-                </td>
-                <td>
-                    <div id="r-@fn.Id" class="@activeR" parent="r-@fn.Id" permission="1" onclick="grantPermissionsRead(this);">
-                    </div>
-                </td>
-                <td>
-                    <div id="w-@fn.Id" class="@activeW" parent="w-@fn.Id" val="@val" permission="2" onclick="grantPermissionsWrite(this);">
-                    </div>
-                </td>
-                <td style="background-color: #dbdbdb">
-                    <div class="@activeGroupR" style="cursor: default" >
-                    </div>
-                </td>
-                <td style="background-color: #dbdbdb">
-                    <div class="@activeGroupW" style="cursor: default" >
-                    </div>
-                </td>
-            </tr>
-            foreach (var subfn in ViewBag.UserSubFunc)
+            else
             {
-                if (fn.Id == subfn.Parent.Id)
-                {
-                    string SubactiveR = "inactive";
-                    string SubactiveW = "inactive";
-                    string Subval = "0";
-
-                    string SubactiveGroupR = "inactive";
-                    string SubactiveGroupW = "inactive";
-
-                    if (subfn.UserPolicy != null)
-                    {
-                        if (subfn.UserPolicy.Writable)
-                        {
-                            SubactiveR = SubactiveW = "active";
-                            Subval = "2";
-                        }
-                        else if (subfn.UserPolicy.Readable)
-                        {
-                            SubactiveR = "active";
-                            SubactiveW = "inactive";
-                            Subval = "1";
-                        }
-                        else
-                        {
-                            SubactiveR = SubactiveW = "inactive";
-                        }
-                    }
-
-                    if (subfn.GroupPolicy != null)
-                    {
-                        if (subfn.GroupPolicy.Writable)
-                        {
-                            SubactiveGroupR = SubactiveGroupW = "active";
-                        }
-                        else if (subfn.GroupPolicy.Readable)
-                        {
-                            SubactiveGroupR = "active";
-                            SubactiveGroupW = "inactive";
-                        }
-                        else
-                        {
-                            SubactiveGroupR = SubactiveGroupW = "inactive";
-                        }
-                    }
-                    <tr>
-                        <td>
-                            <span class="subfunction">- @subfn.Name</span>
-                        </td>
-                        <td>
-                            <div id="r-@subfn.Id" parent="r-@subfn.Parent.Id" permission="1" class="@SubactiveR" onclick="grantPermissions(this);">
-                            </div>
-                        </td>
-                        <td>
-                            <div id="w-@subfn.Id" parent="w-@subfn.Parent.Id" val="@Subval"  permission="2" class="@SubactiveW" onclick="grantPermissions(this);">
-                            </div>
-                        </td>
-                        <td style="background-color: #dbdbdb">
-                            <div class="@SubactiveGroupR" style="cursor: default" >
-                            </div>
-                        </td>
-                        <td style="background-color: #dbdbdb">
-                            <div class="@SubactiveGroupW" style="cursor: default" >
-                            </div>
-                        </td>
-                    </tr>
-                }
+                activeR = activeW = "inactive";
             }
         }
-    </table>
-</div>
+
+        if (fn.GroupPolicy != null)
+        {
+            if (fn.GroupPolicy.Writable)
+            {
+                activeGroupR = activeGroupW = "active";
+            }
+            else if (fn.GroupPolicy.Readable)
+            {
+                activeGroupR = "active";
+                activeGroupW = "inactive";
+            }
+            else
+            {
+                activeGroupR = activeGroupW = "inactive";
+            }
+        }
+
+        <tr>
+            <td>
+                <span class="function">@fn.Name</span>
+            </td>
+            <td>
+                <div id="r-@fn.Id" class="@activeR" parent="r-@fn.Id" permission="1" onclick="grantPermissionsRead(this);">
+                </div>
+            </td>
+            <td>
+                <div id="w-@fn.Id" class="@activeW" parent="w-@fn.Id" val="@val" permission="2" onclick="grantPermissionsWrite(this);">
+                </div>
+            </td>
+            <td style="background-color: #dbdbdb">
+                <div class="@activeGroupR" style="cursor: default" >
+                </div>
+            </td>
+            <td style="background-color: #dbdbdb">
+                <div class="@activeGroupW" style="cursor: default" >
+                </div>
+            </td>
+        </tr>
+        foreach (var subfn in ViewBag.UserSubFunc)
+        {
+            if (fn.Id == subfn.Parent.Id)
+            {
+                string SubactiveR = "inactive";
+                string SubactiveW = "inactive";
+                string Subval = "0";
+
+                string SubactiveGroupR = "inactive";
+                string SubactiveGroupW = "inactive";
+
+                if (subfn.UserPolicy != null)
+                {
+                    if (subfn.UserPolicy.Writable)
+                    {
+                        SubactiveR = SubactiveW = "active";
+                        Subval = "2";
+                    }
+                    else if (subfn.UserPolicy.Readable)
+                    {
+                        SubactiveR = "active";
+                        SubactiveW = "inactive";
+                        Subval = "1";
+                    }
+                    else
+                    {
+                        SubactiveR = SubactiveW = "inactive";
+                    }
+                }
+
+                if (subfn.GroupPolicy != null)
+                {
+                    if (subfn.GroupPolicy.Writable)
+                    {
+                        SubactiveGroupR = SubactiveGroupW = "active";
+                    }
+                    else if (subfn.GroupPolicy.Readable)
+                    {
+                        SubactiveGroupR = "active";
+                        SubactiveGroupW = "inactive";
+                    }
+                    else
+                    {
+                        SubactiveGroupR = SubactiveGroupW = "inactive";
+                    }
+                }
+        <tr>
+            <td>
+                <span class="subfunction">- @subfn.Name</span>
+            </td>
+            <td>
+                <div id="r-@subfn.Id" parent="r-@subfn.Parent.Id" permission="1" class="@SubactiveR" onclick="grantPermissions(this);">
+                </div>
+            </td>
+            <td>
+                <div id="w-@subfn.Id" parent="w-@subfn.Parent.Id" val="@Subval"  permission="2" class="@SubactiveW" onclick="grantPermissions(this);">
+                </div>
+            </td>
+            <td style="background-color: #dbdbdb">
+                <div class="@SubactiveGroupR" style="cursor: default" >
+                </div>
+            </td>
+            <td style="background-color: #dbdbdb">
+                <div class="@SubactiveGroupW" style="cursor: default" >
+                </div>
+            </td>
+        </tr>
+            }
+        }
+    }
+</table>

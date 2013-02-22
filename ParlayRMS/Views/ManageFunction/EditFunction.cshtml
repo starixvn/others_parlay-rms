@@ -5,28 +5,28 @@
     ViewBag.Title = ViewLang.EditFunction;
     ViewBag.Submit = "EditFunctionPost()";
 }
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.Name, ViewLang.Name)
     @Html.HiddenFor(m => m.Id)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.Name, Model.Name, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.Name, Model.Name, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="label_areatext">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.Description, ViewLang.Description)
 </div>
-<div class="field_areatext">
-    @Html.TextAreaFor(m => m.Description, new { @class = "areatext", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
+<div class="popup-content-input2">
+    @Html.TextAreaFor(m => m.Description, new { @class = "popup-content-textarea w230", rows = "7", maxlength = "100", onkeyup = "limitInput(this)" })
 </div>
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.DisplayOrder, ViewLang.Order)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.DisplayOrder, Model.DisplayOrder.ToString(), new { @class = "inputtext w100" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.DisplayOrder, Model.DisplayOrder.ToString(), new { @class = "popup-content-textbox w230" })
 </div>
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.ParentId, ViewLang.Parent)
 </div>
-<div class="fieldNoneBorder">
-    @Html.DropDownListFor(m => m.ParentId, (IEnumerable<SelectListItem>)ViewBag.FunctionSelectList)
+<div class="popup-content-input2">
+    @Html.DropDownListFor(m => m.ParentId, (IEnumerable<SelectListItem>)ViewBag.FunctionSelectList, new { @class = "popup-content-select w230" })
 </div>

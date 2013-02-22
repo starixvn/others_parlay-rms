@@ -2,6 +2,7 @@
     $("#btnNewGroup").addClass("button");
     $("#btnNewUser").addClass("button");
     $("button", ".scrollGrid").addClass("button-disable");
+    ParlayRMS.Core.ResolvePermission();
 });
 
 function CreateGroup() {
@@ -213,7 +214,7 @@ function grantPermissionsRead(target) {
     var isCheck = $(target).hasClass('inactive');
     var parentId = $(target).attr('parent');
 
-    var table = document.getElementById('tblfuntion');
+    var table = document.getElementById('tblFunction');
     var divs = table.getElementsByTagName("div");
 
     checkPermission(isCheck, target);
@@ -247,7 +248,7 @@ function grantPermissionsWrite(target) {
     if (!isCheck)
         $('#' + targetId).attr('val', '0');
 
-    var table = document.getElementById('tblfuntion');
+    var table = document.getElementById('tblFunction');
     var divs = table.getElementsByTagName("div");
 
     for (var i = 0; i < divs.length; i++) {
@@ -276,7 +277,7 @@ function grantPermissions(target) {
             checkPermission(false, $('#' + targetId.replace('r-', 'w-')).get(0));
             $('#' + targetId.replace('r-', 'w-')).attr('val', '0');
 
-            var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+            var divs = document.getElementById('tblFunction').getElementsByTagName("div");
 
             for (var i = 0; i < divs.length; i++) {
                 if ($(divs[i]).attr("id") == parentId) {
@@ -315,7 +316,7 @@ function grantPermissions(target) {
             $('#' + targetId.replace('r-', 'w-')).attr('val', '0');
             $('#' + targetId.replace('w-', 'r-')).attr('val', '0');
 
-            var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+            var divs = document.getElementById('tblFunction').getElementsByTagName("div");
 
             for (var i = 0; i < divs.length; i++) {
                 if ($(divs[i]).attr("id") == parentId) {
@@ -355,7 +356,7 @@ function grantPermissions(target) {
 }
 
 function getGroupPolicy() {
-    var divs = document.getElementById('tblfuntion').getElementsByTagName("div");
+    var divs = document.getElementById('tblFunction').getElementsByTagName("div");
     var groupPolicy = '';
     for (var i = 0; i < divs.length; i++) {
         if ($(divs[i]).attr("permission") == 2) {

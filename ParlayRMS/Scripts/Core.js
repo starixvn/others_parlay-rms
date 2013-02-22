@@ -7,6 +7,30 @@ var curRetryTimes = 0;
 
 String.Empty = ""; // Extend static string
 
+if (ParlayRMS == null || typeof (ParlayRMS) != "object") { var ParlayRMS = new Object(); }
+
+ParlayRMS.Core =
+{
+    ResolvePermission: function () {
+        var elements = $('.disabled');
+        elements.unbind('click');
+        elements.removeAttr('onclick');
+        elements.attr('href', '#');
+        elements.filter('span').remove();
+    },
+    NavigateToUrl: function (url, delayTime) {
+        if (delayTime == undefined) {
+            delayTime = 2000;
+        }
+        if (url.indexOf('http') == -1) {
+            url = "window.location.replace('" + resolveClientUrl(url) + "');";
+        }
+        setTimeout(function () {
+            location.href = url;
+        }, delayTime);
+    }
+}
+
 $(document).ready(function () {
     initValues();
 

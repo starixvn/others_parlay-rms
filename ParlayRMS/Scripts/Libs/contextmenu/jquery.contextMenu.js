@@ -128,10 +128,18 @@ if (jQuery) (function () {
                     });
                 });
 
+                var ua = navigator.userAgent.toLowerCase();
+                var browser = {
+                    ieQuirks: null,
+                    msie: /msie/.test(ua) && !/opera/.test(ua),
+                    opera: /opera/.test(ua),
+                    mozilla: /mozilla/.test(ua)
+                };
+
                 // Disable text selection
-                if ($.browser.mozilla) {
+                if (browser.mozilla) {
                     $('#' + o.menu).each(function () { $(this).css({ 'MozUserSelect': 'none' }); });
-                } else if ($.browser.msie) {
+                } else if (browser.msie) {
                     $('#' + o.menu).each(function () { $(this).bind('selectstart.disableTextSelect', function () { return false; }); });
                 } else {
                     $('#' + o.menu).each(function () { $(this).bind('mousedown.disableTextSelect', function () { return false; }); });

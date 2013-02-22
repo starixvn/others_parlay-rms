@@ -4,17 +4,17 @@
     ViewBag.Title = ViewLang.AddSpecialMember;
     ViewBag.Submit = "AddMemberPost()";
 }
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.UserName)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.UserName, string.Empty, new { @class = "inputtext w175" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.UserName, string.Empty, new { @class = "popup-content-textbox w175" })
 </div>
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.Level)
 </div>
-<div class="fieldNoneBorder">
-    <div class="level level1">
+<div class="popup-content-input2">
+    <div class="member-level level1">
         <span id="addNewLevelName">Level 1</span> <span id="getColor" class="arrowDown" valcolor="1"
             title="Click to change level"></span>
     </div>

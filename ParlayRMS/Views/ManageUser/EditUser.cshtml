@@ -4,27 +4,27 @@
     ViewBag.Title = ViewLang.EditUserInfo;
     ViewBag.Submit = string.Format("EditUserPost({0})", Model.UserId);
 }
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.UserName)
 </div>
-<div class="fieldNoneBorder">
+<div class="popup-content-noinput">
     @Model.UserName
 </div>
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.FirstName)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.FirstName, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.FirstName, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="label">
+<div class="popup-content-label">
     @Html.LabelFor(m => m.LastName)
 </div>
-<div class="field">
-    @Html.TextBoxFor(m => m.LastName, new { @class = "inputtext w330" })
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.LastName, new { @class = "popup-content-textbox w230" })
 </div>
-<div class="labelNoneBorder">
+<div class="popup-content-label2">
     @Html.LabelFor(m => m.GroupId)
 </div>
-<div class="fieldNoneBorder">
-    @Html.DropDownListFor(m => m.GroupId, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "w330" })
+<div class="popup-content-input2">
+    @Html.DropDownListFor(m => m.GroupId, (IEnumerable<SelectListItem>)ViewBag.GroupList, new { @class = "popup-content-select w230" })
 </div>
