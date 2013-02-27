@@ -295,6 +295,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company Win Loss.
+        /// </summary>
+        public static string CompanyWinLoss {
+            get {
+                return ResourceManager.GetString("CompanyWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string Confirmpassword {
@@ -354,6 +363,15 @@ namespace ParlayRMS.Utility {
         public static string CurrentWeek {
             get {
                 return ResourceManager.GetString("CurrentWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Win Loss.
+        /// </summary>
+        public static string CustomerWinLoss {
+            get {
+                return ResourceManager.GetString("CustomerWinLoss", resourceCulture);
             }
         }
         

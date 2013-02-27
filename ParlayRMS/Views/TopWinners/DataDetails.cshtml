@@ -29,19 +29,19 @@
                     @ViewLang.Stake
                 </th>
                 <th>
-                    @ViewLang.WinningAmount
+                    @ViewLang.CustomerWinLoss
                 </th>
                 <th>
-                    @ViewLang.CompanyLoseAmount
+                    @ViewLang.CompanyWinLoss
                 </th>
                 <th>
                     @ViewLang.Stake
                 </th>
                 <th>
-                    @ViewLang.WinningAmount
+                    @ViewLang.CustomerWinLoss
                 </th>
                 <th>
-                    @ViewLang.CompanyLoseAmount
+                    @ViewLang.CompanyWinLoss
                 </th>
                 <th>
                     @ViewLang.TotalCombo
@@ -83,7 +83,14 @@
                         @item.Combo
                     </td>
                     <td class="numeric">
+                    @if (item.Odds == 0)
+                    {
+                        @Html.Raw("-")
+                    }
+                    else
+                    { 
                         @item.Odds.ToString("#,##0.00")
+                    }
                     </td>
                 </tr>
             }
