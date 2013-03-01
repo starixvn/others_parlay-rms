@@ -13,9 +13,9 @@ namespace ParlayRMS.Utility
     /// </summary>
     public static class DbConverter
     {
-        public static bool ToBoolean(object value)
+        public static bool ToBoolean(object value, bool def = false)
         {
-            bool result = false;
+            bool result = def;
             if (IsValid(value))
             {
                 bool.TryParse(value.ToString(), out result);
@@ -24,9 +24,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static byte ToByte(object value)
+        public static byte ToByte(object value, byte def = 0)
         {
-            byte result = 0;
+            byte result = def;
             if (IsValid(value))
             {
                 byte.TryParse(value.ToString(), out result);
@@ -35,9 +35,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static short ToInt16(object value)
+        public static short ToInt16(object value, short def = 0)
         {
-            short result = 0;
+            short result = def;
             if (IsValid(value))
             {
                 short.TryParse(value.ToString(), out result);
@@ -46,9 +46,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static int ToInt32(object value)
+        public static int ToInt32(object value, int def = 0)
         {
-            int result = 0;
+            int result = def;
             if (IsValid(value))
             {
                 int.TryParse(value.ToString(), out result);
@@ -57,9 +57,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static long ToInt64(object value)
+        public static long ToInt64(object value, long def = 0)
         {
-            long result = 0;
+            long result = def;
             if (IsValid(value))
             {
                 long.TryParse(value.ToString(), out result);
@@ -68,9 +68,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static double ToDouble(object value)
+        public static double ToDouble(object value, double def = 0.0d)
         {
-            double result = 0.0d;
+            double result = def;
             if (IsValid(value))
             {
                 double.TryParse(value.ToString(), out result);
@@ -79,9 +79,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static decimal ToDecimal(object value)
+        public static decimal ToDecimal(object value, decimal def = 0.0m)
         {
-            decimal result = 0.0m;
+            decimal result = def;
             if (IsValid(value))
             {
                 decimal.TryParse(value.ToString(), out result);
@@ -90,9 +90,9 @@ namespace ParlayRMS.Utility
             return result;
         }
 
-        public static string ToString(object value)
+        public static string ToString(object value, string def = "")
         {
-            string result = string.Empty;
+            string result = def;
             if (IsValid(value))
             {
                 result = Convert.ToString(value);

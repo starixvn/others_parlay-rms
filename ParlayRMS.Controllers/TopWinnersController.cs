@@ -69,7 +69,7 @@ namespace ParlayRMS.Controllers
             sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
             ViewBag.SportsTypes = sportsTypes;
 
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageGroup);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.MemberManagement);
 
             return this.View("Index");
         }
