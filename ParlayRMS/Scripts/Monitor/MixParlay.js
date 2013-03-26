@@ -1,6 +1,13 @@
 ﻿var refreshTime = 60000;
 var maxTransId = 0;
 
+function Alert() {
+    var settings = settingsController.get();
+    if (settings.maxPayout != 0) {
+        soundManager.play('aSound');
+    }
+}
+
 function UserSettings() {
     this.combos = '2,3,4,5,6';
     this.sportsTypes = '1,2,3';
@@ -307,6 +314,30 @@ $(document).ready(function () {
             timerController.resume();
         }
     });
+
+//    closeBox.render($('#noflash'),
+//    {
+//        title: 'Alert Sound is disabled'
+//    });
+
+    soundManager.setup({
+        url: resolveClientUrl('Scripts/Libs/soundManager/swf/'),
+        flashVersion: 9, // optional: shiny features (default = 8)// optional: ignore Flash where possible, use 100% HTML5 mode
+        // preferFlash: false,
+        debugMode: false,
+        onready: function () {
+            var mySound = soundManager.createSound({
+                id: 'aSound',
+                url: resolveClientUrl("Sounds/alert.mp3")
+            });
+        },
+        ontimeout: function () {
+            closeBox.render($('#noflash'),
+            {
+                title: 'Alert Sound is disabled'
+            });
+        }
+    });
 });
 
 function FillData(table, data) {
@@ -314,6 +345,7 @@ function FillData(table, data) {
     var length = records.length;
     var tbody = $(table).children('tbody');
     if (length > 0) {
+        Alert();
         var rows = tbody.children('tr');
         if (rows.length == 0) {
             var r = new Array();

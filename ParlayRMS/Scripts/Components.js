@@ -421,3 +421,37 @@ var validator = function () {
         }
     };
 } ();
+
+var closeBox = function () {
+    return {
+        render: function (element, property) {
+            if (property == undefined) {
+                property = new Object();
+                property.title = "";
+            }
+
+            var container = $('<div class="closebox-container"></div>');
+            // header
+            var header = $('<div class="closebox-header"></div>');
+            header.appendTo(container);
+            if (property.title == undefined) {
+                property.title = "";
+            }
+            var title = $('<div class="closebox-title">' + property.title + '</div>');
+            title.appendTo(header);
+            var button = $('<div class="closebox-button">x</div>');
+            button.appendTo(header);
+            // content
+            var content = $('<div class="closebox-content"></div>');
+            content.appendTo(container);
+            $(element).show();
+            $(element).clone().appendTo(content);
+            container.insertBefore($(element));
+            $(element).remove();
+
+            button.click(function () {
+                container.remove();
+            });
+        }
+    }
+} ();

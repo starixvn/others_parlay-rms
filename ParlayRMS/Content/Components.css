@@ -1,0 +1,29 @@
+﻿.closebox-container
+{
+	clear: both;
+	border: 1px solid gray;
+	padding: 3px;
+	display: table;
+	background-color: rgb(255,246,240);
+}
+
+.closebox-header
+{
+	background-color: red;
+	height: 18px;
+	line-height: 18px;
+	color: White;
+}
+
+.closebox-title
+{
+	float: left;
+}
+
+.closebox-button
+{
+	float: right;
+	width: 18px;
+	text-align: center;
+	cursor: pointer;
+}

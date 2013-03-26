@@ -57,6 +57,7 @@
                 "~/Scripts/Libs/multiselect/jquery.multiselect.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/BetList.css",
+                "~/Content/Components.css",
                 "~/Content/confirm.css",
                 "~/Content/Icon.css",
                 "~/Content/modalPopup.css",
@@ -87,7 +88,8 @@
                 "~/Scripts/Libs/multiselect/jquery.multiselect.js",
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
-                "~/Scripts/Libs/sortElements/jquery.sortElements.js"
+                "~/Scripts/Libs/sortElements/jquery.sortElements.js",
+                "~/Scripts/Libs/soundManager/soundmanager2.js"
                 ));
             bundles.Add(new ScriptBundle("~/Scripts/Core/js").Include(
                 "~/Scripts/Core.js",
