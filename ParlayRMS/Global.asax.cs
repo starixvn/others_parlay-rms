@@ -89,7 +89,7 @@
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
                 "~/Scripts/Libs/sortElements/jquery.sortElements.js",
-                "~/Scripts/Libs/soundManager/soundmanager2.js"
+                "~/Scripts/Libs/soundManager/soundmanager2-nodebug.js"
                 ));
             bundles.Add(new ScriptBundle("~/Scripts/Core/js").Include(
                 "~/Scripts/Core.js",
