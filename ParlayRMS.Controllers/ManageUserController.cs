@@ -107,6 +107,26 @@ namespace ParlayRMS.Controllers
             return this.Json(result);
         }
 
+        // GET: ~/ManangeUser/ResetOwnerPassword
+        [HttpGet]
+        public ActionResult ResetOwnerPassword(ResetPasswordModel model)
+        {
+            return this.PartialView(model);
+        }
+
+        // POST: ~/ManangeUser/ResetOwnerPassword
+        [HttpPost, ActionName("ResetOwnerPassword")]
+        public ActionResult ResetOwnerPasswordPost(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.InvalidModelJson();
+            }
+
+            var result = this.userService.ResetPassword(CurrentSession.UserId, model.UserId, model.NewPassword, CurrentContext.Ip4Address);
+            return this.Json(result);
+        }
+
         // GET: ~/ManangeUser/EditUser
         [HttpGet]
         [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]

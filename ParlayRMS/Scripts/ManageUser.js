@@ -45,6 +45,50 @@ function ResetPassword(userId, username) {
     });
 }
 
+function ResetPasswordPost(userId) {
+    if (validator.validateRequired('#NewPassword') || validator.validateRequired('#ConfirmPassword')) {
+        return;
+    }
+
+    if ($('#NewPassword').val() != $('#ConfirmPassword').val()) {
+        $('#ConfirmPassword').focus();
+        validator.show($('#ConfirmPassword').get(0), 'Passwords are not matched');
+        return false;
+    }
+
+    var password = $('#NewPassword').val();
+    var data = {
+        UserId: userId,
+        NewPassword: password
+    };
+
+    $.ajax({
+        url: resolveClientUrl("ManageUser/ResetPassword"),
+        data: data,
+        type: 'POST',
+        dataType: 'html',
+        cache: false,
+        beforeSend: function (xhr) {
+            popup.showLoading();
+        },
+        success: function (data) {
+            var json = $.parseJSON(data);
+            if (json.code != 0) {
+                popup.showErrorMessage(json.message);
+            }
+            else {
+                navigateToUrl("ManageUser", 2000);
+            }
+        },
+        error: function () {
+            ShowErrMsgInPopup('btnSubmit', 'Error on resetting password!');
+        },
+        complete: function () {
+            popup.hideLoading();
+        }
+    });
+}
+
 function EditUser(userId, username, firstName, lastName, groupId) {
     var data = {
         UserId: userId,

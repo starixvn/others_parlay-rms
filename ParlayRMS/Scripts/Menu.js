@@ -21,7 +21,7 @@ $(document).ready(function () {
 });
 
 function ChangePassword(adminId, userId, username) {
-    var url = "ManageUser/ResetPassword/?userId=" + userId + "&username=" + username;
+    var url = "ManageUser/ResetOwnerPassword/?userId=" + userId + "&username=" + username;
     $.ajax({
         url: resolveClientUrl(url),
         type: 'GET',

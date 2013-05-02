@@ -171,7 +171,7 @@ function Button() {
     };
 }
 
-function ResetPasswordPost(userId) {
+function ResetOwnerPasswordPost(userId) {
     if (validator.validateRequired('#NewPassword') || validator.validateRequired('#ConfirmPassword')) {
         return;
     }
@@ -189,7 +189,7 @@ function ResetPasswordPost(userId) {
     };
 
     $.ajax({
-        url: resolveClientUrl("ManageUser/ResetPassword"),
+        url: resolveClientUrl("ManageUser/ResetOwnerPassword"),
         data: data,
         type: 'POST',
         dataType: 'html',
