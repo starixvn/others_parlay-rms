@@ -15,8 +15,6 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
     {
         public string Username { get; set; }
 
-        public string Date { get; set; }
-
         public string Combo { get; set; }
 
         public string SportsType { get; set; }
@@ -24,7 +22,6 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
         public IndexModel()
         {
             this.Username = string.Empty;
-            this.Date = string.Empty;
             this.Combo = string.Empty;
             this.SportsType = string.Empty;
         }

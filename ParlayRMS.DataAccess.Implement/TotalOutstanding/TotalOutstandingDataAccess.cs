@@ -19,7 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
     /// </summary>
     public class TotalOutstandingDataAccess : BaseDataAccess, ITotalOutstandingDataAccess
     {
-        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, DateTime winlostDate, string combo, string sportsType)
+        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Mem>();
 
@@ -28,7 +28,6 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 using (var db = new ObjectDb("RMS_Rpt_Parlay_Outstanding_Mem"))
                 {
                     db.AddInParameter("custid", DbType.Int64, custId);
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
                     db.AddInParameter("selection", DbType.String, combo);
                     db.AddInParameter("sporttype", DbType.String, sportsType);
 
@@ -59,7 +58,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
             return result;
         }
 
-        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, DateTime winlostDate, string combo, string sportsType)
+        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Ag>();
 
@@ -68,7 +67,6 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 using (var db = new ObjectDb("RMS_Rpt_Parlay_Outstanding_Ag"))
                 {
                     db.AddInParameter("custid", DbType.Int64, custId);
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
                     db.AddInParameter("selection", DbType.String, combo);
                     db.AddInParameter("sporttype", DbType.String, sportsType);
 

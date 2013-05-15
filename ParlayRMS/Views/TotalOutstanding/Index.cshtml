@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TotalOutstanding;
 }
 <div class="filter">
-    <div class="filter-control" style="border: 1px solid black; width: 750px;">
+    <div class="filter-control" style="border: 1px solid black; width: 800px;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl</div>
@@ -18,10 +18,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                @Html.Label("", @ViewLang.Date)
+                                @Html.Label("username", ViewLang.Username2 + "(*)", new { @class = "lable" })
                             </td>
                             <td>
-                                @Html.TextBox("date", Model.Date)
+                                @Html.TextBox("username", Model.Username)
                             </td>
                             <td style="width: 30px">
                                 @Html.Label("combo", ViewLang.Combo, new { @class = "lable" })
@@ -34,21 +34,6 @@
                             </td>
                             <td style="width: 150px">
                                 @Html.DropDownListWithMultipleSelected("sportsType", (List<SelectListItem>)ViewBag.SportsTypes)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.Label("username", ViewLang.Username2 + "(*)", new { @class = "lable" })
-                            </td>
-                            <td>
-                                @Html.TextBox("username", Model.Username)
-                            </td>
-                            <td colspan="3">
-                                @Html.Label("searchby", @ViewLang.SearchBy)
-                                @Html.RadioButton("searchby", "0", true, new { @id = "member" })
-                                @Html.Label("member", ViewLang.Member, new { @class = "radiotag" })
-                                @Html.RadioButton("searchby", "1", false, new { @id = "agent" })
-                                @Html.Label("agent", ViewLang.Agent, new { @class = "radiotag" })
                             </td>
                             <td>
                                 <button id="submit" class="button">

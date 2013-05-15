@@ -6,7 +6,6 @@
 
 namespace ParlayRMS.Services.Interface.TotalOutstanding
 {
-    using System;
     using System.Collections.Generic;
     using ParlayRMS.DTO.TotalOutstanding;
 
@@ -15,8 +14,8 @@ namespace ParlayRMS.Services.Interface.TotalOutstanding
     /// </summary>
     public interface ITotalOutstandingService
     {
-        List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(DateTime date, string combo, string sportsType, long custId);
+        List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(long custId, string combo, string sportsType);
 
-        List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(DateTime date, string combo, string sportsType, long custId);
+        List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(long custId, string combo, string sportsType);
     }
 }

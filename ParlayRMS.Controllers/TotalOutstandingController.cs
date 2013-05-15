@@ -68,14 +68,9 @@ namespace ParlayRMS.Controllers
                 return this.PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
             }
 
-            if (model.SearchBy == 0)
+            if (customerInfo.RoleId == (int)RoleId.Member)
             {
-                if (customerInfo.RoleId != (int)RoleId.Member)
-                {
-                    return this.PartialView("_ErrorMessage", string.Format("{0} is not a member", model.Username));
-                }
-
-                var data = service.GetTotalOutstandingForMember(model.Date, model.Combo, model.SportsType, customerInfo.CustId);
+                var data = service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -96,14 +91,9 @@ namespace ParlayRMS.Controllers
 
                 return this.PartialView("MemberResult", data);
             }
-            else if (model.SearchBy == 1)
+            else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
-                if (customerInfo.RoleId != (int)RoleId.Agent)
-                {
-                    return this.PartialView("_ErrorMessage", string.Format("{0} is not a agent", model.Username));
-                }
-
-                var data = service.GetTotalOutstandingForAgent(model.Date, model.Combo, model.SportsType, customerInfo.CustId);
+                var data = service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -129,7 +119,17 @@ namespace ParlayRMS.Controllers
             }
             else
             {
-                return this.PartialView("Error");
+                string roleName = "";
+                if (customerInfo.RoleId == (int)RoleId.Master)
+                {
+                    roleName = "master";
+                }
+                else
+                {
+                    roleName = "super";
+                }
+
+                return this.PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or an agent", model.Username, roleName));
             }
         }
     }

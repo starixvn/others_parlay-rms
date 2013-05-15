@@ -15,3 +15,7 @@ function CreateChangedLevelCell(userid, username, level) {
 function CreateLevelCell(username, level) {
     return '<td class="' + GetClassByLevel(level) + '">' + username + '</td>';
 }
+
+function CreateLinkLevelCell(username, level, callback) {
+    return '<td class="' + GetClassByLevel(level) + '">' + '<a href="#" onclick="' + callback + '">' + username + '</a>' + '</td>';
+}

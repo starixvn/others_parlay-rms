@@ -1805,7 +1805,7 @@ table.main > thead > tr > th.header2rows
 table.main > tbody > tr
 {
 	background-color: #F8F8F8;
-	height:30px;
+	height: 30px;
 }
 table.main > tbody > tr.even
 {
@@ -1988,7 +1988,6 @@ a.datepicker
 .filter .filter-control .button
 {
 	float: left;
-	margin: 2px 0px;
 }
 .filter .filter-control label.radio
 {
@@ -2115,7 +2114,8 @@ div.popuploading
 	float: left;
 	padding: 8px 5px;
 }
-.searchbar-button {
+.searchbar-button
+{
 	margin: 0px;
 	height: 24px;
 }

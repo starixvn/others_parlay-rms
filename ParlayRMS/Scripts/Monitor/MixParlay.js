@@ -395,7 +395,7 @@ function CreateRow(item) {
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td>' + moment(item.TransDate).format('MM/D/YYYY h:mm:ss A') + '</td>';
     r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
-    r[++j] = CreateLevelCell(item.Username, item.Level);
+    r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.MaxPayout).format('0,0.00') + '</td>';
@@ -403,6 +403,17 @@ function CreateRow(item) {
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';
     return r.join('');
+}
+
+function ViewTotalOutstanding(username) {
+    var combos = $("#combo").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+    var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
+    window.open(url, '_blank');
 }
 
 function ViewBetDetails(userName, transId, refNo) {

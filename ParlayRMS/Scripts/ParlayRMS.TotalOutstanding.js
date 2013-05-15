@@ -48,18 +48,6 @@ ParlayRMS.TotalOutstanding = {
             }
         });
 
-        var now = moment();
-        var date = $.trim($("#date").val());
-        if (date == "") {
-            $("#date").val(now.format('MMMM DD, YYYY'));
-        }
-        $("#date").datepicker({
-            dateFormat: "MM dd, yy",
-            showButtonPanel: true,
-            minDate: '-2M',
-            maxDate: '0'
-        });
-
         $('#submit').click(this.LoadData);
 
         var username = $.trim($('#username').val());
@@ -67,16 +55,7 @@ ParlayRMS.TotalOutstanding = {
             this.LoadData();
         }
     },
-    ClearDate: function () {
-        $('#result').html("");
-    },
     LoadData: function () {
-        var date = $.trim($('#date').val());
-        if (username == '') {
-            Validators.show($('#date').get(0), 'Please input a date');
-            return null;
-        }
-
         var combos = $("#combo").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -100,11 +79,9 @@ ParlayRMS.TotalOutstanding = {
         }
 
         var data = {
-            Date: date,
             Combo: combos,
             SportsType: sportsTypes,
-            Username: username,
-            SearchBy: $("input[type='radio'][name='searchby']:checked").val()
+            Username: username
         }
         $.ajax({
             url: resolveClientUrl('TotalOutstanding/Data'),
@@ -160,14 +137,13 @@ ParlayRMS.TotalOutstanding = {
         window.open(url, '_blank');
     },
     ViewMember: function (username) {
-        var date = $.trim($('#date').val());
         var combos = $("#combo").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
         var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
-        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&date=' + date + '&combo=' + combos + '&sportsType=' + sportsTypes;
+        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
         window.open(url, '_blank');
     }
 };
