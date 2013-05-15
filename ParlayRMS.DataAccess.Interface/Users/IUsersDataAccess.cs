@@ -34,5 +34,7 @@
         int RMS_UserCheckIn(int userId, string netSessionId, string ip);
 
         void RMS_UserLogout(int userId, string userName);
+
+        RMS_CustomerSelInfoByUsername RMS_CustomerSelInfoByUsername(string username);
     }
 }

@@ -62,14 +62,14 @@
                 "~/Content/Icon.css",
                 "~/Content/modalPopup.css",
                 "~/Content/Paging.css",
-                "~/Content/_Site.css",
+                "~/Content/Site.css",
                 "~/Content/Validators.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Login/css").Include(
                 "~/Content/Login.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Site/css").Include(
-                "~/Content/_Site.css"
+                "~/Content/Site.css"
                 ));
             bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
                 "~/Content/Validators.css"
@@ -100,6 +100,12 @@
                 "~/Scripts/Validators.js",
                 "~/Scripts/UpdateLevel.js"
                 ));
+
+            // group all scripts written in namespace
+            bundles.Add(new ScriptBundle("~/Scripts/TotalOutstanding/js").Include(
+                "~/Scripts/ParlayRMS.TotalOutstanding.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/Scripts/Report/TopWinners/js").Include("~/Scripts/Report/TopWinners.js"));
 
             // chart

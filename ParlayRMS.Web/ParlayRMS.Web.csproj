@@ -49,6 +49,7 @@
     <Compile Include="Context\CurrentContext.cs" />
     <Compile Include="Context\ICurrentContext.cs" />
     <Compile Include="Mvc\DataAnnotations\ValuesAttribute.cs" />
+    <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Mvc\LogActionFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\CurrentSession.cs">

@@ -169,7 +169,6 @@
   <ItemGroup>
     <Content Include="Content\BetList.css" />
     <Content Include="Content\Components.css" />
-    <Content Include="Content\_Site.css" />
     <Content Include="Content\Icon.css" />
     <Content Include="Content\confirm.css" />
     <Content Include="Content\Libs\contextMenu\jquery.contextMenu.css" />
@@ -511,6 +510,7 @@
     <Content Include="Scripts\Libs\soundManager\swf\soundmanager2_flash9_debug.swf" />
     <Content Include="Scripts\Member\Core.js" />
     <Content Include="Scripts\Monitoring.js" />
+    <Content Include="Scripts\ParlayRMS.TotalOutstanding.js" />
     <Content Include="Scripts\UpdateLevel.js" />
     <Content Include="Scripts\Libs\moment\moment.js" />
     <Content Include="Scripts\Libs\moment\moment.min.js" />
@@ -720,6 +720,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ManageUser\ResetOwnerPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TotalOutstanding\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TotalOutstanding\AgentResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TotalOutstanding\MemberResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ErrorMessage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

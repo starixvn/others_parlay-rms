@@ -97,6 +97,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -372,6 +381,15 @@ namespace ParlayRMS.Utility {
         public static string CustomerWinLoss {
             get {
                 return ResourceManager.GetString("CustomerWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -880,11 +898,29 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Management.
         /// </summary>
         public static string MemberManagement {
             get {
                 return ResourceManager.GetString("MemberManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member username.
+        /// </summary>
+        public static string MemberUsername {
+            get {
+                return ResourceManager.GetString("MemberUsername", resourceCulture);
             }
         }
         
@@ -1240,6 +1276,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search by.
+        /// </summary>
+        public static string SearchBy {
+            get {
+                return ResourceManager.GetString("SearchBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seconds.
         /// </summary>
         public static string Seconds {
@@ -1582,6 +1627,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Outstanding.
+        /// </summary>
+        public static string TotalOutstanding {
+            get {
+                return ResourceManager.GetString("TotalOutstanding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trans. Time.
         /// </summary>
         public static string TransTime {
@@ -1659,6 +1713,15 @@ namespace ParlayRMS.Utility {
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Username2 {
+            get {
+                return ResourceManager.GetString("Username2", resourceCulture);
             }
         }
         

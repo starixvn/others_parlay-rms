@@ -16,6 +16,7 @@
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Session;
     using ParlayRMS.Services.Implement.Systems;
+    using ParlayRMS.DTO.Users;
 
     public class UsersService : BaseService, IUsersService
     {
@@ -157,6 +158,11 @@
             });
 
             return new UserCache(menus, functions);
+        }
+
+        public RMS_CustomerSelInfoByUsername GetCustomerInfo(string username)
+        {
+            return this.usersDataAccess.RMS_CustomerSelInfoByUsername(username);
         }
     }
 }

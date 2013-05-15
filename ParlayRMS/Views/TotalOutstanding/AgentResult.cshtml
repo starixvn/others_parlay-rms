@@ -1,0 +1,77 @@
+﻿@model List<ParlayRMS.DTO.TotalOutstanding.RMS_Rpt_Parlay_Outstanding_Ag>
+@{
+    int id = 0;
+    var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
+}
+<table class="main">
+    <thead>
+        <tr>
+            <th style="width: 30px">
+                #
+            </th>
+            <th style="width: 170px">
+                @ViewLang.MemberUsername
+            </th>
+            <th style="width: 120px">
+                @ViewLang.StakeAfterPT
+            </th>
+            <th style="width: 150px">
+                @ViewLang.MaxPayoutAfterPT
+            </th>
+            <th style="width: 100px">
+                @ViewLang.TotalBets
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td class="numeric">
+                    @(++id)
+                </td>
+                <td>
+                    <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewMember('@item.Username');">
+                        @item.Username
+                    </a>
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(item.StakePt)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(item.MaxPayoutPt)
+                </td>
+                <td class="center">
+                    @item.BetCount
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        @if (totalData != null)
+        { 
+            <tr>
+                <td colspan="2" class="center">
+                    @ViewLang.Total
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(totalData.StakePt)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(totalData.MaxPayoutPt)
+                </td>
+                <td class="center">
+                    @Formatter.FormatNumber2(totalData.TotalBets)
+                </td>
+            </tr>
+        }
+        else
+        { 
+            <tr>
+                <td colspan="5" style="text-align: center">
+                    @ViewLang.NoInformation
+                </td>
+            </tr>
+        }
+    </tfoot>
+</table>

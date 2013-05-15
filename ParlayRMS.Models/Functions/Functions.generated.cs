@@ -19,6 +19,7 @@
 		test = 17,
 		test1 = 22,
 		MixParlay = 15,
-		SimilarBets = 12
+		SimilarBets = 12,
+		TotalOutstanding = 24
 			}
 }

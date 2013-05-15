@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using ParlayRMS.DTO;
+    using ParlayRMS.DTO.Users;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Users;
 
@@ -28,5 +29,7 @@
         UserCache GetUserCache(int userId);
 
         bool HasWritePermission(int userId, int functionId);
+
+        RMS_CustomerSelInfoByUsername GetCustomerInfo(string username);
     }
 }

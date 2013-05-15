@@ -78,6 +78,9 @@
     <Compile Include="Charts\RMS_Monitor_Parlay_Sum.cs" />
     <Compile Include="SimilarBets\RMS_Similar_Parlay_Betlist.cs" />
     <Compile Include="SimilarBets\RMS_Similar_Parlay_Betlist_Detail.cs" />
+    <Compile Include="TotalOutstanding\RMS_Rpt_Parlay_Outstanding_Ag.cs" />
+    <Compile Include="TotalOutstanding\RMS_Rpt_Parlay_Outstanding_Mem.cs" />
+    <Compile Include="Users\RMS_CustomerSelInfoByUsername.cs" />
     <Compile Include="Users\RMS_MenuSelByUserID.cs" />
     <Compile Include="Users\RMS_MenuSelByUserID_Function.cs" />
     <Compile Include="Users\RMS_MenuSelByUserID_Menu.cs" />

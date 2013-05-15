@@ -8,10 +8,10 @@
     using ParlayRMS.DataAccess.Implement.Groups;
     using ParlayRMS.DataAccess.Interface.Groups;
     using ParlayRMS.DataAccess.Interface.Users;
+    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO;
 
     public class UsersDataAccess : BaseDataAccess, IUsersDataAccess
     {
@@ -503,6 +503,28 @@
             {
                 this.ProcessException(ex);
             }
+        }
+
+        public RMS_CustomerSelInfoByUsername RMS_CustomerSelInfoByUsername(string username)
+        {
+            try
+            {
+                Hashtable param = new Hashtable();
+                param.Add("username", username);
+                var r = ExecSp("RMS_CustomerSelInfoByUsername", param);
+                return new RMS_CustomerSelInfoByUsername
+                {
+                    Username = username,
+                    CustId = DbConverter.ToInt64(r.Outputs["custid"]),
+                    RoleId = DbConverter.ToInt32(r.Outputs["roleid"])
+                };
+            }
+            catch (Exception ex)
+            {
+                this.ProcessException(ex);
+            }
+
+            return null;
         }
     }
 }

@@ -678,4 +678,25 @@
   <data name="CustomerWinLoss" xml:space="preserve">
     <value>Customer Win Loss</value>
   </data>
+  <data name="TotalOutstanding" xml:space="preserve">
+    <value>Total Outstanding</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="SearchBy" xml:space="preserve">
+    <value>Search by</value>
+  </data>
+  <data name="Username2" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="MemberUsername" xml:space="preserve">
+    <value>Member username</value>
+  </data>
 </root>

@@ -49,6 +49,7 @@
     <Compile Include="Functions\IFunctionsDataAccess.cs" />
     <Compile Include="Groups\IGroupsDataAccess.cs" />
     <Compile Include="Menus\IMenusDataAccess.cs" />
+    <Compile Include="TotalOutstanding\ITotalOutstandingDataAccess.cs" />
     <Compile Include="Users\IUsersDataAccess.cs" />
     <Compile Include="Charts\IChartsDataAccess.cs" />
     <Compile Include="MixParlayMonitor\IMixParlayMonitorDataAccess.cs" />

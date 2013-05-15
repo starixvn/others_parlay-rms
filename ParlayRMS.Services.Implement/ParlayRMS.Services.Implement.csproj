@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TotalOutstanding\TotalOutstandingService.cs" />
     <Compile Include="Users\AuthorizationService.cs" />
     <Compile Include="BetList\BetListService.cs" />
     <Compile Include="Systems\CachingService.cs" />

@@ -32,4 +32,12 @@ namespace ParlayRMS.Models
         SinceLastMonth = 6,
         SpecificDate = 7
     }
+
+    public enum RoleId : int
+    {
+        Super = 4,
+        Master = 3,
+        Agent = 2,
+        Member = 1
+    }
 }
