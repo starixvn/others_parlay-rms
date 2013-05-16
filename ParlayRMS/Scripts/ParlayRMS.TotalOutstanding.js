@@ -74,7 +74,7 @@ ParlayRMS.TotalOutstanding = {
 
         var username = $.trim($('#username').val());
         if (username == '') {
-            Validators.show($('#username').get(0), 'Please input an username');
+            Validators.show($('#username').get(0), 'Please input a username');
             return null;
         }
 
@@ -93,8 +93,9 @@ ParlayRMS.TotalOutstanding = {
                 loading.show();
             },
             success: function (result) {
-                $('#result').show();
-                $('#result').html(result);
+                $('#divResult').show();
+                $('#divResult').html(result);
+                $('#result>tbody>tr:even').addClass("even");
                 loading.hide();
             },
             error: function (xhr, status, err) {
@@ -103,16 +104,15 @@ ParlayRMS.TotalOutstanding = {
             }
         });
     },
-    ViewBetDetails: function (username, transId, refNo, originalRefNo) {
+    ViewBetDetails: function (username, transId, refNo) {
         var data = {
             BetId: transId,
-            Username: username,
             RefNo: refNo,
-            OriginalRefNo: originalRefNo
+            Username: username
         }
 
         $.ajax({
-            url: resolveClientUrl('SimilarBets/BetDetails'),
+            url: resolveClientUrl('Monitor/MixParlayBetDetails'),
             type: 'POST',
             data: data,
             dataType: 'html',
@@ -120,8 +120,10 @@ ParlayRMS.TotalOutstanding = {
             beforeSend: function () {
                 loading.show();
             },
-            success: function (data) {
-                popup.show(data);
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
             },
             error: function (xhr, status, err) {
                 loading.hide();

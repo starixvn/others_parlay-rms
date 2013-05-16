@@ -129,7 +129,7 @@ namespace ParlayRMS.Controllers
                     roleName = "super";
                 }
 
-                return this.PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or an agent", model.Username, roleName));
+                return this.PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
             }
         }
     }

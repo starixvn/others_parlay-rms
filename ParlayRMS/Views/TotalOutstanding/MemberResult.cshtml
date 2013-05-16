@@ -3,94 +3,134 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<table class="main">
-    <thead>
-        <tr>
-            <th style="width: 30px">
-                #
-            </th>
-            <th style="width: 170px">
-                @ViewLang.TransTime
-            </th>
-            <th style="width: 100px">
-                @ViewLang.BetID
-            </th>
-            <th style="width: 80px">
-                @ViewLang.Odds
-            </th>
-            <th style="width: 120px">
-                @ViewLang.StakeAfterPT
-            </th>
-            <th style="width: 150px">
-                @ViewLang.MaxPayoutAfterPT
-            </th>
-            <th style="width: 100px">
-                @ViewLang.TotalCombo
-            </th>
-            <th style="width: 100px">
-                @ViewLang.BetDetails
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        { 
+<div style="width: 851px">
+    <table class="main">
+        <colgroup>
+            <col width='30px' />
+            <col width='170px' />
+            <col width='100px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='100px' />
+            <col width='100px' />
+        </colgroup>
+        <thead>
             <tr>
-                <td class="numeric">
-                    @(++id)
-                </td>
-                <td>
-                    @item.TransDate
-                </td>
-                <td class="numeric">
-                    <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewSimilarBets(@item.TransId);">
-                        @item.TransId
-                    </a>
-                </td>
-                <td class="numeric">
-                    @Formatter.FormatNumber2(item.Odds)
-                </td>
-                <td class="numeric">
-                    @Formatter.FormatNumber2(item.StakePt)
-                </td>
-                <td class="numeric">
-                    @Formatter.FormatNumber2(item.MaxPayoutPt)
-                </td>
-                <td class="center">
-                    @item.Combo
-                </td>
-                <td class="center">
-                    <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno, @item.Refno);">
-                        @ViewLang.View
-                    </button>
-                </td>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewLang.TransTime
+                </th>
+                <th>
+                    @ViewLang.BetID
+                </th>
+                <th>
+                    @ViewLang.Odds
+                </th>
+                <th>
+                    @ViewLang.StakeAfterPT
+                </th>
+                <th>
+                    @ViewLang.MaxPayoutAfterPT
+                </th>
+                <th>
+                    @ViewLang.TotalCombo
+                </th>
+                <th>
+                    @ViewLang.BetDetails
+                </th>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        @if (totalData != null)
-        { 
-            <tr>
-                <td colspan="4" class="center">
-                    @ViewLang.Total
-                </td>
-                <td class="numeric">
-                    @Formatter.FormatNumber2(totalData.StakePt)
-                </td>
-                <td class="numeric">
-                    @Formatter.FormatNumber2(totalData.MaxPayoutPt)
-                </td>
-                <td colspan="2">
-                </td>
-            </tr>
-        }
-        else
-        { 
-            <tr>
-                <td colspan="8" style="text-align: center">
-                    @ViewLang.NoInformation
-                </td>
-            </tr>
-        }
-    </tfoot>
-</table>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" style="max-height: 500px; width: 870px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='30px' />
+            <col width='170px' />
+            <col width='100px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='100px' />
+            <col width='100px' />
+        </colgroup>
+        <tbody>
+            @foreach (var item in Model)
+            { 
+                <tr>
+                    <td class="numeric">
+                        @(++id)
+                    </td>
+                    <td>
+                        @item.TransDate
+                    </td>
+                    <td class="numeric">
+                        <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewSimilarBets(@item.TransId);">
+                            @item.TransId
+                        </a>
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(item.Odds)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(item.StakePt)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(item.MaxPayoutPt)
+                    </td>
+                    <td class="center">
+                        @item.Combo
+                    </td>
+                    <td class="center">
+                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno);">
+                            @ViewLang.View
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 851px" class="mainfooter">
+    <table class="main" id="footer">
+        <colgroup>
+            <col width='30px' />
+            <col width='170px' />
+            <col width='100px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='100px' />
+            <col width='100px' />
+        </colgroup>
+        <tfoot>
+            @if (totalData != null)
+            { 
+                <tr>
+                    <td colspan="4" class="center">
+                        @ViewLang.Total
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(totalData.StakePt)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(totalData.MaxPayoutPt)
+                    </td>
+                    <td colspan="2">
+                    </td>
+                </tr>
+            }
+            else
+            { 
+                <tr>
+                    <td colspan="8" style="text-align: center">
+                        @ViewLang.NoInformation
+                    </td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>
