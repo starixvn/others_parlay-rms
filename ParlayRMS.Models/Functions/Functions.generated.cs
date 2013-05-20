@@ -16,10 +16,8 @@
 		TopSelection = 7,
 		ManageCustomer = 10,
 		TopWinners = 13,
-		test = 17,
-		test1 = 22,
-		MixParlay = 15,
+		MonitorMixParlay = 15,
 		SimilarBets = 12,
-		TotalOutstanding = 24
+		TotalOutstanding = 17
 			}
 }
