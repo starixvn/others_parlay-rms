@@ -13,6 +13,8 @@ namespace ParlayRMS.DTO.Users
     {
         public int FuncId { get; set; }
 
+        public string FuncKey { get; set; }
+
         public string FuncName { get; set; }
 
         public int DisplayOrder { get; set; }

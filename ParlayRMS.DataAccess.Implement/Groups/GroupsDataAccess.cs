@@ -198,6 +198,7 @@
                         result.Add(new RMS_GroupPolicySel
                         {
                             FuncId = reader.ToInt32("funcid"),
+                            FuncKey = reader.ToString("funckey"),
                             FuncName = reader.ToString("funcname"),
                             DisplayOrder = reader.ToInt32("displayorder"),
                             ParentId = reader.ToInt32("parentid"),

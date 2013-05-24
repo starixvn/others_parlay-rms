@@ -1,6 +1,6 @@
 ﻿namespace ParlayRMS.Models.Functions
 {
-	public static class FuncKeys
+	public class FunctionKeys
 	{
 		public const string Administration = "Administration";
 		public const string Monitor = "Monitor";

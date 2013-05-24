@@ -23,12 +23,12 @@
 
         public ManageMenuController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageMenu);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageMenu);
         }
 
         // GET: ~/ManangeMenu
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Read)]
         public ActionResult Index()
         {
             var menuList = this.menuService.GetAllMenus();
@@ -49,7 +49,7 @@
 
         // GET: ~/ManangeMenu/CreateMenu
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Create)]
         public ActionResult CreateMenu()
         {
             ViewBag.FunctionList = this.functionService.GetAllFunctionsInOrder();
@@ -70,7 +70,7 @@
 
         // POST: ~/ManangeMenu/CreateMenu
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Create)]
         public ActionResult CreateMenu(CreateMenuModel model)
         {
             if (!ModelState.IsValid)
@@ -85,7 +85,7 @@
 
         // GET: ~/ManangeMenu/EditMenu
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult EditMenu(int menuId)
         {
             ViewBag.FunctionList = this.functionService.GetAllFunctionsInOrder();
@@ -119,7 +119,7 @@
 
         // POST: ~/ManangeMenu/EditMenu
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult EditMenu(EditMenuModel model)
         {
             if (!ModelState.IsValid)
@@ -133,7 +133,7 @@
 
         // POST: ~/ManangeMenu/UpdateStatus
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageMenu, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageMenu, Policy = ePolicy.Update)]
         public ActionResult UpdateStatus(EditMenuStatusModel model)
         {
             if (!ModelState.IsValid)

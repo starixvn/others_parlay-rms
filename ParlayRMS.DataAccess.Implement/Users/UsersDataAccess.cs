@@ -256,6 +256,7 @@
                         result.Add(new RMS_UserPolicySel
                         {
                             FuncId = reader.ToInt32("funcid"),
+                            FuncKey = reader.ToString("funckey"),
                             FuncName = reader.ToString("funcname"),
                             ParentId = reader.ToInt32("parentid"),
                             ParentName = reader.ToString("parentname"),

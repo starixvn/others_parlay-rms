@@ -27,7 +27,7 @@ namespace ParlayRMS.Controllers
         private readonly ITotalOutstandingService service = new TotalOutstandingService();
         private readonly IUsersService userService = new UsersService();
 
-        [AuthorizationAttribute(Function = eFunction.TotalOutstanding, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = ePolicy.Read)]
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
@@ -57,7 +57,7 @@ namespace ParlayRMS.Controllers
             return this.View("Index", model);
         }
 
-        [AuthorizationAttribute(Function = eFunction.TotalOutstanding, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {

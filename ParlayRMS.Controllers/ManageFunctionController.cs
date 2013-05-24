@@ -18,12 +18,12 @@
 
         public ManageFunctionController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageFunction);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageFunction);
         }
 
         // GET: ~/ManangeFunction
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Read)]
         public ActionResult Index()
         {
             var model = this.functionService.GetAllFunctionsInOrder();
@@ -32,7 +32,7 @@
 
         // GET: ~/ManangeFunction/CreateFunction
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Create)]
         public ActionResult CreateFunction()
         {
             var allFunctions = this.functionService.GetAllFunctions();
@@ -52,7 +52,7 @@
 
         // POST: ~/ManangeFunction/CreateFunction
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Create)]
         public ActionResult CreateFunction(CreateFunctionModel model)
         {
             if (!ModelState.IsValid)
@@ -67,7 +67,7 @@
 
         // GET: ~/ManangeFunction/EditFunction
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Update)]
         public ActionResult EditFunction(int functionId)
         {
             var allFunctions = this.functionService.GetAllFunctions();
@@ -97,7 +97,7 @@
 
         // GET: ~/ManangeFunction/EditFunction
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageFunction, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Update)]
         public ActionResult EditFunction(EditFunctionModel model)
         {
             if (!ModelState.IsValid)

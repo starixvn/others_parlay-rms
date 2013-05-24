@@ -36,7 +36,7 @@ namespace ParlayRMS.Controllers
 
         #region Mix Parlay
 
-        [AuthorizationAttribute(Function = eFunction.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
         public ActionResult MixParlayFilter()
         {
             // Combo
@@ -94,14 +94,14 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
         public ActionResult MixParlay()
         {
             return this.View("MixParlay/Index");
         }
 
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
         public ActionResult MixParlayData(DataModel model)
         {
             if (!ModelState.IsValid)
@@ -191,7 +191,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
         public ActionResult MixParlayBetDetails(MixParlayBetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;

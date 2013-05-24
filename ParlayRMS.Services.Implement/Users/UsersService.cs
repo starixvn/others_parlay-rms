@@ -92,7 +92,7 @@
             var data = this.usersDataAccess.RMS_UserPolicySel(userId);
             if (!AppSetting.HiddenGroups.Contains(user.Group.Name))
             {
-                data = data.Where(x => x.FuncId != (int)eFunction.ManageFunction && x.FuncId != (int)eFunction.ManageMenu);
+                data = data.Where(x => x.FuncKey != FunctionKeys.ManageFunction && x.FuncKey != FunctionKeys.ManageMenu);
             }
             
             return data.Select(x => new Function
@@ -110,12 +110,12 @@
             });
         }
 
-        public bool HasWritePermission(int userId, int functionId)
+        public bool HasWritePermission(int userId, string functionKey)
         {
             CachingService cachingService = new CachingService();
             var userCache = cachingService.GetUserCache(userId);
             var policyList = userCache.Functions;
-            var foundItems = policyList.Where(x => x.FunctionId == functionId);
+            var foundItems = policyList.Where(x => x.FunctionKey == functionKey);
             if (foundItems.Count() > 0)
             {
                 var firstItem = foundItems.First();

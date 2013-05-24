@@ -24,12 +24,12 @@
 
         public ManageGroupController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageGroup);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageGroup);
         }
 
         // GET: ~/ManangeGroup
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Read)]
         public ActionResult Index()
         {
             var groupList = this.groupService.GetGroups();
@@ -45,7 +45,7 @@
 
         // GET: ~/ManangeGroup/CreateGroup
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
         public ActionResult CreateGroup()
         {
             var model = new CreateGroupModel();
@@ -54,7 +54,7 @@
 
         // POST: ~/ManangeGroup/CreateGroup
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
         public ActionResult CreateGroup(CreateGroupModel model)
         {
             if (!ModelState.IsValid)
@@ -69,7 +69,7 @@
 
         // GET: ~/ManangeGroup/EditGroup
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
         public ActionResult EditGroup(int groupId)
         {
             var group = this.groupService.GetGroupById(groupId);
@@ -85,7 +85,7 @@
 
         // POST: ~/ManangeGroup/EditGroup
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
         public ActionResult EditGroup(EditGroupModel model)
         {
             if (!ModelState.IsValid)
@@ -99,7 +99,7 @@
 
         // GET: ~/ManangeGroup/EditGroupPolicy
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
         public ActionResult EditGroupPolicy(EditGroupPolicyModel model)
         {
             var functionList = this.groupService.GetFunctionsByGroupId(model.GroupId);
@@ -110,7 +110,7 @@
 
         // POST: ~/ManangeGroup/EditGroupPolicy
         [HttpPost, ActionName("EditGroupPolicy")]
-        [AuthorizationAttribute(Function = eFunction.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
         public ActionResult EditGroupPolicyPost(EditGroupPolicyModel model)
         {
             if (!ModelState.IsValid)

@@ -46,13 +46,8 @@
   <ItemGroup>
     <Compile Include="BaseEntityModel.cs" />
     <Compile Include="BaseModel.cs" />
-    <Compile Include="Functions\FuncKeys.generated.cs">
-      <DependentUpon>FuncKeys.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Functions\Functions.generated.cs">
-      <DependentUpon>Functions.tt</DependentUpon>
+    <Compile Include="Functions\FunctionKeys.generated.cs">
+      <DependentUpon>FunctionKeys.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -83,13 +78,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Functions\FuncKeys.tt">
+    <None Include="Functions\FunctionKeys.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FuncKeys.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Functions\Functions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Functions.generated.cs</LastGenOutput>
+      <LastGenOutput>FunctionKeys.generated.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -48,13 +48,13 @@ namespace ParlayRMS.Controllers
             return monitorService;
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult Index(MonitoringEventModel model)
         {
             return this.View(model);
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopFavouriteByTurnover(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -83,7 +83,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopFavouriteByTicket(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -113,7 +113,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTicket_Event(MonitoringEventModel model)
         {
             var service = GetService();
@@ -152,7 +152,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType(MonitoringEventModel model)
         {
             var service = GetService();
@@ -223,7 +223,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType_Choice(MonitoringEventModel model)
         {
             var service = GetService();
@@ -279,7 +279,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event(MonitoringEventModel model)
         {
             var service = GetService();
@@ -316,7 +316,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType(MonitoringEventModel model)
         {
             var service = GetService();
@@ -386,7 +386,7 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = eFunction.FavouriteChoice, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType_Choice(MonitoringEventModel model)
         {
             var service = GetService();

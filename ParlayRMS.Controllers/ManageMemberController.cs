@@ -24,11 +24,11 @@
 
         public ManageMemberController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.MemberManagement);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
         }
 
         // GET: ~/ManangeMember/MemberList
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Read)]
         public ActionResult MemberList(MemberListModel model)
         {
             var specialMemberList = this.customerService.GetListCustomer(model.UserName, model.Level);
@@ -39,7 +39,7 @@
 
         // GET: ~/ManangeMember
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Read)]
         public ActionResult Index()
         {
             return this.View();
@@ -47,7 +47,7 @@
 
         // GET: ~/ManangeMember/AddMember
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Create)]
         public ActionResult AddMember()
         {
             var model = new AddMemberModel();
@@ -56,7 +56,7 @@
 
         // POST: ~/ManangeMember/AddMember
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Create)]
         public ActionResult AddMember(AddMemberModel model)
         {
             if (!ModelState.IsValid)
@@ -70,7 +70,7 @@
 
         // POST: ~/ManangeMember/UpdateLevel
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Update)]
         public ActionResult UpdateLevel(UpdateLevelModel model)
         {
             if (!ModelState.IsValid)
@@ -84,7 +84,7 @@
 
         // POST: ~/ManangeMember/ExportExcel
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Read)]
         public ActionResult ExportExcel(ExportExcelModel model)
         {
             var specialMemberList = this.customerService.GetListCustomer(model.UserName, model.Level);
@@ -117,7 +117,7 @@
 
         // POST: ~/ManangeMember/ChangeLevel
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.MemberManagement, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = ePolicy.Update)]
         public ActionResult ChangeLevel(ChangeLevelModel model)
         {
             if (!ModelState.IsValid)

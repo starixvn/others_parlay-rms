@@ -28,7 +28,7 @@
 
         UserCache GetUserCache(int userId);
 
-        bool HasWritePermission(int userId, int functionId);
+        bool HasWritePermission(int userId, string functionKey);
 
         RMS_CustomerSelInfoByUsername GetCustomerInfo(string username);
     }

@@ -31,7 +31,7 @@ namespace ParlayRMS.Controllers
         private readonly ISimilarBetsService similarbetsService = new SimilarBetsService();
         private readonly IBetListService betlistService = new BetListService();
 
-        [AuthorizationAttribute(Function = eFunction.SimilarBets, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = ePolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -39,7 +39,7 @@ namespace ParlayRMS.Controllers
             return this.View("Index");
         }
 
-        [AuthorizationAttribute(Function = eFunction.SimilarBets, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult Data(long transId)
         {
@@ -53,7 +53,7 @@ namespace ParlayRMS.Controllers
             return this.PartialView("Data", model);
         }
 
-        [AuthorizationAttribute(Function = eFunction.SimilarBets, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsOptions options)
         {

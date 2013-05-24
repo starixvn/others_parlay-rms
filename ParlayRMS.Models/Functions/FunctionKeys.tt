@@ -8,7 +8,7 @@
 #>
 namespace ParlayRMS.Models.Functions
 {
-	public enum eFunction : int
+	public class FunctionKeys
 	{
 	<#
 		SqlConnection conn = new SqlConnection(connectionString);
@@ -21,7 +21,7 @@ namespace ParlayRMS.Models.Functions
 		while (loop)
 		{
 	#>
-	<#= reader["FuncKey"].ToString() #> = <#= reader["FuncID"].ToString() #><#loop = reader.Read();#><#=loop ? "," : "" #>
+	public const string <#= reader["FuncKey"].ToString() #> = "<#= reader["FuncKey"].ToString() #>"<#loop = reader.Read();#><#=loop ? ";" : ";" #>
 	<#}#>
 	<#
 		reader.Close();

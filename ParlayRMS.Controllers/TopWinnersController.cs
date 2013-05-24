@@ -36,7 +36,7 @@ namespace ParlayRMS.Controllers
         private readonly IBetListService betlistService = new BetListService();
         private readonly IUsersService userService = new UsersService();
 
-        [AuthorizationAttribute(Function = eFunction.TopWinners, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -69,12 +69,12 @@ namespace ParlayRMS.Controllers
             sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
             ViewBag.SportsTypes = sportsTypes;
 
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.MemberManagement);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
 
             return this.View("Index");
         }
 
-        [AuthorizationAttribute(Function = eFunction.TopWinners, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult Data(TopWinnersOptions options)
         {
@@ -108,7 +108,7 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [AuthorizationAttribute(Function = eFunction.TopWinners, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult DataDetails(TopWinnerDetailsOptions options)
         {
@@ -118,7 +118,7 @@ namespace ParlayRMS.Controllers
             return this.PartialView("DataDetails", records);
         }
 
-        [AuthorizationAttribute(Function = eFunction.TopWinners, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
         [HttpGet]
         [ValidateInput(false)]
         public void Excel(TopWinnersOptions options)

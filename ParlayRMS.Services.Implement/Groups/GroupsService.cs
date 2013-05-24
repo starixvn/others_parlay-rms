@@ -74,7 +74,7 @@
             var data = this.groupDataAccess.RMS_GroupPolicySel(groupId);
             if (!AppSetting.HiddenGroups.Contains(user.Group.Name))
             {
-                data = data.Where(x => x.FuncId != (int)eFunction.ManageFunction && x.FuncId != (int)eFunction.ManageMenu);
+                data = data.Where(x => x.FuncKey != FunctionKeys.ManageFunction && x.FuncKey != FunctionKeys.ManageMenu);
             }
 
             return data.Select(x => new Function

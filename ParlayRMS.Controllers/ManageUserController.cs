@@ -54,12 +54,12 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.GroupList = selectedItems;
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, (int)eFunction.ManageUser);
+            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageUser);
         }
 
         // GET: ~/ManangeUser
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
         public ActionResult Index(IndexModel model)
         {
             ViewBag.GroupList = this.GetAllGroup();
@@ -87,7 +87,7 @@ namespace ParlayRMS.Controllers
 
         // GET: ~/ManangeUser/ResetPassword
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
             return this.PartialView(model);
@@ -95,7 +95,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/ResetPassword
         [HttpPost, ActionName("ResetPassword")]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult ResetPasswordPost(ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
@@ -129,7 +129,7 @@ namespace ParlayRMS.Controllers
 
         // GET: ~/ManangeUser/EditUser
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult EditUser(int userId)
         {
             var user = userService.GetUserById(userId);
@@ -148,7 +148,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/EditUser
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult EditUser(EditUserModel model)
         {
             if (!ModelState.IsValid)
@@ -162,7 +162,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/UpdateStatus
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult UpdateStatus(UpdateStatusModel model)
         {
             if (!ModelState.IsValid)
@@ -176,7 +176,7 @@ namespace ParlayRMS.Controllers
 
         // GET: ~/ManangeUser/CreateUser
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
         public ActionResult CreateUser()
         {
             return this.PartialView();
@@ -184,7 +184,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/CreateUser
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Create)]
         public ActionResult CreateUser(CreateUserModel model)
         {
             var result = this.userService.CreateUser(CurrentSession.UserId, model.UserName, model.Password, model.FirstName, model.LastName, model.GroupId, CurrentContext.Ip4Address);
@@ -193,7 +193,7 @@ namespace ParlayRMS.Controllers
 
         // GET: ~/ManangeUser/CreateExistingUser
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
         public ActionResult CreateExistingUser()
         {
             var model = new CreateExistingUserModel();
@@ -202,7 +202,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/CreateExistingUser
         [HttpPost]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Create)]
         public ActionResult CreateExistingUser(CreateExistingUserModel model)
         {
             var result = this.userService.CreateExistUser(CurrentSession.UserId, model.UserName, model.GroupId, CurrentContext.Ip4Address);
@@ -211,7 +211,7 @@ namespace ParlayRMS.Controllers
 
         // GET: ~/ManangeUser/EditUserPolicy
         [HttpGet]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
         public ActionResult EditUserPolicy(EditUserPolicyModel model)
         {
             var userFunc = this.userService.GetUserFunction(model.UserId);
@@ -223,7 +223,7 @@ namespace ParlayRMS.Controllers
 
         // POST: ~/ManangeUser/EditUserPolicy
         [HttpPost, ActionName("EditUserPolicy")]
-        [AuthorizationAttribute(Function = eFunction.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
         public ActionResult EditUserPolicyPost(EditUserPolicyModel model)
         {
             var result = this.userService.UpdateUserPolicy(CurrentSession.UserId, model.UserId, model.UserPolicy, CurrentContext.Ip4Address);

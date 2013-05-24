@@ -15,7 +15,7 @@
     {
         private readonly CachingService cachingService = new CachingService();
 
-        public eFunction Function { get; set; }
+        public string Function { get; set; }
 
         public ePolicy Policy { get; set; }
 
@@ -50,7 +50,7 @@
                     return;
                 }
 
-                if (!FunctionAuthorization(currentSession.UserId, (int)this.Function))
+                if (!FunctionAuthorization(currentSession.UserId, this.Function))
                 {
                     //string msg7 = string.Format("msg7 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
                     //WriteLog(msg7);
@@ -116,7 +116,7 @@
             FormsAuthentication.RedirectToLoginPage();
         }
 
-        private bool FunctionAuthorization(int userId, int functionId)
+        private bool FunctionAuthorization(int userId, string functionKey)
         {
             if (userId <= 0)
             {
@@ -125,7 +125,7 @@
 
             var userCache = cachingService.GetUserCache(userId);
             var policyList = userCache.Functions;
-            var foundItems = policyList.Where(x => x.FunctionId == functionId);
+            var foundItems = policyList.Where(x => x.FunctionKey == functionKey);
             //WriteLog(string.Format("userId:{0}, functionId:{1}, policyList.Count()={2}, foundItems.Count()={3}", userId, functionId, policyList.Count(), foundItems.Count()));
             if (foundItems.Count() > 0)
             {
