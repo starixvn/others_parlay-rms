@@ -57,6 +57,7 @@ namespace ParlayRMS.Controllers
             return this.View("Index", model);
         }
 
+        //[ValidateInput(false)]
         [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = ePolicy.Read)]
         [HttpPost]
         public ActionResult Data(DataModel model)
