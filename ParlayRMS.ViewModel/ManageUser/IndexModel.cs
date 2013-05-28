@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Web.Mvc;
 namespace ParlayRMS.ViewModel.ManageUser
 {
     /// <summary>
@@ -11,6 +12,7 @@ namespace ParlayRMS.ViewModel.ManageUser
     /// </summary>
     public class IndexModel
     {
+        [AllowHtml()]
         public string UserName { get; set; }
 
         public int GroupId { get; set; }
