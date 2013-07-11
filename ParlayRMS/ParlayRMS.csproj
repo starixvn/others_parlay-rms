@@ -488,6 +488,7 @@
     <Content Include="Images\Tooltip\tipBtm.png" />
     <Content Include="Images\Tooltip\tipMid.png" />
     <Content Include="Images\Tooltip\tipTop.png" />
+    <Content Include="readme.txt" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
     <Content Include="Scripts\Libs\highcharts\highcharts.js" />
