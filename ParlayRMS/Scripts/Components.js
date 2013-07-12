@@ -423,12 +423,11 @@ var validator = function () {
             if (this.validateRequired(element)) {
                 return true;
             }
-
             var date = $(element).val();
             if (!moment(date, "MMMM DD, YYYY").isValid()) {
                 hint.show($(element).get(0), 'Invalid date');
+                return true;
             }
-
             return false;
         }
     };

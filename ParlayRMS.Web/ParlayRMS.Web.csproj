@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Context\CurrentContext.cs" />
     <Compile Include="Context\ICurrentContext.cs" />
+    <Compile Include="Mvc\DataAnnotations\DateRangeAttribute.cs" />
     <Compile Include="Mvc\DataAnnotations\ValuesAttribute.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Mvc\LogActionFilter.cs" />

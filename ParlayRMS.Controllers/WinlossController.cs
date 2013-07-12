@@ -42,13 +42,20 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType);
-                ViewBag.Title = string.Format("Winloss report - from {0} to {1} - {2}",
-                    options.FromDate.ToString("MMMM dd, yyyy"),
-                    options.ToDate.ToString("MMMM dd, yyyy"),
-                    ModelsHelper.GetBetType((int)options.BetType));
-                ViewBag.FilterOption = options;
-                return this.PartialView(model);
+                if (!ModelState.IsValid)
+                {
+                    return this.PartialView("_ErrorMessage", GetModelErrorMessage());
+                }
+                else
+                {
+                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType);
+                    ViewBag.Title = string.Format("Winloss report - from {0} to {1} - {2}",
+                        options.FromDate.ToString("MMMM dd, yyyy"),
+                        options.ToDate.ToString("MMMM dd, yyyy"),
+                        ModelsHelper.GetBetType((int)options.BetType));
+                    ViewBag.FilterOption = options;
+                    return this.PartialView(model);
+                }
             }
             catch (Exception ex)
             {

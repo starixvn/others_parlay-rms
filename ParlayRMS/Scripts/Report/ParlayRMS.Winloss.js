@@ -48,6 +48,7 @@ ParlayRMS.Winloss = {
 
         $("#btnSearch").addClass("button");
         $('#btnSearch').click(function () {
+            $("#divResult").html('');
             var betType = $("#betType").val();
             var fromDate = $("#fromDate").val();
             var toDate = $("#toDate").val();
