@@ -139,7 +139,7 @@ namespace ParlayRMS.Controllers
             var data = service.GetTopLeagueByTicket(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
             // chart data
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportTypeById(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en", string.Empty)).ToArray();
 
@@ -164,7 +164,7 @@ namespace ParlayRMS.Controllers
             int sport = this.GetSportTypeIdByName(sportName);
             var data = service.GetTopLeagueByTurnover(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportTypeById(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
 
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en")).ToArray();

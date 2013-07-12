@@ -87,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedController.cs" />
     <Compile Include="TotalOutstandingController.cs" />
+    <Compile Include="WinlossController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExcelService\ParlayRMS.ExcelService.csproj">

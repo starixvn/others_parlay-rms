@@ -488,7 +488,8 @@
     <Content Include="Images\Tooltip\tipBtm.png" />
     <Content Include="Images\Tooltip\tipMid.png" />
     <Content Include="Images\Tooltip\tipTop.png" />
-    <Content Include="readme.txt" />
+    <None Include="ExcelTemplates\Winloss.xls" />
+    <None Include="readme.txt" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
     <Content Include="Scripts\Libs\highcharts\highcharts.js" />
@@ -512,6 +513,7 @@
     <Content Include="Scripts\Member\Core.js" />
     <Content Include="Scripts\Monitoring.js" />
     <Content Include="Scripts\ParlayRMS.TotalOutstanding.js" />
+    <Content Include="Scripts\Report\ParlayRMS.Winloss.js" />
     <Content Include="Scripts\UpdateLevel.js" />
     <Content Include="Scripts\Libs\moment\moment.js" />
     <Content Include="Scripts\Libs\moment\moment.min.js" />
@@ -565,6 +567,8 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Winloss\Index.cshtml" />
+    <Content Include="Views\Winloss\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

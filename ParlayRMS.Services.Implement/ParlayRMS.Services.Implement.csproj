@@ -85,6 +85,7 @@
     <Compile Include="TopWinners\TopWinnersService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="Users\UsersService.cs" />
+    <Compile Include="Winloss\WinlossService.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

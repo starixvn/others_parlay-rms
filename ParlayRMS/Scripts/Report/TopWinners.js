@@ -167,10 +167,11 @@ function ViewTopWinners(fromDate, toDate, sportsType, selectTop) {
             var data = $.parseJSON(result);
             FillData($('#result'), data);
             ParlayRMS.Core.ResolvePermission();
-            loading.hide();
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
+        },
+        complete: function () {
             loading.hide();
         }
     });
@@ -279,7 +280,6 @@ function ViewDetails(custId) {
             beforeSend: function (xhr) {
             },
             success: function (result) {
-                loading.hide();
                 td.html(result);
                 // animating
                 $('div[custid="' + custId + '"]').css('display', 'none').slideToggle("slow");
@@ -287,6 +287,9 @@ function ViewDetails(custId) {
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
             }
         });
     }

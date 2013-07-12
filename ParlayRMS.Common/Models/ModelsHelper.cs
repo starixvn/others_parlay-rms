@@ -7,9 +7,9 @@
 namespace ParlayRMS.Common.Models
 {
     using System.Collections.Generic;
+    using ParlayRMS.Models;
     using ParlayRMS.Models.Members;
     using ParlayRMS.Utility;
-    using ParlayRMS.Models.Functions;
 
     /// <summary>
     /// TODO: Update summary.
@@ -69,29 +69,48 @@ namespace ParlayRMS.Common.Models
             return memberLevels;
         }
 
-        public static string GetSportTypeById(int sportType)
+        /// <summary>
+        /// Get sport type name from resource by id
+        /// </summary>
+        /// <param name="sportType">sportType</param>
+        /// <returns></returns>
+        public static string GetSportType(int sportType)
         {
-            string result = "Undefined";
             switch (sportType)
             {
                 case 0:
-                    result = ViewLang.Allsports;
-                    break;
+                    return ViewLang.Allsports;
 
                 case 1:
-                    result = ViewLang.Socceronly;
-                    break;
+                    return ViewLang.Socceronly;
 
                 case 2:
-                    result = ViewLang.Othersports;
-                    break;
+                    return ViewLang.Othersports;
 
                 case 3:
-                    result = ViewLang.Combinedsports;
-                    break;
+                    return ViewLang.Combinedsports;
             }
 
-            return result;
+            return "Undefined";
+        }
+
+        /// <summary>
+        /// Get bet type name from resource by id
+        /// </summary>
+        /// <param name="betType">betType</param>
+        /// <returns></returns>
+        public static string GetBetType(int betType)
+        {
+            switch (betType)
+            {
+                case (int)BetType.MixParlay:
+                    return ViewLang.MixparLay;
+
+                case (int)BetType.SystemParlay:
+                    return ViewLang.SystemparLay;
+            }
+
+            return "Undefined";
         }
     }
 }

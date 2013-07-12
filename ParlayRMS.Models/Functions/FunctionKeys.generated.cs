@@ -16,6 +16,7 @@
 		public const string TopSelection = "TopSelection";
 		public const string ManageCustomer = "ManageCustomer";
 		public const string TopWinners = "TopWinners";
+		public const string Winloss = "Winloss";
 		public const string test = "test";
 		public const string test1 = "test1";
 		public const string MonitorMixParlay = "MonitorMixParlay";

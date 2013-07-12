@@ -699,4 +699,16 @@
   <data name="MemberUsername" xml:space="preserve">
     <value>Member username</value>
   </data>
+  <data name="Ticket" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>Lose</value>
+  </data>
+  <data name="Won" xml:space="preserve">
+    <value>Won</value>
+  </data>
+  <data name="SystemparLay" xml:space="preserve">
+    <value>System parLay</value>
+  </data>
 </root>

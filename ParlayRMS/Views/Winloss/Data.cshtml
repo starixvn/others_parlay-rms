@@ -1,0 +1,177 @@
+﻿@model ParlayRMS.Models.Winloss.WinlossData
+@{
+    var filterOption = (ParlayRMS.ViewModel.Report.WinlossOptions)ViewBag.FilterOption;
+}
+<div style="width: 1041px" class="maintitle">
+    <div class="information">
+        @ViewBag.Title
+    </div>
+    <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.BetType', '@filterOption.FromDate', '@filterOption.ToDate');" title="Export Excel">
+    </div>
+</div>
+<div style="width: 1041px">
+    <table class="main">
+        <colgroup>
+            <col width='120px' />
+            <col width='100px' />
+            <col width='100px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.Date
+                </th>
+                <th colspan="2">
+                    @ViewLang.Ticket
+                </th>
+                <th colspan="2">
+                    @ViewLang.StakeAfterPT
+                </th>
+                <th colspan="2">
+                    @ViewLang.WinLoss
+                </th>
+                <th colspan="2">
+                    @ViewLang.OurPT
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" style="max-height: 500px; width: 1060px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='120px' />
+            <col width='100px' />
+            <col width='100px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr>
+                    <td class="right">
+                        @Formatter.FormatDate(record.WinlostDate)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(record.Tickets_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(record.Tickets_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Stake_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Stake_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(record.Member_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Member_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(record.OurPT_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.OurPT_Lose)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 1041px" class="mainfooter">
+    <table class="main" id="footer">
+        <colgroup>
+            <col width='120px' />
+            <col width='100px' />
+            <col width='100px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tfoot>
+            @if (Model.Records.Any())
+            {
+                <tr>
+                    <td class="center">
+                        @ViewLang.Total
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(@Model.Total.Tickets_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(Model.Total.Tickets_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Stake_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Stake_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(Model.Total.Member_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Member_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" style="text-align: center">
+                        @ViewLang.NoInformation
+                    </td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>

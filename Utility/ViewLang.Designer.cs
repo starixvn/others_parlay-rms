@@ -880,6 +880,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lose.
+        /// </summary>
+        public static string Lose {
+            get {
+                return ResourceManager.GetString("Lose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max payout.
         /// </summary>
         public static string MaxPayout {
@@ -1474,6 +1483,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System parLay.
+        /// </summary>
+        public static string SystemparLay {
+            get {
+                return ResourceManager.GetString("SystemparLay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tabular.
         /// </summary>
         public static string Tabular {
@@ -1488,6 +1506,15 @@ namespace ParlayRMS.Utility {
         public static string Team {
             get {
                 return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket.
+        /// </summary>
+        public static string Ticket {
+            get {
+                return ResourceManager.GetString("Ticket", resourceCulture);
             }
         }
         
@@ -1776,6 +1803,15 @@ namespace ParlayRMS.Utility {
         public static string WinOdds {
             get {
                 return ResourceManager.GetString("WinOdds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Won.
+        /// </summary>
+        public static string Won {
+            get {
+                return ResourceManager.GetString("Won", resourceCulture);
             }
         }
         

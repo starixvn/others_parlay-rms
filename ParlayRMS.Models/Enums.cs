@@ -40,4 +40,10 @@ namespace ParlayRMS.Models
         Agent = 2,
         Member = 1
     }
+
+    public enum BetType : int
+    {
+        MixParlay = 9,
+        SystemParlay = 29
+    }
 }

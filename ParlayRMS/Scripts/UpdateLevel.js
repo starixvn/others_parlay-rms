@@ -21,7 +21,6 @@
                 loading.show();
             },
             success: function (result) {
-                loading.hide();
                 var json = $.parseJSON(result);
                 if (json.code != 0) {
                     alert(json.message);
@@ -32,8 +31,10 @@
                 }
             },
             error: function (xhr, status, err) {
-                loading.hide();
                 alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
             }
         });
     });

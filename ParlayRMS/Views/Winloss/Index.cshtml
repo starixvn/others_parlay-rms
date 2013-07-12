@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.TopWinners;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 750px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="group">
+                @Html.Label("betType", @ViewLang.Bettype)
+                @Html.DropDownList("betType", (List<SelectListItem>)ViewBag.BetTypes)
+            </div>
+            <div class="group">
+                @Html.Label("", @ViewLang.From)
+                @Html.TextBox("fromDate")
+            </div>
+            <div class="group">
+                @Html.Label("", @ViewLang.To)
+                @Html.TextBox("toDate")
+            </div>
+            <div class="group">
+                <button id="btnSearch">
+                    <span class="text">@ViewLang.Submit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both;" id="divResult">
+</div>
+@Scripts.Render("~/Scripts/Report/Winloss/js")
+<script type="text/javascript">
+    var dateRanges = {
+        LimitDataFromDate: '@AppSetting.LimitDataFromDate',
+        NowDate: '@DateTime.Now'
+    };
+</script>

@@ -319,7 +319,7 @@ var validator = function () {
                 clearInterval(this.intervalAnimate);
                 this.intervalAnimate = null;
             }
-            var int = this.intervalAnimate = setInterval(function () {
+            var interval = this.intervalAnimate = setInterval(function () {
                 c--;
                 if (input.style.backgroundColor == previousBackground) {
                     input.style.backgroundColor = '#ff7700';
@@ -329,7 +329,7 @@ var validator = function () {
                     input.style.color = previousColor;
                 }
                 if (c == 0) {
-                    clearInterval(int);
+                    clearInterval(interval);
                 }
             }, 300);
         },
@@ -343,7 +343,7 @@ var validator = function () {
                 clearInterval(this.intervalAnimate);
                 this.intervalAnimate = null;
             }
-            var int = this.intervalAnimate = setInterval(function () {
+            var interval = this.intervalAnimate = setInterval(function () {
                 c--;
                 if (input.style.backgroundColor == previousBackground) {
                     input.style.backgroundColor = '#fff7b2';
@@ -358,7 +358,7 @@ var validator = function () {
                     input.value = previousText;
                 }
                 if (c == 0) {
-                    clearInterval(int);
+                    clearInterval(interval);
                     input.focus();
                 }
             }, 500);
@@ -417,6 +417,18 @@ var validator = function () {
                 hint.show($(element).get(0), 'Order value must be greater or than 0');
                 return true;
             };
+            return false;
+        },
+        validateDate: function (element) {
+            if (this.validateRequired(element)) {
+                return true;
+            }
+
+            var date = $(element).val();
+            if (!moment(date, "MMMM DD, YYYY").isValid()) {
+                hint.show($(element).get(0), 'Invalid date');
+            }
+
             return false;
         }
     };

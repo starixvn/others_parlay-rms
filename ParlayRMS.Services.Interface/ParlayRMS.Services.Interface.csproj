@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\ISimilarBetsService.cs" />
     <Compile Include="TopWinners\ITopWinnersService.cs" />
+    <Compile Include="Winloss\IWinlossService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">

@@ -89,7 +89,7 @@ namespace ParlayRMS.Controllers
                     options.SelectTop,
                     options.FromDate.ToString("MMMM dd, yyyy"),
                     options.ToDate.ToString("MMMM dd, yyyy"),
-                    ModelsHelper.GetSportTypeById(options.SportsType));
+                    ModelsHelper.GetSportType(options.SportsType));
 
                 return this.Json(new
                 {
@@ -137,7 +137,7 @@ namespace ParlayRMS.Controllers
                     options.SelectTop,
                     options.FromDate.ToString("MMMM dd, yyyy"),
                     options.ToDate.ToString("MMMM dd, yyyy"),
-                    ModelsHelper.GetSportTypeById(options.SportsType));
+                    ModelsHelper.GetSportType(options.SportsType));
             writer.WriteRow(0, new object[] { title });
 
             // header
@@ -193,8 +193,8 @@ namespace ParlayRMS.Controllers
 
             writer.SyncColumnWidths(11);
 
-            MemoryStream ms = writer.Render("TopWinners");
-            Response.AddHeader("content-disposition", "attachment; filename=" + "TopWinners.xls");
+            MemoryStream ms = writer.Render("TopWinner");
+            Response.AddHeader("content-disposition", "attachment; filename=" + "TopWinner.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());
             Response.End();

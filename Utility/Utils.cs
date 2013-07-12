@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data;
+using System.Collections;
 
     public static class Utils
     {
@@ -96,6 +97,36 @@
             }
 
             return retValue;
+        }
+
+        /// <summary>
+        /// Round all properties of an object
+        /// </summary>
+        /// <param name="obj">obj</param>
+        public static void Round(object obj)
+        {
+            var properties = obj.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                if (property.PropertyType == typeof(decimal))
+                {
+                    var value = (decimal)property.GetValue(obj, null);
+                    value = Math.Round(value, 2);
+                    property.SetValue(obj, value, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Rounds the specified list.
+        /// </summary>
+        /// <param name="list">The list.</param>
+        public static void Round(IEnumerable list)
+        {
+            foreach (var item in list)
+            {
+                Round(item);
+            }
         }
     }
 }

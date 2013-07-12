@@ -87,6 +87,7 @@
     <Compile Include="Users\RMS_UserInfoSel.cs" />
     <Compile Include="Users\RMS_UserInfoSelByUserID.cs" />
     <Compile Include="Users\RMS_UserPolicySel.cs" />
+    <Compile Include="Winloss\RMS_Rpt_Parlay_Winloss.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

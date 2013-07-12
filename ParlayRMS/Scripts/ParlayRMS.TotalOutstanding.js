@@ -96,10 +96,11 @@ ParlayRMS.TotalOutstanding = {
                 $('#divResult').show();
                 $('#divResult').html(result);
                 $('#result>tbody>tr:even').addClass("even");
-                loading.hide();
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
+            },
+            complete: function () {
                 loading.hide();
             }
         });
@@ -126,7 +127,6 @@ ParlayRMS.TotalOutstanding = {
                 $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
             },
             error: function (xhr, status, err) {
-                loading.hide();
                 alertBox.showError(xhr);
             },
             complete: function () {
