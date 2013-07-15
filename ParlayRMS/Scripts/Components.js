@@ -55,6 +55,7 @@ var alertBox = {
             title: title,
             draggable: false,
             resizable: false,
+            zIndex: 1004,
             buttons: {
                 Ok: function () {
                     $(this).dialog("close");

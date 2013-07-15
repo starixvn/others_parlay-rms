@@ -42,6 +42,17 @@ namespace ParlayRMS.Controllers
         {
             try
             {
+                if (options.FromDate > options.ToDate)
+                {
+                    ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
+                }
+
+                DateTime lastMonth = DateTime.Now.AddMonths(-1).Date;
+                if (options.FromDate.Date < lastMonth)
+                {
+                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
+                }
+
                 if (!ModelState.IsValid)
                 {
                     return this.PartialView("_ErrorMessage", GetModelErrorMessage());
@@ -49,7 +60,8 @@ namespace ParlayRMS.Controllers
                 else
                 {
                     var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType);
-                    ViewBag.Title = string.Format("Winloss report - from {0} to {1} - {2}",
+                    ViewBag.Title = string.Format("{0} - from {1} to {2} - {3}",
+                        ViewLang.WinLoss,
                         options.FromDate.ToString("MMMM dd, yyyy"),
                         options.ToDate.ToString("MMMM dd, yyyy"),
                         ModelsHelper.GetBetType((int)options.BetType));
@@ -72,10 +84,11 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            var title = string.Format("Winloss report - from {0} to {1} - {2}",
-                    options.FromDate.ToString("MMMM dd, yyyy"),
-                    options.ToDate.ToString("MMMM dd, yyyy"),
-                    ModelsHelper.GetBetType((int)options.BetType));
+            var title = string.Format("{0} - from {1} to {2} - {3}",
+                            ViewLang.WinLoss,
+                            options.FromDate.ToString("MMMM dd, yyyy"),
+                            options.ToDate.ToString("MMMM dd, yyyy"),
+                            ModelsHelper.GetBetType((int)options.BetType));
             writer.WriteRow(0, new object[] { title });
 
             // header
