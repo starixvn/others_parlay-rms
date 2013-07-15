@@ -488,7 +488,7 @@
     <Content Include="Images\Tooltip\tipBtm.png" />
     <Content Include="Images\Tooltip\tipMid.png" />
     <Content Include="Images\Tooltip\tipTop.png" />
-    <None Include="ExcelTemplates\Winloss.xls" />
+    <Content Include="ExcelTemplates\Winloss.xls" />
     <None Include="readme.txt" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
