@@ -21,7 +21,7 @@
         /// <returns></returns>
         public static string FormatNumber2(object obj)
         {
-            return string.Format("{0:#,##0.##}", obj);
+            return string.Format("{0:#,##0.00}", obj);
         }
 
         /// <summary>
