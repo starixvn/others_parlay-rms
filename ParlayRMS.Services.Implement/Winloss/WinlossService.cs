@@ -26,10 +26,10 @@ namespace ParlayRMS.Services.Implement.Winloss
         private readonly IWinlossDataAccess winlossDataAccess = new WinlossDataAccess();
         private readonly ICommonService commonService = new CommonService();
 
-        public WinlossData GetWinloss(DateTime fromDate, DateTime toDate, BetType betType)
+        public WinlossData GetWinloss(DateTime fromDate, DateTime toDate, BetType betType, SportsType sportsType)
         {
             var info = commonService.GetBalanceUpDayInfo();
-            var records = this.winlossDataAccess.RMS_Rpt_Parlay_Winloss(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, (int)betType);
+            var records = this.winlossDataAccess.RMS_Rpt_Parlay_Winloss(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, (int)betType, (int)sportsType);
             Utils.Round(records);
             var total = new RMS_Rpt_Parlay_Winloss
             {

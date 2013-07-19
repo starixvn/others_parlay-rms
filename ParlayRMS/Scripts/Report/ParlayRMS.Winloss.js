@@ -52,6 +52,7 @@ ParlayRMS.Winloss = {
             var betType = $("#betType").val();
             var fromDate = $("#fromDate").val();
             var toDate = $("#toDate").val();
+            var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
 
             if (validator.validateDate("#fromDate")) {
                 return;
@@ -61,14 +62,15 @@ ParlayRMS.Winloss = {
                 return;
             }
 
-            ParlayRMS.Winloss.Data(betType, fromDate, toDate);
+            ParlayRMS.Winloss.Data(betType, fromDate, toDate, sportsType);
         });
     },
-    Data: function (betType, fromDate, toDate) {
+    Data: function (betType, fromDate, toDate, sportsType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
-            BetType: betType
+            BetType: betType,
+            SportsType: sportsType
         }
 
         $.ajax({
@@ -91,8 +93,8 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (betType, fromDate, toDate) {
-        var url = 'Winloss/Excel?fromDate=' + fromDate + '&toDate=' + toDate + '&betType=' + betType;
+    ExportExcel: function (betType, fromDate, toDate, sportsType) {
+        var url = 'Winloss/Excel?fromDate=' + fromDate + '&toDate=' + toDate + '&betType=' + betType + '&sportsType=' + sportsType;
         window.location.href = resolveClientUrl(url);
     }
 }

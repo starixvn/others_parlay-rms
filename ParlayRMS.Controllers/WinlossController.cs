@@ -30,9 +30,8 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var betTypes = new List<SelectListItem>();
-            betTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = BetType.MixParlay.ToString(), Selected = true });
-            ViewBag.BetTypes = betTypes;
+            ViewBag.BetTypes = this.GetBetTypes();
+            ViewBag.SportsTypes = this.GetSportsTypes();
             return this.View();
         }
 
@@ -59,7 +58,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType);
+                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType);
                     ViewBag.Title = string.Format("{0} - from {1} to {2} - {3}",
                         ViewLang.WinLoss,
                         options.FromDate.ToString("MMMM dd, yyyy"),
@@ -79,7 +78,7 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public void Excel(WinlossOptions options)
         {
-            var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType);
+            var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 

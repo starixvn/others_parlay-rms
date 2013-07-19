@@ -26,5 +26,7 @@ namespace ParlayRMS.ViewModel.Report
 
         [Required(ErrorMessage = "BetType is required")]
         public BetType BetType { get; set; }
+
+        public SportsType SportsType { get; set; }
     }
 }

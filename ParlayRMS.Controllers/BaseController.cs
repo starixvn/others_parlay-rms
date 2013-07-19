@@ -9,16 +9,17 @@
 
 namespace ParlayRMS.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
+    using ParlayRMS.DTO;
+    using ParlayRMS.Models;
     using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;
-    using System.Collections;
-    using ParlayRMS.DTO;
 
     /// <summary>
     /// Base controller for controller to inherit
@@ -139,6 +140,68 @@ namespace ParlayRMS.Controllers
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Gets the select tops.
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        protected List<SelectListItem> GetSelectTops()
+        {
+            var values = new List<int> { 10, 20, 50, 100 };
+            var selectTops = new List<SelectListItem>();
+            foreach (var item in values)
+            {
+                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 100 ? true : false });
+            }
+
+            return selectTops;
+        }
+
+        /// <summary>
+        /// Gets the date ranges.
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        protected List<SelectListItem> GetDateRanges()
+        {
+            var dateRanges = new List<SelectListItem>();
+            dateRanges.Add(new SelectListItem { Text = ViewLang.Yesterday, Value = ((int)DateRange.Yesterday).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.CurrentWeek, Value = ((int)DateRange.CurrentWeek).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.CurrentMonth, Value = ((int)DateRange.CurrentMonth).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.LastWeek, Value = ((int)DateRange.LastWeek).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.LastMonth, Value = ((int)DateRange.LastMonth).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.SinceLastMonth, Value = ((int)DateRange.SinceLastMonth).ToString() });
+            dateRanges.Add(new SelectListItem { Text = ViewLang.SpecificDate, Value = ((int)DateRange.SpecificDate).ToString() });
+            return dateRanges;
+        }
+
+        /// <summary>
+        /// Gets the sports types.
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        protected List<SelectListItem> GetSportsTypes()
+        {
+            var sportsTypes = new List<SelectListItem>();
+            sportsTypes.Add(new SelectListItem { Text = ViewLang.Allsports, Value = ((int)SportsType.AllSports).ToString(), Selected = true });
+            sportsTypes.Add(new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() });
+            sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() });
+            sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
+            return sportsTypes;
+        }
+
+        /// <summary>
+        /// Gets the bet types.
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        protected List<SelectListItem> GetBetTypes()
+        {
+            var betTypes = new List<SelectListItem>();
+            betTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = BetType.MixParlay.ToString(), Selected = true });
+            return betTypes;
         }
     }
 }

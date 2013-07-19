@@ -15,6 +15,6 @@ namespace ParlayRMS.DataAccess.Interface.Winloss
     /// </summary>
     public interface IWinlossDataAccess
     {
-        IEnumerable<RMS_Rpt_Parlay_Winloss> RMS_Rpt_Parlay_Winloss(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int betType);
+        IEnumerable<RMS_Rpt_Parlay_Winloss> RMS_Rpt_Parlay_Winloss(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int betType, int sportsType);
     }
 }

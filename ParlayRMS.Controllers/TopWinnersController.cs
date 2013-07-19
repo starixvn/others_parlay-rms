@@ -11,21 +11,18 @@ namespace ParlayRMS.Controllers
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
+    using ParlayRMS.Common.Models;
     using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
+    using ParlayRMS.Models.Functions;
+    using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Services.Implement.TopWinners;
-    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.TopWinners;
+    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Report;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Implement.BetList;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,35 +37,9 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            // Select Top
-            var values = new List<int> { 10, 20, 50, 100 };
-            var selectTops = new List<SelectListItem>();
-            foreach (var item in values)
-            {
-                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 100 ? true : false });
-            }
-
-            ViewBag.SelectTops = selectTops;
-
-            // Date Range
-            var dateRanges = new List<SelectListItem>();
-            dateRanges.Add(new SelectListItem { Text = ViewLang.Yesterday, Value = ((int)DateRange.Yesterday).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.CurrentWeek, Value = ((int)DateRange.CurrentWeek).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.CurrentMonth, Value = ((int)DateRange.CurrentMonth).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.LastWeek, Value = ((int)DateRange.LastWeek).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.LastMonth, Value = ((int)DateRange.LastMonth).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.SinceLastMonth, Value = ((int)DateRange.SinceLastMonth).ToString() });
-            dateRanges.Add(new SelectListItem { Text = ViewLang.SpecificDate, Value = ((int)DateRange.SpecificDate).ToString() });
-            ViewBag.DateRanges = dateRanges;
-
-            // Sports Type
-            var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Allsports, Value = ((int)SportsType.AllSports).ToString(), Selected = true });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
-            ViewBag.SportsTypes = sportsTypes;
-
+            ViewBag.SelectTops = this.GetSelectTops();
+            ViewBag.DateRanges = this.GetDateRanges();
+            ViewBag.SportsTypes = this.GetSportsTypes();
             ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
 
             return this.View("Index");

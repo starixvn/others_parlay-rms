@@ -28,6 +28,17 @@
                     <span class="text">@ViewLang.Submit</span>
                 </button>
             </div>
+            <div id="divSportsTypes" class="group">
+                @Html.Label("sportsType", @ViewLang.SportsType)
+                @foreach (var item in (List<SelectListItem>)ViewBag.SportsTypes)
+                {
+                    var id = "SportsTypes" + item.Value;
+                    @Html.RadioButton("SportsTypes", item.Value, item.Selected, new { @id = id })
+                    <label for="@id" class="radio">
+                        @item.Text
+                    </label>
+                }
+            </div>
         </div>
     </div>
 </div>
