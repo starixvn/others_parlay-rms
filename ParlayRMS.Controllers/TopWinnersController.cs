@@ -23,6 +23,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Report;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.ViewModel;
 
     /// <summary>
     /// TODO: Update summary.
@@ -37,9 +38,9 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.SelectTops = this.GetSelectTops();
-            ViewBag.DateRanges = this.GetDateRanges();
-            ViewBag.SportsTypes = this.GetSportsTypes();
+            ViewBag.SelectTops = Config.SelectTops;
+            ViewBag.DateRanges = Config.DateRanges;
+            ViewBag.SportsTypes = Config.SportsTypes;
             ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
 
             return this.View("Index");

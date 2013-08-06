@@ -57,6 +57,29 @@ $(function () {
         }
     });
 
+    $("#combo").multiselect({
+        minWidth: 132,
+        height: 136,
+        create: function () {
+            $("#combo").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+
     $("#dateRange").change(function () {
         var fromDate = null;
         var toDate = null;

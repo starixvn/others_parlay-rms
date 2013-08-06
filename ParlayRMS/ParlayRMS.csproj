@@ -13,7 +13,7 @@
     <RootNamespace>ParlayRMS</RootNamespace>
     <AssemblyName>ParlayRMS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
     <SccProjectName>
     </SccProjectName>
@@ -489,6 +489,7 @@
     <Content Include="Images\Tooltip\tipMid.png" />
     <Content Include="Images\Tooltip\tipTop.png" />
     <Content Include="ExcelTemplates\Winloss.xls" />
+    <Content Include="App_Code\RazorHelper.cshtml" />
     <None Include="readme.txt" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />

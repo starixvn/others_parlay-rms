@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ParlayRMS.Web.Mvc
+@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.WinLoss;
 }
 <div class="filter">
@@ -11,43 +12,44 @@
             </div>
         </div>
         <div id="filtercontent" class="container">
-            <div class="group">
-                @Html.Label("betType", @ViewLang.Bettype)
-                @Html.DropDownList("betType", (List<SelectListItem>)ViewBag.BetTypes)
+            <div class="row">
+                <div class="group">
+                    @Html.Label("betType", ViewLang.Bettype)
+                    @Html.DropDownList("betType", Config.BetTypes)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("fromDate")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("toDate")
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
             </div>
-            <div class="group">
-                @Html.Label("", @ViewLang.From)
-                @Html.TextBox("fromDate")
-            </div>
-            <div class="group">
-                @Html.Label("", @ViewLang.To)
-                @Html.TextBox("toDate")
-            </div>
-            <div class="group">
-                <button id="btnSearch">
-                    <span class="text">@ViewLang.Submit</span>
-                </button>
-            </div>
-            <div id="divSportsTypes" class="group">
-                @Html.Label("sportsType", @ViewLang.SportsType)
-                @foreach (var item in (List<SelectListItem>)ViewBag.SportsTypes)
-                {
-                    var id = "SportsTypes" + item.Value;
-                    @Html.RadioButton("SportsTypes", item.Value, item.Selected, new { @id = id })
-                    <label for="@id" class="radio">
-                        @item.Text
-                    </label>
-                }
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Combo)
+                    @Html.DropDownList("combo", Config.Combos)
+                </div>
+                <div id="divSportsTypes" class="group">
+                    @Html.Label(ViewLang.SportsType)
+                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                </div>
             </div>
         </div>
     </div>
+    <div style="clear: both;" id="divResult">
+    </div>
+    @Scripts.Render("~/Scripts/Report/Winloss/js")
+    <script type="text/javascript">
+        var dateRanges = {
+            LimitDataFromDate: '@DateTime.Now.AddMonths(-1)',
+            NowDate: '@DateTime.Now'
+        };
+    </script>
 </div>
-<div style="clear: both;" id="divResult">
-</div>
-@Scripts.Render("~/Scripts/Report/Winloss/js")
-<script type="text/javascript">
-    var dateRanges = {
-        LimitDataFromDate: '@DateTime.Now.AddMonths(-1)',
-        NowDate: '@DateTime.Now'
-    };
-</script>

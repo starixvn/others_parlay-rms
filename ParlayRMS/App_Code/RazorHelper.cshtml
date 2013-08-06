@@ -1,0 +1,13 @@
+﻿@using ParlayRMS.Utility
+@using ParlayRMS.ViewModel
+@helper Checkboxes(List<System.Web.Mvc.SelectListItem> items, string name)
+    {
+        foreach (var item in items)
+        {
+            var id = name + item.Value;
+    <input type="checkbox" id="@id" checked="checked" name="@name" value="@item.Value" />
+    <label for="@id" class="radio">
+        @item.Text
+    </label>
+        }
+}

@@ -18,6 +18,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Report;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.ViewModel;
 
     /// <summary>
     /// TODO: Update summary.
@@ -30,8 +31,8 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.BetTypes = this.GetBetTypes();
-            ViewBag.SportsTypes = this.GetSportsTypes();
+            ViewBag.BetTypes = Config.BetTypes;
+            ViewBag.SportsTypes = Config.SportsTypes;
             return this.View();
         }
 

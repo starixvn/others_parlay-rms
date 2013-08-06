@@ -1984,6 +1984,16 @@ a.datepicker
     height: 32px;
     overflow: hidden;
 }
+.filter .filter-control .row
+{
+    float: left;
+    width: 100%;
+}
+.filter .filter-control input[type="checkbox"]
+{
+    float: left;
+    margin-top: 10px;
+}
 .filter .filter-control input[type="radio"]
 {
     float: left;

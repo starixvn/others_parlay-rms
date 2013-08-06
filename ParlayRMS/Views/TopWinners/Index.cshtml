@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ParlayRMS.Web.Mvc
+@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TopWinners;
 }
 <div class="filter">
@@ -11,37 +12,38 @@
             </div>
         </div>
         <div id="filtercontent" class="container">
-            <div class="group">
-                @Html.Label("selectTop", @ViewLang.SelectTop)
-                @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
+            <div class="row">
+                <div class="group">
+                    @Html.Label("selectTop", ViewLang.SelectTop)
+                    @Html.DropDownList("selectTop", Config.SelectTops)
+                </div>
+                <div class="group">
+                    @Html.Label("dateRange", ViewLang.DateRange)
+                    @Html.DropDownList("dateRange", Config.DateRanges)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("fromDate")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("toDate")
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
             </div>
-            <div class="group">
-                @Html.Label("dateRange", @ViewLang.DateRange)
-                @Html.DropDownList("dateRange", (List<SelectListItem>)ViewBag.DateRanges)
-            </div>
-            <div class="group">
-                @Html.Label("", @ViewLang.From)
-                @Html.TextBox("fromDate")
-            </div>
-            <div class="group">
-                @Html.Label("", @ViewLang.To)
-                @Html.TextBox("toDate")
-            </div>
-            <div class="group">
-                <button id="btnSearch">
-                    <span class="text">@ViewLang.Submit</span>
-                </button>
-            </div>
-            <div id="divSportsTypes" class="group">
-                @Html.Label("sportsType", @ViewLang.SportsType)
-                @foreach (var item in (List<SelectListItem>)ViewBag.SportsTypes)
-                {
-                    var id = "SportsTypes" + item.Value;
-                    @Html.RadioButton("SportsTypes", item.Value, item.Selected, new { @id = id })
-                    <label for="@id" class="radio">
-                        @item.Text
-                    </label>
-                }
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Combo)
+                    @Html.DropDownList("combo", Config.Combos)
+                </div>
+                <div id="divSportsTypes" class="group">
+                    @Html.Label(ViewLang.SportsType)
+                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                </div>
             </div>
         </div>
     </div>

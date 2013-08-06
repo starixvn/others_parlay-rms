@@ -6,11 +6,10 @@
 
 namespace ParlayRMS.Web.Mvc
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using System.Web.Mvc.Html;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,6 +26,20 @@ namespace ParlayRMS.Web.Mvc
 
             result += "</select>";
             return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString RadioButtonList(this HtmlHelper helper, string name, IEnumerable<SelectListItem> selectList)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var item in selectList)
+            {
+                var id = name + item.Value;
+                bool isChecked = item.Selected == true;
+                stringBuilder.Append(helper.RadioButton(name, item.Value, isChecked, new { id = id }));
+                stringBuilder.Append(helper.Label(id, item.Text));
+            }
+
+            return new MvcHtmlString(stringBuilder.ToString());
         }
     }
 }
