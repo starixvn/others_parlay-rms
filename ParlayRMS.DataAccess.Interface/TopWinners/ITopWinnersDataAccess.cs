@@ -24,7 +24,7 @@ namespace ParlayRMS.DataAccess.Interface.TopWinners
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="selectTop">The select top.</param>
         /// <returns></returns>
-        IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int sportsType, int selectTop);
+        IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int sportsType, int selectTop, string combos);
 
         /// <summary>
         /// RMs the s_ RPT_ parlay_ top winners_ details.

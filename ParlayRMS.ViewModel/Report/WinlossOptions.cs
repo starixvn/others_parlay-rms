@@ -28,5 +28,7 @@ namespace ParlayRMS.ViewModel.Report
         public BetType BetType { get; set; }
 
         public SportsType SportsType { get; set; }
+
+        public string Combos { get; set; }
     }
 }

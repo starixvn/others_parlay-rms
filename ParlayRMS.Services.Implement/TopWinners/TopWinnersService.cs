@@ -32,10 +32,10 @@ namespace ParlayRMS.Services.Implement.TopWinners
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="selectTop">The select top.</param>
         /// <returns></returns>
-        public IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(DateTime fromDate, DateTime toDate, int sportsType, int selectTop)
+        public IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(DateTime fromDate, DateTime toDate, int sportsType, int selectTop, string combos)
         {
             var info = commonService.GetBalanceUpDayInfo();
-            return this.topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, sportsType, selectTop);
+            return this.topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, sportsType, selectTop, combos);
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
     /// </summary>
     public class WinlossDataAccess : BaseDataAccess, IWinlossDataAccess
     {
-        public IEnumerable<RMS_Rpt_Parlay_Winloss> RMS_Rpt_Parlay_Winloss(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int betType, int sportsType)
+        public IEnumerable<RMS_Rpt_Parlay_Winloss> RMS_Rpt_Parlay_Winloss(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int betType, int sportsType, string combos)
         {
             var result = new List<RMS_Rpt_Parlay_Winloss>();
 

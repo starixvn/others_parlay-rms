@@ -711,4 +711,7 @@
   <data name="SystemparLay" xml:space="preserve">
     <value>System parLay</value>
   </data>
+  <data name="NetWinloss" xml:space="preserve">
+    <value>Net Win Loss</value>
+  </data>
 </root>

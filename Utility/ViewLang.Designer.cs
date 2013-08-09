@@ -970,6 +970,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Net Win Loss.
+        /// </summary>
+        public static string NetWinloss {
+            get {
+                return ResourceManager.GetString("NetWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Function.
         /// </summary>
         public static string NewFunction {

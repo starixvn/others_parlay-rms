@@ -23,7 +23,7 @@ namespace ParlayRMS.Services.Interface.TopWinners
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="selectTop">The select top.</param>
         /// <returns></returns>
-        IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(DateTime fromDate, DateTime toDate, int sportsType, int selectTop);
+        IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(DateTime fromDate, DateTime toDate, int sportsType, int selectTop, string combos);
 
         /// <summary>
         /// Gets the top winner_ details.

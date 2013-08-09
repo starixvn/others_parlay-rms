@@ -59,7 +59,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType);
+                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
                     ViewBag.Title = string.Format("{0} - from {1} to {2} - {3}",
                         ViewLang.WinLoss,
                         options.FromDate.ToString("MMMM dd, yyyy"),
@@ -79,7 +79,7 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public void Excel(WinlossOptions options)
         {
-            var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType);
+            var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 
@@ -112,7 +112,8 @@ namespace ParlayRMS.Controllers
                 ViewLang.Won,
                 ViewLang.Lose,
                 ViewLang.Won,
-                ViewLang.Lose
+                ViewLang.Lose,
+                ViewLang.NetWinloss
             };
 
             writer.WriteRows(1, new List<object[]>() { header1, header2 });
@@ -130,10 +131,11 @@ namespace ParlayRMS.Controllers
                 model.Total.Member_Won,
                 model.Total.Member_Lose,
                 model.Total.OurPT_Won,
-                model.Total.OurPT_Lose
+                model.Total.OurPT_Lose,
+                model.Total.OurPT_NetWinloss
             });
 
-            writer.SyncColumnWidths(9);
+            writer.SyncColumnWidths(10);
 
             var ms = writer.Render("Winloss");
             Response.AddHeader("content-disposition", "attachment; filename=" + "Winloss.xls");

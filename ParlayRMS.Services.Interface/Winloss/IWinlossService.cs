@@ -16,6 +16,6 @@ namespace ParlayRMS.Services.Interface.Winloss
     /// </summary>
     public interface IWinlossService
     {
-        WinlossData GetWinloss(DateTime fromDate, DateTime toDate, BetType betType, SportsType sportsType);
+        WinlossData GetWinloss(DateTime fromDate, DateTime toDate, BetType betType, SportsType sportsType, string combos);
     }
 }

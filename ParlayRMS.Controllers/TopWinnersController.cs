@@ -52,7 +52,7 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var records = this.topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop);
+                var records = this.topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop, options.Combos);
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
@@ -95,7 +95,7 @@ namespace ParlayRMS.Controllers
         [ValidateInput(false)]
         public void Excel(TopWinnersOptions options)
         {
-            var records = this.topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop);
+            var records = this.topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop, options.Combos);
             var totalStake = records.Sum(x => x.Stake_BaseRM);
             var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
             var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);

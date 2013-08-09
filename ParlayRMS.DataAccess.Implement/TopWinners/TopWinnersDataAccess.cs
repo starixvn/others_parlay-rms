@@ -19,7 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
     /// </summary>
     public class TopWinnersDataAccess : BaseDataAccess, ITopWinnersDataAccess
     {
-        public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int sportsType, int selectTop)
+        public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int sportsType, int selectTop, string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 

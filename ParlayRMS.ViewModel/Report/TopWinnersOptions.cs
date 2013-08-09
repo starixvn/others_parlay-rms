@@ -23,5 +23,7 @@ namespace ParlayRMS.ViewModel.Report
         public int SportsType { get; set; }
 
         public int SelectTop { get; set; }
+
+        public string Combos { get; set; }
     }
 }
