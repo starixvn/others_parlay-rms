@@ -3,11 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.BetList.Core.Entities;
-    using ParlayRMS.DataAccess.Implement;
-    using ParlayRMS.DataAccess.Interface;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.DataAccess.Interface.BetList;
     using ParlayRMS.DataAccess.Implement.BetList;
+    using ParlayRMS.DataAccess.Interface.BetList;
+    using ParlayRMS.DTO.BetList;
     using ParlayRMS.Services.Interface.BetList;
 
     public class BetListService : BaseService, IBetListService
@@ -22,7 +20,11 @@
         public IEnumerable<ITicket> CreateChoice(long refNo)
         {
             var data = this.betlistDataAccess.RMS_Parlay_TransDetails(refNo);
+            return Map(refNo, data);
+        }
 
+        public static IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
+        {
             List<ITicket> result = new List<ITicket>();
             foreach (var item in data)
             {

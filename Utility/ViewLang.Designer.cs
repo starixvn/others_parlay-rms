@@ -1528,6 +1528,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Details.
+        /// </summary>
+        public static string TicketDetails {
+            get {
+                return ResourceManager.GetString("TicketDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This ticket is settled or not existed..
         /// </summary>
         public static string TicketIsNotExisted {

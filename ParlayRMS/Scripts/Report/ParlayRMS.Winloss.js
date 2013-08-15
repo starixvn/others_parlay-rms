@@ -84,15 +84,24 @@ ParlayRMS.Winloss = {
                 return;
             }
 
-            ParlayRMS.Winloss.Data(betType, fromDate, toDate, sportsType);
+            var combos = $("#combo").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (combos == '') {
+                Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
+                return;
+            }
+
+            ParlayRMS.Winloss.Data(betType, fromDate, toDate, sportsType, combos);
         });
     },
-    Data: function (betType, fromDate, toDate, sportsType) {
+    Data: function (betType, fromDate, toDate, sportsType, combos) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             BetType: betType,
-            SportsType: sportsType
+            SportsType: sportsType,
+            Combos: combos
         }
 
         $.ajax({
@@ -115,8 +124,16 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (betType, fromDate, toDate, sportsType) {
-        var url = 'Winloss/Excel?fromDate=' + fromDate + '&toDate=' + toDate + '&betType=' + betType + '&sportsType=' + sportsType;
+    ExportExcel: function (betType, fromDate, toDate, sportsType, combos) {
+        var data = {
+            FromDate: fromDate,
+            ToDate: toDate,
+            BetType: betType,
+            SportsType: sportsType,
+            Combos: combos
+        }
+
+        var url = 'Winloss/Excel?' + $.param(data);
         window.location.href = resolveClientUrl(url);
     }
 }

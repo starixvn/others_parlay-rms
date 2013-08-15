@@ -24,6 +24,11 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.Report;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.ViewModel;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -57,10 +62,11 @@ namespace ParlayRMS.Controllers
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
                 var totalBets = records.Sum(x => x.BetCount);
-                string title = string.Format("Top {0} winners - from {1} to {2} - {3}",
+                string title = string.Format("Top {0} winners - from {1} to {2} - Combo [{3}] - {4}",
                     options.SelectTop,
                     options.FromDate.ToString("MMMM dd, yyyy"),
                     options.ToDate.ToString("MMMM dd, yyyy"),
+                    options.Combos,
                     ModelsHelper.GetSportType(options.SportsType));
 
                 return this.Json(new
@@ -86,8 +92,36 @@ namespace ParlayRMS.Controllers
         {
             ViewBag.CustId = options.CustId;
             ViewBag.Username = options.Username;
-            var records = this.topwinnersService.GetTopWinnerDetails(options.CustId, options.FromDate, options.ToDate, options.SportsType);
+            var records = this.topwinnersService.GetTopWinnerDetails(options.CustId, options.FromDate, options.ToDate, options.SportsType, options.Combos);
             return this.PartialView("DataDetails", records);
+        }
+
+        public ActionResult BetDetail(BetDetailsOptions options)
+        {
+            ViewBag.BetId = options.BetId;
+            ViewBag.Username = options.Username;
+
+            BetListHTMLFactory factory = new BetListHTMLFactory();
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            ITicketHelper ticketHelper = new TicketHelper();
+            var data = this.topwinnersService.GetBetDetail(options.RefNo);
+            var tickets = BetListService.Map(options.RefNo, data);
+            var stringBuilder = new StringBuilder();
+            foreach (var ticket in tickets)
+            {
+                if (tickets.Last() == ticket)
+                {
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
+                }
+                else
+                {
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
+                }
+            }
+
+            var model = new BetDetails();
+            model.TicketDetail = builder.GetBetList();
+            return this.View("BetDetails", model);
         }
 
         [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
@@ -105,10 +139,11 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = string.Format("Top {0} winners - from {1} to {2} - {3}",
+            string title = string.Format("Top {0} winners - from {1} to {2} - Combo [{3}] - {4}",
                     options.SelectTop,
                     options.FromDate.ToString("MMMM dd, yyyy"),
                     options.ToDate.ToString("MMMM dd, yyyy"),
+                    options.Combos,
                     ModelsHelper.GetSportType(options.SportsType));
             writer.WriteRow(0, new object[] { title });
 

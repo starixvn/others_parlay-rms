@@ -60,11 +60,13 @@ namespace ParlayRMS.Controllers
                 else
                 {
                     var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
-                    ViewBag.Title = string.Format("{0} - from {1} to {2} - {3}",
-                        ViewLang.WinLoss,
-                        options.FromDate.ToString("MMMM dd, yyyy"),
-                        options.ToDate.ToString("MMMM dd, yyyy"),
-                        ModelsHelper.GetBetType((int)options.BetType));
+                    ViewBag.Title = string.Format("{0} - from {1} to {2} - {3} - Combo [{4}] - {5}",
+                            ViewLang.WinLoss,
+                            options.FromDate.ToString("MMMM dd, yyyy"),
+                            options.ToDate.ToString("MMMM dd, yyyy"),
+                            ModelsHelper.GetBetType((int)options.BetType),
+                            options.Combos,
+                            ModelsHelper.GetSportType((int)options.SportsType));
                     ViewBag.FilterOption = options;
                     return this.PartialView(model);
                 }
@@ -84,11 +86,13 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            var title = string.Format("{0} - from {1} to {2} - {3}",
+            var title = string.Format("{0} - from {1} to {2} - {3} - Combo [{4}] - {5}",
                             ViewLang.WinLoss,
                             options.FromDate.ToString("MMMM dd, yyyy"),
                             options.ToDate.ToString("MMMM dd, yyyy"),
-                            ModelsHelper.GetBetType((int)options.BetType));
+                            ModelsHelper.GetBetType((int)options.BetType),
+                            options.Combos,
+                            ModelsHelper.GetSportType((int)options.SportsType));
             writer.WriteRow(0, new object[] { title });
 
             // header

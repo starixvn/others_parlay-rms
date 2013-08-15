@@ -13,6 +13,8 @@ namespace ParlayRMS.DTO.TopWinners
     {
         public long TransId { get; set; }
 
+        public long RefNo { get; set; }
+
         public int SportType { get; set; }
 
         public decimal Stake { get; set; }

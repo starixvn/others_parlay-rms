@@ -32,6 +32,7 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                     db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                     db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
                     db.AddInParameter("bettype", DbType.Int32, betType);
+                    db.AddInParameter("selection", DbType.String, combos);
                     if (sportsType != 0)
                     {
                         db.AddInParameter("sporttype", DbType.Int32, sportsType);

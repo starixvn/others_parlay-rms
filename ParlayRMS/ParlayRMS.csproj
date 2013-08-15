@@ -570,6 +570,7 @@
     </Content>
     <Content Include="Views\Winloss\Index.cshtml" />
     <Content Include="Views\Winloss\Data.cshtml" />
+    <Content Include="Views\TopWinners\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

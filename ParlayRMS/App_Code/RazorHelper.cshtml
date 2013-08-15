@@ -11,3 +11,18 @@
     </label>
         }
 }
+@helper RenderNumberCell(decimal value)
+    {
+    if (value >= 0)
+    {
+    <td class="numeric">
+        @Formatter.FormatNumber2(value)
+    </td>
+    }
+    else
+    {
+    <td class="numeric negative">
+        @Formatter.FormatNumber2(value)
+    </td>
+    }
+}

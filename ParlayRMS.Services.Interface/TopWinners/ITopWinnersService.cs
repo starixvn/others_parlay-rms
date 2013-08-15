@@ -9,6 +9,7 @@ namespace ParlayRMS.Services.Interface.TopWinners
     using System;
     using System.Collections.Generic;
     using ParlayRMS.DTO.TopWinners;
+    using ParlayRMS.DTO.BetList;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,6 +34,8 @@ namespace ParlayRMS.Services.Interface.TopWinners
         /// <param name="toDate">To date.</param>
         /// <param name="sportsType">Type of the sports.</param>
         /// <returns></returns>
-        IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> GetTopWinnerDetails(long custId, DateTime fromDate, DateTime toDate, int sportsType);
+        IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> GetTopWinnerDetails(long custId, DateTime fromDate, DateTime toDate, int sportsType, string combos);
+
+        IEnumerable<RMS_Parlay_TransDetails> GetBetDetail(long refNo);
     }
 }

@@ -2,19 +2,19 @@
 @{
     var filterOption = (ParlayRMS.ViewModel.Report.WinlossOptions)ViewBag.FilterOption;
 }
-<div style="width: 1041px" class="maintitle">
+<div style="width: 1101px" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
-    <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.BetType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType');" title="Export Excel">
+    <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.BetType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos');" title="Export Excel">
     </div>
 </div>
-<div style="width: 1041px">
+<div style="width: 1101px">
     <table class="main">
         <colgroup>
-            <col width='120px' />
             <col width='100px' />
-            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
             <col width='120px' />
             <col width='120px' />
             <col width='120px' />
@@ -73,12 +73,12 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1060px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1120px">
     <table class="main" id="result">
         <colgroup>
-            <col width='120px' />
             <col width='100px' />
-            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
             <col width='120px' />
             <col width='120px' />
             <col width='120px' />
@@ -118,20 +118,19 @@
                     <td class="numeric">
                         @Formatter.FormatNumber2(record.OurPT_Lose)
                     </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(record.OurPT_NetWinloss)
-                    </td>
+                    @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div style="width: 1041px" class="mainfooter">
+<div style="width: 1101px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
+            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
             <col width='120px' />
-            <col width='100px' />
-            <col width='100px' />
             <col width='120px' />
             <col width='120px' />
             <col width='120px' />
@@ -170,12 +169,13 @@
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
                     </td>
+                    @RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)
                 </tr>
             }
             else
             {
                 <tr>
-                    <td colspan="9" style="text-align: center">
+                    <td colspan="10" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

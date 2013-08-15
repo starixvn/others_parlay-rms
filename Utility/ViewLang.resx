@@ -714,4 +714,7 @@
   <data name="NetWinloss" xml:space="preserve">
     <value>Net Win Loss</value>
   </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>Ticket Details</value>
+  </data>
 </root>

@@ -1,0 +1,29 @@
+﻿@model ParlayRMS.ViewModel.Report.BetDetails
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.TicketDetails;
+}
+<div class="boxMain" style="float: left">
+    <div class="container">
+        <div class="content" style="min-height: 0px">
+            <div class="allField2">
+                <div class="title2">
+                    @ViewLang.TicketDetails - @ViewBag.Username - @ViewBag.BetId
+                </div>
+                <div class="betdetails">
+                    @Html.Raw(Model.TicketDetail)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var tickets = {
+        'ticket': '@Model.TicketCompare'
+    };
+    $(function () {
+        var arrTicket = tickets.ticket.split('-');
+        for (var i = 0; i < arrTicket.length; i++) {
+            $(".betdetails > div[id=" + arrTicket[i] + "] > div[class=ticketDetail] > div > div[class=match]").prepend('<div class="markDiv"></div>');
+        }
+    });
+</script>

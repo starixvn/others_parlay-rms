@@ -59,7 +59,7 @@
                         @(++id)
                     </td>
                     <td class="numeric">
-                        @item.TransId
+                        <a href="#" onclick="window.open(resolveClientUrl('TopWinners/BetDetail?refno=@item.RefNo&betid=@item.TransId&username=@ViewBag.Username'), '_blank');">@item.TransId</a>
                     </td>
                     <td class="numeric columneven">
                         @item.Stake.ToString("#,##0")
@@ -83,14 +83,14 @@
                         @item.Combo
                     </td>
                     <td class="numeric">
-                    @if (item.Odds == 0)
-                    {
-                        @Html.Raw("-")
-                    }
-                    else
-                    { 
-                        @item.Odds.ToString("#,##0.00")
-                    }
+                        @if (item.Odds == 0)
+                        {
+                            @Html.Raw("-")
+                        }
+                        else
+                        {
+                            @item.Odds.ToString("#,##0.00")
+                        }
                     </td>
                 </tr>
             }
