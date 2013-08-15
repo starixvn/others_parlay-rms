@@ -8,8 +8,11 @@ namespace ParlayRMS.ViewModel.Report
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Web.Mvc.DataAnnotations;
+    using System.Linq;
+    using ParlayRMS.Common.Models;
     using ParlayRMS.Models;
+    using ParlayRMS.Utility;
+    using ParlayRMS.Web.Mvc.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -30,5 +33,27 @@ namespace ParlayRMS.ViewModel.Report
         public SportsType SportsType { get; set; }
 
         public string Combos { get; set; }
+
+        public string GetTitle()
+        {
+            var combosTitle = ViewLang.All;
+            var combos = this.Combos.Split(',');
+            if (combos.Length < 5)
+            {
+                combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
+            }
+
+            var title = string.Format("{0} - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}]",
+                            ViewLang.WinLoss,
+                            this.FromDate.ToString("MMMM dd, yyyy"),
+                            this.ToDate.ToString("MMMM dd, yyyy"),
+                            ViewLang.Bettype,
+                            ModelsHelper.GetBetType((int)this.BetType),
+                            ViewLang.Combo,
+                            combosTitle,
+                            ViewLang.SportsType,
+                            ModelsHelper.GetSportType((int)this.SportsType));
+            return title;
+        }
     }
 }

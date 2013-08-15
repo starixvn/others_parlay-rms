@@ -62,13 +62,7 @@ namespace ParlayRMS.Controllers
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
                 var totalBets = records.Sum(x => x.BetCount);
-                string title = string.Format("Top {0} winners - from {1} to {2} - Combo [{3}] - {4}",
-                    options.SelectTop,
-                    options.FromDate.ToString("MMMM dd, yyyy"),
-                    options.ToDate.ToString("MMMM dd, yyyy"),
-                    options.Combos,
-                    ModelsHelper.GetSportType(options.SportsType));
-
+                string title = options.GetTile();
                 return this.Json(new
                 {
                     code = 0,
@@ -139,12 +133,7 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = string.Format("Top {0} winners - from {1} to {2} - Combo [{3}] - {4}",
-                    options.SelectTop,
-                    options.FromDate.ToString("MMMM dd, yyyy"),
-                    options.ToDate.ToString("MMMM dd, yyyy"),
-                    options.Combos,
-                    ModelsHelper.GetSportType(options.SportsType));
+            string title = options.GetTile();
             writer.WriteRow(0, new object[] { title });
 
             // header
