@@ -1,29 +1,38 @@
 ﻿@model ParlayRMS.ViewModel.Report.BetDetails
 @{
+    Layout = null;
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TicketDetails;
 }
-<div class="boxMain" style="float: left">
-    <div class="container">
-        <div class="content" style="min-height: 0px">
-            <div class="allField2">
-                <div class="title2">
-                    @ViewLang.TicketDetails - @ViewBag.Username - @ViewBag.BetId
-                </div>
-                <div class="betdetails">
-                    @Html.Raw(Model.TicketDetail)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html" charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel" />
+    @Styles.Render("~/Content/Libs/jquery-ui/themes/base/css")
+    @Styles.Render("~/Content/Libs/css")
+    @Styles.Render("~/Content/css")
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div style="text-align: left; margin-left: auto; margin-right: auto; overflow: hidden">
+        <div style="float: left; left: 50%; position: relative">
+            <div class="boxMain" style="float: left; position: relative; right: 50%;">
+                <div class="container">
+                    <div class="content" style="min-height: 0px">
+                        <div class="allField2">
+                            <div class="title2">
+                                @ViewLang.TicketDetails - @ViewBag.Username - @ViewBag.BetId
+                            </div>
+                            <div class="betdetails">
+                                @Html.Raw(Model.TicketDetail)
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
-    var tickets = {
-        'ticket': '@Model.TicketCompare'
-    };
-    $(function () {
-        var arrTicket = tickets.ticket.split('-');
-        for (var i = 0; i < arrTicket.length; i++) {
-            $(".betdetails > div[id=" + arrTicket[i] + "] > div[class=ticketDetail] > div > div[class=match]").prepend('<div class="markDiv"></div>');
-        }
-    });
-</script>
+</body>
+</html>
