@@ -28,6 +28,21 @@ ParlayRMS.Core =
         setTimeout(function () {
             location.href = url;
         }, delayTime);
+    },
+    OpenWindow: function (url) {
+        var popH = $(window).height(), popW = $(window).width();
+        var formatter = new Array(
+                "resizable=no",
+                "scrollbars=yes",
+                "toolbar=no",
+                "menubar=no",
+                "location=no",
+                "addressbar=no",
+                "directories=no",
+                "status=yes"
+            ).join(',');
+
+        window.open(url, '_blank', '' + ',' + formatter);
     }
 }
 
