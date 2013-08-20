@@ -190,6 +190,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             result.Add(new RMS_Rpt_Parlay_TopWinner_Detail
                             {
                                 TransId = reader.ToInt64("transid"),
+                                RefNo = reader.ToInt64("refno"),
                                 SportType = reader.ToInt32("sporttype"),
                                 Stake = reader.ToDecimal("stake"),
                                 Winlost = reader.ToDecimal("winlost"),
