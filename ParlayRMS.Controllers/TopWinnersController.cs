@@ -90,6 +90,8 @@ namespace ParlayRMS.Controllers
             return this.PartialView("DataDetails", records);
         }
 
+        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = ePolicy.Read)]
+        [HttpGet]
         public ActionResult BetDetail(BetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;

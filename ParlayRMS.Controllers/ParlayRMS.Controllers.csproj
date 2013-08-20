@@ -44,11 +44,13 @@
     <Reference Include="DotNet.Highcharts">
       <HintPath>..\Dependencies\DotNet.Highcharts.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=1.0.4842.18862, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper">
-      <HintPath>..\..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4842.18965, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\Dependencies\NPOI.dll</HintPath>

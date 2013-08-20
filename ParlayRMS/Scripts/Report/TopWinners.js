@@ -315,6 +315,7 @@ function ViewDetails(custId) {
             beforeSend: function (xhr) {
             },
             success: function (result) {
+                result = result.replace(/\s+/g, ' ');
                 td.html(result);
                 // animating
                 //$('div[custid="' + custId + '"]').css('display', 'none').slideToggle("slow");
