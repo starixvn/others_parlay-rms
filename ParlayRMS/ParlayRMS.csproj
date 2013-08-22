@@ -13,7 +13,7 @@
     <RootNamespace>ParlayRMS</RootNamespace>
     <AssemblyName>ParlayRMS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
     <SccProjectName>
     </SccProjectName>

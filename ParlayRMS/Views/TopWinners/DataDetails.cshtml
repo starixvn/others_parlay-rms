@@ -59,7 +59,7 @@
                         @(++id)
                     </td>
                     <td class="numeric">
-                        <a href="#" onclick="ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetail?refno=@item.RefNo&betid=@item.TransId&username=@ViewBag.Username'))">@item.TransId</a>
+                        <a href="#@item.RefNo" onclick="ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetail?refno=@item.RefNo&betid=@item.TransId&username=@ViewBag.Username'));">@item.TransId</a>
                     </td>
                     <td class="numeric columneven">
                         @item.Stake.ToString("#,##0")
