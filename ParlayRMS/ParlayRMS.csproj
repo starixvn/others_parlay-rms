@@ -46,7 +46,7 @@
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Common">
-      <HintPath>..\..\Dependencies\Fanex.Common.dll</HintPath>
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.54, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
