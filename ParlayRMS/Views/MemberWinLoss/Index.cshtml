@@ -1,0 +1,59 @@
+﻿@using ParlayRMS.Web.Mvc
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.MemberWinLoss;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 877px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.Label("username", string.Format("{0} {1}", ViewLang.Username, "(*)"))
+                    @Html.TextBox("username")
+                </div>
+                <div class="group">
+                    @Html.Label("betType", ViewLang.Bettype, new { Style = "text-align: right; width: 75px;" })
+                    @Html.DropDownList("betType", Config.BetTypes)
+                </div>                
+                <div class="group">
+                    @Html.Label("fromDate", ViewLang.From)
+                    @Html.TextBox("fromDate")
+                </div>
+                <div class="group">
+                    @Html.Label("toDate", ViewLang.To, new { Style = "text-align: right; width: 32px;" })
+                    @Html.TextBox("toDate")
+                </div>                
+            </div>
+            <div class="row">   
+                <div class="group">
+                    @Html.Label(ViewLang.Combo, new { Style = "text-align: right; width: 95px;" })
+                    @Html.DropDownList("combo", Config.Combos)
+                </div>             
+                <div id="divSportsTypes" class="group">
+                    @Html.Label(ViewLang.SportsType)
+                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                </div>
+                <div class="group">
+                    <button id="btnSearch" class="button">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both; padding-top: 20px;" id="divResult">
+    </div>
+    @Scripts.Render("~/Scripts/Report/MemberWinLoss/js")
+    <script type="text/javascript">
+        var dateRanges = {
+            LimitDataFromDate: '@DateTime.Now.AddMonths(-3)', //Minimun date that support query data
+            NowDate: '@DateTime.Now'
+        };
+    </script>
+</div>

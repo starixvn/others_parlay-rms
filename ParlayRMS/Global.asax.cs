@@ -110,6 +110,8 @@
 
             bundles.Add(new ScriptBundle("~/Scripts/Report/Winloss/js").Include("~/Scripts/Report/ParlayRMS.Winloss.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Report/MemberWinLoss/js").Include("~/Scripts/Report/MemberWinLoss.js"));
+
             // chart
             bundles.Add(new ScriptBundle("~/Scripts/Data/js").Include("~/Scripts/Data.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Tabular/js").Include("~/Scripts/Tabular.js"));

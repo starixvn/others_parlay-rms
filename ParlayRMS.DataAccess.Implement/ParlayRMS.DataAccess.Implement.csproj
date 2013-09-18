@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BetList\BetListDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />
+    <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
     <Compile Include="MixParlayMonitor\MixParlayMonitorDataAccess.cs" />
     <Compile Include="Members\MembersDataAccess.cs" />
     <Compile Include="BaseDataAccess.cs" />

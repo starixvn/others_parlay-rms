@@ -314,6 +314,12 @@ $(document).ready(function () {
             timerController.resume();
         }
     });
+    
+    var table = $('#result');
+    var header = $('#header');
+    tableSorter.bind2(header, table, {
+        type: 'string'
+    });
 
 //    closeBox.render($('#noflash'),
 //    {
@@ -352,7 +358,7 @@ function FillData(table, data) {
             var j = -1;
             for (var i = 0; i < length; i++) {
                 var item = records[i];
-                r[++j] = CreateRow(item);
+                r[++j] = CreateRow(i + 1, item);
             }
 
             tbody.html(r.join(''));
@@ -363,7 +369,7 @@ function FillData(table, data) {
 
             for (var i = length - 1; i >= 0; i--) {
                 var item = records[i];
-                var row = CreateRow(item);
+                var row = CreateRow(i + 1, item);
 
                 rows = tbody.children('tr');
                 var settings = settingsController.get();
@@ -375,6 +381,14 @@ function FillData(table, data) {
                 row = $(row);
                 tbody.prepend(row);
                 row.effect("highlight", { color: '#FFDBA8' }, 4000);
+            }
+
+            //Update row no.
+            var orderCells = tbody.find('td.order-cell');
+            if (orderCells && orderCells.length > 0) {
+                for (var i = 0; i < orderCells.length; i++) {
+                    $(orderCells[i]).html(i + 1);
+                }
             }
         }
     } else {
@@ -389,10 +403,11 @@ function FillData(table, data) {
     $('#divResult').show();
 }
 
-function CreateRow(item) {
+function CreateRow(order, item) {
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
+    r[++j] = '<td class="order-cell center">' + order + '</td>';
     r[++j] = '<td>' + moment(item.TransDate).format('MM/D/YYYY h:mm:ss A') + '</td>';
     r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");

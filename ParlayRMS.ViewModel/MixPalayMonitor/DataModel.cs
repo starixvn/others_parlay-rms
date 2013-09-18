@@ -23,7 +23,7 @@ namespace ParlayRMS.ViewModel.MixPalayMonitor
         [Required, Range(0, double.MaxValue)]
         public decimal MaxPayout { get; set; }
 
-        [Required, Values(10, 20, 50, 100)]
+        [Required, Values(10, 20, 50, 100, 200)]
         public int SelectTop { get; set; }
 
         [Required, Range(0, long.MaxValue)]

@@ -1797,14 +1797,14 @@ table.main > thead > tr > th
     text-align: center;
     font-weight: bold;
     border: solid 1px #D5D5D5;
-    background: #3F536B;
+    background-color: #3F536B;
     height: 26px;
     text-transform: uppercase;
     color: White;
 }
 table.main > thead > tr > th.header2rows
 {
-    background: #3F536B;
+    background-color: #3F536B;
 }
 table.main > tbody > tr
 {

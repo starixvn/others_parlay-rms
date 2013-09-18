@@ -57,6 +57,7 @@
     <Compile Include="Functions\FunctionPolicy.cs" />
     <Compile Include="Groups\Group.cs" />
     <Compile Include="Members\MemberLevel.cs" />
+    <Compile Include="MemberWinLoss\MemberWinLossData.cs" />
     <Compile Include="Systems\MaintenanceInfo.cs" />
     <Compile Include="Menus\Menu.cs" />
     <Compile Include="Charts\ChartDetailCache.cs" />

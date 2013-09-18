@@ -430,6 +430,18 @@ var validator = function () {
                 return true;
             }
             return false;
+        },
+        validateDateRange: function (fromDate, toDate) {
+            var fDate = moment($(fromDate).val());
+            var tDate = moment($(toDate).val());
+            
+            if (moment(fDate, "MMMM DD, YYYY").isValid()
+                && moment(tDate, "MMMM DD, YYYY").isValid()
+                && diffDate(tDate, fDate) > 0) {
+                hint.show($(fromDate).get(0), 'FromDate must be less than ToDate');
+                return true;
+            }
+            return false;
         }
     };
 } ();

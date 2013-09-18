@@ -81,6 +81,7 @@
     <Compile Include="ManageMenuController.cs" />
     <Compile Include="ManageGroupController.cs" />
     <Compile Include="ManageMemberController.cs" />
+    <Compile Include="MemberWinLossController.cs" />
     <Compile Include="MonitorController.cs" />
     <Compile Include="SimilarBetsController.cs" />
     <Compile Include="TopSelectionController.cs" />

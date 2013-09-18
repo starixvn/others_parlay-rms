@@ -717,4 +717,13 @@
   <data name="TicketDetails" xml:space="preserve">
     <value>Ticket Details</value>
   </data>
+  <data name="MemberWinLoss" xml:space="preserve">
+    <value>Member Win Loss</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>Export Excel</value>
+  </data>
 </root>
