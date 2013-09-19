@@ -45,6 +45,12 @@ function modalPopup(data) {
             $.modal.close();
         }
     });
+    $("body").bind("click", function (e) {
+        if (e.target.id != "simplemodal-container") {
+            $.modal.close();
+        }
+    });
+    $("#simplemodal-container").draggable();
 }
 function modalClose() {
     $.modal.close();

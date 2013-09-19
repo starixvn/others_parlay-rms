@@ -232,6 +232,13 @@ var popup = function () {
             });
             messageContainer = container.find("#errMsg");
             loadingContainer = container.find("#lineloading");
+            $("#simplemodal-container").draggable();
+
+            $("body").bind("click", function (e) {
+                if (e.target.id != "simplemodal-container") {
+                    $.modal.close();
+                }
+            });
         },
         hide: function () {
             container.modal.close();

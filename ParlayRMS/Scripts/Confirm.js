@@ -24,4 +24,5 @@ function confirm(title, message, callback) {
             });
         }
     });
+    $("#simplemodal-container").draggable();
 }
