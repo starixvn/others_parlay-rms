@@ -318,7 +318,7 @@ $(document).ready(function () {
     var table = $('#result');
     var header = $('#header');
     tableSorter.bind2(header, table, {
-        type: 'string'
+        type: 'text'
     });
 
 //    closeBox.render($('#noflash'),

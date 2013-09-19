@@ -161,12 +161,17 @@ var tableSorter = function () {
                     this.sortDirection = "asc";
                     $(this).removeClass("headerSortUp").addClass("headerSortDown");
                 }
+
                 var type = 'text';
-                if (param) {
+                var innerType = $(this).attr("col-type");
+                if (innerType) {
+                    type = innerType;
+                } else if (param) {
                     if (param.type) {
                         type = param.type;
                     }
                 }
+
                 tableSorter.sortColumn(desc, $(this).index(), this.sortDirection, type);
                 if (param) {
                     if (param.onFinish) {
@@ -188,7 +193,11 @@ var tableSorter = function () {
                 else if (type == 'int') {
                     x = parseInt(x.replace(',', ''));
                     y = parseInt(y.replace(',', ''));
+                } else if (type == 'date') {
+                    x = (new Date(x)).getTime();
+                    y = (new Date(y)).getTime();
                 }
+
                 if (sortDirection == 'asc') {
                     return x > y ? -1 : 1;
                 }
