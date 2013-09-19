@@ -372,6 +372,12 @@ function FillData(table, data) {
         else {
             // find to remove noinfo row
             rows.children('td.noinfo').remove();
+            tbody.children('tr.highlight').each(function () {
+                $(this).removeAttr('class');
+            });
+
+            //Re-order by Trans. Time
+            tableSorter.sortColumn(table, 1, "asc", 'date');
 
             for (var i = length - 1; i >= 0; i--) {
                 var item = records[i];
@@ -386,11 +392,19 @@ function FillData(table, data) {
 
                 row = $(row);
                 tbody.prepend(row);
-                row.effect("highlight", { color: '#FFDBA8' }, 4000);
+                //row.effect("highlight", { color: '#FFDBA8' }, 120000);
+                row.addClass('highlight');
+            }
+
+            //Order by current ordered column
+            var orderCol = tableSorter.currentOrderCol;
+            if (orderCol && $(orderCol).index() != 1) {
+                var type = $(orderCol).attr("data-col-type");
+                tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
             }
 
             //Update row no.
-            var trs = tbody.children("tr");
+            var trs = tbody.children('tr');
             trs.each(function (index, tr) {
                 $(tr).children('td:first').text(index + 1);
             });

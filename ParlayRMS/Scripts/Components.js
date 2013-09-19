@@ -146,6 +146,7 @@ $.extend({
 
 var tableSorter = function () {
     return {
+        currentOrderCol: null,
         bind1: function (src, param) {
             tableSorter.bind2(src, src, param);
         },
@@ -163,7 +164,7 @@ var tableSorter = function () {
                 }
 
                 var type = 'text';
-                var innerType = $(this).attr("col-type");
+                var innerType = $(this).attr("data-col-type");
                 if (innerType) {
                     type = innerType;
                 } else if (param) {
@@ -172,6 +173,7 @@ var tableSorter = function () {
                     }
                 }
 
+                tableSorter.currentOrderCol = this;
                 tableSorter.sortColumn(desc, $(this).index(), this.sortDirection, type);
                 if (param) {
                     if (param.onFinish) {

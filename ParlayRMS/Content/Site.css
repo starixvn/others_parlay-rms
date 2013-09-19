@@ -2503,6 +2503,9 @@ div.popuploading
 .levelNoneColor
 {
 }
+tr.highlight {
+	background-color: #FFDBA8 !important;
+}
 /* Member */
 
 /*Refactor Section: End*/
