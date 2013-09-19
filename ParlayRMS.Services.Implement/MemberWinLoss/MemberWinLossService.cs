@@ -17,11 +17,11 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
     using ParlayRMS.Models;
     using ParlayRMS.Models.MemberWinLoss;
     using ParlayRMS.Services.Implement.Common;
+    using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.MemberWinLoss;
-    using ParlayRMS.Utility;
     using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Utility;
 
     /// <summary>
     /// Member Win Loss Service.
@@ -60,7 +60,9 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                                                     combos,
                                                                                     user.CustId);
             Utils.Round(records);
-            records.ToList().ForEach(x => x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose);
+            records.ToList().ForEach(x => { x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose; 
+                                            x.Month = ReFormatMonthStr(x.Month.Trim()); 
+            });
 
             var total = new RMS_Rpt_Parlay_MemberWinLoss
             {
@@ -80,6 +82,20 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                 Records = records,
                 Total = total
             };
+        }
+
+        /// <summary>
+        /// Format month string from '2013-01' to '01-2013'
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public string ReFormatMonthStr(string date)
+        {
+            int separatorIndex = date.IndexOf('-');
+            string year = date.Substring(0, separatorIndex);
+            string month = date.Substring(separatorIndex + 1, 2);
+
+            return string.Format("{0}-{1}", month, year);
         }
     }
 }
