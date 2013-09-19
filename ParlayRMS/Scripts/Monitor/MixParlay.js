@@ -318,7 +318,13 @@ $(document).ready(function () {
     var table = $('#result');
     var header = $('#header');
     tableSorter.bind2(header, table, {
-        type: 'text'
+        type: 'text',
+        onFinish: function () {
+            var trs = table.children('tbody').children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(index + 1);
+            });
+        }
     });
 
 //    closeBox.render($('#noflash'),
@@ -384,12 +390,10 @@ function FillData(table, data) {
             }
 
             //Update row no.
-            var orderCells = tbody.find('td.order-cell');
-            if (orderCells && orderCells.length > 0) {
-                for (var i = 0; i < orderCells.length; i++) {
-                    $(orderCells[i]).html(i + 1);
-                }
-            }
+            var trs = tbody.children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(index + 1);
+            });
         }
     } else {
         if (maxTransId == 0) {
@@ -407,7 +411,7 @@ function CreateRow(order, item) {
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
-    r[++j] = '<td class="order-cell center">' + order + '</td>';
+    r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + moment(item.TransDate).format('MM/D/YYYY h:mm:ss A') + '</td>';
     r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
