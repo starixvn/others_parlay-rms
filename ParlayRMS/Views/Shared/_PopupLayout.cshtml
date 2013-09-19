@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
 }
-<div class="popup">
-    <div class="popup-content">
+<div class="popup popup-content">
+    <div class="popup-title">
         <div class="popup-content-title">
             @if (IsSectionDefined("Title"))
             {
@@ -15,6 +15,8 @@
         </div>
         <div class="popup-content-linetop" />
         <div class="popup-content-linebottom" />
+    </div>
+    <div>
         @RenderBody()
         <div class="popup-content-actionbar">
             <div id="lineloading" class="popup-content-actionbar-loading">

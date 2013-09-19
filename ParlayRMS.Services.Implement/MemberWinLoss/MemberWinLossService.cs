@@ -20,6 +20,8 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
     using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.MemberWinLoss;
     using ParlayRMS.Utility;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Services.Implement.Users;
 
     /// <summary>
     /// Member Win Loss Service.
@@ -28,6 +30,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
     {
         private readonly IMemberWinLossDataAccess memberWinLossDataAccess = new MemberWinLossDataAccess();
         private readonly ICommonService commonService = new CommonService();
+        private readonly IUsersService usersService = new UsersService();
 
         /// <summary>
         /// Get Member Win Loss data.
@@ -47,6 +50,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                   string username)
         {
             var info = commonService.GetBalanceUpDayInfo();
+            var user = usersService.GetCustomerInfo(username);
             var records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinloss(fromDate,
                                                                                     toDate,
                                                                                     info.MoveBetsDay,
@@ -54,7 +58,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                                                     (int)betType,
                                                                                     (int)sportsType,
                                                                                     combos,
-                                                                                    username);
+                                                                                    user.CustId);
             Utils.Round(records);
             records.ToList().ForEach(x => x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose);
 

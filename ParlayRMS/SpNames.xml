@@ -71,7 +71,7 @@
         <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_Parlay_Betlist" DbName="DBRMS.bodb_RMS" Plain="0" />
         <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBRMS.bodb_RMS" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_Parlay_Winloss" DbName="DBRMS.bodb_RMS" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_MemberWinLoss" DbName="DBRMS.bodb_RMS" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Mem" DbName="DBRMS.bodb_RMS" Plain="0" />
     </Function>
     <Function Name="Member">
         <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS" Plain="0" />

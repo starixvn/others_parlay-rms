@@ -38,6 +38,7 @@ namespace ParlayRMS.Controllers
         {
             ViewBag.BetTypes = Config.BetTypes;
             ViewBag.SportsTypes = Config.SportsTypes;
+            ViewBag.LimitDate = MemberWinLossOptions.GetLimitDate();
             return this.View();
         }
 
@@ -52,19 +53,18 @@ namespace ParlayRMS.Controllers
         {
             try
             {
+                DateTime limitDate = MemberWinLossOptions.GetLimitDate();
+
                 if (options.FromDate > options.ToDate)
                 {
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
                 //Minimum date that support to query data
-                /*
-                DateTime lastMonth = DateTime.Now.AddMonths(-1).Date;
-                if (options.FromDate.Date < lastMonth)
+                if (options.FromDate.Date < limitDate)
                 {
-                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
+                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", limitDate.ToShortDateString()));
                 }
-                /**/
 
                 if (!ModelState.IsValid)
                 {

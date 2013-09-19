@@ -372,6 +372,8 @@ function FillData(table, data) {
         else {
             // find to remove noinfo row
             rows.children('td.noinfo').remove();
+
+            //Remove highlight rows
             tbody.children('tr.highlight').each(function () {
                 $(this).removeAttr('class');
             });

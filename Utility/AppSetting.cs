@@ -117,6 +117,17 @@
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public static string MemberWinLossLimitDate
+        {
+            get
+            {
+                return GetValue("MemberWinLossLimitDate");
+            }
+        }
+
         public static int UserPolicyCacheTime
         {
             get

@@ -42,6 +42,18 @@ using System.Web.Mvc;
         public string Username { get; set; }
 
         /// <summary>
+        /// Get minimun date that support querying data.
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime GetLimitDate()
+        {
+            string memberWinLossLimitDate = AppSetting.MemberWinLossLimitDate;
+            DateTime limitDate = Convert.ToDateTime(memberWinLossLimitDate);
+            DateTime minDate = DateTime.Now.AddYears(-1);
+            return minDate > limitDate ? minDate : limitDate;
+        }
+
+        /// <summary>
         /// Get report title.
         /// </summary>
         /// <returns></returns>

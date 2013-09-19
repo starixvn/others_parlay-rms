@@ -897,6 +897,7 @@ table.scrollGrid td span.function
     padding: 2px 0px 2px 10px !important;
     background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     margin-bottom: 12px;
+    cursor: move;
 }
 .boxMain .container .content .lineTop
 {
@@ -2199,6 +2200,10 @@ div.popuploading
     height: auto;
     font-size: 12px;
     padding: 20px;
+}
+.popup-title 
+{
+	cursor: move;
 }
 
 .popup-content-title

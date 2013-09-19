@@ -46,11 +46,11 @@ function modalPopup(data) {
         }
     });
     $("body").bind("click", function (e) {
-        if (e.target.id != "simplemodal-container") {
+        if (e.target.id == "simplemodal-overlay") {
             $.modal.close();
         }
     });
-    $("#simplemodal-container").draggable();
+    $("#simplemodal-container").draggable({ handle: "div.title2" });
 }
 function modalClose() {
     $.modal.close();

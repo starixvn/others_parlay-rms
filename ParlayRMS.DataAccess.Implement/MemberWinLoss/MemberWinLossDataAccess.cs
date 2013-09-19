@@ -32,7 +32,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
         /// <param name="betType">Bet type ID.</param>
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="combos">Combos value.</param>
-        /// <param name="username">Username.</param>
+        /// <param name="custid">Customer ID.</param>
         /// <returns>List of RMS_Rpt_Parlay_MemberWinLoss</returns>
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinloss(DateTime fromDate,
                                                                                       DateTime toDate,
@@ -41,9 +41,8 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                                                       int betType,
                                                                                       int sportsType,
                                                                                       string combos,
-                                                                                      string username)
+                                                                                      long custId)
         {
-            /*
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
             try
@@ -54,9 +53,9 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                     db.AddInParameter("todate", DbType.DateTime, toDate);
                     db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                     db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
-                    db.AddInParameter("bettype", DbType.Int32, betType);
+                    //db.AddInParameter("bettype", DbType.Int32, betType);
                     db.AddInParameter("selection", DbType.String, combos);
-                    db.AddInParameter("username", DbType.String, username);
+                    db.AddInParameter("custid", DbType.Int32, custId);
                     if (sportsType != 0)
                     {
                         db.AddInParameter("sporttype", DbType.Int32, sportsType);
@@ -88,50 +87,6 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
             }
 
             return result;
-            /**/
-
-            #region Data Sample
-
-            var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
-            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-            {
-                Month = "07-2013",
-                Tickets_Won = 5512561,
-                Tickets_Lose = 2317834,
-                Stake_Won = 714980,
-                Stake_Lose = 901482,
-                Member_Won = -230913,
-                Member_Lose = 86145,
-                OurPT_Won = -31687,
-                OurPT_Lose = 21980
-            });
-            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-            {
-                Month = "08-2013",
-                Tickets_Won = 541061,
-                Tickets_Lose = 3172834,
-                Stake_Won = 611480,
-                Stake_Lose = 822781,
-                Member_Won = -250732,
-                Member_Lose = 411245,
-                OurPT_Won = -21487,
-                OurPT_Lose = 136000
-            });
-            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-            {
-                Month = "09-2013",
-                Tickets_Won = 126571,
-                Tickets_Lose = 341864,
-                Stake_Won = 112480,
-                Stake_Lose = 25182,
-                Member_Won = -22313,
-                Member_Lose = 47145,
-                OurPT_Won = -21751,
-                OurPT_Lose = 15090
-            });
-            return result;
-
-            #endregion Data Sample
         }
     }
 }

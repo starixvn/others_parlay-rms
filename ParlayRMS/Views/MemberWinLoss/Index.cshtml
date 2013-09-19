@@ -52,7 +52,7 @@
     @Scripts.Render("~/Scripts/Report/MemberWinLoss/js")
     <script type="text/javascript">
         var dateRanges = {
-            LimitDataFromDate: '@DateTime.Now.AddMonths(-3)', //Minimun date that support query data
+            LimitDataFromDate: '@ViewBag.LimitDate', //Minimun date that support query data
             NowDate: '@DateTime.Now'
         };
     </script>
