@@ -91,6 +91,12 @@
             var username = MemberWinLoss.CachedDOM.username.val().trim();
             MemberWinLoss.CachedDOM.username.val(username);
         });
+		
+		MemberWinLoss.CachedDOM.username.bind("keyup", function (event) {
+            if (event.keyCode == 13) {
+				$("#btnSearch").click();
+			}
+        });
 
         //var nowDate = moment(dateRanges.NowDate);
         MemberWinLoss.CachedDOM.fromDate.val(nowDate);
