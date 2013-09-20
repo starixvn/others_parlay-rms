@@ -301,6 +301,10 @@ $(document).ready(function () {
             $('#result').children('tbody').html('');
             $("#refreshNow").button('enable');
             $("#pause").prop('disabled', false);
+			$("#header").find(".sortable").each(function () {
+                $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                this.sortDirection = "";
+            });
             maxTransId = 0;
             timerController.start();
         }
