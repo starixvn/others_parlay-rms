@@ -404,7 +404,7 @@ function FillData(table, data) {
 
             //Order by current ordered column
             var orderCol = tableSorter.currentOrderCol;
-            if (orderCol && $(orderCol).index() != 1) {
+            if (orderCol) {
                 var type = $(orderCol).attr("data-col-type");
                 tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
             }

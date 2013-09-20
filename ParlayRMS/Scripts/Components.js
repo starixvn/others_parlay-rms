@@ -198,6 +198,9 @@ var tableSorter = function () {
                 } else if (type == 'date') {
                     x = (new Date(x)).getTime();
                     y = (new Date(y)).getTime();
+                } else if (type == 'ignorecase') {
+                    x = x.toLowerCase();
+                    y = y.toLowerCase();
                 }
 
                 if (sortDirection == 'asc') {
