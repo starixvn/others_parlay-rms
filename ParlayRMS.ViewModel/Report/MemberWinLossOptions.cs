@@ -38,6 +38,7 @@ using System.Web.Mvc;
 
         public string Combos { get; set; }
 
+        [AllowHtml]
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
 

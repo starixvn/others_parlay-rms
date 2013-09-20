@@ -10,6 +10,7 @@
 namespace ParlayRMS.Services.Implement.MemberWinLoss
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.MemberWinLoss;
     using ParlayRMS.DataAccess.Interface.MemberWinLoss;
@@ -51,31 +52,39 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         {
             var info = commonService.GetBalanceUpDayInfo();
             var user = usersService.GetCustomerInfo(username);
-            var records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinloss(fromDate,
-                                                                                    toDate,
-                                                                                    info.MoveBetsDay,
-                                                                                    info.BalanceUpDay,
-                                                                                    (int)betType,
-                                                                                    (int)sportsType,
-                                                                                    combos,
-                                                                                    user.CustId);
-            Utils.Round(records);
-            records.ToList().ForEach(x => { x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose; 
-                                            x.Month = ReFormatMonthStr(x.Month.Trim()); 
-            });
+            List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
+            RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            var total = new RMS_Rpt_Parlay_MemberWinLoss
+            if ((user != null) && (user.RoleId == 1))
             {
-                Tickets_Won = records.Sum(x => x.Tickets_Won),
-                Tickets_Lose = records.Sum(x => x.Tickets_Lose),
-                Stake_Won = records.Sum(x => x.Stake_Won),
-                Stake_Lose = records.Sum(x => x.Stake_Lose),
-                Member_Won = records.Sum(x => x.Member_Won),
-                Member_Lose = records.Sum(x => x.Member_Lose),
-                OurPT_Won = records.Sum(x => x.OurPT_Won),
-                OurPT_Lose = records.Sum(x => x.OurPT_Lose),
-                OurPT_NetWinloss = records.Sum(x => x.OurPT_NetWinloss)
-            };
+                records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinloss(fromDate,
+                                                                                        toDate,
+                                                                                        info.MoveBetsDay,
+                                                                                        info.BalanceUpDay,
+                                                                                        (int)betType,
+                                                                                        (int)sportsType,
+                                                                                        combos,
+                                                                                        user.CustId).ToList();
+                Utils.Round(records);
+                records.ToList().ForEach(x =>
+                {
+                    x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
+                    x.Month = ReFormatMonthStr(x.Month.Trim());
+                });
+
+                total = new RMS_Rpt_Parlay_MemberWinLoss
+                {
+                    Tickets_Won = records.Sum(x => x.Tickets_Won),
+                    Tickets_Lose = records.Sum(x => x.Tickets_Lose),
+                    Stake_Won = records.Sum(x => x.Stake_Won),
+                    Stake_Lose = records.Sum(x => x.Stake_Lose),
+                    Member_Won = records.Sum(x => x.Member_Won),
+                    Member_Lose = records.Sum(x => x.Member_Lose),
+                    OurPT_Won = records.Sum(x => x.OurPT_Won),
+                    OurPT_Lose = records.Sum(x => x.OurPT_Lose),
+                    OurPT_NetWinloss = records.Sum(x => x.OurPT_NetWinloss)
+                };
+            }
 
             return new MemberWinLossData
             {

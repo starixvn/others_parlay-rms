@@ -87,6 +87,11 @@
             }
         });
 
+        MemberWinLoss.CachedDOM.username.bind("blur", function () {
+            var username = MemberWinLoss.CachedDOM.username.val().trim();
+            MemberWinLoss.CachedDOM.username.val(username);
+        });
+
         //var nowDate = moment(dateRanges.NowDate);
         MemberWinLoss.CachedDOM.fromDate.val(nowDate);
         MemberWinLoss.CachedDOM.toDate.val(nowDate);
@@ -161,6 +166,9 @@
         window.location.href = resolveClientUrl(url);
     }
 }
+String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, ''); 
+};
 
 $(document).ready(function () {
     MemberWinLoss.Init();
