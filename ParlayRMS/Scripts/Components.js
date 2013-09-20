@@ -154,17 +154,26 @@ var tableSorter = function () {
             var header = src.find('th.sortable');
             header.attr("title", "Click to sort");
             header.click(function () {
-                if (this.sortDirection == "asc") {
-                    this.sortDirection = "desc";
-                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                var currenObj = this;
+
+                if (currenObj.sortDirection == "asc") {
+                    currenObj.sortDirection = "desc";
+                    $(currenObj).removeClass("headerSortDown").addClass("headerSortUp");
                 }
                 else {
-                    this.sortDirection = "asc";
-                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                    currenObj.sortDirection = "asc";
+                    $(currenObj).removeClass("headerSortUp").addClass("headerSortDown");
                 }
 
+                src.find(".sortable").each(function () {
+                    if ($(currenObj).index() != $(this).index()) {
+                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                        this.sortDirection = "";
+                    }
+                });
+
                 var type = 'text';
-                var innerType = $(this).attr("data-col-type");
+                var innerType = $(currenObj).attr("data-col-type");
                 if (innerType) {
                     type = innerType;
                 } else if (param) {
@@ -173,11 +182,11 @@ var tableSorter = function () {
                     }
                 }
 
-                tableSorter.currentOrderCol = this;
-                tableSorter.sortColumn(desc, $(this).index(), this.sortDirection, type);
+                tableSorter.currentOrderCol = currenObj;
+                tableSorter.sortColumn(desc, $(currenObj).index(), currenObj.sortDirection, type);
                 if (param) {
                     if (param.onFinish) {
-                        param.onFinish(this);
+                        param.onFinish(currenObj);
                     }
                 }
             });

@@ -304,7 +304,10 @@ $(document).ready(function () {
 			$("#header").find(".sortable").each(function () {
                 $(this).removeClass("headerSortDown").removeClass("headerSortUp");
                 this.sortDirection = "";
-            });
+            });			
+			$("#transTime").addClass("headerSortDown");
+            $("#transTime").get(0).sortDirection = "asc";
+			tableSorter.currentOrderCol = null;
             maxTransId = 0;
             timerController.start();
         }
