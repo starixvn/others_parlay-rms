@@ -32,7 +32,7 @@
         });
 
         MemberWinLoss.CachedDOM.combo.multiselect({
-            minWidth: 132,
+            minWidth: 135,
             height: 136,
             create: function () {
                 MemberWinLoss.CachedDOM.combo.multiselect("checkAll");
