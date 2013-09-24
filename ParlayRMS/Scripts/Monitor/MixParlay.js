@@ -363,6 +363,12 @@ function FillData(table, data) {
     var records = data.Records;
     var length = records.length;
     var tbody = $(table).children('tbody');
+    
+    //Remove highlight rows
+    tbody.children('tr.highlight').each(function () {
+        $(this).removeAttr('class');
+    });
+    
     if (length > 0) {
         Alert();
         var rows = tbody.children('tr');
@@ -379,11 +385,6 @@ function FillData(table, data) {
         else {
             // find to remove noinfo row
             rows.children('td.noinfo').remove();
-
-            //Remove highlight rows
-            tbody.children('tr.highlight').each(function () {
-                $(this).removeAttr('class');
-            });
 
             //Re-order by Trans. Time
             tableSorter.sortColumn(table, 1, "asc", 'date');
