@@ -57,39 +57,39 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
 #if DEBUG
 
             // generate temporary tickets for testing, note these tickets can't be matched by conditions
-            if (data.Count() == 0)
-            {
-                Random rnd = new Random();
-                var count = rnd.Next(0, 5);
-                var list = new List<RMS_Monitor_Parlay_Betlist>();
-                for (int i = count; i > 0; i--)
-                {
-                    var combo = rnd.Next(2, 6);
-                    var level = rnd.Next(0, 10);
-                    var stake = Convert.ToDecimal(rnd.NextDouble() * 100);
-                    var odds = Convert.ToDecimal(rnd.NextDouble() * 100);
-                    var refno = rnd.Next(1000000, 9999999);
-                    if (combos.Contains(combo.ToString()) &&
-                        levels.Contains(level.ToString()) &&
-                        stake * odds > maxPayout)
-                    {
-                        list.Add(new RMS_Monitor_Parlay_Betlist
-                        {
-                            Combo = combo,
-                            Level = level,
-                            Username = "test",
-                            Stake = stake,
-                            Odds = odds,
-                            MaxPayout = stake * odds,
-                            RefNo = refno,
-                            TransDate = DateTime.Now,
-                            TransId = maxTransId + i
-                        });
-                    }
-                }
+            //if (data.Count() == 0)
+            //{
+            //    Random rnd = new Random();
+            //    var count = rnd.Next(0, 5);
+            //    var list = new List<RMS_Monitor_Parlay_Betlist>();
+            //    for (int i = count; i > 0; i--)
+            //    {
+            //        var combo = rnd.Next(2, 6);
+            //        var level = rnd.Next(0, 10);
+            //        var stake = Convert.ToDecimal(rnd.NextDouble() * 100);
+            //        var odds = Convert.ToDecimal(rnd.NextDouble() * 100);
+            //        var refno = rnd.Next(1000000, 9999999);
+            //        if (combos.Contains(combo.ToString()) &&
+            //            levels.Contains(level.ToString()) &&
+            //            stake * odds > maxPayout)
+            //        {
+            //            list.Add(new RMS_Monitor_Parlay_Betlist
+            //            {
+            //                Combo = combo,
+            //                Level = level,
+            //                Username = "test",
+            //                Stake = stake,
+            //                Odds = odds,
+            //                MaxPayout = stake * odds,
+            //                RefNo = refno,
+            //                TransDate = DateTime.Now,
+            //                TransId = maxTransId + i
+            //            });
+            //        }
+            //    }
 
-                data = list;
-            }
+            //    data = list;
+            //}
 #endif
 
             foreach (var item in data)
