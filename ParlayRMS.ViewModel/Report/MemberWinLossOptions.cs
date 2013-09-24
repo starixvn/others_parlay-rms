@@ -68,7 +68,7 @@ using System.Web.Mvc;
             }
 
             var title = string.Format("{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}]",
-                            ViewLang.MemberWinLoss,
+                            ViewLang.AgentMemberWinLoss,
                             this.Username,
                             this.FromDate.ToString("MMMM dd, yyyy"),
                             this.ToDate.ToString("MMMM dd, yyyy"),

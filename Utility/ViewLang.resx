@@ -717,8 +717,8 @@
   <data name="TicketDetails" xml:space="preserve">
     <value>Ticket Details</value>
   </data>
-  <data name="MemberWinLoss" xml:space="preserve">
-    <value>Member Win Loss</value>
+  <data name="AgentMemberWinLoss" xml:space="preserve">
+    <value>Agent/Member Win Loss</value>
   </data>
   <data name="Month" xml:space="preserve">
     <value>Month</value>
