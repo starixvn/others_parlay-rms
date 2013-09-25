@@ -58,6 +58,8 @@
             showButtonPanel: true,
             minDate: minDate,
             maxDate: nowDate,
+            changeMonth: true,
+            changeYear: true,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
                     $("#dateRange option[value='7']").attr('selected', 1);
@@ -75,6 +77,8 @@
             showButtonPanel: true,
             minDate: minDate,
             maxDate: nowDate,
+            changeMonth: true,
+            changeYear: true,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
                     $("#dateRange option[value='7']").attr('selected', 1);

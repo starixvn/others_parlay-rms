@@ -4,6 +4,8 @@
 
 ParlayRMS.Winloss = {
     Init: function () {
+        var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
+
         $("#betType").multiselect({
             minWidth: 120,
             height: 82,
@@ -33,12 +35,14 @@ ParlayRMS.Winloss = {
                 }
             }
         });
-
+        
         $("#fromDate").datepicker({
             dateFormat: "MM dd, yy",
             showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
             minDate: (diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) > 60 ? 60 * -1 : diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) * -1),
-
+            maxDate: nowDate,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
                     $("#dateRange option[value='7']").attr('selected', 1);
@@ -46,14 +50,17 @@ ParlayRMS.Winloss = {
                 }
             },
             onClose: function (selectedDate) {
+                $("#toDate").datepicker("option", "minDate", selectedDate);
             }
         });
 
         $("#toDate").datepicker({
             dateFormat: "MM dd, yy",
             showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
             minDate: (diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) > 60 ? 60 * -1 : diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) * -1),
-
+            maxDate: nowDate,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
                     $("#dateRange option[value='7']").attr('selected', 1);
@@ -61,6 +68,7 @@ ParlayRMS.Winloss = {
                 }
             },
             onClose: function (selectedDate) {
+                $("#fromDate").datepicker("option", "maxDate", selectedDate);
             }
         });
 
