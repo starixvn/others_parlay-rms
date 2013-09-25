@@ -21,6 +21,14 @@ namespace ParlayRMS.ExcelService.Writers
         private ISheet sheet;
         private int rowId = 0;
 
+        public int RowId
+        {
+            get
+            {
+                return rowId;
+            }
+        }
+
         public TemplateWriter(string filePath)
             : this(new FileStream(filePath, FileMode.Open, FileAccess.Read))
         {
@@ -84,6 +92,15 @@ namespace ParlayRMS.ExcelService.Writers
             {
                 this.WriteRow(rowId, record);
             }
+        }
+
+        public void WriteCellRange(int rowId, int totalRow, int colId, int totalCol, object value)
+        {
+            var cellRange = new NPOI.SS.Util.CellRangeAddress(rowId, rowId + totalRow - 1, colId, colId + totalCol - 1);
+            this.sheet.AddMergedRegion(cellRange);
+            
+            var cell = this.sheet.GetCell(rowId, colId);
+            cell.SetCellValue(value);
         }
 
         public void AutosizeColumns(int from, int to)

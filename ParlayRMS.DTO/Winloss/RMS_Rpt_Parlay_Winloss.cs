@@ -15,6 +15,8 @@ namespace ParlayRMS.DTO.Winloss
     {
         public DateTime WinlostDate { get; set; }
 
+        public string Combo { get; set; }
+
         public int Tickets_Won { get; set; }
 
         public int Tickets_Lose { get; set; }

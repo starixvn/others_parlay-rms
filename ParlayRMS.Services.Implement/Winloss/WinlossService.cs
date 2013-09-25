@@ -7,6 +7,7 @@
 namespace ParlayRMS.Services.Implement.Winloss
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.Winloss;
     using ParlayRMS.DataAccess.Interface.Winloss;
@@ -19,38 +20,76 @@ namespace ParlayRMS.Services.Implement.Winloss
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Win Loss service.
     /// </summary>
     public class WinlossService : IWinlossService
     {
         private readonly IWinlossDataAccess winlossDataAccess = new WinlossDataAccess();
         private readonly ICommonService commonService = new CommonService();
 
-        public WinlossData GetWinloss(DateTime fromDate, DateTime toDate, BetType betType, SportsType sportsType, string combos)
+        /// <summary>
+        /// Get Win Loss data.
+        /// </summary>
+        /// <param name="fromDate">From Date value.</param>
+        /// <param name="toDate">To Date value.</param>
+        /// <param name="betType">Bet type ID.</param>
+        /// <param name="sportsType">Sport type ID.</param>
+        /// <param name="combos">Combo values.</param>
+        /// <returns>Win Loss data.</returns>
+        public WinlossData GetWinloss(
+                               DateTime fromDate, 
+                               DateTime toDate, 
+                               BetType betType, 
+                               SportsType sportsType, 
+                               string combos)
         {
             var info = commonService.GetBalanceUpDayInfo();
-            var records = this.winlossDataAccess.RMS_Rpt_Parlay_Winloss(fromDate, toDate, info.MoveBetsDay, info.BalanceUpDay, (int)betType, (int)sportsType, combos);
-            Utils.Round(records);
-            records.ToList().ForEach(x => x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose);
+            var data = this.winlossDataAccess.RMS_Rpt_Parlay_Winloss(
+                                fromDate, 
+                                toDate, 
+                                info.MoveBetsDay, 
+                                info.BalanceUpDay, 
+                                (int)betType, 
+                                (int)sportsType,
+                                combos);
+            
 
-            var total = new RMS_Rpt_Parlay_Winloss
+            Utils.Round(data);
+            data.ToList().ForEach(x =>
             {
-                Tickets_Won = records.Sum(x => x.Tickets_Won),
-                Tickets_Lose = records.Sum(x => x.Tickets_Lose),
-                Stake_Won = records.Sum(x => x.Stake_Won),
-                Stake_Lose = records.Sum(x => x.Stake_Lose),
-                Member_Won = records.Sum(x => x.Member_Won),
-                Member_Lose = records.Sum(x => x.Member_Lose),
-                OurPT_Won = records.Sum(x => x.OurPT_Won),
-                OurPT_Lose = records.Sum(x => x.OurPT_Lose),
-                OurPT_NetWinloss = records.Sum(x => x.OurPT_NetWinloss)
-            };
+                x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
+                x.Combo = (x.Combo == "6") ? string.Format("{0} & up", x.Combo) : x.Combo;
+            });
+            ////data.OrderBy(x => x.WinlostDate);
 
-            return new WinlossData
+            return GroupData(data);
+        }
+
+        /// <summary>
+        /// Group raw data by Date
+        /// </summary>
+        /// <param name="data">Raw data that need to be grouped.</param>
+        /// <returns>Group data.</returns>
+        private WinlossData GroupData(IEnumerable<RMS_Rpt_Parlay_Winloss> data)
+        {
+            WinlossData records = new WinlossData();
+            WinlossItemData currentDateData = null;
+            DateTime currentDate = new DateTime(1970, 1, 1);
+
+            data.ToList().ForEach(x =>
             {
-                Records = records,
-                Total = total
-            };
+                if (!currentDate.Equals(x.WinlostDate))
+                {
+                    records.Add(currentDateData);
+                    currentDateData = new WinlossItemData();
+                    currentDate = x.WinlostDate;
+                }
+
+                currentDateData.Add(x);
+            });
+            records.Add(currentDateData);
+
+            return records;
         }
     }
 }

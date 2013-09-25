@@ -2036,6 +2036,12 @@ a.datepicker
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+#divResult .subTotal
+{
+    background-color: #EFEFEF;
+    color: 	#30465D;
+    font-weight: bold;
+}
 
 .arrowDown_div
 {

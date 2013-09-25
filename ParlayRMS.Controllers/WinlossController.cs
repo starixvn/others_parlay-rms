@@ -84,19 +84,23 @@ namespace ParlayRMS.Controllers
             writer.WriteRow(0, new object[] { title });
 
             // header
-            var header1 = new object[]{
+            var header1 = new object[]
+            {
                 ViewLang.Date,
+                ViewLang.Combo,
                 ViewLang.Ticket,
-                "",
+                string.Empty,
                 ViewLang.StakeAfterPT,
-                "",
+                string.Empty,
                 ViewLang.WinLoss,
-                "",
+                string.Empty,
                 ViewLang.OurPT
             };
 
-            var header2 = new object[]{
-                "",
+            var header2 = new object[]
+            {
+                string.Empty,
+                string.Empty,
                 ViewLang.Won,
                 ViewLang.Lose,
                 ViewLang.Won,
@@ -111,11 +115,30 @@ namespace ParlayRMS.Controllers
             writer.WriteRows(1, new List<object[]>() { header1, header2 });
 
             // records
-            writer.WriteRows(3, model.Records);
+            foreach (var record in model.Records)
+            {
+                var totalRow = record.Records.Count;
+                writer.WriteRows(3, record.Records);
+                writer.WriteCellRange(writer.RowId - totalRow, totalRow, 0, 1, record.Records[0].WinlostDate);
+                writer.WriteRow(4, new object[] {
+                    ViewLang.Subtotal,
+                    string.Empty,
+                    record.Total.Tickets_Won,
+                    record.Total.Tickets_Lose,
+                    record.Total.Stake_Won,
+                    record.Total.Stake_Lose,
+                    record.Total.Member_Won,
+                    record.Total.Member_Lose,
+                    record.Total.OurPT_Won,
+                    record.Total.OurPT_Lose,
+                    record.Total.OurPT_NetWinloss
+                });
+            }
 
             // footer
-            writer.WriteRow(4, new object[] {
+            writer.WriteRow(5, new object[] {
                 ViewLang.Total,
+                string.Empty,
                 model.Total.Tickets_Won,
                 model.Total.Tickets_Lose,
                 model.Total.Stake_Won,
@@ -127,7 +150,7 @@ namespace ParlayRMS.Controllers
                 model.Total.OurPT_NetWinloss
             });
 
-            writer.SyncColumnWidths(10);
+            writer.SyncColumnWidths(11);
 
             var ms = writer.Render("Winloss");
             Response.AddHeader("content-disposition", "attachment; filename=" + "Winloss.xls");

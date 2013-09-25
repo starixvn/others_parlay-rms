@@ -2,16 +2,17 @@
 @{
     var filterOption = (ParlayRMS.ViewModel.Report.WinlossOptions)ViewBag.FilterOption;
 }
-<div style="width: 1101px" class="maintitle">
+<div style="width: 1201px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.BetType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos');" title="Export Excel">
     </div>
 </div>
-<div style="width: 1101px">
+<div style="width: 1201px">
     <table class="main">
         <colgroup>
+            <col width='100px' />
             <col width='100px' />
             <col width='80px' />
             <col width='80px' />
@@ -27,6 +28,9 @@
             <tr>
                 <th rowspan="2" class="header2rows">
                     @ViewLang.Date
+                </th>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.Combo
                 </th>
                 <th colspan="2">
                     @ViewLang.Ticket
@@ -73,9 +77,10 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1120px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1220px">
     <table class="main" id="result">
         <colgroup>
+            <col width='100px' />
             <col width='100px' />
             <col width='80px' />
             <col width='80px' />
@@ -88,45 +93,87 @@
             <col width='120px' />
         </colgroup>
         <tbody>
-            @foreach (var record in Model.Records)
+            @foreach (var group in Model.Records)
             {
-                <tr>
-                    <td class="right">
-                        @Formatter.FormatDate(record.WinlostDate)
+                for (var index = 0; index < group.Records.Count; index++)
+                {
+                    var record = group.Records[index];
+                    <tr>
+                        @if (index == 0)
+                        {
+                            <td class="center" rowspan="@group.Records.Count">
+                                @Formatter.FormatDate(record.WinlostDate)
+                            </td>
+                        }
+                        <td class="center">
+                            @record.Combo
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(record.Tickets_Won)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(record.Tickets_Lose)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(record.Stake_Won)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(record.Stake_Lose)
+                        </td>
+                        <td class="numeric negative">
+                            @Formatter.FormatNumber2(record.Member_Won)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(record.Member_Lose)
+                        </td>
+                        <td class="numeric negative">
+                            @Formatter.FormatNumber2(record.OurPT_Won)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(record.OurPT_Lose)
+                        </td>
+                        @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                    </tr>
+                }
+                
+                <tr class="subTotal">
+                    <td class="center" colspan="2">
+                        @ViewLang.Subtotal
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber3(record.Tickets_Won)
+                        @Formatter.FormatNumber3(group.Total.Tickets_Won)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber3(record.Tickets_Lose)
+                        @Formatter.FormatNumber3(group.Total.Tickets_Lose)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(record.Stake_Won)
+                        @Formatter.FormatNumber2(group.Total.Stake_Won)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(record.Stake_Lose)
+                        @Formatter.FormatNumber2(group.Total.Stake_Lose)
                     </td>
                     <td class="numeric negative">
-                        @Formatter.FormatNumber2(record.Member_Won)
+                        @Formatter.FormatNumber2(group.Total.Member_Won)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(record.Member_Lose)
+                        @Formatter.FormatNumber2(group.Total.Member_Lose)
                     </td>
                     <td class="numeric negative">
-                        @Formatter.FormatNumber2(record.OurPT_Won)
+                        @Formatter.FormatNumber2(group.Total.OurPT_Won)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(record.OurPT_Lose)
+                        @Formatter.FormatNumber2(group.Total.OurPT_Lose)
                     </td>
-                    @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                    @RazorHelper.RenderNumberCell(group.Total.OurPT_NetWinloss)
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div style="width: 1101px" class="mainfooter">
+<div style="width: 1201px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
+            <col width='100px' />
             <col width='100px' />
             <col width='80px' />
             <col width='80px' />
@@ -142,7 +189,7 @@
             @if (Model.Records.Any())
             {
                 <tr>
-                    <td class="center">
+                    <td class="center" colspan="2">
                         @ViewLang.Total
                     </td>
                     <td class="numeric">
