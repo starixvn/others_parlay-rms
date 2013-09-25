@@ -204,19 +204,22 @@
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.Stake_Lose)
                     </td>
-                    <td class="numeric negative">
+                    <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.Member_Won)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.Member_Lose)
                     </td>
-                    <td class="numeric negative">
+                    <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.OurPT_Won)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
                     </td>
-                    @RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
+                    </td>
+                    @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
                 </tr>
             }
             else

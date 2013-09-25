@@ -614,7 +614,7 @@ table.scrollGrid td span.function
     display: block;
     padding: 5px 5px 5px 25px;
     white-space: nowrap;
-    min-width: 150px;
+    min-width: 180px;
     border-bottom: 1px solid #c2c0bd;
 }
 
@@ -1842,7 +1842,7 @@ table.main > tbody > tr > td > a:hover
 }
 table.main > tfoot > tr > td
 {
-    font-size: 0.9em;
+    font-size: 1.0em;
     font-weight: bold;
     height: 31px;
     border: solid 1px #d5d5d5;

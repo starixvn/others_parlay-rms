@@ -157,7 +157,7 @@ namespace ParlayRMS.Controllers
             writer.SyncColumnWidths(10);
 
             var ms = writer.Render("MemberWinLoss");
-            Response.AddHeader("content-disposition", "attachment; filename=" + "MemberWinLoss.xls");
+            Response.AddHeader("content-disposition", "attachment; filename=" + "AgentMemberWinLoss.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());
             Response.End();
