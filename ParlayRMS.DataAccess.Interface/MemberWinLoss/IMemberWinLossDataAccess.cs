@@ -21,24 +21,45 @@ namespace ParlayRMS.DataAccess.Interface.MemberWinLoss
         /// <summary>
         /// Get Member Win Loss data based on passed filter conditions.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="moveBetsDay">The move bets day.</param>
         /// <param name="balanceUpDay">Balance Up Day.</param>
         /// <param name="betType">Bet type ID.</param>
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="combos">Combos value.</param>
-        /// <param name="roleId">Role ID of the customer.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>List of RMS_Rpt_Parlay_MemberWinLoss</returns>
-        IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinloss(DateTime fromDate, 
-                                                                               DateTime toDate, 
-                                                                               DateTime moveBetsDay, 
-                                                                               DateTime balanceUpDay, 
-                                                                               int betType, 
-                                                                               int sportsType, 
-                                                                               string combos,
-                                                                               int roleId,
-                                                                               long custId);
+        /// <param name="custid">Customer ID.</param>
+        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinLoss(
+                                                      DateTime fromDate,
+                                                      DateTime toDate,
+                                                      DateTime moveBetsDay,
+                                                      DateTime balanceUpDay,
+                                                      int betType,
+                                                      int sportsType,
+                                                      string combos,
+                                                      long custId);
+
+        /// <summary>
+        /// Get Member Win Loss data for Agent view based on passed filter conditions.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="moveBetsDay">The move bets day.</param>
+        /// <param name="balanceUpDay">Balance Up Day.</param>
+        /// <param name="betType">Bet type ID.</param>
+        /// <param name="sportsType">Type of the sports.</param>
+        /// <param name="combos">Combos value.</param>
+        /// <param name="custid">Customer ID.</param>
+        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_AgentWinLoss(
+                                                      DateTime fromDate,
+                                                      DateTime toDate,
+                                                      DateTime moveBetsDay,
+                                                      DateTime balanceUpDay,
+                                                      int betType,
+                                                      int sportsType,
+                                                      string combos,
+                                                      long custId);
     }
 }

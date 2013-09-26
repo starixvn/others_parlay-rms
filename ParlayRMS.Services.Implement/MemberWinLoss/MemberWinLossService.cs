@@ -55,15 +55,31 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinloss(fromDate,
-                                                                                toDate,
-                                                                                info.MoveBetsDay,
-                                                                                info.BalanceUpDay,
-                                                                                (int)betType,
-                                                                                (int)sportsType,
-                                                                                combos,
-                                                                                user.RoleId,
-                                                                                user.CustId).ToList();
+            if (user.RoleId == (int)RoleId.Member)
+            {
+                records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
+                                                           fromDate,
+                                                           toDate,
+                                                           info.MoveBetsDay,
+                                                           info.BalanceUpDay,
+                                                           (int)betType,
+                                                           (int)sportsType,
+                                                           combos,
+                                                           user.CustId).ToList();
+            }
+            else if (user.RoleId == (int)RoleId.Agent)
+            {
+                records = this.memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
+                                                           fromDate,
+                                                           toDate,
+                                                           info.MoveBetsDay,
+                                                           info.BalanceUpDay,
+                                                           (int)betType,
+                                                           (int)sportsType,
+                                                           combos,
+                                                           user.CustId).ToList();
+            }
+
             Utils.Round(records);
             records.ToList().ForEach(x =>
             {

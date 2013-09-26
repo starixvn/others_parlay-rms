@@ -25,41 +25,81 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
         /// <summary>
         /// Get Member Win Loss data based on passed filter conditions.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="moveBetsDay">The move bets day.</param>
         /// <param name="balanceUpDay">Balance Up Day.</param>
         /// <param name="betType">Bet type ID.</param>
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="combos">Combos value.</param>
-        /// <param name="roleId">Role ID of the customer.</param>
         /// <param name="custid">Customer ID.</param>
-        /// <returns>List of RMS_Rpt_Parlay_MemberWinLoss</returns>
-        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinloss(DateTime fromDate,
-                                                                                      DateTime toDate,
-                                                                                      DateTime moveBetsDay,
-                                                                                      DateTime balanceUpDay,
-                                                                                      int betType,
-                                                                                      int sportsType,
-                                                                                      string combos,
-                                                                                      int roleId,
-                                                                                      long custId)
+        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinLoss(
+                                                             DateTime fromDate,
+                                                             DateTime toDate,
+                                                             DateTime moveBetsDay,
+                                                             DateTime balanceUpDay,
+                                                             int betType,
+                                                             int sportsType,
+                                                             string combos,
+                                                             long custId)
+        {
+            return ExecuteSP(fromDate, toDate, moveBetsDay, balanceUpDay, betType, sportsType, combos, custId, "RMS_Rpt_Parlay_MemberWinLoss");
+        }
+
+        /// <summary>
+        /// Get Member Win Loss data for Agent view based on passed filter conditions.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="moveBetsDay">The move bets day.</param>
+        /// <param name="balanceUpDay">Balance Up Day.</param>
+        /// <param name="betType">Bet type ID.</param>
+        /// <param name="sportsType">Type of the sports.</param>
+        /// <param name="combos">Combos value.</param>
+        /// <param name="custid">Customer ID.</param>
+        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_AgentWinLoss(
+                                                             DateTime fromDate,
+                                                             DateTime toDate,
+                                                             DateTime moveBetsDay,
+                                                             DateTime balanceUpDay,
+                                                             int betType,
+                                                             int sportsType,
+                                                             string combos,
+                                                             long custId)
+        {
+            return ExecuteSP(fromDate, toDate, moveBetsDay, balanceUpDay, betType, sportsType, combos, custId, "RMS_Rpt_Parlay_AgentWinLoss");
+        }
+
+        /// <summary>
+        /// Get Member Win Loss data based on passed filter conditions.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="moveBetsDay">The move bets day.</param>
+        /// <param name="balanceUpDay">Balance Up Day.</param>
+        /// <param name="betType">Bet type ID.</param>
+        /// <param name="sportsType">Type of the sports.</param>
+        /// <param name="combos">Combos value.</param>
+        /// <param name="custId">Customer ID.</param>
+        /// <param name="storeProKey">Stored Procedure name.</param>
+        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        private IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> ExecuteSP(
+                                                              DateTime fromDate,
+                                                              DateTime toDate,
+                                                              DateTime moveBetsDay,
+                                                              DateTime balanceUpDay,
+                                                              int betType,
+                                                              int sportsType,
+                                                              string combos,
+                                                              long custId,
+                                                              string storeProKey)
         {
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
             try
             {
-                string storeProKey = string.Empty;
-
-                if (roleId == 1)
-                {
-                    storeProKey = "RMS_Rpt_Parlay_MemberWinLoss";
-                }
-                else if (roleId == 2)
-                {
-                    storeProKey = "RMS_Rpt_Parlay_AgentWinLoss";
-                }
-
                 if (!string.IsNullOrEmpty(storeProKey))
                 {
                     using (var db = new ObjectDb(storeProKey))
