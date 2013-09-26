@@ -1978,6 +1978,10 @@ a.datepicker
     line-height: 15px;
     margin-top: 5px;
 }
+.filter .filter-control input[type='text']
+{
+    width: 137px;
+}
 .filter .filter-control .group
 {
     float: left;
