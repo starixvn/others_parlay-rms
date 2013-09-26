@@ -58,7 +58,7 @@ namespace ParlayRMS.Services.Implement.Winloss
             data.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
-                x.Combo = (x.Combo == "6") ? string.Format("{0} & up", x.Combo) : x.Combo;
+                x.Combo = (x.Combo == "6") ? string.Format("{0} UP", x.Combo) : x.Combo;
             });
             ////data.OrderBy(x => x.WinlostDate);
 
