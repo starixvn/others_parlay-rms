@@ -26,9 +26,11 @@ namespace ParlayRMS.ViewModel.ManageUser
         public string UserName { get; set; }
 
         [Display(Name = "Firstname", ResourceType = typeof(ViewLang))]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FirstName { get; set; }
 
         [Display(Name = "Lastname", ResourceType = typeof(ViewLang))]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LastName { get; set; }
 
         [Required]

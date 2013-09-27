@@ -156,9 +156,6 @@ namespace ParlayRMS.Controllers
                 return this.InvalidModelJson();
             }
 
-            model.FirstName = model.FirstName ?? string.Empty;
-            model.LastName = model.LastName ?? string.Empty;
-
             var result = this.userService.EditUser(CurrentSession.UserId, model.UserId, model.FirstName, model.LastName, model.GroupId, CurrentContext.Ip4Address);
             return this.Json(result);
         }
