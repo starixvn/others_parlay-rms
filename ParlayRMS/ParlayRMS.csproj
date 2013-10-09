@@ -491,6 +491,7 @@
     <Content Include="ExcelTemplates\Winloss.xls" />
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="ExcelTemplates\MemberWinLoss.xls" />
+    <Content Include="ExcelTemplates\AgentWinLoss.xls" />
     <None Include="readme.txt" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
@@ -574,7 +575,8 @@
     <Content Include="Views\Winloss\Data.cshtml" />
     <Content Include="Views\TopWinners\BetDetails.cshtml" />
     <Content Include="Views\MemberWinLoss\Index.cshtml" />
-    <Content Include="Views\MemberWinLoss\Data.cshtml" />
+    <Content Include="Views\MemberWinLoss\MemberData.cshtml" />
+    <Content Include="Views\MemberWinLoss\AgentData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

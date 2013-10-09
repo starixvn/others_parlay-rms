@@ -109,47 +109,19 @@
 
         MemberWinLoss.CachedDOM.btnSearch.click(function () {
             MemberWinLoss.CachedDOM.divResult.html('');
-            var username = MemberWinLoss.CachedDOM.username.val();
-            var betType = MemberWinLoss.CachedDOM.bettype.val();
-            var fromDate = MemberWinLoss.CachedDOM.fromDate.val();
-            var toDate = MemberWinLoss.CachedDOM.toDate.val();
-            var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
-
-            if (validator.validateRequired("#username")) {
-                return;
-            }
-
-            if (validator.validateDate("#fromDate")) {
-                return;
-            }
-
-            if (validator.validateDate("#toDate")) {
-                return;
-            }
-
-            if (validator.validateDateRange("#fromDate", "#toDate")) {
-                return;
-            }
-
-            var combos = MemberWinLoss.CachedDOM.combo.multiselect("getChecked").map(function () {
-                return this.value;
-            }).get().join(',');
-            if (combos == '') {
-                Validators.show(MemberWinLoss.CachedDOM.combo.multiselect("getButton").get(0), 'Please select your options');
-                return;
-            }
-
-            MemberWinLoss.Data(betType, fromDate, toDate, sportsType, combos, username);
+            MemberWinLoss.GetData(1, false);
         });
     },
-    Data: function (betType, fromDate, toDate, sportsType, combos, username) {
+    Data: function (betType, fromDate, toDate, sportsType, combos, username, pageIndex, isCached) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             BetType: betType,
             SportsType: sportsType,
             Combos: combos,
-            Username: username
+            Username: username,
+            PageIndex: pageIndex,
+            IsCached: isCached
         }
 
         $.ajax({
@@ -175,8 +147,45 @@
     ExportExcel: function (data) {
         var url = 'MemberWinLoss/Excel?' + $.param(data);
         window.location.href = resolveClientUrl(url);
+    },
+    GetData: function (pageIndex, isCached) {
+        var username = MemberWinLoss.CachedDOM.username.val();
+        var betType = MemberWinLoss.CachedDOM.bettype.val();
+        var fromDate = MemberWinLoss.CachedDOM.fromDate.val();
+        var toDate = MemberWinLoss.CachedDOM.toDate.val();
+        var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
+
+        if (validator.validateRequired("#username")) {
+            return;
+        }
+
+        if (validator.validateDate("#fromDate")) {
+            return;
+        }
+
+        if (validator.validateDate("#toDate")) {
+            return;
+        }
+
+        if (validator.validateDateRange("#fromDate", "#toDate")) {
+            return;
+        }
+
+        var combos = MemberWinLoss.CachedDOM.combo.multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (combos == '') {
+            Validators.show(MemberWinLoss.CachedDOM.combo.multiselect("getButton").get(0), 'Please select your options');
+            return;
+        }
+
+        MemberWinLoss.Data(betType, fromDate, toDate, sportsType, combos, username, pageIndex, isCached);
     }
 }
+function MovePage(pageIndex) {
+    MemberWinLoss.GetData(pageIndex, true);
+};
+
 String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, ''); 
 };

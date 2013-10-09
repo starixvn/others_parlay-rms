@@ -38,6 +38,10 @@ using System.Web.Mvc;
 
         public string Combos { get; set; }
 
+        public int? PageIndex { get; set; }
+
+        public bool IsCached { get; set; }
+
         [AllowHtml]
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }

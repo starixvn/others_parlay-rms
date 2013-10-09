@@ -27,12 +27,17 @@ namespace ParlayRMS.Services.Interface.MemberWinLoss
         /// <param name="sportsType">Sport type ID.</param>
         /// <param name="combos">Combos value.</param>
         /// <param name="username">Username.</param>
+        /// <param name="isCached">Whether the data is cached or not.</param>
+        /// <param name="roleId">Role ID of user.</param>
         /// <returns></returns>
-        MemberWinLossData GetMemberWinLoss(DateTime fromDate, 
-                                           DateTime toDate, 
-                                           BetType betType, 
-                                           SportsType sportsType, 
-                                           string combos,
-                                           string username);
+        MemberWinLossData GetMemberWinLoss(
+                              DateTime fromDate, 
+                              DateTime toDate, 
+                              BetType betType, 
+                              SportsType sportsType, 
+                              string combos,
+                              string username,
+                              bool isCached,
+                              out int roleId);
     }
 }

@@ -51,7 +51,7 @@ namespace ParlayRMS.DataAccess.Interface.MemberWinLoss
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="combos">Combos value.</param>
         /// <param name="custid">Customer ID.</param>
-        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        /// <returns>List of RMS_Rpt_Parlay_MemberWinLoss.</returns>
         IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_AgentWinLoss(
                                                       DateTime fromDate,
                                                       DateTime toDate,

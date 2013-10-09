@@ -43,8 +43,50 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              int sportsType,
                                                              string combos,
                                                              long custId)
-        {
-            return ExecuteSP(fromDate, toDate, moveBetsDay, balanceUpDay, betType, sportsType, combos, custId, "RMS_Rpt_Parlay_MemberWinLoss");
+        {            
+            var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
+
+            try
+            {
+                using (var db = new ObjectDb("RMS_Rpt_Parlay_MemberWinLoss"))
+                {
+                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
+                    db.AddInParameter("todate", DbType.DateTime, toDate);
+                    db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
+                    db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
+                    db.AddInParameter("selection", DbType.String, combos);
+                    db.AddInParameter("custid", DbType.Int32, custId);
+                    if (sportsType != 0)
+                    {
+                        db.AddInParameter("sporttype", DbType.Int32, sportsType);
+                    }
+
+                    using (var reader = db.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
+                            {
+                                Month = reader.ToString("month"),
+                                Tickets_Won = reader.ToInt32("tickets_won"),
+                                Tickets_Lose = reader.ToInt32("tickets_lose"),
+                                Stake_Won = reader.ToDecimal("stake_won"),
+                                Stake_Lose = reader.ToDecimal("stake_lose"),
+                                Member_Won = reader.ToDecimal("member_won"),
+                                Member_Lose = reader.ToDecimal("member_lose"),
+                                OurPT_Won = reader.ToDecimal("ourpt_won"),
+                                OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ProcessException(ex);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -58,7 +100,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
         /// <param name="sportsType">Type of the sports.</param>
         /// <param name="combos">Combos value.</param>
         /// <param name="custid">Customer ID.</param>
-        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
+        /// <returns>List of RMS_Rpt_Parlay_MemberWinLoss objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_AgentWinLoss(
                                                              DateTime fromDate,
                                                              DateTime toDate,
@@ -69,69 +111,40 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              string combos,
                                                              long custId)
         {
-            return ExecuteSP(fromDate, toDate, moveBetsDay, balanceUpDay, betType, sportsType, combos, custId, "RMS_Rpt_Parlay_AgentWinLoss");
-        }
-
-        /// <summary>
-        /// Get Member Win Loss data based on passed filter conditions.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Type of the sports.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="storeProKey">Stored Procedure name.</param>
-        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
-        private IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> ExecuteSP(
-                                                              DateTime fromDate,
-                                                              DateTime toDate,
-                                                              DateTime moveBetsDay,
-                                                              DateTime balanceUpDay,
-                                                              int betType,
-                                                              int sportsType,
-                                                              string combos,
-                                                              long custId,
-                                                              string storeProKey)
-        {
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
             try
             {
-                if (!string.IsNullOrEmpty(storeProKey))
+                using (var db = new ObjectDb("RMS_Rpt_Parlay_AgentWinLoss"))
                 {
-                    using (var db = new ObjectDb(storeProKey))
+                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
+                    db.AddInParameter("todate", DbType.DateTime, toDate);
+                    db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
+                    db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
+                    db.AddInParameter("selection", DbType.String, combos);
+                    db.AddInParameter("custid", DbType.Int32, custId);
+                    if (sportsType != 0)
                     {
-                        db.AddInParameter("fromdate", DbType.DateTime, fromDate);
-                        db.AddInParameter("todate", DbType.DateTime, toDate);
-                        db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
-                        db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
-                        db.AddInParameter("selection", DbType.String, combos);
-                        db.AddInParameter("custid", DbType.Int32, custId);
-                        if (sportsType != 0)
-                        {
-                            db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                        }
+                        db.AddInParameter("sporttype", DbType.Int32, sportsType);
+                    }
 
-                        using (var reader = db.ExecuteReader())
+                    using (var reader = db.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
                             {
-                                result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-                                {
-                                    Month = reader.ToString("month"),
-                                    Tickets_Won = reader.ToInt32("tickets_won"),
-                                    Tickets_Lose = reader.ToInt32("tickets_lose"),
-                                    Stake_Won = reader.ToDecimal("stake_won"),
-                                    Stake_Lose = reader.ToDecimal("stake_lose"),
-                                    Member_Won = reader.ToDecimal("member_won"),
-                                    Member_Lose = reader.ToDecimal("member_lose"),
-                                    OurPT_Won = reader.ToDecimal("ourpt_won"),
-                                    OurPT_Lose = reader.ToDecimal("ourpt_lose")
-                                });
-                            }
+                                Month = reader.ToString("month"),
+                                Username = reader.ToString("username"),
+                                Tickets_Won = reader.ToInt32("tickets_won"),
+                                Tickets_Lose = reader.ToInt32("tickets_lose"),
+                                Stake_Won = reader.ToDecimal("stake_won"),
+                                Stake_Lose = reader.ToDecimal("stake_lose"),
+                                Member_Won = reader.ToDecimal("member_won"),
+                                Member_Lose = reader.ToDecimal("member_lose"),
+                                OurPT_Won = reader.ToDecimal("ourpt_won"),
+                                OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                            });
                         }
                     }
                 }

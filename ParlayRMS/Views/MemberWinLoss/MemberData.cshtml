@@ -1,0 +1,204 @@
+﻿@model ParlayRMS.Models.MemberWinLoss.MemberWinLossData
+@{
+    var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
+}
+<div style="width: 1101px" class="maintitle">
+    <div class="information">
+        @ViewBag.Title
+    </div>
+    <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
+    </div>
+</div>
+<div style="width: 1101px">
+    <table class="main">
+        <colgroup>
+            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.Month
+                </th>
+                <th colspan="2">
+                    @ViewLang.Ticket
+                </th>
+                <th colspan="2">
+                    @ViewLang.StakeAfterPT
+                </th>
+                <th colspan="2">
+                    @ViewLang.WinLoss
+                </th>
+                <th colspan="3">
+                    @ViewLang.OurPT
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.Won
+                </th>
+                <th>
+                    @ViewLang.Lose
+                </th>
+                <th>
+                    @ViewLang.NetWinloss
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" style="max-height: 600px; width: 1120px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr>
+                    <td class="center">
+                        @record.Month
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(record.Tickets_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(record.Tickets_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Stake_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Stake_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(record.Member_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.Member_Lose)
+                    </td>
+                    <td class="numeric negative">
+                        @Formatter.FormatNumber2(record.OurPT_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(record.OurPT_Lose)
+                    </td>
+                    @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 1101px" class="mainfooter">
+    <table class="main" id="footer">
+        <colgroup>
+            <col width='100px' />
+            <col width='80px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tfoot>
+            @if (Model.Records.Any())
+            {
+                <tr>
+                    <td class="center">
+                        @ViewLang.Total
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(@Model.Total.Tickets_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(Model.Total.Tickets_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Stake_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Stake_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Member_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.Member_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_Won)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)                        
+                    </td>
+                    @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10" style="text-align: center; width: 1101px">
+                        @ViewLang.NoInformation
+                    </td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>
+<script type="text/javascript">
+    var data = {
+        FromDate: '@filterOption.FromDate',
+        ToDate: '@filterOption.ToDate',
+        BetType: '@filterOption.BetType',
+        SportsType: '@filterOption.SportsType',
+        Combos: '@filterOption.Combos',
+        Username: '@filterOption.Username',
+        IsCached: true
+    }
+    $(document).ready(function () {
+        $("#exportMemberWinLoss").on("click", function () {
+            MemberWinLoss.ExportExcel(data);
+        });
+    });
+</script>
