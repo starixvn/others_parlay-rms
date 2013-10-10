@@ -1,15 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_Monitor_Parlay_Betlist.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_Monitor_Parlay_Betlist.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.MixParlayMonitor
 {
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Monitor Parlay Bet List model.
     /// </summary>
     public class RMS_Monitor_Parlay_Betlist
     {

@@ -1,20 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MonitoringSelectedInfo.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="MonitoringDetailModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.Monitoring
 {
     using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Linq;
-    using System.Text;
-    using ParlayRMS.ViewModel.Shared;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Monitoring Detail Model.
     /// </summary>
     public class MonitoringDetailModel
     {

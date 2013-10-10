@@ -21,15 +21,15 @@ namespace ParlayRMS.Services.Interface.MemberWinLoss
         /// <summary>
         /// Get Member Win Loss data.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="betType">Bet type ID.</param>
         /// <param name="sportsType">Sport type ID.</param>
         /// <param name="combos">Combos value.</param>
-        /// <param name="username">Username.</param>
+        /// <param name="username">Username value.</param>
         /// <param name="isCached">Whether the data is cached or not.</param>
         /// <param name="roleId">Role ID of user.</param>
-        /// <returns></returns>
+        /// <returns>Member win loss data.</returns>
         MemberWinLossData GetMemberWinLoss(
                               DateTime fromDate, 
                               DateTime toDate, 

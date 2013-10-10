@@ -1,15 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_UserInfoSel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_UserInfoSel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.Users
 {
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// User Information.
     /// </summary>
     public class RMS_UserInfoSel
     {

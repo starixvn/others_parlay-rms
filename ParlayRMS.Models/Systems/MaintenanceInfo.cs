@@ -1,8 +1,19 @@
-﻿namespace ParlayRMS.Models.Systems
+﻿// --------------------------------------------------------------------------
+// <copyright file="MaintenanceInfo.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Models.Systems
 {
     using System;
     using System.Globalization;
 
+    /// <summary>
+    /// Maintenance Information.
+    /// </summary>
     public class MaintenanceInfo
     {
         public MaintenanceInfo()
@@ -12,19 +23,10 @@
             TimeTo = DateTime.Now.ToString(CultureInfo.InvariantCulture);
         }
 
-        /// <summary>
-        /// Checking server is under downtime
-        /// </summary>
         public bool IsDownTime { get; set; }
 
-        /// <summary>
-        /// Get from time
-        /// </summary>
         public string TimeFrom { get; set; }
 
-        /// <summary>
-        /// Get to time
-        /// </summary>
         public string TimeTo { get; set; }
     }
 }

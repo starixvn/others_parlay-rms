@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CommonDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="CommonDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Implement.Common
 {
@@ -13,12 +15,16 @@ namespace ParlayRMS.DataAccess.Implement.Common
     using ParlayRMS.Utility.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Common Data Access.
     /// </summary>
     public class CommonDataAccess : BaseDataAccess, ICommonDataAccess
     {
         #region Balance Up Day
 
+        /// <summary>
+        /// Gets balance up day.
+        /// </summary>
+        /// <returns>Balance up day.</returns>
         public RMS_SelBalanceUpDay RMS_SelBalanceUpDay()
         {
             try

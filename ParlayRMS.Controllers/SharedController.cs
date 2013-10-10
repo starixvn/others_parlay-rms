@@ -18,29 +18,29 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.Shared;
 
     /// <summary>
-    /// Shared controller object
+    /// Shared controller object.
     /// </summary>
     public class SharedController : BaseController
     {
-        private readonly IMenusService menuService = new MenusService();
+        private readonly IMenusService _menuService = new MenusService();
 
         /// <summary>
-        /// Gets authentication information menu
+        /// Gets authentication information menu.
         /// </summary>
-        /// <returns>ActionResult object</returns>
+        /// <returns>ActionResult object.</returns>
         public ActionResult _AuthInfo()
         {
             return this.PartialView();
         }
 
         /// <summary>
-        /// Gets menu form view
+        /// Gets menu form view.
         /// </summary>
-        /// <returns>ActionResult object</returns>
+        /// <returns>ActionResult object.</returns>
         public ActionResult _Menu()
         {
             // load menus
-            var menuList = this.menuService.GetMenusByUserId(CurrentSession.UserId);
+            var menuList = this._menuService.GetMenusByUserId(CurrentSession.UserId);
             var rootMenuList = menuList.Where(x => x.Parent == null);
             var menuDict = new Dictionary<string, MenuItem>();
 
@@ -72,11 +72,11 @@ namespace ParlayRMS.Controllers
         }
 
         /// <summary>
-        /// Gets message box view
+        /// Gets message box view.
         /// </summary>
-        /// <param name="title">Title of message box</param>
-        /// <param name="content">Content of message box</param>
-        /// <returns>ActionResult object</returns>
+        /// <param name="title">Title of message box.</param>
+        /// <param name="content">Content of message box.</param>
+        /// <returns>ActionResult object.</returns>
         public ActionResult MessageBox(string title, string content)
         {
             ViewBag.Title = title;
@@ -86,18 +86,19 @@ namespace ParlayRMS.Controllers
         }
 
         /// <summary>
-        /// Gets search bar
+        /// Gets search bar.
         /// </summary>
-        /// <returns>ActionResult object</returns>
+        /// <returns>ActionResult object.</returns>
         public virtual ActionResult _SearchBar()
         {
             return this.PartialView();
         }
 
         /// <summary>
-        ///
+        /// Generates pager part.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="model">Pager model for paging purpose.</param>
+        /// <returns>Partial view.</returns>
         public ActionResult _Pager(Pager model)
         {
             return this.PartialView(model);

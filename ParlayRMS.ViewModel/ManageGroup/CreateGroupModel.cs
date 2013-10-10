@@ -1,8 +1,19 @@
-﻿namespace ParlayRMS.ViewModel.ManageGroup
+﻿// --------------------------------------------------------------------------
+// <copyright file="CreateGroupModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.ViewModel.ManageGroup
 {
     using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Utility;
 
+    /// <summary>
+    /// Create Group Model.
+    /// </summary>
     public class CreateGroupModel
     {
         [Required]

@@ -1,13 +1,21 @@
-﻿namespace ParlayRMS.Utility
-{
-    using System.Configuration;
-    using System;
+﻿// --------------------------------------------------------------------------
+// <copyright file="AppSetting.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
+namespace ParlayRMS.Utility
+{
+    using System;
+    using System.Configuration;
+
+    /// <summary>
+    /// Gets configuration values.
+    /// </summary>
     public static class AppSetting
     {
-        /// <summary>
-        ///
-        /// </summary>
         public static bool IsDebug
         {
             get
@@ -16,9 +24,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static bool IsReCheckIn
         {
             get
@@ -27,22 +32,15 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string[] HiddenGroups
         {
             get
             {
                 var value = GetValue("HiddenGroups");
                 return value.Split(';');
-                //return ;
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static bool IsCache
         {
             get
@@ -51,9 +49,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string LBUrl
         {
             get
@@ -62,9 +57,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static bool IsUM
         {
             get
@@ -73,9 +65,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string TimeFrom
         {
             get
@@ -84,9 +73,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string TimeTo
         {
             get
@@ -95,9 +81,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static int PageSize
         {
             get
@@ -106,9 +89,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string LimitDataFromDate
         {
             get
@@ -117,9 +97,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public static string MemberWinLossLimitDate
         {
             get
@@ -137,10 +114,10 @@
         }
 
         /// <summary>
-        ///
+        /// Gets configuration value of the given key.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">Configuration key.</param>
+        /// <returns>The value associated with the key.</returns>
         private static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key];

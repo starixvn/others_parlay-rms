@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TopWinnersDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TopWinnersDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
@@ -11,16 +13,34 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.TopWinners;
+    using ParlayRMS.DTO.BetList;
     using ParlayRMS.DTO.TopWinners;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO.BetList;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Top Winners Data Access.
     /// </summary>
     public class TopWinnersDataAccess : BaseDataAccess, ITopWinnersDataAccess
     {
-        public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(DateTime fromDate, DateTime toDate, DateTime moveBetsDay, DateTime balanceUpDay, int sportsType, int selectTop, string combos)
+        /// <summary>
+        /// Gets top winners.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="moveBetsDay">The move bets day.</param>
+        /// <param name="balanceUpDay">Balance Up Day.</param>
+        /// <param name="sportsType">Sport type ID.</param>
+        /// <param name="selectTop">Number of top winners will be selected.</param>
+        /// <param name="combos">Combo values.</param>
+        /// <returns>List of top winners.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(
+                                                         DateTime fromDate, 
+                                                         DateTime toDate, 
+                                                         DateTime moveBetsDay, 
+                                                         DateTime balanceUpDay, 
+                                                         int sportsType, 
+                                                         int selectTop, 
+                                                         string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 
@@ -70,7 +90,23 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details(long custId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, int sportsType, string combos)
+        /// <summary>
+        /// Gets a top winner details.
+        /// </summary>
+        /// <param name="custId">Customer ID.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="moveBetsDay">The move bets day.</param>
+        /// <param name="sportsType">Sport type ID.</param>
+        /// <param name="combos">Combo values.</param>
+        /// <returns>Top winner details.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details(
+                                                                long custId, 
+                                                                DateTime fromDate, 
+                                                                DateTime toDate, 
+                                                                DateTime moveBetsDay, 
+                                                                int sportsType, 
+                                                                string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 
@@ -118,6 +154,11 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
+        /// <summary>
+        /// Gets a top winner bet details.
+        /// </summary>
+        /// <param name="refNo">Reference number.</param>
+        /// <returns>Top winner bet details.</returns>
         public IEnumerable<RMS_Parlay_TransDetails> RMS_Rpt_Parlay_TopWinners_Bet_Details(long refNo)
         {
             var result = new List<RMS_Parlay_TransDetails>();
@@ -166,7 +207,21 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details_old(long custId, DateTime fromDate, DateTime toDate, int sportsType, string combos)
+        /// <summary>
+        /// Gets a top winner bet details.
+        /// </summary>
+        /// <param name="custId">Customer ID.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
+        /// <param name="sportsType">Sport type ID.</param>
+        /// <param name="combos">Combo values.</param>
+        /// <returns>Top winner bet details.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details_old(
+                                                                long custId, 
+                                                                DateTime fromDate, 
+                                                                DateTime toDate, 
+                                                                int sportsType, 
+                                                                string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 

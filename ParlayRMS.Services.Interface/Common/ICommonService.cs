@@ -1,27 +1,21 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ICommonService.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ICommonService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Services.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Common;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ICommonService
     {
         /// <summary>
-        /// Gets the balance up day info.
+        /// Gets balance up day information.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Balance up day information.</returns>
         RMS_SelBalanceUpDay GetBalanceUpDayInfo();
     }
 }

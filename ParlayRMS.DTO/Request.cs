@@ -1,5 +1,16 @@
-﻿namespace ParlayRMS.DTO
+﻿// --------------------------------------------------------------------------
+// <copyright file="Request.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DTO
 {
+    /// <summary>
+    /// Request model.
+    /// </summary>
     public class Request
     {
         public string Ip { get; set; }

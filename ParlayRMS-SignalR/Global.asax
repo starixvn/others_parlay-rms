@@ -1,1 +1,0 @@
-﻿<%@ Application CodeBehind="Global.asax.cs" Inherits="ParlayRMS.MvcApplication" Language="C#" %>

@@ -1,9 +1,20 @@
-﻿namespace ParlayRMS.Models.Users
+﻿// --------------------------------------------------------------------------
+// <copyright file="User.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Models.Users
 {
     using System;
     using ParlayRMS.DTO;
     using ParlayRMS.Models.Groups;
 
+    /// <summary>
+    /// User Model.
+    /// </summary>
     public class User : BaseEntityModel
     {
         public string PassWord { get; set; }

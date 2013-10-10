@@ -1,21 +1,32 @@
-﻿namespace ParlayRMS.DataAccess.Implement.Functions
+﻿// --------------------------------------------------------------------------
+// <copyright file="FunctionsDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.Functions
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using ParlayRMS.Common.Models;
     using ParlayRMS.DataAccess.Interface.Functions;
+    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Functions;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO;
 
+    /// <summary>
+    /// Function Data Access.
+    /// </summary>
     public class FunctionsDataAccess : BaseDataAccess, IFunctionsDataAccess
     {
         /// <summary>
-        ///
+        /// Gets list of functions.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of functions.</returns>
         public IEnumerable<RMS_FunctionSel> RMS_FunctionSel()
         {
             var result = new List<RMS_FunctionSel>();
@@ -49,18 +60,28 @@
         }
 
         /// <summary>
-        ///
+        /// Inserts a new function.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="key"></param>
-        /// <param name="description"></param>
-        /// <param name="parentId"></param>
-        /// <param name="parentName"></param>
-        /// <param name="displayOrder"></param>
-        /// <param name="creator"></param>
-        /// <param name="functionId"></param>
-        /// <returns></returns>
-        public Result RMS_FunctionIns(string name, string key, string description, int parentId, string parentName, int displayOrder, int adminId, string ip, out int functionId)
+        /// <param name="name">Function name.</param>
+        /// <param name="key">Function key.</param>
+        /// <param name="description">Function description.</param>
+        /// <param name="parentId">Parent function ID.</param>
+        /// <param name="parentName">Parent function name.</param>
+        /// <param name="displayOrder">Display order.</param>
+        /// <param name="adminId">User who creates function.</param>
+        /// <param name="ip">IP of machine which creates function.</param>
+        /// <param name="functionId">Function ID.</param>
+        /// <returns>Whether or not function is created successfully.</returns>
+        public Result RMS_FunctionIns(
+                         string name, 
+                         string key, 
+                         string description, 
+                         int parentId, 
+                         string parentName, 
+                         int displayOrder, 
+                         int adminId, 
+                         string ip, 
+                         out int functionId)
         {
             functionId = 0;
             var result = Result.Empty;
@@ -101,17 +122,26 @@
         }
 
         /// <summary>
-        ///
+        /// Updates a function information.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="parentId"></param>
-        /// <param name="parentName"></param>
-        /// <param name="displayOrder"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
-        public Result RMS_FunctionUpd(int id, string name, string description, int parentId, string parentName, int displayOrder, int adminId, string ip)
+        /// <param name="id">Function ID.</param>
+        /// <param name="name">Function name.</param>
+        /// <param name="description">Function description.</param>
+        /// <param name="parentId">Parent function ID.</param>
+        /// <param name="parentName">Parent function name.</param>
+        /// <param name="displayOrder">Display order.</param>
+        /// <param name="adminId">User who updates function.</param>
+        /// <param name="ip">IP of machine which updates function.</param>
+        /// <returns>Whether or not function is updated successfully.</returns>
+        public Result RMS_FunctionUpd(
+                          int id, 
+                          string name, 
+                          string description, 
+                          int parentId, 
+                          string parentName, 
+                          int displayOrder, 
+                          int adminId, 
+                          string ip)
         {
             try
             {

@@ -1,10 +1,19 @@
-﻿namespace ParlayRMS.ViewModel.ManageMenu
+﻿// --------------------------------------------------------------------------
+// <copyright file="CreateMenuModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.ViewModel.ManageMenu
 {
-    using System;
-    using System.Text;
     using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Utility;
 
+    /// <summary>
+    /// Create Menu Model.
+    /// </summary>
     public class CreateMenuModel
     {
         [Required, StringLength(50)]

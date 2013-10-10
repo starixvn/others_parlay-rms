@@ -1,18 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EditUserPolicyModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="EditUserPolicyModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.ManageUser
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Edit User Policy Model.
     /// </summary>
     public class EditUserPolicyModel
     {

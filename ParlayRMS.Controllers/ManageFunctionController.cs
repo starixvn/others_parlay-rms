@@ -1,41 +1,58 @@
-﻿namespace ParlayRMS.Controllers
+﻿// --------------------------------------------------------------------------
+// <copyright file="ManageFunctionController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Functions;
+    using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Services.Interface.Functions;
+    using ParlayRMS.Services.Interface.Users;
+    using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageFunction;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
 
+    /// <summary>
+    /// Function Management Controller.
+    /// </summary>
     public class ManageFunctionController : BaseController
     {
-        private readonly IFunctionsService functionService = new FunctionsService();
-        private readonly IUsersService userService = new UsersService();
+        private readonly IFunctionsService _functionService = new FunctionsService();
+        private readonly IUsersService _userService = new UsersService();
 
         public ManageFunctionController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageFunction);
+            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageFunction);
         }
 
-        // GET: ~/ManangeFunction
+        /// <summary>
+        /// Redirects to the Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
-            var model = this.functionService.GetAllFunctionsInOrder();
+            var model = this._functionService.GetAllFunctionsInOrder();
             return this.View(model);
         }
 
-        // GET: ~/ManangeFunction/CreateFunction
+        /// <summary>
+        /// GET method: redirects to the Create Function view.
+        /// </summary>
+        /// <returns>Create Function view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
         public ActionResult CreateFunction()
         {
-            var allFunctions = this.functionService.GetAllFunctions();
+            var allFunctions = this._functionService.GetAllFunctions();
             var parentFunctions = allFunctions.Where(x => x.Parent == null);
 
             var functionSelectList = parentFunctions.Select(x => new SelectListItem
@@ -50,9 +67,13 @@
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeFunction/CreateFunction
+        /// <summary>
+        /// POST method: creates new function.
+        /// </summary>
+        /// <param name="model">The model contains the function information.</param>
+        /// <returns>Whether the function is created successful or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
         public ActionResult CreateFunction(CreateFunctionModel model)
         {
             if (!ModelState.IsValid)
@@ -61,16 +82,29 @@
             }
 
             int functionId = 0;
-            var result = this.functionService.CreateFunction(model.Name, model.Key, model.Description, model.ParentId, model.ParentName, model.DisplayOrder, CurrentSession.UserId, CurrentContext.Ip4Address, out functionId);
+            var result = this._functionService.CreateFunction(
+                                                   model.Name, 
+                                                   model.Key, 
+                                                   model.Description, 
+                                                   model.ParentId, 
+                                                   model.ParentName, 
+                                                   model.DisplayOrder, 
+                                                   CurrentSession.UserId, 
+                                                   CurrentContext.Ip4Address, 
+                                                   out functionId);
             return this.Json(new { code = result.Code, message = result.Message, functionId = functionId });
         }
 
-        // GET: ~/ManangeFunction/EditFunction
+        /// <summary>
+        /// GET method: redirects to the Edit Function view.
+        /// </summary>
+        /// <param name="functionId">The function identifier.</param>
+        /// <returns>Edit Function view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
         public ActionResult EditFunction(int functionId)
         {
-            var allFunctions = this.functionService.GetAllFunctions();
+            var allFunctions = this._functionService.GetAllFunctions();
             var parentFunctions = allFunctions.Where(x => x.Parent == null && x.Id != functionId);
             var function = allFunctions.Where(x => x.Id == functionId).FirstOrDefault();
 
@@ -95,9 +129,13 @@
             return this.PartialView(model);
         }
 
-        // GET: ~/ManangeFunction/EditFunction
+        /// <summary>
+        /// POST method: edits the function.
+        /// </summary>
+        /// <param name="model">The model contains the function information.</param>
+        /// <returns>Whether the function is edit successful or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
         public ActionResult EditFunction(EditFunctionModel model)
         {
             if (!ModelState.IsValid)
@@ -105,7 +143,15 @@
                 return this.InvalidModelJson();
             }
 
-            var result = this.functionService.UpdateFunction(model.Id, model.Name, model.Description, model.ParentId, model.ParentName, model.DisplayOrder, CurrentSession.UserId, CurrentContext.Ip4Address);
+            var result = this._functionService.UpdateFunction(
+                                                   model.Id, 
+                                                   model.Name, 
+                                                   model.Description, 
+                                                   model.ParentId, 
+                                                   model.ParentName, 
+                                                   model.DisplayOrder, 
+                                                   CurrentSession.UserId, 
+                                                   CurrentContext.Ip4Address);
             return this.Json(result);
         }
     }

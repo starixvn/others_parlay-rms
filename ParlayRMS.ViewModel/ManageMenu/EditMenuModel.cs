@@ -1,8 +1,19 @@
-﻿namespace ParlayRMS.ViewModel.ManageMenu
+﻿// --------------------------------------------------------------------------
+// <copyright file="EditMenuModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.ViewModel.ManageMenu
 {
     using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Utility;
 
+    /// <summary>
+    /// Edit Menu Model.
+    /// </summary>
     public class EditMenuModel
     {
         [Required]

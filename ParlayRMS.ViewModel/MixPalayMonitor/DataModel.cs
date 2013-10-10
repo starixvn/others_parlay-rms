@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DataModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="DataModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.MixPalayMonitor
 {
@@ -10,7 +12,7 @@ namespace ParlayRMS.ViewModel.MixPalayMonitor
     using ParlayRMS.Web.Mvc.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Data Model.
     /// </summary>
     public class DataModel
     {

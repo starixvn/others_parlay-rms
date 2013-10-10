@@ -1,20 +1,20 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TopWinnersOptions.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TopWinnersOptions.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.Report
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using ParlayRMS.Common.Models;
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Top Winners Options Model.
     /// </summary>
     public class TopWinnersOptions
     {
@@ -28,6 +28,10 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Combos { get; set; }
 
+        /// <summary>
+        /// Gets the tile.
+        /// </summary>
+        /// <returns>Top winners report title.</returns>
         public string GetTile()
         {
             var combosTitle = ViewLang.All;
@@ -37,14 +41,15 @@ namespace ParlayRMS.ViewModel.Report
                 combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
             }
 
-            string title = string.Format("Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}]",
-                    this.SelectTop,
-                    this.FromDate.ToString("MMMM dd, yyyy"),
-                    this.ToDate.ToString("MMMM dd, yyyy"),
-                    ViewLang.Combo,
-                    combosTitle,
-                    ViewLang.SportsType,
-                    ModelsHelper.GetSportType(this.SportsType));
+            string title = string.Format(
+                                      "Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}]",
+                                      this.SelectTop,
+                                      this.FromDate.ToString("MMMM dd, yyyy"),
+                                      this.ToDate.ToString("MMMM dd, yyyy"),
+                                      ViewLang.Combo,
+                                      combosTitle,
+                                      ViewLang.SportsType,
+                                      ModelsHelper.GetSportType(this.SportsType));
             return title;
         }
     }

@@ -1,19 +1,18 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DataModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="DataModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.TotalOutstanding
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Data Model.
     /// </summary>
     public class DataModel
     {
@@ -23,7 +22,7 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
 
         public string SportsType { get; set; }
 
-        [AllowHtml()]
+        [AllowHtml]
         public string Username { get; set; }
 
         public int SearchBy { get; set; }

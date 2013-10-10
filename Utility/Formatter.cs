@@ -1,39 +1,55 @@
-﻿namespace ParlayRMS.Utility
+﻿// --------------------------------------------------------------------------
+// <copyright file="Formatter.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Utility
 {
     using System;
 
+    /// <summary>
+    /// Includes formatting number functions.
+    /// </summary>
     public static class Formatter
     {
         /// <summary>
-        /// 1100.11100 -> 1100.111
+        /// Formats number such as: 1100.11100 -> 1100.111.
         /// </summary>
-        /// <param name="obj">The obj.</param>
-        /// <returns></returns>
+        /// <param name="obj">The object that needs to be formatted.</param>
+        /// <returns>Formatted value.</returns>
         public static string FormatNumber1(object obj)
         {
             return string.Format("{0:G29}", obj);
         }
 
         /// <summary>
-        /// 1100.10 -> 1,100.1
+        /// Formats number such as: 1100.10 -> 1,100.1.
         /// </summary>
-        /// <param name="obj">The obj.</param>
-        /// <returns></returns>
+        /// <param name="obj">The object that needs to be formatted.</param>
+        /// <returns>Formatted value.</returns>
         public static string FormatNumber2(object obj)
         {
             return string.Format("{0:#,##0.00}", obj);
         }
 
         /// <summary>
-        /// 1111 -> 1,111
+        /// Formats number such as: 1111 -> 1,111.
         /// </summary>
-        /// <param name="obj">integer number</param>
-        /// <returns></returns>
+        /// <param name="obj">Integer number that needs to be formatted.</param>
+        /// <returns>Formatted value.</returns>
         public static string FormatNumber3(object obj)
         {
             return string.Format("{0:#,##0}", obj);
         }
 
+        /// <summary>
+        /// Formats date.
+        /// </summary>
+        /// <param name="date">The date value that needs to be formatted.</param>
+        /// <returns>Formatted value, such as: 10/10/2013.</returns>
         public static string FormatDate(DateTime date)
         {
             return date.ToString("MM/dd/yyyy");

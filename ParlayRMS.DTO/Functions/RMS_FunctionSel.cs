@@ -1,15 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_FunctionSel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_FunctionSel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.Functions
 {
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Function model.
     /// </summary>
     public class RMS_FunctionSel
     {

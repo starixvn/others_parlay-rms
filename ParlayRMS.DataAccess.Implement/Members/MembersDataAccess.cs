@@ -1,4 +1,12 @@
-﻿namespace ParlayRMS.DataAccess.Implement.Members
+﻿// --------------------------------------------------------------------------
+// <copyright file="MembersDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.Members
 {
     using System;
     using System.Collections;
@@ -12,14 +20,17 @@
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
 
+    /// <summary>
+    /// Member Data Access.
+    /// </summary>
     public class MembersDataAccess : BaseDataAccess, IMembersDataAccess
     {
         /// <summary>
-        ///
+        /// Gets customer by username and level.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="level"></param>
-        /// <returns></returns>
+        /// <param name="username">Username value.</param>
+        /// <param name="level">Level value.</param>
+        /// <returns>List of customers.</returns>
         public IEnumerable<RMS_CustomerSel> RMS_CustomerSel(string username, int? level)
         {
             var result = new List<RMS_CustomerSel>();
@@ -63,12 +74,13 @@
         }
 
         /// <summary>
-        ///
+        /// Inserts a new customer.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="level"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
+        /// <param name="userName">Username value.</param>
+        /// <param name="level">Level value.</param>
+        /// <param name="adminId">The ID of administrator who creates the customer.</param>
+        /// <param name="ip">IP of machine which creates the customer.</param>
+        /// <returns>Whether or not customer is created successfully.</returns>
         public Result RMS_CustomerIns(string userName, int level, int adminId, string ip)
         {
             try
@@ -93,12 +105,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates an existing customer.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="level"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
+        /// <param name="custId">Customer ID.</param>
+        /// <param name="level">Level value.</param>
+        /// <param name="adminId">The ID of administrator who updates the customer.</param>
+        /// <param name="ip">IP of machine which updates the customer.</param>
+        /// <returns>Whether or not customer is updated successfully.</returns>
         public Result RMS_CustomerUpd(int custId, int level, int adminId, string ip)
         {
             try
@@ -123,12 +136,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates a customer status.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="following"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
+        /// <param name="custId">Customer ID.</param>
+        /// <param name="following">Is monitored or not.</param>
+        /// <param name="adminId">The ID of administrator who updates the customer.</param>
+        /// <param name="ip">IP of machine which updates the customer.</param>
+        /// <returns>Whether or not customer is updated successfully.</returns>
         public Result RMS_CustomerUpdStatus(int custId, bool following, int adminId, string ip)
         {
             try
@@ -153,10 +167,10 @@
         }
 
         /// <summary>
-        ///
+        /// Checks a customer is existing or not.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <returns></returns>
+        /// <param name="custId">Customer ID.</param>
+        /// <returns>Whether or not customer is existing.</returns>
         public bool RMS_CustomerCheckExisting(int custId)
         {
             try

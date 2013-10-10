@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SearchBarModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="SearchBarModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.ManageMember
 {
@@ -11,10 +13,12 @@ namespace ParlayRMS.ViewModel.ManageMember
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Search Bar Model.
     /// </summary>
     public class SearchBarModel
     {
+        private int? _level;
+
         public SearchBarModel()
         {
             this.ClassName = "alllevel";
@@ -28,13 +32,14 @@ namespace ParlayRMS.ViewModel.ManageMember
         {
             get
             {
-                return this.level;
+                return this._level;
             }
+
             set
             {
-                if (this.level != value)
+                if (this._level != value)
                 {
-                    this.level = value;
+                    this._level = value;
                 }
 
                 var cl = "alllevel";
@@ -45,27 +50,25 @@ namespace ParlayRMS.ViewModel.ManageMember
 
                 this.ClassName = cl;
 
-                var lvName = ViewLang.AllLevel;
+                var levelName = ViewLang.AllLevel;
                 if (this.Level != null)
                 {
                     if (this.Level.Value == 0)
                     {
-                        lvName = ViewLang.None;
+                        levelName = ViewLang.None;
                     }
                     else
                     {
-                        lvName = "Level " + this.Level.Value;
+                        levelName = "Level " + this.Level.Value;
                     }
                 }
 
-                this.LevelName = lvName;
+                this.LevelName = levelName;
             }
         }
 
         public string ClassName { get; private set; }
 
         public string LevelName { get; private set; }
-
-        private int? level;
     }
 }

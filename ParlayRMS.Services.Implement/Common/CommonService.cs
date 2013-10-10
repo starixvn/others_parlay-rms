@@ -1,50 +1,46 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CommonService.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="CommonService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Services.Implement.Common
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.DTO;
-    using ParlayRMS.DataAccess.Interface;
     using Fanex.Caching;
-    using ParlayRMS.DataAccess.Implement;
-    using ParlayRMS.Utility;
-    using ParlayRMS.DTO.Common;
-    using ParlayRMS.DataAccess.Interface.Common;
     using ParlayRMS.DataAccess.Implement.Common;
+    using ParlayRMS.DataAccess.Interface.Common;
+    using ParlayRMS.DTO.Common;
+    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Common Services.
     /// </summary>
     public class CommonService : BaseService, ICommonService
     {
-        private readonly ICommonDataAccess commonDataAccess = new CommonDataAccess();
-        private static readonly ICache cacheService = CacheService.CreateInstance(CacheType.MemoryCache);
+        private static readonly ICache CacheServiceInstance = CacheService.CreateInstance(CacheType.MemoryCache);
+        private readonly ICommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         /// <summary>
-        /// RMS_SelBalanceUpDay
+        /// Gets balance up day information.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Balance up day information.</returns>
         public RMS_SelBalanceUpDay GetBalanceUpDayInfo()
         {
             if (!AppSetting.IsCache)
             {
-                return this.commonDataAccess.RMS_SelBalanceUpDay();
+                return this._commonDataAccess.RMS_SelBalanceUpDay();
             }
 
             string key = "BalanceUpDayInfo";
-            var result = cacheService.Get<RMS_SelBalanceUpDay>(key);
+            var result = CacheServiceInstance.Get<RMS_SelBalanceUpDay>(key);
             if (result == null)
             {
-                result = this.commonDataAccess.RMS_SelBalanceUpDay();
-                cacheService.Set<RMS_SelBalanceUpDay>(key, result, TimeSpan.FromMinutes(1));
+                result = this._commonDataAccess.RMS_SelBalanceUpDay();
+                CacheServiceInstance.Set<RMS_SelBalanceUpDay>(key, result, TimeSpan.FromMinutes(1));
             }
 
             return result;

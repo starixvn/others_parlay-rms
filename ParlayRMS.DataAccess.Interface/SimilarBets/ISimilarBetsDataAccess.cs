@@ -1,23 +1,22 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ISimilarBetsDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ISimilarBetsDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Interface.SimilarBets
 {
     using ParlayRMS.DTO.SimilarBets;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ISimilarBetsDataAccess
     {
         /// <summary>
-        /// RMs the s_ similar_ parlay_ betlist.
+        /// Gets similar bet list.
         /// </summary>
-        /// <param name="transId">The trans id.</param>
-        /// <returns></returns>
+        /// <param name="transId">Transaction ID.</param>
+        /// <returns>List of similar bets.</returns>
         RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId);
     }
 }

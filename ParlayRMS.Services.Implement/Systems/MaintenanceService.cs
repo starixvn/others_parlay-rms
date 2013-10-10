@@ -1,12 +1,26 @@
-﻿namespace ParlayRMS.Services.Implement.Systems
+﻿// --------------------------------------------------------------------------
+// <copyright file="MaintenanceService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Services.Implement.Systems
 {
-    using ParlayRMS.Models;
+    using ParlayRMS.Models.Systems;
     using ParlayRMS.Utility;
     using Sunplus.UMControllerLibrary;
-    using ParlayRMS.Models.Systems;
 
+    /// <summary>
+    /// Maintenance Service.
+    /// </summary>
     public class MaintenanceService : BaseService
     {
+        /// <summary>
+        /// Gets maintenance information.
+        /// </summary>
+        /// <returns>Maintenance information.</returns>
         public MaintenanceInfo GetMaintenanceInfo()
         {
             var maintenanceInfo = new MaintenanceInfo { IsDownTime = false };

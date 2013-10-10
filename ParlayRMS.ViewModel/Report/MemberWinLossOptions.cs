@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinLossOptions.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,11 +12,11 @@ namespace ParlayRMS.ViewModel.Report
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using System.Web.Mvc;
     using ParlayRMS.Common.Models;
     using ParlayRMS.Models;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Mvc.DataAnnotations;
-using System.Web.Mvc;
 
     /// <summary>
     /// ViewModel for Member Win Loss filter form.
@@ -47,9 +47,9 @@ using System.Web.Mvc;
         public string Username { get; set; }
 
         /// <summary>
-        /// Get minimun date that support querying data.
+        /// Get minimum date that support querying data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Minimum date that the system supports to query data.</returns>
         public static DateTime GetLimitDate()
         {
             string memberWinLossLimitDate = AppSetting.MemberWinLossLimitDate;
@@ -61,7 +61,7 @@ using System.Web.Mvc;
         /// <summary>
         /// Get report title.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The agent/member win loss report.</returns>
         public string GetTitle()
         {
             var combosTitle = ViewLang.All;
@@ -71,17 +71,18 @@ using System.Web.Mvc;
                 combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
             }
 
-            var title = string.Format("{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}]",
-                            ViewLang.AgentMemberWinLoss,
-                            this.Username,
-                            this.FromDate.ToString("MMMM dd, yyyy"),
-                            this.ToDate.ToString("MMMM dd, yyyy"),
-                            ViewLang.Bettype,
-                            ModelsHelper.GetBetType((int)this.BetType),
-                            ViewLang.Combo,
-                            combosTitle,
-                            ViewLang.SportsType,
-                            ModelsHelper.GetSportType((int)this.SportsType));
+            var title = string.Format(
+                                "{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}]",
+                                ViewLang.AgentMemberWinLoss,
+                                this.Username,
+                                this.FromDate.ToString("MMMM dd, yyyy"),
+                                this.ToDate.ToString("MMMM dd, yyyy"),
+                                ViewLang.Bettype,
+                                ModelsHelper.GetBetType((int)this.BetType),
+                                ViewLang.Combo,
+                                combosTitle,
+                                ViewLang.SportsType,
+                                ModelsHelper.GetSportType((int)this.SportsType));
             return title;
         }
     }

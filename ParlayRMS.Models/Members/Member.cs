@@ -1,8 +1,19 @@
-﻿namespace ParlayRMS.Models.Members
+﻿// --------------------------------------------------------------------------
+// <copyright file="Member.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Models.Members
 {
     using System;
     using ParlayRMS.Models.Users;
 
+    /// <summary>
+    /// Member model.
+    /// </summary>
     public class Member
     {
         public int CustId { get; set; }

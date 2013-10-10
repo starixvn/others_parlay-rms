@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="AuthorizationAttribute.cs" />
-    <Compile Include="Policy.cs" />
+    <Compile Include="UserPolicy.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

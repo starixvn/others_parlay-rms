@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MixParlayDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="MixParlayMonitorDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
 {
@@ -15,21 +17,27 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
     using ParlayRMS.Utility.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Mix Parlay Monitor Data Access.
     /// </summary>
     public class MixParlayMonitorDataAccess : BaseDataAccess, IMixParlayMonitorDataAccess
     {
         /// <summary>
-        ///
+        /// Gets Monitor Parlay Bet List.
         /// </summary>
-        /// <param name="combos"></param>
-        /// <param name="sportsTypes"></param>
-        /// <param name="levels"></param>
-        /// <param name="maxPayout"></param>
-        /// <param name="maxTransId"></param>
-        /// <param name="selectTop"></param>
-        /// <returns></returns>
-        public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(string combos, string sportsTypes, string levels, decimal maxPayout, int selectTop, long maxTransId)
+        /// <param name="combos">Combo values.</param>
+        /// <param name="sportsTypes">Sport types.</param>
+        /// <param name="levels">Level values.</param>
+        /// <param name="maxPayout">Maximum payout value.</param>
+        /// <param name="selectTop">Number of top items.</param>
+        /// <param name="maxTransId">Maximum transaction ID.</param>
+        /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
+        public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
+                                                            string combos, 
+                                                            string sportsTypes, 
+                                                            string levels, 
+                                                            decimal maxPayout, 
+                                                            int selectTop, 
+                                                            long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 

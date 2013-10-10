@@ -1,20 +1,32 @@
-﻿namespace ParlayRMS.Utility
+﻿// --------------------------------------------------------------------------
+// <copyright file="Cryptography.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Utility
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Security.Cryptography;
     using System.Text;
     using Microsoft.VisualBasic;
 
+    /// <summary>
+    /// Encryption and decryption class.
+    /// </summary>
     public static class Cryptography
     {
         private const string CfsKey = "&％#@?,:*!~^.";
 
         /// <summary>
-        /// One-way encryption
+        /// One-way encryption.
         /// </summary>
-        /// <param name="codeStr"></param>
-        /// <returns></returns>
+        /// <param name="codeStr">Code string.</param>
+        /// <returns>Encrypted string.</returns>
         public static string CfsEnCode(string codeStr)
         {
             int num = 30;
@@ -50,6 +62,11 @@
             return str2;
         }
 
+        /// <summary>
+        /// Gets decrypted connection string.
+        /// </summary>
+        /// <param name="connStr">Connection string.</param>
+        /// <returns>Decrypted connection string.</returns>
         public static string GetDeCryptConnectionString(string connStr)
         {
             var decryptPwd = GetDecryptPwd(connStr, "=");
@@ -57,6 +74,11 @@
             return decryptPwd[0].Trim() + str + ";";
         }
 
+        /// <summary>
+        /// Decrypts a text.
+        /// </summary>
+        /// <param name="strText">String text.</param>
+        /// <returns>Decrypted text.</returns>
         public static string CfsDeCrypt(string strText)
         {
             try
@@ -77,6 +99,11 @@
             }
         }
 
+        /// <summary>
+        /// Encrypts a text.
+        /// </summary>
+        /// <param name="strText">String text.</param>
+        /// <returns>Decrypted text.</returns>
         public static string CfsEnCrypt(string strText)
         {
             try
@@ -97,6 +124,11 @@
             }
         }
 
+        /// <summary>
+        /// Removes special characters.
+        /// </summary>
+        /// <param name="str">The string that needs to take the special characters out.</param>
+        /// <returns>Result string.</returns>
         public static string RemoveSpecialChars(string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -108,19 +140,25 @@
         }
 
         /// <summary>
-        /// Generate a random string
+        /// Generates a random string.
         /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
+        /// <param name="length">The length of expected string.</param>
+        /// <returns>Randomized string.</returns>
         public static string RandomString(int length)
         {
             return RandomString(length, false);
         }
 
-        public static string RandomString(int length, bool noZeroO)
+        /// <summary>
+        /// Gets a random string.
+        /// </summary>
+        /// <param name="length">The length of expected string.</param>
+        /// <param name="nonZeroO">No Zero character.</param>
+        /// <returns>Randomized string.</returns>
+        public static string RandomString(int length, bool nonZeroO)
         {
             string chars;
-            chars = noZeroO
+            chars = nonZeroO
                 ? "qwertyuipasdfghjklzxcvbnm123456789"
                 : "qwertyuiopasdfghjklzxcvbnm0123456789";
 
@@ -135,6 +173,11 @@
             return rndStr;
         }
 
+        /// <summary>
+        /// Gets Random number string.
+        /// </summary>
+        /// <param name="length">The length of the string.</param>
+        /// <returns>Randomized number.</returns>
         public static string RandomNumberString(int length)
         {
             string chars = "0123456789";
@@ -149,6 +192,11 @@
             return rndStr;
         }
 
+        /// <summary>
+        /// Gets CFS code.
+        /// </summary>
+        /// <param name="word">Word that need to convert to CFS code.</param>
+        /// <returns>Converted CFS code.</returns>
         private static string CfsCode(string word)
         {
             string number = string.Empty;
@@ -160,6 +208,13 @@
             return Conversion.Hex(number);
         }
 
+        /// <summary>
+        /// Gets decrypted password.
+        /// </summary>
+        /// <param name="sourceString">Source string.</param>
+        /// <param name="searchString">Search string.</param>
+        /// <returns>Decrypted string.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static string[] GetDecryptPwd(string sourceString, string searchString)
         {
             int length = 1;

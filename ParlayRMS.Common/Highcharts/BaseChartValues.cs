@@ -1,19 +1,23 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BaseChartValues.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="BaseChartValues.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Common.Highcharts
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using DotNet.Highcharts.Options;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Base Chart Values.
     /// </summary>
     public abstract class BaseChartValues
     {
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public BaseChartValues(string titleText, string subtitleText, string[] categories, string titleY)
         {
             this.Chart = new Chart()
@@ -147,6 +151,10 @@ namespace ParlayRMS.Common.Highcharts
             protected set;
         }
 
+        /// <summary>
+        /// Adds close button to the chart.
+        /// </summary>
+        /// <returns>Base Chart Values.</returns>
         public BaseChartValues AddCloseButton()
         {
             this.Chart.Events = new ChartEvents
@@ -158,6 +166,11 @@ namespace ParlayRMS.Common.Highcharts
             return this;
         }
 
+        /// <summary>
+        /// Registers click event handler for points of chart.
+        /// </summary>
+        /// <param name="clickFunction">The name of JavaScript function that handles the event.</param>
+        /// <returns>Base Chart Values.</returns>
         public BaseChartValues AddPointClickEvent(string clickFunction)
         {
             this.PlotOptions = this.PlotOptions ?? new PlotOptions();
@@ -173,6 +186,14 @@ namespace ParlayRMS.Common.Highcharts
             return this;
         }
 
+        /// <summary>
+        /// Registers Legend Click event handler.
+        /// </summary>
+        /// <param name="clickFunction">
+        /// The name of JavaScript function which takes responsibility for handling
+        /// Legend Click event.
+        /// </param>
+        /// <returns>Base Chart Value.</returns>
         public BaseChartValues LegendItemClick(string clickFunction)
         {
             this.PlotOptions = this.PlotOptions ?? new PlotOptions();
@@ -185,6 +206,11 @@ namespace ParlayRMS.Common.Highcharts
             return this;
         }
 
+        /// <summary>
+        /// Sets series of base chart.
+        /// </summary>
+        /// <param name="points">List of points.</param>
+        /// <returns>Bar Char Value.</returns>
         public BaseChartValues SetSeries(DotNet.Highcharts.Options.Point[] points)
         {
             this.Series = this.Series ?? new Series();

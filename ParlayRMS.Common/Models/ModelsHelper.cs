@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ModelsHelper.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ModelsHelper.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Common.Models
 {
@@ -12,7 +14,7 @@ namespace ParlayRMS.Common.Models
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Models Helper.
     /// </summary>
     public static class ModelsHelper
     {
@@ -45,12 +47,12 @@ namespace ParlayRMS.Common.Models
         }
 
         /// <summary>
-        /// Get Color Code By Level.
-        /// Levels: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
-        /// Colors: #ED1C24, #669999, #CCCC99, #333399, #006600, #CC6666, #FF9900, #CC6699, #7F7F7F, #653232
+        /// Gets Color Code By Level.
+        /// The level list: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+        /// The color list: #ED1C24, #669999, #CCCC99, #333399, #006600, #CC6666, #FF9900, #CC6699, #7F7F7F, #653232.
         /// </summary>
-        /// <param name="levelId"></param>
-        /// <returns></returns>
+        /// <param name="levelId">Level ID value.</param>
+        /// <returns>Level value.</returns>
         public static string GetClassByMemberLevel(int levelId)
         {
             foreach (var level in memberLevels)
@@ -64,16 +66,20 @@ namespace ParlayRMS.Common.Models
             return string.Empty;
         }
 
+        /// <summary>
+        /// Gets list of member levels.
+        /// </summary>
+        /// <returns>List of MemberLevel objects.</returns>
         public static List<MemberLevel> GetMemberLevels()
         {
             return memberLevels;
         }
 
         /// <summary>
-        /// Get sport type name from resource by id
+        /// Gets sport type name from resource by ID.
         /// </summary>
-        /// <param name="sportType">sportType</param>
-        /// <returns></returns>
+        /// <param name="sportType">Sport type ID.</param>
+        /// <returns>Sport type name.</returns>
         public static string GetSportType(int sportType)
         {
             switch (sportType)
@@ -95,10 +101,10 @@ namespace ParlayRMS.Common.Models
         }
 
         /// <summary>
-        /// Get bet type name from resource by id
+        /// Gets bet type name from resource by ID.
         /// </summary>
-        /// <param name="betType">betType</param>
-        /// <returns></returns>
+        /// <param name="betType">Bet type ID.</param>
+        /// <returns>Bet type name.</returns>
         public static string GetBetType(int betType)
         {
             switch (betType)

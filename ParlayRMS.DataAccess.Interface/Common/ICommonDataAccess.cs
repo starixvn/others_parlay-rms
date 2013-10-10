@@ -1,22 +1,21 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ICommonDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ICommonDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Interface.Common
 {
     using ParlayRMS.DTO.Common;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ICommonDataAccess
     {
         /// <summary>
-        /// Age_s the sel balance up day.
+        /// Gets balance up day.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Balance up day.</returns>
         RMS_SelBalanceUpDay RMS_SelBalanceUpDay();
     }
 }

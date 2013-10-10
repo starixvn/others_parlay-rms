@@ -1,8 +1,19 @@
-﻿using System;
-using ParlayRMS.Models.Users;
+﻿// --------------------------------------------------------------------------
+// <copyright file="Group.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Models.Groups
 {
+    using System;
+    using ParlayRMS.Models.Users;
+
+    /// <summary>
+    /// Group Model.
+    /// </summary>
     public class Group : BaseEntityModel
     {
         public string Description { get; set; }

@@ -1,23 +1,25 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MonitoringCacheModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="MonitoringCacheModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.Monitoring
 {
     using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Linq;
-    using System.Text;
-    using ParlayRMS.ViewModel.Shared;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Monitoring Cache Model.
     /// </summary>
     public class MonitoringCacheModel
     {
+        public MonitoringCacheModel()
+        {
+            this.WinlostDate = Config.WinlostDate;
+        }
+
         public int BetType { get; set; }
 
         public DateTime WinlostDate { get; set; }
@@ -28,35 +30,31 @@ namespace ParlayRMS.ViewModel.Monitoring
 
         public bool IsTicket { get; set; }
 
-        public bool IsValid()
-        {
-            if (Selection == 0)
-                return true;
-
-            return false;
-        }
-
         public int Currency { get; set; }
 
         public string TopCurrency { get; set; }
 
         public int LeagueId { get; set; }
 
-        public bool isSelectDetail { get; set; }
+        public bool IsSelectDetail { get; set; }
 
-        public bool isBettype { get; set; }
+        public bool IsBettype { get; set; }
 
-        public bool isChoice { get; set; }
+        public bool IsChoice { get; set; }
 
-        public bool isEvent { get; set; }
+        public bool IsEvent { get; set; }
 
-        public int matchId { get; set; }
+        public int MatchId { get; set; }
 
-        public int bettype2 { get; set; }
+        public int Bettype2 { get; set; }
 
-        public MonitoringCacheModel()
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>Whether this instance is valid.</returns>
+        public bool IsValid()
         {
-            this.WinlostDate = Config.WinlostDate;
+            return Selection == 0;
         }
     }
 }

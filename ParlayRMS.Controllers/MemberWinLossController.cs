@@ -11,6 +11,7 @@ namespace ParlayRMS.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -31,13 +32,13 @@ namespace ParlayRMS.Controllers
     /// </summary>
     public class MemberWinLossController : BaseController
     {
-        private readonly IMemberWinLossService memberWinLossService = new MemberWinLossService();
+        private readonly IMemberWinLossService _memberWinLossService = new MemberWinLossService();
 
         /// <summary>
         /// Redirect to Index view.
         /// </summary>
-        /// <returns></returns>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = ePolicy.Read)]
+        /// <returns>Index view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -50,9 +51,10 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Get data based on filtered conditions.
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = ePolicy.Read)]
+        /// <param name="options">Options contain filter conditions.</param>
+        /// <returns>Partial view represents member win loss report.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(MemberWinLossOptions options)
         {
@@ -66,7 +68,7 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
-                //Minimum date that support to query data
+                // Minimum date that support to query data
                 if (options.FromDate.Date < limitDate)
                 {
                     ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", limitDate.ToShortDateString()));
@@ -78,7 +80,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = this.memberWinLossService.GetMemberWinLoss(
+                    var model = this._memberWinLossService.GetMemberWinLoss(
                                                               options.FromDate, 
                                                               options.ToDate, 
                                                               options.BetType, 
@@ -113,13 +115,13 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Export Member Win Loss Report to Excel file.
         /// </summary>
-        /// <param name="options"></param>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = ePolicy.Read)]
+        /// <param name="options">Options contain filter conditions.</param>
+        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
         [HttpGet]
         public void Excel(MemberWinLossOptions options)
         {
             int roleId = 0;
-            var model = this.memberWinLossService.GetMemberWinLoss(
+            var model = this._memberWinLossService.GetMemberWinLoss(
                                                       options.FromDate,
                                                       options.ToDate,
                                                       options.BetType,
@@ -152,6 +154,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">Model contains the data of report.</param>
         /// <param name="title">The title of report.</param>
         /// <returns>Memory contains the Excel file.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportMemberWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\MemberWinLoss.xls";
@@ -237,6 +240,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">Model contains the data of report.</param>
         /// <param name="title">The title of report.</param>
         /// <returns>Memory contains the Excel file.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportAgentWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\AgentWinLoss.xls";

@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="WinlossService.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="WinlossService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Services.Implement.Winloss
 {
@@ -24,11 +26,11 @@ namespace ParlayRMS.Services.Implement.Winloss
     /// </summary>
     public class WinlossService : IWinlossService
     {
-        private readonly IWinlossDataAccess winlossDataAccess = new WinlossDataAccess();
-        private readonly ICommonService commonService = new CommonService();
+        private readonly IWinlossDataAccess _winlossDataAccess = new WinlossDataAccess();
+        private readonly ICommonService _commonService = new CommonService();
 
         /// <summary>
-        /// Get Win Loss data.
+        /// Gets win loss data.
         /// </summary>
         /// <param name="fromDate">From Date value.</param>
         /// <param name="toDate">To Date value.</param>
@@ -43,8 +45,8 @@ namespace ParlayRMS.Services.Implement.Winloss
                                SportsType sportsType, 
                                string combos)
         {
-            var info = commonService.GetBalanceUpDayInfo();
-            var data = this.winlossDataAccess.RMS_Rpt_Parlay_Winloss(
+            var info = _commonService.GetBalanceUpDayInfo();
+            var data = this._winlossDataAccess.RMS_Rpt_Parlay_Winloss(
                                 fromDate, 
                                 toDate, 
                                 info.MoveBetsDay, 
@@ -53,20 +55,18 @@ namespace ParlayRMS.Services.Implement.Winloss
                                 (int)sportsType,
                                 combos);
             
-
             Utils.Round(data);
             data.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
                 x.Combo = (x.Combo == "6") ? string.Format("{0} UP", x.Combo) : x.Combo;
             });
-            ////data.OrderBy(x => x.WinlostDate);
 
             return GroupData(data);
         }
 
         /// <summary>
-        /// Group raw data by Date
+        /// Groups raw data by date.
         /// </summary>
         /// <param name="data">Raw data that need to be grouped.</param>
         /// <returns>Group data.</returns>

@@ -1,49 +1,59 @@
-﻿namespace ParlayRMS.DataAccess.Implement
+﻿// --------------------------------------------------------------------------
+// <copyright file="BaseDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
-    using Fanex.Data.Configuration;
     using Fanex.Data.DNAide;
     using Fanex.Logging;
 
+    /// <summary>
+    /// Base Data Access.
+    /// </summary>
     public class BaseDataAccess
     {
-        private const int DEFAULT_TIME_OUT = 600;
+        private const int DefaultTimeOut = 600;
 
         /// <summary>
-        /// Base method
+        /// Base Executing SP method.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <param name="timeOut"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <param name="timeOut">Time out value.</param>
+        /// <returns>The result returned from executing SP.</returns>
         public DbResult ExecSp(string name, Hashtable parameters, int timeOut)
         {
-            //var setting = DbSettingProviderManager.Current.GetSetting(name);
-            //string storeName = setting.SpName;
+            ////var setting = DbSettingProviderManager.Current.GetSetting(name);
+            ////string storeName = setting.SpName;
             return DbHelper.ExecuteDbResult(name, parameters, timeOut);
         }
 
         /// <summary>
-        /// Execute Store procedure
+        /// Executes Store procedure.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The result returned from executing SP.</returns>
         public DbResult ExecSp(string name, Hashtable parameters)
         {
-            return this.ExecSp(name, parameters, DEFAULT_TIME_OUT);
+            return this.ExecSp(name, parameters, DefaultTimeOut);
         }
 
         /// <summary>
-        /// Return DataTable
+        /// Executes SP and return a DataTable.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The DataTable returned from executing SP.</returns>
         public DataTable ExecSpDataTable(string name, Hashtable parameters)
         {
             var result = this.ExecSp(name, parameters);
@@ -56,11 +66,11 @@
         }
 
         /// <summary>
-        /// Return DataSet
+        /// Executes SP and return a DataSet.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The DataSet returned from executing SP.</returns>
         public DataSet ExecSpDataSet(string name, Hashtable parameters)
         {
             var result = this.ExecSp(name, parameters);
@@ -68,11 +78,11 @@
         }
 
         /// <summary>
-        /// Return HashTable
+        /// Executes SP and return a HashTable.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The HashTable returned from executing SP.</returns>
         public Hashtable ExecSpHashtable(string name, Hashtable parameters)
         {
             var result = this.ExecSp(name, parameters);
@@ -85,66 +95,66 @@
         }
 
         /// <summary>
-        /// Return DataReader
+        /// Executes SP and return a DataReader.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <param name="timeOut"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <param name="timeOut">Time out value.</param>
+        /// <returns>The DataReader returned from executing SP.</returns>
         public IDataReader ExecSpDataReader(string name, Hashtable parameters, int timeOut)
         {
             return DbHelper.ExecuteReader(name, parameters, timeOut);
         }
 
         /// <summary>
-        /// Return DataReader
+        /// Executes SP and return a DataReader.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The DataReader returned from executing SP.</returns>
         public IDataReader ExecSpDataReader(string name, Hashtable parameters)
         {
-            return this.ExecSpDataReader(name, parameters, DEFAULT_TIME_OUT);
+            return this.ExecSpDataReader(name, parameters, DefaultTimeOut);
         }
 
         /// <summary>
-        /// Return list T
+        /// Executes SP and return a list T type objects.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Type of expected objects.</typeparam>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>List of objects returned from executing SP.</returns>
         public IEnumerable<T> Query<T>(string name, Hashtable parameters)
         {
             return DbHelper.Query<T>(name, parameters);
         }
 
         /// <summary>
-        /// Return DataReader
+        /// Executes SP and return a DataReader.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="timeOut"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <param name="timeOut">Time out value.</param>
+        /// <returns>The DataReader returned from executing SP.</returns>
         public IDataReader ExecSpDataReader(string name, int timeOut)
         {
             return DbHelper.ExecuteReader(name, timeOut);
         }
 
         /// <summary>
-        /// Return DataReader
+        /// Executes SP and return a DataReader.
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of the stored procedure.</param>
+        /// <returns>The DataReader returned from executing SP.</returns>
         public IDataReader ExecSpDataReader(string name)
         {
-            return this.ExecSpDataReader(name, DEFAULT_TIME_OUT);
+            return this.ExecSpDataReader(name, DefaultTimeOut);
         }
 
         /// <summary>
-        /// Write Log
+        /// Writes Log the occurred exception.
         /// </summary>
-        /// <param name="ex"></param>
-        /// <param name="category"></param>
+        /// <param name="ex">Occurred exception.</param>
+        /// <param name="category">Category of the exception.</param>
         protected void ProcessException(Exception ex, string category = "PARLAY_RMS")
         {
             LogService.Error(ex.Message, category, ex);

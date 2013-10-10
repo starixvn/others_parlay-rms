@@ -1,19 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ChangeLevelModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ChangeLevelModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.ManageMember
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Change Level Model.
     /// </summary>
     public class ChangeLevelModel
     {

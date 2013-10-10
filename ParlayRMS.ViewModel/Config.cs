@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Config.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="Config.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel
 {
@@ -14,7 +16,7 @@ namespace ParlayRMS.ViewModel
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Configuration class.
     /// </summary>
     public static class Config
     {

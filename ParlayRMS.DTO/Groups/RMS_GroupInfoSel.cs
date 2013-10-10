@@ -1,15 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_GroupInfoSel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_GroupInfoSel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.Groups
 {
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Group Information model.
     /// </summary>
     public class RMS_GroupInfoSel
     {

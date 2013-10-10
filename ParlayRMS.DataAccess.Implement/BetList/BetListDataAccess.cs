@@ -1,4 +1,12 @@
-﻿namespace ParlayRMS.DataAccess.Implement.BetList
+﻿// --------------------------------------------------------------------------
+// <copyright file="BetListDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.BetList
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +16,16 @@
     using ParlayRMS.DTO.BetList;
     using ParlayRMS.Utility.Data;
 
+    /// <summary>
+    /// Bet List Data Access.
+    /// </summary>
     public class BetListDataAccess : BaseDataAccess, IBetListDataAccess
     {
+        /// <summary>
+        /// Gets transaction details of a bet.
+        /// </summary>
+        /// <param name="refNo">Reference number.</param>
+        /// <returns>List of transactions.</returns>
         public IEnumerable<RMS_Parlay_TransDetails> RMS_Parlay_TransDetails(long refNo)
         {
             var result = new List<RMS_Parlay_TransDetails>();

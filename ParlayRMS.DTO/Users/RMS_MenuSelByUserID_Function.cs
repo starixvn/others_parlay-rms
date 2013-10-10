@@ -1,13 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_MenuSelByUserID_Function.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_MenuSelByUserID_Function.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.Users
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Function model.
     /// </summary>
     public class RMS_MenuSelByUserID_Function
     {

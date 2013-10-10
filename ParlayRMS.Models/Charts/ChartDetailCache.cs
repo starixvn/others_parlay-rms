@@ -1,20 +1,19 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MonitoringDetailCache.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ChartDetailCache.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Models.Charts
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Charts;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Chart Model.
     /// </summary>
     public class ChartDetailCache
     {
@@ -22,88 +21,88 @@ namespace ParlayRMS.Models.Charts
 
         public DateTime LastUpdateTime { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League> SelectionByTicket_League
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League> SelectionByTurnover_League
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency> SelectionbyTicket_Currency
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTurnover_Currency> SelectionbyTurnover_Currency
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event> SelectionbyTicketEventByCurrency
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event> SelectionbyTurnoverEventByCurrency
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League_Event> SelectionbyTicketEventByLeague
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League_Event> SelectionbyTurnoverEventByLeague
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice> SelectionByTicketEventBettypeChoice
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice> SelectionByTurnoverEventBettypeChoice
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype> SelectionByTicketEventBettype
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype> SelectionByTurnoverEventBettype
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event> SelectionByTicketEvent
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event> SelectionByTurnoverEvent
-        { get; set; }
+        { 
+            get; 
+            set; 
+        }
     }
 }

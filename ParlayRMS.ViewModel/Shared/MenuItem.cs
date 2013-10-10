@@ -1,9 +1,18 @@
-﻿namespace ParlayRMS.ViewModel.Shared
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿// --------------------------------------------------------------------------
+// <copyright file="MenuItem.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
+namespace ParlayRMS.ViewModel.Shared
+{
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Menu Item.
+    /// </summary>
     public class MenuItem
     {
         public string Name { get; set; }

@@ -1,21 +1,32 @@
-﻿namespace ParlayRMS.DataAccess.Implement.Groups
+﻿// --------------------------------------------------------------------------
+// <copyright file="GroupsDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.Groups
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using ParlayRMS.Common.Models;
     using ParlayRMS.DataAccess.Interface.Groups;
+    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Groups;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO;
 
+    /// <summary>
+    /// Group Data Access.
+    /// </summary>
     public class GroupsDataAccess : BaseDataAccess, IGroupsDataAccess
     {
         /// <summary>
-        ///
+        /// Gets all user groups.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of Group Information.</returns>
         public IEnumerable<RMS_GroupInfoSel> RMS_GroupInfoSel()
         {
             var result = new List<RMS_GroupInfoSel>();
@@ -47,10 +58,10 @@
         }
 
         /// <summary>
-        ///
+        /// Gets group by ID.
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Group associated with the ID.</returns>
         public RMS_GroupInfoSelByGroupID RMS_GroupInfoSelByGroupID(int groupId)
         {
             try
@@ -78,13 +89,14 @@
         }
 
         /// <summary>
-        ///
+        /// Creates new group.
         /// </summary>
-        /// <param name="groupName"></param>
-        /// <param name="description"></param>
-        /// <param name="creator"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="groupName">Group name.</param>
+        /// <param name="description">Group description.</param>
+        /// <param name="adminId">The ID of administrator who creates the group.</param>
+        /// <param name="ip">IP of machine which creates the group.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Whether or not group is created successfully.</returns>
         public Result RMS_GroupInfoIns(string groupName, string description, int adminId, string ip, out int groupId)
         {
             groupId = 0;
@@ -117,13 +129,14 @@
         }
 
         /// <summary>
-        ///
+        /// Updates an existing group.
         /// </summary>
-        /// <param name="groupName"></param>
-        /// <param name="description"></param>
-        /// <param name="creator"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="groupName">Group name.</param>
+        /// <param name="description">Group description.</param>
+        /// <param name="adminId">The ID of administrator who updates the group.</param>
+        /// <param name="ip">IP of machine which updates the group.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Whether or not group is updated successfully.</returns>
         public Result RMS_GroupInfoUpd(string groupName, string description, int adminId, string ip, int groupId)
         {
             try
@@ -149,9 +162,9 @@
         }
 
         /// <summary>
-        ///
+        /// Gets all user groups.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of Group Information.</returns>
         public IEnumerable<RMS_GroupInfoSelAllGroup> RMS_GroupInfoSelAllGroup()
         {
             var result = new List<RMS_GroupInfoSelAllGroup>();
@@ -179,10 +192,10 @@
         }
 
         /// <summary>
-        ///
+        /// Gets group policy.
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Policy of group of given ID.</returns>
         public IEnumerable<RMS_GroupPolicySel> RMS_GroupPolicySel(int groupId)
         {
             var result = new List<RMS_GroupPolicySel>();
@@ -217,12 +230,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates policy of a group.
         /// </summary>
-        /// <param name="groupPolicy"></param>
-        /// <param name="creator"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="groupPolicy">Group policy.</param>
+        /// <param name="adminId">The ID of administrator who updates the group.</param>
+        /// <param name="ip">IP of machine which updates the group.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Whether or not group policy is updated successfully.</returns>
         public Result RMS_GroupPolicyUpd(string groupPolicy, int adminId, string ip, int groupId)
         {
             try

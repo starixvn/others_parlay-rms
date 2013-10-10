@@ -1,23 +1,32 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SimilarBetsDataAccess.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="SimilarBetsDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DataAccess.Implement.SimilarBets
 {
     using System;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.SimilarBets;
     using ParlayRMS.DTO.SimilarBets;
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Similar Bets Data Access.
     /// </summary>
     public class SimilarBetsDataAccess : BaseDataAccess, ISimilarBetsDataAccess
     {
+        /// <summary>
+        /// Gets similar bet list.
+        /// </summary>
+        /// <param name="transId">Transaction ID.</param>
+        /// <returns>List of similar bets.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
         {
             try

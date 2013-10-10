@@ -1,64 +1,55 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TopSelectionController.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TopSelectionController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Builder.ChoiceBuilder;
-    using Fanex.BetList.Core.Factories;
-    using Fanex.BetList.Core.TicketHelper;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Monitoring;
-    using ParlayRMS.Web;
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Common.Highcharts;
     using DotNet.Highcharts;
-    using DotNet.Highcharts.Enums;
-    using RemotingRef;
-    using System;
-    using System.Drawing;
     using DotNet.Highcharts.Helpers;
-    using ParlayRMS.Common;
+    using ParlayRMS.Common.Highcharts;
     using ParlayRMS.Common.Models;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Charts;
     using ParlayRMS.Services.Interface.Charts;
-    using ParlayRMS.Models.Functions;
+    using ParlayRMS.Utility;
+    using ParlayRMS.ViewModel.Monitoring;
+    using ParlayRMS.Web.Authorization;
+    using RemotingRef;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Top Selection Controller.
     /// </summary>
     public class TopSelectionController : BaseController
     {
-        private readonly IChartsService monitorService = new ChartsService();
-        private readonly IChartsService monitorCacheService = new ChartsCacheService();
+        private readonly IChartsService _monitorService = new ChartsService();
+        private readonly IChartsService _monitorCacheService = new ChartsCacheService();
 
-        private IChartsService GetService()
-        {
-            if (AppSetting.IsCache)
-            {
-                return monitorCacheService;
-            }
-
-            return monitorService;
-        }
-
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
             ViewBag.IsCache = ChartsCacheService.IsCache.ToString().ToLower();
             return this.View();
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.Monitoring, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Summaries the data.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>Partial view represents summary data.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.Monitoring, Policy = UserPolicy.Read)]
         public ActionResult DataSum(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -71,7 +62,13 @@ namespace ParlayRMS.Controllers
             return this.PartialView("DataSum", dataSum);
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top selections by ticket.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top selections by ticket.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -101,7 +98,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top selections by turnover.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top selections by turnover.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -129,7 +132,12 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top leagues by selection and sport.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top leagues by selection and sport.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopLeagueByTicket(MonitoringDetailModel model)
         {
             // data
@@ -143,7 +151,12 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en", string.Empty)).ToArray();
 
-            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point { Id = x.Leagueid.ToString(), Y = x.NoTickets, Color = Color.FromName("colors[ " + (index + 1) + "]") }).ToArray();
+            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point 
+            { 
+                Id = x.Leagueid.ToString(), 
+                Y = x.NoTickets, 
+                Color = Color.FromName("colors[ " + (index + 1) + "]") 
+            }).ToArray();
 
             var chartValues = new ColumnChartValues(titleText, string.Empty, categories, titleY);
             chartValues.AddCloseButton();
@@ -156,7 +169,12 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top leagues by selection and turnover.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top leagues by selection and turnover.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopLeagueByTurnover(MonitoringDetailModel model)
         {
             var service = GetService();
@@ -186,7 +204,14 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top currencies by selection and sport type.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top currencies by selection and sport type.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTicket(MonitoringDetailModel model)
         {
             // data
@@ -235,13 +260,19 @@ namespace ParlayRMS.Controllers
             chartValues.Series.Data = new Data(listSeriesData);
             chartValues.Tooltip.Formatter = "function() { return '<b>'+ this.point.name +'</b>'+ '<br />' + '" + ViewLang.Tickets + ": ' + this.y.format2d(); }";
             chartValues.AddPointClickEvent("function(){ ProcessChartEventCurrencyByTicket(this.series.data[parseInt(this.x)].id, this.series.data[parseInt(this.x)].drilldown.name, '" + topCurrency + "'); }");
-            var highcharts = new Highcharts("TopSelectionByCurrency")
-                .InitValues(chartValues);
+            var highcharts = new Highcharts("TopSelectionByCurrency").InitValues(chartValues);
 
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Get top currencies by selection and turnover.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top currencies by selection and turnover.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTurnover(MonitoringDetailModel model)
         {
             // data
@@ -291,13 +322,18 @@ namespace ParlayRMS.Controllers
             chartValues.Series.Data = new Data(listSeriesData);
             chartValues.Tooltip.Formatter = "function() { return '<b>'+ this.point.name +'</b>'+ '<br />' + '" + ViewLang.Turnover + ": ' + this.y.format2d(); }";
             chartValues.AddPointClickEvent("function(){ ProcessChartEventCurrencyByTurnover(this.series.data[parseInt(this.x)].id, this.series.data[parseInt(this.x)].drilldown.name, '" + topCurrency + "'); }");
-            var highcharts = new Highcharts("TopSelectionByCurrency")
-                .InitValues(chartValues);
+            var highcharts = new Highcharts("TopSelectionByCurrency").InitValues(chartValues);
 
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top tickets and currency.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTicket(MonitoringEventModel model)
         {
             var service = GetService();
@@ -308,7 +344,13 @@ namespace ParlayRMS.Controllers
             string titleText = ViewLang.PopularEvents;
 
             string titleY = ViewLang.Tickets;
-            string[] categories = data.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = data.Select(x => Utils.TruncateString(
+                                                             string.Format(
+                                                                        "{0} <b>vs</b> {1}", 
+                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"),
+                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")), 
+                                                             55, 
+                                                             Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Tickets),
@@ -329,7 +371,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top tickets and league.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top events by top tickets and league.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTicket(MonitoringEventModel model)
         {
             var service = GetService();
@@ -340,7 +388,13 @@ namespace ParlayRMS.Controllers
             string titleText = ViewLang.PopularEvents;
 
             string titleY = ViewLang.Tickets;
-            string[] categories = data.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = data.Select(x => Utils.TruncateString(
+                                                         string.Format(
+                                                                    "{0} <b>vs</b> {1}", 
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
+                                                         55, 
+                                                         Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Tickets),
@@ -360,7 +414,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top turnovers and currency.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top events by top turnovers and currency.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTurnover(MonitoringEventModel model)
         {
             var service = GetService();
@@ -371,7 +431,13 @@ namespace ParlayRMS.Controllers
             string titleText = ViewLang.PopularEvents;
 
             string titleY = ViewLang.Turnover;
-            string[] categories = data.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = data.Select(x => Utils.TruncateString(
+                                                         string.Format(
+                                                                    "{0} <b>vs</b> {1}", 
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
+                                                         55, 
+                                                         Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Turnover),
@@ -390,7 +456,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top tickets and currency.
+        /// </summary>
+        /// <param name="model">Options that are used to query data.</param>
+        /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTurnover(MonitoringEventModel model)
         {
             var service = GetService();
@@ -401,7 +473,13 @@ namespace ParlayRMS.Controllers
             string titleText = ViewLang.PopularEvents;
 
             string titleY = ViewLang.Turnover;
-            string[] categories = data.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = data.Select(x => Utils.TruncateString(
+                                                             string.Format(
+                                                                        "{0} <b>vs</b> {1}", 
+                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"), 
+                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                             55, 
+                                                             Utils.TruncateOptions.IncludeEllipsis)).ToArray();
 
             decimal max = data.Max(a => a.Turnover);
 
@@ -428,6 +506,20 @@ namespace ParlayRMS.Controllers
                 .InitValues(chartValues);
 
             return this.Content(highcharts.ToHtmlString());
+        }
+
+        /// <summary>
+        /// Gets the service.
+        /// </summary>
+        /// <returns>Chart service instance.</returns>
+        private IChartsService GetService()
+        {
+            if (AppSetting.IsCache)
+            {
+                return _monitorCacheService;
+            }
+
+            return _monitorService;
         }
     }
 }

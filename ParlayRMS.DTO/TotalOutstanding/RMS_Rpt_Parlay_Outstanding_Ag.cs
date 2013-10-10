@@ -1,13 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_Outstanding_Ag.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_Rpt_Parlay_Outstanding_Ag.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.TotalOutstanding
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Parlay Outstanding model for Agent.
     /// </summary>
     public class RMS_Rpt_Parlay_Outstanding_Ag
     {

@@ -1,13 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_GroupPolicySel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_GroupPolicySel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.Groups
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Group Policy model.
     /// </summary>
     public class RMS_GroupPolicySel
     {

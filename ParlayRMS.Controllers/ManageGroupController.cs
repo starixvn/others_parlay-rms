@@ -1,38 +1,45 @@
-﻿namespace ParlayRMS.Controllers
+﻿// --------------------------------------------------------------------------
+// <copyright file="ManageGroupController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.Groups;
-    using ParlayRMS.Services.Implement;
     using ParlayRMS.Services.Implement.Groups;
-    using ParlayRMS.Services.Interface;
+    using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Utility;
+    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.ViewModel.ManageGroup;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Services.Implement.Users;
 
+    /// <summary>
+    /// Group Management Controller.
+    /// </summary>
     public class ManageGroupController : BaseController
     {
-        public const string HIDDEN_GROUPS_KEY = "HiddenGroups";
-        
-        private readonly IGroupsService groupService = new GroupsService();
-        private readonly IUsersService userService = new UsersService();
+        private readonly IGroupsService _groupService = new GroupsService();
+        private readonly IUsersService _userService = new UsersService();
 
         public ManageGroupController()
         {
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageGroup);
+            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageGroup);
         }
 
-        // GET: ~/ManangeGroup
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
-            var groupList = this.groupService.GetGroups();
+            var groupList = this._groupService.GetGroups();
             string[] hiddenGroupNameList = new string[0];
 
             if (!this.HideGroup(out hiddenGroupNameList))
@@ -43,18 +50,25 @@
             return this.View(groupList);
         }
 
-        // GET: ~/ManangeGroup/CreateGroup
+        /// <summary>
+        /// GET method: redirects to Create Group view.
+        /// </summary>
+        /// <returns>Create Group view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Create)]
         public ActionResult CreateGroup()
         {
             var model = new CreateGroupModel();
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeGroup/CreateGroup
+        /// <summary>
+        /// POST method: creates new group.
+        /// </summary>
+        /// <param name="model">The model contains the information of new group.</param>
+        /// <returns>Whether the new group is created successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Create)]
         public ActionResult CreateGroup(CreateGroupModel model)
         {
             if (!ModelState.IsValid)
@@ -63,16 +77,20 @@
             }
 
             int groupId = 0;
-            var result = this.groupService.CreateGroup(model.GroupName, model.Description, CurrentSession.UserId, CurrentContext.Ip4Address, out groupId);
+            var result = this._groupService.CreateGroup(model.GroupName, model.Description, CurrentSession.UserId, CurrentContext.Ip4Address, out groupId);
             return this.Json(new { code = result.Code, message = result.Message, groupid = groupId });
         }
 
-        // GET: ~/ManangeGroup/EditGroup
+        /// <summary>
+        /// GET method: redirects to Edit Group view.
+        /// </summary>
+        /// <param name="groupId">The ID of group that needs to be edit.</param>
+        /// <returns>Edit Group view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Update)]
         public ActionResult EditGroup(int groupId)
         {
-            var group = this.groupService.GetGroupById(groupId);
+            var group = this._groupService.GetGroupById(groupId);
             var model = new EditGroupModel
             {
                 GroupId = groupId,
@@ -83,9 +101,13 @@
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeGroup/EditGroup
+        /// <summary>
+        /// POST method: edits an existing group.
+        /// </summary>
+        /// <param name="model">The model contains the information of group.</param>
+        /// <returns>Whether the group is edit successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Update)]
         public ActionResult EditGroup(EditGroupModel model)
         {
             if (!ModelState.IsValid)
@@ -93,24 +115,32 @@
                 return this.InvalidModelJson();
             }
 
-            var result = this.groupService.EditGroup(model.GroupName, model.Description, CurrentSession.UserId, CurrentContext.Ip4Address, model.GroupId);
+            var result = this._groupService.EditGroup(model.GroupName, model.Description, CurrentSession.UserId, CurrentContext.Ip4Address, model.GroupId);
             return this.Json(new { code = result.Code, message = result.Message });
         }
 
-        // GET: ~/ManangeGroup/EditGroupPolicy
+        /// <summary>
+        /// GET method: redirect to Edit Group Policy view.
+        /// </summary>
+        /// <param name="model">The model contains the current information of the group.</param>
+        /// <returns>Edit Group Policy view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Create)]
         public ActionResult EditGroupPolicy(EditGroupPolicyModel model)
         {
-            var functionList = this.groupService.GetFunctionsByGroupId(model.GroupId);
+            var functionList = this._groupService.GetFunctionsByGroupId(model.GroupId);
             ViewBag.Functions = functionList.Where(x => x.Parent.Id == 0);
             ViewBag.SubFunctions = functionList.Where(x => x.Parent.Id != 0);
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeGroup/EditGroupPolicy
+        /// <summary>
+        /// POST method: edits an existing group's policy.
+        /// </summary>
+        /// <param name="model">The model contains the information of group.</param>
+        /// <returns>Whether the group's policy is edit successfully or not.</returns>
         [HttpPost, ActionName("EditGroupPolicy")]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageGroup, Policy = UserPolicy.Update)]
         public ActionResult EditGroupPolicyPost(EditGroupPolicyModel model)
         {
             if (!ModelState.IsValid)
@@ -118,7 +148,7 @@
                 return this.InvalidModelJson();
             }
 
-            var result = this.groupService.EditGroupPolicy(model.GroupPolicy, CurrentSession.UserId, CurrentContext.Ip4Address, model.GroupId);
+            var result = this._groupService.EditGroupPolicy(model.GroupPolicy, CurrentSession.UserId, CurrentContext.Ip4Address, model.GroupId);
             return this.Json(new { code = result.Code, message = result.Message });
         }
     }

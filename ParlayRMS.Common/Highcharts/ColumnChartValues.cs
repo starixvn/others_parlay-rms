@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ColumnChartValues.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ColumnChartValues.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Common.Highcharts
 {
@@ -10,7 +12,7 @@ namespace ParlayRMS.Common.Highcharts
     using DotNet.Highcharts.Options;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Column Chart Values.
     /// </summary>
     public class ColumnChartValues : BaseChartValues
     {

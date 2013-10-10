@@ -1,13 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MixParlay.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="MonitorController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.BetList.Core.Builder;
@@ -15,6 +18,7 @@ namespace ParlayRMS.Controllers
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using ParlayRMS.Models;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Services.Implement.MixParlayMonitor;
     using ParlayRMS.Services.Interface.BetList;
@@ -23,20 +27,24 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.MixPalayMonitor;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Models.Functions;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Monitor Controller.
     /// </summary>
     public class MonitorController : BaseController
     {
-        private readonly IBetListService betlistService = new BetListService();
-        private readonly IMixParlayMonitorService mixparlayMonitorService = new MixParlayMonitorService();
-        private readonly IMixParlayMonitorService mixparlayMonitorCacheService = new MixParlayMonitorCacheService();
+        private readonly IBetListService _betlistService = new BetListService();
+        private readonly IMixParlayMonitorService _mixparlayMonitorService = new MixParlayMonitorService();
+        private readonly IMixParlayMonitorService _mixparlayMonitorCacheService = new MixParlayMonitorCacheService();
 
         #region Mix Parlay
 
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Initialize filter form.
+        /// </summary>
+        /// <returns>Partial view which represents the filter form.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult MixParlayFilter()
         {
             // Combo
@@ -93,15 +101,25 @@ namespace ParlayRMS.Controllers
             return this.PartialView("MixParlay/Filter");
         }
 
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult MixParlay()
         {
             return this.View("MixParlay/Index");
         }
 
+        /// <summary>
+        /// Gets mix parlay data.
+        /// </summary>
+        /// <param name="model">The model contains filter conditions which are used to query data.</param>
+        /// <returns>JSON result contains queried data.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult MixParlayData(DataModel model)
         {
             if (!ModelState.IsValid)
@@ -165,15 +183,16 @@ namespace ParlayRMS.Controllers
                     levelsTitle = string.Join(",", levels.Select(x => x == "0" ? ViewLang.None : x));
                 }
 
-                title = string.Format("Mix Parlay Monitor - {0} [{1}] - {2} [{3}] - {4} [{5}] - {6} [{7}]",
-                    ViewLang.Combo,
-                    combosTitle,
-                    ViewLang.SportsType,
-                    sportsTypesTitle,
-                    ViewLang.Level,
-                    levelsTitle,
-                    ViewLang.SelectTop,
-                    model.SelectTop);
+                title = string.Format(
+                                   "Mix Parlay Monitor - {0} [{1}] - {2} [{3}] - {4} [{5}] - {6} [{7}]",
+                                   ViewLang.Combo,
+                                   combosTitle,
+                                   ViewLang.SportsType,
+                                   sportsTypesTitle,
+                                   ViewLang.Level,
+                                   levelsTitle,
+                                   ViewLang.SelectTop,
+                                   model.SelectTop);
 
                 if (model.MaxPayout > 0)
                 {
@@ -190,8 +209,14 @@ namespace ParlayRMS.Controllers
             });
         }
 
+        /// <summary>
+        /// Gets bet details.
+        /// </summary>
+        /// <param name="options">The options that are used to query data.</param>
+        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult MixParlayBetDetails(MixParlayBetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;
@@ -200,7 +225,7 @@ namespace ParlayRMS.Controllers
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = this.betlistService.CreateChoice(options.RefNo);
+            var tickets = this._betlistService.CreateChoice(options.RefNo);
             foreach (var ticket in tickets)
             {
                 if (tickets.Last() == ticket)
@@ -219,15 +244,19 @@ namespace ParlayRMS.Controllers
             return View("MixParlay/BetDetails", model);
         }
 
+        /// <summary>
+        /// Gets the mix parlay service.
+        /// </summary>
+        /// <returns>MixParlayMonitorService instance.</returns>
         private IMixParlayMonitorService GetMixParlayService()
         {
-            return mixparlayMonitorCacheService;
-            //if (AppSetting.IsCache)
-            //{
-            //    return mixparlayCacheService;
-            //}
+            return _mixparlayMonitorCacheService;
+            ////if (AppSetting.IsCache)
+            ////{
+            ////    return mixparlayCacheService;
+            ////}
 
-            //return mixparlayService;
+            ////return mixparlayService;
         }
 
         #endregion Mix Parlay

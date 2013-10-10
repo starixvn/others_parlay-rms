@@ -1,6 +1,15 @@
-﻿namespace ParlayRMS
+﻿// --------------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -9,13 +18,76 @@
     using System.Web.Security;
     using ParlayRMS.Web.Authorization;
 
+    /// <summary>
+    /// MVC Application.
+    /// </summary>
     public class MvcApplication : HttpApplication
     {
+        /// <summary>
+        /// Runs when the application is starting.
+        /// </summary>
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
+            RegisterBundles();
+
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+        }
+
+        /// <summary>
+        /// Handles authentication request event.
+        /// </summary>
+        /// <param name="sender">Object which causes the event.</param>
+        /// <param name="e">Event argument.</param>
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User != null)
+            {
+                if (HttpContext.Current.User.Identity is FormsIdentity
+                    && HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    var cookie = FormsAuthentication.FormsCookieName;
+                    var httpCookie = Context.Request.Cookies[cookie];
+
+                    if (httpCookie == null)
+                    {
+                        return;
+                    }
+
+                    var ticket = FormsAuthentication.Decrypt(httpCookie.Value);
+                    if (ticket == null || ticket.Expired)
+                    {
+                        return;
+                    }
+
+                    var identity = new FormsIdentity(ticket);
+                    if (string.IsNullOrEmpty(ticket.UserData))
+                    {
+                        return;
+                    }
+
+                    var udata = AuthInfo.CreateUserData(ticket.UserData);
+                    var principal = new Principal(identity, udata);
+                    Context.User = principal;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Registers the global filters.
+        /// </summary>
+        /// <param name="filters">The global filter collection.</param>
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }
 
+        /// <summary>
+        /// Registers the routes.
+        /// </summary>
+        /// <param name="routes">The route collection.</param>
         private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -31,6 +103,10 @@
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
 
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static void RegisterBundles()
         {
             var bundles = BundleTable.Bundles;
@@ -63,17 +139,13 @@
                 "~/Content/modalPopup.css",
                 "~/Content/Paging.css",
                 "~/Content/Site.css",
-                "~/Content/Validators.css"
-                ));
+                "~/Content/Validators.css"));
             bundles.Add(new StyleBundle("~/Content/Login/css").Include(
-                "~/Content/Login.css"
-                ));
+                "~/Content/Login.css"));
             bundles.Add(new StyleBundle("~/Content/Site/css").Include(
-                "~/Content/Site.css"
-                ));
+                "~/Content/Site.css"));
             bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
-                "~/Content/Validators.css"
-                ));
+                "~/Content/Validators.css"));
 
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
@@ -89,8 +161,7 @@
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
                 "~/Scripts/Libs/sortElements/jquery.sortElements.js",
-                "~/Scripts/Libs/soundManager/soundmanager2-nodebug.js"
-                ));
+                "~/Scripts/Libs/soundManager/soundmanager2-nodebug.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Core/js").Include(
                 "~/Scripts/Core.js",
                 "~/Scripts/Components.js",
@@ -98,13 +169,11 @@
                 "~/Scripts/Popup.js",
                 "~/Scripts/Menu.js",
                 "~/Scripts/Validators.js",
-                "~/Scripts/UpdateLevel.js"
-                ));
+                "~/Scripts/UpdateLevel.js"));
 
             // group all scripts written in namespace
             bundles.Add(new ScriptBundle("~/Scripts/TotalOutstanding/js").Include(
-                "~/Scripts/ParlayRMS.TotalOutstanding.js"
-                ));
+                "~/Scripts/ParlayRMS.TotalOutstanding.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Report/TopWinners/js").Include("~/Scripts/Report/TopWinners.js"));
 
@@ -135,42 +204,6 @@
 
             bundles.Add(new ScriptBundle("~/Scripts/UnderMaintenance/js").Include("~/Scripts/UnderMaintenance.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Login/js").Include("~/Scripts/Login.js"));
-        }
-
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
-            RegisterBundles();
-
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
-        }
-
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-            if (HttpContext.Current.User != null)
-            {
-                if (HttpContext.Current.User.Identity is FormsIdentity
-                    && HttpContext.Current.User.Identity.IsAuthenticated)
-                {
-                    var cookie = FormsAuthentication.FormsCookieName;
-                    var httpCookie = Context.Request.Cookies[cookie];
-
-                    if (httpCookie == null) return;
-
-                    var ticket = FormsAuthentication.Decrypt(httpCookie.Value);
-                    if (ticket == null || ticket.Expired) return;
-
-                    var identity = new FormsIdentity(ticket);
-                    if (string.IsNullOrEmpty(ticket.UserData))
-                        return;
-
-                    var udata = AuthInfo.CreateUserData(ticket.UserData);
-                    var principal = new Principal(identity, udata);
-                    Context.User = principal;
-                }
-            }
         }
     }
 }

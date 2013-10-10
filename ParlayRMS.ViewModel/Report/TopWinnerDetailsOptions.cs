@@ -1,18 +1,17 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TopWinnerDetailsOptions.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TopWinnerDetailsOptions.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.Report
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Top Winner Details Options.
     /// </summary>
     public class TopWinnerDetailsOptions
     {

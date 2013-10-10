@@ -48,7 +48,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         /// <param name="username">Username value.</param>
         /// <param name="isCached">Whether the data is cached or not.</param>
         /// <param name="roleId">Role ID of user.</param>
-        /// <returns></returns>
+        /// <returns>Member win loss data.</returns>
         public MemberWinLossData GetMemberWinLoss(
                                      DateTime fromDate,
                                      DateTime toDate,
@@ -59,7 +59,6 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                      bool isCached,
                                      out int roleId)
         {
-
             var user = _usersService.GetCustomerInfo(username);
             MemberWinLossData result = null;
             roleId = user.RoleId;
@@ -180,7 +179,6 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             List<RMS_Rpt_Parlay_MemberWinLoss> rawData = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
             
-
             rawData = this._memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
                                                        fromDate,
                                                        toDate,
@@ -207,7 +205,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         }
 
         /// <summary>
-        /// Group raw data of agent win loss report by month
+        /// Group raw data of agent win loss report by month.
         /// </summary>
         /// <param name="rawData">Raw data queried from DB.</param>
         /// <returns>Data for agent win loss report that are grouped by month.</returns>
@@ -260,8 +258,8 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         /// <summary>
         /// Format month string from '2013-01' to '01-2013'.
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+        /// <param name="date">The string represents that year-month got from DB.</param>
+        /// <returns>Month-year format string, such as 08-2013.</returns>
         private string ReFormatMonthStr(string date)
         {
             int separatorIndex = date.IndexOf('-');

@@ -1,14 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TotalOutstandingController.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TotalOutstandingController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
-    using ParlayRMS.DTO;
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.TotalOutstanding;
@@ -20,14 +22,19 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Web.Authorization;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Total Outstanding Controller.
     /// </summary>
     public class TotalOutstandingController : BaseController
     {
-        private readonly ITotalOutstandingService service = new TotalOutstandingService();
-        private readonly IUsersService userService = new UsersService();
+        private readonly ITotalOutstandingService _service = new TotalOutstandingService();
+        private readonly IUsersService _userService = new UsersService();
 
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <param name="model">The associated model of the view.</param>
+        /// <returns>Index view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
@@ -48,22 +55,43 @@ namespace ParlayRMS.Controllers
 
             // Sports Type
             var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString(), Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString()) });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString(), Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString()) });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString(), Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString()) });
+            sportsTypes.Add(new SelectListItem 
+            { 
+                Text = ViewLang.Socceronly, 
+                Value = ((int)SportsType.SoccerOnly).ToString(), 
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString()) 
+            });
+            sportsTypes.Add(new SelectListItem 
+            { 
+                Text = ViewLang.Othersports, 
+                Value = ((int)SportsType.OtherSports).ToString(), 
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString()) 
+            });
+            sportsTypes.Add(new SelectListItem 
+            { 
+                Text = ViewLang.Combinedsports, 
+                Value = ((int)SportsType.CombinedSports).ToString(), 
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString()) 
+            });
             ViewBag.SportsTypes = sportsTypes;
 
             // Select Top
             return this.View("Index", model);
         }
 
-        //[ValidateInput(false)]
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets data for total outstanding report.
+        /// </summary>
+        /// <param name="model">The model that contains the filter conditions.</param>
+        /// <returns>Partial view represents the queried data.</returns>
+        ////[ValidateInput(false)]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
             ViewBag.Username = model.Username;
-            var customerInfo = userService.GetCustomerInfo(model.Username);
+            var customerInfo = _userService.GetCustomerInfo(model.Username);
             if (customerInfo == null || customerInfo.CustId == 0)
             {
                 return this.PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
@@ -71,7 +99,7 @@ namespace ParlayRMS.Controllers
 
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
-                var data = service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -94,7 +122,7 @@ namespace ParlayRMS.Controllers
             }
             else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
-                var data = service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -120,7 +148,7 @@ namespace ParlayRMS.Controllers
             }
             else
             {
-                string roleName = "";
+                string roleName = string.Empty;
                 if (customerInfo.RoleId == (int)RoleId.Master)
                 {
                     roleName = "master";

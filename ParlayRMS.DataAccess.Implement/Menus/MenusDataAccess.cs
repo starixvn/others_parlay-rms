@@ -1,22 +1,32 @@
-﻿namespace ParlayRMS.DataAccess.Implement.Menus
+﻿// --------------------------------------------------------------------------
+// <copyright file="MenusDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.Menus
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Fanex.Caching;
     using ParlayRMS.Common.Models;
     using ParlayRMS.DataAccess.Interface.Menus;
+    using ParlayRMS.DTO;
     using ParlayRMS.DTO.Menus;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
-    using ParlayRMS.DTO;
 
+    /// <summary>
+    /// Menus Data Access.
+    /// </summary>
     public class MenusDataAccess : BaseDataAccess, IMenusDataAccess
     {
         /// <summary>
-        ///
+        /// Gets list of menus.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> List of menus.</returns>
         public IEnumerable<RMS_MenuSel> RMS_MenuSel()
         {
             var result = new List<RMS_MenuSel>();
@@ -53,20 +63,32 @@
         }
 
         /// <summary>
-        ///
+        /// Inserts a new menu.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="url"></param>
-        /// <param name="functionId"></param>
-        /// <param name="parentId"></param>
-        /// <param name="parentName"></param>
-        /// <param name="displayOrder"></param>
-        /// <param name="isActive"></param>
-        /// <param name="creator"></param>
-        /// <param name="menuId"></param>
-        /// <returns></returns>
-        public Result RMS_MenuIns(string name, string description, string url, int functionId, int parentId, string parentName, int displayOrder, bool isActive, int adminId, string ip, out int menuId)
+        /// <param name="name">Name of menu.</param>
+        /// <param name="description">Menu description.</param>
+        /// <param name="url">Associated URL of menu.</param>
+        /// <param name="functionId">Associated function ID.</param>
+        /// <param name="parentId">Parent menu ID.</param>
+        /// <param name="parentName">Parent menu name.</param>
+        /// <param name="displayOrder">Display order.</param>
+        /// <param name="isActive">Menu is activated or not.</param>
+        /// <param name="adminId">The ID of administrator who creates the menu.</param>
+        /// <param name="ip">IP of machine which creates the menu.</param>
+        /// <param name="menuId">Output menu ID value.</param>
+        /// <returns>Whether or not menu is created successfully.</returns>
+        public Result RMS_MenuIns(
+                          string name, 
+                          string description, 
+                          string url, 
+                          int functionId, 
+                          int parentId, 
+                          string parentName, 
+                          int displayOrder, 
+                          bool isActive, 
+                          int adminId, 
+                          string ip, 
+                          out int menuId)
         {
             menuId = 0;
             var result = Result.Empty;
@@ -101,19 +123,30 @@
         }
 
         /// <summary>
-        ///
+        /// Updates an existing menu.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="url"></param>
-        /// <param name="functionId"></param>
-        /// <param name="parentId"></param>
-        /// <param name="parentName"></param>
-        /// <param name="displayOrder"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
-        public Result RMS_MenuUpd(int id, string name, string description, string url, int functionId, int parentId, string parentName, int displayOrder, int adminId, string ip)
+        /// <param name="id">Menu ID value.</param>
+        /// <param name="name">Name of menu.</param>
+        /// <param name="description">Menu description.</param>
+        /// <param name="url">Associated URL of menu.</param>
+        /// <param name="functionId">Associated function ID.</param>
+        /// <param name="parentId">Parent menu ID.</param>
+        /// <param name="parentName">Parent menu name.</param>
+        /// <param name="displayOrder">Display order.</param>
+        /// <param name="adminId">The ID of administrator who updates the menu.</param>
+        /// <param name="ip">IP of machine which updates the menu.</param>
+        /// <returns>Whether or not menu is updated successfully.</returns>
+        public Result RMS_MenuUpd(
+                          int id, 
+                          string name, 
+                          string description, 
+                          string url, 
+                          int functionId, 
+                          int parentId, 
+                          string parentName, 
+                          int displayOrder, 
+                          int adminId, 
+                          string ip)
         {
             try
             {
@@ -141,12 +174,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates an existing menu status.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="isActive"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
+        /// <param name="id">Menu ID value.</param>
+        /// <param name="isActive">Menu is activated or not.</param>
+        /// <param name="adminId">The ID of administrator who updates the menu.</param>
+        /// <param name="ip">IP of machine which updates the menu.</param>
+        /// <returns>Whether or not menu is updated successfully.</returns>
         public Result RMS_MenuUpdStatus(int id, bool isActive, int adminId, string ip)
         {
             try

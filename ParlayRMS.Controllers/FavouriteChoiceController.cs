@@ -1,60 +1,55 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FavouriteChoiceController.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="FavouriteChoiceController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Builder.ChoiceBuilder;
-    using Fanex.BetList.Core.Factories;
-    using Fanex.BetList.Core.TicketHelper;
-    using ParlayRMS.Models;
-    using ParlayRMS.Services.Implement;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Monitoring;
-    using ParlayRMS.Web;
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Common.Highcharts;
     using DotNet.Highcharts;
     using DotNet.Highcharts.Enums;
-    using RemotingRef;
-    using System;
-    using System.Drawing;
+    using ParlayRMS.Common.Highcharts;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Charts;
     using ParlayRMS.Services.Interface.Charts;
-    using ParlayRMS.Models.Functions;
+    using ParlayRMS.Utility;
+    using ParlayRMS.ViewModel.Monitoring;
+    using ParlayRMS.Web.Authorization;
+    using RemotingRef;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Favorite Choice Controller.
     /// </summary>
     public class FavouriteChoiceController : BaseController
     {
-        private readonly IChartsService monitorService = new ChartsService();
-        private readonly IChartsService monitorCacheService = new ChartsCacheService();
+        private readonly IChartsService _monitorService = new ChartsService();
+        private readonly IChartsService _monitorCacheService = new ChartsCacheService();
 
-        private IChartsService GetService()
-        {
-            if (AppSetting.IsCache)
-            {
-                return monitorCacheService;
-            }
-
-            return monitorService;
-        }
-
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <param name="model">MonitoringEventModel that contains filter conditions.</param>
+        /// <returns>Index view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult Index(MonitoringEventModel model)
         {
             return this.View(model);
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top favorites by turnover.
+        /// </summary>
+        /// <param name="model">MonitoringSummaryModel that contains filter conditions.</param>
+        /// <returns>HighChart content represents the top selections by turnover.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopFavouriteByTurnover(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -83,7 +78,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets the top favorites by ticket.
+        /// </summary>
+        /// <param name="model">MonitoringSummaryModel that contains filter conditions.</param>
+        /// <returns>HighChart content represents top selections by ticket.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopFavouriteByTicket(MonitoringSummaryModel model)
         {
             var service = GetService();
@@ -113,7 +114,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top selections of ticket.
+        /// </summary>
+        /// <param name="model">MonitoringEventModel that contains filter conditions.</param>
+        /// <returns>HighChart content represents top events by top selections of ticket.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event(MonitoringEventModel model)
         {
             var service = GetService();
@@ -152,7 +159,14 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top bet types by event.
+        /// </summary>
+        /// <param name="model">MonitoringEventModel that contains filter conditions.</param>
+        /// <returns>HighChart content represents top bet types by event.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType(MonitoringEventModel model)
         {
             var service = GetService();
@@ -223,12 +237,25 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets report favorite choices by event and bet type.
+        /// </summary>
+        /// <param name="model">The model that contains filter conditions.</param>
+        /// <returns>Action Result contains favorite choices by event and bet type.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType_Choice(MonitoringEventModel model)
         {
             var service = GetService();
             var sport = this.GetSportTypeIdByName(model.SportType);
-            var dataByTicket = service.GetTopSelectionByTicket_Event_Bettype_Choice(model.Selection, sport, model.MatchId, model.BetType2, model.WinlostDate, model.MaxTransId).OrderByDescending(x => x.Tickets);
+            var dataByTicket = service.GetTopSelectionByTicket_Event_Bettype_Choice(
+                                           model.Selection, 
+                                           sport, 
+                                           model.MatchId, 
+                                           model.BetType2, 
+                                           model.WinlostDate, 
+                                           model.MaxTransId).OrderByDescending(x => x.Tickets);
 
             var dto = dataByTicket.Where(o => o.BetTeam == "Others");
             var data = dataByTicket.Where(o => o.BetTeam != "Others").OrderByDescending(x => x.Tickets).ToList();
@@ -279,7 +306,13 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top events by top selection of turnover.
+        /// </summary>
+        /// <param name="model">The model that contains filter conditions.</param>
+        /// <returns>HighChart content represents top events by top selection of turnover.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event(MonitoringEventModel model)
         {
             var service = GetService();
@@ -316,7 +349,14 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets top bet types by event.
+        /// </summary>
+        /// <param name="model">The model that contains filter conditions.</param>
+        /// <returns>Action Result contains top bet types by event.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType(MonitoringEventModel model)
         {
             var service = GetService();
@@ -386,12 +426,25 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets report favorite choices by event and bet type.
+        /// </summary>
+        /// <param name="model">The model that contains filter conditions.</param>
+        /// <returns>Action Result contains the favorite choices by event and bet type.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType_Choice(MonitoringEventModel model)
         {
             var service = GetService();
             var sport = this.GetSportTypeIdByName(model.SportType);
-            var dataByTurnover = service.GetTopSelectionByTurnover_Event_Bettype_Choice(model.Selection, sport, model.MatchId, model.BetType2, model.WinlostDate, model.MaxTransId).OrderByDescending(x => x.Turnover);
+            var dataByTurnover = service.GetTopSelectionByTurnover_Event_Bettype_Choice(
+                                             model.Selection, 
+                                             sport, 
+                                             model.MatchId, 
+                                             model.BetType2, 
+                                             model.WinlostDate, 
+                                             model.MaxTransId).OrderByDescending(x => x.Turnover);
 
             var dto = dataByTurnover.Where(o => o.BetTeam == "Others");
             var data = dataByTurnover.Where(o => o.BetTeam != "Others").OrderByDescending(x => x.Turnover).ToList();
@@ -442,14 +495,47 @@ namespace ParlayRMS.Controllers
             return this.Content(highcharts.ToHtmlString());
         }
 
+        /// <summary>
+        /// Gets Service.
+        /// </summary>
+        /// <returns>Chart Service instance.</returns>
+        private IChartsService GetService()
+        {
+            if (AppSetting.IsCache)
+            {
+                return _monitorCacheService;
+            }
+
+            return _monitorService;
+        }
+
+        /// <summary>
+        /// Gets formatted string demonstrates the name of two teams.
+        /// </summary>
+        /// <param name="teamHA">Team name format.</param>
+        /// <param name="homeId">ID of home team.</param>
+        /// <param name="awayId">ID of away team.</param>
+        /// <param name="betType2">Bet type ID.</param>
+        /// <returns>Formatted string of two teams' name.</returns>
         private string GetTeamName(string teamHA, string homeId, string awayId, int betType2 = 0)
         {
             return this.TeamNameFormater(teamHA, homeId, awayId, betType2);
         }
 
+        /// <summary>
+        /// Gets color index of home and away teams.
+        /// </summary>
+        /// <param name="teamHA">Home Away format string.</param>
+        /// <param name="index">Default color index.</param>
+        /// <returns>Color index.</returns>
         private int ColorHomeAndAway(string teamHA, int index)
         {
-            if ((teamHA.Contains("h") || teamHA.Contains("a")) && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) && !teamHA.Contains("h:") && !teamHA.Contains("a:") && !IsCleanSheetBettype(teamHA) && !teamHA.Contains("/"))
+            if ((teamHA.Contains("h") || teamHA.Contains("a")) 
+                && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) 
+                && !teamHA.Contains("h:") 
+                && !teamHA.Contains("a:") 
+                && !IsCleanSheetBettype(teamHA) 
+                && !teamHA.Contains("/"))
             {
                 if (this.IsHomeTeam(teamHA))
                 {
@@ -481,27 +567,75 @@ namespace ParlayRMS.Controllers
             }
         }
 
+        /// <summary>
+        /// Determines whether bet type sheet of a specific team name is clean.
+        /// </summary>
+        /// <param name="teamName">Name of the team.</param>
+        /// <returns>Whether bet type sheet of a specific team name is clean.</returns>
         private bool IsCleanSheetBettype(string teamName)
         {
-            if (teamName.Contains("hy") || teamName.Contains("hn") || teamName.Contains("ay") || teamName.Contains("an")) return true;
-            return false;
+            if (teamName.Contains("hy") || teamName.Contains("hn") || teamName.Contains("ay") || teamName.Contains("an"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
+        /// <summary>
+        /// Determines whether the team is home.
+        /// </summary>
+        /// <param name="teamHA">Home Away format string.</param>
+        /// <param name="betType2">The bet type ID.</param>
+        /// <returns>Whether the team is home.</returns>
         private bool IsHomeTeam(string teamHA, int betType2 = 0)
         {
-            return (teamHA.Contains("h") || teamHA.Equals("1")) && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) && betType2 != 3 && betType2 != 8 && betType2 != 2 && betType2 != 13;
+            return (teamHA.Contains("h") || teamHA.Equals("1")) 
+                   && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) 
+                   && betType2 != 3 
+                   && betType2 != 8 
+                   && betType2 != 2 
+                   && betType2 != 13;
         }
 
+        /// <summary>
+        /// Determines whether the team is away.
+        /// </summary>
+        /// <param name="teamHA">Home Away format string.</param>
+        /// <param name="betType2">The bet type ID.</param>
+        /// <returns>Whether the team is away.</returns>
         private bool IsAwayTeam(string teamHA, int betType2 = 0)
         {
-            return (teamHA.Contains("a") || teamHA.Equals("2")) && betType2 != 3 && betType2 != 8 && betType2 != 2 && betType2 != 13;
+            return (teamHA.Contains("a") || teamHA.Equals("2")) 
+                   && betType2 != 3 
+                   && betType2 != 8 
+                   && betType2 != 2 
+                   && betType2 != 13;
         }
 
+        /// <summary>
+        /// Calculates the percent.
+        /// </summary>
+        /// <param name="alone">The alone value.</param>
+        /// <param name="total">The total value.</param>
+        /// <returns>The percent value.</returns>
         private decimal CalculatePercent(decimal alone, decimal total)
         {
             return (alone * 100) / total;
         }
 
+        /// <summary>
+        /// Formats the team name.
+        /// </summary>
+        /// <param name="teamName">Format of team name.</param>
+        /// <param name="homeId">The home identifier.</param>
+        /// <param name="awayId">The away identifier.</param>
+        /// <param name="bettype">The bet type identifier.</param>
+        /// <returns>Formatted team name.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private string TeamNameFormater(string teamName, string homeId, string awayId, int bettype = 0)
         {
             if (bettype == 24)
@@ -630,7 +764,7 @@ namespace ParlayRMS.Controllers
             }
             else if (bettype == 26)
             {
-                //  Both/One/Neither
+                // Both/One/Neither
                 switch (teamName)
                 {
                     case "b":

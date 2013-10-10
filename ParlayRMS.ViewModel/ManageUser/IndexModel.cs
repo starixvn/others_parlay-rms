@@ -1,18 +1,21 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IndexModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="IndexModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
-using System.Web.Mvc;
 namespace ParlayRMS.ViewModel.ManageUser
 {
+    using System.Web.Mvc;
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Index Model.
     /// </summary>
     public class IndexModel
     {
-        [AllowHtml()]
+        [AllowHtml]
         public string UserName { get; set; }
 
         public int GroupId { get; set; }

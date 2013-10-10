@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PieChartValues.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="PieChartValues.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Common.Highcharts
 {
@@ -11,7 +13,7 @@ namespace ParlayRMS.Common.Highcharts
     using DotNet.Highcharts.Options;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Pie Chart Values.
     /// </summary>
     public class PieChartValues : BaseChartValues
     {

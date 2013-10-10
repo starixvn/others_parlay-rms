@@ -1,4 +1,12 @@
-﻿namespace ParlayRMS.Web.Context
+﻿// --------------------------------------------------------------------------
+// <copyright file="CurrentContext.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Web.Context
 {
     using System;
     using System.Collections.Specialized;
@@ -6,6 +14,9 @@
     using System.Net;
     using System.Web;
 
+    /// <summary>
+    /// Current Context.
+    /// </summary>
     public class CurrentContext : ICurrentContext
     {
         public static ICurrentContext Instance
@@ -98,6 +109,11 @@
             }
         }
 
+        /// <summary>
+        /// Get the language ID which is passed from the browser and return the associated CultureInfo object.
+        /// </summary>
+        /// <param name="request">The HttpRequest object which is received from client.</param>
+        /// <returns>CultureInfo object contains culture of the language which the user is using.</returns>
         private CultureInfo ResolveCulture(HttpRequest request)
         {
             string[] languages = request.UserLanguages;
@@ -119,6 +135,11 @@
             }
         }
 
+        /// <summary>
+        /// Get the country ID which is passed from the browser and return the associated RegionInfo object.
+        /// </summary>
+        /// <param name="request">The HttpRequest object which is received from client.</param>
+        /// <returns>RegionInfo object contains the information of user's region.</returns>
         private RegionInfo ResolveCountry(HttpRequest request)
         {
             CultureInfo culture = this.ResolveCulture(request);

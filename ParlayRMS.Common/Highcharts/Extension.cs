@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HighchartsExtension.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="Extension.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Common.Highcharts
 {
@@ -11,10 +13,16 @@ namespace ParlayRMS.Common.Highcharts
     using DotNet.Highcharts.Options;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Extend High Chart functionalities.
     /// </summary>
     public static class Extension
     {
+        /// <summary>
+        /// Initializes High Chart values.
+        /// </summary>
+        /// <param name="chart">HighChart object that the method expected to extend to.</param>
+        /// <param name="values">Based chart's values.</param>
+        /// <returns>Initialized HighChart object.</returns>
         public static Highcharts InitValues(this Highcharts chart, BaseChartValues values)
         {
             chart.InitChart(values.Chart)
@@ -37,6 +45,13 @@ namespace ParlayRMS.Common.Highcharts
             return chart;
         }
 
+        /// <summary>
+        /// Sets the series for a HighChart.
+        /// </summary>
+        /// <param name="chart">HighChart object that the method expected to extend to.</param>
+        /// <param name="listSeriesName">List of series' name.</param>
+        /// <param name="listSeriesData">List of series' data.</param>
+        /// <returns>Updated HighChart object.</returns>
         public static Highcharts SetSeries(this Highcharts chart, string[] listSeriesName, object[] listSeriesData)
         {
             Series[] series = new Series[listSeriesData.Length];
@@ -57,6 +72,14 @@ namespace ParlayRMS.Common.Highcharts
             return chart;
         }
 
+        /// <summary>
+        /// Sets the series for a HighChart.
+        /// </summary>
+        /// <param name="chart">HighChart object that the method expected to extend to.</param>
+        /// <param name="listSeriesName">List of series' name.</param>
+        /// <param name="listSeriesData">List of series' data.</param>
+        /// <param name="listStates">List of states.</param>
+        /// <returns>Updated HighChart object.</returns>
         public static Highcharts SetSeries(this Highcharts chart, string[] listSeriesName, object[] listSeriesData, bool[] listStates)
         {
             Series[] series = new Series[listSeriesData.Length];

@@ -57,13 +57,13 @@
     <Compile Include="ManageUser\IndexModel.cs" />
     <Compile Include="ManageUser\ResetPasswordModel.cs" />
     <Compile Include="ManageUser\EditUserModel.cs" />
-    <Compile Include="Extension\DisplayAttribute.cs" />
+    <Compile Include="Extension\RMSDisplayAttribute.cs" />
     <Compile Include="Extension\MaxStringLengthAttribute.cs" />
     <Compile Include="Extension\MinStringLengthAttribute.cs" />
     <Compile Include="Extension\PropertiesMustMatchAttribute.cs" />
     <Compile Include="ManageFunction\CreateFunctionModel.cs" />
     <Compile Include="ManageFunction\EditFunctionModel.cs" />
-    <Compile Include="ManageGroup\CreateGroupPolicyModel.cs" />
+    <Compile Include="ManageGroup\EditGroupPolicyModel.cs" />
     <Compile Include="ManageGroup\EditGroupModel.cs" />
     <Compile Include="ManageGroup\CreateGroupModel.cs" />
     <Compile Include="ManageMember\AddMemberModel.cs" />

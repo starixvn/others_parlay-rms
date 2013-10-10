@@ -1,13 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TotalDataModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TotalDataModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.TotalOutstanding
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Total Data Model.
     /// </summary>
     public class TotalDataModel
     {

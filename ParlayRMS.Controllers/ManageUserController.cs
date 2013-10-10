@@ -12,6 +12,7 @@ namespace ParlayRMS.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Groups;
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Groups;
@@ -20,22 +21,21 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.ViewModel.ManageUser;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Models.Functions;
 
     /// <summary>
-    /// Manages user methods
+    /// Manages user methods.
     /// </summary>
     public class ManageUserController : BaseController
     {
-        private readonly IUsersService userService = new UsersService();
-        private readonly IGroupsService groupService = new GroupsService();
+        private readonly IUsersService _userService = new UsersService();
+        private readonly IGroupsService _groupService = new GroupsService();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManageUserController"/> class
+        /// Initializes a new instance of the <see cref="ManageUserController"/> class.
         /// </summary>
         public ManageUserController()
         {
-            var groups = this.groupService.GetGroupNames();
+            var groups = this._groupService.GetGroupNames();
             var selectedItems = new List<SelectListItem>();
             string[] hiddenGroupNameList = new string[0];
 
@@ -43,6 +43,7 @@ namespace ParlayRMS.Controllers
             {
                 groups = groups.Where(x => hiddenGroupNameList.Contains(x.Name) == false);
             }
+
             foreach (var item in groups)
             {
                 var selectedItem = new SelectListItem();
@@ -54,12 +55,16 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.GroupList = selectedItems;
-            ViewBag.HasWritePermission = userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageUser);
+            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageUser);
         }
 
-        // GET: ~/ManangeUser
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <param name="model">The model contains the user name and group ID.</param>
+        /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Read)]
         public ActionResult Index(IndexModel model)
         {
             ViewBag.GroupList = this.GetAllGroup();
@@ -67,7 +72,7 @@ namespace ParlayRMS.Controllers
             ViewBag.UserList = new List<User>();
             CurrentContext.Context.Session["groupId"] = model.GroupId;
 
-            var userList = this.userService.GetListUser(model.UserName, model.GroupId);
+            var userList = this._userService.GetListUser(model.UserName, model.GroupId);
             string[] hiddenGroupNameList = new string[0];
 
             if (!this.HideGroup(out hiddenGroupNameList))
@@ -85,17 +90,25 @@ namespace ParlayRMS.Controllers
             return this.View();
         }
 
-        // GET: ~/ManangeUser/ResetPassword
+        /// <summary>
+        /// GET method: resets password.
+        /// </summary>
+        /// <param name="model">The model wraps information needed for reset password process.</param>
+        /// <returns>Reset password form.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeUser/ResetPassword
+        /// <summary>
+        /// POST method: resets password.
+        /// </summary>
+        /// <param name="model">The model wraps information needed for reset password process.</param>
+        /// <returns>Whether the password is reset successfully or not.</returns>
         [HttpPost, ActionName("ResetPassword")]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult ResetPasswordPost(ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
@@ -103,18 +116,26 @@ namespace ParlayRMS.Controllers
                 return this.InvalidModelJson();
             }
 
-            var result = this.userService.ResetPassword(CurrentSession.UserId, model.UserId, model.NewPassword, CurrentContext.Ip4Address);
+            var result = this._userService.ResetPassword(CurrentSession.UserId, model.UserId, model.NewPassword, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // GET: ~/ManangeUser/ResetOwnerPassword
+        /// <summary>
+        /// GET method: resets the owner's password.
+        /// </summary>
+        /// <param name="model">The model contains information for reset owner's password.</param>
+        /// <returns>Reset owner's password form.</returns>
         [HttpGet]
         public ActionResult ResetOwnerPassword(ResetPasswordModel model)
         {
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeUser/ResetOwnerPassword
+        /// <summary>
+        /// POST method: resets the owner's password.
+        /// </summary>
+        /// <param name="model">The model contains information for reset owner's password.</param>
+        /// <returns>Whether the password is reset successfully or not.</returns>
         [HttpPost, ActionName("ResetOwnerPassword")]
         public ActionResult ResetOwnerPasswordPost(ResetPasswordModel model)
         {
@@ -123,16 +144,20 @@ namespace ParlayRMS.Controllers
                 return this.InvalidModelJson();
             }
 
-            var result = this.userService.ResetPassword(CurrentSession.UserId, model.UserId, model.NewPassword, CurrentContext.Ip4Address);
+            var result = this._userService.ResetPassword(CurrentSession.UserId, model.UserId, model.NewPassword, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // GET: ~/ManangeUser/EditUser
+        /// <summary>
+        /// GET method: edits the user information.
+        /// </summary>
+        /// <param name="userId">The ID that is used to get user's data.</param>
+        /// <returns>Edit user information form.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult EditUser(int userId)
         {
-            var user = userService.GetUserById(userId);
+            var user = _userService.GetUserById(userId);
             EditUserModel model = new EditUserModel
             {
                 FirstName = user.FirstName,
@@ -146,9 +171,13 @@ namespace ParlayRMS.Controllers
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeUser/EditUser
+        /// <summary>
+        /// POST method: edits user information.
+        /// </summary>
+        /// <param name="model">The model contains updated information.</param>
+        /// <returns>Whether the password is reset successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult EditUser(EditUserModel model)
         {
             if (!ModelState.IsValid)
@@ -156,13 +185,17 @@ namespace ParlayRMS.Controllers
                 return this.InvalidModelJson();
             }
 
-            var result = this.userService.EditUser(CurrentSession.UserId, model.UserId, model.FirstName, model.LastName, model.GroupId, CurrentContext.Ip4Address);
+            var result = this._userService.EditUser(CurrentSession.UserId, model.UserId, model.FirstName, model.LastName, model.GroupId, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // POST: ~/ManangeUser/UpdateStatus
+        /// <summary>
+        /// POST method: Updates user status.
+        /// </summary>
+        /// <param name="model">The model contains user ID and user status.</param>
+        /// <returns>Whether the status is updated successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult UpdateStatus(UpdateStatusModel model)
         {
             if (!ModelState.IsValid)
@@ -170,72 +203,102 @@ namespace ParlayRMS.Controllers
                 return this.InvalidModelJson();
             }
 
-            var result = this.userService.UpdateStatus(CurrentSession.UserId, model.UserId, model.IsActive, CurrentContext.Ip4Address);
+            var result = this._userService.UpdateStatus(CurrentSession.UserId, model.UserId, model.IsActive, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // GET: ~/ManangeUser/CreateUser
+        /// <summary>
+        /// GET method: creates new user.
+        /// </summary>
+        /// <returns>Create user form.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Read)]
         public ActionResult CreateUser()
         {
             return this.PartialView();
         }
 
-        // POST: ~/ManangeUser/CreateUser
+        /// <summary>
+        /// POST method: creates a new user.
+        /// </summary>
+        /// <param name="model">Model contains input data for creating new user purpose.</param>
+        /// <returns>Whether the new user is created successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Create)]
         public ActionResult CreateUser(CreateUserModel model)
         {
-            var result = this.userService.CreateUser(CurrentSession.UserId, model.UserName, model.Password, model.FirstName, model.LastName, model.GroupId, CurrentContext.Ip4Address);
+            var result = this._userService.CreateUser(
+                                               CurrentSession.UserId, 
+                                               model.UserName, 
+                                               model.Password, 
+                                               model.FirstName, 
+                                               model.LastName, 
+                                               model.GroupId, 
+                                               CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // GET: ~/ManangeUser/CreateExistingUser
+        /// <summary>
+        /// GET method: adds an existing user to the system.
+        /// </summary>
+        /// <returns>Add an existing user form.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Read)]
         public ActionResult CreateExistingUser()
         {
             var model = new CreateExistingUserModel();
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeUser/CreateExistingUser
+        /// <summary>
+        /// POST method: adds an existing user to the system.
+        /// </summary>
+        /// <param name="model">Model contains information of the user.</param>
+        /// <returns>Whether the existing user is added successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Create)]
         public ActionResult CreateExistingUser(CreateExistingUserModel model)
         {
-            var result = this.userService.CreateExistUser(CurrentSession.UserId, model.UserName, model.GroupId, CurrentContext.Ip4Address);
+            var result = this._userService.CreateExistUser(CurrentSession.UserId, model.UserName, model.GroupId, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
-        // GET: ~/ManangeUser/EditUserPolicy
+        /// <summary>
+        /// Gets Edit User Policy partial view.
+        /// </summary>
+        /// <param name="model">The model wraps information that can be edit.</param>
+        /// <returns>Edit User Policy partial view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Read)]
         public ActionResult EditUserPolicy(EditUserPolicyModel model)
         {
-            var userFunc = this.userService.GetUserFunction(model.UserId);
+            var userFunc = this._userService.GetUserFunction(model.UserId);
             ViewBag.UserFunc = userFunc.Where(o => o.Parent.Id == 0);
             ViewBag.UserSubFunc = userFunc.Where(o => o.Parent.Id != 0);
 
             return this.PartialView(model);
         }
 
-        // POST: ~/ManangeUser/EditUserPolicy
+        /// <summary>
+        /// POST method: edits the user policy.
+        /// </summary>
+        /// <param name="model">The model contains new policy of the user.</param>
+        /// <returns>Whether the user policy is reset successfully or not.</returns>
         [HttpPost, ActionName("EditUserPolicy")]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = ePolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageUser, Policy = UserPolicy.Update)]
         public ActionResult EditUserPolicyPost(EditUserPolicyModel model)
         {
-            var result = this.userService.UpdateUserPolicy(CurrentSession.UserId, model.UserId, model.UserPolicy, CurrentContext.Ip4Address);
+            var result = this._userService.UpdateUserPolicy(CurrentSession.UserId, model.UserId, model.UserPolicy, CurrentContext.Ip4Address);
             return this.Json(result);
         }
 
         /// <summary>
-        /// Processes getting all groups
+        /// Processes getting all groups.
         /// </summary>
+        /// <returns>List of all groups.</returns>
         private IEnumerable<Group> GetAllGroup()
         {
-            IEnumerable<Group> groupList = this.groupService.GetGroups();
+            IEnumerable<Group> groupList = this._groupService.GetGroups();
 
             string[] hiddenGroupNameList = new string[0];
 

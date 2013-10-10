@@ -1,33 +1,38 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="WinlossController.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="WinlossController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
-    using ParlayRMS.Common.Models;
     using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Winloss;
     using ParlayRMS.Services.Interface.Winloss;
     using ParlayRMS.Utility;
+    using ParlayRMS.ViewModel;
     using ParlayRMS.ViewModel.Report;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.ViewModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Win Loss Controller.
     /// </summary>
     public class WinlossController : BaseController
     {
-        private readonly IWinlossService winlossService = new WinlossService();
+        private readonly IWinlossService _winlossService = new WinlossService();
 
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Redirects to Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -36,7 +41,12 @@ namespace ParlayRMS.Controllers
             return this.View();
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Gets data for win loss report.
+        /// </summary>
+        /// <param name="options">The options that are used to filter data.</param>
+        /// <returns>Partial view represents the win loss report.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(WinlossOptions options)
         {
@@ -59,7 +69,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
+                    var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;
                     return this.PartialView(model);
@@ -71,11 +81,16 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = ePolicy.Read)]
+        /// <summary>
+        /// Export to Excel.
+        /// </summary>
+        /// <param name="options">The options that are used to filter data.</param>
+        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpGet]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(WinlossOptions options)
         {
-            var model = this.winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
+            var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 
@@ -112,31 +127,8 @@ namespace ParlayRMS.Controllers
                 ViewLang.NetWinloss
             };
 
-            writer.WriteRows(1, new List<object[]>() { header1, header2 });
-
-            // records
-            foreach (var record in model.Records)
+            var footer = new object[] 
             {
-                var totalRow = record.Records.Count;
-                writer.WriteRows(3, record.Records);
-                writer.WriteCellRange(writer.RowId - totalRow, totalRow, 0, 1, record.Records[0].WinlostDate);
-                writer.WriteRow(4, new object[] {
-                    ViewLang.Subtotal,
-                    string.Empty,
-                    record.Total.Tickets_Won,
-                    record.Total.Tickets_Lose,
-                    record.Total.Stake_Won,
-                    record.Total.Stake_Lose,
-                    record.Total.Member_Won,
-                    record.Total.Member_Lose,
-                    record.Total.OurPT_Won,
-                    record.Total.OurPT_Lose,
-                    record.Total.OurPT_NetWinloss
-                });
-            }
-
-            // footer
-            writer.WriteRow(5, new object[] {
                 ViewLang.Total,
                 string.Empty,
                 model.Total.Tickets_Won,
@@ -148,7 +140,36 @@ namespace ParlayRMS.Controllers
                 model.Total.OurPT_Won,
                 model.Total.OurPT_Lose,
                 model.Total.OurPT_NetWinloss
-            });
+            };
+
+            writer.WriteRows(1, new List<object[]>() { header1, header2 });
+
+            // records
+            foreach (var record in model.Records)
+            {
+                var totalRow = record.Records.Count;
+                var rowData = new object[] 
+                {
+                    ViewLang.Subtotal,
+                    string.Empty,
+                    record.Total.Tickets_Won,
+                    record.Total.Tickets_Lose,
+                    record.Total.Stake_Won,
+                    record.Total.Stake_Lose,
+                    record.Total.Member_Won,
+                    record.Total.Member_Lose,
+                    record.Total.OurPT_Won,
+                    record.Total.OurPT_Lose,
+                    record.Total.OurPT_NetWinloss
+                };
+
+                writer.WriteRows(3, record.Records);
+                writer.WriteCellRange(writer.RowId - totalRow, totalRow, 0, 1, record.Records[0].WinlostDate);
+                writer.WriteRow(4, rowData);
+            }
+
+            // footer
+            writer.WriteRow(5, footer);
 
             writer.SyncColumnWidths(11);
 

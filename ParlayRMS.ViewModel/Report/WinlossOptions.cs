@@ -1,8 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="WinlossOptions.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="WinlossOptions.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.Report
 {
@@ -15,7 +17,7 @@ namespace ParlayRMS.ViewModel.Report
     using ParlayRMS.Web.Mvc.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Win Loss Options.
     /// </summary>
     public class WinlossOptions
     {
@@ -34,6 +36,10 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Combos { get; set; }
 
+        /// <summary>
+        /// Gets the title of win loss report.
+        /// </summary>
+        /// <returns>Title of win loss report.</returns>
         public string GetTitle()
         {
             var combosTitle = ViewLang.All;
@@ -43,16 +49,17 @@ namespace ParlayRMS.ViewModel.Report
                 combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
             }
 
-            var title = string.Format("{0} - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}]",
-                            ViewLang.WinLoss,
-                            this.FromDate.ToString("MMMM dd, yyyy"),
-                            this.ToDate.ToString("MMMM dd, yyyy"),
-                            ViewLang.Bettype,
-                            ModelsHelper.GetBetType((int)this.BetType),
-                            ViewLang.Combo,
-                            combosTitle,
-                            ViewLang.SportsType,
-                            ModelsHelper.GetSportType((int)this.SportsType));
+            var title = string.Format(
+                                   "{0} - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}]",
+                                   ViewLang.WinLoss,
+                                   this.FromDate.ToString("MMMM dd, yyyy"),
+                                   this.ToDate.ToString("MMMM dd, yyyy"),
+                                   ViewLang.Bettype,
+                                   ModelsHelper.GetBetType((int)this.BetType),
+                                   ViewLang.Combo,
+                                   combosTitle,
+                                   ViewLang.SportsType,
+                                   ModelsHelper.GetSportType((int)this.SportsType));
             return title;
         }
     }

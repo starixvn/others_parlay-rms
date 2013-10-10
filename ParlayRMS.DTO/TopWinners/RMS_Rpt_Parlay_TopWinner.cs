@@ -1,13 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_TopWinner.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="RMS_Rpt_Parlay_TopWinner.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.DTO.TopWinners
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Parlay Top Winner model.
     /// </summary>
     public class RMS_Rpt_Parlay_TopWinner
     {

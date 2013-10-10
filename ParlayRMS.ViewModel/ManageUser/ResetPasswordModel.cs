@@ -1,21 +1,18 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LoginModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ResetPasswordModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.ViewModel.ManageUser
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
     using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Extension;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Reset Password Model.
     /// </summary>
     public class ResetPasswordModel
     {

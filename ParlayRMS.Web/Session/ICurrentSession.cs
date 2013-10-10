@@ -1,4 +1,12 @@
-﻿namespace ParlayRMS.Web.Session
+﻿// --------------------------------------------------------------------------
+// <copyright file="ICurrentSession.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.Web.Session
 {
     using ParlayRMS.Models.Users;
 

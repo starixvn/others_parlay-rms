@@ -1,48 +1,79 @@
-﻿using System;
-using System.IO;
-using System.Xml.Serialization;
+﻿// --------------------------------------------------------------------------
+// <copyright file="AuthInfo.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
 
 namespace ParlayRMS.Web.Authorization
 {
+    using System;
+    using System.IO;
+    using System.Xml.Serialization;
+
+    /// <summary>
+    /// Authentication Information.
+    /// </summary>
     public class AuthInfo
     {
         #region Properties
 
         private int _userId;
 
+        private int _groupId;
+
+        private string _groupName;
+
         public int UserId
         {
-            get { return _userId; }
+            get 
+            { 
+                return _userId; 
+            }
+
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentOutOfRangeException("userid");
+                }
+
                 _userId = value;
             }
         }
 
-        private int _groupId;
-
         public int GroupId
         {
-            get { return _groupId; }
+            get 
+            { 
+                return _groupId; 
+            }
+
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentOutOfRangeException("GroupId");
+                }
+
                 _groupId = value;
             }
         }
 
-        private string _groupName;
-
         public string GroupName
         {
-            get { return _groupName; }
+            get 
+            { 
+                return _groupName; 
+            }
+
             set
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentNullException("_groupName");
+                }
 
                 _groupName = value;
             }
@@ -50,6 +81,22 @@ namespace ParlayRMS.Web.Authorization
 
         #endregion Properties
 
+        /// <summary>
+        /// Creates the user data.
+        /// </summary>
+        /// <param name="authInfoXml">XML string contains the authentication information.</param>
+        /// <returns>Authentication information.</returns>
+        public static AuthInfo CreateUserData(string authInfoXml)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(AuthInfo));
+            AuthInfo authInfo = (AuthInfo)serializer.Deserialize(new StringReader(authInfoXml));
+            return authInfo;
+        }
+
+        /// <summary>
+        /// Converts the authentication information to the XML.
+        /// </summary>
+        /// <returns>XML string contains the authentication information.</returns>
         public string ToXml()
         {
             string xml = string.Empty;
@@ -62,13 +109,6 @@ namespace ParlayRMS.Web.Authorization
             }
 
             return xml;
-        }
-
-        public static AuthInfo CreateUserData(string authInfoXml)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(AuthInfo));
-            AuthInfo authInfo = (AuthInfo)serializer.Deserialize(new StringReader(authInfoXml));
-            return authInfo;
         }
     }
 }

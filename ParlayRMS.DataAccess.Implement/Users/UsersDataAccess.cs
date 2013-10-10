@@ -1,4 +1,12 @@
-﻿namespace ParlayRMS.DataAccess.Implement.Users
+﻿// --------------------------------------------------------------------------
+// <copyright file="UsersDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+// </history>
+
+namespace ParlayRMS.DataAccess.Implement.Users
 {
     using System;
     using System.Collections;
@@ -13,16 +21,19 @@
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
 
+    /// <summary>
+    /// Users Data Access.
+    /// </summary>
     public class UsersDataAccess : BaseDataAccess, IUsersDataAccess
     {
-        private readonly IGroupsDataAccess groupDataAccess = new GroupsDataAccess();
+        private readonly IGroupsDataAccess _groupDataAccess = new GroupsDataAccess();
 
         /// <summary>
-        ///
+        /// Gets user by username and group ID.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="userName">Username value.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>User associated with passed username and group ID.</returns>
         public IEnumerable<RMS_UserInfoSel> RMS_UserInfoSel(string userName, int groupId)
         {
             var result = new List<RMS_UserInfoSel>();
@@ -34,6 +45,7 @@
                 {
                     param.Add("groupid", groupId);
                 }
+
                 if (!string.IsNullOrEmpty(userName))
                 {
                     param.Add("username", userName);
@@ -69,13 +81,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates user password.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userId"></param>
-        /// <param name="password"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator.</param>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="password">New password.</param>
+        /// <param name="ip">IP of machine which updates the password.</param>
+        /// <returns>Whether or not the password is updated successfully.</returns>
         public Result RMS_UserInfoUpdUserPwd(int adminId, int userId, string password, string ip)
         {
             try
@@ -100,16 +112,16 @@
         }
 
         /// <summary>
-        ///
+        /// Adds a new user.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="groupId"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator who creates the user.</param>
+        /// <param name="userName">Username value.</param>
+        /// <param name="password">Default password.</param>
+        /// <param name="firstName">First name.</param>
+        /// <param name="lastName">Last name.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <param name="ip">IP of machine which creates user.</param>
+        /// <returns>Whether or not the user is created successfully.</returns>
         public Result RMS_UserInfoAddNew(int adminId, string userName, string password, string firstName, string lastName, int groupId, string ip)
         {
             try
@@ -138,15 +150,15 @@
         }
 
         /// <summary>
-        ///
+        /// Updates user information.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userId"></param>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="ip"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator who updates the user.</param>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="firstName">First name.</param>
+        /// <param name="lastName">Last name.</param>
+        /// <param name="ip">IP of machine which updates user.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <returns>Whether or not the user is updated successfully.</returns>
         public Result RMS_UserInfoUpdAll(int adminId, int userId, string firstName, string lastName, string ip, int groupId)
         {
             try
@@ -173,13 +185,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates user status.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userId"></param>
-        /// <param name="active"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator who creates the user's status.</param>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="active">Whether the user is activated or not.</param>
+        /// <param name="ip">IP of machine which updates user's status.</param>
+        /// <returns>Whether or not the user's status is updated successfully.</returns>
         public Result RMS_UserInfoUpdStatus(int adminId, int userId, bool active, string ip)
         {
             try
@@ -204,13 +216,13 @@
         }
 
         /// <summary>
-        ///
+        /// Adds an existing user to the system.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userName"></param>
-        /// <param name="groupId"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator who adds the user.</param>
+        /// <param name="userName">Username value.</param>
+        /// <param name="groupId">Group ID value.</param>
+        /// <param name="ip">IP of machine which adds user.</param>
+        /// <returns>Whether or not the user is added successfully.</returns>
         public Result RMS_UserInfoAddExisting(int adminId, string userName, int groupId, string ip)
         {
             try
@@ -236,10 +248,10 @@
         }
 
         /// <summary>
-        ///
+        /// Gets user's policy.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User ID value.</param>
+        /// <returns>Policy of user.</returns>
         public IEnumerable<RMS_UserPolicySel> RMS_UserPolicySel(int userId)
         {
             var result = new List<RMS_UserPolicySel>();
@@ -276,13 +288,13 @@
         }
 
         /// <summary>
-        ///
+        /// Updates user's policy.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="userId"></param>
-        /// <param name="policy"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="adminId">The ID of administrator who updates the user's policy.</param>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="policy">New policy.</param>
+        /// <param name="ip">IP of machine which updates user's policy.</param>
+        /// <returns>Whether or not the user's policy is updated successfully.</returns>
         public Result RMS_UserPolicyUpd(int adminId, int userId, string policy, string ip)
         {
             try
@@ -307,10 +319,10 @@
         }
 
         /// <summary>
-        ///
+        /// Gets available menus of a user.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User ID value.</param>
+        /// <returns>List of menus and functions that are available to the user.</returns>
         public RMS_MenuSelByUserID RMS_MenuSelByUserID(int userId)
         {
             try
@@ -319,25 +331,25 @@
                 param.Add("userid", userId);
                 var ds = ExecSpDataSet("RMS_MenuSelByUserID", param);
 
-                var menus = (from dr in ds.Tables[0].AsEnumerable()
-                             select new RMS_MenuSelByUserID_Menu
-                                {
-                                    ParentId = dr.ToInt32("parentid"),
-                                    ParentName = dr.ToString("parentname"),
-                                    MenuId = dr.ToInt32("menuid"),
-                                    MenuName = dr.ToString("menuname"),
-                                    Url = dr.ToString("Url"),
-                                    DisplayOrder = dr.ToInt32("displayorder")
-                                });
+                var menus = from dr in ds.Tables[0].AsEnumerable()
+                            select new RMS_MenuSelByUserID_Menu
+                            {
+                                ParentId = dr.ToInt32("parentid"),
+                                ParentName = dr.ToString("parentname"),
+                                MenuId = dr.ToInt32("menuid"),
+                                MenuName = dr.ToString("menuname"),
+                                Url = dr.ToString("Url"),
+                                DisplayOrder = dr.ToInt32("displayorder")
+                            };
 
-                var functions = (from dr in ds.Tables[1].AsEnumerable()
-                                 select new RMS_MenuSelByUserID_Function
-                                  {
-                                      FuncId = dr.ToInt32("funcid"),
-                                      FuncName = dr.ToString("funcname"),
-                                      FuncKey = dr.ToString("funckey"),
-                                      Policy = dr.ToInt32("policy")
-                                  });
+                var functions = from dr in ds.Tables[1].AsEnumerable()
+                                select new RMS_MenuSelByUserID_Function
+                                {
+                                    FuncId = dr.ToInt32("funcid"),
+                                    FuncName = dr.ToString("funcname"),
+                                    FuncKey = dr.ToString("funckey"),
+                                    Policy = dr.ToInt32("policy")
+                                };
 
                 return new RMS_MenuSelByUserID
                 {
@@ -353,6 +365,11 @@
             return null;
         }
 
+        /// <summary>
+        /// Gets user information by user ID.
+        /// </summary>
+        /// <param name="userId">User ID value.</param>
+        /// <returns>User information.</returns>
         public RMS_UserInfoSelByUserID RMS_UserInfoSelByUserID(int userId)
         {
             try
@@ -385,15 +402,28 @@
         }
 
         /// <summary>
-        /// Validate user process
+        /// Validates user login information.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <param name="netSessionId"></param>
-        /// <param name="request"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public RMS_UserInfoSelByUserID RMS_UserLogin(string userName, string password, string loginIp, string loginDomain, string browserName, string platform, string countryCode, string language, out Result result)
+        /// <param name="userName">Username value.</param>
+        /// <param name="password">Password value.</param>
+        /// <param name="loginIp">The IP of machine which the user using to log in.</param>
+        /// <param name="loginDomain">Login domain.</param>
+        /// <param name="browserName">The name of browser which the user using to log in.</param>
+        /// <param name="platform">Platform of machine which the user using to log in.</param>
+        /// <param name="countryCode">Country code of place where the machine is staying.</param>
+        /// <param name="language">Language ID.</param>
+        /// <param name="result">Whether or not the passed information indicates a valid user.</param>
+        /// <returns>User Information.</returns>
+        public RMS_UserInfoSelByUserID RMS_UserLogin(
+                                           string userName, 
+                                           string password, 
+                                           string loginIp, 
+                                           string loginDomain, 
+                                           string browserName, 
+                                           string platform, 
+                                           string countryCode, 
+                                           string language, 
+                                           out Result result)
         {
             result = Result.Empty;
 
@@ -428,10 +458,10 @@
         }
 
         /// <summary>
-        /// ReLogin process
+        /// ReLogin process.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User ID value.</param>
+        /// <returns>Whether or re-login successfully.</returns>
         public bool RMS_UserRecheckIn(int userId)
         {
             try
@@ -455,12 +485,12 @@
         }
 
         /// <summary>
-        /// Login onUser process
+        /// Check in process.
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="netSessionId"></param>
-        /// <param name="ip"></param>
-        /// <returns></returns>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="netSessionId">Session ID value.</param>
+        /// <param name="ip">The IP of machine which the user using to log out.</param>
+        /// <returns>Whether or not the user logged out successful.</returns>
         public int RMS_UserCheckIn(int userId, string netSessionId, string ip)
         {
             try
@@ -486,10 +516,10 @@
         }
 
         /// <summary>
-        /// Logout process
+        /// Logout process.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="userName"></param>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="userName">Username value.</param>
         public void RMS_UserLogout(int userId, string userName)
         {
             try
@@ -506,6 +536,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets user information by username.
+        /// </summary>
+        /// <param name="username">Username value.</param>
+        /// <returns>User information.</returns>
         public RMS_CustomerSelInfoByUsername RMS_CustomerSelInfoByUsername(string username)
         {
             try
