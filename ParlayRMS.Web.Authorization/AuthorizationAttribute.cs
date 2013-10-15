@@ -75,7 +75,7 @@ namespace ParlayRMS.Web.Authorization
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw; ////ex;
             }
         }
 
@@ -122,7 +122,7 @@ namespace ParlayRMS.Web.Authorization
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw; ////ex;
             }
         }
 

@@ -8,6 +8,7 @@
 
 namespace ParlayRMS.Services.Implement.Systems
 {
+    using System;
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Services.Interface.Users;
@@ -16,7 +17,7 @@ namespace ParlayRMS.Services.Implement.Systems
     /// <summary>
     /// Caching Service.
     /// </summary>
-    public class CachingService : BaseService
+    public class CachingService : BaseService, IDisposable
     {
         private readonly IUsersService _usersService = new UsersService();
         private readonly ICurrentSession _session = new CurrentSession();
@@ -37,6 +38,14 @@ namespace ParlayRMS.Services.Implement.Systems
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            (this._session as CurrentSession).Dispose();
         }
     }
 }
