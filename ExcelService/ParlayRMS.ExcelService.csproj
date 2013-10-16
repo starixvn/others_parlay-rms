@@ -55,19 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\ExcelData.cs" />
-    <Compile Include="Core\ExcelDocument.cs" />
-    <Compile Include="Core\ExcelModel.cs" />
-    <Compile Include="Core\ExcelRow.cs" />
-    <Compile Include="Core\Interfaces\IExcelWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\CellExtensions.cs" />
     <Compile Include="Utility\CellRangeAddressExtensions.cs" />
     <Compile Include="Utility\HSSFSheetExtensions.cs" />
     <Compile Include="Utility\RowExtensions.cs" />
     <Compile Include="Utility\WorkbookExtensions.cs" />
-    <Compile Include="Web\Mvc\ExcelResult.cs" />
-    <Compile Include="Writers\ExcelNPOIWriter.cs" />
     <Compile Include="Writers\TemplateWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
