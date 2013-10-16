@@ -203,7 +203,7 @@ namespace ParlayRMS.Controllers
             {
                 this._authorizationService.Logout(userId, userName);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw; ////ex;
             }

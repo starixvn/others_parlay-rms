@@ -21,6 +21,7 @@ namespace ParlayRMS.Services.Implement.Systems
     {
         private readonly IUsersService _usersService = new UsersService();
         private readonly ICurrentSession _session = new CurrentSession();
+        private bool _disposed = false;
 
         /// <summary>
         /// Gets a user's cached data.
@@ -45,7 +46,25 @@ namespace ParlayRMS.Services.Implement.Systems
         /// </summary>
         public void Dispose()
         {
-            (this._session as CurrentSession).Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    (this._session as CurrentSession).Dispose();
+                }
+            }
+
+            this._disposed = true;
         }
     }
 }

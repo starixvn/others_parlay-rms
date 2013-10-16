@@ -23,6 +23,7 @@ namespace ParlayRMS.Web.Authorization
     public class AuthorizationAttribute : AuthorizeAttribute, IDisposable
     {
         private readonly CachingService _cachingService = new CachingService();
+        private bool _disposed = false;
 
         public string Function { get; set; }
 
@@ -73,10 +74,36 @@ namespace ParlayRMS.Web.Authorization
                     ////string msg8 = string.Format("msg8 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
                     ////WriteLog(msg8);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw; ////ex;
             }
+        }
+        
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    (this._cachingService as CachingService).Dispose();
+                }
+            }
+
+            this._disposed = true;
         }
 
         /// <summary>
@@ -120,7 +147,7 @@ namespace ParlayRMS.Web.Authorization
                     response.Redirect("~/home/index", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw; ////ex;
             }
@@ -185,14 +212,5 @@ namespace ParlayRMS.Web.Authorization
         ////{
         ////    LogService.Debug(msg, "PARLAY_RMS");
         ////}
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public void Dispose()
-        {
-            _cachingService.Dispose();
-        }
     }
 }
