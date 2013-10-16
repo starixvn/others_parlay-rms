@@ -15,6 +15,7 @@ namespace ParlayRMS.ExcelService.Core
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Security;
     using ParlayRMS.ExcelService.Core.Interfaces;
 
     /// <summary>
@@ -94,6 +95,7 @@ namespace ParlayRMS.ExcelService.Core
         /// <param name="item">Object that its properties will be parsed to Excel cells' value.</param>
         /// <param name="counter">Using to identify that the passed item has its associated metadata.</param>
         /// <returns>ExcelRow instance.</returns>
+        [SecurityCritical]
         private static ExcelRow CreateExcelRow(object item, int counter)
         {
             var row = new ExcelRow();
