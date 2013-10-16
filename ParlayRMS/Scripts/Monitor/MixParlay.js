@@ -422,7 +422,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == 0) {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(8);
+                var noinfo = CreateNoInfoRow(9);
                 tbody.append(noinfo);
             }
         }
