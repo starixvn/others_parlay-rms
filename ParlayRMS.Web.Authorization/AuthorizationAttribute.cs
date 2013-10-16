@@ -20,7 +20,7 @@ namespace ParlayRMS.Web.Authorization
     /// <summary>
     /// Authorization Attribute.
     /// </summary>
-    public class AuthorizationAttribute : AuthorizeAttribute
+    public class AuthorizationAttribute : AuthorizeAttribute, IDisposable
     {
         private readonly CachingService _cachingService = new CachingService();
 
@@ -185,5 +185,14 @@ namespace ParlayRMS.Web.Authorization
         ////{
         ////    LogService.Debug(msg, "PARLAY_RMS");
         ////}
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Dispose()
+        {
+            _cachingService.Dispose();
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace ParlayRMS
     using System.Web.Optimization;
     using System.Web.Routing;
     using System.Web.Security;
+    using Fanex.Data.Configuration;
     using ParlayRMS.Web.Authorization;
 
     /// <summary>
@@ -33,7 +34,7 @@ namespace ParlayRMS
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles();
 
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager.Current.Start();
         }
 
         /// <summary>
