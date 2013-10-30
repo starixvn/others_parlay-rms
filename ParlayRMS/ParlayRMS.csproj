@@ -238,11 +238,13 @@
     <Content Include="Images\Content\Close.png" />
     <Content Include="Images\Content\closeButton.png" />
     <Content Include="Images\Content\Closeicon.png" />
+    <Content Include="Images\Content\collapse-small.png" />
     <Content Include="Images\Content\disable_button_bg.png" />
     <Content Include="Images\Content\dropdown.png" />
     <Content Include="Images\Content\dropdownicon.png" />
     <Content Include="Images\Content\Drop_down_ico.png" />
     <Content Include="Images\Content\euserr_bt.png" />
+    <Content Include="Images\Content\expand-small.png" />
     <Content Include="Images\Content\expand_ico.png" />
     <Content Include="Images\Content\firstGoal.gif" />
     <Content Include="Images\Content\footer_bg.png" />
@@ -491,7 +493,11 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="ExcelTemplates\MemberWinLoss.xls" />
     <Content Include="ExcelTemplates\AgentWinLoss.xls" />
+    <Content Include="DangerousAgents.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="readme.txt" />
+    <Content Include="Scripts\Monitor\DangerMonitor.js" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
     <Content Include="Scripts\Libs\highcharts\highcharts.js" />
@@ -576,6 +582,9 @@
     <Content Include="Views\MemberWinLoss\Index.cshtml" />
     <Content Include="Views\MemberWinLoss\MemberData.cshtml" />
     <Content Include="Views\MemberWinLoss\AgentData.cshtml" />
+    <Content Include="Views\DangerMonitor\Index.cshtml" />
+    <Content Include="Views\DangerMonitor\Data.cshtml" />
+    <Content Include="Views\DangerMonitor\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -762,7 +771,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55444</DevelopmentServerPort>
+          <DevelopmentServerPort>49883</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

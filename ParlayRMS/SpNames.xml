@@ -85,4 +85,8 @@
         <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
     </Function>
+    <Function Name="DangerMonitor">
+      <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+      <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+    </Function>
 </Functions>

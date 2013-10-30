@@ -23,5 +23,6 @@
         public const string SimilarBets = "SimilarBets";
         public const string TotalOutstanding = "TotalOutstanding";
         public const string MemberWinLoss = "MemberWinLoss";
+        public const string DangerMonitor = "DangerMonitor";
     }
 }

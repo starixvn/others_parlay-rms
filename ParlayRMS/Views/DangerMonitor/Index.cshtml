@@ -1,0 +1,42 @@
+﻿@using ParlayRMS.Web.Mvc
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.DangerMonitor;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 880px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.RadioButton("UserName", "txtUserName", true, new { id = "rdbUserName" })
+                    @Html.Label("rdbUserName", ViewLang.Username)
+                    @Html.TextBox("txtUserName")
+                </div>
+                <div class="group">
+                    @Html.RadioButton("UserName", "ddlAgentId", false, new { id = "rdbAgentId" })
+                    @Html.Label("rdbAgentId", ViewLang.DangerousAgents)
+                    @Html.DropDownList("ddlAgentId", (IEnumerable<SelectListItem>)ViewBag.DangerousAgents)
+                </div>
+                <div class="group">
+                    @Html.Label("ddlCombo", ViewLang.Combo)
+                    @Html.DropDownList("ddlCombo", (IEnumerable<SelectListItem>)ViewBag.Combos)
+                </div>
+                <div class="group">
+                    <button id="btnSearch" class="button">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both;" id="divResult">
+    
+</div>
+@Scripts.Render("~/Scripts/Monitor/DangerMonitor/js")

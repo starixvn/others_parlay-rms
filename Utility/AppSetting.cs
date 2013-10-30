@@ -9,6 +9,7 @@
 namespace ParlayRMS.Utility
 {
     using System;
+    using System.Collections.Generic;
     using System.Configuration;
 
     /// <summary>
@@ -110,6 +111,22 @@ namespace ParlayRMS.Utility
             get
             {
                 return Convert.ToInt32(GetValue("UserPolicyCacheTime"));
+            }
+        }
+
+        public static Dictionary<long, string> DangerousAgents
+        {
+            get
+            {
+                var customSection = (CustomConfigurationSection)ConfigurationManager.GetSection("dangerousAgents");
+                var agentList = new Dictionary<long, string>();
+
+                foreach (EntryElement item in customSection.ElementList)
+                {
+                    agentList.Add(Convert.ToInt64(item.Key), item.Value);
+                }
+
+                return agentList;
             }
         }
 

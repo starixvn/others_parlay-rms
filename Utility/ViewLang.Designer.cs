@@ -394,6 +394,24 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Danger Monitor.
+        /// </summary>
+        public static string DangerMonitor {
+            get {
+                return ResourceManager.GetString("DangerMonitor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dangerous agents.
+        /// </summary>
+        public static string DangerousAgents {
+            get {
+                return ResourceManager.GetString("DangerousAgents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -462,6 +480,15 @@ namespace ParlayRMS.Utility {
         public static string DetailsFromTurnover {
             get {
                 return ResourceManager.GetString("DetailsFromTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details of.
+        /// </summary>
+        public static string DetailsOf {
+            get {
+                return ResourceManager.GetString("DetailsOf", resourceCulture);
             }
         }
         
@@ -727,6 +754,33 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hdp.
+        /// </summary>
+        public static string Hdp {
+            get {
+                return ResourceManager.GetString("Hdp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HDP (1H).
+        /// </summary>
+        public static string HdpFirstHalf {
+            get {
+                return ResourceManager.GetString("HdpFirstHalf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HDP (FT).
+        /// </summary>
+        public static string HdpFullTime {
+            get {
+                return ResourceManager.GetString("HdpFullTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -903,6 +957,24 @@ namespace ParlayRMS.Utility {
         public static string Lose {
             get {
                 return ResourceManager.GetString("Lose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match.
+        /// </summary>
+        public static string Match {
+            get {
+                return ResourceManager.GetString("Match", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}-vs-{1}.
+        /// </summary>
+        public static string MatchNameFormat {
+            get {
+                return ResourceManager.GetString("MatchNameFormat", resourceCulture);
             }
         }
         
@@ -1164,6 +1236,24 @@ namespace ParlayRMS.Utility {
         public static string Othersports {
             get {
                 return ResourceManager.GetString("Othersports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O/U (1H).
+        /// </summary>
+        public static string OUFirstHalf {
+            get {
+                return ResourceManager.GetString("OUFirstHalf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O/U (FT).
+        /// </summary>
+        public static string OUFullTime {
+            get {
+                return ResourceManager.GetString("OUFullTime", resourceCulture);
             }
         }
         

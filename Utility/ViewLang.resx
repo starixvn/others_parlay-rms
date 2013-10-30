@@ -729,4 +729,34 @@
   <data name="Subtotal" xml:space="preserve">
     <value>Subtotal</value>
   </data>
+  <data name="DangerMonitor" xml:space="preserve">
+    <value>Danger Monitor</value>
+  </data>
+  <data name="DangerousAgents" xml:space="preserve">
+    <value>Dangerous agents</value>
+  </data>
+  <data name="HdpFirstHalf" xml:space="preserve">
+    <value>HDP (1H)</value>
+  </data>
+  <data name="HdpFullTime" xml:space="preserve">
+    <value>HDP (FT)</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="OUFirstHalf" xml:space="preserve">
+    <value>O/U (1H)</value>
+  </data>
+  <data name="OUFullTime" xml:space="preserve">
+    <value>O/U (FT)</value>
+  </data>
+  <data name="MatchNameFormat" xml:space="preserve">
+    <value>{0}-vs-{1}</value>
+  </data>
+  <data name="Hdp" xml:space="preserve">
+    <value>Hdp</value>
+  </data>
+  <data name="DetailsOf" xml:space="preserve">
+    <value>Details of</value>
+  </data>
 </root>

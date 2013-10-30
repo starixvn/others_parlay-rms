@@ -44,6 +44,27 @@ namespace ParlayRMS.Utility
         {
             return string.Format("{0:#,##0}", obj);
         }
+        
+        /// <summary>
+        /// Formats number such as: 1111.1234 -> 1,111.12 or 1111.20 -> 1,111.2.
+        /// </summary>
+        /// <param name="obj">Integer number that needs to be formatted.</param>
+        /// <returns>Formatted value.</returns>
+        public static string FormatNumber4(object obj)
+        {
+            string formattedValue = string.Format("{0:#,##0.00}", obj);
+
+            if (formattedValue.EndsWith("00"))
+            {
+                formattedValue = formattedValue.Remove(formattedValue.Length - 3);
+            }
+            else if (formattedValue.EndsWith("0"))
+            {
+                formattedValue = formattedValue.Remove(formattedValue.Length - 1);
+            }
+
+            return formattedValue;
+        }
 
         /// <summary>
         /// Formats date.

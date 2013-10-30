@@ -75,6 +75,7 @@
     <Compile Include="AccountController.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="CacheController.cs" />
+    <Compile Include="DangerMonitorController.cs" />
     <Compile Include="FavouriteChoiceController.cs" />
     <Compile Include="ManageFunctionController.cs" />
     <Compile Include="HomeController.cs" />

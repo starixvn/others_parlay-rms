@@ -46,6 +46,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DangerMonitor\IDangerMonitorService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
     <Compile Include="TotalOutstanding\ITotalOutstandingService.cs" />
     <Compile Include="Users\IAuthorizationService.cs" />

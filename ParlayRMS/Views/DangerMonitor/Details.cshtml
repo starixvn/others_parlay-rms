@@ -1,0 +1,103 @@
+﻿@using ParlayRMS.DTO.DangerMonitor
+@model IEnumerable<RMS_Rpt_Parlay_DangerMonitor_Details>
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="allField2">
+                <div class="title2" id="popupTitle">
+                    @ViewLang.DetailsOf 
+                </div>
+                <div style="max-height: 580px; padding: 0px 5px 5px 5px;">
+                    <div style="width: 700px">
+                        <table class="main">
+                            <colgroup>
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="header2rows">
+                                        @ViewLang.Hdp
+                                    </th>
+                                    <th rowspan="2" class="header2rows">
+                                        @ViewLang.Odds
+                                    </th>
+                                    <th colspan="2">
+                                        @ViewLang.HdpFullTime
+                                    </th>
+                                    <th colspan="2">
+                                        @ViewLang.HdpFirstHalf
+                                    </th>
+                                    <th colspan="2">
+                                        @ViewLang.OUFullTime
+                                    </th>
+                                    <th colspan="2">
+                                        @ViewLang.OUFirstHalf
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>H</th>
+                                    <th class="awayTeam">A</th>
+                                    <th>H</th>
+                                    <th class="awayTeam">A</th>
+                                    <th>H</th>
+                                    <th class="awayTeam">A</th>
+                                    <th>H</th>
+                                    <th class="awayTeam">A</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="scrollGridContent" style="max-height: 500px; width: 718px;">
+                        <table class="main" id="result">
+                            <colgroup>
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                                <col width='70px' />
+                            </colgroup>
+                            <tbody>
+                                @if (Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    { 
+                                        <tr>
+                                            <td class="numeric">@Formatter.FormatNumber4(item.Hdp)</td>
+                                            <td class="numeric">@Formatter.FormatNumber2(item.Odds)</td>
+                                            <td class="numeric">@(item.HdpHome == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpHome))</td>
+                                            <td class="numeric">@(item.HdpAway == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpAway))</td>
+                                            <td class="numeric">@(item.Hdp1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stHome))</td>
+                                            <td class="numeric">@(item.Hdp1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stAway))</td>
+                                            <td class="numeric">@(item.OUHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OUHome))</td>
+                                            <td class="numeric">@(item.OUAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OUAway))</td>
+                                            <td class="numeric">@(item.OU1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stHome))</td>
+                                            <td class="numeric">@(item.OU1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stAway))</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                { 
+                                    <tr><td class="noinfo" colspan='11'>@ViewLang.NoInformation</td></tr>                
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
