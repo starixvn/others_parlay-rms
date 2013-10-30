@@ -130,6 +130,14 @@ namespace ParlayRMS.Utility
             }
         }
 
+        public static int MaxPayoutAfterPT
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("MaxPayoutAfterPT"));
+            }
+        }
+
         /// <summary>
         /// Gets configuration value of the given key.
         /// </summary>

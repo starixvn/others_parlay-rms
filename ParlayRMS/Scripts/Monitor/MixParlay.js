@@ -197,7 +197,7 @@ $(document).ready(function () {
         minWidth: 132,
         height: 136,
         create: function () {
-            $("#combo").multiselect("checkAll");
+            $("#combo").multiselect();
         },
         selectedText: function (numChecked, numTotal, checkedItems) {
             if (numChecked == 0) {

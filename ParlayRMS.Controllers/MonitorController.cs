@@ -54,7 +54,8 @@ namespace ParlayRMS.Controllers
                 combos.Add(new SelectListItem
                 {
                     Text = i.ToString(),
-                    Value = i.ToString()
+                    Value = i.ToString(),
+                    Selected = (i == 2) || (i == 3)
                 });
             }
 
@@ -83,7 +84,7 @@ namespace ParlayRMS.Controllers
             var selectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
-                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 20 ? true : false });
+                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 200 ? true : false });
             }
 
             ViewBag.SelectTops = selectTops;
@@ -97,6 +98,7 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.RefreshTimes = refreshTimes;
+            ViewBag.MaxPayoutAfterPT = Formatter.FormatNumber3(AppSetting.MaxPayoutAfterPT);
 
             return this.PartialView("MixParlay/Filter");
         }

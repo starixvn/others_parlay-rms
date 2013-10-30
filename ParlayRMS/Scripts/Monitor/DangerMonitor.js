@@ -125,6 +125,7 @@
     RenderData: function (result) {
         DangerMonitor.CachedDOM.divResult.html(result);
         DangerMonitor.Params.MaxTransId = $('#hdfMaxTransId', DangerMonitor.CachedDOM.divResult).val();
+        DangerMonitor.Params.AgentIdList = $('#hdfAgentIdList', DangerMonitor.CachedDOM.divResult).val();
 
         $('a[data-match]', DangerMonitor.CachedDOM.divResult).each(function () {
             $(this).bind('click', function () {

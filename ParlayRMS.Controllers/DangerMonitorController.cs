@@ -78,6 +78,7 @@ namespace ParlayRMS.Controllers
             });
             ViewBag.Total = total;
             ViewBag.MaxTransId = maxTransId;
+            ViewBag.AgentIdList = options.AgentIdList;
 
             return this.PartialView("Data", records);
         }

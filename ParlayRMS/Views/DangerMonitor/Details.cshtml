@@ -76,16 +76,16 @@
                                     foreach (var item in Model)
                                     { 
                                         <tr>
-                                            <td class="numeric">@Formatter.FormatNumber4(item.Hdp)</td>
-                                            <td class="numeric">@Formatter.FormatNumber2(item.Odds)</td>
-                                            <td class="numeric">@(item.HdpHome == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpHome))</td>
-                                            <td class="numeric">@(item.HdpAway == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpAway))</td>
-                                            <td class="numeric">@(item.Hdp1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stHome))</td>
-                                            <td class="numeric">@(item.Hdp1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stAway))</td>
-                                            <td class="numeric">@(item.OUHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OUHome))</td>
-                                            <td class="numeric">@(item.OUAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OUAway))</td>
-                                            <td class="numeric">@(item.OU1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stHome))</td>
-                                            <td class="numeric">@(item.OU1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stAway))</td>
+                                            <td class="center">@Formatter.FormatNumber4(item.Hdp)</td>
+                                            <td class="center">@Formatter.FormatNumber2(item.Odds)</td>
+                                            <td class="center">@(item.HdpHome == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpHome))</td>
+                                            <td class="center">@(item.HdpAway == 0 ? string.Empty : Formatter.FormatNumber3(item.HdpAway))</td>
+                                            <td class="center">@(item.Hdp1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stHome))</td>
+                                            <td class="center">@(item.Hdp1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.Hdp1stAway))</td>
+                                            <td class="center">@(item.OUHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OUHome))</td>
+                                            <td class="center">@(item.OUAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OUAway))</td>
+                                            <td class="center">@(item.OU1stHome == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stHome))</td>
+                                            <td class="center">@(item.OU1stAway == 0 ? string.Empty : Formatter.FormatNumber3(item.OU1stAway))</td>
                                         </tr>
                                     }
                                 }
