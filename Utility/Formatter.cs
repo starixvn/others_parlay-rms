@@ -46,7 +46,7 @@ namespace ParlayRMS.Utility
         }
         
         /// <summary>
-        /// Formats number such as: 1111.1234 -> 1,111.12 or 1111.20 -> 1,111.2.
+        /// Formats number such as: 1111.20 -> 1,111.2.
         /// </summary>
         /// <param name="obj">Integer number that needs to be formatted.</param>
         /// <returns>Formatted value.</returns>

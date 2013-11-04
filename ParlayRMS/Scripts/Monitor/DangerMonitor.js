@@ -53,7 +53,7 @@
             minWidth: 135,
             height: 136,
             create: function () {
-                DangerMonitor.CachedDOM.ddlCombo.multiselect("checkAll");
+                DangerMonitor.CachedDOM.ddlCombo.multiselect();
             },
             selectedText: function (numChecked, numTotal, checkedItems) {
                 if (numChecked == 0) {

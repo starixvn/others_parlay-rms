@@ -39,7 +39,14 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Combos = Config.Combos;
+            var combos = Config.Combos;
+
+            foreach (var combo in combos)
+            {
+                combo.Selected = combo.Value.Equals("2") || combo.Value.Equals("3");
+            }
+
+            ViewBag.Combos = combos;
             ViewBag.DangerousAgents = GetDangerousAgents();
 
             return this.View("Index");

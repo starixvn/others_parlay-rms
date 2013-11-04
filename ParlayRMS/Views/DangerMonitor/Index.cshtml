@@ -25,7 +25,7 @@
                 </div>
                 <div class="group">
                     @Html.Label("ddlCombo", ViewLang.Combo)
-                    @Html.DropDownList("ddlCombo", (IEnumerable<SelectListItem>)ViewBag.Combos)
+                    @Html.DropDownList("ddlCombo", (IEnumerable<SelectListItem>)ViewBag.Combos, new { multiple = "multiple" })
                 </div>
                 <div class="group">
                     <button id="btnSearch" class="button">
