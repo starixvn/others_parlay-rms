@@ -33,7 +33,7 @@ namespace ParlayRMS.Controllers
 
         public ManageMemberController()
         {
-            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
+            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Filter conditions.</param>
         /// <returns>List of members.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Read)]
         public ActionResult MemberList(MemberListModel model)
         {
             var specialMemberList = this._customerService.GetListCustomer(model.UserName, model.Level);
@@ -55,7 +55,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
             return this.View();
@@ -66,7 +66,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <returns>Partial view represents the Add New Member form.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Create)]
         public ActionResult AddMember()
         {
             var model = new AddMemberModel();
@@ -79,7 +79,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">The model contains the information of new member.</param>
         /// <returns>Whether the new member is added successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Create)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Create)]
         public ActionResult AddMember(AddMemberModel model)
         {
             if (!ModelState.IsValid)
@@ -97,7 +97,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">New customer's level.</param>
         /// <returns>Whether the level of customer is updated successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Update)]
         public ActionResult UpdateLevel(UpdateLevelModel model)
         {
             if (!ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">Filter conditions.</param>
         /// <returns>File stream contains the Excel file.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Read)]
         public ActionResult ExportExcel(ExportExcelModel model)
         {
             var specialMemberList = this._customerService.GetListCustomer(model.UserName, model.Level);
@@ -153,7 +153,7 @@ namespace ParlayRMS.Controllers
         /// <param name="model">The model contains username and new level value.</param>
         /// <returns>Whether the level of member is updated successfully or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberManagement, Policy = UserPolicy.Update)]
+        [AuthorizationAttribute(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Update)]
         public ActionResult ChangeLevel(ChangeLevelModel model)
         {
             if (!ModelState.IsValid)

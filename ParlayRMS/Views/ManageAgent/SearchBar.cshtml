@@ -1,0 +1,16 @@
+﻿@model ParlayRMS.ViewModel.ManageAgent.SearchBarModel
+<div class="search-content" style="width: 325px">
+    <div class="search-input">
+        @Html.Label("lblUserName", ViewLang.Username)
+        @Html.TextBox("txtUserName", @Model.UserName, new { @class = "inputtext w150" })
+    </div>
+    <div class="search-button" style="margin: 0 1em;">
+        <button id="btnAgentSearch">
+            @ViewLang.Search
+        </button>
+       @* &nbsp;
+        <button id="btnAgentShowAll">
+            @ViewLang.ShowAll
+        </button>*@
+    </div>
+</div>

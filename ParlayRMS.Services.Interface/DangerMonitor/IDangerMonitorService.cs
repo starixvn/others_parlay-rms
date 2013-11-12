@@ -18,11 +18,13 @@ namespace ParlayRMS.Services.Interface.DangerMonitor
         /// Get summary betting data of a dangerous agent.
         /// </summary>
         /// <param name="agentIdList">The agent identifier list.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="selection">The combo selection.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor objects.</returns>
         IEnumerable<RMS_Rpt_Parlay_DangerMonitor> GetDangerMonitorData(
                                                       string agentIdList,
+                                                      decimal maxPayout,
                                                       string selection,
                                                       out long maxTransId);
 
@@ -31,12 +33,14 @@ namespace ParlayRMS.Services.Interface.DangerMonitor
         /// </summary>
         /// <param name="matchId">Match ID value.</param>
         /// <param name="agentIdList">The agent identifier list.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="selection">The combo selection.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor_Details objects.</returns>
         IEnumerable<RMS_Rpt_Parlay_DangerMonitor_Details> GetDangerMonitorDetails(
                                                               int matchId,
                                                               string agentIdList,
+                                                              decimal maxPayout,
                                                               string selection,
                                                               long maxTransId);
     }

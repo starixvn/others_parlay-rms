@@ -3,7 +3,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.DangerMonitor;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 880px">
+    <div class="filter-control" style="width: 1150px">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl</div>
@@ -26,6 +26,10 @@
                 <div class="group">
                     @Html.Label("ddlCombo", ViewLang.Combo)
                     @Html.DropDownList("ddlCombo", (IEnumerable<SelectListItem>)ViewBag.Combos, new { multiple = "multiple" })
+                </div>
+                <div class="group">
+                    @Html.Label("txtMaxPayout", ViewLang.MaxPayoutAfterPT)
+                    @Html.TextBox("txtMaxPayout", (string)ViewBag.MaxPayoutAfterPT, new { @maxlength = 20 })
                 </div>
                 <div class="group">
                     <button id="btnSearch" class="button">

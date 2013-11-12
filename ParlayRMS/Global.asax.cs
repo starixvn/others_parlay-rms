@@ -131,7 +131,8 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/Libs/css").Include(
                 "~/Content/Libs/jquery-ui/jquery-ui.more.css",
                 "~/Content/Libs/contextmenu/jquery.contextmenu.css",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.css"));
+                "~/Scripts/Libs/multiselect/jquery.multiselect.css",
+                "~/Scripts/Libs/multiselect/jquery.multiselect.filter.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/BetList.css",
                 "~/Content/Components.css",
@@ -159,6 +160,7 @@ namespace ParlayRMS
                 "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
                 "~/Scripts/Libs/moment/moment.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.js",
+                "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
                 "~/Scripts/Libs/sortElements/jquery.sortElements.js",
@@ -195,6 +197,7 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMember/js").Include("~/Scripts/ManageMember.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageAgent/js").Include("~/Scripts/ManageAgent.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageGroup/js").Include("~/Scripts/ManageGroup.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));

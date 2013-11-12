@@ -27,11 +27,13 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
         /// </summary>
         /// <param name="agentIdList">The agent identifier list.</param>
         /// <param name="selection">The combo selection.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_DangerMonitor> RMS_Rpt_Parlay_DangerMonitor(
                                                             string agentIdList,
                                                             string selection,
+                                                            decimal maxPayout,
                                                             out long maxTransId)
         {
             var result = new List<RMS_Rpt_Parlay_DangerMonitor>();
@@ -42,6 +44,7 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
                 using (var db = new ObjectDb("RMS_Rpt_Parlay_DangerMonitor"))
                 {
                     db.AddInParameter("AgentIDList", DbType.String, agentIdList);
+                    db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
                     db.AddInParameter("selection", DbType.String, selection);
                     db.AddOutParameter("max_transid", DbType.Int64, 8);
                     
@@ -84,12 +87,14 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
         /// <param name="matchId">Match ID value.</param>
         /// <param name="agentIdList">The agent identifier list.</param>
         /// <param name="selection">The combo selection.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor_Details objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_DangerMonitor_Details> RMS_Rpt_Parlay_DangerMonitor_Details(
                                                                      int matchId,
                                                                      string agentIdList,
                                                                      string selection,
+                                                                     decimal maxPayout,
                                                                      long maxTransId)
         {
             var result = new List<RMS_Rpt_Parlay_DangerMonitor_Details>();
@@ -100,6 +105,7 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
                 {
                     db.AddInParameter("matchid", DbType.Int32, matchId);
                     db.AddInParameter("AgentIDList", DbType.String, agentIdList);
+                    db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
                     db.AddInParameter("selection", DbType.String, selection);
                     db.AddInParameter("max_transid", DbType.Int64, maxTransId);
 

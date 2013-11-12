@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\IAgentsDataAccess.cs" />
     <Compile Include="BetList\IBetListDataAccess.cs" />
     <Compile Include="Common\ICommonDataAccess.cs" />
     <Compile Include="DangerMonitor\IDangerMonitorDataAccess.cs" />

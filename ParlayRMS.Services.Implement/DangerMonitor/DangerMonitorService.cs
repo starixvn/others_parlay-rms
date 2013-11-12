@@ -28,15 +28,17 @@ namespace ParlayRMS.Services.Implement.DangerMonitor
         /// Get summary betting data of a dangerous agent.
         /// </summary>
         /// <param name="agentIdList">The agent identifier list.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="selection">The combo selection.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_DangerMonitor> GetDangerMonitorData(
                                                             string agentIdList,
+                                                            decimal maxPayout,
                                                             string selection,
                                                             out long maxTransId)
         {
-            var records = this._topwinnersDataAccess.RMS_Rpt_Parlay_DangerMonitor(agentIdList, selection, out maxTransId);
+            var records = this._topwinnersDataAccess.RMS_Rpt_Parlay_DangerMonitor(agentIdList, selection, maxPayout, out maxTransId);
             string homeName;
             string awayName;
 
@@ -56,16 +58,18 @@ namespace ParlayRMS.Services.Implement.DangerMonitor
         /// </summary>
         /// <param name="matchId">Match ID value.</param>
         /// <param name="agentIdList">The agent identifier list.</param>
+        /// <param name="maxPayout">Max payout after PT.</param>
         /// <param name="selection">The combo selection.</param>
         /// <param name="maxTransId">The maximum transaction identifier.</param>
         /// <returns>List of RMS_RPT_Parlay_DangerMonitor_Details objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_DangerMonitor_Details> GetDangerMonitorDetails(
                                                                      int matchId,
                                                                      string agentIdList,
+                                                                     decimal maxPayout,
                                                                      string selection,
                                                                      long maxTransId)
         {
-            return this._topwinnersDataAccess.RMS_Rpt_Parlay_DangerMonitor_Details(matchId, agentIdList, selection, maxTransId);
+            return this._topwinnersDataAccess.RMS_Rpt_Parlay_DangerMonitor_Details(matchId, agentIdList, selection, maxPayout, maxTransId);
         }
     }
 }

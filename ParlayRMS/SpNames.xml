@@ -81,6 +81,11 @@
         <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
     </Function>
+  <Function Name="Agent">
+    <Setting Key="RMS_DangerousAgentIns" SpName="RMS_DangerousAgentIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_DangerousAgentDel" SpName="RMS_DangerousAgentDel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_DangerousAgentSel" SpName="RMS_DangerousAgentSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+  </Function>
     <Function Name="TotalOutstanding">
         <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />

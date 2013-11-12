@@ -49,6 +49,10 @@
     <Compile Include="Account\LoginModel.cs" />
     <Compile Include="DangerMonitor\DangerMonitorDetailOptions.cs" />
     <Compile Include="DangerMonitor\DangerMonitorOptions.cs" />
+    <Compile Include="ManageAgent\AddAgentModel.cs" />
+    <Compile Include="ManageAgent\AgentListModel.cs" />
+    <Compile Include="ManageAgent\DeleteAgentModel.cs" />
+    <Compile Include="ManageAgent\SearchBarModel.cs" />
     <Compile Include="ManageMember\ChangeLevelModel.cs" />
     <Compile Include="ManageMember\ExportExcelModel.cs" />
     <Compile Include="ManageMember\MemberListModel.cs" />

@@ -52,7 +52,7 @@ namespace ParlayRMS.Controllers
             ViewBag.SelectTops = Config.SelectTops;
             ViewBag.DateRanges = Config.DateRanges;
             ViewBag.SportsTypes = Config.SportsTypes;
-            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.MemberManagement);
+            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
 
             return this.View("Index");
         }

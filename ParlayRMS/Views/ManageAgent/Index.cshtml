@@ -1,0 +1,37 @@
+﻿@using ParlayRMS.DTO.Agents;
+@using ParlayRMS.Utility;
+@model IEnumerable<RMS_DangerousAgentSel>
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.AgentManagement;
+    string levelName = string.Empty;
+}
+<div id="barDangerousAgent" class="bar new-cmd title" style="width: 345px;">
+    @if (ViewBag.HasWritePermission)
+    { 
+        <div style="float: left;">
+            <button id="btnAddDangerousAgent">
+                <span class="addNewUSer"></span><span class="text">@ViewLang.AddDangerousAgent</span>
+            </button>
+        </div>
+    }
+</div>
+@Html.Action("SearchBar")
+<div class="scrollGridBorder" style="width: 355px">
+    <div class="scrollGridHeader" style="width: 337px">
+        <table class="scrollGrid" style="width: 337px">
+            <tr>
+                <td style="width: 50px">
+                    @ViewLang.No
+                </td>
+                <td style="width: auto">
+                    @ViewLang.Username
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divResult">
+    </div>
+</div>
+@section Script{
+    @Scripts.Render("~/Scripts/ManageAgent/js")
+}

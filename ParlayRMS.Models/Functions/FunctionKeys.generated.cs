@@ -5,7 +5,8 @@
         public const string Administration = "Administration";
         public const string Monitor = "Monitor";
         public const string Monitoring = "Monitoring";
-        public const string MemberManagement = "MemberManagement";
+        public const string ManageCustomer = "ManageCustomer";
+        public const string ManageAgent = "ManageAgent";
         public const string Report = "Report";
         public const string Tool = "Tool";
         public const string ManageGroup = "ManageGroup";
@@ -14,7 +15,6 @@
         public const string ManageMenu = "ManageMenu";
         public const string FavouriteChoice = "FavouriteChoice";
         public const string TopSelection = "TopSelection";
-        public const string ManageCustomer = "ManageCustomer";
         public const string TopWinners = "TopWinners";
         public const string Winloss = "Winloss";
         public const string test = "test";

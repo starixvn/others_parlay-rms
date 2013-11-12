@@ -26,5 +26,7 @@ namespace ParlayRMS.ViewModel.DangerMonitor
         public string Combos { get; set; }
 
         public long MaxTransId { get; set; }
+
+        public decimal MaxPayout { get; set; }
     }
 }

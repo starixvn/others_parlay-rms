@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\RMS_DangerousAgentSel.cs" />
     <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor.cs" />
     <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor_Details.cs" />
     <Compile Include="Functions\RMS_FunctionSel.cs" />

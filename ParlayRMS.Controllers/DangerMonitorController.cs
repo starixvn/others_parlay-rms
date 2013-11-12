@@ -9,13 +9,14 @@
 
 namespace ParlayRMS.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using ParlayRMS.Models.Functions;
+    using ParlayRMS.Services.Implement.Agents;
     using ParlayRMS.Services.Implement.DangerMonitor;
     using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface.Agents;
     using ParlayRMS.Services.Interface.DangerMonitor;
     using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
@@ -30,6 +31,7 @@ namespace ParlayRMS.Controllers
     {
         private readonly IDangerMonitorService _dangerMonitorService = new DangerMonitorService();
         private readonly IUsersService _usersService = new UsersService();
+        private readonly IAgentService _agentService = new AgentService();
 
         /// <summary>
         /// Redirects to Index view.
@@ -48,6 +50,7 @@ namespace ParlayRMS.Controllers
 
             ViewBag.Combos = combos;
             ViewBag.DangerousAgents = GetDangerousAgents();
+            ViewBag.MaxPayoutAfterPT = Formatter.FormatNumber3(AppSetting.MaxPayoutAfterPT);
 
             return this.View("Index");
         }
@@ -70,8 +73,9 @@ namespace ParlayRMS.Controllers
                 options.AgentIdList = user.CustId.ToString();
             }
 
-            var records = this._dangerMonitorService.GetDangerMonitorData(options.AgentIdList, options.Combos, out maxTransId);
+            var records = this._dangerMonitorService.GetDangerMonitorData(options.AgentIdList, options.MaxPayout, options.Combos, out maxTransId);
 
+            records = records.ToList().OrderBy(obj => obj.LeagueName);
             records.ToList().ForEach(obj =>
             {
                 total += obj.HdpHome;
@@ -99,7 +103,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult Details(DangerMonitorDetailOptions options)
         {
-            var records = this._dangerMonitorService.GetDangerMonitorDetails(options.MatchId, options.AgentIdList, options.Combos, options.MaxTransId);
+            var records = this._dangerMonitorService.GetDangerMonitorDetails(options.MatchId, options.AgentIdList, options.MaxPayout, options.Combos, options.MaxTransId);
 
             return this.PartialView("Details", records);
         }
@@ -110,13 +114,13 @@ namespace ParlayRMS.Controllers
         /// <returns>List of dangerous agent names.</returns>
         private List<SelectListItem> GetDangerousAgents()
         {
-            var agentList = AppSetting.DangerousAgents;
+            var agentList = this._agentService.GetDangerousAgents(null); ////AppSetting.DangerousAgents;
             var dangerousAgents = new List<SelectListItem>();
 
             dangerousAgents.AddRange(agentList.Select(obj => new SelectListItem
             {
-                Value = obj.Key.ToString(),
-                Text = obj.Value
+                Value = obj.AgentId.ToString(),
+                Text = obj.UserName
             }));
 
             return dangerousAgents;

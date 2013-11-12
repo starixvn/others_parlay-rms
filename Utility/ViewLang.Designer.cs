@@ -79,6 +79,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Dangerous Agent.
+        /// </summary>
+        public static string AddDangerousAgent {
+            get {
+                return ResourceManager.GetString("AddDangerousAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Special Member.
         /// </summary>
         public static string AddSpecialMember {
@@ -102,6 +111,15 @@ namespace ParlayRMS.Utility {
         public static string Agent {
             get {
                 return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Management.
+        /// </summary>
+        public static string AgentManagement {
+            get {
+                return ResourceManager.GetString("AgentManagement", resourceCulture);
             }
         }
         

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\AgentsDataAccess.cs" />
     <Compile Include="BetList\BetListDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />
     <Compile Include="DangerMonitor\DangerMonitorDataAccess.cs" />

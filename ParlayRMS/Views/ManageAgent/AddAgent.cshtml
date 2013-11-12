@@ -1,0 +1,12 @@
+﻿@model ParlayRMS.ViewModel.ManageAgent.AddAgentModel
+@{
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+    ViewBag.Title = ViewLang.AddDangerousAgent;
+    ViewBag.Submit = "ManageAgent.AddAgent()";
+}
+<div class="popup-content-label">
+    @Html.LabelFor(m => m.UserName)
+</div>
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.UserName, string.Empty, new { @class = "popup-content-textbox w175" })
+</div>

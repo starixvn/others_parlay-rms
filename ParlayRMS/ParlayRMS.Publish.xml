@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="D:\Apollo-Deploy\ParlayRMS_BK" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="bin/ExcelService.pdb" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="bin/ExcelService.pdb" publishTime="11/12/2013 12:34:01" />
+    <file relUrl="Images/Content/icon/1340070638_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012240_system-software-update.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/Shared/_Language.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013098_human-folder-public.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071244_stock_lock-brocken.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="favicon.ico" publishTime="10/08/2013 09:22:54" />
@@ -16,12 +16,14 @@
     <file relUrl="ExcelTemplates/AgentWinLoss.xls" publishTime="10/10/2013 14:25:18" />
     <file relUrl="bin/System.Web.WebPages.Razor.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_InvalidRequest.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340071083_bittorrent.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.base.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/TplCore.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/ManageGroup.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012823_orange-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/confirm.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/icon/1340012519_gnumeric.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Report/ParlayRMS.Winloss.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070587_bonobo-browser.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013982_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/warning_1_20x20.png" publishTime="10/08/2013 09:22:54" />
@@ -31,6 +33,7 @@
     <file relUrl="Scripts/Libs/moment/moment.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.WebHost.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Newtonsoft.Json.dll" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Web.WebPages.Deployment.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012775_preferences-contact-list.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013930_openofficeorg-calc.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Monitor/MixParlay/Filter.cshtml" publishTime="11/01/2013 13:34:46" />
@@ -38,16 +41,16 @@
     <file relUrl="Scripts/Libs/soundManager/swf/soundmanager2_flash9_debug.swf" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/soundmanager2-nodebug.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TopSelection/DataSum.cshtml" publishTime="10/29/2013 12:25:23" />
+    <file relUrl="Images/Content/icon/1340012125_application-pgp-signature.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_Menu.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070634_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012384_gnome-keyring-manager.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013529_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Services.Implement.pdb" publishTime="11/01/2013 16:19:50" />
+    <file relUrl="bin/ParlayRMS.Services.Implement.pdb" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Images/Content/calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/confirm/header.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/moment/moment.min.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Libs/highcharts/highcharts.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070682_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012459_gnome-searchtool.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Core.js" publishTime="10/08/2013 09:22:54" />
@@ -55,33 +58,32 @@
     <file relUrl="Images/Content/icon/1340070545_gnome-session-properties.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013582_stock_task-assigned.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013938_openofficeorg-calc.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Web.dll" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.Web.dll" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Images/Content/icon/1340013468_xfce-system-settings.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012380_gnome-keyring-manager.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012440_gtk-about.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012231_system-software-update.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/ManageMember.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071253_stock_lock-brocken.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012613_emblem-people.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014072_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340071096_preferences-desktop-user.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Tooltip/tipMid.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012515_gnumeric.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/red_bt_bg.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.dll" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Common.dll" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="bin/ParlayRMS.Common.dll" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Images/Content/icon/1340012711_kchart.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/Account/Offline.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-icons_2e83ff_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071059_stock_disconnect.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/ResetPassword.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Tooltip/tipBtm.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012437_gtk-about.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/ParlayRMS.TotalOutstanding.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012677_kchart.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Web.Razor.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/table_bg.gif" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/MemberWinLoss/MemberData.cshtml" publishTime="10/10/2013 14:25:18" />
     <file relUrl="Scripts/ManageMenu.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/Index.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Fanex.BetList.Core.TicketHelper.dll" publishTime="10/08/2013 09:22:53" />
-    <file relUrl="Images/Content/dropdownicon.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.DataAccess.Implement.pdb" publishTime="11/01/2013 16:19:50" />
+    <file relUrl="bin/ParlayRMS.DataAccess.Implement.pdb" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Views/Shared/_ErrorMessage.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="ExcelTemplates/TopWinners.xls" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Optimization.dll" publishTime="10/08/2013 09:22:54" />
@@ -89,19 +91,21 @@
     <file relUrl="Images/Content/icon/1340013101_human-folder-public.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/excel_icon_small.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071112_gnome-monitor.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013178_window-close.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Net.Http.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TotalOutstanding/Index.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Net.Http.WebRequest.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TotalOutstanding/AgentResult.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012681_kchart.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013148_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/ManageAgent/SearchBar.cshtml" publishTime="11/12/2013 10:07:57" />
     <file relUrl="Images/Content/icon/1340012129_application-pgp-signature.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340070674_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014230_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/SimilarBets/Index.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Utility.dll" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="bin/ParlayRMS.Utility.dll" publishTime="11/12/2013 12:34:01" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.core.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014082_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012660_system-config-kickstart.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Web.Providers.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013525_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012605_emblem-people.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/tablesortup.png" publishTime="10/08/2013 09:22:54" />
@@ -109,25 +113,25 @@
     <file relUrl="Images/Content/icon/1340012674_kchart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/right_side_search_bar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMember/SearchBar.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-icons_454545_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Fanex.Common.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/icon/1340071335_jajuk.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Common.pdb" publishTime="11/01/2013 16:19:48" />
-    <file relUrl="bin/ParlayRMS.DataAccess.Interface.dll" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.Common.pdb" publishTime="11/12/2013 12:34:02" />
+    <file relUrl="bin/ParlayRMS.DataAccess.Interface.dll" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Images/Content/icon/1340013162_insert-link.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070541_gnome-session-properties.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Paging.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/DangerMonitor/Index.cshtml" publishTime="11/01/2013 16:22:06" />
+    <file relUrl="Views/DangerMonitor/Index.cshtml" publishTime="11/12/2013 11:28:04" />
     <file relUrl="Images/Content/icon/1340013110_human-folder-downloads.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/icon/1340070552_gnome-session-properties.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Monitor/MixParlay/BetDetails.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/multiselect/jquery.multiselect.filter.css" publishTime="11/12/2013 11:00:44" />
     <file relUrl="bin/System.Json.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.progressbar.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-icons_454545_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.dialog.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013578_stock_task-assigned.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ExcelService.dll" publishTime="11/01/2013 16:19:48" />
     <file relUrl="Images/Content/icon/1340071119_gnome-monitor.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013480_xfce-system-settings.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012811_kde-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
@@ -136,22 +140,20 @@
     <file relUrl="Views/Shared/_AuthInfo.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071268_emesene.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/swf/soundmanager2.swf" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Net.Http.WebRequest.xml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-icons_cd0a0a_256x240.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013104_human-folder-public.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/swf/soundmanager2_flash9.swf" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Web.Authorization.dll" publishTime="11/01/2013 16:19:50" />
+    <file relUrl="bin/ParlayRMS.Web.Authorization.dll" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Scripts/Libs/bettertooltip/jquery.betterTooltip.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012820_orange-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Web.Providers.dll" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/Antlr3.Runtime.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070688_kmixdocked_error.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070670_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.ViewModel.pdb" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.ViewModel.pdb" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Scripts/Libs/jquery-ui/jquery-ui.custom.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Ionic.Zip.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/icon/1340013145_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013534_old-view-refresh.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="ExcelTemplates/Winloss.xls" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014121_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070591_bonobo-browser.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012118_application-pgp-signature.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070581_bonobo-browser.png" publishTime="10/08/2013 09:22:54" />
@@ -165,32 +167,33 @@
     <file relUrl="Images/Content/icon/1340012785_preferences-contact-list.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071135_streamtuner.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071093_preferences-desktop-user.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/ManageAgent/Index.cshtml" publishTime="11/12/2013 10:09:04" />
     <file relUrl="Images/Content/icon/1340012718_kchart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/soundmanager2.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Icon.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012235_system-software-update.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012660_system-config-kickstart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/footer_bg.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/jquery-ui.more.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070608_deskbar-applet.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013158_insert-link.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/SignalR.Hosting.AspNet.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014124_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/Menu_hover.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/swf/soundmanager2_debug.swf" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014092_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Winloss/Data.cshtml" publishTime="11/01/2013 13:34:46" />
-    <file relUrl="Images/Content/icon/1340071128_streamtuner.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013927_openofficeorg-calc.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Login.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Global.asax" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon_wait.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/tablesortdown.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/logo.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/hoverbg.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013472_xfce-system-settings.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071272_emesene.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMember/Index.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.DataAccess.Interface.pdb" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.DataAccess.Interface.pdb" publishTime="11/12/2013 12:34:03" />
+    <file relUrl="Images/Content/icon/1340013138_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Services.Interface.dll" publishTime="11/12/2013 12:34:02" />
     <file relUrl="bin/Fanex.Data.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Views/Shared/MessageBox.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013542_old-view-refresh.png" publishTime="10/08/2013 09:22:54" />
@@ -198,45 +201,43 @@
     <file relUrl="Images/Content/icon/1340071264_emesene.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012807_kde-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/SearchBar.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.autocomplete.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340071046_galternatives.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.DTO.dll" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="bin/ParlayRMS.DTO.dll" publishTime="11/12/2013 12:34:01" />
     <file relUrl="Images/Content/expand-small.png" publishTime="11/01/2013 13:34:46" />
     <file relUrl="Images/Content/icon/1340071309_jajuk.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/lastGoal.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013962_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340070677_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.DataAccess.Implement.dll" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Images/Tooltip/tipTop.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013227_kde-address-book-new.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/Close.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012452_gnome-searchtool.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_PopupLayout.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/DotNet.Highcharts.dll" publishTime="10/08/2013 09:22:53" />
-    <file relUrl="Images/Content/logo_c.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Libs/simplemodal/jquery.simplemodal.min.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012349_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Fanex.BetList.Core.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Views/MemberWinLoss/AgentData.cshtml" publishTime="10/10/2013 14:25:18" />
     <file relUrl="Images/Content/closeButton.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013188_window-close.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Net.Http.Formatting.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Login/hover.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/multiselect/jquery.multiselect.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_Pager.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMenu/Index.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071050_galternatives.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Net.Http.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014372_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014143_gnome-system-monitor.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.slider.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Services.Interface.pdb" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.Services.Interface.pdb" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Images/Content/icon/1340071305_jajuk.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/SignalR/jquery.signalR.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Confirm.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012104_netscape.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMenu/EditMenu.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/animated-overlay.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.theme.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071275_emesene.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.WebPages.xml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013585_stock_task-assigned.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Validators.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.WebHost.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/bg.jpg" publishTime="10/08/2013 09:22:54" />
@@ -244,35 +245,36 @@
     <file relUrl="Scripts/Libs/SignalR/jquery.signalR.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012098_netscape.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/DangerMonitor/Details.cshtml" publishTime="11/01/2013 16:16:24" />
+    <file relUrl="Views/DangerMonitor/Details.cshtml" publishTime="11/04/2013 07:33:13" />
     <file relUrl="Images/Content/collapse-small.png" publishTime="11/01/2013 13:34:46" />
     <file relUrl="Images/Content/icon/1340070594_bonobo-browser.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="App_Code/RazorHelper.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/SignalR.Hosting.Common.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.Common.dll" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012345_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013181_window-close.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012221_system-software-update.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012601_emblem-people.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMenu/CreateMenu.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013169_insert-link.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/IBCFile.dll" publishTime="10/08/2013 09:22:53" />
+    <file relUrl="Images/Content/icon/1340013959_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/MemberWinLoss/Index.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.Common.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/blank.gif" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Components.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012433_gtk-about.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340070642_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Data.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/ManageAgent.js" publishTime="11/12/2013 10:31:30" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-icons_888888_256x240.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="packages.config" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012677_kchart.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Controllers.dll" publishTime="11/01/2013 16:19:51" />
+    <file relUrl="Scripts/ParlayRMS.TotalOutstanding.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Net.Http.WebRequest.xml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Controllers.dll" publishTime="11/12/2013 12:34:04" />
     <file relUrl="Images/Content/icon/1340014236_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/multiselect/jquery.multiselect.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012338_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/SignalR.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012121_application-pgp-signature.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013113_human-folder-downloads.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_Layout.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMember/AddMember.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071042_galternatives.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013502_insert-object.png" publishTime="10/08/2013 09:22:54" />
@@ -280,17 +282,13 @@
     <file relUrl="Views/ManageFunction/CreateFunction.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.tabs.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012463_gnome-searchtool.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014114_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Login.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340071083_bittorrent.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/highcharts/highcharts.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013117_human-folder-downloads.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.DataAccess.Implement.dll" publishTime="11/01/2013 16:19:50" />
     <file relUrl="Images/Content/disable_button_bg.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Web.Razor.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012387_gnome-keyring-manager.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/SPSRemoting.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/UpdateLevel.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Models.dll" publishTime="11/01/2013 16:19:48" />
     <file relUrl="Images/Content/icon/1340071069_stock_disconnect.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-icons_888888_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014220_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
@@ -302,7 +300,6 @@
     <file relUrl="Images/Content/icon/1340014226_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071248_stock_lock-brocken.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Popup.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340071132_streamtuner.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/WebGrease.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/tablesort.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Monitor/MixParlay/Index.cshtml" publishTime="10/08/2013 09:22:54" />
@@ -311,36 +308,41 @@
     <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/simplemodal/jquery.simplemodal.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Http.xml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014078_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageGroup/EditGroup.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.resizable.css" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013158_insert-link.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/numeral/numeral.min.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013518_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340070677_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/numeral/numeral.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/PagedList.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013538_old-view-refresh.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070699_kmixdocked_error.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014406_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Menu.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/Account/Offline.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/user_icon.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014114_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Net.Http.Formatting.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012101_netscape.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070612_deskbar-applet.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012093_netscape.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014117_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Web.Razor.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/ManageFunction.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012059_stock_task.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.ViewModel.dll" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="Images/Content/icon/1340013178_window-close.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012823_orange-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Utility.pdb" publishTime="11/12/2013 12:34:01" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.accordion.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Sounds/alert.mp3" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Web.WebPages.Deployment.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012799_kde-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/contextMenu/jquery.contextMenu.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Home/Index.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/SimilarBets/NotFound.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/firstGoal.gif" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012349_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Controllers.pdb" publishTime="11/01/2013 16:19:51" />
+    <file relUrl="packages.config" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Controllers.pdb" publishTime="11/12/2013 12:34:04" />
     <file relUrl="Views/ManageGroup/EditGroupPolicy.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Services.Implement.dll" publishTime="11/01/2013 16:19:50" />
+    <file relUrl="bin/ParlayRMS.Services.Implement.dll" publishTime="11/12/2013 12:34:03" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Microsoft.Practices.ServiceLocation.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Views/ManageFunction/Index.cshtml" publishTime="10/08/2013 09:22:54" />
@@ -348,165 +350,169 @@
     <file relUrl="Images/Content/icon/1340012650_system-config-kickstart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013545_old-view-refresh.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Helpers.xml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/images/animated-overlay.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070549_gnome-session-properties.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Site.css" publishTime="11/01/2013 13:34:46" />
+    <file relUrl="Content/Site.css" publishTime="11/12/2013 10:04:08" />
     <file relUrl="Images/Content/icon/1340012054_stock_task.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Monitor/DangerMonitor.js" publishTime="11/01/2013 16:17:10" />
+    <file relUrl="Scripts/Monitor/DangerMonitor.js" publishTime="11/12/2013 11:31:36" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.menu.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Winloss/Index.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014351_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012657_system-config-kickstart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013231_kde-address-book-new.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TopWinners/Index.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.spinner.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.WebPages.dll" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="ExcelTemplates/SpecialMember.xls" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TotalOutstanding/MemberResult.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Report/TopWinners.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/soundManager/soundmanager2-nodebug-jsmin.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/Search_bar_bg.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/Drop_down_ico.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012609_emblem-people.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071330_jajuk.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014085_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/RemotingRef.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/UnderMaintenance.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014068_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013498_insert-object.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014361_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="10/08/2013 09:22:53" />
+    <file relUrl="Images/Content/icon/1340012778_preferences-contact-list.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340071128_streamtuner.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.WebPages.Razor.xml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/ajax-loader-line-2.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071075_bittorrent.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012231_system-software-update.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014078_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageFunction/EditFunction.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012523_gnumeric.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013521_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071108_gnome-monitor.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Services.Interface.dll" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="Images/confirm/button.gif" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014072_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/right_side_bt.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.all.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/jquery/jquery.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/icon/1340013934_openofficeorg-calc.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/checkbox.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/pointer.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340070674_application-vnd.sun.xml.calc.template.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Models.dll" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Images/Content/icon/1340012715_kchart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_Footer.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013224_kde-address-book-new.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014135_gnome-system-monitor.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070646_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012036_stock_task.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/confirm/button.gif" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Report/MemberWinLoss.js" publishTime="10/10/2013 14:25:18" />
-    <file relUrl="bin/System.Web.WebPages.Deployment.dll" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/dropdownicon.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012059_stock_task.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014351_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014075_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071099_preferences-desktop-user.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/left_side_search_bar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/highcharts/highcharts.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/refresh_ico.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/loading12.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340070695_kmixdocked_error.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012125_application-pgp-signature.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012342_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageGroup/Index.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/left_side_bt.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Web.Helpers.dll" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012778_preferences-contact-list.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Net.Http.xml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012515_gnumeric.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/sortElements/jquery.sortElements.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.all.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Report/SimilarBets.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340070638_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/logo_c.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340071132_streamtuner.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/cookie/jquery.cookie.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/images/ui-icons_222222_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/jquery-ui/jquery-ui.custom.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/DangerMonitor/Data.cshtml" publishTime="11/01/2013 16:16:05" />
+    <file relUrl="Views/DangerMonitor/Data.cshtml" publishTime="11/04/2013 07:33:13" />
     <file relUrl="Images/Content/icon/1340012670_kchart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Shared/_UpdateLevel.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/pattern_submenu.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012826_orange-add-folder-to-archive.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageMember/MemberList.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013166_insert-link.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Report/ParlayRMS.Winloss.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.ViewModel.dll" publishTime="11/12/2013 12:34:02" />
+    <file relUrl="Images/Content/icon/1340013521_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071079_bittorrent.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/multiselect/jquery.multiselect.filter.js" publishTime="11/12/2013 11:00:35" />
     <file relUrl="Images/Content/table_tltle_bg_59.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Login/logo.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="SpNames.xml" publishTime="11/01/2013 13:34:46" />
+    <file relUrl="SpNames.xml" publishTime="11/12/2013 07:40:39" />
     <file relUrl="Images/Content/icon/1340070604_deskbar-applet.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/number-sign-icon.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Web.Razor.dll" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012221_system-software-update.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340014117_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340014121_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.autocomplete.css" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012093_netscape.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071053_galternatives.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014355_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014391_system-config-keyboard.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/dropdown.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Fanex.Caching.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/newuser_bt.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.DTO.pdb" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="Views/ManageAgent/AddAgent.cshtml" publishTime="11/04/2013 10:11:33" />
+    <file relUrl="bin/ParlayRMS.DTO.pdb" publishTime="11/12/2013 12:34:01" />
     <file relUrl="Images/Content/icon/1340070691_kmixdocked_error.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/SimilarBets/Data.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013120_human-folder-downloads.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/ManageUser.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071103_preferences-desktop-user.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012338_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/jquery-ui/jquery-ui.more.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.dll" publishTime="11/01/2013 16:19:52" />
+    <file relUrl="bin/ParlayRMS.dll" publishTime="11/12/2013 12:34:04" />
     <file relUrl="Images/Content/sprites.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/_ViewStart.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Home/Test.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013498_insert-object.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Monitor/MixParlay.js" publishTime="11/01/2013 13:34:46" />
+    <file relUrl="Images/Content/icon/1340014068_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Monitor/MixParlay.js" publishTime="11/12/2013 11:20:36" />
     <file relUrl="Images/Content/back.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Components.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012512_gnumeric.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/soundManager/soundmanager2-jsmin.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Report/MemberWinLoss.js" publishTime="10/10/2013 14:25:18" />
+    <file relUrl="Images/Content/icon/1340014082_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Web.config" publishTime="11/01/2013 13:34:46" />
     <file relUrl="Images/Content/icon/1340012429_gtk-about.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-icons_cd0a0a_256x240.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/System.Web.WebPages.Deployment.xml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/MemberWinLoss/MemberData.cshtml" publishTime="10/10/2013 14:25:18" />
     <file relUrl="bin/Fanex.Logging.dll" publishTime="10/08/2013 09:22:53" />
     <file relUrl="Images/Content/close-icon.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Views/SimilarBets/Data.cshtml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071086_bittorrent.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/table_title_bar_bg.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/Microsoft.Practices.Unity.Interception.dll" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.pdb" publishTime="11/01/2013 16:19:52" />
+    <file relUrl="bin/ParlayRMS.pdb" publishTime="11/12/2013 12:34:04" />
     <file relUrl="Images/Content/ajax-loader-main.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.selectable.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013148_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012342_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.resizable.css" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340071046_galternatives.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/seperator.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/SimilarBets/BetDetails.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013141_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/IBCFile.dll" publishTime="10/08/2013 09:22:53" />
+    <file relUrl="Images/Content/icon/1340070642_preferences-system-time.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013979_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/Search_bar_bg.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013518_application-vnd.ms-excel.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012440_gtk-about.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340013585_stock_task-assigned.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/BetList.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013959_gnome-control-center.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Components.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Cache.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340071062_stock_disconnect.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/logo.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-icons_454545_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TopWinners/DataDetails.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Chart.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Web.config" publishTime="11/01/2013 16:22:40" />
-    <file relUrl="Images/Content/icon/1340013138_blocks-mm-device-wired.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Web.config" publishTime="11/12/2013 12:34:22" />
+    <file relUrl="Content/Libs/jquery-ui/images/ui-icons_cd0a0a_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340014089_stock_calendar.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/contextmenu/jquery.contextMenu.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Validators.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/Antlr3.Runtime.dll" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/loading12.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/System.Json.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TopSelection/FilterControl.cshtml" publishTime="10/29/2013 12:25:23" />
     <file relUrl="Images/Content/icon/1340071125_streamtuner.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/Account/Login.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013506_insert-object.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/EditUser.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340012345_cog-icon-2-48x48.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ExcelService.dll" publishTime="11/12/2013 12:34:01" />
     <file relUrl="Scripts/Pager.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012782_preferences-contact-list.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Libs/soundManager/soundmanager2-jsmin.js" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/Libs/jquery-ui/images/animated-overlay.gif" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/System.Net.Http.Formatting.xml" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="ExcelTemplates/SpecialMember.xls" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-icons_222222_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/table_tltle_bg.gif" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/title_bg.png" publishTime="10/08/2013 09:22:54" />
@@ -516,33 +522,34 @@
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.button.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/ResetOwnerPassword.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/TopSelection/Index.cshtml" publishTime="10/29/2013 12:25:23" />
-    <file relUrl="Images/Content/icon/1340071096_preferences-desktop-user.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Content/confirm.css" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Scripts/Libs/simplemodal/jquery.simplemodal.min.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/Shared/_Language.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/Closeicon.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageUser/CreateExistingUser.cshtml" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340013477_xfce-system-settings.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/icon/1340013104_human-folder-public.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Views/ManageAgent/AgentList.cshtml" publishTime="11/12/2013 10:22:29" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.spinner.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Libs/multiselect/jquery.multiselect.min.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/FavouriteChoice/Index.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Scripts/Libs/sortElements/jquery.sortElements.js" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Content/Libs/jquery-ui/jquery-ui.more.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012377_gnome-keyring-manager.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Scripts/Member/Core.js" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/jquery.ui.tooltip.css" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Web.Authorization.pdb" publishTime="11/01/2013 16:19:50" />
-    <file relUrl="bin/ParlayRMS.Models.pdb" publishTime="11/01/2013 16:19:48" />
-    <file relUrl="Images/Content/left_side_bt.png" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Web.pdb" publishTime="11/01/2013 16:19:49" />
+    <file relUrl="bin/ParlayRMS.Web.Authorization.pdb" publishTime="11/12/2013 12:34:03" />
+    <file relUrl="bin/ParlayRMS.Models.pdb" publishTime="11/12/2013 12:34:02" />
+    <file relUrl="Content/Libs/jquery-ui/themes/base/images/animated-overlay.gif" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="bin/ParlayRMS.Web.pdb" publishTime="11/12/2013 12:34:02" />
     <file relUrl="Images/Content/icon/1340070601_deskbar-applet.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-icons_2e83ff_256x240.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/icon/1340012653_system-config-kickstart.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/euserr_bt.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Images/Content/bt_bg.jpg" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="bin/ParlayRMS.Utility.pdb" publishTime="11/01/2013 16:19:48" />
+    <file relUrl="Images/Content/icon/1340013506_insert-object.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="bin/UMControllerLibrary.dll" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/modalPopup.css" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Views/ManageGroup/CreateGroup.cshtml" publishTime="10/08/2013 09:22:54" />
-    <file relUrl="Images/Content/user_icon.png" publishTime="10/08/2013 09:22:54" />
+    <file relUrl="Images/Content/icon/1340012512_gnumeric.png" publishTime="10/08/2013 09:22:54" />
     <file relUrl="Content/Libs/jquery-ui/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="10/08/2013 09:22:54" />
   </publishProfile>
 </publishData>

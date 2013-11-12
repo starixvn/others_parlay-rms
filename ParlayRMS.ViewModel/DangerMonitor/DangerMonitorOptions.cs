@@ -24,5 +24,7 @@ namespace ParlayRMS.ViewModel.DangerMonitor
         public string Combos { get; set; }
 
         public bool IsFromConfigList { get; set; }
+
+        public decimal MaxPayout { get; set; }
     }
 }

@@ -759,4 +759,10 @@
   <data name="DetailsOf" xml:space="preserve">
     <value>Details of</value>
   </data>
+  <data name="AddDangerousAgent" xml:space="preserve">
+    <value>Add Dangerous Agent</value>
+  </data>
+  <data name="AgentManagement" xml:space="preserve">
+    <value>Agent Management</value>
+  </data>
 </root>
