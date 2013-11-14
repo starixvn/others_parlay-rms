@@ -83,6 +83,7 @@
 				DangerMonitor.CachedDOM.ddlAgentId.multiselect('enable');
 			}
 		});
+		$('#rdbUserName[value="txtUserName"]').prop('checked', true);
 		$('#rdbUserName[value="txtUserName"]').change();
 
 		DangerMonitor.CachedDOM.txtUserName.bind("blur", function () {
