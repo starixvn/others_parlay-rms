@@ -10,6 +10,7 @@
 namespace ParlayRMS.ViewModel.ManageAgent
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using ParlayRMS.Utility;
 
     /// <summary>
@@ -19,6 +20,8 @@ namespace ParlayRMS.ViewModel.ManageAgent
     {
         [Required]
         [Display(Name = "Username", ResourceType = typeof(ViewLang))]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [AllowHtml]
         public string UserName { get; set; }
     }
 }

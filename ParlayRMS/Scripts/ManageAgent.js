@@ -71,6 +71,11 @@
             },
             success: function (data) {
                 popup.show(data);
+                $('#UserName', '#popup').bind('keyup', function (event) {
+                    if (event.keyCode == 13) {
+                        $('#btnSubmit', '#popup').click();
+                    }
+                });
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -142,7 +147,7 @@
     },
     DeleteAgent: function (userName, userId) {
         var title = "Confirmation";
-        var content = "Are you sure to remove this agent?";
+        var content = "Are you sure to remove agent [" + userName + "]?";
 
         confirm(title, content, function () {
             var data = {

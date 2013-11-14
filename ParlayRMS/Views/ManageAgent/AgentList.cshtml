@@ -23,7 +23,10 @@
                 </td>
                 <td style="width: auto; padding-left: 3px;">
                     @agent.UserName
-                    <div class="removeIcon" data-user-id="@agent.AgentId" data-user-name="@agent.UserName"></div>
+                    @if (ViewBag.HasWritePermission)
+                    {
+                        <div class="removeIcon" data-user-id="@agent.AgentId" data-user-name="@agent.UserName"></div>
+                    }
                 </td>
             </tr>
 
