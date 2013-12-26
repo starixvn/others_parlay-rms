@@ -1,97 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
     <Function Name="User">
-        <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.bodb02.bodbAdminNet" Plain="0" />
-        <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBTXN.bodb02.bodbAdminNet" Plain="0" />
-        <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBTXN.bodb02.bodbAdminNet" Plain="0" />
-        <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBTXN.bodb02.bodbAdminNet" Plain="0" />
-        <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserCheckIn" SpName="RMS_UserCheckIn" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserCheckPermission" SpName="RMS_UserCheckPermission" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserInfoSel" SpName="RMS_UserInfoSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserInfoSelByUserID" SpName="RMS_UserInfoSelByUserID" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserInfoUpdateUserGroup" SpName="RMS_UserInfoUpdateUserGroup" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserInfoUpdStatus" SpName="RMS_UserInfoUpdStatus" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserCheckIn" SpName="RMS_UserCheckIn" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserCheckPermission" SpName="RMS_UserCheckPermission" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoSel" SpName="RMS_UserInfoSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoSelByUserID" SpName="RMS_UserInfoSelByUserID" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoUpdateUserGroup" SpName="RMS_UserInfoUpdateUserGroup" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserInfoUpdStatus" SpName="RMS_UserInfoUpdStatus" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_CustomerSelInfoByUsername" SpName="RMS_CustomerSelInfoByUsername" DbName="DBACC.bodb02.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Menu">
-        <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Group">
-        <Setting Key="RMS_GroupInfoIns" SpName="RMS_GroupInfoIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupInfoUpd" SpName="RMS_GroupInfoUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupPolicyUpd" SpName="RMS_GroupPolicyUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupInfoSel" SpName="RMS_GroupInfoSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupInfoSelAllGroup" SpName="RMS_GroupInfoSelAllGroup" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupInfoSelByGroupID" SpName="RMS_GroupInfoSelByGroupID" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupInfoSelUserGroup" SpName="RMS_GroupInfoSelUserGroup" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_GroupPolicySel" SpName="RMS_GroupPolicySel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoIns" SpName="RMS_GroupInfoIns" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoUpd" SpName="RMS_GroupInfoUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupPolicyUpd" SpName="RMS_GroupPolicyUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoSel" SpName="RMS_GroupInfoSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoSelAllGroup" SpName="RMS_GroupInfoSelAllGroup" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoSelByGroupID" SpName="RMS_GroupInfoSelByGroupID" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupInfoSelUserGroup" SpName="RMS_GroupInfoSelUserGroup" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_GroupPolicySel" SpName="RMS_GroupPolicySel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Function">
-        <Setting Key="RMS_FunctionIns" SpName="RMS_FunctionIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_FunctionSel" SpName="RMS_FunctionSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_FunctionUpd" SpName="RMS_FunctionUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_FunctionIns" SpName="RMS_FunctionIns" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_FunctionSel" SpName="RMS_FunctionSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_FunctionUpd" SpName="RMS_FunctionUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Menu">
-        <Setting Key="RMS_MenuIns" SpName="RMS_MenuIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_MenuSel" SpName="RMS_MenuSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_MenuUpd" SpName="RMS_MenuUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_MenuUpdStatus" SpName="RMS_MenuUpdStatus" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuIns" SpName="RMS_MenuIns" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuSel" SpName="RMS_MenuSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuUpd" SpName="RMS_MenuUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuUpdStatus" SpName="RMS_MenuUpdStatus" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Report">
-        <Setting Key="RMS_Monitor_Parlay_Sum" SpName="RMS_Monitor_Parlay_Sum" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket" SpName="RMS_Monitor_Parlay_SelectionByTicket" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Currency" SpName="RMS_Monitor_Parlay_SelectionByTicket_Currency" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League" SpName="RMS_Monitor_Parlay_SelectionByTicket_League" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover" SpName="RMS_Monitor_Parlay_SelectionByTurnover" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_League_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_Parlay_TopWinners" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_Parlay_TopWinners_Details" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_Sum" SpName="RMS_Monitor_Parlay_Sum" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket" SpName="RMS_Monitor_Parlay_SelectionByTicket" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Currency" SpName="RMS_Monitor_Parlay_SelectionByTicket_Currency" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League" SpName="RMS_Monitor_Parlay_SelectionByTicket_League" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover" SpName="RMS_Monitor_Parlay_SelectionByTurnover" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_League_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_League_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_Parlay_TopWinners" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_Parlay_TopWinners_Details" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_Parlay_TopWinners_Details_old" DbName="DBARC.bodb_Archive.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_Parlay_Betlist" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_Parlay_Winloss" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Mem" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Ag" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_Parlay_Betlist" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_Parlay_Winloss" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Mem" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Ag" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="Member">
-        <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_CustomerUpd" SpName="RMS_CustomerUpd" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_CustomerUpd" SpName="RMS_CustomerUpd" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
   <Function Name="Agent">
-    <Setting Key="RMS_DangerousAgentIns" SpName="RMS_DangerousAgentIns" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_DangerousAgentDel" SpName="RMS_DangerousAgentDel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_DangerousAgentSel" SpName="RMS_DangerousAgentSel" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_DangerousAgentIns" SpName="RMS_DangerousAgentIns" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_DangerousAgentDel" SpName="RMS_DangerousAgentDel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_DangerousAgentSel" SpName="RMS_DangerousAgentSel" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
     <Function Name="TotalOutstanding">
-        <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
     <Function Name="DangerMonitor">
-      <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
-      <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBTXN.bodb02.bodbRMSNet" Plain="0" />
+      <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
+      <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBTXN.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
 </Functions>
