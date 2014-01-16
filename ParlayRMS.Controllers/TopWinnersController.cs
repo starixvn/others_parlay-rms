@@ -49,7 +49,18 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.SelectTops = Config.SelectTops;
+            SelectListItem[] tempSelectTop = new SelectListItem[4];
+            List<SelectListItem> selectTop = new List<SelectListItem>();
+
+            Config.SelectTops.CopyTo(tempSelectTop);
+            selectTop.AddRange(tempSelectTop);
+            selectTop.Add(new SelectListItem
+            {
+                Text = "200",
+                Value = "200"
+            });
+
+            ViewBag.SelectTops = selectTop;
             ViewBag.DateRanges = Config.DateRanges;
             ViewBag.SportsTypes = Config.SportsTypes;
             ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);

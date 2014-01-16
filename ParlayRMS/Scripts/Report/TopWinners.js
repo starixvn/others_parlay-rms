@@ -15,6 +15,8 @@
 
 $(function () {
     var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
+    var table = $('#result');
+    var header = $('#header');
 
     $("#selectTop").multiselect({
         minWidth: 60,
@@ -182,7 +184,24 @@ $(function () {
             return;
         }
 
+        header.find(".sortable").each(function () {
+            $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+            this.sortDirection = "";
+        });
+
         ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos);
+    });
+
+    tableSorter.bind2(header, table, {
+        type: 'text',
+        onFinish: function () {
+            var trs = table.children('tbody').children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(index + 1);
+                $(tr).removeClass("even");
+            });
+            table.children('tbody').children("tr:even").addClass("even");
+        }
     });
 });
 

@@ -182,8 +182,15 @@ var tableSorter = function () {
                     }
                 }
 
+                var currentColIndex = $(currenObj).attr("data-col-index");
+
+                if (!currentColIndex) {
+                    currentColIndex = $(currenObj).index();
+                }
+
+                currentColIndex = parseInt(currentColIndex);
                 tableSorter.currentOrderCol = currenObj;
-                tableSorter.sortColumn(desc, $(currenObj).index(), currenObj.sortDirection, type);
+                tableSorter.sortColumn(desc, currentColIndex, currenObj.sortDirection, type);
                 if (param) {
                     if (param.onFinish) {
                         param.onFinish(currenObj);

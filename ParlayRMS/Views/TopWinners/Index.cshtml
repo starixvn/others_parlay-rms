@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="group">
                     @Html.Label("selectTop", ViewLang.SelectTop)
-                    @Html.DropDownList("selectTop", Config.SelectTops)
+                    @Html.DropDownList("selectTop", (IEnumerable<SelectListItem>)ViewBag.SelectTops)
                 </div>
                 <div class="group">
                     @Html.Label("dateRange", ViewLang.DateRange)
@@ -49,14 +49,14 @@
     </div>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1141px" class="maintitle">
+    <div style="width: 1176px" class="maintitle">
         <div id="title" class="information">
         </div>
         <div class="excel" onclick="ExportExcel();" title="Export Excel">
         </div>
     </div>
-    <div style="width: 1141px">
-        <table class="main">
+    <div style="width: 1176px">
+        <table class="main" id="header">
             <colgroup>
                 <col width='40px' />
                 <col width='140px' />
@@ -65,8 +65,8 @@
                 <col width='120px' />
                 <col width='150px' />
                 <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
+                <col width='135px' />
+                <col width='170px' />
                 <col width='80px' />
                 <col width='80px' />
             </colgroup>
@@ -107,17 +107,17 @@
                     <th>
                         @ViewLang.Stake
                     </th>
-                    <th>
+                    <th class="sortable" data-col-type="float" data-col-index="7">
                         @ViewLang.WinningAmount
                     </th>
-                    <th>
+                    <th class="sortable" data-col-type="float" data-col-index="8">
                         @ViewLang.CompanyLoseAmount
                     </th>
                 </tr>
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1160px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1195px">
         <table class="main" id="result">
             <colgroup>
                 <col width='40px' />
@@ -127,8 +127,8 @@
                 <col width='120px' />
                 <col width='150px' />
                 <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
+                <col width='135px' />
+                <col width='170px' />
                 <col width='80px' />
                 <col width='80px' />
             </colgroup>
@@ -136,7 +136,7 @@
             </tbody>
         </table>
     </div>
-    <div style="width: 1141px" class="mainfooter">
+    <div style="width: 1176px" class="mainfooter">
         <table class="main" id="footer">
             <colgroup>
                 <col width='40px' />
@@ -146,8 +146,8 @@
                 <col width='120px' />
                 <col width='150px' />
                 <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
+                <col width='135px' />
+                <col width='170px' />
                 <col width='80px' />
                 <col width='80px' />
             </colgroup>
