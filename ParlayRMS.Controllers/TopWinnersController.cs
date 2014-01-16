@@ -51,14 +51,19 @@ namespace ParlayRMS.Controllers
         {
             SelectListItem[] tempSelectTop = new SelectListItem[4];
             List<SelectListItem> selectTop = new List<SelectListItem>();
+            List<int> moreSelection = new List<int> { 200, 500, 1000 };
 
             Config.SelectTops.CopyTo(tempSelectTop);
             selectTop.AddRange(tempSelectTop);
-            selectTop.Add(new SelectListItem
+
+            foreach (int option in moreSelection)
             {
-                Text = "200",
-                Value = "200"
-            });
+                selectTop.Add(new SelectListItem
+                {
+                    Text = option.ToString(),
+                    Value = option.ToString()
+                });
+            }
 
             ViewBag.SelectTops = selectTop;
             ViewBag.DateRanges = Config.DateRanges;
