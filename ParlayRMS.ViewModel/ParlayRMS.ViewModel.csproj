@@ -96,6 +96,7 @@
     <Compile Include="Report\WinlossOptions.cs" />
     <Compile Include="Shared\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParlayMonitor\SystemParlayMonitorOptions.cs" />
     <Compile Include="TotalOutstanding\DataModel.cs" />
     <Compile Include="TotalOutstanding\IndexModel.cs" />
     <Compile Include="TotalOutstanding\TotalDataModel.cs" />

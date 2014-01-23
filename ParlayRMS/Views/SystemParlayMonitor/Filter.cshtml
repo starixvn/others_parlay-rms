@@ -1,0 +1,80 @@
+﻿<div class="filter">
+    <div class="filter-control" style="border: 1px solid black; width: 1054px;">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width: 30px">
+                                @Html.Label("combo", ViewLang.Combo, new { @class = "lable" })
+                            </td>
+                            <td style="width: 100px">
+                                @Html.DropDownList("combo", (List<SelectListItem>)ViewBag.Combos, new { multiple = "multiple" })
+                            </td>
+                            <td style="width: 90px">
+                                @Html.Label("sportTypes", ViewLang.SportsType, new { @class = "lable" })
+                            </td>
+                            <td style="width: 150px">
+                                @Html.DropDownList("sportTypes", (List<SelectListItem>)ViewBag.SportTypes, new { multiple = "multiple" })
+                            </td>
+                            <td style="width: 145px">
+                                @Html.Label("stakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.TextBox("stakeAfterPT", (string)ViewBag.StakeAfterPT, new { @maxlength = 20 })
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("level", @ViewLang.Level, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("level", (List<SelectListItem>)ViewBag.Levels)
+                            </td>
+                            <td>
+                                @Html.Label("selectTop", @ViewLang.SelectTop, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
+                            </td>
+                            <td>
+                                @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
+                            </td>
+                            <td>
+                                <div id="refreshNow" style="width: 140px">
+                                    @ViewLang.RefreshNow
+                                    <div id="timer" style="float: right; width: 30px; padding-left: 2px;">
+                                        [60]</div>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.CheckBox("pause", new { style = "float:left; margin-top: 7px;" }) @Html.Label("pause", @ViewLang.Pause, new { @class = "lable" })
+                            </td>
+                            <td>
+                                <button id="submit" class="button">
+                                    <span class="text">@ViewLang.Submit</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

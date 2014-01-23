@@ -49,6 +49,7 @@
     <Compile Include="Agents\IAgentService.cs" />
     <Compile Include="DangerMonitor\IDangerMonitorService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
+    <Compile Include="SystemParlayMonitor\ISystemParlayMonitorService.cs" />
     <Compile Include="TotalOutstanding\ITotalOutstandingService.cs" />
     <Compile Include="Users\IAuthorizationService.cs" />
     <Compile Include="BetList\IBetListService.cs" />

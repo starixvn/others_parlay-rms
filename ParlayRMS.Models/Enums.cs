@@ -128,6 +128,39 @@ namespace ParlayRMS.Models
         SystemParlay = 29
     }
 
+    public enum SystemParlayCombo : int
+    {
+        /// <summary>
+        /// Trixie combo.
+        /// </summary>
+        Trixie = 3,
+
+        /// <summary>
+        /// Yankee combo.
+        /// </summary>
+        Yankee = 4,
+
+        /// <summary>
+        /// Canadian combo.
+        /// </summary>
+        Canadian = 5,
+
+        /// <summary>
+        /// Heinz combo.
+        /// </summary>
+        Heinz = 6,
+
+        /// <summary>
+        /// Super Heinz combo.
+        /// </summary>
+        SuperHeinz = 7,
+
+        /// <summary>
+        /// Goliath combo.
+        /// </summary>
+        Goliath = 8
+    }
+
     public enum Enums
     {
     }

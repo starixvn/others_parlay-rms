@@ -86,6 +86,7 @@
     <Compile Include="MemberWinLossController.cs" />
     <Compile Include="MonitorController.cs" />
     <Compile Include="SimilarBetsController.cs" />
+    <Compile Include="SystemParlayMonitorController.cs" />
     <Compile Include="TopSelectionController.cs" />
     <Compile Include="TopWinnersController.cs" />
     <Compile Include="ManageUserController.cs" />

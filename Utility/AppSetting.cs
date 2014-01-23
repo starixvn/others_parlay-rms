@@ -138,6 +138,14 @@ namespace ParlayRMS.Utility
             }
         }
 
+        public static int StakeAfterPT
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("StakeAfterPT"));
+            }
+        }
+
         /// <summary>
         /// Gets configuration value of the given key.
         /// </summary>

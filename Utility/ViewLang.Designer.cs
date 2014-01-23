@@ -268,6 +268,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Canadian.
+        /// </summary>
+        public static string Canadian {
+            get {
+                return ResourceManager.GetString("Canadian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
@@ -318,6 +327,15 @@ namespace ParlayRMS.Utility {
         public static string Combo {
             get {
                 return ResourceManager.GetString("Combo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Combo Type.
+        /// </summary>
+        public static string ComboType {
+            get {
+                return ResourceManager.GetString("ComboType", resourceCulture);
             }
         }
         
@@ -736,6 +754,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goliath.
+        /// </summary>
+        public static string Goliath {
+            get {
+                return ResourceManager.GetString("Goliath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grant Permission.
         /// </summary>
         public static string GrantPermission {
@@ -795,6 +822,15 @@ namespace ParlayRMS.Utility {
         public static string HdpFullTime {
             get {
                 return ResourceManager.GetString("HdpFullTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heinz.
+        /// </summary>
+        public static string Heinz {
+            get {
+                return ResourceManager.GetString("Heinz", resourceCulture);
             }
         }
         
@@ -1636,11 +1672,29 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Super Heinz.
+        /// </summary>
+        public static string SuperHeinz {
+            get {
+                return ResourceManager.GetString("SuperHeinz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System parLay.
         /// </summary>
         public static string SystemparLay {
             get {
                 return ResourceManager.GetString("SystemparLay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Parlay Monitor.
+        /// </summary>
+        public static string SystemParlayMonitor {
+            get {
+                return ResourceManager.GetString("SystemParlayMonitor", resourceCulture);
             }
         }
         
@@ -1834,6 +1888,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trixie.
+        /// </summary>
+        public static string Trixie {
+            get {
+                return ResourceManager.GetString("Trixie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turnover.
         /// </summary>
         public static string Turnover {
@@ -1983,6 +2046,15 @@ namespace ParlayRMS.Utility {
         public static string Write {
             get {
                 return ResourceManager.GetString("Write", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yankee.
+        /// </summary>
+        public static string Yankee {
+            get {
+                return ResourceManager.GetString("Yankee", resourceCulture);
             }
         }
         

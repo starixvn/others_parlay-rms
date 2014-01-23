@@ -68,6 +68,7 @@
     <Compile Include="Agents\AgentService.cs" />
     <Compile Include="DangerMonitor\DangerMonitorService.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossService.cs" />
+    <Compile Include="SystemParlayMonitor\SystemParlayMonitorService.cs" />
     <Compile Include="TotalOutstanding\TotalOutstandingService.cs" />
     <Compile Include="Users\AuthorizationService.cs" />
     <Compile Include="BetList\BetListService.cs" />

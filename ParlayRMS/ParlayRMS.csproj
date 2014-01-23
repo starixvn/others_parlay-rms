@@ -500,6 +500,7 @@
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />
     <Content Include="Scripts\ManageAgent.js" />
+    <Content Include="Scripts\Monitor\SystemParlay.js" />
     <Content Include="Scripts\Monitor\DangerMonitor.js" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
@@ -592,6 +593,9 @@
     <Content Include="Views\ManageAgent\SearchBar.cshtml" />
     <Content Include="Views\ManageAgent\AddAgent.cshtml" />
     <Content Include="Views\ManageAgent\AgentList.cshtml" />
+    <Content Include="Views\SystemParlayMonitor\Filter.cshtml" />
+    <Content Include="Views\SystemParlayMonitor\Index.cshtml" />
+    <Content Include="Views\SystemParlayMonitor\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,6 +57,7 @@
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
+    <Compile Include="SystemParlayMonitor\RMS_Monitor_SystemParlay_Betlist.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
     <Compile Include="Common\RMS_SelBalanceUpDay.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner.cs" />

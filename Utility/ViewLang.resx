@@ -765,4 +765,28 @@
   <data name="AgentManagement" xml:space="preserve">
     <value>Agent Management</value>
   </data>
+  <data name="Canadian" xml:space="preserve">
+    <value>Canadian</value>
+  </data>
+  <data name="Goliath" xml:space="preserve">
+    <value>Goliath</value>
+  </data>
+  <data name="Heinz" xml:space="preserve">
+    <value>Heinz</value>
+  </data>
+  <data name="SuperHeinz" xml:space="preserve">
+    <value>Super Heinz</value>
+  </data>
+  <data name="Trixie" xml:space="preserve">
+    <value>Trixie</value>
+  </data>
+  <data name="Yankee" xml:space="preserve">
+    <value>Yankee</value>
+  </data>
+  <data name="ComboType" xml:space="preserve">
+    <value>Combo Type</value>
+  </data>
+  <data name="SystemParlayMonitor" xml:space="preserve">
+    <value>System Parlay Monitor</value>
+  </data>
 </root>

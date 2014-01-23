@@ -204,6 +204,8 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/MixParlay/js").Include("~/Scripts/Monitor/MixParlay.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/SystemParlay/js").Include("~/Scripts/Monitor/SystemParlay.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/DangerMonitor/js").Include("~/Scripts/Monitor/DangerMonitor.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Pager/js").Include("~/Scripts/Pager.js"));
