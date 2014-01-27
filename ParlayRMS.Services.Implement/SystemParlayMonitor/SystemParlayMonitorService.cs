@@ -53,13 +53,39 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
 
             foreach (var item in data)
             {
-                item.Odds = Math.Round(item.Odds, 2);
+                item.Odds = Math.Round(CalculateOdds(item), 2);
                 item.Stake = Math.Round(item.Stake, 2);
                 item.MaxPayout = Math.Round(item.Odds * item.Stake, 2);
                 item.ComboName = GetComboName(item.Combo);
             }
 
             return data;
+        }
+
+        /// <summary>
+        /// Calculates the odds of a ticket.
+        /// </summary>
+        /// <param name="item">The ticket's data.</param>
+        /// <returns>Actual odds of the ticket.</returns>
+        private decimal CalculateOdds(RMS_Monitor_SystemParlay_Betlist item)
+        {
+            decimal result = 0;
+            decimal sumOfCombination = 0;
+            IEnumerable<List<decimal>> combinations = MathHelper.GetCombinations<decimal>(item.SubOdds).Where(obj => obj.Count > 1);
+
+            foreach (List<decimal> combination in combinations)
+            {
+                sumOfCombination = 1;
+
+                foreach (decimal odds in combination)
+                {
+                    sumOfCombination *= odds;
+                }
+
+                result += sumOfCombination;
+            }
+
+            return result;
         }
 
         /// <summary>

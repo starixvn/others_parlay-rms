@@ -12,6 +12,8 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.SystemParlayMonitor;
     using ParlayRMS.DTO.SystemParlayMonitor;
@@ -32,6 +34,7 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
         /// <returns>Data of system parlay monitor.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Monitor_SystemParlay_Betlist> RMS_Monitor_SystemParlay_Betlist(
                                                                  string selection,
                                                                  string sportType,
@@ -53,22 +56,36 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                     db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                     db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
 
-                    using (var reader = db.ExecuteReader())
+                    using (var dataSet = db.ExecuteDataSet())
                     {
-                        while (reader.Read())
+                        if (dataSet.Tables.Count == 2)
                         {
-                            result.Add(new RMS_Monitor_SystemParlay_Betlist
+                            DataTable ticketList = dataSet.Tables[0];
+                            EnumerableRowCollection<DataRow> oddsList = dataSet.Tables[1].AsEnumerable();
+                            RMS_Monitor_SystemParlay_Betlist item = null;
+
+                            if (ticketList.Rows.Count > 0)
                             {
-                                TransDate = reader.ToDateTime("transdate"),
-                                TransId = reader.ToInt64("transid"),
-                                RefNo = reader.ToInt64("refno"),
-                                Username = reader.ToString("username"),
-                                Odds = reader.ToDecimal("odds"),
-                                Stake = reader.ToDecimal("stake"),
-                                MaxPayout = reader.ToDecimal("maxpayout"),
-                                Combo = reader.ToInt32("combo"),
-                                Level = reader.ToByte("level")
-                            });
+                                foreach (DataRow row in ticketList.Rows)
+                                {
+                                    item = new RMS_Monitor_SystemParlay_Betlist
+                                    {
+                                        TransDate = row.ToDateTime("transdate"),
+                                        TransId = row.ToInt64("transid"),
+                                        RefNo = row.ToInt64("refno"),
+                                        Username = row.ToString("username"),
+                                        ////Odds = row.ToDecimal("odds"),
+                                        Stake = row.ToDecimal("stake"),
+                                        ////MaxPayout = row.ToDecimal("maxpayout"),
+                                        Combo = row.ToInt32("combo"),
+                                        Level = row.ToByte("level")
+                                    };
+
+                                    item.SubOdds = oddsList.Where(oddsRow => oddsRow.ToInt64("refno") == item.RefNo)
+                                                           .Select(oddsRow => oddsRow.ToDecimal("odds")).ToList();
+                                    result.Add(item);
+                                }
+                            }
                         }
                     }
                 }

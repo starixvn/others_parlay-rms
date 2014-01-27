@@ -10,6 +10,7 @@
 namespace ParlayRMS.DTO.SystemParlayMonitor
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Model for system parlay monitoring function.
@@ -35,5 +36,7 @@ namespace ParlayRMS.DTO.SystemParlayMonitor
         public string ComboName { get; set; }
 
         public byte Level { get; set; }
+
+        public List<decimal> SubOdds { get; set; }
     }
 }
