@@ -1123,6 +1123,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Net win after PT.
+        /// </summary>
+        public static string NetWinAfterPT {
+            get {
+                return ResourceManager.GetString("NetWinAfterPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Net Win Loss.
         /// </summary>
         public static string NetWinloss {

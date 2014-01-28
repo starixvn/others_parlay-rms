@@ -789,4 +789,7 @@
   <data name="SystemParlayMonitor" xml:space="preserve">
     <value>System Parlay Monitor</value>
   </data>
+  <data name="NetWinAfterPT" xml:space="preserve">
+    <value>Net win after PT</value>
+  </data>
 </root>

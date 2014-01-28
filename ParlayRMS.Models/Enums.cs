@@ -161,6 +161,39 @@ namespace ParlayRMS.Models
         Goliath = 8
     }
 
+    public enum SystemParlayBets : int
+    {
+        /// <summary>
+        /// Trixie combo.
+        /// </summary>
+        Trixie = 4,
+
+        /// <summary>
+        /// Yankee combo.
+        /// </summary>
+        Yankee = 11,
+
+        /// <summary>
+        /// Canadian combo.
+        /// </summary>
+        Canadian = 26,
+
+        /// <summary>
+        /// Heinz combo.
+        /// </summary>
+        Heinz = 57,
+
+        /// <summary>
+        /// Super Heinz combo.
+        /// </summary>
+        SuperHeinz = 120,
+
+        /// <summary>
+        /// Goliath combo.
+        /// </summary>
+        Goliath = 247
+    }
+
     public enum Enums
     {
     }

@@ -55,7 +55,7 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
             {
                 item.Odds = Math.Round(CalculateOdds(item), 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.MaxPayout = Math.Round(item.Odds * item.Stake, 2);
+                item.MaxPayout = Math.Round(CalculateMaxPayout(item), 2);
                 item.ComboName = GetComboName(item.Combo);
             }
 
@@ -86,6 +86,60 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Calculates the max payout after PT of a ticket.
+        /// </summary>
+        /// <param name="item">The ticket's data.</param>
+        /// <returns>Net max payout after PT of the ticket.</returns>
+        private decimal CalculateMaxPayout(RMS_Monitor_SystemParlay_Betlist item)
+        {
+            decimal result = item.Odds * item.Stake;
+            int numberOfBets = GetSystemParlayBets(item.Combo);
+
+            result = result - (item.Stake * numberOfBets);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets number of bets of the system parlay.
+        /// </summary>
+        /// <param name="combo">The combo.</param>
+        /// <returns>Number of bets.</returns>
+        private int GetSystemParlayBets(int combo)
+        {
+            SystemParlayBets result = 0;
+
+            switch ((SystemParlayCombo)combo)
+            {
+                case SystemParlayCombo.Trixie:
+                    result = SystemParlayBets.Trixie;
+                    break;
+
+                case SystemParlayCombo.Yankee:
+                    result = SystemParlayBets.Yankee;
+                    break;
+
+                case SystemParlayCombo.Canadian:
+                    result = SystemParlayBets.Canadian;
+                    break;
+
+                case SystemParlayCombo.Heinz:
+                    result = SystemParlayBets.Heinz;
+                    break;
+
+                case SystemParlayCombo.SuperHeinz:
+                    result = SystemParlayBets.SuperHeinz;
+                    break;
+
+                case SystemParlayCombo.Goliath:
+                    result = SystemParlayBets.Goliath;
+                    break;
+            }
+
+            return (int)result;
         }
 
         /// <summary>
