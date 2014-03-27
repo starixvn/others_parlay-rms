@@ -149,20 +149,5 @@ namespace ParlayRMS.DataAccess.Implement
         {
             return this.ExecSpDataReader(name, DefaultTimeOut);
         }
-
-        /// <summary>
-        /// Writes Log the occurred exception.
-        /// </summary>
-        /// <param name="ex">Occurred exception.</param>
-        /// <param name="category">Category of the exception.</param>
-        protected void ProcessException(Exception ex, string category = "PARLAY_RMS")
-        {
-            LogService.Error(ex.Message, category, ex);
-
-            if (ConfigurationManager.AppSettings["IsDebug"].Equals(bool.TrueString))
-            {
-                throw ex;
-            }
-        }
     }
 }

@@ -9,6 +9,7 @@
 namespace ParlayRMS
 {
     using System;
+    using System.Data.SqlClient;
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Http;
@@ -17,7 +18,9 @@ namespace ParlayRMS
     using System.Web.Routing;
     using System.Web.Security;
     using Fanex.Data.Configuration;
+    using Fanex.Logging;
     using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Web.Session;
 
     /// <summary>
     /// MVC Application.
@@ -73,6 +76,41 @@ namespace ParlayRMS
                     var principal = new Principal(identity, udata);
                     Context.User = principal;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            // Logging
+            Exception ex = Server.GetLastError().GetBaseException();
+
+            if (!Request.IsLocal)
+            {
+                // Get base exception data
+                string message = ex.Message +
+                    "\r\nType: " + ex.GetType().ToString() +
+                    "\r\nSource: " + ex.Source +
+                    "\r\nUsername: " + CurrentSession.Instance.UserName +
+                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                    "\r\nForm: " + Request.Form.ToString() +
+                    "\r\nQueryString: " + Request.QueryString.ToString() +
+                    "\r\nTargetSite: " + ex.TargetSite +
+                    "\r\nStackTrace: " + ex.StackTrace;
+
+                // Get additional exception data
+                if (ex is SqlException)
+                {
+                    message += "\r\nProcedure: " + ((SqlException)ex).Procedure +
+                        "\r\nLine Number: " + ((SqlException)ex).LineNumber +
+                        "\r\nServer: " + ((SqlException)ex).Server;
+                }
+
+                LogService.Error(message);
             }
         }
 

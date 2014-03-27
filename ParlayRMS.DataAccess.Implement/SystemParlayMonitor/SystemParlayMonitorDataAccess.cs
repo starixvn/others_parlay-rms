@@ -45,54 +45,47 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
         {
             var result = new List<RMS_Monitor_SystemParlay_Betlist>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_SystemParlay_Betlist"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_SystemParlay_Betlist"))
+                db.AddInParameter("selection", DbType.String, selection);
+                db.AddInParameter("sporttype", DbType.String, sportType);
+                db.AddInParameter("level", DbType.String, level);
+                db.AddInParameter("stake", DbType.Decimal, stake);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
+
+                using (var dataSet = db.ExecuteDataSet())
                 {
-                    db.AddInParameter("selection", DbType.String, selection);
-                    db.AddInParameter("sporttype", DbType.String, sportType);
-                    db.AddInParameter("level", DbType.String, level);
-                    db.AddInParameter("stake", DbType.Decimal, stake);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
-
-                    using (var dataSet = db.ExecuteDataSet())
+                    if (dataSet.Tables.Count == 2)
                     {
-                        if (dataSet.Tables.Count == 2)
+                        DataTable ticketList = dataSet.Tables[0];
+                        EnumerableRowCollection<DataRow> oddsList = dataSet.Tables[1].AsEnumerable();
+                        RMS_Monitor_SystemParlay_Betlist item = null;
+
+                        if (ticketList.Rows.Count > 0)
                         {
-                            DataTable ticketList = dataSet.Tables[0];
-                            EnumerableRowCollection<DataRow> oddsList = dataSet.Tables[1].AsEnumerable();
-                            RMS_Monitor_SystemParlay_Betlist item = null;
-
-                            if (ticketList.Rows.Count > 0)
+                            foreach (DataRow row in ticketList.Rows)
                             {
-                                foreach (DataRow row in ticketList.Rows)
+                                item = new RMS_Monitor_SystemParlay_Betlist
                                 {
-                                    item = new RMS_Monitor_SystemParlay_Betlist
-                                    {
-                                        TransDate = row.ToDateTime("transdate"),
-                                        TransId = row.ToInt64("transid"),
-                                        RefNo = row.ToInt64("refno"),
-                                        Username = row.ToString("username"),
-                                        ////Odds = row.ToDecimal("odds"),
-                                        Stake = row.ToDecimal("stake"),
-                                        ////MaxPayout = row.ToDecimal("maxpayout"),
-                                        Combo = row.ToInt32("combo"),
-                                        Level = row.ToByte("level")
-                                    };
+                                    TransDate = row.ToDateTime("transdate"),
+                                    TransId = row.ToInt64("transid"),
+                                    RefNo = row.ToInt64("refno"),
+                                    Username = row.ToString("username"),
+                                    ////Odds = row.ToDecimal("odds"),
+                                    Stake = row.ToDecimal("stake"),
+                                    ////MaxPayout = row.ToDecimal("maxpayout"),
+                                    Combo = row.ToInt32("combo"),
+                                    Level = row.ToByte("level")
+                                };
 
-                                    item.SubOdds = oddsList.Where(oddsRow => oddsRow.ToInt64("refno") == item.RefNo)
-                                                           .Select(oddsRow => oddsRow.ToDecimal("odds")).ToList();
-                                    result.Add(item);
-                                }
+                                item.SubOdds = oddsList.Where(oddsRow => oddsRow.ToInt64("refno") == item.RefNo)
+                                                       .Select(oddsRow => oddsRow.ToDecimal("odds")).ToList();
+                                result.Add(item);
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;

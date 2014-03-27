@@ -35,39 +35,32 @@ namespace ParlayRMS.DataAccess.Implement.Members
         {
             var result = new List<RMS_CustomerSel>();
 
-            try
+            using (var db = new ObjectDb("RMS_CustomerSel"))
             {
-                using (var db = new ObjectDb("RMS_CustomerSel"))
+                if (!string.IsNullOrEmpty(username))
                 {
-                    if (!string.IsNullOrEmpty(username))
-                    {
-                        db.AddInParameter("username", DbType.String, username);
-                    }
+                    db.AddInParameter("username", DbType.String, username);
+                }
 
-                    if (level != null)
-                    {
-                        db.AddInParameter("level", DbType.Int32, level);
-                    }
+                if (level != null)
+                {
+                    db.AddInParameter("level", DbType.Int32, level);
+                }
 
-                    int counter = 1;
-                    using (var reader = db.ExecuteReader())
+                int counter = 1;
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_CustomerSel
                         {
-                            result.Add(new RMS_CustomerSel
-                            {
-                                No = counter++,
-                                Custid = reader.ToInt32("CustId"),
-                                Username = reader.ToString("UserName"),
-                                Level = reader.ToInt32("Level")
-                            });
-                        }
+                            No = counter++,
+                            Custid = reader.ToInt32("CustId"),
+                            Username = reader.ToString("UserName"),
+                            Level = reader.ToInt32("Level")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -83,25 +76,17 @@ namespace ParlayRMS.DataAccess.Implement.Members
         /// <returns>Whether or not customer is created successfully.</returns>
         public Result RMS_CustomerIns(string userName, int level, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("username", userName);
-                param.Add("level", level);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("username", userName);
+            param.Add("level", level);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_CustomerIns", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_CustomerIns", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -114,25 +99,17 @@ namespace ParlayRMS.DataAccess.Implement.Members
         /// <returns>Whether or not customer is updated successfully.</returns>
         public Result RMS_CustomerUpd(int custId, int level, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("custid", custId);
-                param.Add("level", level);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("custid", custId);
+            param.Add("level", level);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_CustomerUpd", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_CustomerUpd", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -145,25 +122,17 @@ namespace ParlayRMS.DataAccess.Implement.Members
         /// <returns>Whether or not customer is updated successfully.</returns>
         public Result RMS_CustomerUpdStatus(int custId, bool following, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("custid", custId);
-                param.Add("monitored", following);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("custid", custId);
+            param.Add("monitored", following);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_CustomerUpdStatus", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_CustomerUpdStatus", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -173,21 +142,14 @@ namespace ParlayRMS.DataAccess.Implement.Members
         /// <returns>Whether or not customer is existing.</returns>
         public bool RMS_CustomerCheckExisting(int custId)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("custid", custId);
-                param.Add("isexists", 0);
+            Hashtable param = new Hashtable();
+            param.Add("custid", custId);
+            param.Add("isexists", 0);
 
-                var r = ExecSp("RMS_CustomerCheckExisting", param);
-                if (r.IsValid())
-                {
-                    return DbConverter.ToBoolean(r.Outputs["isexists"]);
-                }
-            }
-            catch (Exception ex)
+            var r = ExecSp("RMS_CustomerCheckExisting", param);
+            if (r.IsValid())
             {
-                this.ProcessException(ex);
+                return DbConverter.ToBoolean(r.Outputs["isexists"]);
             }
 
             return false;

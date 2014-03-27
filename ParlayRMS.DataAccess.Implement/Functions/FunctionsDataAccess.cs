@@ -31,29 +31,22 @@ namespace ParlayRMS.DataAccess.Implement.Functions
         {
             var result = new List<RMS_FunctionSel>();
 
-            try
+            using (var reader = ExecSpDataReader("RMS_FunctionSel"))
             {
-                using (var reader = ExecSpDataReader("RMS_FunctionSel"))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    result.Add(new RMS_FunctionSel
                     {
-                        result.Add(new RMS_FunctionSel
-                        {
-                            FuncId = reader.ToInt32("funcid"),
-                            FuncName = reader.ToString("funcname"),
-                            FuncKey = reader.ToString("funckey"),
-                            FuncDesc = reader.ToString("funcdesc"),
-                            ParentId = reader.ToInt32("parentid"),
-                            ParentName = reader.ToString("parentname"),
-                            DisplayOrder = reader.ToInt32("displayorder"),
-                            ModifiedDate = reader.ToDateTime("modifieddate")
-                        });
-                    }
+                        FuncId = reader.ToInt32("funcid"),
+                        FuncName = reader.ToString("funcname"),
+                        FuncKey = reader.ToString("funckey"),
+                        FuncDesc = reader.ToString("funcdesc"),
+                        ParentId = reader.ToInt32("parentid"),
+                        ParentName = reader.ToString("parentname"),
+                        DisplayOrder = reader.ToInt32("displayorder"),
+                        ModifiedDate = reader.ToDateTime("modifieddate")
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -86,36 +79,29 @@ namespace ParlayRMS.DataAccess.Implement.Functions
             functionId = 0;
             var result = Result.Empty;
 
-            try
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("funcname", name);
+            param.Add("funckey", key);
+            param.Add("funcdesc", description);
+            param.Add("parentid", parentId);
+            if (string.IsNullOrEmpty(parentName))
             {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("funcname", name);
-                param.Add("funckey", key);
-                param.Add("funcdesc", description);
-                param.Add("parentid", parentId);
-                if (string.IsNullOrEmpty(parentName))
-                {
-                    param.Add("parentname", DBNull.Value);
-                }
-                else
-                {
-                    param.Add("parentname", parentName);
-                }
-
-                param.Add("displayorder", displayOrder);
-                param.Add("ip", ip);
-
-                var r = ExecSp("RMS_FunctionIns", param);
-                result = r.ToResult();
-                if (result.IsSuccessful)
-                {
-                    functionId = DbConverter.ToInt32(r.Outputs["FuncID"]);
-                }
+                param.Add("parentname", DBNull.Value);
             }
-            catch (Exception ex)
+            else
             {
-                this.ProcessException(ex);
+                param.Add("parentname", parentName);
+            }
+
+            param.Add("displayorder", displayOrder);
+            param.Add("ip", ip);
+
+            var r = ExecSp("RMS_FunctionIns", param);
+            result = r.ToResult();
+            if (result.IsSuccessful)
+            {
+                functionId = DbConverter.ToInt32(r.Outputs["FuncID"]);
             }
 
             return result;
@@ -143,35 +129,27 @@ namespace ParlayRMS.DataAccess.Implement.Functions
                           int adminId, 
                           string ip)
         {
-            try
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("funcid", id);
+            param.Add("funcname", name);
+            param.Add("funcdesc", description);
+            param.Add("parentid", parentId);
+            if (string.IsNullOrEmpty(parentName))
             {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("funcid", id);
-                param.Add("funcname", name);
-                param.Add("funcdesc", description);
-                param.Add("parentid", parentId);
-                if (string.IsNullOrEmpty(parentName))
-                {
-                    param.Add("parentname", DBNull.Value);
-                }
-                else
-                {
-                    param.Add("parentname", parentName);
-                }
-
-                param.Add("displayorder", displayOrder);
-                param.Add("ip", ip);
-
-                var r = ExecSp("RMS_FunctionUpd", param);
-                return r.ToResult();
+                param.Add("parentname", DBNull.Value);
             }
-            catch (Exception ex)
+            else
             {
-                this.ProcessException(ex);
+                param.Add("parentname", parentName);
             }
 
-            return Result.Empty;
+            param.Add("displayorder", displayOrder);
+            param.Add("ip", ip);
+
+            var r = ExecSp("RMS_FunctionUpd", param);
+
+            return r.ToResult();
         }
     }
 }

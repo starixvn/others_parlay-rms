@@ -37,36 +37,29 @@ namespace ParlayRMS.DataAccess.Implement.Charts
             maxTransId = 0;
             var result = new List<RMS_Monitor_Parlay_Sum>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_Sum"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_Sum"))
+                db.AddInParameter("bettype", DbType.Int32, bettype);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddOutParameter("max_transid", DbType.Int64, sizeof(long));
+
+                using (var reader = db.ExecuteReader())
                 {
-                    db.AddInParameter("bettype", DbType.Int32, bettype);
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddOutParameter("max_transid", DbType.Int64, sizeof(long));
-
-                    using (var reader = db.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_Sum
                         {
-                            result.Add(new RMS_Monitor_Parlay_Sum
-                            {
-                                Events = reader.ToInt32("Events"),
-                                Status = reader.ToString("Status"),
-                                Tickets = reader.ToInt32("Tickets"),
-                                Turnover = reader.ToDecimal("Turnover"),
-                                Winloss = reader.ToDecimal("Winloss"),
-                                CompanyWL = reader.ToDecimal("CompanyWL"),
-                            });
-                        }
+                            Events = reader.ToInt32("Events"),
+                            Status = reader.ToString("Status"),
+                            Tickets = reader.ToInt32("Tickets"),
+                            Turnover = reader.ToDecimal("Turnover"),
+                            Winloss = reader.ToDecimal("Winloss"),
+                            CompanyWL = reader.ToDecimal("CompanyWL"),
+                        });
                     }
-
-                    maxTransId = DbConverter.ToInt64(db.GetParameterValue("max_transid"));
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
+
+                maxTransId = DbConverter.ToInt64(db.GetParameterValue("max_transid"));
             }
 
             return result;
@@ -86,32 +79,25 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTicket
-                            {
-                                Selection = reader.ToInt32("Selection"),
-                                All_Sports = reader.ToInt32("All_Sports"),
-                                Soccer_Only = reader.ToInt32("Soccer_Only"),
-                                Combined_Sports = reader.ToInt32("Combined_Sports"),
-                                Other_Sports = reader.ToInt32("Other_Sports")
-                            });
-                        }
+                            Selection = reader.ToInt32("Selection"),
+                            All_Sports = reader.ToInt32("All_Sports"),
+                            Soccer_Only = reader.ToInt32("Soccer_Only"),
+                            Combined_Sports = reader.ToInt32("Combined_Sports"),
+                            Other_Sports = reader.ToInt32("Other_Sports")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -133,29 +119,22 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_League>();
 
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("selection", selection);
-                param.Add("sporttype", sportType);
-                param.Add("winlostdate", winlostDate);
-                param.Add("max_transid", maxTransId);
+            Hashtable param = new Hashtable();
+            param.Add("selection", selection);
+            param.Add("sporttype", sportType);
+            param.Add("winlostdate", winlostDate);
+            param.Add("max_transid", maxTransId);
 
-                using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTicket_League", param))
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket_League
-                        {
-                            Leagueid = reader.ToInt32("leagueId"),
-                            NoTickets = reader.ToInt32("NoTickets")
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
+            using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTicket_League", param))
             {
-                this.ProcessException(ex);
+                while (reader.Read())
+                {
+                    result.Add(new RMS_Monitor_Parlay_SelectionByTicket_League
+                    {
+                        Leagueid = reader.ToInt32("leagueId"),
+                        NoTickets = reader.ToInt32("NoTickets")
+                    });
+                }
             }
 
             return result;
@@ -177,31 +156,24 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var results = new List<RMS_Monitor_Parlay_SelectionbyTicket_Currency>();
 
-            try
-            {
-                var htb = new Hashtable();
-                htb.Add("selection", selection);
-                htb.Add("sporttype", sportType);
-                htb.Add("winlostdate", winlostDate);
-                htb.Add("max_transid", maxTransId);
+            var htb = new Hashtable();
+            htb.Add("selection", selection);
+            htb.Add("sporttype", sportType);
+            htb.Add("winlostdate", winlostDate);
+            htb.Add("max_transid", maxTransId);
 
-                using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTicket_Currency", htb))
-                {
-                    while (reader.Read())
-                    {
-                        results.Add(new RMS_Monitor_Parlay_SelectionbyTicket_Currency()
-                        {
-                            CurrencyId = reader.ToInt32("currency"),
-                            Currency = reader.ToString("currencyName"),
-                            Margin = reader.ToDecimal("margin"),
-                            NoTickets = reader.ToInt32("notickets")
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
+            using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTicket_Currency", htb))
             {
-                this.ProcessException(ex);
+                while (reader.Read())
+                {
+                    results.Add(new RMS_Monitor_Parlay_SelectionbyTicket_Currency()
+                    {
+                        CurrencyId = reader.ToInt32("currency"),
+                        Currency = reader.ToString("currencyName"),
+                        Margin = reader.ToDecimal("margin"),
+                        NoTickets = reader.ToInt32("notickets")
+                    });
+                }
             }
 
             return results;
@@ -226,29 +198,22 @@ namespace ParlayRMS.DataAccess.Implement.Charts
                                                                               long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_League>();
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("selection", selection);
-                param.Add("sporttype", sportType);
-                param.Add("winlostdate", winlostDate);
-                param.Add("max_transid", maxTransId);
+            Hashtable param = new Hashtable();
+            param.Add("selection", selection);
+            param.Add("sporttype", sportType);
+            param.Add("winlostdate", winlostDate);
+            param.Add("max_transid", maxTransId);
 
-                using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTurnover_League", param))
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_League
-                        {
-                            Leagueid = reader.ToInt32("leagueId"),
-                            Turnover = reader.ToDecimal("turnover")
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
+            using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTurnover_League", param))
             {
-                this.ProcessException(ex);
+                while (reader.Read())
+                {
+                    result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_League
+                    {
+                        Leagueid = reader.ToInt32("leagueId"),
+                        Turnover = reader.ToDecimal("turnover")
+                    });
+                }
             }
 
             return result;
@@ -264,32 +229,25 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover
-                            {
-                                Selection = reader.ToInt32("Selection"),
-                                All_Sports = reader.ToDecimal("All_Sports"),
-                                Soccer_Only = reader.ToDecimal("Soccer_Only"),
-                                Combined_Sports = reader.ToDecimal("Combined_Sports"),
-                                Other_Sports = reader.ToDecimal("Other_Sports")
-                            });
-                        }
+                            Selection = reader.ToInt32("Selection"),
+                            All_Sports = reader.ToDecimal("All_Sports"),
+                            Soccer_Only = reader.ToDecimal("Soccer_Only"),
+                            Combined_Sports = reader.ToDecimal("Combined_Sports"),
+                            Other_Sports = reader.ToDecimal("Other_Sports")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -311,31 +269,24 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionbyTurnover_Currency>();
 
-            try
-            {
-                var htb = new Hashtable();
-                htb.Add("selection", selection);
-                htb.Add("sporttype", sportType);
-                htb.Add("winlostdate", winlostDate);
-                htb.Add("max_transid", maxTransId);
+            var htb = new Hashtable();
+            htb.Add("selection", selection);
+            htb.Add("sporttype", sportType);
+            htb.Add("winlostdate", winlostDate);
+            htb.Add("max_transid", maxTransId);
 
-                using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTurnover_Currency", htb))
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new RMS_Monitor_Parlay_SelectionbyTurnover_Currency
-                        {
-                            CurrencyId = reader.ToInt32("currency"),
-                            Currency = reader.ToString("currencyName"),
-                            Margin = reader.ToDecimal("margin"),
-                            Turnover = reader.ToDecimal("turnover")
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
+            using (var reader = ExecSpDataReader("RMS_Monitor_Parlay_SelectionByTurnover_Currency", htb))
             {
-                this.ProcessException(ex);
+                while (reader.Read())
+                {
+                    result.Add(new RMS_Monitor_Parlay_SelectionbyTurnover_Currency
+                    {
+                        CurrencyId = reader.ToInt32("currency"),
+                        Currency = reader.ToString("currencyName"),
+                        Margin = reader.ToDecimal("margin"),
+                        Turnover = reader.ToDecimal("turnover")
+                    });
+                }
             }
 
             return result;
@@ -365,37 +316,30 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("currency", DbType.Int32, currency);
-                    db.AddInParameter("topcurrency", DbType.String, topCurrency);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("currency", DbType.Int32, currency);
+                db.AddInParameter("topcurrency", DbType.String, topCurrency);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Tickets = reader.ToInt32("tickets")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Tickets = reader.ToInt32("tickets")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -421,37 +365,30 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("currency", DbType.Int32, currency);
-                    db.AddInParameter("topcurrency", DbType.String, topCurrency);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("currency", DbType.Int32, currency);
+                db.AddInParameter("topcurrency", DbType.String, topCurrency);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Turnover = reader.ToDecimal("turnover")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Turnover = reader.ToDecimal("turnover")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -479,36 +416,29 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_League_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_League_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_League_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("leagueid", DbType.Int32, leagueId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("leagueid", DbType.Int32, leagueId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket_League_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTicket_League_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Tickets = reader.ToInt32("tickets")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Tickets = reader.ToInt32("tickets")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -532,36 +462,29 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_League_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_League_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_League_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int64, 9);
-                    db.AddInParameter("sporttype", DbType.Int64, sportType);
-                    db.AddInParameter("selection", DbType.Int64, selection);
-                    db.AddInParameter("leagueid", DbType.Int64, leagueId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int64, 9);
+                db.AddInParameter("sporttype", DbType.Int64, sportType);
+                db.AddInParameter("selection", DbType.Int64, selection);
+                db.AddInParameter("leagueid", DbType.Int64, leagueId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_League_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_League_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Turnover = reader.ToDecimal("turnover")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Turnover = reader.ToDecimal("turnover")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -587,35 +510,28 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Turnover = reader.ToDecimal("turnover")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Turnover = reader.ToDecimal("turnover")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -639,35 +555,28 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("matchid", DbType.Int32, matchId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("matchid", DbType.Int32, matchId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype
-                            {
-                                BetType = reader.ToInt32("bettype"),
-                                Margin = reader.ToDecimal("margin"),
-                                RowNumber = reader.ToInt32("rn"),
-                                Turnover = reader.ToDecimal("turnover")
-                            });
-                        }
+                            BetType = reader.ToInt32("bettype"),
+                            Margin = reader.ToDecimal("margin"),
+                            RowNumber = reader.ToInt32("rn"),
+                            Turnover = reader.ToDecimal("turnover")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -693,34 +602,27 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("matchid", DbType.Int32, matchId);
-                    db.AddInParameter("bettype2", DbType.Int32, betType2);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("matchid", DbType.Int32, matchId);
+                db.AddInParameter("bettype2", DbType.Int32, betType2);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice
-                            {
-                                BetTeam = reader.ToString("betteam"),
-                                Turnover = reader.ToDecimal("turnover")
-                            });
-                        }
+                            BetTeam = reader.ToString("betteam"),
+                            Turnover = reader.ToDecimal("turnover")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -742,35 +644,28 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event
-                            {
-                                Awayid = reader.ToInt32("awayid"),
-                                Homeid = reader.ToInt32("homeid"),
-                                Leagueid = reader.ToInt32("leagueid"),
-                                Matchid = reader.ToInt32("matchid"),
-                                Tickets = reader.ToInt32("tickets")
-                            });
-                        }
+                            Awayid = reader.ToInt32("awayid"),
+                            Homeid = reader.ToInt32("homeid"),
+                            Leagueid = reader.ToInt32("leagueid"),
+                            Matchid = reader.ToInt32("matchid"),
+                            Tickets = reader.ToInt32("tickets")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -794,35 +689,28 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("matchid", DbType.Int32, matchId);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("matchid", DbType.Int32, matchId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype
-                            {
-                                BetType = reader.ToInt32("bettype"),
-                                Margin = reader.ToDecimal("margin"),
-                                RowNumber = reader.ToInt32("rn"),
-                                Tickets = reader.ToInt32("tickets")
-                            });
-                        }
+                            BetType = reader.ToInt32("bettype"),
+                            Margin = reader.ToDecimal("margin"),
+                            RowNumber = reader.ToInt32("rn"),
+                            Tickets = reader.ToInt32("tickets")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -848,34 +736,27 @@ namespace ParlayRMS.DataAccess.Implement.Charts
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice"))
-                {
-                    db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("bettype", DbType.Int32, 9);
-                    db.AddInParameter("sporttype", DbType.Int32, sportType);
-                    db.AddInParameter("selection", DbType.Int32, selection);
-                    db.AddInParameter("matchid", DbType.Int32, matchId);
-                    db.AddInParameter("bettype2", DbType.Int32, betType2);
+                db.AddInParameter("winlostdate", DbType.DateTime, winlostDate);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("bettype", DbType.Int32, 9);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("selection", DbType.Int32, selection);
+                db.AddInParameter("matchid", DbType.Int32, matchId);
+                db.AddInParameter("bettype2", DbType.Int32, betType2);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice
                         {
-                            result.Add(new RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice
-                            {
-                                BetTeam = reader.ToString("betteam"),
-                                Tickets = reader.ToInt32("tickets")
-                            });
-                        }
+                            BetTeam = reader.ToString("betteam"),
+                            Tickets = reader.ToInt32("tickets")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;

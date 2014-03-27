@@ -9,7 +9,6 @@
 
 namespace ParlayRMS.DataAccess.Implement.Agents
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
@@ -35,32 +34,25 @@ namespace ParlayRMS.DataAccess.Implement.Agents
             var result = new List<RMS_DangerousAgentSel>();
             var counter = 0;
 
-            try
+            using (var db = new ObjectDb("RMS_DangerousAgentSel"))
             {
-                using (var db = new ObjectDb("RMS_DangerousAgentSel"))
+                if (!string.IsNullOrEmpty(username))
                 {
-                    if (!string.IsNullOrEmpty(username))
-                    {
-                        db.AddInParameter("username", DbType.String, username);
-                    }
+                    db.AddInParameter("username", DbType.String, username);
+                }
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_DangerousAgentSel
                         {
-                            result.Add(new RMS_DangerousAgentSel
-                            {
-                                No = ++counter,
-                                AgentId = reader.ToInt32("AgentId"),
-                                UserName = reader.ToString("UserName")
-                            });
-                        }
+                            No = ++counter,
+                            AgentId = reader.ToInt32("AgentId"),
+                            UserName = reader.ToString("UserName")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -75,24 +67,16 @@ namespace ParlayRMS.DataAccess.Implement.Agents
         /// <returns>Whether or not the agent is added successfully.</returns>
         public Result RMS_DangerousAgentIns(string userName, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("userid", adminId);
-                param.Add("username", userName);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("userid", adminId);
+            param.Add("username", userName);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_DangerousAgentIns", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_DangerousAgentIns", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -105,25 +89,17 @@ namespace ParlayRMS.DataAccess.Implement.Agents
         /// <returns>Whether or not the agent is deleted successfully.</returns>
         public Result RMS_DangerousAgentDel(int agentId, string userName, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("userid", adminId);
-                param.Add("agentid", agentId);
-                param.Add("username", userName);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("userid", adminId);
+            param.Add("agentid", agentId);
+            param.Add("username", userName);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_DangerousAgentDel", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_DangerousAgentDel", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
     }
 }

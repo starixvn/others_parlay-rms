@@ -91,8 +91,8 @@
     <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function Name="DangerMonitor">
-    <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor_xxx" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details_xxx" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function name="SystemParlayMonitor">
     <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />

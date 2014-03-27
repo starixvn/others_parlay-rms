@@ -27,26 +27,19 @@ namespace ParlayRMS.DataAccess.Implement.Common
         /// <returns>Balance up day.</returns>
         public RMS_SelBalanceUpDay RMS_SelBalanceUpDay()
         {
-            try
+            using (var db = new ObjectDb("RMS_SelBalanceUpDay"))
             {
-                using (var db = new ObjectDb("RMS_SelBalanceUpDay"))
+                using (var reader = db.ExecuteReader())
                 {
-                    using (var reader = db.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        return new RMS_SelBalanceUpDay
                         {
-                            return new RMS_SelBalanceUpDay
-                            {
-                                BalanceUpDay = reader.ToDateTime("BalanceUpDay"),
-                                MoveBetsDay = reader.ToDateTime("MoveBetsDay")
-                            };
-                        }
+                            BalanceUpDay = reader.ToDateTime("BalanceUpDay"),
+                            MoveBetsDay = reader.ToDateTime("MoveBetsDay")
+                        };
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return null;

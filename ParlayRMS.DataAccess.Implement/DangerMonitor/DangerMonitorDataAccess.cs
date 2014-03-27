@@ -39,43 +39,36 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
             var result = new List<RMS_Rpt_Parlay_DangerMonitor>();
             maxTransId = 0;
 
-            try
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_DangerMonitor"))
             {
-                using (var db = new ObjectDb("RMS_Rpt_Parlay_DangerMonitor"))
-                {
-                    db.AddInParameter("AgentIDList", DbType.String, agentIdList);
-                    db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
-                    db.AddInParameter("selection", DbType.String, selection);
-                    db.AddOutParameter("max_transid", DbType.Int64, 8);
-                    
-                    using (var reader = db.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            result.Add(new RMS_Rpt_Parlay_DangerMonitor
-                            {
-                                LeagueId = reader.ToInt32("leagueid"),
-                                MatchId = reader.ToInt32("matchid"),
-                                HomeId = reader.ToInt32("homeid"),
-                                AwayId = reader.ToInt32("awayid"),
-                                HdpHome = reader.ToInt32("hdp_home"),
-                                HdpAway = reader.ToInt32("hdp_away"),
-                                Hdp1stHome = reader.ToInt32("hdp_1st_home"),
-                                Hdp1stAway = reader.ToInt32("hdp_1st_away"),
-                                OUHome = reader.ToInt32("ou_home"),
-                                OUAway = reader.ToInt32("ou_away"),
-                                OU1stHome = reader.ToInt32("ou_1st_home"),
-                                OU1stAway = reader.ToInt32("ou_1st_away")
-                            });
-                        }
-                    }
+                db.AddInParameter("AgentIDList", DbType.String, agentIdList);
+                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                db.AddInParameter("selection", DbType.String, selection);
+                db.AddOutParameter("max_transid", DbType.Int64, 8);
 
-                    maxTransId = Convert.ToInt64(db.GetParameterValue("max_transid"));
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new RMS_Rpt_Parlay_DangerMonitor
+                        {
+                            LeagueId = reader.ToInt32("leagueid"),
+                            MatchId = reader.ToInt32("matchid"),
+                            HomeId = reader.ToInt32("homeid"),
+                            AwayId = reader.ToInt32("awayid"),
+                            HdpHome = reader.ToInt32("hdp_home"),
+                            HdpAway = reader.ToInt32("hdp_away"),
+                            Hdp1stHome = reader.ToInt32("hdp_1st_home"),
+                            Hdp1stAway = reader.ToInt32("hdp_1st_away"),
+                            OUHome = reader.ToInt32("ou_home"),
+                            OUAway = reader.ToInt32("ou_away"),
+                            OU1stHome = reader.ToInt32("ou_1st_home"),
+                            OU1stAway = reader.ToInt32("ou_1st_away")
+                        });
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
+
+                maxTransId = Convert.ToInt64(db.GetParameterValue("max_transid"));
             }
 
             return result;
@@ -99,40 +92,33 @@ namespace ParlayRMS.DataAccess.Implement.DangerMonitor
         {
             var result = new List<RMS_Rpt_Parlay_DangerMonitor_Details>();
 
-            try
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_DangerMonitor_Details"))
             {
-                using (var db = new ObjectDb("RMS_Rpt_Parlay_DangerMonitor_Details"))
-                {
-                    db.AddInParameter("matchid", DbType.Int32, matchId);
-                    db.AddInParameter("AgentIDList", DbType.String, agentIdList);
-                    db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
-                    db.AddInParameter("selection", DbType.String, selection);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("matchid", DbType.Int32, matchId);
+                db.AddInParameter("AgentIDList", DbType.String, agentIdList);
+                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                db.AddInParameter("selection", DbType.String, selection);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Rpt_Parlay_DangerMonitor_Details
                         {
-                            result.Add(new RMS_Rpt_Parlay_DangerMonitor_Details
-                            {
-                                Hdp = reader.ToDecimal("hdp"),
-                                Odds = reader.ToDecimal("odds"),
-                                HdpHome = reader.ToInt32("hdp_home"),
-                                HdpAway = reader.ToInt32("hdp_away"),
-                                Hdp1stHome = reader.ToInt32("hdp_1st_home"),
-                                Hdp1stAway = reader.ToInt32("hdp_1st_away"),
-                                OUHome = reader.ToInt32("ou_home"),
-                                OUAway = reader.ToInt32("ou_away"),
-                                OU1stHome = reader.ToInt32("ou_1st_home"),
-                                OU1stAway = reader.ToInt32("ou_1st_away")
-                            });
-                        }
+                            Hdp = reader.ToDecimal("hdp"),
+                            Odds = reader.ToDecimal("odds"),
+                            HdpHome = reader.ToInt32("hdp_home"),
+                            HdpAway = reader.ToInt32("hdp_away"),
+                            Hdp1stHome = reader.ToInt32("hdp_1st_home"),
+                            Hdp1stAway = reader.ToInt32("hdp_1st_away"),
+                            OUHome = reader.ToInt32("ou_home"),
+                            OUAway = reader.ToInt32("ou_away"),
+                            OU1stHome = reader.ToInt32("ou_1st_home"),
+                            OU1stAway = reader.ToInt32("ou_1st_away")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;

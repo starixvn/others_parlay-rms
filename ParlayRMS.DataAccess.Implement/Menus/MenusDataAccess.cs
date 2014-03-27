@@ -31,32 +31,25 @@ namespace ParlayRMS.DataAccess.Implement.Menus
         {
             var result = new List<RMS_MenuSel>();
 
-            try
+            using (var reader = ExecSpDataReader("RMS_MenuSel"))
             {
-                using (var reader = ExecSpDataReader("RMS_MenuSel"))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    result.Add(new RMS_MenuSel
                     {
-                        result.Add(new RMS_MenuSel
-                        {
-                            MenuId = reader.ToInt32("menuid"),
-                            MenuName = reader.ToString("menuname"),
-                            MenuDesc = reader.ToString("menudesc"),
-                            Url = reader.ToString("url"),
-                            ParentId = reader.ToInt32("parentid"),
-                            ParentName = reader.ToString("parentname"),
-                            FuncId = reader.ToInt32("funcid"),
-                            FuncName = reader.ToString("funcname"),
-                            DisplayOrder = reader.ToInt32("displayorder"),
-                            ModifiedDate = reader.ToDateTime("ModifiedDate"),
-                            Enabled = reader.ToBoolean("enabled")
-                        });
-                    }
+                        MenuId = reader.ToInt32("menuid"),
+                        MenuName = reader.ToString("menuname"),
+                        MenuDesc = reader.ToString("menudesc"),
+                        Url = reader.ToString("url"),
+                        ParentId = reader.ToInt32("parentid"),
+                        ParentName = reader.ToString("parentname"),
+                        FuncId = reader.ToInt32("funcid"),
+                        FuncName = reader.ToString("funcname"),
+                        DisplayOrder = reader.ToInt32("displayorder"),
+                        ModifiedDate = reader.ToDateTime("ModifiedDate"),
+                        Enabled = reader.ToBoolean("enabled")
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -93,30 +86,23 @@ namespace ParlayRMS.DataAccess.Implement.Menus
             menuId = 0;
             var result = Result.Empty;
 
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("menuname", name);
-                param.Add("menudesc", description);
-                param.Add("url", url);
-                param.Add("funcid", functionId);
-                param.Add("parentid", parentId);
-                param.Add("parentname", parentName);
-                param.Add("displayorder", displayOrder);
-                param.Add("enabled", isActive);
-                param.Add("ip", ip);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("menuname", name);
+            param.Add("menudesc", description);
+            param.Add("url", url);
+            param.Add("funcid", functionId);
+            param.Add("parentid", parentId);
+            param.Add("parentname", parentName);
+            param.Add("displayorder", displayOrder);
+            param.Add("enabled", isActive);
+            param.Add("ip", ip);
 
-                var r = ExecSp("RMS_MenuIns", param);
-                result = r.ToResult();
-                if (result.IsSuccessful)
-                {
-                    menuId = DbConverter.ToInt32(r.Outputs["menuid"]);
-                }
-            }
-            catch (Exception ex)
+            var r = ExecSp("RMS_MenuIns", param);
+            result = r.ToResult();
+            if (result.IsSuccessful)
             {
-                this.ProcessException(ex);
+                menuId = DbConverter.ToInt32(r.Outputs["menuid"]);
             }
 
             return result;
@@ -148,29 +134,21 @@ namespace ParlayRMS.DataAccess.Implement.Menus
                           int adminId, 
                           string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("menuid", id);
-                param.Add("menuname", name);
-                param.Add("menudesc", description);
-                param.Add("url", url);
-                param.Add("funcid", functionId);
-                param.Add("parentid", parentId);
-                param.Add("parentname", parentName == null ? DBNull.Value : (object)parentName);
-                param.Add("displayorder", displayOrder);
-                param.Add("ip", ip);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("menuid", id);
+            param.Add("menuname", name);
+            param.Add("menudesc", description);
+            param.Add("url", url);
+            param.Add("funcid", functionId);
+            param.Add("parentid", parentId);
+            param.Add("parentname", parentName == null ? DBNull.Value : (object)parentName);
+            param.Add("displayorder", displayOrder);
+            param.Add("ip", ip);
 
-                var r = ExecSp("RMS_MenuUpd", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_MenuUpd", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -183,23 +161,15 @@ namespace ParlayRMS.DataAccess.Implement.Menus
         /// <returns>Whether or not menu is updated successfully.</returns>
         public Result RMS_MenuUpdStatus(int id, bool isActive, int adminId, string ip)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("menuid", id);
-                param.Add("enabled", isActive);
-                param.Add("ip", ip);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("menuid", id);
+            param.Add("enabled", isActive);
+            param.Add("ip", ip);
 
-                var r = ExecSp("RMS_MenuUpdStatus", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_MenuUpdStatus", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
     }
 }

@@ -46,44 +46,37 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
         {            
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
-            try
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_MemberWinLoss"))
             {
-                using (var db = new ObjectDb("RMS_Rpt_Parlay_MemberWinLoss"))
+                db.AddInParameter("fromdate", DbType.DateTime, fromDate);
+                db.AddInParameter("todate", DbType.DateTime, toDate);
+                db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
+                db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
+                db.AddInParameter("selection", DbType.String, combos);
+                db.AddInParameter("custid", DbType.Int32, custId);
+                if (sportsType != 0)
                 {
-                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
-                    db.AddInParameter("todate", DbType.DateTime, toDate);
-                    db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
-                    db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
-                    db.AddInParameter("selection", DbType.String, combos);
-                    db.AddInParameter("custid", DbType.Int32, custId);
-                    if (sportsType != 0)
-                    {
-                        db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                    }
+                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
+                }
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Rpt_Parlay_MemberWinLoss
                         {
-                            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-                            {
-                                Month = reader.ToString("month"),
-                                Tickets_Won = reader.ToInt32("tickets_won"),
-                                Tickets_Lose = reader.ToInt32("tickets_lose"),
-                                Stake_Won = reader.ToDecimal("stake_won"),
-                                Stake_Lose = reader.ToDecimal("stake_lose"),
-                                Member_Won = reader.ToDecimal("member_won"),
-                                Member_Lose = reader.ToDecimal("member_lose"),
-                                OurPT_Won = reader.ToDecimal("ourpt_won"),
-                                OurPT_Lose = reader.ToDecimal("ourpt_lose")
-                            });
-                        }
+                            Month = reader.ToString("month"),
+                            Tickets_Won = reader.ToInt32("tickets_won"),
+                            Tickets_Lose = reader.ToInt32("tickets_lose"),
+                            Stake_Won = reader.ToDecimal("stake_won"),
+                            Stake_Lose = reader.ToDecimal("stake_lose"),
+                            Member_Won = reader.ToDecimal("member_won"),
+                            Member_Lose = reader.ToDecimal("member_lose"),
+                            OurPT_Won = reader.ToDecimal("ourpt_won"),
+                            OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -113,45 +106,38 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
         {
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
-            try
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_AgentWinLoss"))
             {
-                using (var db = new ObjectDb("RMS_Rpt_Parlay_AgentWinLoss"))
+                db.AddInParameter("fromdate", DbType.DateTime, fromDate);
+                db.AddInParameter("todate", DbType.DateTime, toDate);
+                db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
+                db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
+                db.AddInParameter("selection", DbType.String, combos);
+                db.AddInParameter("custid", DbType.Int32, custId);
+                if (sportsType != 0)
                 {
-                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
-                    db.AddInParameter("todate", DbType.DateTime, toDate);
-                    db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
-                    db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
-                    db.AddInParameter("selection", DbType.String, combos);
-                    db.AddInParameter("custid", DbType.Int32, custId);
-                    if (sportsType != 0)
-                    {
-                        db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                    }
+                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
+                }
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Rpt_Parlay_MemberWinLoss
                         {
-                            result.Add(new RMS_Rpt_Parlay_MemberWinLoss
-                            {
-                                Month = reader.ToString("month"),
-                                Username = reader.ToString("username"),
-                                Tickets_Won = reader.ToInt32("tickets_won"),
-                                Tickets_Lose = reader.ToInt32("tickets_lose"),
-                                Stake_Won = reader.ToDecimal("stake_won"),
-                                Stake_Lose = reader.ToDecimal("stake_lose"),
-                                Member_Won = reader.ToDecimal("member_won"),
-                                Member_Lose = reader.ToDecimal("member_lose"),
-                                OurPT_Won = reader.ToDecimal("ourpt_won"),
-                                OurPT_Lose = reader.ToDecimal("ourpt_lose")
-                            });
-                        }
+                            Month = reader.ToString("month"),
+                            Username = reader.ToString("username"),
+                            Tickets_Won = reader.ToInt32("tickets_won"),
+                            Tickets_Lose = reader.ToInt32("tickets_lose"),
+                            Stake_Won = reader.ToDecimal("stake_won"),
+                            Stake_Lose = reader.ToDecimal("stake_lose"),
+                            Member_Won = reader.ToDecimal("member_won"),
+                            Member_Lose = reader.ToDecimal("member_lose"),
+                            OurPT_Won = reader.ToDecimal("ourpt_won"),
+                            OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;

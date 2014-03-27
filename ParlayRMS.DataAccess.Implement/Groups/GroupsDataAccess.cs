@@ -31,27 +31,20 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         {
             var result = new List<RMS_GroupInfoSel>();
 
-            try
+            using (var reader = ExecSpDataReader("RMS_GroupInfoSel"))
             {
-                using (var reader = ExecSpDataReader("RMS_GroupInfoSel"))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    result.Add(new RMS_GroupInfoSel
                     {
-                        result.Add(new RMS_GroupInfoSel
-                        {
-                            GroupId = reader.ToInt32("groupid"),
-                            GroupName = reader.ToString("groupname"),
-                            NoUsers = reader.ToInt32("nousers"),
-                            Description = reader.ToString("description"),
-                            Creator = reader.ToString("creator"),
-                            CreatedDate = reader.ToDateTime("createddate")
-                        });
-                    }
+                        GroupId = reader.ToInt32("groupid"),
+                        GroupName = reader.ToString("groupname"),
+                        NoUsers = reader.ToInt32("nousers"),
+                        Description = reader.ToString("description"),
+                        Creator = reader.ToString("creator"),
+                        CreatedDate = reader.ToDateTime("createddate")
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -64,25 +57,18 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         /// <returns>Group associated with the ID.</returns>
         public RMS_GroupInfoSelByGroupID RMS_GroupInfoSelByGroupID(int groupId)
         {
-            try
+            Hashtable param = new Hashtable();
+            param.Add("groupid", groupId);
+            using (var reader = ExecSpDataReader("RMS_GroupInfoSelByGroupID", param))
             {
-                Hashtable param = new Hashtable();
-                param.Add("groupid", groupId);
-                using (var reader = ExecSpDataReader("RMS_GroupInfoSelByGroupID", param))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    return new RMS_GroupInfoSelByGroupID
                     {
-                        return new RMS_GroupInfoSelByGroupID
-                        {
-                            GroupName = reader.ToString("groupname"),
-                            Description = reader.ToString("Description")
-                        };
-                    }
+                        GroupName = reader.ToString("groupname"),
+                        Description = reader.ToString("Description")
+                    };
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return null;
@@ -102,27 +88,20 @@ namespace ParlayRMS.DataAccess.Implement.Groups
             groupId = 0;
             var result = Result.Empty;
 
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("groupname", groupName);
-                param.Add("description", description);
-                param.Add("ip", ip);
-                param.Add("groupid", 0);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("groupname", groupName);
+            param.Add("description", description);
+            param.Add("ip", ip);
+            param.Add("groupid", 0);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_GroupInfoIns", param);
-                result = r.ToResult();
-                if (result.IsSuccessful)
-                {
-                    groupId = DbConverter.ToInt32(r.Outputs["groupid"]);
-                }
-            }
-            catch (Exception ex)
+            var r = ExecSp("RMS_GroupInfoIns", param);
+            result = r.ToResult();
+            if (result.IsSuccessful)
             {
-                this.ProcessException(ex);
+                groupId = DbConverter.ToInt32(r.Outputs["groupid"]);
             }
 
             return result;
@@ -139,26 +118,18 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         /// <returns>Whether or not group is updated successfully.</returns>
         public Result RMS_GroupInfoUpd(string groupName, string description, int adminId, string ip, int groupId)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("groupid", groupId);
-                param.Add("groupname", groupName);
-                param.Add("description", description);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("groupid", groupId);
+            param.Add("groupname", groupName);
+            param.Add("description", description);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_GroupInfoUpd", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_GroupInfoUpd", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
 
         /// <summary>
@@ -169,23 +140,16 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         {
             var result = new List<RMS_GroupInfoSelAllGroup>();
 
-            try
+            using (var reader = ExecSpDataReader("RMS_GroupInfoSelAllGroup"))
             {
-                using (var reader = ExecSpDataReader("RMS_GroupInfoSelAllGroup"))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    result.Add(new RMS_GroupInfoSelAllGroup
                     {
-                        result.Add(new RMS_GroupInfoSelAllGroup
-                        {
-                            GroupId = reader.ToInt32("groupid"),
-                            GroupName = reader.ToString("groupname"),
-                        });
-                    }
+                        GroupId = reader.ToInt32("groupid"),
+                        GroupName = reader.ToString("groupname"),
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -200,30 +164,23 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         {
             var result = new List<RMS_GroupPolicySel>();
 
-            try
+            Hashtable param = new Hashtable();
+            param.Add("groupid", groupId);
+            using (var reader = ExecSpDataReader("RMS_GroupPolicySel", param))
             {
-                Hashtable param = new Hashtable();
-                param.Add("groupid", groupId);
-                using (var reader = ExecSpDataReader("RMS_GroupPolicySel", param))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    result.Add(new RMS_GroupPolicySel
                     {
-                        result.Add(new RMS_GroupPolicySel
-                        {
-                            FuncId = reader.ToInt32("funcid"),
-                            FuncKey = reader.ToString("funckey"),
-                            FuncName = reader.ToString("funcname"),
-                            DisplayOrder = reader.ToInt32("displayorder"),
-                            ParentId = reader.ToInt32("parentid"),
-                            ParentName = reader.ToString("parentname"),
-                            Policy = reader.ToInt32("policy")
-                        });
-                    }
+                        FuncId = reader.ToInt32("funcid"),
+                        FuncKey = reader.ToString("funckey"),
+                        FuncName = reader.ToString("funcname"),
+                        DisplayOrder = reader.ToInt32("displayorder"),
+                        ParentId = reader.ToInt32("parentid"),
+                        ParentName = reader.ToString("parentname"),
+                        Policy = reader.ToInt32("policy")
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
@@ -239,25 +196,17 @@ namespace ParlayRMS.DataAccess.Implement.Groups
         /// <returns>Whether or not group policy is updated successfully.</returns>
         public Result RMS_GroupPolicyUpd(string groupPolicy, int adminId, string ip, int groupId)
         {
-            try
-            {
-                Hashtable param = new Hashtable();
-                param.Add("adminid", adminId);
-                param.Add("groupid", groupId);
-                param.Add("grouppolicy", groupPolicy);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+            Hashtable param = new Hashtable();
+            param.Add("adminid", adminId);
+            param.Add("groupid", groupId);
+            param.Add("grouppolicy", groupPolicy);
+            param.Add("ip", ip);
+            param.Add("errcode", 0);
+            param.Add("errmsg", string.Empty);
 
-                var r = ExecSp("RMS_GroupPolicyUpd", param);
-                return r.ToResult();
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
-            }
+            var r = ExecSp("RMS_GroupPolicyUpd", param);
 
-            return Result.Empty;
+            return r.ToResult();
         }
     }
 }

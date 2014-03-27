@@ -41,40 +41,33 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
-            try
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_Betlist"))
             {
-                using (var db = new ObjectDb("RMS_Monitor_Parlay_Betlist"))
-                {
-                    db.AddInParameter("selection", DbType.String, combos);
-                    db.AddInParameter("sporttype", DbType.String, sportsTypes);
-                    db.AddInParameter("level", DbType.String, levels);
-                    db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
-                    db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                    db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
+                db.AddInParameter("selection", DbType.String, combos);
+                db.AddInParameter("sporttype", DbType.String, sportsTypes);
+                db.AddInParameter("level", DbType.String, levels);
+                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                db.AddInParameter("max_transid", DbType.Int64, maxTransId);
+                db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
 
-                    using (var reader = db.ExecuteReader())
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_Parlay_Betlist
                         {
-                            result.Add(new RMS_Monitor_Parlay_Betlist
-                            {
-                                TransDate = reader.ToDateTime("transdate"),
-                                TransId = reader.ToInt64("transid"),
-                                RefNo = reader.ToInt64("refno"),
-                                Username = reader.ToString("username"),
-                                Odds = reader.ToDecimal("odds"),
-                                Stake = reader.ToDecimal("stake"),
-                                MaxPayout = reader.ToDecimal("maxpayout"),
-                                Combo = reader.ToInt32("combo"),
-                                Level = reader.ToInt32("level")
-                            });
-                        }
+                            TransDate = reader.ToDateTime("transdate"),
+                            TransId = reader.ToInt64("transid"),
+                            RefNo = reader.ToInt64("refno"),
+                            Username = reader.ToString("username"),
+                            Odds = reader.ToDecimal("odds"),
+                            Stake = reader.ToDecimal("stake"),
+                            MaxPayout = reader.ToDecimal("maxpayout"),
+                            Combo = reader.ToInt32("combo"),
+                            Level = reader.ToInt32("level")
+                        });
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ProcessException(ex);
             }
 
             return result;
