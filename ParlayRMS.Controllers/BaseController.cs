@@ -159,5 +159,21 @@ namespace ParlayRMS.Controllers
         {
             return ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage).ToArray();
         }
+
+        /// <summary>
+        /// Called when a request matches this controller, but no method with the specified action name is found in the controller.
+        /// </summary>
+        /// <param name="actionName">The name of the attempted action.</param>
+        protected override void HandleUnknownAction(string actionName)
+        {
+            try
+            {
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {
+                Response.Redirect("Error/AccessDenied", false);
+            }
+        }
     }
 }

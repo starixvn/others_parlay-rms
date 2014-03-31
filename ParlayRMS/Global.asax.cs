@@ -88,7 +88,6 @@ namespace ParlayRMS
         {
             // Logging
             Exception ex = Server.GetLastError().GetBaseException();
-
             if (!Request.IsLocal)
             {
                 // Get base exception data

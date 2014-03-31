@@ -76,6 +76,7 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="CacheController.cs" />
     <Compile Include="DangerMonitorController.cs" />
+    <Compile Include="ErrorController.cs" />
     <Compile Include="FavouriteChoiceController.cs" />
     <Compile Include="ManageAgentController.cs" />
     <Compile Include="ManageFunctionController.cs" />
