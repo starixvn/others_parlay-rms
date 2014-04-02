@@ -144,7 +144,7 @@ namespace ParlayRMS.Web.Authorization
                 }
                 else
                 {
-                    response.Redirect("~/home/index", true);
+                    response.Redirect("~/home/index", false);
                 }
             }
             catch (Exception)
