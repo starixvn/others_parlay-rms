@@ -29,7 +29,7 @@ namespace ParlayRMS.DTO.SystemParlayMonitor
 
         public decimal Stake { get; set; }
 
-        public decimal MaxPayout { get; set; }
+        public decimal NetWinAfterPT { get; set; }
 
         public int Combo { get; set; }
 

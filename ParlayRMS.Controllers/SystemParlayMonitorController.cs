@@ -96,7 +96,7 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.RefreshTimes = refreshTimes;
-            ViewBag.StakeAfterPT = Formatter.FormatNumber3(AppSetting.StakeAfterPT);
+            ViewBag.StakeAfterPT = Formatter.FormatNumber3(AppSetting.SystemParlayStakeAfterPT);
 
             return this.PartialView("Filter");
         }

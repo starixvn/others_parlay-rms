@@ -55,7 +55,7 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
             {
                 item.Odds = Math.Round(CalculateOdds(item), 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.MaxPayout = Math.Round(CalculateMaxPayout(item), 2);
+                item.NetWinAfterPT = Math.Round(CalculateNetWin(item), 2);
                 item.ComboName = GetComboName(item.Combo);
             }
 
@@ -89,11 +89,11 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
         }
 
         /// <summary>
-        /// Calculates the max payout after PT of a ticket.
+        /// Calculates the net win after PT of a ticket.
         /// </summary>
         /// <param name="item">The ticket's data.</param>
         /// <returns>Net max payout after PT of the ticket.</returns>
-        private decimal CalculateMaxPayout(RMS_Monitor_SystemParlay_Betlist item)
+        private decimal CalculateNetWin(RMS_Monitor_SystemParlay_Betlist item)
         {
             decimal result = item.Odds * item.Stake;
             int numberOfBets = GetSystemParlayBets(item.Combo);
@@ -179,7 +179,7 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
                         Username = "test",
                         Stake = tempStake,
                         Odds = tempOdds,
-                        MaxPayout = tempStake * tempOdds,
+                        NetWinAfterPT = tempStake * tempOdds,
                         RefNo = tempRefno,
                         TransDate = DateTime.Now,
                         TransId = maxTransId + i

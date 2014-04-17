@@ -436,7 +436,7 @@ function CreateRow(order, item) {
     r[++j] = '<td>' + item.Username + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.MaxPayout).format('0,0.00') + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
     r[++j] = '<td class="center">' + item.ComboName + '</td>';
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';

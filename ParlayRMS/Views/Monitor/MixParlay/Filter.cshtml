@@ -24,11 +24,11 @@
                             <td style="width: 150px">
                                 @Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes, new { multiple = "multiple" })
                             </td>
-                            <td style="width: 145px">
-                                @Html.Label("maxPayout", ViewLang.MaxPayoutAfterPT, new { @class = "lable" })
+                            <td style="width: 110px">
+                                @Html.Label("stakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
                             </td>
                             <td>
-                                @Html.TextBox("maxPayout", (string)ViewBag.MaxPayoutAfterPT, new { @maxlength = 20 })
+                                @Html.TextBox("stakeAfterPT", (string)ViewBag.StakeAfterPT, new { @maxlength = 20 })
                             </td>
                             <td>
                             </td>

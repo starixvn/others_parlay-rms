@@ -19,15 +19,15 @@ namespace ParlayRMS.Services.Interface.MixParlayMonitor
         /// <param name="combos">The combo values.</param>
         /// <param name="sportTypes">Type of the sport.</param>
         /// <param name="levels">The level.</param>
-        /// <param name="maxPayout">The max payout.</param>
+        /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
         IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
                                                 string combos, 
                                                 string sportTypes, 
-                                                string levels, 
-                                                decimal maxPayout, 
+                                                string levels,
+                                                decimal stakeAfterPT, 
                                                 int selectTop, 
                                                 long maxTransId);
     }

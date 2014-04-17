@@ -27,7 +27,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="combos">Combo values.</param>
         /// <param name="sportsTypes">Sport type values.</param>
         /// <param name="levels">Level values.</param>
-        /// <param name="maxPayout">Maximum payout value.</param>
+        /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="selectTop">Select Top value.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of Monitor Parlay Bets.</returns>
@@ -35,11 +35,11 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                                                            string combos, 
                                                            string sportsTypes, 
                                                            string levels, 
-                                                           decimal maxPayout, 
+                                                           decimal stakeAfterPT, 
                                                            int selectTop, 
                                                            long maxTransId)
         {
-            return MixparlayService.GetMixParlayMonitorTickets(combos, sportsTypes, levels, maxPayout, selectTop, maxTransId);
+            return MixparlayService.GetMixParlayMonitorTickets(combos, sportsTypes, levels, stakeAfterPT, selectTop, maxTransId);
         }
 
         ////private MixParlayMonitorTicketCache GetMixParlayMonitorTicketCache(

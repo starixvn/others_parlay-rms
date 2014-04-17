@@ -27,16 +27,16 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
         /// <param name="combos">Combo values.</param>
         /// <param name="sportsTypes">Sport types.</param>
         /// <param name="levels">Level values.</param>
-        /// <param name="maxPayout">Maximum payout value.</param>
+        /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
-                                                            string combos, 
-                                                            string sportsTypes, 
-                                                            string levels, 
-                                                            decimal maxPayout, 
-                                                            int selectTop, 
+                                                            string combos,
+                                                            string sportsTypes,
+                                                            string levels,
+                                                            decimal stakeAfterPT,
+                                                            int selectTop,
                                                             long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
@@ -46,7 +46,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("sporttype", DbType.String, sportsTypes);
                 db.AddInParameter("level", DbType.String, levels);
-                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                    db.AddInParameter("stake", DbType.Decimal, stakeAfterPT);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
 
@@ -62,7 +62,6 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             Username = reader.ToString("username"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
-                            MaxPayout = reader.ToDecimal("maxpayout"),
                             Combo = reader.ToInt32("combo"),
                             Level = reader.ToInt32("level")
                         });

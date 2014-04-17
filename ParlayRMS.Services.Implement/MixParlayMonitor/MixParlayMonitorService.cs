@@ -10,7 +10,6 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using ParlayRMS.DataAccess.Implement.MixParlayMonitor;
     using ParlayRMS.DataAccess.Interface.MixParlayMonitor;
@@ -50,30 +49,30 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="combos">The combo values.</param>
         /// <param name="sportTypes">Type of the sport.</param>
         /// <param name="levels">The level.</param>
-        /// <param name="maxPayout">The max payout.</param>
+        /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
-                                                           string combos, 
-                                                           string sportTypes, 
-                                                           string levels, 
-                                                           decimal maxPayout, 
-                                                           int selectTop, 
+                                                           string combos,
+                                                           string sportTypes,
+                                                           string levels,
+                                                           decimal stakeAfterPT,
+                                                           int selectTop,
                                                            long maxTransId)
         {
-            var data = _mixparlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, sportTypes, levels, maxPayout, selectTop, maxTransId);
+            var data = _mixparlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, sportTypes, levels, stakeAfterPT, selectTop, maxTransId);
 
             ////if (data.Count() == 0)
             ////{
-            ////    data = CreateTestData(combos, levels, maxPayout, maxTransId);
+            ////    data = CreateTestData(combos, levels, stakeAfterPT, maxTransId);
             ////}
 
             foreach (var item in data)
             {
                 item.Odds = Math.Round(item.Odds, 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.MaxPayout = Math.Round(item.Odds * item.Stake, 2);
+                item.NetWinAfterPT = Math.Round((item.Odds - 1) * item.Stake, 2);
             }
 
             return data;
@@ -84,10 +83,10 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// </summary>
         /// <param name="combos">The combos.</param>
         /// <param name="levels">The levels.</param>
-        /// <param name="maxPayout">The maximum payout.</param>
+        /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
-        private IEnumerable<RMS_Monitor_Parlay_Betlist> CreateTestData(string combos, string levels, decimal maxPayout, long maxTransId)
+        private IEnumerable<RMS_Monitor_Parlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
         {
             Random rnd = new Random();
             var count = rnd.Next(0, 5);
@@ -101,7 +100,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                 var refno = rnd.Next(1000000, 9999999);
                 if (combos.Contains(combo.ToString()) &&
                     levels.Contains(level.ToString()) &&
-                    stake * odds > maxPayout)
+                    stake * odds > stakeAfterPT)
                 {
                     list.Add(new RMS_Monitor_Parlay_Betlist
                     {
@@ -110,7 +109,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                         Username = "test",
                         Stake = stake,
                         Odds = odds,
-                        MaxPayout = stake * odds,
+                        NetWinAfterPT = (stake - 1) * odds,
                         RefNo = refno,
                         TransDate = DateTime.Now,
                         TransId = maxTransId + i

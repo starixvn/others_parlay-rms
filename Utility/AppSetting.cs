@@ -138,11 +138,19 @@ namespace ParlayRMS.Utility
             }
         }
 
-        public static int StakeAfterPT
+        public static int SystemParlayStakeAfterPT
         {
             get
             {
-                return Convert.ToInt32(GetValue("StakeAfterPT"));
+                return Convert.ToInt32(GetValue("SystemParlayStakeAfterPT"));
+            }
+        }
+
+        public static int MixParlayStakeAfterPT
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("MixParlayStakeAfterPT"));
             }
         }
 

@@ -98,7 +98,7 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.RefreshTimes = refreshTimes;
-            ViewBag.MaxPayoutAfterPT = Formatter.FormatNumber3(AppSetting.MaxPayoutAfterPT);
+            ViewBag.StakeAfterPT = Formatter.FormatNumber3(AppSetting.MixParlayStakeAfterPT);
 
             return this.PartialView("MixParlay/Filter");
         }
@@ -130,7 +130,7 @@ namespace ParlayRMS.Controllers
             }
 
             var service = GetMixParlayService();
-            var data = service.GetMixParlayMonitorTickets(model.Combos, model.SportsTypes, model.Levels, model.MaxPayout, model.SelectTop, model.MaxTransId);
+            var data = service.GetMixParlayMonitorTickets(model.Combos, model.SportsTypes, model.Levels, model.StakeAfterPT, model.SelectTop, model.MaxTransId);
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {
@@ -196,9 +196,9 @@ namespace ParlayRMS.Controllers
                                    ViewLang.SelectTop,
                                    model.SelectTop);
 
-                if (model.MaxPayout > 0)
+                if (model.StakeAfterPT > 0)
                 {
-                    title += string.Format(" - {0} [{1}]", ViewLang.MaxPayout, Formatter.FormatNumber2(model.MaxPayout));
+                    title += string.Format(" - {0} [{1}]", ViewLang.StakeAfterPT, Formatter.FormatNumber2(model.StakeAfterPT));
                 }
             }
 
