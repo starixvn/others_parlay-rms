@@ -63,6 +63,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             Combo = reader.ToInt32("combo"),
+                            IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level")
                         });
                     }

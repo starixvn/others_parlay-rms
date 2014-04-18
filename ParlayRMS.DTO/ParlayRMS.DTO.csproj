@@ -92,6 +92,7 @@
     <Compile Include="Users\RMS_UserInfoSel.cs" />
     <Compile Include="Users\RMS_UserInfoSelByUserID.cs" />
     <Compile Include="Users\RMS_UserPolicySel.cs" />
+    <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_ViewIPInfo.cs" />
     <Compile Include="Winloss\RMS_Rpt_Parlay_Winloss.cs" />
   </ItemGroup>
   <ItemGroup />

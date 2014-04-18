@@ -506,7 +506,7 @@
   </data>
   <data name="TotalCombo" xml:space="preserve">
     <value>Total Combo</value>
-  </data>
+  </data>  
   <data name="AddSpecialMember" xml:space="preserve">
     <value>Add Special Member</value>
   </data>
@@ -791,5 +791,11 @@
   </data>
   <data name="NetWinAfterPT" xml:space="preserve">
     <value>Net win after PT</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="IPInfo" xml:space="preserve">
+    <value>View IP Info</value>
   </data>
 </root>

@@ -24,5 +24,7 @@
         public const string TotalOutstanding = "TotalOutstanding";
         public const string MemberWinLoss = "MemberWinLoss";
         public const string DangerMonitor = "DangerMonitor";
+        public const string IPInfo = "IPInfo";
+        
     }
 }

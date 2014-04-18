@@ -89,6 +89,7 @@
     <Compile Include="TopWinners\TopWinnersService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="Users\UsersService.cs" />
+    <Compile Include="ViewIPInfo\ViewIPInfoService.cs" />
     <Compile Include="Winloss\WinlossService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\ISimilarBetsDataAccess.cs" />
     <Compile Include="TopWinners\ITopWinnersDataAccess.cs" />
+    <Compile Include="ViewIPInfo\IViewIPInfoDataAccess.cs" />
     <Compile Include="Winloss\IWinlossDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>

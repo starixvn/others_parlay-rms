@@ -73,6 +73,7 @@
     <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_Parlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function Name="Member">
     <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />

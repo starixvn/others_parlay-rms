@@ -31,6 +31,8 @@ namespace ParlayRMS.DTO.MixParlayMonitor
 
         public int Combo { get; set; }
 
+        public string IP { get; set; }
+
         public int Level { get; set; }
     }
 }

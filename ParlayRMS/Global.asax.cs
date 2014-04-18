@@ -231,6 +231,7 @@ namespace ParlayRMS
             // report
             bundles.Add(new ScriptBundle("~/Scripts/Member/Core/js").Include("~/Scripts/Member/Core.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/SimilarBets/js").Include("~/Scripts/Report/SimilarBets.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Report/ViewIPInfo/js").Include("~/Scripts/Report/ViewIPInfo.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMember/js").Include("~/Scripts/ManageMember.js"));

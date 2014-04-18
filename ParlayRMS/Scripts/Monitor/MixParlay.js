@@ -443,6 +443,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.Combo).format('0,0') + '</td>';
+    r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDate + '\'), \'_blank\');">' + item.IP + '</a></td>';
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';
     return r.join('');

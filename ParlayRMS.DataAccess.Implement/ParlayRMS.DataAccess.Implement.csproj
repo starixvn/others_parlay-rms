@@ -77,6 +77,7 @@
     <Compile Include="TopWinners\TopWinnersDataAccess.cs" />
     <Compile Include="TotalOutstanding\TotalOutstandingDataAccess.cs" />
     <Compile Include="Users\UsersDataAccess.cs" />
+    <Compile Include="ViewIPInfo\ViewIPInfoDataAccess.cs" />
     <Compile Include="Winloss\WinlossDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>

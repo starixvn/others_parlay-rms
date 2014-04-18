@@ -75,6 +75,7 @@
     <Compile Include="AccountController.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="CacheController.cs" />
+    <Compile Include="ViewIPInfoController.cs" />
     <Compile Include="DangerMonitorController.cs" />
     <Compile Include="ErrorController.cs" />
     <Compile Include="FavouriteChoiceController.cs" />
