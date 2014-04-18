@@ -12,8 +12,17 @@ namespace ParlayRMS.Services.Interface.ViewIPInfo
     using System.Collections.Generic;
     using ParlayRMS.DTO.ViewIPInfo;
 
+    /// <summary>
+    /// IViewIPInfoService interface.
+    /// </summary>
     public interface IViewIPInfoService
     {
+        /// <summary>
+        /// Get bets statistics base on specific IP and date.
+        /// </summary>
+        /// <param name="ip">Bet's IP input.</param>
+        /// <param name="date">Bet's date input.</param>
+        /// <returns>List of bets statistics.</returns>
         IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> GetIPInfo(string ip, DateTime date);
     }
 }

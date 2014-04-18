@@ -17,11 +17,20 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
     using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.ViewIPInfo;
 
+    /// <summary>
+    /// ViewIPInfo Service.
+    /// </summary>
     public class ViewIPInfoService : BaseService, IViewIPInfoService
     {
         private readonly IViewIPInfoDataAccess _viewIPInfoDataAccess = new ViewIPInfoDataAccess();
         private readonly ICommonService _commonService = new CommonService();
 
+        /// <summary>
+        /// Get bets statistics base on specific IP and date.
+        /// </summary>
+        /// <param name="ip">Bet's IP input.</param>
+        /// <param name="date">Bet's date input.</param>
+        /// <returns>List of bets statistics.</returns>
         public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> GetIPInfo(string ip, DateTime date)
         {
             var info = _commonService.GetBalanceUpDayInfo();

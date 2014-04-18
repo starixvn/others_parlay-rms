@@ -19,13 +19,17 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Web.Authorization;
     
     /// <summary>
-    /// IPInfo Controller.
+    /// View IPInfo Controller.
     /// </summary>
     public class ViewIPInfoController : BaseController
     {
         private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
         private readonly IBetListService _betlistService = new BetListService();
 
+        /// <summary>
+        /// ViewIPInfo Index view.
+        /// </summary>
+        /// <returns>Index view.</returns>
         [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
@@ -35,9 +39,14 @@ namespace ParlayRMS.Controllers
             return this.View("Index");
         }
 
+        /// <summary>
+        /// Get data for View IP Info - main report.
+        /// </summary>
+        /// <param name="options">Model contain filter conditions.</param>
+        /// <returns>JSON String for ViewIP Info main report.</returns>
         [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
-        public ActionResult Data(IPInfoOptions options)
+        public ActionResult Data(ViewIPInfoOptions options)
         {
             try
             {

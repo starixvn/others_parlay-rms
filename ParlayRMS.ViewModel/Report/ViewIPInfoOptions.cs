@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="IPInfoOptions.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ViewIPInfoOptions.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,9 +14,9 @@ namespace ParlayRMS.ViewModel.Report
     using ParlayRMS.Utility;
 
     /// <summary>
-    /// Top Winners Options Model.
+    /// View IPInfo Options Model.
     /// </summary>
-    public class IPInfoOptions
+    public class ViewIPInfoOptions
     {
         public string IP { get; set; }
 

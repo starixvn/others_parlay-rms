@@ -9,7 +9,7 @@
 namespace ParlayRMS.DTO.ViewIPInfo
 {
     /// <summary>
-    /// Parlay Top Winner model.
+    /// View IP Info model.
     /// </summary>
     public class RMS_Rpt_Parlay_ViewIPInfo
     {

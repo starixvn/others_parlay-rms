@@ -33,7 +33,7 @@
         }
     });
 
-    //set datepicker default value. TODO: check if input is null - ok, checked
+    //set datepicker default value.
     $("#date").val(inputDate);
 
     //set event for enter-key press
@@ -94,7 +94,7 @@
                     alertBox.showErrorMessage(json.message);
                     return;
                 }
-                maxTransId = json.MaxTransId;
+                //maxTransId = json.MaxTransId;                
                 var table = $('#result');
                 FillData(table, json);
 
@@ -134,31 +134,14 @@
                 // find to remove noinfo row
                 rows.children('td.noinfo').remove();
 
-                //Re-order by Trans. Time
-                tableSorter.sortColumn(table, 1, "asc", 'date');
-
                 for (var i = length - 1; i >= 0; i--) {
                     var item = records[i];
                     var row = CreateRow(i + 1, item);
 
                     rows = tbody.children('tr');
-                    //                    var settings = settingsController.get();
-                    //                    if (settings.selectTop == rows.length) {
-                    //                        var last = rows.last();
-                    //                        last.remove();
-                    //                    }
 
                     row = $(row);
                     tbody.prepend(row);
-                    //row.effect("highlight", { color: '#FFDBA8' }, 120000);
-                    row.addClass('highlight');
-                }
-
-                //Order by current ordered column
-                var orderCol = tableSorter.currentOrderCol;
-                if (orderCol) {
-                    var type = $(orderCol).attr("data-col-type");
-                    tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
                 }
 
                 //Update row no.
@@ -168,11 +151,10 @@
                 });
             }
         } else {
-            if (maxTransId === 0) {
-                if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
-                    var noinfo = CreateNoInfoRow(9);
-                    tbody.append(noinfo);
-                }
+            if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
+                var noinfo = CreateNoInfoRow(9);
+                //tbody.append(noinfo);
+                tbody.html(noinfo);
             }
         }
 
