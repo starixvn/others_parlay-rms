@@ -198,31 +198,32 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
         private string GetComboName(int combo)
         {
             string result = string.Empty;
+            string format = "{0} ({1})";
 
             switch ((SystemParlayCombo)combo)
             {
                 case SystemParlayCombo.Trixie:
-                    result = ViewLang.Trixie;
+                    result = string.Format(format, ViewLang.Trixie, combo);
                     break;
 
                 case SystemParlayCombo.Yankee:
-                    result = ViewLang.Yankee;
+                    result = string.Format(format, ViewLang.Yankee, combo);
                     break;
 
                 case SystemParlayCombo.Canadian:
-                    result = ViewLang.Canadian;
+                    result = string.Format(format, ViewLang.Canadian, combo);
                     break;
 
                 case SystemParlayCombo.Heinz:
-                    result = ViewLang.Heinz;
+                    result = string.Format(format, ViewLang.Heinz, combo);
                     break;
 
                 case SystemParlayCombo.SuperHeinz:
-                    result = ViewLang.SuperHeinz;
+                    result = string.Format(format, ViewLang.SuperHeinz, combo);
                     break;
 
                 case SystemParlayCombo.Goliath:
-                    result = ViewLang.Goliath;
+                    result = string.Format(format, ViewLang.Goliath, combo);
                     break;
             }
 

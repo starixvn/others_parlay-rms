@@ -48,11 +48,12 @@ namespace ParlayRMS.Controllers
             // Combo
             var comboNames = new string[] { ViewLang.Trixie, ViewLang.Yankee, ViewLang.Canadian, ViewLang.Heinz, ViewLang.SuperHeinz, ViewLang.Goliath };
             var combos = new List<SelectListItem>();
+            string comboFormat = "{0} ({1})";
             for (int i = 3; i <= 8; i++)
             {
                 combos.Add(new SelectListItem
                 {
-                    Text = comboNames[i - 3],
+                    Text = string.Format("{0} ({1})", comboNames[i - 3], i),
                     Value = i.ToString(),
                     Selected = true
                 });

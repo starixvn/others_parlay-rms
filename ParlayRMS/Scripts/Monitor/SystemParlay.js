@@ -195,7 +195,7 @@ $(document).ready(function () {
     });
 
     $("#combo").multiselect({
-        minWidth: 132,
+        minWidth: 140,
         height: 136,
         create: function () {
             $("#combo").multiselect();
@@ -239,7 +239,7 @@ $(document).ready(function () {
     });
 
     $("#level").multiselect({
-        minWidth: 132,
+        minWidth: 140,
         create: function () {
             $("#level").multiselect("checkAll");
         },
