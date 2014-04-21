@@ -21,6 +21,12 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
     /// </summary>
     public class ViewIPInfoDataAccess : BaseDataAccess, IViewIPInfoDataAccess
     {
+        /// <summary>
+        /// Get bets statistics by IP and WINLOST date.
+        /// </summary>
+        /// <param name="ip">Input IP value.</param>
+        /// <param name="date">Input date value.</param>
+        /// <returns>List of view IP info report objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date)
         {
             var result = new List<RMS_Rpt_Parlay_ViewIPInfo>();

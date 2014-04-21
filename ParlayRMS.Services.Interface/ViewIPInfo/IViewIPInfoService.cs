@@ -20,8 +20,8 @@ namespace ParlayRMS.Services.Interface.ViewIPInfo
         /// <summary>
         /// Get bets statistics base on specific IP and date.
         /// </summary>
-        /// <param name="ip">Bet's IP input.</param>
-        /// <param name="date">Bet's date input.</param>
+        /// <param name="ip">Input IP value.</param>
+        /// <param name="date">Input date value.</param>
         /// <returns>List of bets statistics.</returns>
         IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> GetIPInfo(string ip, DateTime date);
     }

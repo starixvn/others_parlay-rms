@@ -34,8 +34,8 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.ip = Request["ip"] ?? null;
-            ViewBag.date = Request["date"] ?? null;
+            ViewBag.ip = Request["ip"];
+            ViewBag.date = Request["date"];
             return this.View("Index");
         }
 
