@@ -4,14 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
+//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
 // </history>
 
 namespace ParlayRMS.ViewModel.Report
 {
     using System;
-    using System.Linq;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.Utility;
 
     /// <summary>
     /// View IPInfo Options Model.

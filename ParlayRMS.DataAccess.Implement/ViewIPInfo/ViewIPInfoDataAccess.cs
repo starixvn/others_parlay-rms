@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
+//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
 // </history>
 
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
@@ -17,7 +18,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
     using ParlayRMS.Utility.Data;
 
     /// <summary>
-    /// ViewIPInfo Data Access.
+    /// Main data-access-class for view-IP-info report and other related reports.
     /// </summary>
     public class ViewIPInfoDataAccess : BaseDataAccess, IViewIPInfoDataAccess
     {

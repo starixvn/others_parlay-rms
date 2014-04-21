@@ -4,12 +4,15 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
+//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
 // </history>
 
 namespace ParlayRMS.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
+    using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Services.Implement.ViewIPInfo;
@@ -19,7 +22,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Web.Authorization;
     
     /// <summary>
-    /// View IPInfo Controller.
+    /// Controller for View-IP-Info report.
     /// </summary>
     public class ViewIPInfoController : BaseController
     {
@@ -36,11 +39,12 @@ namespace ParlayRMS.Controllers
         {
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
+
             return this.View("Index");
         }
 
         /// <summary>
-        /// Get data for View IP Info - main report.
+        /// Get data for View IP Info main report.
         /// </summary>
         /// <param name="options">Model contain filter conditions.</param>
         /// <returns>JSON String for ViewIP Info main report.</returns>
@@ -50,7 +54,8 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var records = this._ipinfoService.GetIPInfo(options.IP, options.Date);
+                IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> records = _ipinfoService.GetIPInfo(options.IP, options.Date);
+
                 return this.Json(new
                 {
                     code = 0,

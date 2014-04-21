@@ -18,7 +18,7 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
     using ParlayRMS.Services.Interface.ViewIPInfo;
 
     /// <summary>
-    /// ViewIPInfo Service.
+    /// Main service class for view-IP-info report and other related reports.
     /// </summary>
     public class ViewIPInfoService : BaseService, IViewIPInfoService
     {

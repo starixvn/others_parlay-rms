@@ -13,7 +13,7 @@ namespace ParlayRMS.Services.Interface.ViewIPInfo
     using ParlayRMS.DTO.ViewIPInfo;
 
     /// <summary>
-    /// IViewIPInfoService interface.
+    /// Main service interface for view-IP-info report and other related reports.
     /// </summary>
     public interface IViewIPInfoService
     {
