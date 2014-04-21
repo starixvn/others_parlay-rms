@@ -51,27 +51,34 @@
                 break;
         }
     });
-    load();
+    LoadMainReport();
 
     //view ip link
     $('#ipViewLink').click(function () {
         var ip = $.trim($('#ip').val().replace(/,/g, ''));
+        if (!ValidateIPaddress(ip)) {
+            Validators.show($('#ip').get(0), 'This IP is not valid');
+            return false;
+        }
         window.open(ipViewSiteURL + ip);
     });
 
     //event for enter-key press
     $('#btnSearch').click(function () {
-        load();
+        LoadMainReport();
     });
 
-    function load() {
+    function LoadMainReport() {
         //validate input
         var ip = $.trim($('#ip').val().replace(/,/g, ''));
         if (ip === '') {
             Validators.show($('#ip').get(0), 'This field is required');
             return false;
         }
-
+        if (!ValidateIPaddress(ip)) {
+            Validators.show($('#ip').get(0), 'This IP is not valid');
+            return false;
+        }
         var date = $("#date").val();
 
         var data = {
@@ -80,7 +87,7 @@
         };
 
         $.ajax({
-            url: resolveClientUrl('ViewIPInfo/Data'),
+            url: resolveClientUrl('ViewIPInfo/MainReportData'),
             type: 'POST',
             data: data,
             dataType: 'html',
@@ -107,6 +114,17 @@
             }
         });
     }
+
+    function ValidateIPaddress(inputText) {
+        var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        if (inputText.match(ipformat)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     function FillData(table, data) {
         var records = data.Records;
         var length = records.length;

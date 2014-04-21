@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.IPInfo;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 540px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl</div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.Label("ip", ViewLang.IP)
+                    @Html.TextBox("ip")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.Date)
+                    @Html.TextBox("date")
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+                <div class="group">
+                    <a id="ipViewLink" href="#">@ViewLang.IPInfo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both; display: none" id="divResult">
+    <div style="width: 740px">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='120px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='150px' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        @ViewLang.No
+                    </th>
+                   <th>
+                        @ViewLang.Username
+                    </th>
+                    <th>
+                        @ViewLang.Socceronly
+                    </th>
+                    <th>
+                        @ViewLang.Others
+                    </th>
+                    <th>
+                        @ViewLang.Total
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 680px; width: 740px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='120px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='150px' />
+            </colgroup>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/Scripts/Report/ViewIPInfo/js")
+@Scripts.Render("~/Scripts/Member/Core/js")
+<script type="text/javascript">
+    var dateOption = {
+        NowDate: '@DateTime.Now',
+        InputDate: '@ViewBag.date'
+    };
+</script>

@@ -606,6 +606,7 @@
     <Content Include="Views\SystemParlayMonitor\BetDetails.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\ViewIPInfo\Index.cshtml" />
+    <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

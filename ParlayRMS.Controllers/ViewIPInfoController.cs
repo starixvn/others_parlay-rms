@@ -50,7 +50,7 @@ namespace ParlayRMS.Controllers
         /// <returns>JSON String for ViewIP Info main report.</returns>
         [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
-        public ActionResult Data(ViewIPInfoOptions options)
+        public ActionResult MainReportData(ViewIPInfoOptions options)
         {
             try
             {
@@ -66,6 +66,17 @@ namespace ParlayRMS.Controllers
             {
                 return this.Json(new { code = 1, message = ex.Message });
             }
+        }
+
+        /// <summary>
+        /// Drilldown report view.
+        /// </summary>
+        /// <returns>Drilldown view.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [HttpGet]
+        public ActionResult Drilldown()
+        {
+            return this.View("Drilldown");
         }
     }
 }
