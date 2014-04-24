@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
+//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
 // </history>
 
 namespace ParlayRMS.DTO.ViewIPInfo
@@ -14,6 +15,8 @@ namespace ParlayRMS.DTO.ViewIPInfo
     public class RMS_Rpt_Parlay_ViewIPInfo
     {
         public string Username { get; set; }
+
+        public int UserId { get; set; }
 
         public int Soccer { get; set; }
 

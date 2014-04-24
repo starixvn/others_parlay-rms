@@ -15,6 +15,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.ViewIPInfo;
     using ParlayRMS.DTO.ViewIPInfo;
+    using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
 
     /// <summary>
@@ -27,7 +28,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
         /// </summary>
         /// <param name="ip">Input IP value.</param>
         /// <param name="date">Input date value.</param>
-        /// <returns>List of view IP info report objects.</returns>
+        /// <returns>List of view IP info objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date)
         {
             var result = new List<RMS_Rpt_Parlay_ViewIPInfo>();
@@ -43,6 +44,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                     {
                         result.Add(new RMS_Rpt_Parlay_ViewIPInfo
                         {
+                            UserId = reader.ToInt32("custid"),
                             Username = reader.ToString("username"),
                             Soccer = reader.ToInt32("cnt_soccer"),
                             Others = reader.ToInt32("cnt_others"),
@@ -51,6 +53,97 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                 }
             }
 
+            return result;
+        }
+
+        /// <summary>
+        /// Get bets statistics by IP, WINLOST date, user id and sport type.
+        /// </summary>
+        /// <param name="ip">Input IP value.</param>
+        /// <param name="date">Input date value.</param>
+        /// <param name="userId">Input user ID value.</param>
+        /// <param name="sportType">Input sport type value.</param>
+        /// <returns>List of view IP info by user objects.</returns>
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType)
+        {
+            var result = new List<RMS_Rpt_Parlay_ViewIPInfoByUser>();
+
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype"))
+            {
+                db.AddInParameter("ip", DbType.String, ip);
+                db.AddInParameter("winlostdate", DbType.DateTime, date);
+                db.AddInParameter("custid", DbType.Int32, userId);
+                db.AddInParameter("sporttype", DbType.Int32, sportType);
+
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new RMS_Rpt_Parlay_ViewIPInfoByUser
+                        {
+                            TransID = reader.ToInt64("transid"),
+                            RefNo = reader.ToInt64("refno"),
+                            TransDate = reader.ToDateTime("transdate"),
+                            BetType = reader.ToInt32("bettype"),
+                            Odds = reader.ToDouble("odds"),
+                            Stake = reader.ToInt32("stake"),
+                            StatusId = reader.ToInt32("statusid"),
+                            Status = reader.ToString("status"),
+                            Winlost = reader.ToInt32("winlost"),
+                            Combo = reader.ToInt32("combo")
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get Parlay combination details.
+        /// </summary>
+        /// <param name="refNo">REFNO value.</param>
+        /// <returns></returns>
+        public RMS_SystemParlay_CombinationDetails RMS_SystemParlay_CombinationDetails(long refNo)
+        {
+            var result = new RMS_SystemParlay_CombinationDetails();
+            var Combos = new List<RMS_SystemParlay_CombinationDetails_Combo>();
+            var ComboRefs = new List<RMS_SystemParlay_CombinationDetails_ComboRef>();
+            using (var db = new ObjectDb("RMS_SystemParlay_CombinationDetails"))
+            {
+                db.AddInParameter("refno", DbType.Int64, refNo);
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Combos.Add(new RMS_SystemParlay_CombinationDetails_Combo
+                        {
+                            WinLostDate = DbConverter.ToDateTime(reader["winlostdate"]),
+                            TransID = DbConverter.ToInt64(reader["transid"]),
+                            Serial = DbConverter.ToInt32(reader["serial"]),
+                            StatusId = DbConverter.ToInt32(reader["statusid"]),
+                            Status = DbConverter.ToString(reader["status"]),
+                            Modds = DbConverter.ToDouble(reader["modds"]),
+                            Stake = DbConverter.ToDouble(reader["stake"]),
+                            Winlost = DbConverter.ToDouble(reader["winlost"])
+                        });
+                    }
+                    if (reader.NextResult())
+                    {
+                        while (reader.Read())
+                        {
+                            ComboRefs.Add(new RMS_SystemParlay_CombinationDetails_ComboRef
+                            {
+                                Serial = DbConverter.ToInt32(reader["serial"]),
+                                HomeId = DbConverter.ToInt32(reader["homeid"]),
+                                AwayId = DbConverter.ToInt32(reader["awayid"])
+                            });
+                        }
+                    }
+                }
+            }
+            result.Combo = Combos;
+            result.ComboRef = ComboRefs;
             return result;
         }
     }

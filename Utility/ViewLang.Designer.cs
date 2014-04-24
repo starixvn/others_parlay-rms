@@ -304,6 +304,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choice.
+        /// </summary>
+        public static string Choice {
+            get {
+                return ResourceManager.GetString("Choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -498,6 +507,15 @@ namespace ParlayRMS.Utility {
         public static string DetailFromTopLeagues {
             get {
                 return ResourceManager.GetString("DetailFromTopLeagues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         
@@ -880,11 +898,20 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View IP Info.
+        ///   Looks up a localized string similar to View IP info.
         /// </summary>
         public static string IPInfo {
             get {
                 return ResourceManager.GetString("IPInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View IP info by user.
+        /// </summary>
+        public static string IPInfoByUser {
+            get {
+                return ResourceManager.GetString("IPInfoByUser", resourceCulture);
             }
         }
         
@@ -1866,6 +1893,15 @@ namespace ParlayRMS.Utility {
         public static string TotalCombo {
             get {
                 return ResourceManager.GetString("TotalCombo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total of losing tickets.
+        /// </summary>
+        public static string TotalLoseTickets {
+            get {
+                return ResourceManager.GetString("TotalLoseTickets", resourceCulture);
             }
         }
         

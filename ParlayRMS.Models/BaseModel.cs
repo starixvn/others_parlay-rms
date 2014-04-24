@@ -14,7 +14,7 @@ namespace ParlayRMS.Models
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Base model.
     /// </summary>
     public class BaseModel
     {

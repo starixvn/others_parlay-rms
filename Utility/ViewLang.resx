@@ -796,6 +796,18 @@
     <value>IP</value>
   </data>
   <data name="IPInfo" xml:space="preserve">
-    <value>View IP Info</value>
+    <value>View IP info</value>
+  </data>
+  <data name="IPInfoByUser" xml:space="preserve">
+    <value>View IP info by user</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="TotalLoseTickets" xml:space="preserve">
+    <value>Total of losing tickets</value>
   </data>
 </root>

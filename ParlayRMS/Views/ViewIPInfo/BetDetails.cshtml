@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+@model Dictionary<DateTime, List<ParlayRMS.Models.ViewIpInfo.CombinationDetailsView>>
+<div class="boxMain">
+    <div class="container">
+        <div class="content">
+            <div class="title2">
+                    System Parlay --
+            </div>
+            <div id="divResult">
+                <div style="width: 590px">
+                    <table class="main" id="header">
+                        <colgroup>
+                            <col width='80px' />
+                            <col width='200px' />
+                            <col width='80px' />
+                            <col width='80px' />
+                            <col width='80px' />
+                            <col width='70px' />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>
+                                    @ViewLang.Date
+                                </th>
+                               <th>
+                                    @ViewLang.Event
+                                </th>
+                                <th>
+                                    @ViewLang.Odds
+                                </th>
+                                <th>
+                                    @ViewLang.Stake
+                                </th>
+                                <th>
+                                    @ViewLang.WinLoss
+                                </th>
+                                 <th>
+                                    @ViewLang.Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var NeedSpan = true;
+                                foreach (var viewModel in item.Value)
+                                {
+                                    <tr>
+                                        @if (NeedSpan)
+                                        {
+                                            <td rowspan=@item.Value.Count>@Formatter.FormatDate(@item.Key)</td>
+                                            NeedSpan = false;
+                                        }
+                                        <td>
+                                                @foreach (var eventItem in viewModel.Events)
+                                                {
+                                                    if (eventItem.HomeId == -1)
+                                                    {
+                                                        <p>@ViewLang.TotalLoseTickets</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>- @CacheRef.GetTeamName(eventItem.HomeId) [vs] @CacheRef.GetTeamName(eventItem.AwayId)</p>
+                                                    }
+
+                                                }
+                                        </td>
+                                        <td>@Formatter.FormatNumber2(viewModel.Odds)</td>
+                                        <td>@viewModel.Stake</td>
+                                        <td>@Formatter.FormatNumber2(viewModel.WinLoss)</td>
+                                        <td>@viewModel.StatusString.ToUpper()</td>
+                                    </tr>
+                                }
+                            }
+                            @if (Model.Count == 0)
+                            {
+                                <tr><td class="noinfo" colspan="7">No information is available</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="scrollGridContent" style="max-height: 470px; width: 600px">
+                    <table class="main" id="result">
+                        <colgroup>
+                            <col width='80px' />
+                            <col width='150px' />
+                            <col width='80px' />
+                            <col width='80px' />
+                            <col width='80px' />
+                            <col width='70px' />
+                        </colgroup>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

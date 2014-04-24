@@ -1,8 +1,9 @@
 ﻿$(function () {
     "use strict";
     //config
+    // URL of IP checking website, open in a new tab when user click to IP
     var ipViewSiteURL = 'http://www.iplocationfinder.com/';
-
+    var queryData;
     //Now Date
     var nowDate = moment(dateOption.NowDate).format('MMMM DD, YYYY');
     var inputDate;
@@ -81,7 +82,7 @@
         }
         var date = $("#date").val();
 
-        var data = {
+        queryData = {
             ip: ip,
             date: date
         };
@@ -89,7 +90,7 @@
         $.ajax({
             url: resolveClientUrl('ViewIPInfo/MainReportData'),
             type: 'POST',
-            data: data,
+            data: queryData,
             dataType: 'html',
             cache: false,
             beforeSend: function (xhr) {
@@ -170,7 +171,7 @@
             }
         } else {
             if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
-                var noinfo = CreateNoInfoRow(9);
+                var noinfo = CreateNoInfoRow(5);
                 //tbody.append(noinfo);
                 tbody.html(noinfo);
             }
@@ -186,10 +187,24 @@
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center">' + order + '</td>';
         r[++j] = '<td>' + item.Username + '</td>';
-        r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'ViewParlay?betid=' + item.Soccer + '\'), \'_blank\');">' + item.Soccer + '</a></td>';
-        r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'ViewParlay?betid=' + item.Others + '\'), \'_blank\');">' + item.Others + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + '>' + item.Soccer + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + '>' + item.Others + '</a></td>';
         r[++j] = '<td class="numeric">' + Total + '</td>';
         r[++j] = '</tr>';
         return r.join('');
+    }
+
+    $(document).on('click', '.rowSoccer', function () {
+        var url = generateUrl(this.id, 1);
+        window.open(url, '_blank');
+    });
+    $(document).on('click', '.rowOthers', function () {
+        var url = generateUrl(this.id, 2);
+        window.open(url, '_blank');
+    });
+
+    function generateUrl(id, type) {
+        var url = resolveClientUrl('\ViewIpInfo\\Drilldown?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&sporttype=' + type);
+        return url;
     }
 });

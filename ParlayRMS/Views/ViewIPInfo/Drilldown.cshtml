@@ -1,46 +1,19 @@
 ﻿@{
-    ViewBag.Title = ViewBag.HeaderText = ViewLang.IPInfo;
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.IPInfoByUser;
+    int counter = 0;
 }
-<div class="filter">
-    <div class="filter-control" style="width: 540px">
-        <div class="minimizetitle">
-            <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
-            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
-                -
-            </div>
-        </div>
-        <div id="filtercontent" class="container">
-            <div class="row">
-                <div class="group">
-                    @Html.Label("ip", ViewLang.IP)
-                    @Html.TextBox("ip")
-                </div>
-                <div class="group">
-                    @Html.Label("", ViewLang.Date)
-                    @Html.TextBox("date")
-                </div>
-                <div class="group">
-                    <button id="btnSearch">
-                        <span class="text">@ViewLang.Submit</span>
-                    </button>
-                </div>
-                <div class="group">
-                    <a id="ipViewLink" href="#">@ViewLang.IPInfo</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="clear: both; display: none" id="divResult">
-    <div style="width: 740px">
+@model IEnumerable<ParlayRMS.DTO.ViewIPInfo.RMS_Rpt_Parlay_ViewIPInfoByUser>
+<div id="divResult">
+    <div style="width: 990px">
         <table class="main" id="header">
             <colgroup>
+                <col width='100px' />
+                <col width='150px' />
+                <col width='250px' />
                 <col width='120px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
+                <col width='120px' />
+                <col width='120px' />
+                <col width='120px' />
             </colgroup>
             <thead>
                 <tr>
@@ -48,40 +21,126 @@
                         @ViewLang.No
                     </th>
                    <th>
-                        @ViewLang.Username
+                        @ViewLang.TransTime
                     </th>
                     <th>
-                        @ViewLang.Socceronly
+                        @ViewLang.Choice
                     </th>
                     <th>
-                        @ViewLang.Others
+                        @ViewLang.Odds
                     </th>
                     <th>
-                        @ViewLang.Total
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.WinLoss
+                    </th>
+                    <th>
+                        @ViewLang.Status
                     </th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    counter = counter + 1;
+                    <tr>
+                        <td class="center">
+                            @counter
+                        </td>
+                        <td class="numeric">
+                            <div style="font-weight: bold">
+                                Ref No: @item.RefNo
+                            </div>
+                            <div>
+                                @item.TransDate
+                            </div>
+                        </td>
+                        <td class="choice right">
+                            <a href="#" class="tdChoice" id="@item.RefNo">
+                                    @{/*TODO: for test*/}
+                                    @{item.BetType = 29; item.Combo = 4;}
+                                    @if (item.BetType == (int)BetType.MixParlay)
+                                    {
+                                        @ViewLang.MixparLay;
+                                    }
+                                    else if (item.BetType == (int)BetType.SystemParlay)
+                                    {
+                                        var ComboName = "";
+                                        switch ((SystemParlayCombo)item.Combo)
+                                        {
+                                            case SystemParlayCombo.Trixie:
+                                                ComboName = ViewLang.Trixie;
+                                                break;
+
+                                            case SystemParlayCombo.Yankee:
+                                                ComboName = ViewLang.Yankee;
+                                                break;
+
+                                            case SystemParlayCombo.Canadian:
+                                                ComboName = ViewLang.Canadian;
+                                                break;
+
+                                            case SystemParlayCombo.Heinz:
+                                                ComboName = ViewLang.Heinz;
+                                                break;
+
+                                            case SystemParlayCombo.SuperHeinz:
+                                                ComboName = ViewLang.SuperHeinz;
+                                                break;
+
+                                            case SystemParlayCombo.Goliath:
+                                                ComboName = ViewLang.Goliath;
+                                                break;
+                                        }
+                                        @(ViewLang.SystemparLay + " - " + ComboName)
+                                    }
+                            </a>
+                            @if (item.BetType == (int)BetType.SystemParlay)
+                            {
+                                <div class="tdDetail">
+                                    <a class="tdDetailLink" id="@item.RefNo" href="#">@ViewLang.Details</a>
+                                </div>
+                            }
+                            <div style="display:none" class="Expand" id="@item.RefNo">
+                            </div>
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(item.Odds)
+                        </td>
+                        <td class="numeric">
+                            @item.Stake
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(item.Winlost)
+                        </td>
+                        <td class="numeric">
+                            @item.Status.ToUpper()
+                        </td>
+                    </tr>
+                }
+                @if (counter == 0)
+                {
+                    <tr><td class="noinfo" colspan="7">No information is available</td></tr>
+                }
+            </tbody>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 680px; width: 740px">
+    <div class="scrollGridContent" style="max-height: 680px; width: 990px">
         <table class="main" id="result">
             <colgroup>
+                <col width='100px' />
+                <col width='150px' />
+                <col width='250px' />
                 <col width='120px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
+                <col width='120px' />
+                <col width='120px' />
+                <col width='120px' />
             </colgroup>
             <tbody>
             </tbody>
         </table>
     </div>
 </div>
-@Scripts.Render("~/Scripts/Report/ViewIPInfo/js")
+@Scripts.Render("~/Scripts/Report/ViewIPInfoByUser/js")
 @Scripts.Render("~/Scripts/Member/Core/js")
-<script type="text/javascript">
-    var dateOption = {
-        NowDate: '@DateTime.Now',
-        InputDate: '@ViewBag.date'
-    };
-</script>

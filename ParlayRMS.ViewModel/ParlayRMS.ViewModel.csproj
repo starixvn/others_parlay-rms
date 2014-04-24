@@ -90,7 +90,9 @@
     <Compile Include="Config.cs" />
     <Compile Include="Report\BetDetails.cs" />
     <Compile Include="Report\BetDetailsOptions.cs" />
-    <Compile Include="Report\ViewIPInfoOptions.cs" />
+    <Compile Include="ViewIPInfo\ParlayBetDetails.cs" />
+    <Compile Include="ViewIPInfo\DrillDownOptions.cs" />
+    <Compile Include="ViewIPInfo\ViewIPInfoOptions.cs" />
     <Compile Include="Report\MemberWinLossOptions.cs" />
     <Compile Include="Report\TopWinnerDetailsOptions.cs" />
     <Compile Include="Report\TopWinnersOptions.cs" />
