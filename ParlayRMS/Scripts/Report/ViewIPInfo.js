@@ -131,59 +131,35 @@
         var length = records.length;
         var tbody = $(table).children('tbody');
         var tfooter = $("#footer").children('tfoot');
-
-        //Remove highlight rows
-        tbody.children('tr.highlight').each(function () {
-            $(this).removeAttr('class');
-        });
+        var TotalSoccer = 0.0;
+        var TotalOthers = 0.0;
+        var Total = 0.0;
 
         if (length > 0) {
-            //Alert();
             var rows = tbody.children('tr');
-            if (rows.length === 0) {
-                var r = new Array();
-                var j = -1;
-                var TotalSoccer = 0.0;
-                var TotalOthers = 0.0;
-                var Total = 0.0;
-                for (var i = 0; i < length; i++) {
-                    var item = records[i];
-                    r[++j] = CreateRow(i + 1, item);
-                    TotalSoccer += 0.0 + item.Soccer;
-                    TotalOthers += 0.0 + item.Others;
-                    Total += 0.0 + item.Soccer + item.Others;
-                }
-
-                var totalRow = CreateTotalRow(TotalSoccer, TotalOthers, Total);
-                tbody.html(r.join(''));
-                //alert(totalRow);
-                tfooter.html(totalRow);
-            }
-            else {
-                // find to remove noinfo row
+            if (rows.has('td.noinfo')) {
                 rows.children('td.noinfo').remove();
-
-                for (var i = length - 1; i >= 0; i--) {
-                    var item = records[i];
-                    var row = CreateRow(i + 1, item);
-
-                    rows = tbody.children('tr');
-
-                    row = $(row);
-                    tbody.prepend(row);
-                }
-
-                //Update row no.
-                var trs = tbody.children('tr');
-                trs.each(function (index, tr) {
-                    $(tr).children('td:first').text(index + 1);
-                });
             }
-        } else {
+            var r = new Array();
+            var j = -1;
+            for (var i = 0; i < length; i++) {
+                var item = records[i];
+                r[++j] = CreateRow(i + 1, item);
+                TotalSoccer += 0.0 + item.Soccer;
+                TotalOthers += 0.0 + item.Others;
+                Total += 0.0 + item.Soccer + item.Others;
+            }
+            tbody.html(r.join(''));
+
+            //Add total row
+            var totalRow = CreateTotalRow(TotalSoccer, TotalOthers, Total);
+            tfooter.html(totalRow);
+        }
+        else {
             if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
                 var noinfo = CreateNoInfoRow(5);
-                //tbody.append(noinfo);
                 tbody.html(noinfo);
+                tfooter.html('');
             }
         }
 
