@@ -24,15 +24,15 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public int BetType { get; set; }
 
-        public double Odds { get; set; }
+        public decimal Odds { get; set; }
 
-        public int Stake { get; set; }
+        public decimal Stake { get; set; }
 
         public int StatusId { get; set; }
 
         public string Status { get; set; }
 
-        public int Winlost { get; set; }
+        public decimal Winlost { get; set; }
 
         public int Combo { get; set; }
     }

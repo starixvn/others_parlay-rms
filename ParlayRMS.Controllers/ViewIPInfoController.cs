@@ -40,7 +40,7 @@ namespace ParlayRMS.Controllers
         /// ViewIPInfo Index view.
         /// </summary>
         /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -55,7 +55,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="options">Model contain filter conditions.</param>
         /// <returns>JSON String for ViewIP Info main report.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
         public JsonResult MainReportData(ViewIPInfoOptions options)
         {
@@ -76,13 +76,17 @@ namespace ParlayRMS.Controllers
         }
 
         /// <summary>
-        /// Drilldown report view.
+        /// View IP info drill down view.
         /// </summary>
+        /// <param name="model">Model option for Drilldown view.</param>
         /// <returns>Drilldown view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Drilldown(DrillDownOptions model)
         {
+            ViewBag.SportType = model.SportType;
+            ViewBag.UserName = model.UserName;
+
             IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
 
             return this.View("Drilldown", models);
@@ -93,18 +97,18 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="options">The options that are used to query data.</param>
         /// <returns>List of sub tickets.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
         public JsonResult ParlayBetSubTickets(MixParlayBetDetailsOptions options)
         {
             try
             {
-                string TicketString = BuildTickets(options.RefNo);
+                string ticketString = BuildTickets(options.RefNo);
 
                 return this.Json(new
                 {
                     code = 0,
-                    data = TicketString
+                    data = ticketString
                 });
             }
             catch (Exception ex)
@@ -119,12 +123,13 @@ namespace ParlayRMS.Controllers
         /// <param name="options">The options that are used to query data.</param>
         /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
-        public ActionResult ParlayBetDetails(MixParlayBetDetailsOptions options)
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
+        public ActionResult ParlayBetDetails(ParlayBetDetailsOptions options)
         {
-            // TODO: for test
-            //IDictionary<DateTime, List<CombinationDetailsView>> model = _ipinfoService.GetBetCombinationDetails(100428936588);
-            var model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
+            ViewBag.ComboType = options.ComboType;
+            //// TODO: for test
+            //// CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(100428936588);
+            CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
 
             return View("BetDetails", model);
         }
@@ -133,11 +138,10 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Build sub ticket HTML string.
         /// </summary>
-        /// <param name="refNo">Bet REFNO</param>
-        /// <returns>HTML string</returns>
+        /// <param name="refNo">Bet REFNO.</param>
+        /// <returns>HTML string for ticket.</returns>
         private string BuildTickets(long refNo)
         {
-            //TODO: check null chain
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };

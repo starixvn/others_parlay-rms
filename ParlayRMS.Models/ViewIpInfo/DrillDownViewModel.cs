@@ -17,24 +17,6 @@ namespace ParlayRMS.Models.ViewIpInfo
     /// </summary>
     public class DrillDownViewModel
     {
-        public long RefNo { get; set; }
-
-        public DateTime TransDate { get; set; }
-
-        public string Choice { get; set; }
-
-        public double Odds { get; set; }
-
-        public int Stake { get; set; }
-
-        public int Winlost { get; set; }
-
-        public string Status { get; set; }
-
-        public int BetType { get; set; }
-
-        public int Combo { get; set; }
-
         public DrillDownViewModel(RMS_Rpt_Parlay_ViewIPInfoByUser model)
         {
             this.RefNo = model.RefNo;
@@ -46,8 +28,24 @@ namespace ParlayRMS.Models.ViewIpInfo
             this.Choice = string.Empty;
             this.BetType = model.BetType;
             this.Combo = model.Combo;
-            //this.BetType = 29;
-            //this.Combo = 4;
         }
+
+        public long RefNo { get; set; }
+
+        public DateTime TransDate { get; set; }
+
+        public string Choice { get; set; }
+
+        public decimal Odds { get; set; }
+
+        public decimal Stake { get; set; }
+
+        public decimal Winlost { get; set; }
+
+        public string Status { get; set; }
+
+        public int BetType { get; set; }
+
+        public int Combo { get; set; }
     }
 }

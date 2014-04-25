@@ -24,12 +24,12 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public int StatusId { get; set; }
 
-        public String Status { get; set; }
+        public string Status { get; set; }
 
-        public double Modds { get; set; }
+        public decimal Modds { get; set; }
 
-        public double Stake { get; set; }
+        public decimal Stake { get; set; }
 
-        public double Winlost { get; set; }
+        public decimal Winlost { get; set; }
     }
 }

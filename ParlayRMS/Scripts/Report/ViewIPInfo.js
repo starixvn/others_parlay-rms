@@ -52,7 +52,9 @@
                 break;
         }
     });
-    LoadMainReport();
+    if (dateOption.InputDate) {
+        LoadMainReport();
+    }
 
     //view ip link
     $('#ipViewLink').click(function () {
@@ -102,7 +104,7 @@
                     alertBox.showErrorMessage(json.message);
                     return;
                 }
-                //maxTransId = json.MaxTransId;                
+                //maxTransId = json.MaxTransId;
                 var table = $('#result');
                 FillData(table, json);
 
@@ -177,14 +179,14 @@
             r[++j] = '<td class="numeric">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + '>' + item.Soccer + '</a></td>';
+            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + ',' + item.Username + '>' + item.Soccer + '</a></td>';
         }
 
         if (item.Others == 0) {
             r[++j] = '<td class="numeric">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + '>' + item.Others + '</a></td>';
+            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + ',' + item.Username + '>' + item.Others + '</a></td>';
         }
         r[++j] = '<td class="numeric">' + Total + '</td>';
         r[++j] = '</tr>';
@@ -202,16 +204,18 @@
         return r.join('');
     }
     $(document).on('click', '.rowSoccer', function () {
-        var url = generateUrl(this.id, 1);
+        var param = this.id.split(',');
+        var url = generateUrl(param[0],param[1], 1);
         window.open(url, '_blank');
     });
     $(document).on('click', '.rowOthers', function () {
-        var url = generateUrl(this.id, 2);
+        var param = this.id.split(',');
+        var url = generateUrl(param[0], param[1], 2);
         window.open(url, '_blank');
     });
 
-    function generateUrl(id, type) {
-        var url = resolveClientUrl('\ViewIpInfo\\Drilldown?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&sporttype=' + type);
+    function generateUrl(id, name, type) {
+        var url = resolveClientUrl('\ViewIpInfo\\Drilldown?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
         return url;
     }
 });

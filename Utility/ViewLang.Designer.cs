@@ -898,7 +898,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View IP info.
+        ///   Looks up a localized string similar to PRMS-View IP Info.
         /// </summary>
         public static string IPInfo {
             get {
@@ -907,7 +907,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View IP info by user.
+        ///   Looks up a localized string similar to View IP info drill down.
         /// </summary>
         public static string IPInfoByUser {
             get {
@@ -1371,6 +1371,15 @@ namespace ParlayRMS.Utility {
         public static string OurPT {
             get {
                 return ResourceManager.GetString("OurPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outstanding.
+        /// </summary>
+        public static string Outstanding {
+            get {
+                return ResourceManager.GetString("Outstanding", resourceCulture);
             }
         }
         
@@ -2055,6 +2064,15 @@ namespace ParlayRMS.Utility {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View IP Info.
+        /// </summary>
+        public static string ViewIPInfo {
+            get {
+                return ResourceManager.GetString("ViewIPInfo", resourceCulture);
             }
         }
         

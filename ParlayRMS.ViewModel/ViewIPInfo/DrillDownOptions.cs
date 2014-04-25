@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ViewIPInfoOptions.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DrillDownOptions.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -21,6 +21,8 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
         public DateTime Date { get; set; }
 
         public int UserId { get; set; }
+
+        public string UserName { get; set; }
 
         public int SportType { get; set; }
     }

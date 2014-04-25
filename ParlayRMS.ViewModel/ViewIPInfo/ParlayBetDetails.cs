@@ -18,13 +18,13 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
     {
         public DateTime Date { get; set; }
 
-        public Object Event { get; set; }
+        public object Event { get; set; }
 
-        public double Odds { get; set; }
+        public decimal Odds { get; set; }
 
-        public int Stake { get; set; }
+        public decimal Stake { get; set; }
 
-        public double WinLoss { get; set; }
+        public decimal WinLoss { get; set; }
 
         public int Status { get; set; }
     }

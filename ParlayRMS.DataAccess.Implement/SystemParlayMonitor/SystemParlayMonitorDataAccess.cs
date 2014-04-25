@@ -76,7 +76,8 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                                     Stake = row.ToDecimal("stake"),
                                     ////MaxPayout = row.ToDecimal("maxpayout"),
                                     Combo = row.ToInt32("combo"),
-                                    Level = row.ToByte("level")
+                                    Level = row.ToByte("level"),
+                                    IP = row.ToString("IP")
                                 };
 
                                 item.SubOdds = oddsList.Where(oddsRow => oddsRow.ToInt64("refno") == item.RefNo)

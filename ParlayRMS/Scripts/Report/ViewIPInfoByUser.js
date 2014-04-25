@@ -14,7 +14,8 @@
     });
     /*System Parlay detail click*/
     $(document).on('click', '.tdDetailLink', function () {
-        ViewBetDetails(this.id);
+        var Ids = this.id.split(',');
+        ViewBetDetails(Ids[0], Ids[1]);
     });
 
     /*Check choice stage, return true if display:none.*/
@@ -23,9 +24,10 @@
     }
 
     /*View bet details*/
-    function ViewBetDetails(refNo) {
+    function ViewBetDetails(refNo, comboType) {
         var data = {
-            RefNo: refNo
+            RefNo: refNo,
+            ComboType: comboType
         }
 
         $.ajax({

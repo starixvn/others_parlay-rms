@@ -85,11 +85,11 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             RefNo = reader.ToInt64("refno"),
                             TransDate = reader.ToDateTime("transdate"),
                             BetType = reader.ToInt32("bettype"),
-                            Odds = reader.ToDouble("odds"),
-                            Stake = reader.ToInt32("stake"),
+                            Odds = reader.ToDecimal("odds"),
+                            Stake = reader.ToDecimal("stake"),
                             StatusId = reader.ToInt32("statusid"),
                             Status = reader.ToString("status"),
-                            Winlost = reader.ToInt32("winlost"),
+                            Winlost = reader.ToDecimal("winlost"),
                             Combo = reader.ToInt32("combo")
                         });
                     }
@@ -103,36 +103,39 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
         /// Get Parlay combination details.
         /// </summary>
         /// <param name="refNo">REFNO value.</param>
-        /// <returns></returns>
+        /// <returns>CombinationDetails model.</returns>
         public RMS_SystemParlay_CombinationDetails RMS_SystemParlay_CombinationDetails(long refNo)
         {
             var result = new RMS_SystemParlay_CombinationDetails();
-            var Combos = new List<RMS_SystemParlay_CombinationDetails_Combo>();
-            var ComboRefs = new List<RMS_SystemParlay_CombinationDetails_ComboRef>();
+            var combos = new List<RMS_SystemParlay_CombinationDetails_Combo>();
+            var comboRefs = new List<RMS_SystemParlay_CombinationDetails_ComboRef>();
+            decimal outStanding = -1;
             using (var db = new ObjectDb("RMS_SystemParlay_CombinationDetails"))
             {
                 db.AddInParameter("refno", DbType.Int64, refNo);
+                db.AddOutParameter("Outstanding", DbType.Decimal, 8);
                 using (var reader = db.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Combos.Add(new RMS_SystemParlay_CombinationDetails_Combo
+                        combos.Add(new RMS_SystemParlay_CombinationDetails_Combo
                         {
                             WinLostDate = DbConverter.ToDateTime(reader["winlostdate"]),
                             TransID = DbConverter.ToInt64(reader["transid"]),
                             Serial = DbConverter.ToInt32(reader["serial"]),
                             StatusId = DbConverter.ToInt32(reader["statusid"]),
                             Status = DbConverter.ToString(reader["status"]),
-                            Modds = DbConverter.ToDouble(reader["modds"]),
-                            Stake = DbConverter.ToDouble(reader["stake"]),
-                            Winlost = DbConverter.ToDouble(reader["winlost"])
+                            Modds = DbConverter.ToDecimal(reader["modds"]),
+                            Stake = DbConverter.ToDecimal(reader["stake"]),
+                            Winlost = DbConverter.ToDecimal(reader["winlost"])
                         });
                     }
+
                     if (reader.NextResult())
                     {
                         while (reader.Read())
                         {
-                            ComboRefs.Add(new RMS_SystemParlay_CombinationDetails_ComboRef
+                            comboRefs.Add(new RMS_SystemParlay_CombinationDetails_ComboRef
                             {
                                 Serial = DbConverter.ToInt32(reader["serial"]),
                                 HomeId = DbConverter.ToInt32(reader["homeid"]),
@@ -141,9 +144,13 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                         }
                     }
                 }
+
+                outStanding = Convert.ToInt64(db.GetParameterValue("Outstanding"));
             }
-            result.Combo = Combos;
-            result.ComboRef = ComboRefs;
+
+            result.OutStanding = outStanding;
+            result.Combo = combos;
+            result.ComboRef = comboRefs;
             return result;
         }
     }

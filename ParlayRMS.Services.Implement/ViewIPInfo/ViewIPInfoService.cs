@@ -56,78 +56,83 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
         /// </summary>
         /// <param name="refNo">REFNO value.</param>
         /// <returns>List of combination details view model, group by date.</returns>
-        public IDictionary<DateTime, List<CombinationDetailsView>> GetBetCombinationDetails(long refNo)
+        public CombinationDetailsByDateViews GetBetCombinationDetails(long refNo)
         {
-            //Get records from DataAcess
+            //// Get records from DataAcess
             RMS_SystemParlay_CombinationDetails records = this._viewIPInfoDataAccess.RMS_SystemParlay_CombinationDetails(refNo);
+            
+            //// Convert to view model
+            CombinationDetailsViews viewModel = MakeCombinationDetailsView(records);
 
-            //Convert to view model
-            IEnumerable<CombinationDetailsView> viewModel = MakeCombinationDetailsView(records);
-
-            //Convert to view model by date
-            IDictionary<DateTime, List<CombinationDetailsView>> viewModelGroupByDate = MakeCombinationDetailsByDateView(viewModel);
+            //// Convert to view model by date
+            CombinationDetailsByDateViews viewModelGroupByDate = MakeCombinationDetailsByDateView(viewModel);
             return viewModelGroupByDate;
         }
 
         /// <summary>
-        /// Transform CombinationDetails to view model
+        /// Transform CombinationDetails to view model.
         /// </summary>
         /// <param name="records">Combination Details records.</param>
         /// <returns>List of Combination Detail object in view model.</returns>
-        private IEnumerable<CombinationDetailsView> MakeCombinationDetailsView(RMS_SystemParlay_CombinationDetails records)
+        private CombinationDetailsViews MakeCombinationDetailsView(RMS_SystemParlay_CombinationDetails records)
         {
-            List<CombinationDetailsView> result = new List<CombinationDetailsView>();
-            if (records == null) return result;
+            List<CombinationDetailsView> viewList = new List<CombinationDetailsView>();
 
-            // event info - a dictionary to get event detail by event serial
-            Dictionary<int, List<CombinationDetailsView.EventItem>> EventInfo = new Dictionary<int, List<CombinationDetailsView.EventItem>>();
+            //// event info - a dictionary to get event detail by event serial
+            Dictionary<int, List<CombinationDetailsView.EventItem>> eventInfo = new Dictionary<int, List<CombinationDetailsView.EventItem>>();
 
-            //make event info dictionary.
-            // add from ComboRef
+            //// make event info dictionary.
+            //// add from ComboRef
             foreach (var item in records.ComboRef)
             {
-                CombinationDetailsView.EventItem EventItem = new CombinationDetailsView.EventItem(item.HomeId, item.AwayId);
-                if (!EventInfo.ContainsKey(item.Serial))
+                CombinationDetailsView.EventItem eventItem = new CombinationDetailsView.EventItem(item.HomeId, item.AwayId);
+                if (!eventInfo.ContainsKey(item.Serial))
                 {
-                    EventInfo.Add(item.Serial, new List<CombinationDetailsView.EventItem>() { EventItem });
+                    eventInfo.Add(item.Serial, new List<CombinationDetailsView.EventItem>() { eventItem });
                 }
                 else
                 {
-                    EventInfo[item.Serial].Add(EventItem);
+                    eventInfo[item.Serial].Add(eventItem);
                 }
             }
-            // add value for loose event
+            //// add value for loose event
             CombinationDetailsView.EventItem loseEvent = new CombinationDetailsView.EventItem(-1, -1);
-            EventInfo.Add(0, new List<CombinationDetailsView.EventItem>() { loseEvent });
+            eventInfo.Add(0, new List<CombinationDetailsView.EventItem>() { loseEvent });
 
-            // make CombinationDetailsView list
+            //// make CombinationDetailsView list
             foreach (var item in records.Combo)
             {
-                CombinationDetailsView ResultItem = new CombinationDetailsView();
-                ResultItem.Date = item.WinLostDate;
-                ResultItem.Events = EventInfo[item.Serial];
-                ResultItem.Odds = item.Modds;
-                ResultItem.Stake = item.Stake;
-                ResultItem.WinLoss = item.Winlost;
-                ResultItem.Status = item.StatusId;
-                ResultItem.StatusString = item.Status;
+                CombinationDetailsView resultItem = new CombinationDetailsView();
+                resultItem.Date = item.WinLostDate;
+                resultItem.Events = eventInfo[item.Serial];
+                resultItem.Odds = item.Modds;
+                resultItem.Stake = item.Stake;
+                resultItem.WinLoss = item.Winlost;
+                resultItem.Status = item.StatusId;
+                resultItem.StatusString = item.Status;
 
-                result.Add(ResultItem);
+                viewList.Add(resultItem);
             }
 
+            CombinationDetailsViews result = new CombinationDetailsViews();
+            result.OutStanding = records.OutStanding;
+            result.ViewList = viewList;
             return result;
         }
 
         /// <summary>
         /// Group Combination Detail view model by date.
         /// </summary>
-        /// <param name="models">Combination Detail view model</param>
-        /// <returns>Combination Detail view model grouped by date</returns>
-        private IDictionary<DateTime, List<CombinationDetailsView>> MakeCombinationDetailsByDateView(IEnumerable<CombinationDetailsView> models)
+        /// <param name="models">Combination Detail view model.</param>
+        /// <returns>Combination Detail view model grouped by date.</returns>
+        private CombinationDetailsByDateViews MakeCombinationDetailsByDateView(CombinationDetailsViews models)
         {
             // group by date
-            var result = models.GroupBy(x => x.Date).ToDictionary(x => x.Key, x => x.ToList());
+            var groupByDateViewList = models.ViewList.GroupBy(x => x.Date).ToDictionary(x => x.Key, x => x.ToList());
 
+            CombinationDetailsByDateViews result = new CombinationDetailsByDateViews();
+            result.OutStanding = models.OutStanding;
+            result.ViewDict = groupByDateViewList;
             return result;
         }
     }

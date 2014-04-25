@@ -42,6 +42,6 @@ namespace ParlayRMS.Services.Interface.ViewIPInfo
         /// </summary>
         /// <param name="refNo">REFNO value.</param>
         /// <returns>List of combination details view model, group by date.</returns>
-        IDictionary<DateTime, List<CombinationDetailsView>> GetBetCombinationDetails(long refNo);
+        CombinationDetailsByDateViews GetBetCombinationDetails(long refNo);
     }
 }

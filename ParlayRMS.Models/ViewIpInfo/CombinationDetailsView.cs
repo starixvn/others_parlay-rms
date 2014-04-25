@@ -11,7 +11,6 @@ namespace ParlayRMS.Models.ViewIpInfo
 {
     using System;
     using System.Collections.Generic;
-    using ParlayRMS.DTO.ViewIPInfo;
 
     /// <summary>
     /// Bet combination details view model.
@@ -22,27 +21,30 @@ namespace ParlayRMS.Models.ViewIpInfo
 
         public List<EventItem> Events { get; set; }
 
-        public double Odds { get; set; }
+        public decimal Odds { get; set; }
 
-        public double Stake { get; set; }
+        public decimal Stake { get; set; }
 
-        public double WinLoss { get; set; }
+        public decimal WinLoss { get; set; }
 
         public int Status { get; set; }
 
         public string StatusString { get; set; }
 
+        /// <summary>
+        /// Event item class.
+        /// </summary>
         public partial class EventItem
         {
-            public int HomeId { get; set; }
-
-            public int AwayId { get; set; }
-
             public EventItem(int homeId, int awayId)
             {
                 this.HomeId = homeId;
                 this.AwayId = awayId;
             }
+
+            public int HomeId { get; set; }
+
+            public int AwayId { get; set; }
         }
     }
 }
