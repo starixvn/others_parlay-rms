@@ -122,9 +122,9 @@ namespace ParlayRMS.Controllers
         [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult ParlayBetDetails(MixParlayBetDetailsOptions options)
         {
-            //var model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
             // TODO: for test
-            IDictionary<DateTime, List<CombinationDetailsView>> model = _ipinfoService.GetBetCombinationDetails(100428936588);
+            //IDictionary<DateTime, List<CombinationDetailsView>> model = _ipinfoService.GetBetCombinationDetails(100428936588);
+            var model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
 
             return View("BetDetails", model);
         }

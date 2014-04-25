@@ -8,12 +8,12 @@
             <div class="title2">
                     System Parlay --
             </div>
-            <div id="divResult">
-                <div style="width: 590px">
+            <div id="divResult" style="max-height: 470px; overflow-y:auto">
+                <div style="width: 690px">
                     <table class="main" id="header">
                         <colgroup>
                             <col width='80px' />
-                            <col width='200px' />
+                            <col width='300px' />
                             <col width='80px' />
                             <col width='80px' />
                             <col width='80px' />
@@ -42,38 +42,93 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @{
+                            double OutStanding = 0;
+                            double Total = 0;
+                         }
                             @foreach (var item in Model)
                             {
                                 var NeedSpan = true;
+                                double SubTotal = 0;
                                 foreach (var viewModel in item.Value)
                                 {
                                     <tr>
                                         @if (NeedSpan)
                                         {
-                                            <td rowspan=@item.Value.Count>@Formatter.FormatDate(@item.Key)</td>
+                                            var numSpan = item.Value.Count + 1;
+                                            <td class="center" rowspan=@numSpan>@Formatter.FormatDate(@item.Key)</td>
                                             NeedSpan = false;
                                         }
-                                        <td>
-                                                @foreach (var eventItem in viewModel.Events)
+                                        <td class="left">
+                                            @foreach (var eventItem in viewModel.Events)
+                                            {
+                                                if (eventItem.HomeId == -1)
                                                 {
-                                                    if (eventItem.HomeId == -1)
-                                                    {
-                                                        <p>@ViewLang.TotalLoseTickets</p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>- @CacheRef.GetTeamName(eventItem.HomeId) [vs] @CacheRef.GetTeamName(eventItem.AwayId)</p>
-                                                    }
-
+                                                    <p>@ViewLang.TotalLoseTickets</p>
                                                 }
+                                                else
+                                                {
+                                                    <p>@CacheRef.GetTeamName(eventItem.HomeId) -vs- @CacheRef.GetTeamName(eventItem.AwayId)</p>
+                                                }
+                                            }
                                         </td>
-                                        <td>@Formatter.FormatNumber2(viewModel.Odds)</td>
-                                        <td>@viewModel.Stake</td>
-                                        <td>@Formatter.FormatNumber2(viewModel.WinLoss)</td>
-                                        <td>@viewModel.StatusString.ToUpper()</td>
+                                        <td class="numeric">
+                                            @if (viewModel.Status == 111)
+                                            {
+                                                @Html.Raw("-")
+                                            }
+                                            else
+                                            {
+                                                @viewModel.Odds.ToString("#,##0.00")
+                                            }
+                                        </td>
+                                        <td class="numeric">@viewModel.Stake.ToString("#,##0")</td>
+                                        @{
+                                            var winlossNegative = viewModel.WinLoss < 0 ? "negative" : "";
+                                         }                                        
+                                        <td class="numeric @winlossNegative">
+                                            @if (viewModel.Status == 111)
+                                            {
+                                                @Html.Raw("-")
+                                            }
+                                            else
+                                            {
+                                                @viewModel.WinLoss.ToString("#,##0.00")
+                                            }
+                                        </td>
+                                        <td class="center">@viewModel.StatusString.ToUpper()</td>
+                                        @{
+                                            Total += viewModel.WinLoss;
+                                            SubTotal += viewModel.WinLoss;
+                                            if (@viewModel.Status == 111)
+                                            {
+                                                OutStanding += viewModel.Stake;
+                                            }
+                                         }
                                     </tr>
                                 }
+                                <tr>
+                                    @{
+                                        var SubTotalNegative = SubTotal < 0 ? "negative" : "";
+                                    }
+                                    <td colspan=3 class="right">@ViewLang.Subtotal</td>
+                                    <td class="numeric @SubTotalNegative">@SubTotal</td>
+                                    <td></td>
+                                </tr>
                             }
+                            <tr>
+                                @{
+                                    var TotalNegative = Total < 0 ? "negative" : "";
+                                }
+                                <td colspan=4 class="right">@ViewLang.TotalOutstanding</td>
+                                <td class="numeric">@OutStanding</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan=4 class="right">@ViewLang.Total</td>
+                                <td class="numeric @TotalNegative">@Total</td>
+                                <td></td>
+                            </tr>
                             @if (Model.Count == 0)
                             {
                                 <tr><td class="noinfo" colspan="7">No information is available</td></tr>
@@ -81,11 +136,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="scrollGridContent" style="max-height: 470px; width: 600px">
+                <div class="scrollGridContent" style="max-height: 470px; width: 690px">
                     <table class="main" id="result">
                         <colgroup>
                             <col width='80px' />
-                            <col width='150px' />
+                            <col width='300px' />
                             <col width='80px' />
                             <col width='80px' />
                             <col width='80px' />

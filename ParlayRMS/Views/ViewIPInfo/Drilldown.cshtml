@@ -59,7 +59,7 @@
                         <td class="choice right">
                             <a href="#" class="tdChoice" id="@item.RefNo">
                                     @{/*TODO: for test*/}
-                                    @{item.BetType = 29; item.Combo = 4;}
+                                    @{/*item.BetType = 29; item.Combo = 4;*/}
                                     @if (item.BetType == (int)BetType.MixParlay)
                                     {
                                         @ViewLang.MixparLay;
@@ -106,15 +106,31 @@
                             </div>
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber2(item.Odds)
+                            @if (item.Odds == 0)
+                            {
+                                @Html.Raw("-")
+                            }
+                            else
+                            {
+                                @item.Odds.ToString("#,##0.00")
+                            }
                         </td>
-                        <td class="numeric">
-                            @item.Stake
+                        <td class="numeric">@item.Stake.ToString("#,##0")</td>
+                        @{
+                            var winlossNegative = item.Winlost < 0 ? "negative" : "";
+                         }
+                        <td class="numeric @winlossNegative">
+                            @if (item.StatusId == 111)
+                            {
+                                @Html.Raw("-")
+                            }
+                            else
+                            {
+                                @item.Winlost.ToString("#,##0.00")
+                            }
                         </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber2(item.Winlost)
-                        </td>
-                        <td class="numeric">
+
+                        <td class="center">
                             @item.Status.ToUpper()
                         </td>
                     </tr>

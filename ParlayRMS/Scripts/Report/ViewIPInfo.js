@@ -130,6 +130,7 @@
         var records = data.Records;
         var length = records.length;
         var tbody = $(table).children('tbody');
+        var tfooter = $("#footer").children('tfoot');
 
         //Remove highlight rows
         tbody.children('tr.highlight').each(function () {
@@ -142,12 +143,21 @@
             if (rows.length === 0) {
                 var r = new Array();
                 var j = -1;
+                var TotalSoccer = 0.0;
+                var TotalOthers = 0.0;
+                var Total = 0.0;
                 for (var i = 0; i < length; i++) {
                     var item = records[i];
                     r[++j] = CreateRow(i + 1, item);
+                    TotalSoccer += 0.0 + item.Soccer;
+                    TotalOthers += 0.0 + item.Others;
+                    Total += 0.0 + item.Soccer + item.Others;
                 }
 
+                var totalRow = CreateTotalRow(TotalSoccer, TotalOthers, Total);
                 tbody.html(r.join(''));
+                //alert(totalRow);
+                tfooter.html(totalRow);
             }
             else {
                 // find to remove noinfo row
@@ -187,13 +197,34 @@
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center">' + order + '</td>';
         r[++j] = '<td>' + item.Username + '</td>';
-        r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + '>' + item.Soccer + '</a></td>';
-        r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + '>' + item.Others + '</a></td>';
+        if (item.Soccer == 0) {
+            r[++j] = '<td class="numeric">-</td>';
+        }
+        else {
+            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + '>' + item.Soccer + '</a></td>';
+        }
+
+        if (item.Others == 0) {
+            r[++j] = '<td class="numeric">-</td>';
+        }
+        else {
+            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + '>' + item.Others + '</a></td>';
+        }
         r[++j] = '<td class="numeric">' + Total + '</td>';
         r[++j] = '</tr>';
         return r.join('');
     }
-
+    function CreateTotalRow(TotalSoccer, TotalOthers, Total) {
+        var r = new Array();
+        var j = -1;
+        r[++j] = '<tr style="height: 22px;">';
+        r[++j] = '<td class="center" colspan="2">Total</td>';
+        r[++j] = '<td class="numeric">' + TotalSoccer + '</td>';
+        r[++j] = '<td class="numeric">' + TotalOthers + '</td>';
+        r[++j] = '<td class="numeric">' + Total + '</td>';
+        r[++j] = '</tr>';
+        return r.join('');
+    }
     $(document).on('click', '.rowSoccer', function () {
         var url = generateUrl(this.id, 1);
         window.open(url, '_blank');
