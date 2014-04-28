@@ -1933,9 +1933,9 @@ table.sub td.numeric
 {
 	text-align: right;
 }
-.tablehr
+table .hr
 {
-	border: solid 1px #d5d5d5;
+	background-color: #d5d5d5; height: 1px; border: 0; 
 }
 /*Sub Table*/
 
