@@ -1850,7 +1850,7 @@ table.main > tbody > tr > td .tdDetailLink
 	font-weight: bold;
 	padding: 1px 3px;
 	color: #006400;
-	background-image: url('details-icon.png');
+	background-image: url('../Images/Content/details-icon.png');
 	background-repeat: no-repeat;
 	padding-left: 18px;  /* width of the image plus a little extra padding */
 }
