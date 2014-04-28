@@ -5,22 +5,24 @@
     /*Event binding*/
     /*Choice click */
     $(document).on('click', '.tdChoice', function () {
-        if (CheckExpandStage(this.id)) {
-            LoadReport(this.id, Expand);
+        var id = this.getAttribute('data-id');
+        if (CheckExpandStage(id)) {
+            LoadReport(id, Expand);
         }
         else {
-            Expand(null, this.id);
+            Expand(null, id);
         }
     });
     /*System Parlay detail click*/
     $(document).on('click', '.tdDetailLink', function () {
-        var Ids = this.id.split(',');
-        ViewBetDetails(Ids[0], Ids[1]);
+        var id = this.getAttribute('data-id');
+        var combo = this.getAttribute('data-combo');
+        ViewBetDetails(id, combo);
     });
 
     /*Check choice stage, return true if display:none.*/
     function CheckExpandStage(id) {
-        return ($('#' + id + ".Expand").css('display') == 'none');
+        return ($('#exp_' + id + ".Expand").css('display') == 'none');
     }
 
     /*View bet details*/
@@ -41,8 +43,7 @@
             },
             success: function (result) {
                 modalPopup(result);
-                $(".betdetails").css('overflow-y', 'auto');
-                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 12);
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr.responseText);
@@ -94,7 +95,7 @@
 
     /*Expand choice*/
     var Expand = function (content, id) {
-        var ExpandNode = $('#' + id + '.Expand');
+        var ExpandNode = $('#exp_' + id + '.Expand');
         if (content === '') {
             content = CreateNoInfoRow(1);
         }
