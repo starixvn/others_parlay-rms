@@ -127,8 +127,6 @@ namespace ParlayRMS.Controllers
         public ActionResult ParlayBetDetails(ParlayBetDetailsOptions options)
         {
             ViewBag.ComboType = options.ComboType;
-            //// TODO: for test
-            //// CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(100428936588);
             CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
 
             return View("BetDetails", model);

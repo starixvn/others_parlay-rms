@@ -799,7 +799,7 @@
     <value>IP</value>
   </data>
   <data name="IPInfo" xml:space="preserve">
-    <value>PRMS-View IP Info</value>
+    <value>PRMS - View IP Info</value>
   </data>
   <data name="ViewIPInfo" xml:space="preserve">
     <value>View IP Info</value>

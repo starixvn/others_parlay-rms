@@ -179,14 +179,14 @@
             r[++j] = '<td class="numeric">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" id =' + item.UserId + ',' + item.Username + '>' + item.Soccer + '</a></td>';
+            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" data-id ="' + item.UserId + '" data-name="' + item.Username + '" >' + item.Soccer + '</a></td>';
         }
 
         if (item.Others == 0) {
             r[++j] = '<td class="numeric">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" id =' + item.UserId + ',' + item.Username + '>' + item.Others + '</a></td>';
+            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
         }
         r[++j] = '<td class="numeric">' + Total + '</td>';
         r[++j] = '</tr>';
@@ -204,18 +204,23 @@
         return r.join('');
     }
     $(document).on('click', '.rowSoccer', function () {
-        var param = this.id.split(',');
-        var url = generateUrl(param[0],param[1], 1);
-        window.open(url, '_blank');
+        var id = this.getAttribute('data-id');
+        var name = this.getAttribute('data-name');
+        var type = 1;
+        openDrillDown(id, name, type);
     });
     $(document).on('click', '.rowOthers', function () {
-        var param = this.id.split(',');
-        var url = generateUrl(param[0], param[1], 2);
-        window.open(url, '_blank');
+        var id = this.getAttribute('data-id');
+        var name = this.getAttribute('data-name');
+        var type = 2;
+        openDrillDown(id, name, type);
     });
-
+    function openDrillDown(id, name, type) {
+        var url = generateUrl(id, name, type);
+        window.open(url, '_blank');
+    }
     function generateUrl(id, name, type) {
-        var url = resolveClientUrl('\ViewIpInfo\\Drilldown?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
+        var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
         return url;
     }
 });

@@ -6,9 +6,9 @@
     }
     else
     {
-        SportName = ViewLang.Others;
+        SportName = ViewLang.Combinedsports;
     }
-    ViewBag.Title = ViewBag.HeaderText = "PRMS " + SportName + " Bet list, " + ViewBag.UserName;
+    ViewBag.Title = ViewBag.HeaderText = "PRMS - " + SportName + " bet list - " + ViewBag.UserName;
     int counter = 0;
     Decimal TotalWinLoss = 0;
 }
@@ -81,9 +81,7 @@
                             </div>
                         </td>
                         <td class="choice right">
-                            <a href="#" class="tdChoice" id="@item.RefNo">
-                                    @{/*TODO: for test*/}
-                                    @{/*item.BetType = 29; item.Combo = 4;*/}
+                            <a href="#" class="tdChoice" data-id="@item.RefNo">
                                     @if (item.BetType == (int)BetType.MixParlay)
                                     {
                                         @ViewLang.MixparLay;
@@ -122,10 +120,10 @@
                             @if (item.BetType == (int)BetType.SystemParlay)
                             {
                                 <div class="tdDetail">
-                                    <a class="tdDetailLink" id="@item.RefNo,@ComboName" href="#">@ViewLang.Details</a>
+                                    <a class="tdDetailLink" data-id="@item.RefNo" data-combo="@ComboName" href="#">@ViewLang.Details</a>
                                 </div>
                             }
-                            <div style="display:none" class="Expand" id="@item.RefNo">
+                            <div style="display:none" class="Expand" id= "exp_@item.RefNo">
                             </div>
                         </td>
                         <td class="numeric">
@@ -143,7 +141,6 @@
                             var winlossNegative = item.Winlost < 0 ? "negative" : "";
                          }
                         <td class="numeric @winlossNegative">
-                            @{TotalWinLoss += @item.Winlost;}
                                 @if (item.StatusId == 0)
                                 {
                                     @Html.Raw("-")
@@ -151,6 +148,7 @@
                                 else
                                 {
                                     @item.Winlost.ToString("#,##0.00")
+                                    TotalWinLoss += @item.Winlost;
                                 }
                         </td>
 

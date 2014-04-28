@@ -898,7 +898,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PRMS-View IP Info.
+        ///   Looks up a localized string similar to PRMS - View IP Info.
         /// </summary>
         public static string IPInfo {
             get {
