@@ -1933,6 +1933,10 @@ table.sub td.numeric
 {
 	text-align: right;
 }
+.tablehr
+{
+	border: solid 1px #d5d5d5;
+}
 /*Sub Table*/
 
 /*Details Cell*/

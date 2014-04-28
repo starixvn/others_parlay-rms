@@ -197,9 +197,9 @@
         var j = -1;
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center" colspan="2">Total</td>';
-        r[++j] = '<td class="numeric">' + TotalSoccer + '</td>';
-        r[++j] = '<td class="numeric">' + TotalOthers + '</td>';
-        r[++j] = '<td class="numeric">' + Total + '</td>';
+        r[++j] = '<td class="numeric">' + numeral(TotalSoccer).format('0,0') + '</td>';
+        r[++j] = '<td class="numeric">' + numeral(TotalOthers).format('0,0') + '</td>';
+        r[++j] = '<td class="numeric">' + numeral(Total).format('0,0') + '</td>';
         r[++j] = '</tr>';
         return r.join('');
     }

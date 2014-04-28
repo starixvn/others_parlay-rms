@@ -143,10 +143,18 @@ namespace ParlayRMS.Controllers
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = this._betlistService.CreateChoice(refNo);
+            var tickets = this._betlistService.CreateChoice(refNo).ToList();
+            int countTicket = 1;
+            string endTag = "<hr class = 'tablehr'>";
             foreach (var ticket in tickets)
             {
-                builder.AddChoice(ticket, ticketHelper, null, null, null, false);
+                if (countTicket == tickets.Count)
+                {
+                    endTag = string.Empty;
+                }
+
+                builder.AddChoice(ticket, ticketHelper, null, null, endTag, false);
+                countTicket++;
             }
 
             return builder.GetBetList();
