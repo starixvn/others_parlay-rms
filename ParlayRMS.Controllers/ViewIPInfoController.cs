@@ -145,15 +145,21 @@ namespace ParlayRMS.Controllers
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = this._betlistService.CreateChoice(refNo).ToList();
             int countTicket = 1;
+            string openTag = "</br>";
             string endTag = "<hr class = 'hr'>";
             foreach (var ticket in tickets)
             {
+                if (countTicket != 1)
+                {
+                    openTag = string.Empty;
+                }
+
                 if (countTicket == tickets.Count)
                 {
                     endTag = string.Empty;
                 }
 
-                builder.AddChoice(ticket, ticketHelper, null, null, endTag, false);
+                builder.AddChoice(ticket, ticketHelper, null, openTag, endTag, false);
                 countTicket++;
             }
 
