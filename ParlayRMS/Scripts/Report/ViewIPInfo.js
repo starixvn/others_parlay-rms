@@ -174,21 +174,21 @@
         var j = -1;
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center">' + order + '</td>';
-        r[++j] = '<td>' + item.Username + '</td>';
+        r[++j] = '<td class="center">' + item.Username + '</td>';
         if (item.Soccer == 0) {
-            r[++j] = '<td class="numeric">-</td>';
+            r[++j] = '<td class="center">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowSoccer" data-id ="' + item.UserId + '" data-name="' + item.Username + '" >' + item.Soccer + '</a></td>';
+            r[++j] = '<td class="center"><a href="#" class= "rowSoccer" data-id ="' + item.UserId + '" data-name="' + item.Username + '" >' + item.Soccer + '</a></td>';
         }
 
         if (item.Others == 0) {
-            r[++j] = '<td class="numeric">-</td>';
+            r[++j] = '<td class="center">-</td>';
         }
         else {
-            r[++j] = '<td class="numeric"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
+            r[++j] = '<td class="center"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
         }
-        r[++j] = '<td class="numeric">' + Total + '</td>';
+        r[++j] = '<td class="center">' + Total + '</td>';
         r[++j] = '</tr>';
         return r.join('');
     }
@@ -197,9 +197,9 @@
         var j = -1;
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center" colspan="2">Total</td>';
-        r[++j] = '<td class="numeric">' + numeral(TotalSoccer).format('0,0') + '</td>';
-        r[++j] = '<td class="numeric">' + numeral(TotalOthers).format('0,0') + '</td>';
-        r[++j] = '<td class="numeric">' + numeral(Total).format('0,0') + '</td>';
+        r[++j] = '<td class="center">' + numeral(TotalSoccer).format('0,0') + '</td>';
+        r[++j] = '<td class="center">' + numeral(TotalOthers).format('0,0') + '</td>';
+        r[++j] = '<td class="center">' + numeral(Total).format('0,0') + '</td>';
         r[++j] = '</tr>';
         return r.join('');
     }

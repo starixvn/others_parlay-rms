@@ -139,7 +139,7 @@
                     </table>
                 </div>
             </div>
-            <table class="main" id="footer">
+            <table class="main foot" id="footer">
                 <colgroup>
                     <col width='80px' />
                     <col width='300px' />
@@ -155,12 +155,12 @@
                             @{
                                 var TotalNegative = Total < 0 ? "negative" : "";
                             }
-                            <td colspan=4 class="right">@ViewLang.Outstanding</td>
+                            <td colspan=4 class="right">@ViewLang.Outstanding:</td>
                             <td class="numeric">@Model.OutStanding.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan=4 class="right">@ViewLang.Total</td>
+                            <td colspan=4 class="right">@ViewLang.Total:</td>
                             <td class="numeric @TotalNegative">@Total.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>

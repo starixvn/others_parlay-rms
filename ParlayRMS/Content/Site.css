@@ -1872,6 +1872,19 @@ table.main > tfoot > tr > td
 	border: solid 1px #d5d5d5;
 	padding-right: 3px;
 }
+
+table.main.foot > tfoot > tr
+{
+	border: solid 1px #d5d5d5;
+}
+table.main.foot > tfoot > tr > td
+{
+	font-size: 1.0em;
+	font-weight: bold;
+	height: 31px;
+	border: none;
+	padding-right: 3px;
+}
 /*Main Table*/
 
 /*Sub Table*/
