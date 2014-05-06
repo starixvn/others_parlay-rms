@@ -96,7 +96,7 @@
     var Expand = function (content, id) {
         var expandNode = $('#exp_' + id + '.Expand');
         if (content === '') {
-            content = CreateNoInfoRow(1);
+            content = '</br><div class="noinfo" style="text-align: right">' + Language.NoInformation + '</div>';
         }
         expandNode.html(content);
         expandNode.slideToggle(toogleSpeed);
