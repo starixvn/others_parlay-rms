@@ -59,7 +59,7 @@
     //view ip link
     $('#ipViewLink').click(function () {
         var ip = $.trim($('#ip').val().replace(/,/g, ''));
-        if (!ValidateIPaddress(ip)) {
+        if (!ValidateIPAddress(ip)) {
             Validators.show($('#ip').get(0), 'This IP is not valid');
             return false;
         }
@@ -78,7 +78,7 @@
             Validators.show($('#ip').get(0), 'This field is required');
             return false;
         }
-        if (!ValidateIPaddress(ip)) {
+        if (!ValidateIPAddress(ip)) {
             Validators.show($('#ip').get(0), 'This IP is not valid');
             return false;
         }
@@ -118,7 +118,7 @@
         });
     }
 
-    function ValidateIPaddress(inputText) {
+    function ValidateIPAddress(inputText) {
         var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
         if (inputText.match(ipformat)) {
             return true;
@@ -133,9 +133,9 @@
         var length = records.length;
         var tbody = $(table).children('tbody');
         var tfooter = $("#footer").children('tfoot');
-        var TotalSoccer = 0.0;
-        var TotalOthers = 0.0;
-        var Total = 0.0;
+        var totalSoccer = 0.0;
+        var totalOthers = 0.0;
+        var total = 0.0;
 
         if (length > 0) {
             var rows = tbody.children('tr');
@@ -147,20 +147,20 @@
             for (var i = 0; i < length; i++) {
                 var item = records[i];
                 r[++j] = CreateRow(i + 1, item);
-                TotalSoccer += 0.0 + item.Soccer;
-                TotalOthers += 0.0 + item.Others;
-                Total += 0.0 + item.Soccer + item.Others;
+                totalSoccer += 0.0 + item.Soccer;
+                totalOthers += 0.0 + item.Others;
+                total += 0.0 + item.Soccer + item.Others;
             }
             tbody.html(r.join(''));
 
             //Add total row
-            var totalRow = CreateTotalRow(TotalSoccer, TotalOthers, Total);
+            var totalRow = CreateTotalRow(totalSoccer, totalOthers, total);
             tfooter.html(totalRow);
         }
         else {
             if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
-                var noinfo = CreateNoInfoRow(5);
-                tbody.html(noinfo);
+                var noInfo = CreateNoInfoRow(5);
+                tbody.html(noInfo);
                 tfooter.html('');
             }
         }
@@ -170,7 +170,7 @@
 
     function CreateRow(order, item) {
         var r = new Array();
-        var Total = 0.0 + item.Soccer + item.Others;
+        var total = 0.0 + item.Soccer + item.Others;
         var j = -1;
         r[++j] = '<tr style="height: 22px;">';
         r[++j] = '<td class="center">' + order + '</td>';
@@ -188,11 +188,11 @@
         else {
             r[++j] = '<td class="center"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
         }
-        r[++j] = '<td class="center">' + Total + '</td>';
+        r[++j] = '<td class="center">' + total + '</td>';
         r[++j] = '</tr>';
         return r.join('');
     }
-    function CreateTotalRow(TotalSoccer, TotalOthers, Total) {
+    function CreateTotalRow(totalSoccer, totalOthers, total) {
         var r = new Array();
         var j = -1;
         r[++j] = '<tr style="height: 22px;">';
@@ -207,19 +207,19 @@
         var id = this.getAttribute('data-id');
         var name = this.getAttribute('data-name');
         var type = 1;
-        openDrillDown(id, name, type);
+        OpenDrillDown(id, name, type);
     });
     $(document).on('click', '.rowOthers', function () {
         var id = this.getAttribute('data-id');
         var name = this.getAttribute('data-name');
         var type = 2;
-        openDrillDown(id, name, type);
+        OpenDrillDown(id, name, type);
     });
-    function openDrillDown(id, name, type) {
-        var url = generateUrl(id, name, type);
+    function OpenDrillDown(id, name, type) {
+        var url = GenerateUrl(id, name, type);
         window.open(url, '_blank');
     }
-    function generateUrl(id, name, type) {
+    function GenerateUrl(id, name, type) {
         var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
         return url;
     }

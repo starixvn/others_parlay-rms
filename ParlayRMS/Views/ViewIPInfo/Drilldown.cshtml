@@ -1,16 +1,16 @@
 ﻿@{
-    var SportName = String.Empty;
+    var sportName = String.Empty;
     if (ViewBag.SportType == (int)SportsType.SoccerOnly)
     {
-        SportName = ViewLang.Socceronly;
+        sportName = ViewLang.Socceronly;
     }
     else
     {
-        SportName = ViewLang.Others;
+        sportName = ViewLang.Others;
     }
-    ViewBag.Title = ViewBag.HeaderText = SportName + " bet list - " + ViewBag.UserName;
+    ViewBag.Title = ViewBag.HeaderText = sportName + " bet list - " + ViewBag.UserName;
     int counter = 0;
-    Decimal TotalWinLoss = 0;
+    decimal totalWinLoss = 0;
 }
 @model IEnumerable<ParlayRMS.DTO.ViewIPInfo.RMS_Rpt_Parlay_ViewIPInfoByUser>
 <div style="clear: both; id="divResult">
@@ -66,7 +66,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var ComboName = "";
+                    var comboName = "";
                     counter = counter + 1;
                     <tr>
                         <td class="center">
@@ -91,36 +91,36 @@
                                         switch ((SystemParlayCombo)item.Combo)
                                         {
                                             case SystemParlayCombo.Trixie:
-                                                ComboName = ViewLang.Trixie;
+                                                comboName = ViewLang.Trixie;
                                                 break;
 
                                             case SystemParlayCombo.Yankee:
-                                                ComboName = ViewLang.Yankee;
+                                                comboName = ViewLang.Yankee;
                                                 break;
 
                                             case SystemParlayCombo.Canadian:
-                                                ComboName = ViewLang.Canadian;
+                                                comboName = ViewLang.Canadian;
                                                 break;
 
                                             case SystemParlayCombo.Heinz:
-                                                ComboName = ViewLang.Heinz;
+                                                comboName = ViewLang.Heinz;
                                                 break;
 
                                             case SystemParlayCombo.SuperHeinz:
-                                                ComboName = ViewLang.SuperHeinz;
+                                                comboName = ViewLang.SuperHeinz;
                                                 break;
 
                                             case SystemParlayCombo.Goliath:
-                                                ComboName = ViewLang.Goliath;
+                                                comboName = ViewLang.Goliath;
                                                 break;
                                         }
-                                        @(ViewLang.SystemparLay + " - " + ComboName)
+                                        @(ViewLang.SystemparLay + " - " + comboName)
                                     }
                             </a>
                             @if (item.BetType == (int)BetType.SystemParlay)
                             {
                                 <div class="tdDetail">
-                                    <a class="tdDetailLink" data-id="@item.RefNo" data-combo="@ComboName" href="#">@ViewLang.Details</a>
+                                    <a class="tdDetailLink" data-id="@item.RefNo" data-combo="@comboName" href="#">@ViewLang.Details</a>
                                 </div>
                             }
                             <div style="display:none" class="Expand" id= "exp_@item.RefNo">
@@ -138,9 +138,9 @@
                         </td>
                         <td class="numeric">@item.Stake.ToString("#,##0")</td>
                         @{
-                            var winlossNegative = (item.Winlost < 0 && item.StatusId != 0) ? "negative" : "";
+                            var winLossNegative = (item.Winlost < 0 && item.StatusId != 0) ? "negative" : "";
                          }
-                        <td class="numeric @winlossNegative">
+                        <td class="numeric @winLossNegative">
                                 @if (item.StatusId == 0)
                                 {
                                     @Html.Raw("-")
@@ -148,7 +148,7 @@
                                 else
                                 {
                                     @item.Winlost.ToString("#,##0.00")
-                                    TotalWinLoss += @item.Winlost;
+                                    totalWinLoss += @item.Winlost;
                                 }
                         </td>
 
@@ -176,9 +176,9 @@
         </colgroup>
         <tfoot>
             <tr>
-                @{var totalNegative = TotalWinLoss < 0 ? "negative" : "";}
+                @{var totalNegative = totalWinLoss < 0 ? "negative" : "";}
                 <td colspan=5 class="right">Total</td>
-                <td class="numeric  @totalNegative">@TotalWinLoss.ToString("#,##0.00")</td>
+                <td class="numeric  @totalNegative">@totalWinLoss.ToString("#,##0.00")</td>
                 <td></td>
             </tr>
         </tfoot>

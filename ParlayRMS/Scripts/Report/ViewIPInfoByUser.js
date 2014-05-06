@@ -1,6 +1,6 @@
 ﻿$(function () {
     /*Function constant*/
-    var ToogleSpeed = 150;
+    var toogleSpeed = 150;
 
     /*Event binding*/
     /*Choice click */
@@ -31,7 +31,6 @@
             RefNo: refNo,
             ComboType: comboType
         }
-
         $.ajax({
             url: resolveClientUrl('ViewIPInfo/ParlayBetDetails'),
             type: 'POST',
@@ -57,13 +56,13 @@
     /*Load report from server and expand choice. */
     function LoadReport(id, expand) {
         //get input
-        var refno = id;
+        var refNo = id;
 
         //Validate input
 
         //Build query data
         var queryData = {
-            refno: refno
+            RefNo: refNo
         };
 
         $.ajax({
@@ -95,11 +94,11 @@
 
     /*Expand choice*/
     var Expand = function (content, id) {
-        var ExpandNode = $('#exp_' + id + '.Expand');
+        var expandNode = $('#exp_' + id + '.Expand');
         if (content === '') {
             content = CreateNoInfoRow(1);
         }
-        ExpandNode.html(content);
-        ExpandNode.slideToggle(ToogleSpeed);
+        expandNode.html(content);
+        expandNode.slideToggle(toogleSpeed);
     }
 });

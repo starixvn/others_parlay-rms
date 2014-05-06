@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ParlayRMS.Models.ViewIpInfo;
+@{
     Layout = null;
 }
 @model ParlayRMS.Models.ViewIpInfo.CombinationDetailsByDateViews
@@ -54,24 +55,24 @@
                         </colgroup>
                         <tbody>
                         @{
-                            Decimal Total = 0;
+                            decimal total = 0;
                          }
-                            @foreach (var item in Model.ViewDict)
+                            @foreach (KeyValuePair<DateTime, List<CombinationDetailsView>> item in Model.ViewDict)
                             {
-                                var NeedSpan = true;
-                                Decimal SubTotal = 0;
-                                foreach (var viewModel in item.Value)
+                                var needSpan = true;
+                                decimal subTotal = 0;
+                                foreach (CombinationDetailsView viewModel in item.Value)
                                 {
                                     var isLoseSum = false;
                                     <tr>
-                                        @if (NeedSpan)
+                                        @if (needSpan)
                                         {
                                             var numSpan = item.Value.Count + 1;
                                             <td class="center" rowspan=@numSpan>@Formatter.FormatDate(@item.Key)</td>
-                                            NeedSpan = false;
+                                            needSpan = false;
                                         }
                                         <td class="left">
-                                            @foreach (var eventItem in viewModel.Events)
+                                            @foreach (CombinationDetailsView.EventItem eventItem in viewModel.Events)
                                             {
                                                 if (eventItem.HomeId == -1)
                                                 {
@@ -96,24 +97,24 @@
                                         </td>
                                         <td class="numeric">@viewModel.Stake.ToString("#,##0")</td>
                                         @{
-                                            var winlossNegative = viewModel.WinLoss < 0 ? "negative" : "";
+                                            var winLossNegative = viewModel.WinLoss < 0 ? "negative" : "";
                                          }                                        
-                                        <td class="numeric @winlossNegative">
+                                        <td class="numeric @winLossNegative">
                                             @viewModel.WinLoss.ToString("#,##0.00")
                                         </td>
                                         <td class="center">@viewModel.StatusString.ToUpper()</td>
                                         @{
-                                            Total += viewModel.WinLoss;
-                                            SubTotal += viewModel.WinLoss;
+                                            total += viewModel.WinLoss;
+                                            subTotal += viewModel.WinLoss;
                                          }
                                     </tr>
                                 }
                                 <tr>
                                     @{
-                                var SubTotalNegative = SubTotal < 0 ? "negative" : "";
+                                        var subTotalNegative = subTotal < 0 ? "negative" : "";
                                     }
                                     <td colspan=3 class="right">@ViewLang.Subtotal</td>
-                                    <td class="numeric @SubTotalNegative">@SubTotal.ToString("#,##0.00")</td>
+                                    <td class="numeric @subTotalNegative">@subTotal.ToString("#,##0.00")</td>
                                     <td></td>
                                 </tr>
                             }
@@ -153,7 +154,7 @@
                     <tfoot>
                         <tr>
                             @{
-                                var TotalNegative = Total < 0 ? "negative" : "";
+                                var totalNegative = total < 0 ? "negative" : "";
                             }
                             <td colspan=4 class="right">@ViewLang.Outstanding:</td>
                             <td class="numeric">@Model.OutStanding.ToString("#,##0.00")</td>
@@ -161,7 +162,7 @@
                         </tr>
                         <tr>
                             <td colspan=4 class="right">@ViewLang.Total:</td>
-                            <td class="numeric @TotalNegative">@Total.ToString("#,##0.00")</td>
+                            <td class="numeric @totalNegative">@total.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
                     </tfoot>
