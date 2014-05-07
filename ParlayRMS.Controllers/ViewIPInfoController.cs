@@ -17,11 +17,14 @@ namespace ParlayRMS.Controllers
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using ParlayRMS.DTO.Common;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.ViewIpInfo;
     using ParlayRMS.Services.Implement.BetList;
+    using ParlayRMS.Services.Implement.Common;
     using ParlayRMS.Services.Implement.ViewIPInfo;
+    using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.ViewIPInfo;
     using ParlayRMS.ViewModel.Monitoring;
@@ -35,6 +38,7 @@ namespace ParlayRMS.Controllers
     {
         private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
         private readonly IBetListService _betlistService = new BetListService();
+        private readonly ICommonService _commonService = new CommonService();
 
         /// <summary>
         /// ViewIPInfo Index view.
@@ -44,8 +48,10 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            RMS_SelBalanceUpDay info = _commonService.GetBalanceUpDayInfo();
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
+            ViewBag.minDate = info.MoveBetsDay;
 
             return this.View("Index");
         }

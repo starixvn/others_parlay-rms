@@ -865,6 +865,10 @@ table.scrollGrid td span.function
 	height: auto;
 	font-size: 12px;
 }
+.boxMain .container .black
+{
+	color: #000000;
+}
 .allField
 {
 	width: auto;

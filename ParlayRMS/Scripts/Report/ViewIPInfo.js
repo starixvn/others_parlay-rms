@@ -6,6 +6,7 @@
     var queryData;
     //Now Date
     var nowDate = moment(dateOption.NowDate).format('MMMM DD, YYYY');
+    var minDate = moment(dateOption.MinDate).format('MMMM DD, YYYY');
     var inputDate;
     if (dateOption.InputDate) {
         inputDate = moment(dateOption.InputDate).format('MMMM DD, YYYY');
@@ -24,6 +25,7 @@
         changeMonth: true,
         changeYear: true,
         maxDate: nowDate,
+        minDate: minDate,
         onSelect: function (dateText, inst) {
             if (dateText !== inst.lastVal) {
                 $("#date option[value='7']").attr('selected', 1);
@@ -107,7 +109,6 @@
                 //maxTransId = json.MaxTransId;
                 var table = $('#result');
                 FillData(table, json);
-
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);

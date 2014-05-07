@@ -21,7 +21,5 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public int Soccer { get; set; }
 
         public int Others { get; set; }
-
-        public int Total { get; set; }
     }
 }

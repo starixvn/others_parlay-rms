@@ -36,7 +36,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
             using (var db = new ObjectDb("RMS_Rpt_Parlay_BetsStatisticsByIP"))
             {
                 db.AddInParameter("ip", DbType.String, ip);
-                db.AddInParameter("winlostdate", DbType.DateTime, date);
+                db.AddInParameter("fromdate", DbType.DateTime, date);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -71,7 +71,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
             using (var db = new ObjectDb("RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype"))
             {
                 db.AddInParameter("ip", DbType.String, ip);
-                db.AddInParameter("winlostdate", DbType.DateTime, date);
+                db.AddInParameter("fromdate", DbType.DateTime, date);
                 db.AddInParameter("custid", DbType.Int32, userId);
                 db.AddInParameter("sporttype", DbType.Int32, sportType);
 
