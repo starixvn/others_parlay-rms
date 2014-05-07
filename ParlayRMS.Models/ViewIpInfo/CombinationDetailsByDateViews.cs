@@ -17,7 +17,7 @@ namespace ParlayRMS.Models.ViewIpInfo
     /// </summary>
     public class CombinationDetailsByDateViews
     {
-        public decimal OutStanding { get; set; }
+        public decimal Outstanding { get; set; }
 
         public Dictionary<DateTime, List<CombinationDetailsView>> ViewDict { get; set; }
     }

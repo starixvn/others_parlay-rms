@@ -164,7 +164,9 @@
             </tbody>
         </table>
     </div>
-    <table class="main" id="footer">
+    @if (counter != 0)
+    {
+        <table class="main" id="footer">
          <colgroup>
             <col width='100px' />
             <col width='150px' />
@@ -183,6 +185,7 @@
             </tr>
         </tfoot>
     </table>
+    }
 </div>
 @Scripts.Render("~/Scripts/Report/ViewIPInfoByUser/js")
 @Scripts.Render("~/Scripts/Member/Core/js")

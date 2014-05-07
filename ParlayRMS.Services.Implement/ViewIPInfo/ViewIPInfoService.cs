@@ -115,7 +115,7 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
             }
 
             CombinationDetailsViews result = new CombinationDetailsViews();
-            result.OutStanding = records.OutStanding;
+            result.Outstanding = records.Outstanding;
             result.ViewList = viewList;
             return result;
         }
@@ -131,7 +131,7 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
             var groupByDateViewList = models.ViewList.GroupBy(x => x.Date).ToDictionary(x => x.Key, x => x.ToList());
 
             CombinationDetailsByDateViews result = new CombinationDetailsByDateViews();
-            result.OutStanding = models.OutStanding;
+            result.Outstanding = models.Outstanding;
             result.ViewDict = groupByDateViewList;
             return result;
         }

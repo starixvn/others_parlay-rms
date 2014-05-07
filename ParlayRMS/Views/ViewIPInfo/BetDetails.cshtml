@@ -118,7 +118,7 @@
                                     <td></td>
                                 </tr>
                             }
-                            @if (Model.ViewDict.Count == 0 && Model.OutStanding == -1)
+                            @if (Model.ViewDict.Count == 0 && Model.Outstanding == -1)
                             {
                                 <tr><td class="noinfo" colspan="7">@ViewLang.NoInformation</td></tr>
                             }
@@ -149,7 +149,7 @@
                     <col width='80px' />
                     <col width='70px' />
                 </colgroup>
-                @if (!(Model.ViewDict.Count == 0 && Model.OutStanding == -1))
+                @if (!(Model.ViewDict.Count == 0 && Model.Outstanding == -1))
                 { 
                     <tfoot>
                         <tr>
@@ -157,7 +157,7 @@
                                 var totalNegative = total < 0 ? "negative" : "";
                             }
                             <td colspan=4 class="right">@ViewLang.Outstanding:</td>
-                            <td class="numeric">@Model.OutStanding.ToString("#,##0.00")</td>
+                            <td class="numeric">@Model.Outstanding.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
                         <tr>

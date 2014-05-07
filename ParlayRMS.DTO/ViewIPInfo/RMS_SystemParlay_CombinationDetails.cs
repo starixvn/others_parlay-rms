@@ -16,7 +16,7 @@ namespace ParlayRMS.DTO.ViewIPInfo
     /// </summary>
     public class RMS_SystemParlay_CombinationDetails
     {
-        public decimal OutStanding { get; set; }
+        public decimal Outstanding { get; set; }
 
         public IEnumerable<RMS_SystemParlay_CombinationDetails_Combo> Combo { get; set; }
 

@@ -148,7 +148,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                 outStanding = Convert.ToInt64(db.GetParameterValue("Outstanding"));
             }
 
-            result.OutStanding = outStanding;
+            result.Outstanding = outStanding;
             result.Combo = combos;
             result.ComboRef = comboRefs;
             return result;

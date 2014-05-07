@@ -18,7 +18,7 @@ namespace ParlayRMS.Models.ViewIpInfo
     /// </summary>
     public class CombinationDetailsViews
     {
-        public decimal OutStanding { get; set; }
+        public decimal Outstanding { get; set; }
 
         public IEnumerable<CombinationDetailsView> ViewList { get; set; }
     }
