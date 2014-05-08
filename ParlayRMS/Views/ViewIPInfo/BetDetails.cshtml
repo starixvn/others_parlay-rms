@@ -140,6 +140,7 @@
                     </table>
                 </div>
             </div>
+            <div style="width: 690px" class="mainfooter">
             <table class="main foot" id="footer">
                 <colgroup>
                     <col width='80px' />
@@ -152,22 +153,23 @@
                 @if (!(Model.ViewDict.Count == 0 && Model.Outstanding == -1))
                 { 
                     <tfoot>
-                        <tr>
+                        <tr class="separateFooter">
                             @{
-                                var totalNegative = total < 0 ? "negative" : "";
+                                //var totalNegative = total < 0 ? "negative" : "";
                             }
                             <td colspan=4 class="right">@ViewLang.Outstanding:</td>
                             <td class="numeric">@Model.Outstanding.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
-                        <tr>
+                        <tr class="separateFooter">
                             <td colspan=4 class="right">@ViewLang.Total:</td>
-                            <td class="numeric @totalNegative">@total.ToString("#,##0.00")</td>
+                            <td class="numeric">@total.ToString("#,##0.00")</td>
                             <td></td>
                         </tr>
                     </tfoot>
                 }
             </table>
+            </div>
             </div>
         </div>
     </div>

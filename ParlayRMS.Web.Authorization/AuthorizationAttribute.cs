@@ -145,6 +145,8 @@ namespace ParlayRMS.Web.Authorization
                 else
                 {
                     response.Redirect("~/home/index", false);
+                    ////TODO: Ken - try new redirect
+                    ////return new RedirectResult("~/home/index",false);
                 }
             }
             catch (Exception)

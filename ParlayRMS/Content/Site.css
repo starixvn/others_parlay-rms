@@ -1876,7 +1876,6 @@ table.main > tfoot > tr > td
 	border: solid 1px #d5d5d5;
 	padding-right: 3px;
 }
-
 table.main.foot > tfoot > tr
 {
 	border: solid 1px #d5d5d5;
@@ -1885,7 +1884,7 @@ table.main.foot > tfoot > tr > td
 {
 	font-size: 1.0em;
 	font-weight: bold;
-	height: 31px;
+	height: 27px;
 	border: none;
 	padding-right: 3px;
 }
@@ -1955,6 +1954,22 @@ table .hr
 	background-color: #d5d5d5; height: 1px; border: 0; 
 }
 /*Sub Table*/
+
+/*total table*/
+table.total
+{
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+table.total > tfoot > tr > td
+{
+	font-size: 1.0em;
+	font-weight: bold;
+	height: 27px;
+	border: solid 1px #d5d5d5;
+	padding-right: 3px;
+}
+/*total table*/
 
 /*Details Cell*/
 div.details
@@ -2101,7 +2116,13 @@ a.datepicker
 	color: 	#30465D;
 	font-weight: bold;
 }
-
+.separateFooter
+{
+	background-color: #3F536B;
+	color: #fff;
+	border: soild 1px #3F536B;
+	height: 29px;
+}
 .arrowDown_div
 {
 	clear: both;

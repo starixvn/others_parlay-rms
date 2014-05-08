@@ -13,7 +13,7 @@
     decimal totalWinLoss = 0;
 }
 @model IEnumerable<ParlayRMS.DTO.ViewIPInfo.RMS_Rpt_Parlay_ViewIPInfoByUser>
-<div style="clear: both; id="divResult">
+<div >
     <div style="width: 990px">
         <table class="main" id="header">
             <colgroup>
@@ -166,7 +166,8 @@
     </div>
     @if (counter != 0)
     {
-        <table class="main" id="footer">
+        <div style="width: 981px" id= "divResult" class="separateFooter">
+        <table class="total" id="footer">
          <colgroup>
             <col width='100px' />
             <col width='150px' />
@@ -178,13 +179,13 @@
         </colgroup>
         <tfoot>
             <tr>
-                @{var totalNegative = totalWinLoss < 0 ? "negative" : "";}
                 <td colspan=5 class="right">Total</td>
-                <td class="numeric  @totalNegative">@totalWinLoss.ToString("#,##0.00")</td>
+                <td class="numeric">@totalWinLoss.ToString("#,##0.00")</td>
                 <td></td>
             </tr>
         </tfoot>
-    </table>
+        </table>
+        </div>
     }
 </div>
 @Scripts.Render("~/Scripts/Report/ViewIPInfoByUser/js")

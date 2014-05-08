@@ -133,7 +133,7 @@
         var records = data.Records;
         var length = records.length;
         var tbody = $(table).children('tbody');
-        var tfooter = $("#footer").children('tfoot');
+        var tfooter = $("#totalFooter").children('tfoot');
         var totalSoccer = 0.0;
         var totalOthers = 0.0;
         var total = 0.0;
@@ -196,7 +196,7 @@
     function CreateTotalRow(totalSoccer, totalOthers, total) {
         var r = new Array();
         var j = -1;
-        r[++j] = '<tr style="height: 22px;">';
+        r[++j] = '<tr style="height: 29px;">';
         r[++j] = '<td class="center" colspan="2">Total</td>';
         r[++j] = '<td class="center">' + numeral(totalSoccer).format('0,0') + '</td>';
         r[++j] = '<td class="center">' + numeral(totalOthers).format('0,0') + '</td>';
