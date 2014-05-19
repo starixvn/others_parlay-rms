@@ -119,7 +119,7 @@ namespace ParlayRMS.Controllers
         public ActionResult ExportExcel(ExportExcelModel model)
         {
             var specialMemberList = this._customerService.GetListCustomer(model.UserName, model.Level);
-            var templatePath = CurrentContext.Context.Server.MapPath("~") + "ExcelTemplates\\SpecialMember.xls";
+            var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\SpecialMember.xls";
             var writer = new TemplateWriter(templatePath);
 
             string title = "Special Members";
