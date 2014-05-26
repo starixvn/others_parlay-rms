@@ -21,8 +21,10 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.BetList;
     using ParlayRMS.Services.Implement.MixParlayMonitor;
+    using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.MixParlayMonitor;
+    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.MixPalayMonitor;
     using ParlayRMS.ViewModel.Monitoring;
@@ -36,6 +38,7 @@ namespace ParlayRMS.Controllers
         private readonly IBetListService _betlistService = new BetListService();
         private readonly IMixParlayMonitorService _mixparlayMonitorService = new MixParlayMonitorService();
         private readonly IMixParlayMonitorService _mixparlayMonitorCacheService = new MixParlayMonitorCacheService();
+        private readonly IUsersService _userService = new UsersService();
 
         #region Mix Parlay
 
@@ -111,6 +114,7 @@ namespace ParlayRMS.Controllers
         [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult MixParlay()
         {
+            ViewBag.HasReadPermission = _userService.HasReadPermission(CurrentSession.UserId, FunctionKeys.ViewIP);
             return this.View("MixParlay/Index");
         }
 

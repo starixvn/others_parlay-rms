@@ -207,6 +207,30 @@ namespace ParlayRMS.Services.Implement.Users
         }
 
         /// <summary>
+        /// Checks if the user has the permission on a specific function or not.
+        /// </summary>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="functionKey">Function key value.</param>
+        /// <returns>The user has permission on a specific function or not.</returns>
+        public bool HasReadPermission(int userId, string functionKey)
+        {
+            CachingService cachingService = new CachingService();
+            var userCache = cachingService.GetUserCache(userId);
+            var policyList = userCache.Functions;
+            var foundItems = policyList.Where(x => x.FunctionKey == functionKey);
+            if (foundItems.Count() > 0)
+            {
+                var firstItem = foundItems.First();
+                if (firstItem.Policy.Readable)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Updates user's policy.
         /// </summary>
         /// <param name="adminId">The ID of administrator who updates the user's policy.</param>

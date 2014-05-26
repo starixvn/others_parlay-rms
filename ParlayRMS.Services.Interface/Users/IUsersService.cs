@@ -119,6 +119,14 @@ namespace ParlayRMS.Services.Interface.Users
         bool HasWritePermission(int userId, string functionKey);
 
         /// <summary>
+        /// Checks if the user has the permission on a specific function or not.
+        /// </summary>
+        /// <param name="userId">User ID value.</param>
+        /// <param name="functionKey">Function key value.</param>
+        /// <returns>The user has permission on a specific function or not.</returns>
+        bool HasReadPermission(int userId, string functionKey);
+
+        /// <summary>
         /// Gets customer information.
         /// </summary>
         /// <param name="username">Username value.</param>

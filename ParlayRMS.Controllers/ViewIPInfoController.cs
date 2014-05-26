@@ -52,7 +52,6 @@ namespace ParlayRMS.Controllers
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
             ViewBag.minDate = info.MoveBetsDay;
-
             return this.View("Index");
         }
 
