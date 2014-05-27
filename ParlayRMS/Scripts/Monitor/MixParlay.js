@@ -448,16 +448,19 @@ function CreateRow(order, item) {
         r[++j] = '<td class="right">----</td>';
     }
     else {
-        if (hasIpPermission) {
-            r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDate + '\'), \'_blank\');">' + item.IP + '</a></td>';
-        }
-        else {
-            r[++j] = '<td class="numeric">' + item.IP + '</td>';
-        }
+        r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDate + '\'));">' + item.IP + '</a></td>';
     }
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';
     return r.join('');
+}
+function OpenViewIpInfo(url) {
+    if (hasIpPermission) {
+        window.open(url, "_blank");
+    }
+    else {
+        alertBox.show("Error", "You need Admin permission to view this report");
+    }
 }
 
 function ViewTotalOutstanding(username) {
