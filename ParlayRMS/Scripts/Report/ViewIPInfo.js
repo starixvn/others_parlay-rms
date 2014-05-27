@@ -84,8 +84,12 @@
             Validators.show($('#ip').get(0), 'This IP is not valid');
             return false;
         }
-        var date = $("#date").val();
 
+        var date = $("#date").val();
+        if (date === '') {
+            Validators.show($('#date').get(0), 'This field is required');
+            return false;
+        }
         queryData = {
             ip: ip,
             date: date
