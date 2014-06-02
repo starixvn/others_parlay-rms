@@ -438,7 +438,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
     r[++j] = '<td class="center">' + item.ComboName + '</td>';
-    if (!item.IP || item.IP === 'Null') {
+    if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {
         r[++j] = '<td class="right">----</td>';
     }
     else {
@@ -455,7 +455,7 @@ function OpenViewIpInfo(url) {
         window.open(url, "_blank");
     }
     else {
-        alertBox.show("Error", "You need Admin permission to view this report");
+        alertBox.show("Report Access Denied", "You need Admin permission to view this report");
     }
 }
 function ViewBetDetails(userName, transId, refNo) {
