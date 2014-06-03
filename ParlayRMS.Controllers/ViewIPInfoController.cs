@@ -48,10 +48,10 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            RMS_SelBalanceUpDay info = _commonService.GetBalanceUpDayInfo();
+            RMS_Rpt_Parlay_SelMinTransdate info = _commonService.GetMinTransDate();
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
-            ViewBag.minDate = info.MoveBetsDay;
+            ViewBag.minDate = info.MinTransdate;
             return this.View("Index");
         }
 

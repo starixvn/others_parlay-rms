@@ -46,5 +46,28 @@ namespace ParlayRMS.DataAccess.Implement.Common
         }
 
         #endregion Balance Up Day
+
+        /// <summary>
+        /// Gets min TRANSDATE from RMBETTRANS table.
+        /// </summary>
+        /// <returns>Min TRANSDATE from RMBETTRANS.</returns>
+        public RMS_Rpt_Parlay_SelMinTransdate RMS_Rpt_Parlay_SelMinTransdate()
+        {
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_SelMinTransdate"))
+            {
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new RMS_Rpt_Parlay_SelMinTransdate
+                        {
+                            MinTransdate = reader.ToDateTime("transdate_min")
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

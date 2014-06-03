@@ -45,5 +45,27 @@ namespace ParlayRMS.Services.Implement.Common
 
             return result;
         }
+
+        /// <summary>
+        /// Gets min TRANSDATE.
+        /// </summary>
+        /// <returns>Balance up day information.</returns>
+        public RMS_Rpt_Parlay_SelMinTransdate GetMinTransDate()
+        {
+            if (!AppSetting.IsCache)
+            {
+                return this._commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
+            }
+
+            string key = "MinTransDate";
+            var result = CacheServiceInstance.Get<RMS_Rpt_Parlay_SelMinTransdate>(key);
+            if (result == null)
+            {
+                result = this._commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
+                CacheServiceInstance.Set<RMS_Rpt_Parlay_SelMinTransdate>(key, result, TimeSpan.FromMinutes(1));
+            }
+
+            return result;
+        }
     }
 }

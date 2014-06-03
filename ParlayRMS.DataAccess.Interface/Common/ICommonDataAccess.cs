@@ -17,5 +17,11 @@ namespace ParlayRMS.DataAccess.Interface.Common
         /// </summary>
         /// <returns>Balance up day.</returns>
         RMS_SelBalanceUpDay RMS_SelBalanceUpDay();
+
+        /// <summary>
+        /// Gets min TRANSDATE from RMBETTRANS table.
+        /// </summary>
+        /// <returns>Min TRANSDATE.</returns>
+        RMS_Rpt_Parlay_SelMinTransdate RMS_Rpt_Parlay_SelMinTransdate();
     }
 }
