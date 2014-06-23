@@ -4,7 +4,7 @@ var maxTransId = 0;
 
 function Alert() {
     var settings = settingsController.get();
-    if (settings.stakeAfterPT != 0) {
+    if ((settings.reportType === 1 && settings.stakeAfterPT != 0)|| (settings.reportType === 2 && settings.netWinAfterPT != 0)) {
         soundManager.play('aSound');
     }
 }
@@ -199,12 +199,9 @@ var timerController = function () {
 } ();
 
 $(document).ready(function () {
-    $("#stakeAfterPT").bind('keyup', function (event) {
+    $("#filterAfterPT").bind('keyup', function (event) {
         FormatNumber(event, true);
-        var stakeAfterPT = parseInt($.trim($(this).val().replace(/,/g, '')));
-        if (stakeAfterPT > 1000000000000) {
-            $(this).val("1,000,000,000,000");
-        }
+        var filterAfterPT = parseInt($.trim($(this).val().replace(/,/g, '')));
 
         if (event.keyCode == 13) {
             $("#submit").click();

@@ -1168,7 +1168,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Net win after PT.
+        ///   Looks up a localized string similar to Net Win after PT.
         /// </summary>
         public static string NetWinAfterPT {
             get {

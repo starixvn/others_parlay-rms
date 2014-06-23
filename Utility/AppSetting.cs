@@ -146,6 +146,14 @@ namespace ParlayRMS.Utility
             }
         }
 
+        public static int NetWinStakeAfterPT
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("NetWinStakeAfterPT"));
+            }
+        }
+
         public static int MixParlayStakeAfterPT
         {
             get

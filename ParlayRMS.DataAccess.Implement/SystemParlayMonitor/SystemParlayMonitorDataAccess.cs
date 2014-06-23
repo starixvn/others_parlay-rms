@@ -60,26 +60,23 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
 
-                using (var dataSet = db.ExecuteDataSet())
+                using (var reader = db.ExecuteReader())
                 {
-                    using (var reader = db.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        result.Add(new RMS_Monitor_SystemParlay_Betlist
                         {
-                            result.Add(new RMS_Monitor_SystemParlay_Betlist
-                            {
-                                TransDate = reader.ToDateTime("transdate"),
-                                TransId = reader.ToInt64("transid"),
-                                RefNo = reader.ToInt64("refno"),
-                                Username = reader.ToString("username"),
-                                Odds = reader.ToDecimal("odds"),
-                                Stake = reader.ToDecimal("stake"),
-                                NetWinAfterPT = reader.ToDecimal("maxpayout"),
-                                Combo = reader.ToInt32("combo"),
-                                Level = reader.ToByte("level"),
-                                IP = reader.ToString("IP")
-                            });
-                        }
+                            TransDate = reader.ToDateTime("transdate"),
+                            TransId = reader.ToInt64("transid"),
+                            RefNo = reader.ToInt64("refno"),
+                            Username = reader.ToString("username"),
+                            Odds = reader.ToDecimal("odds"),
+                            Stake = reader.ToDecimal("stake"),
+                            NetWinAfterPT = reader.ToDecimal("maxpayout"),
+                            Combo = reader.ToInt32("combo"),
+                            Level = reader.ToByte("level"),
+                            IP = reader.ToString("IP")
+                        });
                     }
                 }
             }

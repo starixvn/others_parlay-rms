@@ -506,7 +506,7 @@
   </data>
   <data name="TotalCombo" xml:space="preserve">
     <value>Total Combo</value>
-  </data>  
+  </data>
   <data name="AddSpecialMember" xml:space="preserve">
     <value>Add Special Member</value>
   </data>
@@ -793,7 +793,7 @@
     <value>System Parlay Monitor</value>
   </data>
   <data name="NetWinAfterPT" xml:space="preserve">
-    <value>Net win after PT</value>
+    <value>Net Win after PT</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
