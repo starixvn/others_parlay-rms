@@ -21,6 +21,8 @@ namespace ParlayRMS.Services.Interface.SystemParlayMonitor
         /// <param name="sportType">Type of the sports.</param>
         /// <param name="level">The level.</param>
         /// <param name="stake">The stake.</param>
+        /// <param name="netWinAfterPT">Net win after PT.</param>
+        /// <param name="reportType">Report Type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
         /// <returns>Data of system parlay monitor.</returns>
@@ -29,6 +31,8 @@ namespace ParlayRMS.Services.Interface.SystemParlayMonitor
                                                           string sportType,
                                                           string level,
                                                           decimal stake,
+                                                          decimal netWinAfterPT,
+                                                          int reportType,
                                                           long maxTransId,
                                                           int limitRowCount);
     }

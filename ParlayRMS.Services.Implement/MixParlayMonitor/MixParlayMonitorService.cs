@@ -50,6 +50,8 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="sportTypes">Type of the sport.</param>
         /// <param name="levels">The level.</param>
         /// <param name="stakeAfterPT">Stake after PT.</param>
+        /// <param name="netWinAfterPT">Net win after PT.</param>
+        /// <param name="reportType">Report Type.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
@@ -58,10 +60,12 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                                                            string sportTypes,
                                                            string levels,
                                                            decimal stakeAfterPT,
+                                                           decimal netWinAfterPT,
+                                                           int reportType,
                                                            int selectTop,
                                                            long maxTransId)
         {
-            var data = _mixparlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, sportTypes, levels, stakeAfterPT, selectTop, maxTransId);
+            var data = _mixparlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId);
 
             ////if (data.Count() == 0)
             ////{
@@ -72,7 +76,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
             {
                 item.Odds = Math.Round(item.Odds, 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.NetWinAfterPT = Math.Round((item.Odds - 1) * item.Stake, 2);
+                item.NetWinAfterPT = Math.Round(item.NetWinAfterPT, 2);
             }
 
             return data;

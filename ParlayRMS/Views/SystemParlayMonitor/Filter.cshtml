@@ -24,11 +24,14 @@
                             <td style="width: 150px">
                                 @Html.DropDownList("sportTypes", (List<SelectListItem>)ViewBag.SportTypes, new { multiple = "multiple" })
                             </td>
-                            <td style="width: 110px">
-                                @Html.Label("stakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
+                            <td style="width: 125px; float: right; margin-left: 20px">
+                                <input type="radio" id="radStakeAfterPT" checked="checked" name="radFilterAfterPT" value="1"> @Html.Label("radStakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
+                            </td>
+                            <td style="width: 140px">
+                                <input type="radio" id="radNetWinAfterPT" name="radFilterAfterPT" value="2"> @Html.Label("radNetWinAfterPT", ViewLang.NetWinAfterPT, new { @class = "lable" })
                             </td>
                             <td>
-                                @Html.TextBox("stakeAfterPT", (string)ViewBag.StakeAfterPT, new { @maxlength = 20 })
+                                @Html.TextBox("filterAfterPT", (string)ViewBag.StakeAfterPT, new { @maxlength = 20 })
                             </td>
                             <td>
                             </td>

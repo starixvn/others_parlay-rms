@@ -33,6 +33,8 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
         /// <param name="sportType">Type of the sports.</param>
         /// <param name="level">The level.</param>
         /// <param name="stake">The stake.</param>
+        /// <param name="netWinAfterPT">Net win after PT.</param>
+        /// <param name="reportType">Report Type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
         /// <returns>Data of system parlay monitor.</returns>
@@ -41,10 +43,12 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
                                                           string sportType,
                                                           string level,
                                                           decimal stake,
+                                                          decimal netWinAfterPT,
+                                                          int reportType,
                                                           long maxTransId,
                                                           int limitRowCount)
         {
-            var data = _systemparlayDataAccess.RMS_Monitor_SystemParlay_Betlist(selection, sportType, level, stake, maxTransId, limitRowCount);
+            var data = _systemparlayDataAccess.RMS_Monitor_SystemParlay_Betlist(selection, sportType, level, stake, netWinAfterPT, reportType, maxTransId, limitRowCount);
 
             ////if (!data.Any())
             ////{
@@ -53,9 +57,9 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
 
             foreach (var item in data)
             {
-                item.Odds = Math.Round(CalculateOdds(item), 2);
+                item.Odds = Math.Round(item.Odds, 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.NetWinAfterPT = Math.Round(CalculateNetWin(item), 2);
+                item.NetWinAfterPT = Math.Round(item.NetWinAfterPT, 2);
                 item.ComboName = GetComboName(item.Combo);
             }
 
@@ -71,7 +75,8 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
         {
             decimal result = 0;
             decimal sumOfCombination = 0;
-            IEnumerable<List<decimal>> combinations = MathHelper.GetCombinations<decimal>(item.SubOdds).Where(obj => obj.Count > 1);
+            ////IEnumerable<List<decimal>> combinations = MathHelper.GetCombinations<decimal>(item.SubOdds).Where(obj => obj.Count > 1);
+            IEnumerable<List<decimal>> combinations = null;
 
             foreach (List<decimal> combination in combinations)
             {

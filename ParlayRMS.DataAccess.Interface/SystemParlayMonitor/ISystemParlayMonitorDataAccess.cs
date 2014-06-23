@@ -21,6 +21,8 @@ namespace ParlayRMS.DataAccess.Interface.SystemParlayMonitor
         /// <param name="sportType">Type of the sports.</param>
         /// <param name="level">The level.</param>
         /// <param name="stake">The stake.</param>
+        /// <param name="maxPayout">The max payout.</param>
+        /// <param name="reportType">The report type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
         /// <returns>Data of system parlay monitor.</returns>
@@ -29,6 +31,8 @@ namespace ParlayRMS.DataAccess.Interface.SystemParlayMonitor
                                                           string sportType,
                                                           string level,
                                                           decimal stake,
+                                                          decimal maxPayout,
+                                                          int reportType,
                                                           long maxTransId,
                                                           int limitRowCount);
     }

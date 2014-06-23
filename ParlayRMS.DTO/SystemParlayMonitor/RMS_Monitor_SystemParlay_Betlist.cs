@@ -38,7 +38,5 @@ namespace ParlayRMS.DTO.SystemParlayMonitor
         public byte Level { get; set; }
 
         public string IP { get; set; }
-
-        public List<decimal> SubOdds { get; set; }
     }
 }

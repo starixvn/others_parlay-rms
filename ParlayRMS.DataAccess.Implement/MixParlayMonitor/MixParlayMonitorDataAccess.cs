@@ -28,6 +28,8 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
         /// <param name="sportsTypes">Sport types.</param>
         /// <param name="levels">Level values.</param>
         /// <param name="stakeAfterPT">Stake after PT.</param>
+        /// <param name="maxPayout">The max payout.</param>
+        /// <param name="reportType">The report type.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
@@ -36,6 +38,8 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                                                             string sportsTypes,
                                                             string levels,
                                                             decimal stakeAfterPT,
+                                                            decimal maxPayout,
+                                                            int reportType,
                                                             int selectTop,
                                                             long maxTransId)
         {
@@ -46,7 +50,9 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("sporttype", DbType.String, sportsTypes);
                 db.AddInParameter("level", DbType.String, levels);
-                    db.AddInParameter("stake", DbType.Decimal, stakeAfterPT);
+                db.AddInParameter("stake", DbType.Decimal, stakeAfterPT);
+                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
 
@@ -62,6 +68,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             Username = reader.ToString("username"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
+                            NetWinAfterPT = reader.ToDecimal("maxpayout"),
                             Combo = reader.ToInt32("combo"),
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level")

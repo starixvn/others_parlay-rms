@@ -14,12 +14,16 @@ function UserSettings() {
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 20;
     this.stakeAfterPT = 0;
+    this.netWinAfterPT = 0;
+    this.reportType = 1;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.sportsTypes == settings.sportsTypes
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
-            && this.stakeAfterPT == settings.stakeAfterPT) {
+            && this.stakeAfterPT == settings.stakeAfterPT
+            && this.netWinAfterPT == settings.netWinAfterPT
+            && this.reportType == settings.reportType) {
             return false;
         }
 
@@ -70,23 +74,33 @@ var settingsController = function () {
                 return null;
             }
 
-            var stakeAfterPT = $.trim($('#stakeAfterPT').val().replace(/,/g, ''));
-            if (stakeAfterPT == '') {
-                stakeAfterPT = '0';
+            var filterAfterPT = $.trim($('#filterAfterPT').val().replace(/,/g, ''));
+            if (filterAfterPT == '') {
+                filterAfterPT = '0';
             }
 
-            if (!isNumeric(stakeAfterPT) || parseInt(stakeAfterPT) < 0) {
-                Validators.show($('#stakeAfterPT').get(0), 'Stake After PT must be greater or than 0');
+            if (!isNumeric(filterAfterPT) || parseInt(filterAfterPT) < 0) {
+                Validators.show($('#filterAfterPT').get(0), 'This value must be greater or than 0');
                 return null;
             }
 
             var selectTop = parseInt($("#selectTop").val());
 
+            var reportType = $('input[name=radFilterAfterPT]:checked').val() * 1;
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.sportsTypes = sportsTypes;
             userSettings.levels = levels;
-            userSettings.stakeAfterPT = stakeAfterPT;
+            userSettings.reportType = reportType;
+            if (reportType === 1) {
+                userSettings.stakeAfterPT = filterAfterPT;
+                userSettings.netWinAfterPT = 0;
+            }
+            else {
+                userSettings.stakeAfterPT = 0;
+                userSettings.netWinAfterPT = filterAfterPT;
+            }
             userSettings.selectTop = selectTop;
             return userSettings;
         }
@@ -112,6 +126,8 @@ var timerController = function () {
             sportsTypes: settings.sportsTypes,
             levels: settings.levels,
             stakeAfterPT: settings.stakeAfterPT,
+            netWinAfterPT: settings.netWinAfterPT,
+            reportType: settings.reportType,
             selectTop: settings.selectTop,
             maxTransId: maxTransId
         }

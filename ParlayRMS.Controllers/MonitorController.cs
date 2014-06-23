@@ -134,7 +134,15 @@ namespace ParlayRMS.Controllers
             }
 
             var service = GetMixParlayService();
-            var data = service.GetMixParlayMonitorTickets(model.Combos, model.SportsTypes, model.Levels, model.StakeAfterPT, model.SelectTop, model.MaxTransId);
+            var data = service.GetMixParlayMonitorTickets(
+                                model.Combos,
+                                model.SportsTypes,
+                                model.Levels,
+                                model.StakeAfterPT,
+                                model.NetWinAfterPT,
+                                model.ReportType,
+                                model.SelectTop,
+                                model.MaxTransId);
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {

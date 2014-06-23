@@ -26,6 +26,11 @@ namespace ParlayRMS.ViewModel.SystemParlayMonitor
         [Required, Range(0, double.MaxValue)]
         public decimal StakeAfterPT { get; set; }
 
+        [Required, Range(0, double.MaxValue)]
+        public decimal NetWinAfterPT { get; set; }
+
+        public int ReportType { get; set; }
+
         [Required, Values(10, 20, 50, 100, 200)]
         public int SelectTop { get; set; }
 

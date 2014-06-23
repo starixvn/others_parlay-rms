@@ -31,6 +31,8 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
         /// <param name="sportType">Type of the sports.</param>
         /// <param name="level">The level.</param>
         /// <param name="stake">The stake.</param>
+        /// <param name="maxPayout">The max payout.</param>
+        /// <param name="reportType">Report Type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
         /// <returns>Data of system parlay monitor.</returns>
@@ -40,6 +42,8 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                                                                  string sportType,
                                                                  string level,
                                                                  decimal stake,
+                                                                 decimal maxPayout,
+                                                                 int reportType,
                                                                  long maxTransId,
                                                                  int limitRowCount)
         {
@@ -51,39 +55,30 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                 db.AddInParameter("sporttype", DbType.String, sportType);
                 db.AddInParameter("level", DbType.String, level);
                 db.AddInParameter("stake", DbType.Decimal, stake);
+                db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
+                db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
 
                 using (var dataSet = db.ExecuteDataSet())
                 {
-                    if (dataSet.Tables.Count == 2)
+                    using (var reader = db.ExecuteReader())
                     {
-                        DataTable ticketList = dataSet.Tables[0];
-                        EnumerableRowCollection<DataRow> oddsList = dataSet.Tables[1].AsEnumerable();
-                        RMS_Monitor_SystemParlay_Betlist item = null;
-
-                        if (ticketList.Rows.Count > 0)
+                        while (reader.Read())
                         {
-                            foreach (DataRow row in ticketList.Rows)
+                            result.Add(new RMS_Monitor_SystemParlay_Betlist
                             {
-                                item = new RMS_Monitor_SystemParlay_Betlist
-                                {
-                                    TransDate = row.ToDateTime("transdate"),
-                                    TransId = row.ToInt64("transid"),
-                                    RefNo = row.ToInt64("refno"),
-                                    Username = row.ToString("username"),
-                                    ////Odds = row.ToDecimal("odds"),
-                                    Stake = row.ToDecimal("stake"),
-                                    ////MaxPayout = row.ToDecimal("maxpayout"),
-                                    Combo = row.ToInt32("combo"),
-                                    Level = row.ToByte("level"),
-                                    IP = row.ToString("IP")
-                                };
-
-                                item.SubOdds = oddsList.Where(oddsRow => oddsRow.ToInt64("refno") == item.RefNo)
-                                                       .Select(oddsRow => oddsRow.ToDecimal("odds")).ToList();
-                                result.Add(item);
-                            }
+                                TransDate = reader.ToDateTime("transdate"),
+                                TransId = reader.ToInt64("transid"),
+                                RefNo = reader.ToInt64("refno"),
+                                Username = reader.ToString("username"),
+                                Odds = reader.ToDecimal("odds"),
+                                Stake = reader.ToDecimal("stake"),
+                                NetWinAfterPT = reader.ToDecimal("maxpayout"),
+                                Combo = reader.ToInt32("combo"),
+                                Level = reader.ToByte("level"),
+                                IP = reader.ToString("IP")
+                            });
                         }
                     }
                 }

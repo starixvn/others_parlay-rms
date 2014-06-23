@@ -20,6 +20,8 @@ namespace ParlayRMS.DataAccess.Interface.MixParlayMonitor
         /// <param name="sportsTypes">Sport types.</param>
         /// <param name="levels">Level values.</param>
         /// <param name="stakeAfterPT">Stake after PT.</param>
+        /// <param name="maxPayout">Maximum payout.</param>
+        /// <param name="reportType">Report Type.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
@@ -28,6 +30,8 @@ namespace ParlayRMS.DataAccess.Interface.MixParlayMonitor
                                                     string sportsTypes,
                                                     string levels,
                                                     decimal stakeAfterPT,
+                                                    decimal maxPayout,
+                                                    int reportType,
                                                     int selectTop,
                                                     long maxTransId);
     }

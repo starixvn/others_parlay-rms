@@ -136,6 +136,8 @@ namespace ParlayRMS.Controllers
                             model.SportTypes,
                             model.Levels,
                             model.StakeAfterPT,
+                            model.NetWinAfterPT,
+                            model.ReportType,
                             model.MaxTransId,
                             model.SelectTop);
             long maxTransId = model.MaxTransId;
