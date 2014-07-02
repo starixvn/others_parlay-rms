@@ -816,4 +816,10 @@
   <data name="TotalLoseTickets" xml:space="preserve">
     <value>Total of losing tickets</value>
   </data>
+  <data name="IPStatistics" xml:space="preserve">
+    <value>IP Statistics</value>
+  </data>
+  <data name="TotalMembers" xml:space="preserve">
+    <value>Total Members</value>
+  </data>
 </root>

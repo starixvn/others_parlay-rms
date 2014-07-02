@@ -27,6 +27,17 @@ namespace ParlayRMS.DataAccess.Interface.ViewIPInfo
         IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date);
 
         /// <summary>
+        /// Get IP statistics by date.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="pageIndex">Page index value.</param>
+        /// <param name="pageSize">Page size value.</param>
+        /// <param name="totalItems">Total items value.</param>
+        /// <param name="maxTransId">Maximum Transaction ID value.</param>
+        /// <returns>User statistics by IP object.</returns>
+        RMS_Rpt_Parlay_UsersStatisticsByIP RMS_Rpt_Parlay_UsersStatisticsByIP(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId);
+
+        /// <summary>
         /// Get bets statistics by IP, WINLOST date, user id and sport type.
         /// </summary>
         /// <param name="ip">Input IP value.</param>

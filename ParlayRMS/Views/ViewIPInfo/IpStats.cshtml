@@ -1,0 +1,72 @@
+﻿@using ParlayRMS.DTO.ViewIPInfo
+@model RMS_Rpt_Parlay_UsersStatisticsByIP
+@{
+    Layout = null;
+    int counter = (int)ViewBag.StartCounter;
+}
+<div style="width: 410px">
+    <table class="main">
+        <colgroup>
+            <col width='80px' />
+            <col width='200px' />
+            <col width='120px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    @ViewLang.No
+                </th>
+                <th>
+                    @ViewLang.IP
+                </th>
+                <th>
+                    @ViewLang.TotalMembers
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" style="max-height: 680px; width: 420px">
+    <table class="main" id="result-ip-stats">
+        <colgroup>
+            <col width='80px' />
+            <col width='200px' />
+            <col width='120px' />
+        </colgroup>
+        <tbody>
+        @if (Model.IPStats.Count() > 0)
+        {
+            foreach (var row in Model.IPStats)
+            {
+                counter = counter + 1;
+                <tr style="height: 22px;">
+                    <td class="center">
+                        @counter
+                    </td>
+                    <td class="center">
+                        <a href="#" class ="link-ip-stats" data-ip = "@row.IP">@row.IP</a>
+                    </td>
+                    <td class="center">
+                        @row.CntUsers
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="noinfo" style="text-align: center">
+                    @ViewLang.NoInformation
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var pageData = {
+        TotalItems: '@ViewBag.TotalItems',
+        MaxTransId: '@ViewBag.MaxTransId'
+    }
+</script>
+@Html.Partial("_Pager", (object)@ViewBag.Pager)

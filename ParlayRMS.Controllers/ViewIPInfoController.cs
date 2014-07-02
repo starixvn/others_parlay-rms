@@ -17,6 +17,7 @@ namespace ParlayRMS.Controllers
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using PagedList;
     using ParlayRMS.DTO.Common;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Models.Functions;
@@ -27,6 +28,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.ViewIPInfo;
+    using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.ViewModel.ViewIPInfo;
     using ParlayRMS.Web.Authorization;
@@ -39,6 +41,7 @@ namespace ParlayRMS.Controllers
         private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
         private readonly IBetListService _betlistService = new BetListService();
         private readonly ICommonService _commonService = new CommonService();
+        private int _pageSize = 100;
 
         /// <summary>
         /// ViewIPInfo Index view.
@@ -78,6 +81,30 @@ namespace ParlayRMS.Controllers
             {
                 return this.Json(new { code = 1, message = ex.Message });
             }
+        }
+
+        /// <summary>
+        /// Get data for View IP Info main report.
+        /// </summary>
+        /// <param name="options">Model contain filter conditions.</param>
+        /// <returns>JSON String for ViewIP Info main report.</returns>
+        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
+        [HttpPost]
+        public ActionResult IpStatsData(ViewIPStatsOptions options)
+        {
+            RMS_Rpt_Parlay_UsersStatisticsByIP data = _ipinfoService.GetIPStats(
+                                                                            options.FromDate,
+                                                                            options.PageIndex,
+                                                                            options.PageSize,
+                                                                            options.TotalItems,
+                                                                            options.MaxTransId);
+            int page = options.PageIndex;
+
+            ViewBag.StartCounter = (page - 1) * _pageSize;
+            ViewBag.Pager = Pager.Items(data.TotalItems).PerPage(_pageSize).Move(page).Segment(5).Center();
+            ViewBag.TotalItems = data.TotalItems;
+            ViewBag.MaxTransId = data.MaxTransId;
+            return this.PartialView("IpStats", data);
         }
 
         /// <summary>

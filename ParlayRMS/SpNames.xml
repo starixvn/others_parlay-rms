@@ -77,6 +77,7 @@
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function Name="Member">
     <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />

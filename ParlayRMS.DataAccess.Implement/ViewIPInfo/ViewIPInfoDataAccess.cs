@@ -10,6 +10,7 @@
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
@@ -51,6 +52,49 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                         });
                     }
                 }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get IP statistics by date.
+        /// </summary>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="pageIndex">Page index value.</param>
+        /// <param name="pageSize">Page size value.</param>
+        /// <param name="totalItems">Total items value.</param>
+        /// <param name="maxTransId">Maximum Transaction ID value.</param>
+        /// <returns>User statistics by IP object.</returns>
+        public RMS_Rpt_Parlay_UsersStatisticsByIP RMS_Rpt_Parlay_UsersStatisticsByIP(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId)
+        {
+            var result = new RMS_Rpt_Parlay_UsersStatisticsByIP();
+            var ipStats = new List<RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats>();
+
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_UsersStatisticsByIP"))
+            {
+                Hashtable param = new Hashtable();
+                param.Add("fromdate", fromDate);
+                param.Add("pageindex", pageIndex);
+                param.Add("pagesize", pageSize);
+                param.Add("totalitems", totalItems);
+                param.Add("max_transid", maxTransId);
+
+                using (var reader = db.ExecuteReader(param))
+                {
+                    while (reader.Read())
+                    {
+                        ipStats.Add(new RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats
+                        {
+                            IP = reader.ToString("IP"),
+                            CntUsers = reader.ToInt32("cntUsers")
+                        });
+                    }
+                }
+
+                result.IPStats = ipStats;
+                result.TotalItems = Convert.ToInt32(db.GetParameterValue("totalitems"));
+                result.MaxTransId = Convert.ToInt64(db.GetParameterValue("max_transid"));
             }
 
             return result;

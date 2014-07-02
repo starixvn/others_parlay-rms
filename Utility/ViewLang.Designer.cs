@@ -916,6 +916,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IP Statistics.
+        /// </summary>
+        public static string IPStatistics {
+            get {
+                return ResourceManager.GetString("IPStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         public static string Key {
@@ -1911,6 +1920,15 @@ namespace ParlayRMS.Utility {
         public static string TotalLoseTickets {
             get {
                 return ResourceManager.GetString("TotalLoseTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Members.
+        /// </summary>
+        public static string TotalMembers {
+            get {
+                return ResourceManager.GetString("TotalMembers", resourceCulture);
             }
         }
         

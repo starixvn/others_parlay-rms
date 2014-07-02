@@ -1,100 +1,134 @@
-﻿@{
-    ViewBag.Title = ViewBag.HeaderText = ViewLang.IPInfo;
-}
-<div class="filter">
-    <div class="filter-control" style="width: 550px">
-        <div class="minimizetitle">
-            <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
-            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
-                -
+﻿<div id="tabs">
+    <ul>
+        <li><a href="#tabs-ip-statistics" style ="font-weight: bold" >@ViewLang.IPStatistics</a></li>
+        <li><a href="#tabs-view-ip-info" style ="font-weight: bold" >@ViewLang.IPInfo</a></li>
+    </ul>
+    <div id="tabs-ip-statistics" style="display: inline-block">
+        <div class="filter">
+            <div class="filter-control" style="width: 400px">
+                <div class="minimizetitle">
+                    <div class="minimizecontent">
+                        @ViewLang.FilterControl</div>
+                    <div id="filterminimize-ip-stats" class="minimize" onclick="Minimize('filtercontent-ip-stats','filterminimize-ip-stats');">
+                        -
+                    </div>
+                </div>
+                <div id="filtercontent-ip-stats" class="container">
+                    <div class="row">
+                        <div class="group">
+                            @Html.Label("", ViewLang.Date + ":")
+                            @Html.TextBox("date-ipstats")
+                        </div>
+                        <div class="group">
+                            <button id="btnSearchIPStats">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="filtercontent" class="container">
-            <div class="row">
-                <div class="group">
-                    @Html.Label("ip", ViewLang.IP + ":")
-                    @Html.TextBox("ip")
+    <div style="clear: both; display: none" id="divResultIpStats">
+    </div>
+    </div>
+    <div id="tabs-view-ip-info" style="display: inline-block">
+        <div class="filter">
+            <div class="filter-control" style="width: 550px">
+                <div class="minimizetitle">
+                    <div class="minimizecontent">
+                        @ViewLang.FilterControl</div>
+                    <div id="filterminimize-ip-info" class="minimize" onclick="Minimize('filtercontent-ip-info','filterminimize-ip-info');">
+                        -
+                    </div>
                 </div>
-                <div class="group">
-                    @Html.Label("", ViewLang.Date +":")
-                    @Html.TextBox("date")
+                <div id="filtercontent-ip-info" class="container">
+                    <div class="row">
+                        <div class="group">
+                            @Html.Label("ip", ViewLang.IP + ":")
+                            @Html.TextBox("ip")
+                        </div>
+                        <div class="group">
+                            @Html.Label("", ViewLang.Date + ":")
+                            @Html.TextBox("date-ipinfo")
+                        </div>
+                        <div class="group">
+                            <button id="btnSearchIpInfo">
+                                <span class="text">@ViewLang.Submit</span>
+                            </button>
+                        </div>
+                        <div class="group">
+                            <a id="ipViewLink" href="#">@ViewLang.ViewIPInfo</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="group">
-                    <button id="btnSearch">
-                        <span class="text">@ViewLang.Submit</span>
-                    </button>
-                </div>
-                <div class="group">
-                    <a id="ipViewLink" href="#">@ViewLang.ViewIPInfo</a>
-                </div>
+            </div>
+        </div>
+        <div style="clear: both; display: none" id="divResultIpInfo">
+            <div style="width: 740px">
+                <table class="main">
+                    <colgroup>
+                        <col width='120px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>
+                                @ViewLang.No
+                            </th>
+                            <th>
+                                @ViewLang.Username
+                            </th>
+                            <th>
+                                @ViewLang.Socceronly
+                            </th>
+                            <th>
+                                @ViewLang.Others
+                            </th>
+                            <th>
+                                @ViewLang.Total
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="scrollGridContent" style="max-height: 680px; width: 740px">
+                <table class="main" id="result-ip-info">
+                    <colgroup>
+                        <col width='120px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                    </colgroup>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div style="width: 720px" class="separateFooter">
+                <table class="total" id="total-footer-ip-info">
+                    <colgroup>
+                        <col width='120px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                        <col width='150px' />
+                    </colgroup>
+                    <tfoot>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
 </div>
-<div style="clear: both; display: none" id="divResult">
-    <div style="width: 740px">
-        <table class="main" id="header">
-            <colgroup>
-                <col width='120px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>
-                        @ViewLang.No
-                    </th>
-                   <th>
-                        @ViewLang.Username
-                    </th>
-                    <th>
-                        @ViewLang.Socceronly
-                    </th>
-                    <th>
-                        @ViewLang.Others
-                    </th>
-                    <th>
-                        @ViewLang.Total
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="scrollGridContent" style="max-height: 680px; width: 740px">
-        <table class="main" id="result">
-            <colgroup>
-                <col width='120px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='150px' />
-            </colgroup>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div style="width: 720px" class="separateFooter">
-    <table class="total" id="totalFooter">
-         <colgroup>
-            <col width='120px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='150px' />
-        </colgroup>
-        <tfoot></tfoot>
-    </table>
-    </div>
-</div>
-@Scripts.Render("~/Scripts/Report/ViewIPInfo/js")
-@Scripts.Render("~/Scripts/Member/Core/js")
 <script type="text/javascript">
     var dateOption = {
         NowDate: '@DateTime.Now',
         InputDate: '@ViewBag.date',
         MinDate: '@ViewBag.minDate'
-    };
+    }
 </script>
+@Scripts.Render("~/Scripts/Report/ViewIPInfo/js")
+@Scripts.Render("~/Scripts/Member/Core/js")

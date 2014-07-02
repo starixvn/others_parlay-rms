@@ -567,6 +567,9 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
+    <Content Include="SpNames.local.xml" />
+    <Content Include="SpNames.prod.xml" />
+    <Content Include="SpNames.uat.xml" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -610,6 +613,10 @@
     <Content Include="Views\ViewIPInfo\Index.cshtml" />
     <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
     <Content Include="Views\ViewIPInfo\BetDetails.cshtml" />
+    <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
+    <Content Include="Web.local.config" />
+    <Content Include="Web.prod.config" />
+    <Content Include="Web.uat.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
