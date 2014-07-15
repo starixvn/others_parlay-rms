@@ -1,8 +1,8 @@
 ﻿var reLoginId = null;
 
 $(document).ready(function () {
-    ReCheckinOffline(); // call immediately after page load complete
-    reLoginId = setInterval('ReCheckinOffline();', 30000); //call kickout every 10s
+    //ReCheckinOffline(); // call immediately after page load complete
+    //reLoginId = setInterval('ReCheckinOffline();', 30000); //call kickout every 10s
 });
 
 function ReCheckinOffline() {

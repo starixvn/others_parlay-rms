@@ -613,10 +613,10 @@
     <Content Include="Views\ViewIPInfo\Index.cshtml" />
     <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
     <Content Include="Views\ViewIPInfo\BetDetails.cshtml" />
-    <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
     <Content Include="Web.local.config" />
     <Content Include="Web.prod.config" />
     <Content Include="Web.uat.config" />
+    <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

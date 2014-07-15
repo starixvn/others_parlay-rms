@@ -90,7 +90,6 @@
     <Compile Include="Config.cs" />
     <Compile Include="Report\BetDetails.cs" />
     <Compile Include="Report\BetDetailsOptions.cs" />
-    <Compile Include="ViewIPInfo\ViewIPStatsOptions.cs" />
     <Compile Include="ViewIPInfo\ParlayBetDetailsOptions.cs" />
     <Compile Include="ViewIPInfo\ParlayBetDetails.cs" />
     <Compile Include="ViewIPInfo\DrillDownOptions.cs" />
@@ -105,6 +104,7 @@
     <Compile Include="TotalOutstanding\DataModel.cs" />
     <Compile Include="TotalOutstanding\IndexModel.cs" />
     <Compile Include="TotalOutstanding\TotalDataModel.cs" />
+    <Compile Include="ViewIPInfo\ViewIPStatsOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
