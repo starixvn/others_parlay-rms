@@ -19,8 +19,10 @@ namespace ParlayRMS.ViewModel.MixPalayMonitor
         public string Combos { get; set; }
 
         public string SportsTypes { get; set; }
-
+        
         public string Levels { get; set; }
+
+        public string Markets { get; set; }
 
         [Required, Range(0, double.MaxValue)]
         public decimal StakeAfterPT { get; set; }

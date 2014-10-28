@@ -23,6 +23,8 @@ namespace ParlayRMS.ViewModel.SystemParlayMonitor
 
         public string Levels { get; set; }
 
+        public string Markets { get; set; }
+
         [Required, Range(0, double.MaxValue)]
         public decimal StakeAfterPT { get; set; }
 

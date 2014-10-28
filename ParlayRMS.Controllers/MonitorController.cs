@@ -92,6 +92,13 @@ namespace ParlayRMS.Controllers
 
             ViewBag.SelectTops = selectTops;
 
+            // Markets
+            var markets = new List<SelectListItem>();
+            markets.Add(new SelectListItem { Text = ViewLang.Today_only, Value = ((int)Market.TodayOnly).ToString(), Selected = true });
+            markets.Add(new SelectListItem { Text = ViewLang.Early_only, Value = ((int)Market.EarlyOnly).ToString(), Selected = true });
+            markets.Add(new SelectListItem { Text = ViewLang.Combined, Value = ((int)Market.Combined).ToString(), Selected = true });
+            ViewBag.Markets = markets;
+
             // Refresh Time
             values = new List<int> { 30, 60, 120 };
             var refreshTimes = new List<SelectListItem>();
@@ -143,7 +150,8 @@ namespace ParlayRMS.Controllers
                                 model.NetWinAfterPT,
                                 model.ReportType,
                                 model.SelectTop,
-                                model.MaxTransId);
+                                model.MaxTransId,
+                                model.Markets);
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {

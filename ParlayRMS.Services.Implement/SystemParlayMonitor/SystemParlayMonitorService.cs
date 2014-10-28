@@ -37,18 +37,31 @@ namespace ParlayRMS.Services.Implement.SystemParlayMonitor
         /// <param name="reportType">Report Type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
-        /// <returns>Data of system parlay monitor.</returns>
+        /// <param name="markets">Markets Info.</param>
+        /// <returns>
+        /// Data of system parlay monitor.
+        /// </returns>
         public IEnumerable<RMS_Monitor_SystemParlay_Betlist> GetSystemParlayMonitorData(
-                                                          string selection,
-                                                          string sportType,
-                                                          string level,
-                                                          decimal stake,
-                                                          decimal netWinAfterPT,
-                                                          int reportType,
-                                                          long maxTransId,
-                                                          int limitRowCount)
+            string selection,
+            string sportType,
+            string level,
+            decimal stake,
+            decimal netWinAfterPT,
+            int reportType,
+            long maxTransId,
+            int limitRowCount,
+            string markets)
         {
-            var data = _systemparlayDataAccess.RMS_Monitor_SystemParlay_Betlist(selection, sportType, level, stake, netWinAfterPT, reportType, maxTransId, limitRowCount);
+            var data = _systemparlayDataAccess.RMS_Monitor_SystemParlay_Betlist(
+                selection, 
+                sportType, 
+                level, 
+                stake, 
+                netWinAfterPT, 
+                reportType, 
+                maxTransId, 
+                limitRowCount, 
+                markets);
 
             ////if (!data.Any())
             ////{

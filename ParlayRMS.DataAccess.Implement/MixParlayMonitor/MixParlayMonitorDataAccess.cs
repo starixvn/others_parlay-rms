@@ -32,16 +32,20 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
         /// <param name="reportType">The report type.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
-        /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
+        /// <param name="markets">The markets.</param>
+        /// <returns>
+        /// List of RMS_Monitor_Parlay_BetList objects.
+        /// </returns>
         public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
-                                                            string combos,
-                                                            string sportsTypes,
-                                                            string levels,
-                                                            decimal stakeAfterPT,
-                                                            decimal maxPayout,
-                                                            int reportType,
-                                                            int selectTop,
-                                                            long maxTransId)
+            string combos,
+            string sportsTypes,
+            string levels,
+            decimal stakeAfterPT,
+            decimal maxPayout,
+            int reportType,
+            int selectTop,
+            long maxTransId,
+            string markets)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
@@ -55,6 +59,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
+                db.AddInParameter("market", DbType.String, markets);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -63,6 +68,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                         result.Add(new RMS_Monitor_Parlay_Betlist
                         {
                             TransDate = reader.ToDateTime("transdate"),
+                            TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
                             TransId = reader.ToInt64("transid"),
                             RefNo = reader.ToInt64("refno"),
                             Username = reader.ToString("username"),

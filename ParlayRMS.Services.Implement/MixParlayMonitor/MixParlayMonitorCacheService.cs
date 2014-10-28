@@ -32,18 +32,22 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="reportType">Report Type.</param>
         /// <param name="selectTop">Select Top value.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
-        /// <returns>List of Monitor Parlay Bets.</returns>
+        /// <param name="markets">The markets.</param>
+        /// <returns>
+        /// List of Monitor Parlay Bets.
+        /// </returns>
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
-                                                           string combos, 
-                                                           string sportsTypes, 
-                                                           string levels, 
-                                                           decimal stakeAfterPT,
-                                                           decimal netWinAfterPT, 
-                                                           int reportType,
-                                                           int selectTop, 
-                                                           long maxTransId)
+            string combos,
+            string sportsTypes,
+            string levels,
+            decimal stakeAfterPT,
+            decimal netWinAfterPT,
+            int reportType,
+            int selectTop,
+            long maxTransId,
+            string markets)
         {
-            return MixparlayService.GetMixParlayMonitorTickets(combos, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId);
+            return MixparlayService.GetMixParlayMonitorTickets(combos, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
         }
 
         ////private MixParlayMonitorTicketCache GetMixParlayMonitorTicketCache(

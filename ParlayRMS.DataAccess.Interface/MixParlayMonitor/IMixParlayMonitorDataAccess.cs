@@ -24,15 +24,19 @@ namespace ParlayRMS.DataAccess.Interface.MixParlayMonitor
         /// <param name="reportType">Report Type.</param>
         /// <param name="selectTop">Number of top items.</param>
         /// <param name="maxTransId">Maximum transaction ID.</param>
-        /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
+        /// <param name="markets">The markets.</param>
+        /// <returns>
+        /// List of RMS_Monitor_Parlay_BetList objects.
+        /// </returns>
         IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
-                                                    string combos,
-                                                    string sportsTypes,
-                                                    string levels,
-                                                    decimal stakeAfterPT,
-                                                    decimal maxPayout,
-                                                    int reportType,
-                                                    int selectTop,
-                                                    long maxTransId);
+            string combos,
+            string sportsTypes,
+            string levels,
+            decimal stakeAfterPT,
+            decimal maxPayout,
+            int reportType,
+            int selectTop,
+            long maxTransId,
+            string markets);
     }
 }
