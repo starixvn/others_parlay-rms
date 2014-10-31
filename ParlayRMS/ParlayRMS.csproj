@@ -169,6 +169,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Content Include="Images\Content\details-icon.png" />
+    <Content Include="Images\UnderMaintenance.gif" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
     <Content Include="Scripts\Report\ViewIPInfo.js" />
   </ItemGroup>
