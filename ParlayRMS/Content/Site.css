@@ -1636,7 +1636,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/red_bt_bg.png") repeat-x center center;
+    background: url("../../Images/Content/red_bt_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1650,7 +1650,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/hoverbg.png") repeat-x center center;
+    background: url("../../Images/Content/hoverbg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
