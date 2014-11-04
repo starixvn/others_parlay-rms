@@ -194,6 +194,24 @@ namespace ParlayRMS.Models
         Goliath = 247
     }
 
+    public enum Market : int
+    {
+        /// <summary>
+        /// The today only.
+        /// </summary>
+        TodayOnly = 1,
+
+        /// <summary>
+        /// The early only.
+        /// </summary>
+        EarlyOnly = 2,
+
+        /// <summary>
+        /// The combined.
+        /// </summary>
+        Combined = 3
+    }
+
     public enum Enums
     {
     }

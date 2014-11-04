@@ -4,7 +4,7 @@ var maxTransId = 0;
 
 function Alert() {
     var settings = settingsController.get();
-    if ((settings.reportType === 1 && settings.stakeAfterPT != 0)|| (settings.reportType === 2 && settings.netWinAfterPT != 0)) {
+    if ((settings.reportType === 1 && settings.stakeAfterPT != 0) || (settings.reportType === 2 && settings.netWinAfterPT != 0)) {
         soundManager.play('aSound');
     }
 }
@@ -14,6 +14,7 @@ function UserSettings() {
     this.sportTypes = '1,2,3';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 200;
+    this.markets = '';
     this.stakeAfterPT = 0;
     this.netWinAfterPT = 0;
     this.reportType = 1;
@@ -22,6 +23,7 @@ function UserSettings() {
             && this.sportTypes == settings.sportTypes
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
+            && this.markets == settings.markets
             && this.stakeAfterPT == settings.stakeAfterPT
             && this.netWinAfterPT == settings.netWinAfterPT
             && this.reportType == settings.reportType) {
@@ -75,6 +77,14 @@ var settingsController = function () {
                 return null;
             }
 
+            var markets = $("#market").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (markets == '') {
+                Validators.show($("#market").multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
             var filterAfterPT = $.trim($('#filterAfterPT').val().replace(/,/g, ''));
             if (filterAfterPT == '') {
                 filterAfterPT = '0';
@@ -87,7 +97,7 @@ var settingsController = function () {
 
             var selectTop = parseInt($("#selectTop").val());
 
-            var reportType = $('input[name=radFilterAfterPT]:checked').val()*1;
+            var reportType = $('input[name=radFilterAfterPT]:checked').val() * 1;
 
             var userSettings = new UserSettings();
             userSettings.combos = combos;
@@ -102,8 +112,9 @@ var settingsController = function () {
                 userSettings.stakeAfterPT = 0;
                 userSettings.netWinAfterPT = filterAfterPT;
             }
-            
+
             userSettings.selectTop = selectTop;
+            userSettings.markets = markets;
             return userSettings;
         }
     }
@@ -131,7 +142,8 @@ var timerController = function () {
             netWinAfterPT: settings.netWinAfterPT,
             reportType: settings.reportType,
             selectTop: settings.selectTop,
-            maxTransId: maxTransId
+            maxTransId: maxTransId,
+            markets: settings.markets
         }
 
         $.ajax({
@@ -279,6 +291,29 @@ $(document).ready(function () {
         header: false,
         multiple: false,
         selectedList: 1
+    });
+
+    $("#market").multiselect({
+        minWidth: 132,
+        height: 100,
+        noneSelectedText: "Select options",
+        create: function () {
+            $("#market").multiselect();
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
     });
 
     $("#refreshTime").multiselect({
@@ -445,7 +480,7 @@ function CreateRow(order, item) {
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td class="center">' + order + '</td>';
-    r[++j] = '<td>' + moment(item.TransDate).format('MM/D/YYYY h:mm:ss A') + '</td>';
+    r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = '<td class="numeric">' + +item.TransId + '</td>';
     r[++j] = '<td>' + item.Username + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
@@ -458,7 +493,7 @@ function CreateRow(order, item) {
     else {
         r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDate + '\'));">' + item.IP + '</a></td>';
     }
-    
+
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';
     return r.join('');

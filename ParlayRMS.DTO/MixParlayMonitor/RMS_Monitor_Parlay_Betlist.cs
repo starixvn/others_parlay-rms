@@ -17,6 +17,8 @@ namespace ParlayRMS.DTO.MixParlayMonitor
     {
         public DateTime TransDate { get; set; }
 
+        public string TransDateString { get; set; }
+
         public long TransId { get; set; }
 
         public long RefNo { get; set; }

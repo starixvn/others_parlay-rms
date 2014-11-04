@@ -61,7 +61,7 @@
         <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-        <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_Parlay_Betlist_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_Parlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_Parlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
@@ -100,6 +100,6 @@
       <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
   <Function name="SystemParlayMonitor">
-     <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+     <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
 </Functions>

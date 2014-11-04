@@ -19,6 +19,8 @@ namespace ParlayRMS.DTO.SystemParlayMonitor
     {
         public DateTime TransDate { get; set; }
 
+        public string TransDateString { get; set; }
+
         public long TransId { get; set; }
 
         public long RefNo { get; set; }

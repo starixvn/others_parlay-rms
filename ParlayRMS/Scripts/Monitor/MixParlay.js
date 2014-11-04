@@ -13,6 +13,7 @@ function UserSettings() {
     this.sportsTypes = '1,2,3';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 20;
+    this.markets = '';
     this.stakeAfterPT = 0;
     this.netWinAfterPT = 0;
     this.reportType = 1;
@@ -21,6 +22,7 @@ function UserSettings() {
             && this.sportsTypes == settings.sportsTypes
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
+            && this.markets == settings.markets
             && this.stakeAfterPT == settings.stakeAfterPT
             && this.netWinAfterPT == settings.netWinAfterPT
             && this.reportType == settings.reportType) {
@@ -74,6 +76,14 @@ var settingsController = function () {
                 return null;
             }
 
+            var markets = $("#market").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (markets == '') {
+                Validators.show($("#market").multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
             var filterAfterPT = $.trim($('#filterAfterPT').val().replace(/,/g, ''));
             if (filterAfterPT == '') {
                 filterAfterPT = '0';
@@ -102,6 +112,7 @@ var settingsController = function () {
                 userSettings.netWinAfterPT = filterAfterPT;
             }
             userSettings.selectTop = selectTop;
+            userSettings.markets = markets;
             return userSettings;
         }
     }
@@ -129,7 +140,8 @@ var timerController = function () {
             netWinAfterPT: settings.netWinAfterPT,
             reportType: settings.reportType,
             selectTop: settings.selectTop,
-            maxTransId: maxTransId
+            maxTransId: maxTransId,
+            markets: settings.markets
         }
 
         $.ajax({
@@ -279,6 +291,29 @@ $(document).ready(function () {
         selectedList: 1
     });
 
+    $("#market").multiselect({
+        minWidth: 132,
+        height: 100,
+        noneSelectedText: "Select options",
+        create: function () {
+            $("#market").multiselect();
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
     $("#refreshTime").multiselect({
         minWidth: 60,
         height: 80,
@@ -317,7 +352,7 @@ $(document).ready(function () {
             $("#header").find(".sortable").each(function () {
                 $(this).removeClass("headerSortDown").removeClass("headerSortUp");
                 this.sortDirection = "";
-            });			
+            });
             $("#transTime").addClass("headerSortDown");
             $("#transTime").get(0).sortDirection = "asc";
             tableSorter.currentOrderCol = null;
@@ -334,7 +369,7 @@ $(document).ready(function () {
             timerController.resume();
         }
     });
-    
+
     var table = $('#result');
     var header = $('#header');
     tableSorter.bind2(header, table, {
@@ -347,10 +382,10 @@ $(document).ready(function () {
         }
     });
 
-//    closeBox.render($('#noflash'),
-//    {
-//        title: 'Alert Sound is disabled'
-//    });
+    //    closeBox.render($('#noflash'),
+    //    {
+    //        title: 'Alert Sound is disabled'
+    //    });
 
     soundManager.setup({
         url: resolveClientUrl('Scripts/Libs/soundManager/swf/'),
@@ -376,12 +411,12 @@ function FillData(table, data) {
     var records = data.Records;
     var length = records.length;
     var tbody = $(table).children('tbody');
-    
+
     //Remove highlight rows
     tbody.children('tr.highlight').each(function () {
         $(this).removeAttr('class');
     });
-    
+
     if (length > 0) {
         Alert();
         var rows = tbody.children('tr');
@@ -449,7 +484,7 @@ function CreateRow(order, item) {
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td class="center">' + order + '</td>';
-    r[++j] = '<td>' + moment(item.TransDate).format('MM/D/YYYY h:mm:ss A') + '</td>';
+    r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';

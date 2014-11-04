@@ -25,15 +25,19 @@ namespace ParlayRMS.DataAccess.Interface.SystemParlayMonitor
         /// <param name="reportType">The report type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
-        /// <returns>Data of system parlay monitor.</returns>
+        /// <param name="markets">The markets.</param>
+        /// <returns>
+        /// Data of system parlay monitor.
+        /// </returns>
         IEnumerable<RMS_Monitor_SystemParlay_Betlist> RMS_Monitor_SystemParlay_Betlist(
-                                                          string selection,
-                                                          string sportType,
-                                                          string level,
-                                                          decimal stake,
-                                                          decimal maxPayout,
-                                                          int reportType,
-                                                          long maxTransId,
-                                                          int limitRowCount);
+            string selection,
+            string sportType,
+            string level,
+            decimal stake,
+            decimal maxPayout,
+            int reportType,
+            long maxTransId,
+            int limitRowCount,
+            string markets);
     }
 }

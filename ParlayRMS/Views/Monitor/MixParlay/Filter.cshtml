@@ -1,5 +1,5 @@
 ﻿<div class="filter">
-    <div class="filter-control" style="border: 1px solid black; width: 1054px;">
+    <div class="filter-control" style="border: 1px solid black; width: 100%;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl</div>
@@ -26,11 +26,14 @@
                             </td>
                             <td style="width: 25px">
                             </td>
-                            <td style="width: 125px">
-                                <input type="radio" id="radStakeAfterPT" checked="checked" name="radFilterAfterPT" value="1"> @Html.Label("radStakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
+                            <td colspan="2" style="width: 135px">
+                                <input type="radio" id="radStakeAfterPT" checked="checked" name="radFilterAfterPT"
+                                    value="1">
+                                @Html.Label("radStakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
                             </td>
                             <td style="width: 140px">
-                                <input type="radio" id="radNetWinAfterPT" name="radFilterAfterPT" value="2"> @Html.Label("radNetWinAfterPT", ViewLang.NetWinAfterPT, new { @class = "lable" })
+                                <input type="radio" id="radNetWinAfterPT" name="radFilterAfterPT" value="2">
+                                @Html.Label("radNetWinAfterPT", ViewLang.NetWinAfterPT, new { @class = "lable" })
                             </td>
                             <td>
                                 @Html.TextBox("filterAfterPT", (string)ViewBag.NetWinStakeAfterPT, new { @maxlength = 15 })
@@ -52,6 +55,12 @@
                                 @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
                             </td>
                             <td>
+                            </td>
+                            <td style="width: 30px">
+                                @Html.Label("market", ViewLang.Market, new { @class = "lable" })
+                            </td>
+                            <td style="width: 100px">
+                                @Html.DropDownList("market", (List<SelectListItem>)ViewBag.Markets, new { multiple = "multiple" })
                             </td>
                             <td>
                                 @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })

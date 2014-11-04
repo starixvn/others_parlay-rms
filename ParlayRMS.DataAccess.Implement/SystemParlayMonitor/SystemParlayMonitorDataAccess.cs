@@ -35,17 +35,21 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
         /// <param name="reportType">Report Type.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <param name="limitRowCount">The limit row count.</param>
-        /// <returns>Data of system parlay monitor.</returns>
+        /// <param name="markets">The markets.</param>
+        /// <returns>
+        /// Data of system parlay monitor.
+        /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Monitor_SystemParlay_Betlist> RMS_Monitor_SystemParlay_Betlist(
-                                                                 string selection,
-                                                                 string sportType,
-                                                                 string level,
-                                                                 decimal stake,
-                                                                 decimal maxPayout,
-                                                                 int reportType,
-                                                                 long maxTransId,
-                                                                 int limitRowCount)
+            string selection,
+            string sportType,
+            string level,
+            decimal stake,
+            decimal maxPayout,
+            int reportType,
+            long maxTransId,
+            int limitRowCount,
+            string markets)
         {
             var result = new List<RMS_Monitor_SystemParlay_Betlist>();
 
@@ -59,6 +63,7 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                 db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitRowCount", DbType.Int32, limitRowCount);
+                db.AddInParameter("market", DbType.String, markets);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -67,6 +72,7 @@ namespace ParlayRMS.DataAccess.Implement.SystemParlayMonitor
                         result.Add(new RMS_Monitor_SystemParlay_Betlist
                         {
                             TransDate = reader.ToDateTime("transdate"),
+                            TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
                             TransId = reader.ToInt64("transid"),
                             RefNo = reader.ToInt64("refno"),
                             Username = reader.ToString("username"),
