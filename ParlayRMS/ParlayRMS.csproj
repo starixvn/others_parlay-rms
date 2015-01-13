@@ -173,6 +173,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Content Include="SpNames.kbt67.xml" />
     <Content Include="SpNames.master.xml" />
     <Content Include="Images\Content\details-icon.png" />
     <Content Include="Images\UnderMaintenance.gif" />
@@ -511,6 +512,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.master.config" />
+    <Content Include="Web.kbt67.config" />
     <None Include="readme.txt" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />
