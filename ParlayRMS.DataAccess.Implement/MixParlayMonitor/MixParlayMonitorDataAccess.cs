@@ -78,7 +78,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             Combo = reader.ToInt32("combo"),
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level"),
-                            IsBetRadar=reader.ToBoolean("IsBetRadar")
+                            IsBetRadar = reader.ToBoolean("IsBetRadar")
                         });
                     }
                 }

@@ -8,8 +8,8 @@
 
 namespace ParlayRMS.DataAccess.Interface.Common
 {
+    using System.Collections.Generic;
     using ParlayRMS.DTO.Common;
-using System.Collections.Generic;
 
     public interface ICommonDataAccess
     {
@@ -26,7 +26,7 @@ using System.Collections.Generic;
         RMS_Rpt_Parlay_SelMinTransdate RMS_Rpt_Parlay_SelMinTransdate();
 
         /// <summary>
-        /// Get the list of bet type belong Betradar.
+        /// Get the list of bet type belong Bet radar.
         /// </summary>
         /// <returns>Return the list bet type.</returns>
         List<int> GetBettypeBelongsBetRadar();

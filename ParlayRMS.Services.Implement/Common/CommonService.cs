@@ -9,13 +9,13 @@
 namespace ParlayRMS.Services.Implement.Common
 {
     using System;
+    using System.Collections.Generic;
     using Fanex.Caching;
     using ParlayRMS.DataAccess.Implement.Common;
     using ParlayRMS.DataAccess.Interface.Common;
     using ParlayRMS.DTO.Common;
     using ParlayRMS.Services.Interface;
     using ParlayRMS.Utility;
-using System.Collections.Generic;
 
     /// <summary>
     /// Common Services.
@@ -70,7 +70,7 @@ using System.Collections.Generic;
         }
 
         /// <summary>
-        /// Get the list of bet type belong Betradar.
+        /// Get the list of bet type belong Bet radar.
         /// </summary>
         /// <returns>
         /// Return the list bet type.

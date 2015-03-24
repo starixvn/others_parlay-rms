@@ -20,8 +20,10 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.BetList;
+    using ParlayRMS.Services.Implement.Common;
     using ParlayRMS.Services.Implement.MixParlayMonitor;
     using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Interface;
     using ParlayRMS.Services.Interface.BetList;
     using ParlayRMS.Services.Interface.MixParlayMonitor;
     using ParlayRMS.Services.Interface.Users;
@@ -29,8 +31,6 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.MixPalayMonitor;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Implement.Common;
 
     /// <summary>
     /// Monitor Controller.
@@ -257,7 +257,7 @@ namespace ParlayRMS.Controllers
             foreach (var ticket in tickets)
             {
                 var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
-                var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : "";
+                var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : string.Empty;
                 if (tickets.Last() == ticket)
                 {
                     builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
