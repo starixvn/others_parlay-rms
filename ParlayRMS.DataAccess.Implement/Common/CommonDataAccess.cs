@@ -13,6 +13,8 @@ namespace ParlayRMS.DataAccess.Implement.Common
     using ParlayRMS.DataAccess.Interface.Common;
     using ParlayRMS.DTO.Common;
     using ParlayRMS.Utility.Data;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Common Data Access.
@@ -68,6 +70,31 @@ namespace ParlayRMS.DataAccess.Implement.Common
             }
 
             return null;
+        }
+
+
+        /// <summary>
+        /// Get bettype belong bet radar.
+        /// </summary>
+        /// <returns>Return the bet type list.</returns>
+        public List<int> GetBettypeBelongsBetRadar()
+        {
+            List<int> bettypes = new List<int>();
+            using (var db = new ObjectDb("Acc_SportBettypeMatrix_Sel"))
+            {
+                db.AddInParameter("mode", DbType.Int16, 4);
+                db.AddInParameter("subproduct", DbType.String, "BetRadar");
+
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bettypes.Add(reader.ToInt32("bettype"));
+                    }
+                }
+            }
+
+            return bettypes;
         }
     }
 }

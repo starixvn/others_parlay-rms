@@ -101,5 +101,8 @@
     </Function>
   <Function name="SystemParlayMonitor">
      <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-  </Function>
+  </Function
+  <Function name="common">
+    <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" Plain="0" />
+  </Function>  >
 </Functions>

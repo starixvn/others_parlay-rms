@@ -9,6 +9,7 @@
 namespace ParlayRMS.Services.Interface
 {
     using ParlayRMS.DTO.Common;
+    using System.Collections.Generic;
 
     public interface ICommonService
     {
@@ -23,5 +24,11 @@ namespace ParlayRMS.Services.Interface
         /// </summary>
         /// <returns>Min TRANSDATE.</returns>
         RMS_Rpt_Parlay_SelMinTransdate GetMinTransDate();
+
+        /// <summary>
+        /// Get the list of bet type belong Betradar.
+        /// </summary>
+        /// <returns>Return the list bet type.</returns>
+        List<int> GetBettypeBelongsBetRadar();
     }
 }

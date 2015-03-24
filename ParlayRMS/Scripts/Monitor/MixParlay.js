@@ -485,7 +485,11 @@ function CreateRow(order, item) {
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
-    r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
+    if (item.IsBetradar) {
+        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
+    } else {
+        r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
+    }
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
