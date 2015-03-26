@@ -36,7 +36,7 @@ namespace ParlayRMS.Controllers
         /// Initialize filter form.
         /// </summary>
         /// <returns>Partial view which represents the filter form.</returns> 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo
