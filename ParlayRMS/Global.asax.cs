@@ -242,7 +242,7 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/MixParlay/js").Include("~/Scripts/Monitor/MixParlay.js"));
-
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/PotentialWinning/js").Include("~/Scripts/Monitor/PotentialWinning.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/SystemParlay/js").Include("~/Scripts/Monitor/SystemParlay.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/DangerMonitor/js").Include("~/Scripts/Monitor/DangerMonitor.js"));

@@ -179,7 +179,7 @@ div.match + div.league
     clear: both;
     float: left;
     max-width: 600px;
-    width: 352px;
+    width: 352px;  
 }
 .ticketStatus
 {
@@ -194,3 +194,4 @@ div.void
 {
     text-decoration: line-through;
 }
+

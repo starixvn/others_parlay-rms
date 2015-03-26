@@ -79,6 +79,8 @@
     <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
     <Compile Include="ManageUser\UpdateStatusModel.cs" />
     <Compile Include="MixPalayMonitor\DataModel.cs" />
+    <Compile Include="Monitoring\PotentialWinningDetailModel.cs" />
+    <Compile Include="Monitoring\PotentialWinningModel.cs" />
     <Compile Include="Monitoring\MixParlayBetDetails.cs" />
     <Compile Include="Monitoring\MixParlayBetDetailsOptions.cs" />
     <Compile Include="Monitoring\MonitoringCacheModel.cs" />

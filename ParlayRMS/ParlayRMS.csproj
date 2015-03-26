@@ -173,6 +173,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Content Include="Images\Content\betradar-icon.png" />
+    <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="SpNames.kbt67.xml" />
     <Content Include="SpNames.master.xml" />
     <Content Include="Images\Content\details-icon.png" />
@@ -627,6 +629,9 @@
     <Content Include="Web.prod.config" />
     <Content Include="Web.uat.config" />
     <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
+    <Content Include="Views\PotentialWinning\Index.cshtml" />
+    <Content Include="Views\PotentialWinning\Filter.cshtml" />
+    <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

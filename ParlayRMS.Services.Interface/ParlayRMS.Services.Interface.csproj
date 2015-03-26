@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Agents\IAgentService.cs" />
     <Compile Include="DangerMonitor\IDangerMonitorService.cs" />
+    <Compile Include="PotentialWinningMonitor\IPotentialWinningMonitor.cs" />
     <Compile Include="ViewIPInfo\IViewIPInfoService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
     <Compile Include="SystemParlayMonitor\ISystemParlayMonitorService.cs" />

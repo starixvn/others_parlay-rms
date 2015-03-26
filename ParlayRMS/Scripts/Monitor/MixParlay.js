@@ -485,7 +485,7 @@ function CreateRow(order, item) {
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
-    if (item.IsBetradar) {
+    if (item.IsBetRadar) {
         r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
     } else {
         r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';

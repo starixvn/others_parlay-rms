@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.PotentialWinningMonitor;
+}
+@Html.Action("Filter")
+<div id="noflash" style="display: none">
+    Adobe Flash Player or an HTML5 supported browser is required for this feature
+    <br />
+    Use one of the following ways to get it back:
+    <br />
+    <ul>
+        <li><a href="http://get.adobe.com/flashplayer" target="_blank">Download the latest Flash
+            Player </a></li>
+        <li><a href="https://www.youtube.com/html5" target="_blank">Upgrade to an HTML5 supported
+            browser </a></li>
+    </ul>
+</div>
+<div style="clear: both; display: none" id="divResult">
+    <div style="width: 1220px">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='50px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='120px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='180px' />
+                <col width='90px' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.No
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.TransTime
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.Username
+                    </th>
+                    <th colspan="4" class="header2rows">
+                        @ViewLang.BaseCurrency
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.TotalBets
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @ViewLang.Odds
+                    </th>
+                    <th data-col-type="float">
+                        @ViewLang.Stake
+                    </th>
+                    <th data-col-type="float">
+                        @ViewLang.WinningAmount
+                    </th>
+                    <th data-col-type="float">
+                        @ViewLang.CompanyLoseAmount
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 680px; width: 1210px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='50px' />
+                <col width='150px' />
+                <col width='150px' />
+                <col width='120px' />
+                <col width='120px' />
+                <col width='150px' />
+                <col width='180px' />
+                <col width='90px' />
+            </colgroup>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/Scripts/Monitor/PotentialWinning/js")
+@Scripts.Render("~/Scripts/Member/Core/js")
+<script type="text/javascript">
+    var _resource = {
+        'allSports': '@ViewLang.Allsports',
+        'soccerOnly': '@ViewLang.Socceronly',
+        'combinedSports': '@ViewLang.Combinedsports',
+        'otherSports': '@ViewLang.Othersports'
+    };    
+</script>

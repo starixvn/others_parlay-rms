@@ -834,4 +834,16 @@
   <data name="Today_only" xml:space="preserve">
     <value>Today only</value>
   </data>
+  <data name="PotentialWinningMonitor" xml:space="preserve">
+    <value>Potential Winning Monitor</value>
+  </data>
+  <data name="HousePT" xml:space="preserve">
+    <value>House PT</value>
+  </data>
+  <data name="PotentialCompanyLoseAmount" xml:space="preserve">
+    <value>Potential Company Lose Amount</value>
+  </data>
+  <data name="PotentialWinningAmount" xml:space="preserve">
+    <value>Potential Winning Amout</value>
+  </data>
 </root>

@@ -71,6 +71,7 @@
     <Compile Include="Groups\GroupsDataAccess.cs" />
     <Compile Include="Menus\MenusDataAccess.cs" />
     <Compile Include="Charts\ChartsDataAccess.cs" />
+    <Compile Include="PotentialWinningMonitor\PotentialWinningMonitorDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\SimilarBetsDataAccess.cs" />
     <Compile Include="SystemParlayMonitor\SystemParlayMonitorDataAccess.cs" />
