@@ -9,6 +9,7 @@
 namespace ParlayRMS.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
@@ -34,7 +35,8 @@ namespace ParlayRMS.Controllers
         /// <summary>
         /// Initialize filter form.
         /// </summary>
-        /// <returns>Partial view which represents the filter form.</returns>                
+        /// <returns>Partial view which represents the filter form.</returns> 
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo
@@ -48,6 +50,7 @@ namespace ParlayRMS.Controllers
                     Selected = true
                 });
             }
+
             combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = true });
             ViewBag.Combos = combos;
 

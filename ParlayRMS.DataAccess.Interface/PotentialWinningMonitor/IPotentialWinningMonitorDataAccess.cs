@@ -15,7 +15,7 @@ namespace ParlayRMS.DataAccess.Interface.PotentialWinningMonitor
     public interface IPotentialWinningMonitorDataAccess
     {
         /// <summary>
-        /// Gets Potential winning list
+        /// Gets Potential winning list.
         /// </summary>
         /// <param name="combos">Combo values.</param>
         /// <param name="sportsTypes">Sport types.</param>
