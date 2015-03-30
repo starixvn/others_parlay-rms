@@ -1519,7 +1519,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Potential Winning Amout.
+        ///   Looks up a localized string similar to Potential Winning Amount.
         /// </summary>
         public static string PotentialWinningAmount {
             get {

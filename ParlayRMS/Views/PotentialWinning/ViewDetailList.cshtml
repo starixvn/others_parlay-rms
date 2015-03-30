@@ -4,13 +4,13 @@
     <table class="sub" style="width: 100%">
         <colgroup>
             <col style="width: 50px" />
-            <col style="width: 150px" />
+            <col style="width: 180px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
-            <col style="width: 120px" />
+            <col style="width: 90px" />
             <col style="width: 80px" />
             <col style="width: 80px" />
             <col style="width: 80px" />
@@ -79,7 +79,7 @@
                         @item.Val.CompanyLoseAmount.ToString("#,##0.00")
                     </td>
                     <td class="numeric">
-                        <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip'), '_blank');">@item.Val.Ip</a>
+                        <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@item.Val.Ip</a>
                     </td>
                     <td class="numeric">
                         @item.Val.HousePT.ToString("#,##0.00")
@@ -87,8 +87,9 @@
                     <td class="center">
                         @item.Val.Combo
                     </td>
-                    <td>                        
-                        <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName',@item.Val.TransId, @item.Val.RefNo);">View</button>                        
+                    <td>
+                        <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName',@item.Val.TransId, @item.Val.RefNo);">
+                            View</button>
                     </td>
                 </tr>
             }
