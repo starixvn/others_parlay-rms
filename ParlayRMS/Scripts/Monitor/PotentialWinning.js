@@ -1,7 +1,6 @@
 ﻿var refreshTime = 60000;
-
-function Alert() {
-    var settings = settingsController.get();
+var isPressSubmit = false;
+function Alert() {    
     soundManager.play('aSound');
 }
 
@@ -301,6 +300,7 @@ $(document).ready(function () {
                 this.sortDirection = "";
             });
 
+            isPressSubmit = true;
             timerController.start();
         }
     });
@@ -349,54 +349,52 @@ $(document).ready(function () {
 function FillData(table, data) {
     var records = data.Records;
     var length = records.length;
-    var tbody = $(table).children('tbody');
+    var oldUserName = $(table).children('tbody').children('tr');
+    var tbody = $(table).children('tbody');    
+    
+    $(table).children('tbody').html('');
 
-    //Remove highlight rows
-    tbody.children('tr.highlight').each(function () {
-        $(this).removeAttr('class');
-    });
+    if (length > 0) {
+        Alert();
+        var r = new Array();
+        var j = -1;
+        for (var i = 0; i < length; i++) {
+            var item = records[i];
+            var isHighLight = true;
 
-    if (length > 0) {            
-        table.find('tr[custid]').remove();
-        var rows = tbody.children('tr');
-        if (rows.length == 0) {
-            Alert();
-            var r = new Array();
-            var j = -1;
-            for (var i = 0; i < length; i++) {
-                var item = records[i];
-                r[++j] = CreateRow(i + 1, item);
-            }
+            oldUserName.each(function () {
+                if ($(this).children('td').eq(2).text() == item.UserName) {
+                    isHighLight = false;
+                }
+            });
 
-            tbody.html(r.join(''));
-        } else {
-            rows.children('td.noinfo').remove();
-
-            var hasNewAccount = AddNewAccountToGird(records, tbody);
-            if (hasNewAccount) {
-                Alert();
-            }
-
-            tableSorter.sortColumn(table, 5, "asc", 'float');
-
-            RemoveRowOutOfSelectTop(tbody);
+            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));        
         }
+        
+        tbody.html(r.join(''));        
+
     } else {
 
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
             var noinfo = CreateNoInfoRow(10);
             tbody.append(noinfo);
         }
-
     }
 
+    isPressSubmit = false;
     $('#divResult').show();
 }
 
-function CreateRow(order, item) {
+function CreateRow(order, item, isHighLight) {
     var r = new Array();
     var j = -1;
-    r[++j] = '<tr id="tr_' + item.CustId + '">';
+    if (isHighLight) {
+        r[++j] = '<tr class="highlight" id="tr_' + item.CustId + '">';
+    }
+    else {
+        r[++j] = '<tr id="tr_' + item.CustId + '">';
+    }
+        
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
@@ -504,35 +502,6 @@ function ViewBetDetails(userName, transId, refNo) {
         },
         complete: function () {
             loading.hide();
-        }
-    });
-}
-
-function AddNewAccountToGird(records, tbody) {
-    var hasNewAccount = false;
-    for (var i = length - 1; i >= 0; i--) {
-        var item = records[i];
-        var row = $("#tr_" + item.CustId);
-        var newRow = CreateRow(i + 1, item);
-        if (row.length == 0) {
-            newRow = $(newRow);
-            tbody.prepend(newRow);
-            newRow.addClass('highlight');
-            hasNewAccount = true;
-        }
-    }
-
-    return hasNewAccount;
-}
-
-function RemoveRowOutOfSelectTop(tbody) {    
-    var trs = tbody.children('tr');
-    var settings = settingsController.get();
-    trs.each(function (index, tr) {
-        if (index + 1 > settings.selectTop) {
-            $(tr).remove();
-        } else {
-            $(tr).children('td:first').text(index + 1);
         }
     });
 }

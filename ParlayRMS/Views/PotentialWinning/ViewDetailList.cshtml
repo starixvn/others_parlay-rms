@@ -60,7 +60,7 @@
                     <td class="center">
                         @item.Ind
                     </td>
-                    <td>
+                    <td style="text-align: left">
                         @item.Val.TransDateString
                     </td>
                     <td class="numeric">
@@ -79,7 +79,13 @@
                         @item.Val.CompanyLoseAmount.ToString("#,##0.00")
                     </td>
                     <td class="numeric">
-                        <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@item.Val.Ip</a>
+                        @if (item.Val.Ip == null || item.Val.Ip == ""){
+                            <span>----</span>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@item.Val.Ip</a>
+                        }
                     </td>
                     <td class="numeric">
                         @item.Val.HousePT.ToString("#,##0.00")
