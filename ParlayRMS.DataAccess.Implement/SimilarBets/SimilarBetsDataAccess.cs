@@ -61,7 +61,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Refno = DbConverter.ToInt64(row["refno"]),
                                     Username = DbConverter.ToString(row["username"]),
                                     Level = DbConverter.ToInt32(row["level"]),
-                                    Max_Payout = DbConverter.ToDecimal(row["max_payout"]),
+                                    Max_Payout = DbConverter.ToDecimal(row["net_win"]),
                                     Similar_Combo = DbConverter.ToInt32(row["similar_combo"])
                                 })
                             };

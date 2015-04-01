@@ -33,7 +33,7 @@ namespace ParlayRMS.Services.Implement.SimilarBets
             {
                 data.Odds = Math.Round(data.Odds, 2);
                 data.Stake = Math.Round(data.Stake, 2);
-                data.Max_payout = Math.Round(data.Odds * data.Stake, 2);
+                data.Max_payout = Math.Round(data.Max_payout, 2);
             }
 
             return data;

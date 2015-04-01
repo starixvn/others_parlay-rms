@@ -36,7 +36,7 @@ namespace ParlayRMS.Services.Implement.TotalOutstanding
             {
                 item.Odds = Math.Round(item.Odds, 2);
                 item.StakePt = Math.Round(item.StakePt, 2);
-                item.MaxPayoutPt = Math.Round(item.Odds * item.StakePt, 2);
+                item.MaxPayoutPt = Math.Round(item.MaxPayoutPt, 2);
             }
 
             return data;
