@@ -50,7 +50,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             StakePt = reader.ToDecimal("stakept"),
-                            MaxPayoutPt = reader.ToDecimal("maxpayoutpt"),
+                            MaxPayoutPt = reader.ToDecimal("net_win"),
                             Combo = reader.ToInt32("combo")
                         });
                     }
@@ -86,7 +86,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             CustId = reader.ToInt64("custid"),
                             Username = reader.ToString("username"),
                             StakePt = reader.ToDecimal("stakept"),
-                            MaxPayoutPt = reader.ToDecimal("maxpayoutpt"),
+                            MaxPayoutPt = reader.ToDecimal("net_win"),
                             BetCount = reader.ToInt32("betcount")
                         });
                     }
