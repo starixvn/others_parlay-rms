@@ -348,6 +348,7 @@ $(document).ready(function () {
 
 function FillData(table, data) {
     var records = data.Records;
+    var isSound = false;
     var length = records.length;
     var oldUserName = $(table).children('tbody').children('tr');
     var tbody = $(table).children('tbody');    
@@ -355,7 +356,7 @@ function FillData(table, data) {
     $(table).children('tbody').html('');
 
     if (length > 0) {
-        Alert();
+        
         var r = new Array();
         var j = -1;
         for (var i = 0; i < length; i++) {
@@ -368,9 +369,15 @@ function FillData(table, data) {
                 }
             });
 
+            if (isHighLight) {
+                isSound = true;
+            }
             r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));        
         }
-        
+
+        if (isSound) {
+            Alert();
+        }
         tbody.html(r.join(''));        
 
     } else {
@@ -443,7 +450,7 @@ function ViewTotalBetDetails(custId) {
         var waitingImg = $('<img src="../Images/Content/icon_wait.gif")" />');
         td.html(waitingImg);
 
-        var userSettings = settingsController.validate();
+        var userSettings = settingsController.get();
         var userName = row.children('td').eq(2).text();
         var data = {
             Combos: userSettings.combos,

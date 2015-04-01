@@ -60,7 +60,7 @@
                     <td class="center">
                         @item.Ind
                     </td>
-                    <td style="text-align: left">
+                    <td class="right">
                         @item.Val.TransDateString
                     </td>
                     <td class="numeric">
@@ -79,7 +79,8 @@
                         @item.Val.CompanyLoseAmount.ToString("#,##0.00")
                     </td>
                     <td class="numeric">
-                        @if (item.Val.Ip == null || item.Val.Ip == ""){
+                        @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
+                        {
                             <span>----</span>
                         }
                         else
