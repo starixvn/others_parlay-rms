@@ -393,31 +393,31 @@ namespace ParlayRMS.ExcelService.Utility
 
             switch (newCell.CellType)
             {
-                case CellType.BOOLEAN:
+                case CellType.Boolean:
                     {
                         newCell.SetCellValue(oldCell.BooleanCellValue);
                         break;
                     }
 
-                case CellType.NUMERIC:
+                case CellType.Numeric:
                     {
                         newCell.SetCellValue(oldCell.NumericCellValue);
                         break;
                     }
 
-                case CellType.STRING:
+                case CellType.String:
                     {
                         newCell.SetCellValue(oldCell.StringCellValue);
                         break;
                     }
 
-                case CellType.ERROR:
+                case CellType.Error:
                     {
                         newCell.SetCellValue(oldCell.ErrorCellValue);
                         break;
                     }
 
-                case CellType.FORMULA:
+                case CellType.Formula:
                     {
                         newCell.CellFormula = oldCell.CellFormula;
                         break;
