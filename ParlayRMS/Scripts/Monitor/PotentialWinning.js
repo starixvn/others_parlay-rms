@@ -8,7 +8,7 @@ function UserSettings() {
     this.combos = '2,3,4,5,6';
     this.sportsTypes = '1,2,3';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
-    this.selectTop = 200;
+    this.selectTop = 200000;
     this.winningAmount = 0;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
@@ -351,12 +351,12 @@ function FillData(table, data) {
     var isSound = false;
     var length = records.length;
     var oldUserName = $(table).children('tbody').children('tr');
+    var viewTotalBetId = $(table).find("tr.details").attr('custid');
     var tbody = $(table).children('tbody');    
     
     $(table).children('tbody').html('');
 
-    if (length > 0) {
-        
+    if (length > 0) {        
         var r = new Array();
         var j = -1;
         for (var i = 0; i < length; i++) {
@@ -366,6 +366,7 @@ function FillData(table, data) {
             oldUserName.each(function () {
                 if ($(this).children('td').eq(2).text() == item.UserName) {
                     isHighLight = false;
+                    $(this).remove();
                 }
             });
 
@@ -378,8 +379,9 @@ function FillData(table, data) {
         if (isSound) {
             Alert();
         }
-        tbody.html(r.join(''));        
+        tbody.html(r.join(''));
 
+        ViewTotalBetDetails(viewTotalBetId);
     } else {
 
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
