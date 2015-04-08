@@ -57,7 +57,8 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                             IsNeutral = reader.ToBoolean("IsNeutral"),
                             MatchId = reader.ToInt32("matchid"),
                             MatchCode = reader.ToInt32("matchcode"),
-                            BetStatus = reader.ToString("betstatus")
+                            BetStatus = reader.ToString("betstatus"),
+                            BetCheck = reader.ToString("betcheck")
                         });
                     }
                 }

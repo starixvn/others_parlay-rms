@@ -54,7 +54,8 @@ namespace ParlayRMS.Services.Implement.BetList
                     MatchId = item.MatchId,
                     MatchCode = item.MatchCode.ToString(),
                     RefNo = refNo.ToString(),
-                    Status = item.Status
+                    Status = item.Status,
+                    BetCheck = item.BetCheck
                 };
 
                 result.Add(ticket);
