@@ -195,6 +195,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Content Include="Images\Content\1F.gif" />
+    <Content Include="Images\Content\1L.gif" />
     <Content Include="Images\Content\betradar-icon.png" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="SpNames.kbt67.xml" />
