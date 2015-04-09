@@ -34,12 +34,12 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
         /// <param name="combos">Combo values.</param>
         /// <returns>List of top winners.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(
-                                                         DateTime fromDate, 
-                                                         DateTime toDate, 
-                                                         DateTime moveBetsDay, 
-                                                         DateTime balanceUpDay, 
-                                                         int sportsType, 
-                                                         int selectTop, 
+                                                         DateTime fromDate,
+                                                         DateTime toDate,
+                                                         DateTime moveBetsDay,
+                                                         DateTime balanceUpDay,
+                                                         int sportsType,
+                                                         int selectTop,
                                                          string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
@@ -94,11 +94,11 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
         /// <param name="combos">Combo values.</param>
         /// <returns>Top winner details.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details(
-                                                                long custId, 
-                                                                DateTime fromDate, 
-                                                                DateTime toDate, 
-                                                                DateTime moveBetsDay, 
-                                                                int sportsType, 
+                                                                long custId,
+                                                                DateTime fromDate,
+                                                                DateTime toDate,
+                                                                DateTime moveBetsDay,
+                                                                int sportsType,
                                                                 string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
@@ -177,7 +177,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             IsNeutral = reader.ToBoolean("IsNeutral"),
                             MatchId = reader.ToInt32("matchid"),
                             MatchCode = reader.ToInt32("matchcode"),
-                            BetStatus = reader.ToString("betstatus")
+                            BetStatus = reader.ToString("betstatus"),
+                            BetCheck = reader.ToString("betcheck")
                         });
                     }
                 }
@@ -196,10 +197,10 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
         /// <param name="combos">Combo values.</param>
         /// <returns>Top winner bet details.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details_old(
-                                                                long custId, 
-                                                                DateTime fromDate, 
-                                                                DateTime toDate, 
-                                                                int sportsType, 
+                                                                long custId,
+                                                                DateTime fromDate,
+                                                                DateTime toDate,
+                                                                int sportsType,
                                                                 string combos)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
