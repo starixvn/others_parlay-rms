@@ -83,7 +83,7 @@ namespace ParlayRMS.Controllers
             ViewBag.WinningAmount = 20000;
 
             // Refresh Time
-            var refreshTime = new List<int> { 30, 60, 120 };
+            var refreshTime = new List<int> { 60, 120 };
             var refreshTimes = new List<SelectListItem>();
             foreach (var item in refreshTime)
             {
