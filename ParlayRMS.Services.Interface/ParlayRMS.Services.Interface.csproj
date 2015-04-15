@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.4-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.5-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
