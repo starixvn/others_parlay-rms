@@ -52,6 +52,7 @@
     <Compile Include="Groups\IGroupsDataAccess.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossDataAccess.cs" />
     <Compile Include="Menus\IMenusDataAccess.cs" />
+    <Compile Include="PotentialWinningMonitor\IPotentialWinningMonitorDataAccess.cs" />
     <Compile Include="SystemParlayMonitor\ISystemParlayMonitorDataAccess.cs" />
     <Compile Include="TotalOutstanding\ITotalOutstandingDataAccess.cs" />
     <Compile Include="Users\IUsersDataAccess.cs" />

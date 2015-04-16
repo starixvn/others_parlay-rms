@@ -36,7 +36,8 @@ namespace ParlayRMS.Services.Implement.BetList
             {
                 ITicket ticket = new Ticket
                 {
-                    BetId = item.TransId,
+                    TransId = item.TransId,
+                    BetId = null,
                     BetTypeId = item.BetType,
                     HomeId = item.HomeId,
                     AwayId = item.AwayId,
@@ -54,7 +55,8 @@ namespace ParlayRMS.Services.Implement.BetList
                     MatchId = item.MatchId,
                     MatchCode = item.MatchCode.ToString(),
                     RefNo = refNo.ToString(),
-                    Status = item.Status
+                    Status = item.Status,
+                    BetCheck = item.BetCheck
                 };
 
                 result.Add(ticket);

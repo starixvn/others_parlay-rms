@@ -50,5 +50,7 @@ namespace ParlayRMS.DTO.BetList
         public int MatchCode { get; set; }
 
         public string BetStatus { get; set; }
+
+        public string BetCheck { get; set; }
     }
 }

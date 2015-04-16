@@ -162,6 +162,15 @@ namespace ParlayRMS.Utility
             }
         }
 
+        public static string[] SelectTop
+        {
+            get
+            {
+                var value = GetValue("SelectTop");                
+                return value.Split(',');
+            }
+        }
+
         /// <summary>
         /// Gets configuration value of the given key.
         /// </summary>

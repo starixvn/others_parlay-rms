@@ -25,6 +25,7 @@
         public const string MemberWinLoss = "MemberWinLoss";
         public const string DangerMonitor = "DangerMonitor";
         public const string ViewIP = "ViewIP";
+        public const string MonitorPotentialWinning = "MonitorPotentialWinning";
         
     }
 }

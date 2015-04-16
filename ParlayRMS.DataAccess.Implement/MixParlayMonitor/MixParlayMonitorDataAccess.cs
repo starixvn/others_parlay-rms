@@ -77,7 +77,8 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             NetWinAfterPT = reader.ToDecimal("maxpayout"),
                             Combo = reader.ToInt32("combo"),
                             IP = reader.ToString("ip"),
-                            Level = reader.ToInt32("level")
+                            Level = reader.ToInt32("level"),
+                            IsBetRadar = reader.ToBoolean("IsBetRadar")
                         });
                     }
                 }

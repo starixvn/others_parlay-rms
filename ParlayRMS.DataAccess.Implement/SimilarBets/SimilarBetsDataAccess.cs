@@ -51,7 +51,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Username = DbConverter.ToString(info["username"]),
                                 Odds = DbConverter.ToDecimal(info["odds"]),
                                 Stake = DbConverter.ToDecimal(info["stake"]),
-                                Max_payout = DbConverter.ToDecimal(info["max_payout"]),
+                                Max_payout = DbConverter.ToDecimal(info["net_win"]),
                                 Combo = DbConverter.ToInt32(info["combo"]),
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
@@ -61,7 +61,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Refno = DbConverter.ToInt64(row["refno"]),
                                     Username = DbConverter.ToString(row["username"]),
                                     Level = DbConverter.ToInt32(row["level"]),
-                                    Max_Payout = DbConverter.ToDecimal(row["max_payout"]),
+                                    Max_Payout = DbConverter.ToDecimal(row["net_win"]),
                                     Similar_Combo = DbConverter.ToInt32(row["similar_combo"])
                                 })
                             };

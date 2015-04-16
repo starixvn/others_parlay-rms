@@ -36,5 +36,7 @@ namespace ParlayRMS.DTO.MixParlayMonitor
         public string IP { get; set; }
 
         public int Level { get; set; }
+
+        public bool IsBetRadar { get; set; }
     }
 }

@@ -1779,6 +1779,12 @@ b
 {
     text-align: right;
 }
+
+.left
+{
+    text-align: left;
+}
+
 .center
 {
     text-align: center;
@@ -2644,3 +2650,10 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     color: Red;
 }
 /*Refactor Section: End*/
+
+/* Betrada */
+.betRadar
+{
+    background: url(../Images/Content/betradar-icon.png) no-repeat;
+    background-position: 5% 50%;
+}

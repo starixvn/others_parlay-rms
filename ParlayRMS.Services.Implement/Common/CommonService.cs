@@ -9,6 +9,7 @@
 namespace ParlayRMS.Services.Implement.Common
 {
     using System;
+    using System.Collections.Generic;
     using Fanex.Caching;
     using ParlayRMS.DataAccess.Implement.Common;
     using ParlayRMS.DataAccess.Interface.Common;
@@ -63,6 +64,30 @@ namespace ParlayRMS.Services.Implement.Common
             {
                 result = this._commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
                 CacheServiceInstance.Set<RMS_Rpt_Parlay_SelMinTransdate>(key, result, TimeSpan.FromMinutes(1));
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get the list of bet type belong Bet radar.
+        /// </summary>
+        /// <returns>
+        /// Return the list bet type.
+        /// </returns>
+        public List<int> GetBettypeBelongsBetRadar()
+        {
+            if (!AppSetting.IsCache)
+            {
+                return this._commonDataAccess.GetBettypeBelongsBetRadar();
+            }
+
+            string key = "BettypeBelongsBetRadar";
+            var result = CacheServiceInstance.Get<List<int>>(key);
+            if (result == null)
+            {
+                result = this._commonDataAccess.GetBettypeBelongsBetRadar();
+                CacheServiceInstance.Set<List<int>>(key, result, TimeSpan.FromDays(1));
             }
 
             return result;

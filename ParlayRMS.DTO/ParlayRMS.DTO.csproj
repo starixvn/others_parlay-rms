@@ -56,6 +56,8 @@
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss.cs" />
     <Compile Include="Menus\RMS_MenuSel.cs" />
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />
+    <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning.cs" />
+    <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SystemParlayMonitor\RMS_Monitor_SystemParlay_Betlist.cs" />

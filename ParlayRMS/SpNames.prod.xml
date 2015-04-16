@@ -73,11 +73,13 @@
         <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_Parlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
         <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_Parlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_Parlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+        <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_Parlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0"/>
     </Function>
     <Function Name="Member">
         <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
@@ -101,5 +103,8 @@
     </Function>
   <Function name="SystemParlayMonitor">
      <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
+  </Function>
+  <Function name="common">
+    <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" Plain="0" />
   </Function>
 </Functions>

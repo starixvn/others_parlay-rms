@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.5-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Agents\IAgentService.cs" />
     <Compile Include="DangerMonitor\IDangerMonitorService.cs" />
+    <Compile Include="PotentialWinningMonitor\IPotentialWinningMonitor.cs" />
     <Compile Include="ViewIPInfo\IViewIPInfoService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
     <Compile Include="SystemParlayMonitor\ISystemParlayMonitorService.cs" />
