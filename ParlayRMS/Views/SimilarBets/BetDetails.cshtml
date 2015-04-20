@@ -19,6 +19,7 @@
     };
     $(function () {
         var arrTicket = tickets.ticket.split('-');
+        arrTicket = arrTicket.filter(function (value) { return value.length > 0; });
         for (var i = 0; i < arrTicket.length; i++) {
             $(".betdetails > div[id=" + arrTicket[i] + "] > div[class=ticketDetail] > div > div[class=match]").prepend('<div class="markDiv"></div>');
         }

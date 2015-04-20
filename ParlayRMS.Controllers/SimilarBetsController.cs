@@ -8,9 +8,9 @@
 
 namespace ParlayRMS.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -81,42 +81,36 @@ namespace ParlayRMS.Controllers
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = this._betlistService.CreateChoice(options.RefNo);
             var originalTickets = this._betlistService.CreateChoice(options.OriginalRefNo);
-            StringBuilder ticketsCompare = new StringBuilder();
+            
+            var ticketsCompare = new List<long>();
             foreach (var ticket in tickets)
             {
-                bool flag = false;
-                foreach (var originalTicket in originalTickets)
-                {
-                    if (originalTicket.LeagueId == ticket.LeagueId &&
+                var similar = originalTickets.Any(originalTicket =>
+                        originalTicket.LeagueId == ticket.LeagueId &&
                         originalTicket.SportTypeId == ticket.SportTypeId &&
                         originalTicket.HomeId == ticket.HomeId &&
                         originalTicket.AwayId == ticket.AwayId &&
                         originalTicket.BetTypeId == ticket.BetTypeId &&
-                        originalTicket.BetTeam == ticket.BetTeam)
-                    {
-                        flag = true;
-                    }
-                }
+                        originalTicket.BetTeam == ticket.BetTeam);
 
-                if (!flag)
+                if (!similar)
                 {
-                    ticketsCompare.Append(ticket.BetId);
-                    ticketsCompare.Append("-");
+                    ticketsCompare.Add(ticket.TransId);
                 }
 
                 if (tickets.Last() == ticket)
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
                 }
                 else
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
                 }
             }
 
             var model = new BetDetails();
             model.TicketDetail = builder.GetBetList();
-            model.TicketCompare = string.IsNullOrEmpty(ticketsCompare.ToString()) ? "null" : ticketsCompare.ToString().Substring(0, ticketsCompare.ToString().Length - 1);
+            model.TicketCompare = string.Join("-", ticketsCompare);
 
             return this.PartialView("BetDetails", model);
         }
