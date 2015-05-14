@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Functions>
     <Function Name="User">
         <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.bodb02.bodbAdminNet" Plain="0" />
@@ -99,10 +99,10 @@
       <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
       <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     </Function>
-  <Function name="SystemParlayMonitor">
+  <Function Name="SystemParlayMonitor">
      <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
-  <Function name="common">
+  <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" Plain="0" />
   </Function>
 </Functions>

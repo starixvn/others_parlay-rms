@@ -27,3 +27,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 ParlayRMS/ParlayRMS.Publish.xml
 ParlayRMS.sln.GhostDoc.xml
+
+/packages
+*.Publish.xml

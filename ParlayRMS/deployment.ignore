@@ -1,0 +1,11 @@
+\\*.local.config
+\\*.master.config
+\\*.uat.config
+\\*.pro.config
+\\*.kbt67.config
+\\*.local.xml
+\\*.master.xml
+\\*.uat.xml
+\\*.pro.xml
+\\*.kbt67.xml
+\\logs
