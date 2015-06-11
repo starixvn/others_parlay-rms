@@ -216,8 +216,12 @@
     <Content Include="Images\Content\1L.gif" />
     <Content Include="Images\Content\betradar-icon.png" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
-    <Content Include="SpNames.kbt67.xml" />
-    <Content Include="SpNames.master.xml" />
+    <Content Include="SpNames.kbt67.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SpNames.master.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Images\Content\details-icon.png" />
     <Content Include="Images\UnderMaintenance.gif" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
@@ -554,8 +558,12 @@
     <Content Include="DangerousAgents.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.master.config" />
-    <Content Include="Web.kbt67.config" />
+    <Content Include="Web.master.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.kbt67.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -623,9 +631,13 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
-    <Content Include="SpNames.local.xml" />
+    <Content Include="SpNames.local.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SpNames.prod.xml" />
-    <Content Include="SpNames.uat.xml" />
+    <Content Include="SpNames.uat.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -662,8 +674,12 @@
     <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
     <Content Include="Views\ViewIPInfo\BetDetails.cshtml" />
     <Content Include="Web.local.config" />
-    <Content Include="Web.prod.config" />
-    <Content Include="Web.uat.config" />
+    <Content Include="Web.prod.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />

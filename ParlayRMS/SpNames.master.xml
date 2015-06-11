@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="User">
-    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />

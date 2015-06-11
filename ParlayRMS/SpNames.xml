@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="User">
-    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBTXN.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
+    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBCUST.CustDB.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
@@ -79,7 +79,7 @@
     <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
     <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_Parlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_Parlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0"/>
+    <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_Parlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function Name="Member">
     <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
@@ -105,7 +105,6 @@
     <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" Plain="0" />
   </Function>
   <Function Name="common">
-    <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBRMS.bodb_RMS.bodbRMSNet1" Plain="0" />
+    <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" Plain="0" />
   </Function>
-
 </Functions>
