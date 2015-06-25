@@ -2205,7 +2205,7 @@ div.popuploading
     min-height: 20px;
     padding-top: 3px;
     padding-left: 10px;
-    background-image: url('../images/Content/ajax-loader-line-2.gif');
+    background-image: url('/images/Content/ajax-loader-line-2.gif');
 }
 
 /* Search Bar */
