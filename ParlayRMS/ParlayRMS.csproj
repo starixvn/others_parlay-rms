@@ -684,6 +684,11 @@
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />
     <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
+    <Content Include="SpNames.kbt67.xml">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </Content>
+    <Content Include="Web.kbt67.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
