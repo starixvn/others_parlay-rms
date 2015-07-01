@@ -216,7 +216,7 @@
     <Content Include="Images\Content\1L.gif" />
     <Content Include="Images\Content\betradar-icon.png" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
-    <Content Include="SpNames.kbt67.xml">
+    <Content Include="SpNames.BACKUPMNL.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SpNames.master.xml">
@@ -561,7 +561,7 @@
     <Content Include="Web.master.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.kbt67.config">
+    <Content Include="Web.BACKUPMNL.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="deployment.ignore">
