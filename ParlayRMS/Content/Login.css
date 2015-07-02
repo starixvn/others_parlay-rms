@@ -21,7 +21,7 @@
 .content .loginheader .loginlogo
 {
     background-position: center center;
-    background-image: url(../Images/Login/logo.png);
+    background-image: url("../../Images/Login/logo.png");
     background-repeat: no-repeat;
     width: 250px;
     height: 76px;
@@ -70,7 +70,7 @@ input.inputLogin
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     color: #fff;
-    background: url(../Images/Content/red_bt_bg.png) repeat-x center center;
+    background: url("../../Images/Content/red_bt_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -78,7 +78,7 @@ input.inputLogin
 }
 .button:hover
 {
-    background: url(../Images/Content/hoverbg.png) repeat-x center center;
+    background: url("../../Images/Content/hoverbg.png") repeat-x center center;
 }
 .errmsg
 {

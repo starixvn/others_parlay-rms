@@ -1636,7 +1636,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/red_bt_bg.png") repeat-x center center;
+    background: url("../../Images/Content/red_bt_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1650,7 +1650,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/hoverbg.png") repeat-x center center;
+    background: url("../../Images/Content/hoverbg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1862,7 +1862,7 @@ table.main > tbody > tr > td .tdDetailLink
     color: #006400;
     background-image: url('../Images/Content/details-icon.png');
     background-repeat: no-repeat;
-    padding-left: 18px; /* width of the image plus a little extra padding */
+    padding-left: 18px;  /* width of the image plus a little extra padding */
 }
 table.main > tbody > tr > td > a
 {
@@ -1957,9 +1957,7 @@ table.sub td.numeric
 }
 table .hr
 {
-    background-color: #d5d5d5;
-    height: 1px;
-    border: 0;
+    background-color: #d5d5d5; height: 1px; border: 0; 
 }
 /*Sub Table*/
 
@@ -2036,6 +2034,7 @@ a.datepicker
     font-size: 11px;
     font-weight: bold;
     color: #5F5F5F;
+    
 }
 .filter .filter-control a
 {
@@ -2120,7 +2119,7 @@ a.datepicker
 #divResult .subTotal
 {
     background-color: #EFEFEF;
-    color: #30465D;
+    color: 	#30465D;
     font-weight: bold;
 }
 .separateFooter
@@ -2294,7 +2293,7 @@ div.popuploading
     font-size: 12px;
     padding: 20px;
 }
-.popup-title
+.popup-title 
 {
     cursor: move;
 }
@@ -2499,6 +2498,7 @@ div.popuploading
 
 /* Popup */
 
+
 /* Tabs */
 .ui-tabs .ui-widget-header
 {
@@ -2628,29 +2628,25 @@ div.popuploading
 .levelNoneColor
 {
 }
-tr.highlight
-{
+tr.highlight {
     background-color: #FFDBA8 !important;
 }
 /* Member */
 
 /* Group */
-table.main > tbody > tr > td.grid-expand
-{
+table.main > tbody > tr > td.grid-expand {
     background: url(../Images/Content/expand-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
-table.main > tbody > tr > td.grid-collapse
-{
+table.main > tbody > tr > td.grid-collapse {
     background: url(../Images/Content/collapse-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
 /* Group */
 
-table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
-{
+table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     color: Red;
 }
 /*Refactor Section: End*/
