@@ -425,7 +425,6 @@ namespace ParlayRMS.DataAccess.Implement.Users
         {
             Hashtable param = new Hashtable();
             param.Add("on_userid", userId);
-            param.Add("username", userName);
 
             this.ExecSp("RMS_UserLogout", param);
         }
@@ -439,6 +438,8 @@ namespace ParlayRMS.DataAccess.Implement.Users
         {
             Hashtable param = new Hashtable();
             param.Add("username", username);
+            param.Add("custid", 0);
+            param.Add("roleid", 0);
             var r = ExecSp("RMS_CustomerSelInfoByUsername", param);
 
             return new RMS_CustomerSelInfoByUsername
