@@ -8,6 +8,10 @@
 
 namespace ParlayRMS
 {
+    using Fanex.Data.Configuration;
+    using Fanex.Logging;
+    using ParlayRMS.Web.Authorization;
+    using ParlayRMS.Web.Session;
     using System;
     using System.Data.SqlClient;
     using System.Diagnostics.CodeAnalysis;
@@ -17,10 +21,6 @@ namespace ParlayRMS
     using System.Web.Optimization;
     using System.Web.Routing;
     using System.Web.Security;
-    using Fanex.Data.Configuration;
-    using Fanex.Logging;
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Web.Session;
 
     /// <summary>
     /// MVC Application.
@@ -86,31 +86,34 @@ namespace ParlayRMS
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            // Logging
-            Exception ex = Server.GetLastError().GetBaseException();
-            if (!Request.IsLocal)
+            var exception = Server.GetLastError().GetBaseException();
+            var httpException = exception as HttpException;
+            if (httpException != null || Request.IsLocal)
             {
-                // Get base exception data
-                string message = ex.Message +
-                    "\r\nType: " + ex.GetType().ToString() +
-                    "\r\nSource: " + ex.Source +
-                    "\r\nUsername: " + CurrentSession.Instance.UserName +
-                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                    "\r\nForm: " + Request.Form.ToString() +
-                    "\r\nQueryString: " + Request.QueryString.ToString() +
-                    "\r\nTargetSite: " + ex.TargetSite +
-                    "\r\nStackTrace: " + ex.StackTrace;
-
-                // Get additional exception data
-                if (ex is SqlException)
-                {
-                    message += "\r\nProcedure: " + ((SqlException)ex).Procedure +
-                        "\r\nLine Number: " + ((SqlException)ex).LineNumber +
-                        "\r\nServer: " + ((SqlException)ex).Server;
-                }
-
-                LogService.Error(message);
+                return;
             }
+
+
+            // Get base exception data
+            var message = exception.Message +
+                "\r\nType: " + exception.GetType().ToString() +
+                "\r\nSource: " + exception.Source +
+                "\r\nUsername: " + CurrentSession.Instance.UserName +
+                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                "\r\nForm: " + Request.Form.ToString() +
+                "\r\nQueryString: " + Request.QueryString.ToString() +
+                "\r\nTargetSite: " + exception.TargetSite +
+                "\r\nStackTrace: " + exception.StackTrace;
+
+            // Get additional exception data
+            if (exception is SqlException)
+            {
+                message += "\r\nProcedure: " + ((SqlException)exception).Procedure +
+                    "\r\nLine Number: " + ((SqlException)exception).LineNumber +
+                    "\r\nServer: " + ((SqlException)exception).Server;
+            }
+
+            LogService.Error(message);
         }
 
         /// <summary>
