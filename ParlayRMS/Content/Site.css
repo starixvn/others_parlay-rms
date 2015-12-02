@@ -63,7 +63,7 @@ ul
 {
     margin-bottom: 2px;
     padding-top: 0;
-    background: url(../images/content/title_bg.png) repeat-x center center transparent;
+    background: url(images/content/title_bg.png) repeat-x center center transparent;
     height: 31px;
 }
 #mainPage .header.showcase .content
@@ -99,7 +99,7 @@ ul
 
 .body .header .toggler
 {
-    background: transparent url(../Images/Content/sprites.png) no-repeat 0 -12px;
+    background: transparent url(images/Content/sprites.png) no-repeat 0 -12px;
     position: absolute;
     top: 7px;
     left: -9999;
@@ -144,7 +144,7 @@ ul
     color: #3f4142;
     border: solid 1px #0A1E36;
     background-color: #3F536B;
-    background: url('../Images/Content/table_tltle_bg.gif') repeat-x center center #3F536B;
+    background: url('images/Content/table_tltle_bg.gif') repeat-x center center #3F536B;
     height: 28px;
     border-bottom: 0;
     color: #fff;
@@ -233,7 +233,7 @@ ul
 
 .scrollGridContent table.scrollGrid td div.active
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
     height: 19px;
@@ -242,7 +242,7 @@ ul
 }
 .scrollGridContent table.scrollGrid td div.inactive
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
     height: 19px;
@@ -252,7 +252,7 @@ ul
 
 .scrollGridContent table.scrollGrid td div.resetPassword
 {
-    background: url("../Images/Content/refresh_ico.png") no-repeat scroll 0px 0px transparent;
+    background: url("images/Content/refresh_ico.png") no-repeat scroll 0px 0px transparent;
     width: 15px;
     height: 15px;
     margin: auto;
@@ -294,7 +294,7 @@ table.scrollGrid th a
 
 table.scrollGrid th a span.sort.asc
 {
-    background: transparent url(../Images/Content/arw-down-white.png) no-repeat;
+    background: transparent url(images/Content/arw-down-white.png) no-repeat;
     width: 7px;
     height: 4px;
     line-height: 0;
@@ -432,7 +432,7 @@ table.scrollGrid td span.function
     padding-top: 10px;
     padding-right: 20px;
     height: 30px;
-    background: url('../images/Content/logo.png') no-repeat left transparent;
+    background: url('images/Content/logo.png') no-repeat left transparent;
     width: 111px;
 }
 
@@ -494,7 +494,7 @@ table.scrollGrid td span.function
     line-height: 5px;
     margin-left: 10px;
     margin-top: 5px;
-    background: url('../images/Content/dropdown.png') no-repeat center transparent;
+    background: url('images/Content/dropdown.png') no-repeat center transparent;
     height: 6px;
     width: 8px;
     cursor: pointer;
@@ -703,17 +703,17 @@ table.scrollGrid td span.function
     display: none;
     position: absolute;
     z-index: 500;
-    background: transparent url(../images/Tooltip/tipTop.png) no-repeat top;
+    background: transparent url(images/Tooltip/tipTop.png) no-repeat top;
 }
 
 .tipMid
 {
-    background: transparent url(../images/Tooltip/tipMid.png) repeat-y;
+    background: transparent url(images/Tooltip/tipMid.png) repeat-y;
     padding: 0 25px 20px 25px;
 }
 .tipBtm
 {
-    background: transparent url(../images/Tooltip/tipBtm.png) no-repeat bottom;
+    background: transparent url(images/Tooltip/tipBtm.png) no-repeat bottom;
     height: 32px;
 }
 
@@ -910,7 +910,7 @@ table.scrollGrid td span.function
     line-height: 20px;
     border-radius: 5px;
     padding: 2px 0px 2px 10px !important;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     margin-bottom: 12px;
     cursor: move;
 }
@@ -1065,7 +1065,7 @@ table.scrollGrid td span.function
 
 .boxMain .container .fieldbar table tr td div.inactive
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
     height: 19px;
@@ -1075,7 +1075,7 @@ table.scrollGrid td span.function
 
 .boxMain .container .fieldbar table tr td div.active
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
     height: 19px;
@@ -1171,7 +1171,7 @@ table.scrollGrid td span.function
     color: #974050;
     font-weight: bold;
     display: none;
-    background: url('../Images/Content/warning_1_20x20.png') no-repeat left transparent;
+    background: url('images/Content/warning_1_20x20.png') no-repeat left transparent;
     margin-left: 5px;
 }
 /* Minimize --------------------------------------------------------------------------*/
@@ -1184,7 +1184,7 @@ table.scrollGrid td span.function
     border-color: #0A1E36 #0A1E36 -moz-use-text-color;
     border-style: solid solid none;
     border-width: 1px 1px 0;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1262,7 +1262,7 @@ table.scrollGrid td span.function
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     border-color: #0A1E36 #0A1E36 -moz-use-text-color;
     border-style: solid solid none;
     border-width: 1px 1px 0;
@@ -1636,7 +1636,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../../Images/Content/red_bt_bg.png") repeat-x center center;
+    background: url("images/Content/red_bt_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1650,7 +1650,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../../Images/Content/hoverbg.png") repeat-x center center;
+    background: url("images/Content/hoverbg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1665,7 +1665,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/disable_button_bg.png") repeat-x center center;
+    background: url("images/Content/disable_button_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1680,7 +1680,7 @@ div.tabularcontainer table tr th.Nobackground
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("../Images/Content/disable_button_bg.png") repeat-x center center;
+    background: url("images/Content/disable_button_bg.png") repeat-x center center;
     cursor: pointer;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 11px;
@@ -1718,7 +1718,7 @@ div.tabularcontainer table tr th.Nobackground
 {
     width: 30px;
     height: 20px;
-    background-image: url("../Images/Content/back.png");
+    background-image: url("images/Content/back.png");
     background-repeat: no-repeat;
     background-position: right;
     cursor: pointer;
@@ -1759,7 +1759,7 @@ b
 /*Bet Details*/
 .excel
 {
-    background-image: url("../Images/Content/icon/excel_icon_small.gif");
+    background-image: url("images/Content/icon/excel_icon_small.gif");
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -1860,9 +1860,9 @@ table.main > tbody > tr > td .tdDetailLink
     font-weight: bold;
     padding: 1px 3px;
     color: #006400;
-    background-image: url('../Images/Content/details-icon.png');
+    background-image: url('images/Content/details-icon.png');
     background-repeat: no-repeat;
-    padding-left: 18px;  /* width of the image plus a little extra padding */
+    padding-left: 18px; /* width of the image plus a little extra padding */
 }
 table.main > tbody > tr > td > a
 {
@@ -1957,7 +1957,9 @@ table.sub td.numeric
 }
 table .hr
 {
-    background-color: #d5d5d5; height: 1px; border: 0; 
+    background-color: #d5d5d5;
+    height: 1px;
+    border: 0;
 }
 /*Sub Table*/
 
@@ -1984,7 +1986,7 @@ div.details
 }
 div.details div.title
 {
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     border-color: #0A1E36 #0A1E36 -moz-use-text-color;
     border-radius: 3px 3px 3px 3px;
     border-style: solid solid none;
@@ -2022,7 +2024,7 @@ a.datepicker
     display: block;
     text-indent: -2000px;
     overflow: hidden;
-    background: url(../Images/Content/calendar.png) no-repeat;
+    background: url(images/Content/calendar.png) no-repeat;
 }
 /*Details Cell*/
 
@@ -2034,7 +2036,6 @@ a.datepicker
     font-size: 11px;
     font-weight: bold;
     color: #5F5F5F;
-    
 }
 .filter .filter-control a
 {
@@ -2119,7 +2120,7 @@ a.datepicker
 #divResult .subTotal
 {
     background-color: #EFEFEF;
-    color: 	#30465D;
+    color: #30465D;
     font-weight: bold;
 }
 .separateFooter
@@ -2132,7 +2133,7 @@ a.datepicker
 .arrowDown_div
 {
     clear: both;
-    background: url('../images/Content/dropdown.png') no-repeat right transparent;
+    background: url('images/Content/dropdown.png') no-repeat right transparent;
     height: 10px;
     width: 10px;
     cursor: pointer;
@@ -2144,7 +2145,7 @@ a.datepicker
 .arrowDown_table
 {
     clear: both;
-    background: url('../images/Content/dropdown.png') no-repeat right transparent;
+    background: url('images/Content/dropdown.png') no-repeat right transparent;
     height: 10px;
     width: 10px;
     cursor: pointer;
@@ -2156,7 +2157,7 @@ a.datepicker
 .arrowDown
 {
     clear: both;
-    background: url('../images/Content/dropdown.png') no-repeat right transparent;
+    background: url('images/Content/dropdown.png') no-repeat right transparent;
     height: 10px;
     width: 10px;
     cursor: pointer;
@@ -2178,17 +2179,17 @@ th.sortable
 {
     cursor: pointer;
     padding-right: 10px;
-    background: url('../images/Content/tablesort.png') no-repeat 99% center transparent;
+    background: url('images/Content/tablesort.png') no-repeat 99% center transparent;
 }
 
 th.headerSortUp
 {
-    background-image: url('../images/Content/tablesortup.png');
+    background-image: url('images/Content/tablesortup.png');
 }
 
 th.headerSortDown
 {
-    background-image: url('../images/Content/tablesortdown.png');
+    background-image: url('images/Content/tablesortdown.png');
 }
 
 /*Refactor Section: Begin*/
@@ -2204,7 +2205,7 @@ div.popuploading
     min-height: 20px;
     padding-top: 3px;
     padding-left: 10px;
-    background-image: url('../images/Content/ajax-loader-line-2.gif');
+    background-image: url('images/Content/ajax-loader-line-2.gif');
 }
 
 /* Search Bar */
@@ -2293,7 +2294,7 @@ div.popuploading
     font-size: 12px;
     padding: 20px;
 }
-.popup-title 
+.popup-title
 {
     cursor: move;
 }
@@ -2460,7 +2461,7 @@ div.popuploading
     color: #974050;
     font-weight: bold;
     display: none;
-    background: url('../Images/Content/warning_1_20x20.png') no-repeat left transparent;
+    background: url('images/Content/warning_1_20x20.png') no-repeat left transparent;
     margin-left: 5px;
 }
 
@@ -2498,11 +2499,10 @@ div.popuploading
 
 /* Popup */
 
-
 /* Tabs */
 .ui-tabs .ui-widget-header
 {
-    background: url(../images/content/title_bg.png) repeat-x center center transparent;
+    background: url(images/content/title_bg.png) repeat-x center center transparent;
     border: none;
 }
 .ui-tabs .ui-state-active
@@ -2512,7 +2512,7 @@ div.popuploading
 }
 .ui-tabs .ui-state-default
 {
-    background: url(../images/content/title_bg.png) repeat-x center center transparent;
+    background: url(images/content/title_bg.png) repeat-x center center transparent;
     background-color: #EFEFEF !important;
 }
 .ui-tabs .ui-widget-content
@@ -2529,7 +2529,7 @@ div.popuploading
 /* Function Permission */
 #tblFunction .active
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
     height: 19px;
@@ -2538,7 +2538,7 @@ div.popuploading
 }
 #tblFunction .inactive
 {
-    background-image: url("../Images/Content/checkbox.png");
+    background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
     height: 19px;
@@ -2628,25 +2628,29 @@ div.popuploading
 .levelNoneColor
 {
 }
-tr.highlight {
+tr.highlight
+{
     background-color: #FFDBA8 !important;
 }
 /* Member */
 
 /* Group */
-table.main > tbody > tr > td.grid-expand {
-    background: url(../Images/Content/expand-small.png) 4px no-repeat;
+table.main > tbody > tr > td.grid-expand
+{
+    background: url(images/Content/expand-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
-table.main > tbody > tr > td.grid-collapse {
-    background: url(../Images/Content/collapse-small.png) 4px no-repeat;
+table.main > tbody > tr > td.grid-collapse
+{
+    background: url(images/Content/collapse-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
 /* Group */
 
-table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
+table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
+{
     color: Red;
 }
 /*Refactor Section: End*/
@@ -2654,6 +2658,6 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
 /* Betrada */
 .betRadar
 {
-    background: url(../Images/Content/betradar-icon.png) no-repeat;
+    background: url(images/Content/betradar-icon.png) no-repeat;
     background-position: 5% 50%;
 }
