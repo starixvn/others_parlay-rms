@@ -30,3 +30,5 @@ ParlayRMS.sln.GhostDoc.xml
 
 /packages
 *.Publish.xml
+Backup*/**
+UpgradeLo*.htm
