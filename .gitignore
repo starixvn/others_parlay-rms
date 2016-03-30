@@ -32,3 +32,4 @@ ParlayRMS.sln.GhostDoc.xml
 *.Publish.xml
 Backup*/**
 UpgradeLo*.htm
+*.gpState

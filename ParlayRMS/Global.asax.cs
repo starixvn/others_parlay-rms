@@ -93,7 +93,6 @@ namespace ParlayRMS
                 return;
             }
 
-
             // Get base exception data
             var message = exception.Message +
                 "\r\nType: " + exception.GetType().ToString() +
@@ -136,7 +135,7 @@ namespace ParlayRMS
             routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+                defaults: new { id = System.Web.Http.RouteParameter.Optional });
 
             routes.MapRoute(
                 name: "Default",

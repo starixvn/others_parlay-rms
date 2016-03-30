@@ -39,11 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.5-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.11.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.11.0.1\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\IAgentService.cs" />
@@ -69,10 +68,6 @@
     <Compile Include="Winloss\IWinlossService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
-      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
-      <Name>ParlayRMS.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>
@@ -82,7 +77,10 @@
       <Name>ParlayRMS.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
