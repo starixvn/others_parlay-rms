@@ -92,7 +92,7 @@ function Chart(containerId, url, dataHandler) {
 
     this.showtext = function (text) {
         container.css('display', 'block');
-        var div = "<div id='applicabletext' class='chart chartText'>" + text + "</div>"
+        var div = "<div id='applicabletext' class='chart chartText'>" + text + "</div>";
         container.html(div);
         this.stop();
     };
@@ -182,7 +182,7 @@ function SummaryChart(containerId, url, dataHandler) {
             Other_Sports: x.Other_Sports,
             maxTransId: maxTransId
         };
-    }
+    };
     Chart.call(this, containerId, url, dataHandler);
 }
 

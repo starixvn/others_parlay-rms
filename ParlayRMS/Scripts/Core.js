@@ -44,7 +44,7 @@ ParlayRMS.Core =
 
         window.open(url, '_blank', '' + ',' + formatter);
     }
-}
+};
 
 $(document).ready(function () {
     initValues();
@@ -159,7 +159,7 @@ function Minimize(target, minimizeId, divTitle) {
 
 Number.prototype.round = function (dec) {
     return Math.round(this * Math.pow(10, dec)) / Math.pow(10, dec);
-}
+};
 
 Number.prototype.format2d = function () {
     text = this.round(2).toString();
@@ -171,7 +171,7 @@ Number.prototype.format2d = function () {
         x1 = x1.replace(rgx, "$1" + ',' + "$2");
     }
     return x1 + x2;
-}
+};
 
 function Button() {
     this.disabled = function (id) {
@@ -258,7 +258,7 @@ function FormatNumber(event, isFloat) {
         caretPosition = caretPosition + 1;
     SetCaretPosition(obj, caretPosition);
     return true;
-};
+}
 
 // Sets the caret (cursor) position of the specified text field.
 function SetCaretPosition(oField, iCaretPos) {
@@ -301,7 +301,7 @@ function GetCaretPosition(oField) {
 
     // Return results
     return (iCaretPos);
-};
+}
 
 function FormatNumberFloat(number) { // Format a number to 12,345
     if (number != String.Empty) {
@@ -319,7 +319,7 @@ function FormatNumberFloat(number) { // Format a number to 12,345
     }
 
     return number;
-};
+}
 
 function htmlEncode(value) {
     return $('<div/>').text(value).html();

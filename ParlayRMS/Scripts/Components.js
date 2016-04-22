@@ -4,7 +4,7 @@
         if (!container) {
             container = $('#loading');
         }
-    }
+    };
     return {
         show: function () {
             init();
@@ -14,7 +14,7 @@
             init();
             container.hide('fade');
         }
-    }
+    };
 } ();
 
 // loadingHelper object helps to show or hide loading based on running tasks
@@ -28,7 +28,7 @@ var loadingHelper = function () {
         else {
             loading.show();
         }
-    }
+    };
 
     return {
         increaseTask: function () {
@@ -43,7 +43,7 @@ var loadingHelper = function () {
 
             return taskCount;
         }
-    }
+    };
 } ();
 
 // alert box
@@ -229,7 +229,7 @@ var tableSorter = function () {
                 return this.parentNode;
             });
         }
-    }
+    };
 } ();
 
 var popup = function () {
@@ -280,7 +280,7 @@ var popup = function () {
             messageContainer.hide('fade');
             messageContainer.html('');
         }
-    }
+    };
 } ();
 
 var validator = function () {
@@ -309,13 +309,13 @@ var validator = function () {
                     hint.style.display = 'none';
                 };
                 document.body.appendChild(hint);
-            };
+            }
             hintPointer = hint.lastChild;
             hint.firstChild.innerHTML = message;
             if (this.timeOutHideTooltip) {
                 clearTimeout(this.timeOutHideTooltip);
                 this.timeOutHideTooltip = null;
-            };
+            }
             this.timeOutHideTooltip = setTimeout(function () {
                 hint.style.display = 'none';
             }, 10000); // Auto hide in 10s
@@ -340,7 +340,7 @@ var validator = function () {
                     hint.style.display = 'none';
                 };
                 elementInput.focus();
-            };
+            }
             hint.style.display = 'block';
         },
         hide: function () {
@@ -428,13 +428,13 @@ var validator = function () {
                     yScroll = document.body.scrollTop;
                     xScroll = document.body.scrollLeft;
                 }
-                return [xScroll, yScroll]
+                return [xScroll, yScroll];
             },
             // Finds the position of an element relative to the viewport.
             findPosRelativeToViewport: function (obj) {
-                var objPos = this.findPos(obj)
-                var scroll = this.getPageScroll()
-                return [objPos[0] - scroll[0], objPos[1] - scroll[1]]
+                var objPos = this.findPos(obj);
+                var scroll = this.getPageScroll();
+                return [objPos[0] - scroll[0], objPos[1] - scroll[1]];
             }
         }
     };
@@ -454,7 +454,7 @@ var validator = function () {
                 $(element).focus();
                 hint.show($(element).get(0), 'Order value must be greater or than 0');
                 return true;
-            };
+            }
             return false;
         },
         validateDate: function (element) {
@@ -514,5 +514,5 @@ var closeBox = function () {
                 container.remove();
             });
         }
-    }
+    };
 } ();
