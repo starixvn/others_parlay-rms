@@ -2,7 +2,8 @@
     <div class="filter-control" style="border: 1px solid black; width: 100%;">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -19,27 +20,31 @@
                                 @Html.DropDownList("combo", (List<SelectListItem>)ViewBag.Combos, new { multiple = "multiple" })
                             </td>
                             <td style="width: 90px">
+                                @Html.Label("parlayType", ViewLang.ParlayType, new { @class = "lable" })
+                            </td>
+                            <td style="width: 150px">
+                                @Html.DropDownList("parlayType", (List<SelectListItem>)ViewBag.ParlayTypes, new { multiple = "multiple" })
+                            </td>
+                            <td style="width: 90px">
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
                             <td style="width: 150px">
                                 @Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes, new { multiple = "multiple" })
                             </td>
-                            <td style="width: 25px">
-                            </td>
-                            <td colspan="2" style="width: 135px">
+                            <td style="width: 15px"></td>
+                            <td style="width: 185px">
                                 <input type="radio" id="radStakeAfterPT" checked="checked" name="radFilterAfterPT"
-                                    value="1">
-                                @Html.Label("radStakeAfterPT", ViewLang.StakeAfterPT, new { @class = "lable" })
+                                       value="1">
+                                @Html.Label("radStakeAfterPT", ViewLang.AverageStakeAfterPT, new { @class = "lable" })
                             </td>
-                            <td style="width: 140px">
+                            <td style="width: 175px">
                                 <input type="radio" id="radNetWinAfterPT" name="radFilterAfterPT" value="2">
                                 @Html.Label("radNetWinAfterPT", ViewLang.NetWinAfterPT, new { @class = "lable" })
                             </td>
                             <td>
                                 @Html.TextBox("filterAfterPT", (string)ViewBag.NetWinStakeAfterPT, new { @maxlength = 15 })
                             </td>
-                            <td>
-                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -55,28 +60,25 @@
                                 @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
                             </td>
                             <td>
-                            </td>
-                            <td style="width: 30px">
                                 @Html.Label("market", ViewLang.Market, new { @class = "lable" })
                             </td>
-                            <td style="width: 100px">
+                            <td>
                                 @Html.DropDownList("market", (List<SelectListItem>)ViewBag.Markets, new { multiple = "multiple" })
                             </td>
-                            <td>
+                            <td></td>
+                            <td colspan="2">
                                 @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
-                            </td>
-                            <td>
                                 @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
-                            </td>
-                            <td>
                                 <div id="refreshNow" style="width: 140px">
                                     @ViewLang.RefreshNow
                                     <div id="timer" style="float: right; width: 30px; padding-left: 2px;">
-                                        [60]</div>
+                                        [60]
+                                    </div>
                                 </div>
                             </td>
                             <td>
-                                @Html.CheckBox("pause", new { style = "float:left; margin-top: 7px;" }) @Html.Label("pause", @ViewLang.Pause, new { @class = "lable" })
+                                @Html.CheckBox("pause", new { style = "float:left; margin-top: 7px;" })
+                                @Html.Label("pause", @ViewLang.Pause, new { @class = "lable" })
                             </td>
                             <td>
                                 <button id="submit" class="button">

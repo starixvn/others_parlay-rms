@@ -1080,10 +1080,10 @@
     <Content Include="Views\ManageMember\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\Index.cshtml" />
+    <Content Include="Views\ParlayMonitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\BetDetails.cshtml" />
+    <Content Include="Views\ParlayMonitor\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Language.cshtml" />
@@ -1101,7 +1101,7 @@
     <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\Filter.cshtml" />
+    <Content Include="Views\ParlayMonitor\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ManageUser\ResetOwnerPassword.cshtml" />

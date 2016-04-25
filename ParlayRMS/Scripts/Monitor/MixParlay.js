@@ -60,6 +60,14 @@ var settingsController = function () {
                 return null;
             }
 
+            var parlayTypes = $("#parlayType").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (combos == '') {
+                Validators.show($("#parlayType").multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
             var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
@@ -223,6 +231,28 @@ $(document).ready(function () {
         height: 136,
         create: function () {
             $("#combo").multiselect();
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+    $("#parlayType").multiselect({
+        minWidth: 132,
+        height: 82,
+        create: function () {
+            $("#parlayType").multiselect();
         },
         selectedText: function (numChecked, numTotal, checkedItems) {
             if (numChecked == 0) {

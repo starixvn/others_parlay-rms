@@ -846,4 +846,19 @@
   <data name="PotentialWinningAmount" xml:space="preserve">
     <value>Potential Winning Amount</value>
   </data>
+  <data name="ComboParlay" xml:space="preserve">
+    <value>Combo Parlay</value>
+  </data>
+  <data name="TenUp" xml:space="preserve">
+    <value>10 UP</value>
+  </data>
+  <data name="AverageStakeAfterPT" xml:space="preserve">
+    <value>Average Stake after PT</value>
+  </data>
+  <data name="ParlayMonitor" xml:space="preserve">
+    <value>Parlay Monitor</value>
+  </data>
+  <data name="ParlayType" xml:space="preserve">
+    <value>Parlay type</value>
+  </data>
 </root>
