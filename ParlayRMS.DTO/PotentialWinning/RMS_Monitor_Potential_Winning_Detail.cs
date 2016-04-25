@@ -21,13 +21,15 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public long TransId { get; set; }
 
-        public long RefNo { get; set; }        
+        public long RefNo { get; set; }
 
         public decimal Odds { get; set; }
 
+        public decimal AverageStake { get; set; }
+
         public decimal Stake { get; set; }
 
-        public int SportType { get; set; }        
+        public int SportType { get; set; }
 
         public decimal WinningAmount { get; set; }
 
@@ -37,6 +39,12 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public decimal HousePT { get; set; }
 
-        public int Combo { get; set; }        
+        public int TotalBet { get; set; }
+
+        public int TotalSelection { get; set; }
+
+        public string ComboType { get; set; }
+
+        public int Combo { get; set; }
     }
 }

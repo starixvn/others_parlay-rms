@@ -8,9 +8,6 @@
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.BetList;
@@ -20,6 +17,9 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Monitor Controller.
@@ -53,6 +53,12 @@ namespace ParlayRMS.Controllers
 
             combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = true });
             ViewBag.Combos = combos;
+
+            // Parlay type
+            var parlayTypes = new List<SelectListItem>();
+            parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString(), Selected = true });
+            parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
+            ViewBag.ParlayTypes = parlayTypes;
 
             // Sports Type
             var sportsTypes = new List<SelectListItem>();

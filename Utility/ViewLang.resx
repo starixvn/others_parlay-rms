@@ -864,4 +864,13 @@
   <data name="TotalSelections" xml:space="preserve">
     <value>Total Selections</value>
   </data>
+  <data name="AverageStake" xml:space="preserve">
+    <value>Average Stake</value>
+  </data>
+  <data name="TotalBet" xml:space="preserve">
+    <value>Total Bet</value>
+  </data>
+  <data name="TotalSelection" xml:space="preserve">
+    <value>Total Selection</value>
+  </data>
 </root>
