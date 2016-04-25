@@ -130,16 +130,17 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
-        public ActionResult MixParlayData(DataModel model)
+        public ActionResult Data(DataModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
             var service = GetMixParlayService();
             var data = service.GetMixParlayMonitorTickets(
                                 model.Combos,
+                                model.ParlayTypes,
                                 model.SportsTypes,
                                 model.Levels,
                                 model.StakeAfterPT,
@@ -161,7 +162,7 @@ namespace ParlayRMS.Controllers
                 var combos = model.Combos.Split(',');
                 if (combos.Length < 5)
                 {
-                    combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
+                    combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
                 }
 
                 var sportsTypesTitle = "All";
@@ -236,7 +237,7 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
-        public ActionResult MixParlayBetDetails(MixParlayBetDetailsOptions options)
+        public ActionResult BetDetails(MixParlayBetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;
             ViewBag.Username = options.Username;

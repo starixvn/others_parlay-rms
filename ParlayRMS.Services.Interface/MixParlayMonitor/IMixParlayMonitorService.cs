@@ -28,8 +28,9 @@ namespace ParlayRMS.Services.Interface.MixParlayMonitor
         /// <returns>
         /// List of RMS_Monitor_Parlay_BetList objects.
         /// </returns>
-        IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
+        IEnumerable<RMS_Monitor_ComboParlay_Betlist> GetMixParlayMonitorTickets(
             string combos,
+            string parlayTypes,
             string sportTypes,
             string levels,
             decimal stakeAfterPT,

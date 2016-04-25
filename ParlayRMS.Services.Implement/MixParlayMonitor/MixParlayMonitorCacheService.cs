@@ -8,11 +8,9 @@
 
 namespace ParlayRMS.Services.Implement.MixParlayMonitor
 {
-    using System.Collections.Generic;
-    using Fanex.Caching;
     using ParlayRMS.DTO.MixParlayMonitor;
     using ParlayRMS.Services.Interface.MixParlayMonitor;
-    using ParlayRMS.Web.Session;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Mix Parlay Monitor Cache Service.
@@ -36,8 +34,9 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <returns>
         /// List of Monitor Parlay Bets.
         /// </returns>
-        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
+        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> GetMixParlayMonitorTickets(
             string combos,
+            string parlayTypes,
             string sportsTypes,
             string levels,
             decimal stakeAfterPT,
@@ -47,20 +46,20 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
             long maxTransId,
             string markets)
         {
-            return MixparlayService.GetMixParlayMonitorTickets(combos, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            return MixparlayService.GetMixParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
         }
 
         ////private MixParlayMonitorTicketCache GetMixParlayMonitorTicketCache(
         ////    string combos, string sportsTypes, string levels, decimal maxPayout, int selectTop, long maxTransId)
         ////{
-        ////    var key = "RMS.MONITOR.MIXPARLAY." + string.Join("_", new string[] 
-        ////    { 
-        ////        combos, 
-        ////        sportsTypes, 
-        ////        levels, 
-        ////        maxPayout.ToString(), 
-        ////        selectTop.ToString(), 
-        ////        maxTransId.ToString() 
+        ////    var key = "RMS.MONITOR.MIXPARLAY." + string.Join("_", new string[]
+        ////    {
+        ////        combos,
+        ////        sportsTypes,
+        ////        levels,
+        ////        maxPayout.ToString(),
+        ////        selectTop.ToString(),
+        ////        maxTransId.ToString()
         ////    });
         ////    var result = cacheService.Get<MixParlayMonitorTicketCache>(key);
         ////    if (result == null)

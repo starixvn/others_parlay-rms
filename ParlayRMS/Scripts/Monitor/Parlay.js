@@ -9,7 +9,8 @@ function Alert() {
 }
 
 function UserSettings() {
-    this.combos = '2,3,4,5,6';
+    this.combos = '2,3,4,5,6,7,8,9,10';
+    this.parlayTypes = '1,2';
     this.sportsTypes = '1,2,3';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 20;
@@ -19,6 +20,7 @@ function UserSettings() {
     this.reportType = 1;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
+            && this.parlayTypes == settings.parlayTypes
             && this.sportsTypes == settings.sportsTypes
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
@@ -39,7 +41,7 @@ var uiController = function () {
             return $('#pause').is(':checked');
         }
     }
-} ();
+}();
 
 var settingsController = function () {
     var current = new UserSettings();
@@ -63,7 +65,7 @@ var settingsController = function () {
             var parlayTypes = $("#parlayType").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
-            if (combos == '') {
+            if (parlayTypes == '') {
                 Validators.show($("#parlayType").multiselect("getButton").get(0), 'Please select your options');
                 return null;
             }
@@ -108,6 +110,7 @@ var settingsController = function () {
 
             var userSettings = new UserSettings();
             userSettings.combos = combos;
+            userSettings.parlayTypes = parlayTypes;
             userSettings.sportsTypes = sportsTypes;
             userSettings.levels = levels;
             userSettings.reportType = reportType;
@@ -124,7 +127,7 @@ var settingsController = function () {
             return userSettings;
         }
     }
-} ();
+}();
 
 var timerController = function () {
     var timeout = null;
@@ -142,6 +145,7 @@ var timerController = function () {
         var settings = settingsController.get();
         var data = {
             combos: settings.combos,
+            parlayTypes: settings.parlayTypes,
             sportsTypes: settings.sportsTypes,
             levels: settings.levels,
             stakeAfterPT: settings.stakeAfterPT,
@@ -153,7 +157,7 @@ var timerController = function () {
         }
 
         $.ajax({
-            url: resolveClientUrl('Monitor/MixParlayData'),
+            url: resolveClientUrl('ParlayMonitor/Data'),
             type: 'POST',
             data: data,
             dataType: 'html',
@@ -214,7 +218,7 @@ var timerController = function () {
             }
         }
     }
-} ();
+}();
 
 $(document).ready(function () {
     $("#filterAfterPT").bind('keyup', function (event) {
@@ -564,7 +568,7 @@ function ViewBetDetails(userName, transId, refNo) {
     }
 
     $.ajax({
-        url: resolveClientUrl('Monitor/MixParlayBetDetails'),
+        url: resolveClientUrl('ParlayMonitor/BetDetails'),
         type: 'POST',
         data: data,
         dataType: 'html',

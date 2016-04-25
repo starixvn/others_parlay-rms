@@ -28,8 +28,9 @@ namespace ParlayRMS.DataAccess.Interface.MixParlayMonitor
         /// <returns>
         /// List of RMS_Monitor_Parlay_BetList objects.
         /// </returns>
-        IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
+        IEnumerable<RMS_Monitor_ComboParlay_Betlist> RMS_Monitor_ComboParlay_Betlist(
             string combos,
+            string parlayTypes,
             string sportsTypes,
             string levels,
             decimal stakeAfterPT,

@@ -872,7 +872,7 @@
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.min.js" />
     <Content Include="Scripts\ManageMember.js" />
     <Content Include="Scripts\Libs\contextmenu\jquery.contextMenu.js" />
-    <Content Include="Scripts\Monitor\MixParlay.js" />
+    <Content Include="Scripts\Monitor\Parlay.js" />
     <Content Include="Scripts\Report\SimilarBets.js" />
     <Content Include="Scripts\Report\TopWinners.js" />
     <Content Include="Scripts\UnderMaintenance.js" />

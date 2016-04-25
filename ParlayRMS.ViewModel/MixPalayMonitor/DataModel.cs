@@ -8,8 +8,8 @@
 
 namespace ParlayRMS.ViewModel.MixPalayMonitor
 {
-    using System.ComponentModel.DataAnnotations;
     using ParlayRMS.Web.Mvc.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Data Model.
@@ -18,8 +18,10 @@ namespace ParlayRMS.ViewModel.MixPalayMonitor
     {
         public string Combos { get; set; }
 
+        public string ParlayTypes { get; set; }
+
         public string SportsTypes { get; set; }
-        
+
         public string Levels { get; set; }
 
         public string Markets { get; set; }

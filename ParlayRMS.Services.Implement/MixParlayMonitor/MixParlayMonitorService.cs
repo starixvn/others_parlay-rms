@@ -58,8 +58,9 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <returns>
         /// List of RMS_Monitor_Parlay_BetList objects.
         /// </returns>
-        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
+        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> GetMixParlayMonitorTickets(
             string combos,
+            string parlayTypes,
             string sportTypes,
             string levels,
             decimal stakeAfterPT,
@@ -69,7 +70,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
             long maxTransId,
             string markets)
         {
-            var data = _mixparlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            var data = _mixparlayDataAccess.RMS_Monitor_ComboParlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
 
             ////if (data.Count() == 0)
             ////{
@@ -94,11 +95,11 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
-        private IEnumerable<RMS_Monitor_Parlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
+        private IEnumerable<RMS_Monitor_ComboParlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
         {
             Random rnd = new Random();
             var count = rnd.Next(0, 5);
-            var list = new List<RMS_Monitor_Parlay_Betlist>();
+            var list = new List<RMS_Monitor_ComboParlay_Betlist>();
             for (int i = count; i > 0; i--)
             {
                 var combo = rnd.Next(2, 6);
@@ -110,7 +111,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                     levels.Contains(level.ToString()) &&
                     stake * odds > stakeAfterPT)
                 {
-                    list.Add(new RMS_Monitor_Parlay_Betlist
+                    list.Add(new RMS_Monitor_ComboParlay_Betlist
                     {
                         Combo = combo,
                         Level = level,

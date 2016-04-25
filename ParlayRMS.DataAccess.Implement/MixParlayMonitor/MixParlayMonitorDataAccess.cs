@@ -8,13 +8,12 @@
 
 namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.MixParlayMonitor;
     using ParlayRMS.DTO.MixParlayMonitor;
     using ParlayRMS.Utility.Data;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Mix Parlay Monitor Data Access.
@@ -36,8 +35,9 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
         /// <returns>
         /// List of RMS_Monitor_Parlay_BetList objects.
         /// </returns>
-        public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
+        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> RMS_Monitor_ComboParlay_Betlist(
             string combos,
+            string parlayTypes,
             string sportsTypes,
             string levels,
             decimal stakeAfterPT,
@@ -47,11 +47,12 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
             long maxTransId,
             string markets)
         {
-            var result = new List<RMS_Monitor_Parlay_Betlist>();
+            var result = new List<RMS_Monitor_ComboParlay_Betlist>();
 
-            using (var db = new ObjectDb("RMS_Monitor_Parlay_Betlist"))
+            using (var db = new ObjectDb("RMS_Monitor_ComboParlay_Betlist"))
             {
                 db.AddInParameter("selection", DbType.String, combos);
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsTypes);
                 db.AddInParameter("level", DbType.String, levels);
                 db.AddInParameter("stake", DbType.Decimal, stakeAfterPT);
@@ -65,7 +66,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 {
                     while (reader.Read())
                     {
-                        result.Add(new RMS_Monitor_Parlay_Betlist
+                        result.Add(new RMS_Monitor_ComboParlay_Betlist
                         {
                             TransDate = reader.ToDateTime("transdate"),
                             TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
