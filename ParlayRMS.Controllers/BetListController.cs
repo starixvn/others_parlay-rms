@@ -4,6 +4,8 @@ using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.Common;
+using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.BetList;
 using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.Web.Authorization;
@@ -16,6 +18,7 @@ namespace ParlayRMS.Controllers
     public class BetListController : BaseController
     {
         private readonly IBetListService _betlistService = new BetListService();
+        private readonly ICommonService _commonService = new CommonService();
 
         /// <summary>
         /// Gets bet details.
@@ -30,19 +33,23 @@ namespace ParlayRMS.Controllers
             ViewBag.BetId = options.BetId;
             ViewBag.Username = options.Username;
 
+            var betTypeBelongsBetRadar = _commonService.GetBettypeBelongsBetRadar();
+
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betlistService.CreateChoice(options.RefNo);
             foreach (var ticket in tickets)
             {
+                var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
+                var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : string.Empty;
                 if (tickets.Last() == ticket)
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
                 }
                 else
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
                 }
             }
 

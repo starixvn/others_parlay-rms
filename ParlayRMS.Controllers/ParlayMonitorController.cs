@@ -1,19 +1,12 @@
-﻿using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.Factories;
-using Fanex.BetList.Core.TicketHelper;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
-using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.BetList;
 using ParlayRMS.Services.Interface.ParlayMonitor;
 using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.ViewModel.PalayMonitor;
 using ParlayRMS.Web.Authorization;
 using System;
@@ -30,7 +23,6 @@ namespace ParlayRMS.Controllers
         private readonly IParlayMonitorService _parlayMonitorService = new ParlayMonitorService();
         private readonly IParlayMonitorService _parlayMonitorCacheService = new ParlayMonitorCacheService();
         private readonly IUsersService _userService = new UsersService();
-        private readonly ICommonService _commonService = new CommonService();
 
         /// <summary>
         /// Initialize filter form.
@@ -227,45 +219,6 @@ namespace ParlayRMS.Controllers
                 Title = title,
                 MaxTransId = maxTransId
             });
-        }
-
-        /// <summary>
-        /// Gets bet details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
-        [HttpPost]
-        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
-        public ActionResult BetDetails(BetDetailsOptions options)
-        {
-            ViewBag.BetId = options.BetId;
-            ViewBag.Username = options.Username;
-
-            var betTypeBelongsBetRadar = _commonService.GetBettypeBelongsBetRadar();
-
-            BetListHTMLFactory factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
-            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = _betlistService.CreateChoice(options.RefNo);
-            foreach (var ticket in tickets)
-            {
-                var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
-                var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : string.Empty;
-                if (tickets.Last() == ticket)
-                {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
-                }
-                else
-                {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
-                }
-            }
-
-            var model = new BetDetails();
-            model.TicketDetail = builder.GetBetList();
-
-            return View("BetDetails", model);
         }
 
         /// <summary>

@@ -1079,7 +1079,7 @@
     <Content Include="Views\ParlayMonitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ParlayMonitor\BetDetails.cshtml" />
+    <Content Include="Views\BetList\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Language.cshtml" />
