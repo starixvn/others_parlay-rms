@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Monitor_ComboParlay_Betlist.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using System;
 
-namespace ParlayRMS.DTO.MixParlayMonitor
+namespace ParlayRMS.DTO.ParlayMonitor
 {
-    using System;
-
-    /// <summary>
-    /// Monitor Parlay Bet List model.
-    /// </summary>
-    public class RMS_Monitor_ComboParlay_Betlist
+    public class RMS_Monitor_Parlay_Betlist
     {
         public DateTime TransDate { get; set; }
 

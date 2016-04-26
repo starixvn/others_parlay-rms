@@ -6,15 +6,15 @@ using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Implement.MixParlayMonitor;
+using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.MixParlayMonitor;
+using ParlayRMS.Services.Interface.ParlayMonitor;
 using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.MixPalayMonitor;
-using ParlayRMS.ViewModel.Monitoring;
+using ParlayRMS.ViewModel.BetList;
+using ParlayRMS.ViewModel.PalayMonitor;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
@@ -27,8 +27,8 @@ namespace ParlayRMS.Controllers
     public class ParlayMonitorController : BaseController
     {
         private readonly IBetListService _betlistService = new BetListService();
-        private readonly IMixParlayMonitorService _mixparlayMonitorService = new MixParlayMonitorService();
-        private readonly IMixParlayMonitorService _mixparlayMonitorCacheService = new MixParlayMonitorCacheService();
+        private readonly IParlayMonitorService _parlayMonitorService = new ParlayMonitorService();
+        private readonly IParlayMonitorService _parlayMonitorCacheService = new ParlayMonitorCacheService();
         private readonly IUsersService _userService = new UsersService();
         private readonly ICommonService _commonService = new CommonService();
 
@@ -237,7 +237,7 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
-        public ActionResult BetDetails(MixParlayBetDetailsOptions options)
+        public ActionResult BetDetails(BetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;
             ViewBag.Username = options.Username;
@@ -262,7 +262,7 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            MixParlayBetDetails model = new MixParlayBetDetails();
+            var model = new BetDetails();
             model.TicketDetail = builder.GetBetList();
 
             return View("BetDetails", model);
@@ -272,9 +272,9 @@ namespace ParlayRMS.Controllers
         /// Gets the mix parlay service.
         /// </summary>
         /// <returns>MixParlayMonitorService instance.</returns>
-        private IMixParlayMonitorService GetMixParlayService()
+        private IParlayMonitorService GetMixParlayService()
         {
-            return _mixparlayMonitorCacheService;
+            return _parlayMonitorCacheService;
             ////if (AppSetting.IsCache)
             ////{
             ////    return mixparlayCacheService;

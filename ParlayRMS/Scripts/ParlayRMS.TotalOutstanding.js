@@ -113,7 +113,7 @@ ParlayRMS.TotalOutstanding = {
         }
 
         $.ajax({
-            url: resolveClientUrl('Monitor/MixParlayBetDetails'),
+            url: resolveClientUrl('BetList/BetDetails'),
             type: 'POST',
             data: data,
             dataType: 'html',

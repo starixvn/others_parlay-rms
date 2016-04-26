@@ -533,7 +533,7 @@ function ViewBetDetails(userName, transId, refNo, comboTypes) {
     }
 
     $.ajax({
-        url: resolveClientUrl('SystemParlayMonitor/SystemParlayBetDetails'),
+        url: resolveClientUrl('BetList/BetDetails'),
         type: 'POST',
         data: data,
         dataType: 'html',

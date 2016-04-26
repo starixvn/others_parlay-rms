@@ -105,11 +105,11 @@
     <Compile Include="ManageMenu\EditMenuModel.cs" />
     <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
     <Compile Include="ManageUser\UpdateStatusModel.cs" />
-    <Compile Include="MixPalayMonitor\DataModel.cs" />
+    <Compile Include="PalayMonitor\DataModel.cs" />
     <Compile Include="Monitoring\PotentialWinningDetailModel.cs" />
     <Compile Include="Monitoring\PotentialWinningModel.cs" />
-    <Compile Include="Monitoring\MixParlayBetDetails.cs" />
-    <Compile Include="Monitoring\MixParlayBetDetailsOptions.cs" />
+    <Compile Include="BetList\BetDetails.cs" />
+    <Compile Include="BetList\BetDetailsOptions.cs" />
     <Compile Include="Monitoring\MonitoringCacheModel.cs" />
     <Compile Include="Monitoring\MonitoringDetailModel.cs" />
     <Compile Include="Monitoring\MonitoringEventModel.cs" />
@@ -129,7 +129,6 @@
     <Compile Include="Report\WinlossOptions.cs" />
     <Compile Include="Shared\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemParlayMonitor\SystemParlayMonitorOptions.cs" />
     <Compile Include="TotalOutstanding\DataModel.cs" />
     <Compile Include="TotalOutstanding\IndexModel.cs" />
     <Compile Include="TotalOutstanding\TotalDataModel.cs" />

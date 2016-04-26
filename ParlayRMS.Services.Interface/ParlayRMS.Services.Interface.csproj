@@ -50,7 +50,6 @@
     <Compile Include="PotentialWinningMonitor\IPotentialWinningMonitor.cs" />
     <Compile Include="ViewIPInfo\IViewIPInfoService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
-    <Compile Include="SystemParlayMonitor\ISystemParlayMonitorService.cs" />
     <Compile Include="TotalOutstanding\ITotalOutstandingService.cs" />
     <Compile Include="Users\IAuthorizationService.cs" />
     <Compile Include="BetList\IBetListService.cs" />
@@ -61,7 +60,7 @@
     <Compile Include="Menus\IMenusService.cs" />
     <Compile Include="Charts\IChartsService.cs" />
     <Compile Include="Users\IUsersService.cs" />
-    <Compile Include="MixParlayMonitor\IMixParlayMonitorService.cs" />
+    <Compile Include="ParlayMonitor\IParlayMonitorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\ISimilarBetsService.cs" />
     <Compile Include="TopWinners\ITopWinnersService.cs" />

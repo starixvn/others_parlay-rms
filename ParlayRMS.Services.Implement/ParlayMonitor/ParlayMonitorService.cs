@@ -1,31 +1,20 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MixParlayMonitorService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.DataAccess.Implement.ParlayMonitor;
+using ParlayRMS.DataAccess.Interface.ParlayMonitor;
+using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Services.Interface.ParlayMonitor;
+using SignalR;
+using SignalR.Hubs;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
-namespace ParlayRMS.Services.Implement.MixParlayMonitor
+namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using ParlayRMS.DataAccess.Implement.MixParlayMonitor;
-    using ParlayRMS.DataAccess.Interface.MixParlayMonitor;
-    using ParlayRMS.DTO.MixParlayMonitor;
-    using ParlayRMS.Services.Interface.MixParlayMonitor;
-    using SignalR;
-    using SignalR.Hubs;
-
-    /// <summary>
-    /// Mix Parlay Monitor Service.
-    /// </summary>
-    public class MixParlayMonitorService : BaseService, IMixParlayMonitorService
+    public class ParlayMonitorService : BaseService, IParlayMonitorService
     {
-        private static IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<MixParlayMonitorHub>();
+        private static IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<ParlayMonitorHub>();
 
-        private readonly IMixParlayMonitorDataAccess _mixparlayDataAccess = new MixParlayMonitorDataAccess();
+        private readonly IParlayMonitorDataAccess _parlayDataAccess = new ParlayMonitorDataAccess();
 
         /// <summary>
         /// Starts this instance.
@@ -58,7 +47,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <returns>
         /// List of RMS_Monitor_Parlay_BetList objects.
         /// </returns>
-        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> GetMixParlayMonitorTickets(
+        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
             string combos,
             string parlayTypes,
             string sportTypes,
@@ -70,7 +59,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
             long maxTransId,
             string markets)
         {
-            var data = _mixparlayDataAccess.RMS_Monitor_ComboParlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
 
             ////if (data.Count() == 0)
             ////{
@@ -95,11 +84,11 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <param name="stakeAfterPT">Stake after PT.</param>
         /// <param name="maxTransId">The maximum trans identifier.</param>
         /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
-        private IEnumerable<RMS_Monitor_ComboParlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
+        private IEnumerable<RMS_Monitor_Parlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
         {
             Random rnd = new Random();
             var count = rnd.Next(0, 5);
-            var list = new List<RMS_Monitor_ComboParlay_Betlist>();
+            var list = new List<RMS_Monitor_Parlay_Betlist>();
             for (int i = count; i > 0; i--)
             {
                 var combo = rnd.Next(2, 6);
@@ -111,7 +100,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                     levels.Contains(level.ToString()) &&
                     stake * odds > stakeAfterPT)
                 {
-                    list.Add(new RMS_Monitor_ComboParlay_Betlist
+                    list.Add(new RMS_Monitor_Parlay_Betlist
                     {
                         TotalSelection = combo,
                         Level = level,

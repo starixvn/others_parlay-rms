@@ -1,41 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MixParlayMonitorDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.ParlayMonitor;
+using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Utility.Data;
+using System.Collections.Generic;
+using System.Data;
 
-namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
+namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
 {
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.MixParlayMonitor;
-    using ParlayRMS.DTO.MixParlayMonitor;
-    using ParlayRMS.Utility.Data;
-    using System.Collections.Generic;
-    using System.Data;
-
-    /// <summary>
-    /// Mix Parlay Monitor Data Access.
-    /// </summary>
-    public class MixParlayMonitorDataAccess : BaseDataAccess, IMixParlayMonitorDataAccess
+    public class ParlayMonitorDataAccess : BaseDataAccess, IParlayMonitorDataAccess
     {
-        /// <summary>
-        /// Gets Monitor Parlay Bet List.
-        /// </summary>
-        /// <param name="combos">Combo values.</param>
-        /// <param name="sportsTypes">Sport types.</param>
-        /// <param name="levels">Level values.</param>
-        /// <param name="stakeAfterPT">Stake after PT.</param>
-        /// <param name="maxPayout">The max payout.</param>
-        /// <param name="reportType">The report type.</param>
-        /// <param name="selectTop">Number of top items.</param>
-        /// <param name="maxTransId">Maximum transaction ID.</param>
-        /// <param name="markets">The markets.</param>
-        /// <returns>
-        /// List of RMS_Monitor_Parlay_BetList objects.
-        /// </returns>
-        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> RMS_Monitor_ComboParlay_Betlist(
+        public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
             string combos,
             string parlayTypes,
             string sportsTypes,
@@ -47,9 +21,9 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
             long maxTransId,
             string markets)
         {
-            var result = new List<RMS_Monitor_ComboParlay_Betlist>();
+            var result = new List<RMS_Monitor_Parlay_Betlist>();
 
-            using (var db = new ObjectDb("RMS_Monitor_ComboParlay_Betlist"))
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_Betlist"))
             {
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
@@ -66,7 +40,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 {
                     while (reader.Read())
                     {
-                        result.Add(new RMS_Monitor_ComboParlay_Betlist
+                        result.Add(new RMS_Monitor_Parlay_Betlist
                         {
                             TransDate = reader.ToDateTime("transdate"),
                             TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),

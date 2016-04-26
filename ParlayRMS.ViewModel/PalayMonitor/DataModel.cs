@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DataModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Web.Mvc.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace ParlayRMS.ViewModel.MixPalayMonitor
+namespace ParlayRMS.ViewModel.PalayMonitor
 {
-    using ParlayRMS.Web.Mvc.DataAnnotations;
-    using System.ComponentModel.DataAnnotations;
-
-    /// <summary>
-    /// Data Model.
-    /// </summary>
     public class DataModel
     {
         public string Combos { get; set; }

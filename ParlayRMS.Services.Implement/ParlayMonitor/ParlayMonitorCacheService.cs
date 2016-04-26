@@ -1,23 +1,12 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MixParlayMonitorCacheService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Services.Interface.ParlayMonitor;
+using System.Collections.Generic;
 
-namespace ParlayRMS.Services.Implement.MixParlayMonitor
+namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
-    using ParlayRMS.DTO.MixParlayMonitor;
-    using ParlayRMS.Services.Interface.MixParlayMonitor;
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// Mix Parlay Monitor Cache Service.
-    /// </summary>
-    public class MixParlayMonitorCacheService : BaseService, IMixParlayMonitorService
+    public class ParlayMonitorCacheService : BaseService, IParlayMonitorService
     {
-        private static readonly IMixParlayMonitorService MixparlayService = new MixParlayMonitorService();
+        private static readonly IParlayMonitorService MixparlayService = new ParlayMonitorService();
 
         /// <summary>
         /// Gets mix parlay monitor tickets.
@@ -34,7 +23,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
         /// <returns>
         /// List of Monitor Parlay Bets.
         /// </returns>
-        public IEnumerable<RMS_Monitor_ComboParlay_Betlist> GetMixParlayMonitorTickets(
+        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
             string combos,
             string parlayTypes,
             string sportsTypes,

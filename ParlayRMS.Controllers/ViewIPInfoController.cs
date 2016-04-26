@@ -32,7 +32,7 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.ViewModel.ViewIPInfo;
     using ParlayRMS.Web.Authorization;
-
+    using ViewModel.BetList;
     /// <summary>
     /// Controller for View-IP-Info report.
     /// </summary>
@@ -131,13 +131,13 @@ namespace ParlayRMS.Controllers
         /// <returns>List of sub tickets.</returns>
         [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
-        public JsonResult ParlayBetSubTickets(MixParlayBetDetailsOptions options)
+        public JsonResult ParlayBetSubTickets(BetDetailsOptions options)
         {
             try
             {
                 string ticketString = BuildTickets(options.RefNo);
 
-                return this.Json(new
+                return Json(new
                 {
                     code = 0,
                     data = ticketString
@@ -145,7 +145,7 @@ namespace ParlayRMS.Controllers
             }
             catch (Exception ex)
             {
-                return this.Json(new { code = 1, message = ex.Message });
+                return Json(new { code = 1, message = ex.Message });
             }
         }
 

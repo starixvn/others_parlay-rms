@@ -58,7 +58,7 @@
     <Compile Include="Common\CommonDataAccess.cs" />
     <Compile Include="DangerMonitor\DangerMonitorDataAccess.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
-    <Compile Include="MixParlayMonitor\MixParlayMonitorDataAccess.cs" />
+    <Compile Include="ParlayMonitor\ParlayMonitorDataAccess.cs" />
     <Compile Include="Members\MembersDataAccess.cs" />
     <Compile Include="BaseDataAccess.cs" />
     <Compile Include="Functions\FunctionsDataAccess.cs" />
@@ -68,7 +68,6 @@
     <Compile Include="PotentialWinningMonitor\PotentialWinningMonitorDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\SimilarBetsDataAccess.cs" />
-    <Compile Include="SystemParlayMonitor\SystemParlayMonitorDataAccess.cs" />
     <Compile Include="TopWinners\TopWinnersDataAccess.cs" />
     <Compile Include="TotalOutstanding\TotalOutstandingDataAccess.cs" />
     <Compile Include="Users\UsersDataAccess.cs" />

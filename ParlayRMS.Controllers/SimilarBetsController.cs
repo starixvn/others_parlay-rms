@@ -1,29 +1,21 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SimilarBetsController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.Factories;
+using Fanex.BetList.Core.TicketHelper;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.SimilarBets;
+using ParlayRMS.Services.Interface.BetList;
+using ParlayRMS.Services.Interface.SimilarBets;
+using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Factories;
-    using Fanex.BetList.Core.TicketHelper;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.BetList;
-    using ParlayRMS.Services.Implement.SimilarBets;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Interface.SimilarBets;
-    using ParlayRMS.ViewModel.Report;
-    using ParlayRMS.Web.Authorization;
-
     /// <summary>
     /// Similar Bets Controller.
     /// </summary>
@@ -36,12 +28,12 @@ namespace ParlayRMS.Controllers
         /// Redirects to Index view.
         /// </summary>
         /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
             ViewBag.betid = Request["betid"] ?? null;
-            return this.View("Index");
+            return View("Index");
         }
 
         /// <summary>
@@ -49,18 +41,18 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="transId">The transaction identifier.</param>
         /// <returns>Partial view demonstrates the similar bet list.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(long transId)
         {
             ViewBag.TransId = transId;
-            var model = this._similarbetsService.GetSimilarBets(transId);
+            var model = _similarbetsService.GetSimilarBets(transId);
             if (model == null)
             {
-                return this.PartialView("NotFound");
+                return PartialView("NotFound");
             }
 
-            return this.PartialView("Data", model);
+            return PartialView("Data", model);
         }
 
         /// <summary>
@@ -69,7 +61,7 @@ namespace ParlayRMS.Controllers
         /// <param name="options">The options that are used to query data.</param>
         /// <returns>Partial view represents bet detail.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
-        [AuthorizationAttribute(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
@@ -79,9 +71,9 @@ namespace ParlayRMS.Controllers
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = this._betlistService.CreateChoice(options.RefNo);
-            var originalTickets = this._betlistService.CreateChoice(options.OriginalRefNo);
-            
+            var tickets = _betlistService.CreateChoice(options.RefNo);
+            var originalTickets = _betlistService.CreateChoice(options.OriginalRefNo);
+
             var ticketsCompare = new List<long>();
             foreach (var ticket in tickets)
             {
@@ -112,7 +104,7 @@ namespace ParlayRMS.Controllers
             model.TicketDetail = builder.GetBetList();
             model.TicketCompare = string.Join("-", ticketsCompare);
 
-            return this.PartialView("BetDetails", model);
+            return PartialView("BetDetails", model);
         }
     }
 }
