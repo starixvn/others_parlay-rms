@@ -2711,3 +2711,13 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
     height: 100%;
 }
 
+.draggable-div {
+  background: white none repeat scroll 0 0;
+  cursor: move;
+  height: 30px;
+  margin-bottom: -30px;
+  position: absolute;
+  width: 98%;
+  z-index: 999;
+  opacity: 0;
+}
