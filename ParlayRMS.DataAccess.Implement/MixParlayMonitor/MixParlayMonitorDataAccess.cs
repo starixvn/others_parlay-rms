@@ -59,7 +59,7 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                 db.AddInParameter("maxpayout", DbType.Decimal, maxPayout);
                 db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
-                db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
+                db.AddInParameter("limitrowcount", DbType.Int32, selectTop);
                 db.AddInParameter("market", DbType.String, markets);
 
                 using (var reader = db.ExecuteReader())
@@ -76,7 +76,9 @@ namespace ParlayRMS.DataAccess.Implement.MixParlayMonitor
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             NetWinAfterPT = reader.ToDecimal("maxpayout"),
-                            Combo = reader.ToInt32("combo"),
+                            TotalSelection = reader.ToInt32("totalselection"),
+                            TotalBet = reader.ToInt32("totalbet"),
+                            NumberWon = reader.ToInt32("numberwon"),
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level"),
                             IsBetRadar = reader.ToBoolean("IsBetRadar")

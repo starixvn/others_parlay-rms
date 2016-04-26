@@ -113,7 +113,7 @@ namespace ParlayRMS.Services.Implement.MixParlayMonitor
                 {
                     list.Add(new RMS_Monitor_ComboParlay_Betlist
                     {
-                        Combo = combo,
+                        TotalSelection = combo,
                         Level = level,
                         Username = "test",
                         Stake = stake,

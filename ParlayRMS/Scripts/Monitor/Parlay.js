@@ -350,7 +350,7 @@ $(document).ready(function () {
 
     $("#refreshTime").multiselect({
         minWidth: 60,
-        height: 80,
+        height: 60,
         header: false,
         multiple: false,
         selectedList: 1,
@@ -528,7 +528,8 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
-    r[++j] = '<td class="center">' + numeral(item.Combo).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.TotalBets).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.TotalSelections).format('0,0') + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {
         r[++j] = '<td class="right">----</td>';

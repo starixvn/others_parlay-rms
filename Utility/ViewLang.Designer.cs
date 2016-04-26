@@ -2086,6 +2086,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Selections.
+        /// </summary>
+        public static string TotalSelections {
+            get {
+                return ResourceManager.GetString("TotalSelections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trans. Time.
         /// </summary>
         public static string TransTime {

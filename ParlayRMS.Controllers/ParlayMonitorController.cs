@@ -96,11 +96,11 @@ namespace ParlayRMS.Controllers
             ViewBag.Markets = markets;
 
             // Refresh Time
-            values = new List<int> { 30, 60, 120 };
+            values = new List<int> { 60, 120 };
             var refreshTimes = new List<SelectListItem>();
             foreach (var item in values)
             {
-                refreshTimes.Add(new SelectListItem { Text = item.ToString(), Value = (item * 1000).ToString(), Selected = item == 60 ? true : false });
+                refreshTimes.Add(new SelectListItem { Text = item.ToString(), Value = (item * 1000).ToString(), Selected = item == 60 });
             }
 
             ViewBag.RefreshTimes = refreshTimes;
@@ -220,7 +220,7 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            return this.Json(new
+            return Json(new
             {
                 code = 0,
                 Records = data,

@@ -861,4 +861,7 @@
   <data name="ParlayType" xml:space="preserve">
     <value>Parlay type</value>
   </data>
+  <data name="TotalSelections" xml:space="preserve">
+    <value>Total Selections</value>
+  </data>
 </root>

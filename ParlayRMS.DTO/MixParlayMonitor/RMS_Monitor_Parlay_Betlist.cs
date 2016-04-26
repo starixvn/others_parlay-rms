@@ -31,7 +31,11 @@ namespace ParlayRMS.DTO.MixParlayMonitor
 
         public decimal NetWinAfterPT { get; set; }
 
-        public int Combo { get; set; }
+        public int TotalSelection { get; set; }
+
+        public int TotalBet { get; set; }
+
+        public int NumberWon { get; set; }
 
         public string IP { get; set; }
 
