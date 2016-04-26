@@ -1,24 +1,15 @@
-// --------------------------------------------------------------------------
-// <copyright file="RMS_Similar_Parlay_Betlist.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+using System;
+using System.Collections.Generic;
 
 namespace ParlayRMS.DTO.SimilarBets
 {
-    using System;
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// Similar Bet List model.
-    /// </summary>
     public class RMS_Similar_Parlay_Betlist
     {
         public int Cnt_bets { get; set; }
 
-        public int Combo { get; set; }
+        public int TotalBet { get; set; }
+
+        public int TotalSelection { get; set; }
 
         public int Level { get; set; }
 

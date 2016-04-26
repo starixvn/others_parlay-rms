@@ -12,6 +12,6 @@
 
         public decimal Max_Payout { get; set; }
 
-        public int Similar_Combo { get; set; }
+        public int Similar_Selection { get; set; }
     }
 }

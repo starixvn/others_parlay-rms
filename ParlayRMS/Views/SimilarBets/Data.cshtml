@@ -1,5 +1,4 @@
-﻿@using ParlayRMS.Models.Members
-@using ParlayRMS.DTO.SimilarBets
+﻿@using ParlayRMS.DTO.SimilarBets
 @using ParlayRMS.Common.Models
 @{
     int counter = 0;
@@ -21,14 +20,17 @@
                 <th style="width: 80px">
                     @ViewLang.Odds
                 </th>
-                <th style="width: 120px">
-                    @ViewLang.StakeAfterPT
+                <th style="width: 160px">
+                    @ViewLang.AverageStakeAfterPT
                 </th>
-                <th style="width: 150px">
+                <th style="width: 120px">
                     @ViewLang.NetWinAfterPT
                 </th>
-                <th style="width: 100px">
-                    @ViewLang.TotalCombo
+                <th style="width: 90px">
+                    @ViewLang.TotalBets
+                </th>
+                <th style="width: 120px">
+                    @ViewLang.TotalSelections
                 </th>
                 <th style="width: 100px">
                     @ViewLang.BetDetails
@@ -59,7 +61,10 @@
                     @Formatter.FormatNumber2(Model.Max_payout)
                 </td>
                 <td class="center">
-                    @Model.Combo
+                    @string.Format("{0} {1}", Model.TotalBet, Model.TotalBet == 1 ? "bet" : "bets")
+                </td>
+                <td class="center">
+                    @Model.TotalSelection
                 </td>
                 <td class="center">
                     <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@Model.Username', @Model.Transid, @Model.Refno,@Model.Refno);">
@@ -92,12 +97,12 @@
     <div style="width: 754px">
         <table class="sub thead">
             <colgroup>
-                <col width='50px' />
-                <col width='140px' />
-                <col width='150px' />
-                <col width='160px' />
-                <col width='150px' />
-                <col width='100px' />
+                <col width="50px" />
+                <col width="140px" />
+                <col width="150px" />
+                <col width="160px" />
+                <col width="150px" />
+                <col width="100px" />
             </colgroup>
             <thead>
                 <tr>
@@ -114,7 +119,7 @@
                         @ViewLang.NetWinAfterPT
                     </th>
                     <th>
-                        @ViewLang.SimilarComboFound
+                        @ViewLang.SimilarSelectionFound
                     </th>
                     <th>
                         @ViewLang.BetDetails
@@ -126,12 +131,12 @@
     <div class="scrollGridContent" style="max-height: 500px; width: 768px">
         <table class="sub tbody">
             <colgroup>
-                <col width='50px' />
-                <col width='140px' />
-                <col width='150px' />
-                <col width='160px' />
-                <col width='150px' />
-                <col width='100px' />
+                <col width="50px" />
+                <col width="140px" />
+                <col width="150px" />
+                <col width="160px" />
+                <col width="150px" />
+                <col width="100px" />
             </colgroup>
             <tbody>
                 @foreach (var item in Model.Details)
@@ -151,7 +156,7 @@
                             @Formatter.FormatNumber2(item.Max_Payout)
                         </td>
                         <td class="center">
-                            @item.Similar_Combo
+                            @item.Similar_Selection
                         </td>
                         <td class="center">
                             <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', @item.TransId, @item.Refno,@Model.Refno);">

@@ -2,6 +2,7 @@
 using ParlayRMS.DataAccess.Interface.ParlayMonitor;
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Utility.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -50,7 +51,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             NetWinAfterPT = reader.ToDecimal("maxpayout"),
-                            TotalSelection = reader.ToInt32("totalselection"),
+                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
                             TotalBet = reader.ToInt32("totalbet"),
                             NumberWon = reader.ToInt32("numberwon"),
                             IP = reader.ToString("ip"),

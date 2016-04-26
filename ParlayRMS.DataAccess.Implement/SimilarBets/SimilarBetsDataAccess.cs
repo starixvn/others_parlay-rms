@@ -1,31 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SimilarBetsDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.SimilarBets;
+using ParlayRMS.DTO.SimilarBets;
+using ParlayRMS.Utility;
+using System;
+using System.Data;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ParlayRMS.DataAccess.Implement.SimilarBets
 {
-    using System;
-    using System.Data;
-    using System.Diagnostics.CodeAnalysis;
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.SimilarBets;
-    using ParlayRMS.DTO.SimilarBets;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Similar Bets Data Access.
-    /// </summary>
     public class SimilarBetsDataAccess : BaseDataAccess, ISimilarBetsDataAccess
     {
-        /// <summary>
-        /// Gets similar bet list.
-        /// </summary>
-        /// <param name="transId">Transaction ID.</param>
-        /// <returns>List of similar bets.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
         {
@@ -52,7 +36,8 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Odds = DbConverter.ToDecimal(info["odds"]),
                                 Stake = DbConverter.ToDecimal(info["stake"]),
                                 Max_payout = DbConverter.ToDecimal(info["net_win"]),
-                                Combo = DbConverter.ToInt32(info["combo"]),
+                                TotalBet = DbConverter.ToInt32(info["totalbet"]),
+                                TotalSelection = Convert.ToInt32(DbConverter.ToDecimal(info["totalselection"])),
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
@@ -62,7 +47,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Username = DbConverter.ToString(row["username"]),
                                     Level = DbConverter.ToInt32(row["level"]),
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
-                                    Similar_Combo = DbConverter.ToInt32(row["similar_combo"])
+                                    Similar_Selection = DbConverter.ToInt32(row["similar_selection"])
                                 })
                             };
                         }

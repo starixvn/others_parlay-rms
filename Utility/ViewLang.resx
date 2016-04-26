@@ -873,4 +873,7 @@
   <data name="TotalSelection" xml:space="preserve">
     <value>Total Selection</value>
   </data>
+  <data name="SimilarSelectionFound" xml:space="preserve">
+    <value>Similar Selection Found</value>
+  </data>
 </root>
