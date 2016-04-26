@@ -525,7 +525,7 @@ function ViewTotalBetDetails(custId) {
     return false;
 }
 
-function ViewBetDetails(userName, transId, refNo) {
+function ViewBetDetails(userName, transId, refNo, comboTypes) {
     var data = {
         BetId: transId,
         RefNo: refNo,
@@ -542,7 +542,7 @@ function ViewBetDetails(userName, transId, refNo) {
             loading.show();
         },
         success: function (result) {
-            modalPopup(result);
+            modalPopup(result, comboTypes);
             $(".betdetails").css('overflow-y', 'auto');
             $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
         },

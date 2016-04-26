@@ -35,8 +35,8 @@ function hidePopup() {
     _popup.dialog("close");
 }
 
-function modalPopup(data) {
-    $("#popup").html(data);
+function modalPopup(data, comboTypes) {
+    $("#popup").html(buildPopupContent(data, comboTypes));
     $("#popup").modal({
         opacity: 20,
         overlayCss: { backgroundColor: "#000" },
@@ -52,6 +52,32 @@ function modalPopup(data) {
     });
     $("#simplemodal-container").draggable({ handle: "div.title2" });
 }
+
+function buildPopupContent(data, comboTypes) {
+    var content = data;
+    if (comboTypes) {
+        content = '<table class="popup-inner"><tr>'
+            + '<td class="betlist-div"><div >' + data + '</div></td>'
+            + '<td valign="top" class="combotype-div"><div >' + buildComboTypes(comboTypes) + '</div></td>'
+            + '</tr></table>';
+    }
+
+    function buildComboTypes(comboTypes) {
+        var comboTypesContent = '';
+        for (var i = 0; i < comboTypes.length; i++) {
+            comboTypesContent += '<div class="combotype">' + comboTypes[i] + '</div>';
+        }
+        if (comboTypesContent != '')
+        {
+            comboTypesContent = '<div class="combotype-title">Combo Type</div><div  class="combotype-content">' + comboTypesContent + '</div>';
+        }
+
+        return comboTypesContent;
+    }
+
+    return content;
+}
+
 function modalClose() {
     $.modal.close();
 }

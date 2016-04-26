@@ -2661,3 +2661,53 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
     background: url(images/Content/betradar-icon.png) no-repeat;
     background-position: 5% 50%;
 }
+
+/* betlist detail popup */
+.popup-inner {
+    border: 2px solid #43576d;    
+    border-radius: 5px;
+    background: white;
+}
+
+.popup-inner .betlist-div {
+    min-width: 470px;
+}
+
+.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .container .content{
+    border: none;
+}
+
+.popup-inner .combotype-div{
+    background: white;
+    min-width: 150px;
+    height: auto;
+    text-align: center;
+    padding-top: 3px;
+    border-left: solid 2px #43576d;
+    padding-left: 3px;
+
+}
+
+.popup-inner .combotype-div .combotype{
+    
+}
+
+.popup-inner .combotype-div .combotype-title {
+  background: #3f536b url("images/Content/table_tltle_bg.gif") repeat-x scroll center center;
+  border-radius: 5px;
+  clear: both;
+  color: white;
+  cursor: move;
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  padding: 2px 0 2px 10px !important;
+}
+
+.popup-inner .combotype-div .combotype-content {
+    height: 100%;
+}
+
