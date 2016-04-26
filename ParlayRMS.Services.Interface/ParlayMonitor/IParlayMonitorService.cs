@@ -5,7 +5,7 @@ namespace ParlayRMS.Services.Interface.ParlayMonitor
 {
     public interface IParlayMonitorService
     {
-        IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
+        IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,
             string parlayTypes,
             string sportTypes,

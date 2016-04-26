@@ -138,7 +138,7 @@ namespace ParlayRMS.Controllers
             }
 
             var service = GetMixParlayService();
-            var data = service.GetMixParlayMonitorTickets(
+            var data = service.GetParlayMonitorTickets(
                                 model.Combos,
                                 model.ParlayTypes,
                                 model.SportsTypes,

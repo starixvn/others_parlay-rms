@@ -32,22 +32,7 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             });
         }
 
-        /// <summary>
-        /// Gets the mix parlay monitor tickets.
-        /// </summary>
-        /// <param name="combos">The combo values.</param>
-        /// <param name="sportTypes">Type of the sport.</param>
-        /// <param name="levels">The level.</param>
-        /// <param name="stakeAfterPT">Stake after PT.</param>
-        /// <param name="netWinAfterPT">Net win after PT.</param>
-        /// <param name="reportType">Report Type.</param>
-        /// <param name="selectTop">Number of top items.</param>
-        /// <param name="maxTransId">Maximum transaction ID.</param>
-        /// <param name="markets">Markets Info.</param>
-        /// <returns>
-        /// List of RMS_Monitor_Parlay_BetList objects.
-        /// </returns>
-        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetMixParlayMonitorTickets(
+        public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,
             string parlayTypes,
             string sportTypes,
@@ -60,12 +45,6 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             string markets)
         {
             var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
-
-            ////if (data.Count() == 0)
-            ////{
-            ////    data = CreateTestData(combos, levels, stakeAfterPT, maxTransId);
-            ////}
-
             foreach (var item in data)
             {
                 item.Odds = Math.Round(item.Odds, 2);
@@ -74,48 +53,6 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             }
 
             return data;
-        }
-
-        /// <summary>
-        /// Creates the test data.
-        /// </summary>
-        /// <param name="combos">The combos.</param>
-        /// <param name="levels">The levels.</param>
-        /// <param name="stakeAfterPT">Stake after PT.</param>
-        /// <param name="maxTransId">The maximum trans identifier.</param>
-        /// <returns>List of RMS_Monitor_Parlay_BetList objects.</returns>
-        private IEnumerable<RMS_Monitor_Parlay_Betlist> CreateTestData(string combos, string levels, decimal stakeAfterPT, long maxTransId)
-        {
-            Random rnd = new Random();
-            var count = rnd.Next(0, 5);
-            var list = new List<RMS_Monitor_Parlay_Betlist>();
-            for (int i = count; i > 0; i--)
-            {
-                var combo = rnd.Next(2, 6);
-                var level = rnd.Next(0, 10);
-                var stake = Convert.ToDecimal(rnd.NextDouble() * 100);
-                var odds = Convert.ToDecimal(rnd.NextDouble() * 100);
-                var refno = rnd.Next(1000000, 9999999);
-                if (combos.Contains(combo.ToString()) &&
-                    levels.Contains(level.ToString()) &&
-                    stake * odds > stakeAfterPT)
-                {
-                    list.Add(new RMS_Monitor_Parlay_Betlist
-                    {
-                        TotalSelection = combo,
-                        Level = level,
-                        Username = "test",
-                        Stake = stake,
-                        Odds = odds,
-                        NetWinAfterPT = (stake - 1) * odds,
-                        RefNo = refno,
-                        TransDate = DateTime.Now,
-                        TransId = maxTransId + i
-                    });
-                }
-            }
-
-            return list;
         }
     }
 }
