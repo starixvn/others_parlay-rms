@@ -53,5 +53,10 @@ namespace ParlayRMS.Services.Implement.BetList
             var data = _betListDataAccess.RMS_Parlay_TransDetails(refNo);
             return Map(refNo, data);
         }
+
+        public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
+        {
+            return _betListDataAccess.RMS_Monitor_Parlay_BetInfo(transId);
+        }
     }
 }

@@ -1,23 +1,13 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="IBetListService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.BetList.Core.Entities;
+using ParlayRMS.DTO.BetList;
+using System.Collections.Generic;
 
 namespace ParlayRMS.Services.Interface.BetList
 {
-    using System.Collections.Generic;
-    using Fanex.BetList.Core.Entities;
-
     public interface IBetListService
     {
-        /// <summary>
-        /// Creates choice.
-        /// </summary>
-        /// <param name="refNo">Reference number.</param>
-        /// <returns>List of tickets.</returns>
         IEnumerable<ITicket> CreateChoice(long refNo);
+
+        RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId);
     }
 }

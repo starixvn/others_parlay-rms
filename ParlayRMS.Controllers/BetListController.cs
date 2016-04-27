@@ -9,6 +9,7 @@ using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.BetList;
 using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.Web.Authorization;
+using RemotingRef;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
@@ -39,6 +40,7 @@ namespace ParlayRMS.Controllers
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betlistService.CreateChoice(options.RefNo);
+            var betInfo = _betlistService.GetBetInfo(options.BetId);
             foreach (var ticket in tickets)
             {
                 var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
@@ -53,10 +55,12 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            var model = new BetDetails();
-            model.TicketDetail = builder.GetBetList();
-
-            return View("BetDetails", model);
+            var model = new BetDetails
+            {
+                TicketDetail = builder.GetBetList(),
+                ComboTypes = RefData.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2, "en")
+            };
+            return View(model);
         }
     }
 }

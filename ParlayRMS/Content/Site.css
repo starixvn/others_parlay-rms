@@ -1,5 +1,4 @@
-﻿html, body
-{
+﻿html, body {
     background-color: #EFEFEF;
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     text-align: left;
@@ -9,38 +8,34 @@
     font-size: 11px;
 }
 
-html, body, form, div, h1, h2, h3, h4, h5, h6, li, ol, p, ul
-{
+html, body, form, div, h1, h2, h3, h4, h5, h6, li, ol, p, ul {
     margin: 0;
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6
-{
+h1, h2, h3, h4, h5, h6 {
     font-family: Verdana, Sans-Serif, Tahoma, Arial;
     color: #3f4142;
     font-size: 13px;
 }
-h1
-{
+
+h1 {
     font-size: 14px;
 }
 
-ul
-{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-.clearfix:after
-{
+
+.clearfix:after {
     content: "";
     display: table;
     clear: both;
 }
 
-#mainPage
-{
+#mainPage {
     color: #3f4142;
     margin: 0;
     min-width: 1000px;
@@ -48,40 +43,36 @@ ul
     float: left;
 }
 
-#mainPage .body .content
-{
+#mainPage .body .content {
     background: #EFEFEF;
     min-height: 630px;
 }
 
-#mainPage .content
-{
+#mainPage .content {
     margin: auto 2px;
 }
 
-#mainPage .header
-{
+#mainPage .header {
     margin-bottom: 2px;
     padding-top: 0;
     background: url(images/content/title_bg.png) repeat-x center center transparent;
     height: 31px;
 }
-#mainPage .header.showcase .content
-{
+
+#mainPage .header.showcase .content {
     margin: auto;
     padding: 3px 0;
     position: relative;
     vertical-align: middle;
 }
-#mainPage h1, #mainPage h2, #mainPage h3, #mainPage h4
-{
+
+#mainPage h1, #mainPage h2, #mainPage h3, #mainPage h4 {
     border: 0 none;
     margin: 0;
     padding: 0;
 }
 
-#mainPage .header h1
-{
+#mainPage .header h1 {
     font-family: Abel,Verdana, Sans-Serif, Tahoma, Arial;
     font-size: 20px;
     font-weight: 600;
@@ -90,54 +81,47 @@ ul
     margin-left: 30px;
 }
 
-#mainPage .top-bar
-{
+#mainPage .top-bar {
     background-color: #10243C;
 }
 
 /* WINLOSS FILTER & FULLVIEW */
 
-.body .header .toggler
-{
+.body .header .toggler {
     background: transparent url(images/Content/sprites.png) no-repeat 0 -12px;
     position: absolute;
     top: 7px;
-    left: -9999;
+    left: -9999px;
     display: none;
     width: 14px;
     height: 14px;
 }
 
 /* Bar -------------------------------*/
-.bar
-{
+.bar {
     margin: 10px 0px;
     height: 30px;
 }
 
-.bar.new-cmd .group
-{
+.bar.new-cmd .group {
     float: left;
 }
-.bar.new-cmd .user
-{
+
+.bar.new-cmd .user {
     float: left;
     padding-left: 5px;
 }
 
 /* SCROLLABLE TABLE */
 
-.scrollGridBorder
-{
+.scrollGridBorder {
 }
 
-.scrollGridHeader
-{
+.scrollGridHeader {
     background-color: #3F536B;
 }
 
-.scrollGridHeader table.scrollGrid td
-{
+.scrollGridHeader table.scrollGrid td {
     vertical-align: middle;
     text-align: center;
     font-weight: 600;
@@ -151,22 +135,19 @@ ul
     text-transform: uppercase;
 }
 
-.scrollGridHeader table.scrollGrid td a
-{
+.scrollGridHeader table.scrollGrid td a {
     font-weight: bold;
     color: #3f4142;
     text-decoration: none !important;
 }
 
-.scrollGridContent
-{
+.scrollGridContent {
     overflow: auto;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.scrollGridContent table.scrollGrid td div.divcolor
-{
+.scrollGridContent table.scrollGrid td div.divcolor {
     text-align: center;
     width: 100px;
     line-height: 30px;
@@ -176,12 +157,12 @@ ul
     margin: 0 auto;
     width: 100px;
 }
-.scrollGridContent table.scrollGrid td div.divcolor:hover
-{
+
+.scrollGridContent table.scrollGrid td div.divcolor:hover {
     color: #C6DEFF;
 }
-.scrollGridContent table.scrollGrid td div.following
-{
+
+.scrollGridContent table.scrollGrid td div.following {
     width: 100px;
     line-height: 30px;
     background-color: #27B4E8;
@@ -192,8 +173,8 @@ ul
     color: #fff;
     cursor: pointer;
 }
-.scrollGridContent table.scrollGrid td div.following:hover
-{
+
+.scrollGridContent table.scrollGrid td div.following:hover {
     width: 100px;
     line-height: 30px;
     background-color: #D74C46;
@@ -205,8 +186,8 @@ ul
     cursor: pointer;
     font-weight: bold;
 }
-.scrollGridContent table.scrollGrid td div.follow
-{
+
+.scrollGridContent table.scrollGrid td div.follow {
     width: 100px;
     line-height: 30px;
     background-color: #E6E6E6;
@@ -218,8 +199,7 @@ ul
     cursor: pointer;
 }
 
-.scrollGridContent table.scrollGrid td div.follow:hover
-{
+.scrollGridContent table.scrollGrid td div.follow:hover {
     width: 100px;
     line-height: 30px;
     border-radius: 5px;
@@ -231,8 +211,7 @@ ul
     font-weight: bold;
 }
 
-.scrollGridContent table.scrollGrid td div.active
-{
+.scrollGridContent table.scrollGrid td div.active {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
@@ -240,8 +219,8 @@ ul
     margin: auto;
     cursor: pointer;
 }
-.scrollGridContent table.scrollGrid td div.inactive
-{
+
+.scrollGridContent table.scrollGrid td div.inactive {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
@@ -250,8 +229,7 @@ ul
     cursor: pointer;
 }
 
-.scrollGridContent table.scrollGrid td div.resetPassword
-{
+.scrollGridContent table.scrollGrid td div.resetPassword {
     background: url("images/Content/refresh_ico.png") no-repeat scroll 0px 0px transparent;
     width: 15px;
     height: 15px;
@@ -259,8 +237,7 @@ ul
     cursor: pointer;
 }
 
-.scrollGridContent table.scrollGrid td div.removeIcon
-{
+.scrollGridContent table.scrollGrid td div.removeIcon {
     background-image: url(Libs/jquery-ui/images/ui-icons_cd0a0a_256x240.png);
     background-position: -16px -192px;
     width: 15px;
@@ -270,14 +247,13 @@ ul
     margin-right: 5px;
 }
 
-table.scrollGrid
-{
+table.scrollGrid {
     border-collapse: collapse;
     font-size: .9em;
     width: 100%;
 }
-table.scrollGrid th
-{
+
+table.scrollGrid th {
     vertical-align: middle;
     text-align: center;
     border: solid 1px #d5d5d5;
@@ -286,14 +262,12 @@ table.scrollGrid th
     border-bottom: 0;
 }
 
-table.scrollGrid th a
-{
+table.scrollGrid th a {
     color: #3f4142;
     text-decoration: none !important;
 }
 
-table.scrollGrid th a span.sort.asc
-{
+table.scrollGrid th a span.sort.asc {
     background: transparent url(images/Content/arw-down-white.png) no-repeat;
     width: 7px;
     height: 4px;
@@ -303,129 +277,119 @@ table.scrollGrid th a span.sort.asc
     display: inline-block;
 }
 
-table.scrollGrid td
-{
+table.scrollGrid td {
     border: solid 1px #d5d5d5;
     text-align: left;
     padding: 0px;
 }
-table.scrollGrid tr
-{
+
+table.scrollGrid tr {
     height: 20px;
 }
-.scrollGridContent table.scrollGrid tr:hover
-{
+
+.scrollGridContent table.scrollGrid tr:hover {
     background-color: #CED8E2;
 }
 
-table.scrollGrid .total td
-{
+table.scrollGrid .total td {
     background-color: #F3F5BE;
     font-weight: bold;
 }
 
-table.scrollGrid .grandTotal td
-{
+table.scrollGrid .grandTotal td {
     background-color: #dbe2bb;
     font-weight: bold;
 }
 
-.scrollGridFooter
-{
+.scrollGridFooter {
     background-color: #ddd;
 }
-table.scrollGrid td a
-{
+
+table.scrollGrid td a {
     color: #5A72FF;
     font-weight: normal;
     text-decoration: none;
 }
-table.scrollGrid td a:visited
-{
+
+table.scrollGrid td a:visited {
     color: #5A72FF;
     font-weight: normal;
     text-decoration: none;
 }
-table.scrollGrid td a:active
-{
+
+table.scrollGrid td a:active {
     color: #5A72FF;
     font-weight: normal;
     text-decoration: none;
 }
-table.scrollGrid td a:hover
-{
+
+table.scrollGrid td a:hover {
     text-decoration: underline;
 }
-table.scrollGrid td span.subfunction
-{
+
+table.scrollGrid td span.subfunction {
     margin-left: 15px;
 }
-table.scrollGrid td span.function
-{
+
+table.scrollGrid td span.function {
     margin-left: 5px;
 }
 /* Menu
 ----------------------------------------------------------*/
 
-#mainPage .menu-slidedown
-{
+#mainPage .menu-slidedown {
     width: 100%;
     float: left;
     clear: both;
 }
-#mainPage .menu-slidedown .pointer-slidedown
-{
+
+#mainPage .menu-slidedown .pointer-slidedown {
     width: 100px;
     cursor: n-resize;
     margin: 0px auto;
 }
-#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-1
-{
+
+#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-1 {
     width: 70px;
     border-bottom: 2px solid #DBDCDF;
     height: 2px;
     margin: 0px auto;
 }
-#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-2
-{
+
+#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-2 {
     width: 30px;
     border-bottom: 2px solid #DBDCDF;
     height: 2px;
     margin: 0px auto;
 }
-#mainPage .menu
-{
+
+#mainPage .menu {
     width: 100%;
     font-weight: bold;
     z-index: 100;
     clear: both;
 }
 
-#mainPage .menu, #mainPage .menu a
-{
+#mainPage .menu, #mainPage .menu a {
     color: #b3b3b3;
 }
 
-#mainPage .menu .content
-{
+#mainPage .menu .content {
     height: 40px;
     padding: 0 16px 0 16px;
 }
 
-#mainPage .menu a.logo, #mainPage .menu a.l
-{
+#mainPage .menu a.logo, #mainPage .menu a.l {
     float: left;
     text-decoration: none;
 }
 
-#mainPage .menu a.l:hover
-{
+#mainPage .menu a.l:hover {
     text-decoration: underline;
 }
 
-#mainPage .menu a.logo
-{
-    font-family: 'Segoe UI' , Verdana, Tahoma, Arial;
+#mainPage .menu a.logo {
+    font-family: 'Segoe UI', Verdana, Tahoma, Arial;
     font-size: 20px;
     color: #FFF;
     margin: 0 10px 0 0;
@@ -436,8 +400,7 @@ table.scrollGrid td span.function
     width: 111px;
 }
 
-#mainPage .menu a.logo span
-{
+#mainPage .menu a.logo span {
     background-color: #FFF;
     border: #333 solid 1px;
     color: #3B5998;
@@ -447,15 +410,13 @@ table.scrollGrid td span.function
     -webkit-border-radius: 3px;
 }
 
-#mainPage .menu a.l
-{
+#mainPage .menu a.l {
     line-height: 31px;
     padding: 2px 11px;
     margin-top: 3px;
 }
 
-#mainPage .menu .content .welcome
-{
+#mainPage .menu .content .welcome {
     right: 0px;
     padding: 5px 20px 5px 20px;
     margin-top: 5px;
@@ -464,8 +425,8 @@ table.scrollGrid td span.function
     cursor: pointer;
     margin-right: 20px;
 }
-#mainPage .menu .content .welcome:hover
-{
+
+#mainPage .menu .content .welcome:hover {
     right: 0px;
     padding: 5px 20px 5px 20px;
     margin-top: 5px;
@@ -478,15 +439,15 @@ table.scrollGrid td span.function
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
-#mainPage .menu .content .welcome .welcomehead
-{
+
+#mainPage .menu .content .welcome .welcomehead {
     float: right;
     margin-bottom: 5px;
     clear: both;
     color: #fff;
 }
-#mainPage .menu .content .welcome .welcomehead .arrow
-{
+
+#mainPage .menu .content .welcome .welcomehead .arrow {
     float: right;
     list-style-type: none;
     vertical-align: middle;
@@ -500,45 +461,42 @@ table.scrollGrid td span.function
     cursor: pointer;
 }
 
-#mainPage .menu .content .welcome .welcomebody
-{
+#mainPage .menu .content .welcome .welcomebody {
     clear: both;
     display: none;
     color: #B3B3B3;
     margin-top: 30px;
 }
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub
-{
+
+#mainPage .menu .content .welcome .welcomebody .welcomebody-sub {
     padding-top: 10px;
     padding-bottom: 10px;
     border-top: dotted 1px #F8FBFF;
 }
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a
-{
+
+#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a {
     text-decoration: none;
     color: #B3B3B3;
     padding: 10px 0px 10px 0px;
 }
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a:hover
-{
+
+#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a:hover {
     color: #fff;
     text-decoration: none;
     padding: 10px 0px 10px 0px;
 }
 
-.nav
-{
+.nav {
     float: left;
     margin-top: 5px;
     border-right: 2px solid #4a5e75;
 }
-.nav_line
-{
+
+.nav_line {
     border-left: 2px solid #4a5e75;
 }
 
-.nav .tab
-{
+.nav .tab {
     float: left;
     margin: 1px 0 0;
     list-style-type: none;
@@ -548,41 +506,34 @@ table.scrollGrid td span.function
     padding: 0px 10px;
 }
 
-.nav .tab span
-{
+.nav .tab span {
     display: block;
     padding: 1px 9px;
 }
 
-.nav .tab.hover, .nav .tab:hover
-{
+.nav .tab.hover, .nav .tab:hover {
     color: #fff;
 }
 
-.nav .tab.hover span, .nav .tab:hover span
-{
+.nav .tab.hover span, .nav .tab:hover span {
 }
 
-.nav .hover span, .nav li:hover span
-{
+.nav .hover span, .nav li:hover span {
     position: relative;
     z-index: 100;
 }
 
-.nav .tab.selected span
-{
+.nav .tab.selected span {
     color: #fff;
     outline: none;
 }
 
-.nav .hover, .nav li:hover
-{
+.nav .hover, .nav li:hover {
     position: relative;
     z-index: 99;
 }
 
-.nav .sub-nav
-{
+.nav .sub-nav {
     border: 1px solid #10243C;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -596,31 +547,26 @@ table.scrollGrid td span.function
     background-color: #10243C;
 }
 
-.nav .hover .sub-nav, .nav li:hover .sub-nav
-{
+.nav .hover .sub-nav, .nav li:hover .sub-nav {
     left: 0px;
 }
 
-.nav .sub-nav li
-{
+.nav .sub-nav li {
     line-height: 2;
     white-space: nowrap;
 }
 
-.nav .tab a
-{
+.nav .tab a {
     text-decoration: none;
     float: left;
 }
 
-.nav .tab.hover a, .nav .tab:hover a
-{
+.nav .tab.hover a, .nav .tab:hover a {
     text-decoration: none !important;
     color: #fff !important;
 }
 
-.nav .sub-nav li a
-{
+.nav .sub-nav li a {
     color: #fff !important;
     display: block;
     padding: 5px 5px 5px 25px;
@@ -629,8 +575,7 @@ table.scrollGrid td span.function
     border-bottom: 1px solid #c2c0bd;
 }
 
-.nav .sub-nav li a:hover
-{
+.nav .sub-nav li a:hover {
     color: #d53846 !important;
     text-decoration: none;
     border-bottom: 1px solid #e6e4e2;
@@ -639,64 +584,57 @@ table.scrollGrid td span.function
 /* MISC
 -----------------------------------------------------------*/
 
-.invisible
-{
+.invisible {
     display: none;
 }
 
-.w16
-{
+.w16 {
     width: 16px !important;
 }
 
-.w100
-{
+.w100 {
     width: 100px !important;
 }
 
-.w125
-{
+.w125 {
     width: 125px !important;
 }
 
-.w150
-{
+.w150 {
     width: 150px !important;
 }
 
-.w175
-{
+.w175 {
     width: 175px !important;
 }
-.w330
-{
+
+.w330 {
     width: 330px !important;
 }
-.w300
-{
+
+.w300 {
     width: 300px !important;
 }
-.w250
-{
+
+.w250 {
     width: 250px !important;
 }
-.w230
-{
+
+.w230 {
     width: 230px !important;
 }
-.w215
-{
+
+.w215 {
     width: 215px !important;
 }
-.w440
-{
+
+.w440 {
     width: 440px !important;
 }
 
 /* TOOLTIP STYLES ---------------------------------------------------------------*/
 
-.tip
-{
+.tip {
     width: 212px;
     padding-top: 37px;
     overflow: hidden;
@@ -706,20 +644,18 @@ table.scrollGrid td span.function
     background: transparent url(images/Tooltip/tipTop.png) no-repeat top;
 }
 
-.tipMid
-{
+.tipMid {
     background: transparent url(images/Tooltip/tipMid.png) repeat-y;
     padding: 0 25px 20px 25px;
 }
-.tipBtm
-{
+
+.tipBtm {
     background: transparent url(images/Tooltip/tipBtm.png) no-repeat bottom;
     height: 32px;
 }
 
 /* LOADING -------------------------------------------------------------------*/
-.loading
-{
+.loading {
     display: none;
     position: absolute;
     z-index: 100000;
@@ -731,16 +667,15 @@ table.scrollGrid td span.function
     top: 0;
     left: 0;
 }
-.loading > img
-{
-    padding-left: 600px;
-    padding-top: 300px;
-}
+
+    .loading > img {
+        padding-left: 600px;
+        padding-top: 300px;
+    }
 
 /*Searching -------------------------*/
 
-.search-content
-{
+.search-content {
     border: 1px solid #10243C;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -749,8 +684,8 @@ table.scrollGrid td span.function
     height: 30px;
     color: #fff;
 }
-.search-content .level
-{
+
+.search-content .level {
     float: left;
     width: 100px;
     list-style: none;
@@ -762,8 +697,7 @@ table.scrollGrid td span.function
     text-align: center;
 }
 
-.search-content .inputtext
-{
+.search-content .inputtext {
     border: 1px solid #D3D3D3;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -772,42 +706,39 @@ table.scrollGrid td span.function
     margin-left: 10px;
     background-color: #D6D7D5;
 }
-.search-content .inputtext:focus
-{
+
+.search-content .inputtext:focus {
     border: 1px solid #999999;
     background-color: #ecedf0;
 }
 
-.search-content div.search-input
-{
+.search-content div.search-input {
     float: left;
 }
-.search-content div.search-autocomplete
-{
+
+.search-content div.search-autocomplete {
     float: left;
     padding-left: 5px;
     padding-right: 35px;
 }
 
-.search-content .search-button
-{
+.search-content .search-button {
     float: left;
 }
-.search-content .search-statistic
-{
+
+.search-content .search-statistic {
     float: right;
     line-height: 30px;
 }
 
-.search-content .search-statistic .search-active
-{
+.search-content .search-statistic .search-active {
     float: left;
     padding-right: 10px;
     font-weight: bold;
     border-right: 1px solid #D6D7D5;
 }
-.search-content .search-statistic .search-inactive
-{
+
+.search-content .search-statistic .search-inactive {
     float: left;
     font-weight: bold;
     padding-left: 10px;
@@ -816,10 +747,9 @@ table.scrollGrid td span.function
 
 /* Dialog Box ----------------------------------------------------------------*/
 
-.boxMain
-{
+.boxMain {
     border: 0 solid #CCCCCC;
-    border-radis: 5px;
+    border-radius: 5px;
     display: block;
     margin: 0;
     overflow: visible;
@@ -831,8 +761,8 @@ table.scrollGrid td span.function
     height: auto;
     font-family: Arial,Verdana, Sans-Serif, Tahoma;
 }
-.boxMain .container
-{
+
+.boxMain .container {
     border: 0 solid #CCCCCC;
     clear: both;
     display: block;
@@ -845,19 +775,19 @@ table.scrollGrid td span.function
     padding: 0;
     position: relative;
 }
-.boxMain .container .content
-{
+
+.boxMain .container .content {
     width: auto;
-    min-width: 450px;
+    min-width: 550px;
     margin: auto 20px;
     background-color: #eaedef;
-    border: 1px solid #CCCCCC;
+    border: 2px solid #43576D;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     clear: both;
     color: #728595;
-    display: block;
+    display: inline-block;
     margin: 0 !important;
     min-height: 100px;
     overflow: visible;
@@ -865,27 +795,30 @@ table.scrollGrid td span.function
     height: auto;
     font-size: 12px;
 }
-.boxMain .container .black
-{
+
+.boxMain .container .black {
     color: #000000;
 }
-.allField
-{
-    width: auto;
-    height: auto;
-    padding: 20px;
-}
-.allField2
-{
-    width: auto;
+
+.allField2 {
+    float: left;
     height: auto;
     padding: 2px;
-    border: 2px solid #43576D;
-    border-radius: 5px;
+    border-right: 2px solid #43576D;
 }
 
-.boxMain .container .content .title
-{
+.allField3 {
+    float: left;
+    width: 120px;
+    height: auto;
+    padding: 2px;
+}
+
+.combo-type {
+    text-align: center;
+}
+
+.boxMain .container .content .title {
     clear: both;
     color: #293e56;
     display: block;
@@ -897,8 +830,8 @@ table.scrollGrid td span.function
     font-weight: 600;
     height: 10px;
 }
-.boxMain .container .content .title2
-{
+
+.boxMain .container .content .title2 {
     clear: both;
     color: white;
     display: block;
@@ -914,21 +847,21 @@ table.scrollGrid td span.function
     margin-bottom: 12px;
     cursor: move;
 }
-.boxMain .container .content .lineTop
-{
+
+.boxMain .container .content .lineTop {
     height: 1px;
     background-color: #dce4e8;
     position: relative;
 }
-.boxMain .container .content .lineBottom
-{
+
+.boxMain .container .content .lineBottom {
     height: 1px;
     background-color: #fff;
     position: relative;
     margin-bottom: 20px;
 }
-.boxMain .container .actionbar
-{
+
+.boxMain .container .actionbar {
     clear: both;
     color: #5A5655;
     display: block;
@@ -940,8 +873,8 @@ table.scrollGrid td span.function
     position: relative;
     text-align: left;
 }
-.boxMain .container .actionbar .actionbar-line
-{
+
+.boxMain .container .actionbar .actionbar-line {
     clear: both;
     display: block;
     left: 0;
@@ -952,15 +885,15 @@ table.scrollGrid td span.function
     text-align: left;
     margin-top: 10px;
 }
-.boxMain .container .actionbar .button-action
-{
+
+.boxMain .container .actionbar .button-action {
     clear: both;
     float: right;
     line-height: 32px;
     padding-right: 5px;
 }
-.boxMain .container .labelNoneBorder
-{
+
+.boxMain .container .labelNoneBorder {
     clear: left;
     float: left;
     min-width: 120px;
@@ -971,8 +904,8 @@ table.scrollGrid td span.function
     padding-left: 3px;
     color: #3B5998;
 }
-.boxMain .container .label
-{
+
+.boxMain .container .label {
     clear: left;
     float: left;
     min-width: 116px;
@@ -989,16 +922,16 @@ table.scrollGrid td span.function
     padding-left: 3px;
     color: #3B5998;
 }
-.boxMain .container .fieldNoneBorder
-{
+
+.boxMain .container .fieldNoneBorder {
     clear: right;
     float: left;
     text-align: left;
     line-height: 34px;
     margin: 0px 0px 10px 0px;
 }
-.boxMain .container .field
-{
+
+.boxMain .container .field {
     clear: right;
     float: left;
     text-align: left;
@@ -1012,8 +945,8 @@ table.scrollGrid td span.function
     border-bottom-right-radius: 2px;
     height: auto;
 }
-.boxMain .container .fieldbar
-{
+
+.boxMain .container .fieldbar {
     clear: both;
     color: #5A5655;
     display: block;
@@ -1026,8 +959,7 @@ table.scrollGrid td span.function
     text-align: left;
 }
 
-.boxMain .container .fieldbar table
-{
+.boxMain .container .fieldbar table {
     width: 100%;
     border: solid 1px #D3D3D3;
     border-radius: 5px;
@@ -1037,8 +969,7 @@ table.scrollGrid td span.function
     border-collapse: collapse;
 }
 
-.boxMain .container .fieldbar table tr th
-{
+.boxMain .container .fieldbar table tr th {
     vertical-align: middle;
     text-align: center;
     font-weight: bold;
@@ -1046,25 +977,24 @@ table.scrollGrid td span.function
     background-color: #10243C;
     border: solid 1px #D3D3D3;
 }
-.boxMain .container .fieldbar table tr
-{
+
+.boxMain .container .fieldbar table tr {
     height: 25px;
 }
-.boxMain .container .fieldbar table tr:hover
-{
+
+.boxMain .container .fieldbar table tr:hover {
     background-color: #CED8E2;
 }
-.boxMain .container .fieldbar table tr span.function
-{
+
+.boxMain .container .fieldbar table tr span.function {
     margin-left: 5px;
 }
-.boxMain .container .fieldbar table tr span.subfunction
-{
+
+.boxMain .container .fieldbar table tr span.subfunction {
     margin-left: 15px;
 }
 
-.boxMain .container .fieldbar table tr td div.inactive
-{
+.boxMain .container .fieldbar table tr td div.inactive {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
@@ -1073,8 +1003,7 @@ table.scrollGrid td span.function
     cursor: pointer;
 }
 
-.boxMain .container .fieldbar table tr td div.active
-{
+.boxMain .container .fieldbar table tr td div.active {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
@@ -1083,8 +1012,7 @@ table.scrollGrid td span.function
     cursor: pointer;
 }
 
-.boxMain .container .field .inputtext
-{
+.boxMain .container .field .inputtext {
     border: 1px solid transparent;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -1094,8 +1022,7 @@ table.scrollGrid td span.function
     min-width: 100px;
 }
 
-.boxMain .container .field_areatext
-{
+.boxMain .container .field_areatext {
     clear: right;
     float: left;
     text-align: left;
@@ -1105,8 +1032,7 @@ table.scrollGrid td span.function
     min-width: 330px;
 }
 
-.boxMain .container .label_areatext
-{
+.boxMain .container .label_areatext {
     clear: left;
     float: left;
     min-width: 120px;
@@ -1117,8 +1043,8 @@ table.scrollGrid td span.function
     height: 120px;
     color: #3B5998;
 }
-.boxMain .container .field_areatext .areatext
-{
+
+.boxMain .container .field_areatext .areatext {
     border: solid 1px #D3D3D3;
     min-width: 330px;
     width: auto;
@@ -1126,8 +1052,8 @@ table.scrollGrid td span.function
     height: 120px;
     padding: 10px 0px 0px 10px;
 }
-.boxMain .container .fieldNoneBorder select
-{
+
+.boxMain .container .fieldNoneBorder select {
     width: auto;
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -1136,19 +1062,18 @@ table.scrollGrid td span.function
     border: 1px solid #D3D3D3;
     padding: 5px;
 }
-.boxMain .container .field select:focus
-{
+
+.boxMain .container .field select:focus {
     border: 1px solid #999999;
 }
-.boxMain .container .field .inputtext:focus
-{
-}
-.boxMain .container .field .areatext:focus
-{
+
+.boxMain .container .field .inputtext:focus {
 }
 
-.boxMain .container .actionbar .line-loading
-{
+.boxMain .container .field .areatext:focus {
+}
+
+.boxMain .container .actionbar .line-loading {
     float: left;
     position: absolute;
     z-index: 100000;
@@ -1161,8 +1086,8 @@ table.scrollGrid td span.function
     padding-left: 10px;
     display: none;
 }
-.boxMain .container .actionbar .warningmsg
-{
+
+.boxMain .container .actionbar .warningmsg {
     line-height: 30px;
     min-height: 20px;
     float: left;
@@ -1175,8 +1100,7 @@ table.scrollGrid td span.function
     margin-left: 5px;
 }
 /* Minimize --------------------------------------------------------------------------*/
-.minimizetitle
-{
+.minimizetitle {
     width: auto;
     min-width: 300px;
     height: 20px;
@@ -1189,14 +1113,14 @@ table.scrollGrid td span.function
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
 }
-.minimizecontent
-{
+
+.minimizecontent {
     float: left;
     line-height: 17px;
     margin-left: 5px;
 }
-.minimize
-{
+
+.minimize {
     cursor: pointer;
     float: right;
     font-weight: bold;
@@ -1207,8 +1131,7 @@ table.scrollGrid td span.function
 }
 
 /* Charting and Reporting -------------------------------------------------- */
-.filter
-{
+.filter {
     float: left;
     height: auto;
     border-radius: 5px;
@@ -1217,12 +1140,11 @@ table.scrollGrid td span.function
     margin-bottom: 10px;
 }
 
-.filter select
-{
+.filter select {
     padding: 2px;
 }
-.filter .data
-{
+
+.filter .data {
     float: left;
     width: auto;
     min-width: 300px;
@@ -1234,28 +1156,28 @@ table.scrollGrid td span.function
     border: 1px solid #43576D;
     padding-bottom: 1px;
 }
-.filter .data .minimizetitle
-{
+
+.filter .data .minimizetitle {
     color: #fff;
 }
-.filter .data table
-{
+
+.filter .data table {
     width: 400px;
     height: auto;
     border-collapse: collapse;
     margin: 0px 1px;
 }
-.filter .data table thead
-{
+
+.filter .data table thead {
     font-weight: bold;
 }
-.filter .data table tr
-{
+
+.filter .data table tr {
     height: 25px;
     background-color: #fff;
 }
-.filter .data table tr td
-{
+
+.filter .data table tr td {
     margin: 2px;
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -1274,35 +1196,35 @@ table.scrollGrid td span.function
     vertical-align: middle;
     font-size: 11px;
 }
-.filter .data table tr th.Nobackground
-{
+
+.filter .data table tr th.Nobackground {
     background-color: transparent;
     font-weight: bold;
 }
-.filter .data table tr th.valueChanged
-{
+
+.filter .data table tr th.valueChanged {
     background-color: Yellow;
     color: Blue;
 }
-div.tabularcontainer table tr td.valueChanged
-{
+
+div.tabularcontainer table tr td.valueChanged {
     background-color: Yellow;
     color: Blue;
 }
-.filter .data table tr th
-{
+
+.filter .data table tr th {
     border: 1px solid #D5D5D5;
     height: 20px;
     padding: 2px;
     text-align: right;
     font-weight: normal;
 }
-.filter .data table tr th:hover
-{
+
+.filter .data table tr th:hover {
     background-color: #CED8E2;
 }
-.filter .filter-control
-{
+
+.filter .filter-control {
     float: left;
     width: auto;
     height: auto;
@@ -1312,32 +1234,32 @@ div.tabularcontainer table tr td.valueChanged
     -webkit-border-radius: 5px;
     margin: 2px 0px 0px 0px;
 }
-.filter .filter-control .minimizetitle
-{
+
+.filter .filter-control .minimizetitle {
     color: #fff;
 }
-.filter .container
-{
+
+.filter .container {
     width: auto;
     height: auto;
     float: left;
 }
-.filter .filter-control .view
-{
+
+.filter .filter-control .view {
     float: left;
     width: auto;
     min-width: 150px;
     margin-left: 5px;
 }
-.filter .filter-control .time
-{
+
+.filter .filter-control .time {
     float: left;
     width: auto;
     min-width: 150px;
     margin-left: 5px;
 }
-.filter .filter-control .lable
-{
+
+.filter .filter-control .lable {
     float: left;
     min-width: 30px;
     min-height: 30px;
@@ -1347,37 +1269,37 @@ div.tabularcontainer table tr td.valueChanged
     font-weight: bold;
     color: #5F5F5F;
 }
-.filter .filter-control .control
-{
+
+.filter .filter-control .control {
     float: left;
     width: auto;
     min-height: 30px;
     line-height: 30px;
     padding: 0px 2px 0px 2px;
 }
-.filter .filter-control .bettype
-{
+
+.filter .filter-control .bettype {
     float: left;
     width: auto;
     margin-left: 5px;
 }
-.filter .filter-control .dimensions
-{
+
+.filter .filter-control .dimensions {
     clear: both;
     float: left;
     width: auto;
     min-width: 300px;
     margin-left: 5px;
 }
-.filter .filter-control .action
-{
+
+.filter .filter-control .action {
     float: left;
     width: auto;
     min-width: 100px;
     margin-left: 10px;
 }
-.chart
-{
+
+.chart {
     clear: both;
     margin: 2px 3px;
     border: 1px solid #43576D;
@@ -1385,8 +1307,8 @@ div.tabularcontainer table tr td.valueChanged
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
-.chartText
-{
+
+.chartText {
     color: Blue;
     width: 480px;
     height: 300px;
@@ -1394,15 +1316,15 @@ div.tabularcontainer table tr td.valueChanged
     font-size: medium;
     line-height: 300px;
 }
-.topSelection
-{
+
+.topSelection {
     height: auto;
     color: #fff;
     width: auto;
     float: left;
 }
-.topSelection .toptitle
-{
+
+.topSelection .toptitle {
     height: 20px;
     vertical-align: middle;
     color: #5B5B53;
@@ -1412,145 +1334,145 @@ div.tabularcontainer table tr td.valueChanged
     line-height: 20px;
     padding: 3px 0px;
 }
-.topSelection #topSelectionByTicket
-{
+
+.topSelection #topSelectionByTicket {
     clear: both;
     float: left;
     margin-bottom: 10px;
 }
-.topSelection #topSelectionByTurnover
-{
+
+.topSelection #topSelectionByTurnover {
     clear: right;
     float: left;
     margin-bottom: 10px;
 }
-.topSelection #topSelectionByCurrency
-{
+
+.topSelection #topSelectionByCurrency {
     clear: left;
     float: left;
     margin-bottom: 10px;
 }
-.topSelection #topSelectionByLeague
-{
+
+.topSelection #topSelectionByLeague {
     clear: right;
     float: left;
     margin-bottom: 10px;
 }
-.topSelection #popularEvent
-{
+
+.topSelection #popularEvent {
     clear: right;
     float: left;
     margin-bottom: 10px;
 }
-.topSelection #favoriteEvent
-{
+
+.topSelection #favoriteEvent {
     float: left;
     width: 970px;
     height: 300px;
     margin-bottom: 10px;
 }
-.topSelection #favoriteChoice
-{
+
+.topSelection #favoriteChoice {
     float: left;
     width: 480px;
     height: 350px;
     margin-bottom: 10px;
 }
-.topSelection #favoriteBetType
-{
+
+.topSelection #favoriteBetType {
     float: left;
     width: 480px;
     height: 350px;
     margin-bottom: 10px;
     margin-right: 10px;
 }
-#TopSelectionByTurnover_Event_BetType_container
-{
+
+#TopSelectionByTurnover_Event_BetType_container {
     height: 300px;
 }
-#TopSelectionByTurnover_Event_BetType_Choice_container
-{
+
+#TopSelectionByTurnover_Event_BetType_Choice_container {
     height: 300px;
 }
-#TopSelectionByTurnover_Event_container
-{
+
+#TopSelectionByTurnover_Event_container {
     height: 300px;
 }
-#TopSelectionByTicket_Event_BetType_container
-{
+
+#TopSelectionByTicket_Event_BetType_container {
     height: 300px;
 }
-#TopSelectionByTicket_Event_BetType_Choice_container
-{
+
+#TopSelectionByTicket_Event_BetType_Choice_container {
     height: 300px;
 }
-#TopSelectionByTicket_Event_container
-{
+
+#TopSelectionByTicket_Event_container {
     height: 300px;
 }
-.topSelection .scrollGrid
-{
+
+.topSelection .scrollGrid {
     color: Black;
 }
-#TopSelectionByTicket_container
-{
+
+#TopSelectionByTicket_container {
     width: 480px;
     height: 260px;
     margin: 0px 5px 3px 0px;
 }
-#TopSelectionByTurnover_container
-{
+
+#TopSelectionByTurnover_container {
     width: 480px;
     height: 260px;
     margin: 0px 5px 3px 0px;
 }
-#TopSelectionByCurrency_container
-{
+
+#TopSelectionByCurrency_container {
     width: 480px;
     height: 260px;
     margin: 0px 5px 3px 0px;
 }
-#TopLeagueByTicket_container
-{
+
+#TopLeagueByTicket_container {
     width: 480px;
     height: 260px;
     margin: 0px 5px 3px 0px;
 }
-#TopLeagueByTurnover_container
-{
+
+#TopLeagueByTurnover_container {
     width: 480px;
     height: 260px;
     margin: 0px 5px 3px 0px;
 }
-#TopEventCurrencyByTicket_container
-{
+
+#TopEventCurrencyByTicket_container {
     width: 965px;
     height: 300px;
 }
-#TopEventLeagueByTicket_container
-{
-    width: 965px;
-    height: 300px;
-    margin: 0px 5px 3px 0px;
-}
-#TopEventCurrencyByTurnover_container
-{
+
+#TopEventLeagueByTicket_container {
     width: 965px;
     height: 300px;
     margin: 0px 5px 3px 0px;
 }
-#TopEventLeagueByTurnover_container
-{
+
+#TopEventCurrencyByTurnover_container {
     width: 965px;
     height: 300px;
     margin: 0px 5px 3px 0px;
 }
-option.sub
-{
+
+#TopEventLeagueByTurnover_container {
+    width: 965px;
+    height: 300px;
+    margin: 0px 5px 3px 0px;
+}
+
+option.sub {
     margin-left: 15px;
 }
-div.tabular
-{
+
+div.tabular {
     width: auto;
     height: auto;
     float: left;
@@ -1560,37 +1482,36 @@ div.tabular
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
-div.tabularcontainer
-{
+
+div.tabularcontainer {
     width: auto;
     height: auto;
     float: left;
 }
 
-div.tabularcontainer table
-{
+div.tabularcontainer table {
     width: auto;
     height: auto;
     border-collapse: collapse;
     min-width: 420px;
     max-width: 480px;
 }
-table#tblTicket
-{
+
+table#tblTicket {
     max-width: 1000px;
 }
-table#tblTurnover
-{
+
+table#tblTurnover {
     max-width: 1000px;
 }
-div.tabularcontainer table tr
-{
+
+div.tabularcontainer table tr {
     height: 25px;
     color: #444;
     text-align: center;
 }
-div.tabularcontainer table tr td
-{
+
+div.tabularcontainer table tr td {
     border: 1px solid #D5D5D5;
     height: 20px;
     min-width: 70px;
@@ -1598,29 +1519,28 @@ div.tabularcontainer table tr td
     background-color: #fff;
     text-align: right;
 }
-div.tabularcontainer table td.hover
-{
+
+div.tabularcontainer table td.hover {
     background-color: #f8cb62 !important;
 }
-div.tabularcontainer table td.selected
-{
+
+div.tabularcontainer table td.selected {
     background-color: #f8cb62 !important;
 }
-div.tabularcontainer table colgroup.hover, tr.hover, th.hover
-{
+
+div.tabularcontainer table colgroup.hover, tr.hover, th.hover {
     background-color: #fcbc26 !important;
 }
 
-div.tabularcontainer table tr th
-{
+div.tabularcontainer table tr th {
     background-color: transparent;
     border: 1px solid #D5D5D5;
     color: #5B5B53;
     text-align: center;
     font-weight: bold;
 }
-div.tabularcontainer table tr th.Nobackground
-{
+
+div.tabularcontainer table tr th.Nobackground {
     background-color: transparent;
     font-weight: bold;
     text-align: right;
@@ -1628,8 +1548,7 @@ div.tabularcontainer table tr th.Nobackground
 }
 /* Button -------------------------------------------- */
 
-.button
-{
+.button {
     width: auto;
     height: 27px;
     border: 1px solid #B32936;
@@ -1642,8 +1561,8 @@ div.tabularcontainer table tr th.Nobackground
     font-size: 11px;
     padding: 0 5px;
 }
-.button:hover
-{
+
+.button:hover {
     width: auto;
     height: 27px;
     border: 1px solid #B32936;
@@ -1657,8 +1576,7 @@ div.tabularcontainer table tr th.Nobackground
     padding: 0 5px;
 }
 
-.button-disable
-{
+.button-disable {
     width: auto;
     height: 27px;
     border: 1px solid #bebebe;
@@ -1672,8 +1590,7 @@ div.tabularcontainer table tr th.Nobackground
     padding: 0 5px;
 }
 
-.button-disable-2
-{
+.button-disable-2 {
     width: auto;
     height: 20px;
     border: 1px solid #bebebe;
@@ -1687,15 +1604,14 @@ div.tabularcontainer table tr th.Nobackground
     padding: 0 5px;
 }
 
-.lineDiv
-{
+.lineDiv {
     background-color: #d79700;
     width: 967px;
     margin-bottom: 10px;
     height: 2px;
 }
-.detailTitle
-{
+
+.detailTitle {
     margin-top: 5px;
     margin-left: 5px;
     color: #d79700;
@@ -1704,18 +1620,17 @@ div.tabularcontainer table tr th.Nobackground
     font-size: 13px;
 }
 
-.evenRow
-{
+.evenRow {
     background-color: #e7e7e7;
 }
-.tabloading
-{
+
+.tabloading {
     float: left;
     margin-left: 5px;
     line-height: 17px;
 }
-.back
-{
+
+.back {
     width: 30px;
     height: 20px;
     background-image: url("images/Content/back.png");
@@ -1724,13 +1639,13 @@ div.tabularcontainer table tr th.Nobackground
     cursor: pointer;
     padding-top: 0px;
 }
-b
-{
+
+b {
     margin-left: 3px;
     margin-right: 3px;
 }
-.UnderMaintenance
-{
+
+.UnderMaintenance {
     width: 500px;
     height: 150px;
     border: 1px solid #10243C;
@@ -1742,23 +1657,21 @@ b
     padding-top: 30px;
     font-size: 15px;
 }
-.UnderMaintenance h2
-{
-    font-size: 20px;
-    color: White;
-    margin-bottom: 20px;
-}
+
+    .UnderMaintenance h2 {
+        font-size: 20px;
+        color: White;
+        margin-bottom: 20px;
+    }
 /*Bet Details*/
-.betdetails
-{
+.betdetails {
     text-align: center;
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 500px;
 }
 /*Bet Details*/
-.excel
-{
+.excel {
     background-image: url("images/Content/icon/excel_icon_small.gif");
     background-repeat: no-repeat;
     background-position: center;
@@ -1770,50 +1683,46 @@ b
     border-radius: 5px;
     margin: 2px 2px 0px 0px;
 }
-.excel:hover
-{
+
+.excel:hover {
     border: 1px solid #FF9900;
 }
 
-.right
-{
+.right {
     text-align: right;
 }
 
-.left
-{
+.left {
     text-align: left;
 }
 
-.center
-{
+.center {
     text-align: center;
 }
-.bold
-{
+
+.bold {
     font-weight: bold;
 }
-.numeric
-{
+
+.numeric {
     text-align: right;
 }
-.negative
-{
+
+.negative {
     color: Red;
 }
-.error
-{
+
+.error {
     color: Red;
     font-weight: bold;
 }
 /*Main Table*/
-table.main
-{
+table.main {
     table-layout: fixed;
     border-collapse: collapse;
 }
-table.main > thead > tr > th
-{
+
+table.main > thead > tr > th {
     font-size: 0.9em;
     vertical-align: middle;
     text-align: center;
@@ -1824,39 +1733,39 @@ table.main > thead > tr > th
     text-transform: uppercase;
     color: White;
 }
-table.main > thead > tr > th.header2rows
-{
+
+table.main > thead > tr > th.header2rows {
     background-color: #3F536B;
 }
-table.main > tbody > tr
-{
+
+table.main > tbody > tr {
     background-color: #F8F8F8;
     height: 30px;
 }
-table.main > tbody > tr.even
-{
+
+table.main > tbody > tr.even {
     background-color: #F0F0F0;
 }
-table.main > tbody > tr:hover
-{
+
+table.main > tbody > tr:hover {
     background-color: #E8EAEF;
 }
-table.main > tbody > tr.details
-{
+
+table.main > tbody > tr.details {
     background-color: white;
 }
-table.main > tbody > tr > td
-{
+
+table.main > tbody > tr > td {
     font-size: 0.9em;
     padding: 1px 3px;
     border: solid 1px #d5d5d5;
 }
-table.main > tbody > tr > td .tdDetail
-{
+
+table.main > tbody > tr > td .tdDetail {
     padding: 3px 3px;
 }
-table.main > tbody > tr > td .tdDetailLink
-{
+
+table.main > tbody > tr > td .tdDetailLink {
     font-weight: bold;
     padding: 1px 3px;
     color: #006400;
@@ -1864,30 +1773,30 @@ table.main > tbody > tr > td .tdDetailLink
     background-repeat: no-repeat;
     padding-left: 18px; /* width of the image plus a little extra padding */
 }
-table.main > tbody > tr > td > a
-{
+
+table.main > tbody > tr > td > a {
     color: #2E64FE;
     text-decoration: none;
 }
-table.main > tbody > tr > td > a:hover
-{
+
+table.main > tbody > tr > td > a:hover {
     color: #2E64FE;
     text-decoration: none;
 }
-table.main > tfoot > tr > td
-{
+
+table.main > tfoot > tr > td {
     font-size: 1.0em;
     font-weight: bold;
     height: 31px;
     border: solid 1px #d5d5d5;
     padding-right: 3px;
 }
-table.main.foot > tfoot > tr
-{
+
+table.main.foot > tfoot > tr {
     border: solid 1px #d5d5d5;
 }
-table.main.foot > tfoot > tr > td
-{
+
+table.main.foot > tfoot > tr > td {
     font-size: 1.0em;
     font-weight: bold;
     height: 27px;
@@ -1897,12 +1806,11 @@ table.main.foot > tfoot > tr > td
 /*Main Table*/
 
 /*Sub Table*/
-table.sub
-{
+table.sub {
     border-collapse: collapse;
 }
-table.sub > thead > tr > th
-{
+
+table.sub > thead > tr > th {
     font-weight: normal;
     vertical-align: middle;
     text-align: center;
@@ -1911,52 +1819,52 @@ table.sub > thead > tr > th
     height: 20px;
     color: White;
 }
-table.sub > thead > tr > th.bold
-{
+
+table.sub > thead > tr > th.bold {
     font-weight: bold;
 }
-table.sub > thead > tr > th.header2rows
-{
+
+table.sub > thead > tr > th.header2rows {
     font-weight: bold;
 }
-table.sub > tbody > tr
-{
+
+table.sub > tbody > tr {
     height: 26px;
     background-color: #DEDEDE;
 }
-table.sub > tbody > tr > td.columneven
-{
+
+table.sub > tbody > tr > td.columneven {
     background-color: #CDC0B0;
 }
-table.sub > tbody > tr > td.columnodd
-{
+
+table.sub > tbody > tr > td.columnodd {
     background-color: #C1CDC1;
 }
-table.sub > tbody > tr.even
-{
+
+table.sub > tbody > tr.even {
     background-color: #CCCCCC;
 }
-table.sub > tbody > tr:hover
-{
+
+table.sub > tbody > tr:hover {
     background-color: #e6e6e6;
 }
-table.sub > tbody > tr > td
-{
+
+table.sub > tbody > tr > td {
     padding: 1px 3px;
     border: solid 1px #eeffff;
 }
-table.sub > tfoot > tr > td
-{
+
+table.sub > tfoot > tr > td {
     font-weight: bold;
     height: 31px;
     border: solid 1px #eeffff;
 }
-table.sub td.numeric
-{
+
+table.sub td.numeric {
     text-align: right;
 }
-table .hr
-{
+
+table .hr {
     background-color: #d5d5d5;
     height: 1px;
     border: 0;
@@ -1964,13 +1872,12 @@ table .hr
 /*Sub Table*/
 
 /*total table*/
-table.total
-{
+table.total {
     table-layout: fixed;
     border-collapse: collapse;
 }
-table.total > tfoot > tr > td
-{
+
+table.total > tfoot > tr > td {
     font-size: 1.0em;
     font-weight: bold;
     height: 27px;
@@ -1980,12 +1887,11 @@ table.total > tfoot > tr > td
 /*total table*/
 
 /*Details Cell*/
-div.details
-{
+div.details {
     padding: 5px;
 }
-div.details div.title
-{
+
+div.details div.title {
     background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     border-color: #0A1E36 #0A1E36 -moz-use-text-color;
     border-radius: 3px 3px 3px 3px;
@@ -1996,26 +1902,26 @@ div.details div.title
     min-width: 300px;
     width: auto;
 }
-div.details div.title span.title
-{
+
+div.details div.title span.title {
     font-size: 11px;
     font-weight: bold;
     line-height: 20px;
     color: #fff;
 }
-div.details div.title img.close
-{
+
+div.details div.title img.close {
     float: right;
     cursor: pointer;
     height: 20px;
 }
-a.link
-{
+
+a.link {
     cursor: pointer;
     color: #0000FF;
 }
-a.datepicker
-{
+
+a.datepicker {
     float: left;
     width: 16px;
     height: 16px;
@@ -2029,16 +1935,15 @@ a.datepicker
 /*Details Cell*/
 
 /*Filter*/
-.filter .filter-control label
-{
+.filter .filter-control label {
     float: left;
     padding: 10px 5px;
     font-size: 11px;
     font-weight: bold;
     color: #5F5F5F;
 }
-.filter .filter-control a
-{
+
+.filter .filter-control a {
     float: left;
     padding: 10px 5px;
     font-size: 11px;
@@ -2046,60 +1951,59 @@ a.datepicker
     cursor: pointer;
     color: #1E1EEB;
 }
-.filter .filter-control .radiotag
-{
+
+.filter .filter-control .radiotag {
     font-weight: normal;
 }
-.filter .filter-control input
-{
+
+.filter .filter-control input {
     line-height: 15px;
     margin-top: 5px;
 }
-.filter .filter-control input[type='text']
-{
-    width: 137px;
-}
-.filter .filter-control .group
-{
+
+    .filter .filter-control input[type='text'] {
+        width: 137px;
+    }
+
+.filter .filter-control .group {
     float: left;
     margin: 0px 5px;
     height: 32px;
     overflow: hidden;
 }
-.filter .filter-control .row
-{
+
+.filter .filter-control .row {
     float: left;
     width: 100%;
 }
-.filter .filter-control input[type="checkbox"]
-{
+
+.filter .filter-control input[type="checkbox"] {
     float: left;
     margin-top: 10px;
 }
-.filter .filter-control input[type="radio"]
-{
+
+.filter .filter-control input[type="radio"] {
     float: left;
     margin-top: 10px;
 }
-.filter .filter-control .button
-{
+
+.filter .filter-control .button {
     float: left;
 }
-.filter .filter-control label.radio
-{
+
+.filter .filter-control label.radio {
     margin-right: 3px;
     font-weight: normal;
     padding-left: 0px;
 }
 /*Filter*/
-#divResult div.maintitle div.information
-{
+#divResult div.maintitle div.information {
     float: left;
     line-height: 30px;
     margin-left: 20px;
 }
-#divResult div.maintitle
-{
+
+#divResult div.maintitle {
     clear: both; /* background-color: #454513;*/
     background-color: #454513;
     height: 35px;
@@ -2109,53 +2013,29 @@ a.datepicker
     border-top-right-radius: 5px;
     margin-bottom: 1px;
 }
-#divResult div.mainfooter
-{
+
+#divResult div.mainfooter {
     background-color: #3F536B;
     color: #fff;
-    border: soild 1px #3F536B;
+    border: solid 1px #3F536B;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-#divResult .subTotal
-{
+
+#divResult .subTotal {
     background-color: #EFEFEF;
     color: #30465D;
     font-weight: bold;
 }
-.separateFooter
-{
+
+.separateFooter {
     background-color: #3F536B;
     color: #fff;
-    border: soild 1px #3F536B;
+    border: solid 1px #3F536B;
     height: 29px;
 }
-.arrowDown_div
-{
-    clear: both;
-    background: url('images/Content/dropdown.png') no-repeat right transparent;
-    height: 10px;
-    width: 10px;
-    cursor: pointer;
-    display: inline-table;
-    text-align: right;
-    float: right;
-    margin: 10px;
-}
-.arrowDown_table
-{
-    clear: both;
-    background: url('images/Content/dropdown.png') no-repeat right transparent;
-    height: 10px;
-    width: 10px;
-    cursor: pointer;
-    display: inline-table;
-    text-align: right;
-    float: right;
-}
 
-.arrowDown
-{
+.arrowDown_div {
     clear: both;
     background: url('images/Content/dropdown.png') no-repeat right transparent;
     height: 10px;
@@ -2167,34 +2047,52 @@ a.datepicker
     margin: 10px;
 }
 
-.noinfo
-{
+.arrowDown_table {
+    clear: both;
+    background: url('images/Content/dropdown.png') no-repeat right transparent;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    display: inline-table;
+    text-align: right;
+    float: right;
+}
+
+.arrowDown {
+    clear: both;
+    background: url('images/Content/dropdown.png') no-repeat right transparent;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    display: inline-table;
+    text-align: right;
+    float: right;
+    margin: 10px;
+}
+
+.noinfo {
     height: 22px;
     text-align: center;
     font-weight: bold;
     font-size: 0.9em;
 }
 
-th.sortable
-{
+th.sortable {
     cursor: pointer;
     padding-right: 10px;
     background: url('images/Content/tablesort.png') no-repeat 99% center transparent;
 }
 
-th.headerSortUp
-{
+th.headerSortUp {
     background-image: url('images/Content/tablesortup.png');
 }
 
-th.headerSortDown
-{
+th.headerSortDown {
     background-image: url('images/Content/tablesortdown.png');
 }
 
 /*Refactor Section: Begin*/
-div.popuploading
-{
+div.popuploading {
     float: left;
     position: absolute;
     z-index: 100000;
@@ -2209,44 +2107,43 @@ div.popuploading
 }
 
 /* Search Bar */
-.searchbar
-{
+.searchbar {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: #10243C;
     color: #fff;
     overflow: hidden;
 }
-.searchbar-group
-{
+
+.searchbar-group {
     float: left;
     padding: 8px 5px;
 }
-.searchbar-button
-{
+
+.searchbar-button {
     margin: 0px;
     height: 24px;
 }
-.searchbar-statistic
-{
+
+.searchbar-statistic {
     float: right;
     padding: 15px 5px 5px 5px;
     font-weight: bold;
 }
-.searchbar-statistic-active
-{
+
+.searchbar-statistic-active {
     float: left;
     padding-right: 10px;
     border-right: 1px solid #D6D7D5;
 }
-.searchbar-statistic-inactive
-{
+
+.searchbar-statistic-inactive {
     float: left;
     padding-left: 10px;
     border-left: 1px solid #D6D7D5;
 }
-.searchbar-input
-{
+
+.searchbar-input {
     border: 1px solid #D3D3D3;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -2257,10 +2154,9 @@ div.popuploading
 /* Search Bar */
 
 /* Popup */
-.popup
-{
+.popup {
     border: 0 solid #CCCCCC;
-    border-radis: 5px;
+    border-radius: 5px;
     display: block;
     margin: 0;
     overflow: visible;
@@ -2275,8 +2171,7 @@ div.popuploading
     overflow: hidden;
 }
 
-.popup-content
-{
+.popup-content {
     margin: auto 20px;
     background-color: #eaedef;
     border: 1px solid #CCCCCC;
@@ -2294,13 +2189,12 @@ div.popuploading
     font-size: 12px;
     padding: 20px;
 }
-.popup-title
-{
+
+.popup-title {
     cursor: move;
 }
 
-.popup-content-title
-{
+.popup-content-title {
     clear: both;
     color: #293e56;
     display: block;
@@ -2313,31 +2207,27 @@ div.popuploading
     height: 10px;
 }
 
-.popup-content input, .popup-content select, .popup-content textarea
-{
+.popup-content input, .popup-content select, .popup-content textarea {
     -ms-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     -webkit-box-sizing: content-box;
 }
 
-.popup-content-linetop
-{
+.popup-content-linetop {
     height: 1px;
     background-color: #dce4e8;
     position: relative;
 }
 
-.popup-content-linebottom
-{
+.popup-content-linebottom {
     height: 1px;
     background-color: #fff;
     position: relative;
     margin-bottom: 20px;
 }
 
-.popup-content-label
-{
+.popup-content-label {
     clear: left;
     float: left;
     min-width: 116px;
@@ -2355,8 +2245,7 @@ div.popuploading
     color: #3B5998;
 }
 
-.popup-content-input
-{
+.popup-content-input {
     clear: right;
     float: left;
     text-align: left;
@@ -2370,8 +2259,7 @@ div.popuploading
     border-bottom-right-radius: 2px;
 }
 
-.popup-content-label2
-{
+.popup-content-label2 {
     clear: left;
     float: left;
     min-width: 120px;
@@ -2383,16 +2271,14 @@ div.popuploading
     color: #3B5998;
 }
 
-.popup-content-input2
-{
+.popup-content-input2 {
     clear: right;
     float: left;
     text-align: left;
     margin-bottom: 10px;
 }
 
-.popup-content-noinput
-{
+.popup-content-noinput {
     clear: right;
     float: left;
     height: 34px;
@@ -2401,8 +2287,7 @@ div.popuploading
     margin-bottom: 10px;
 }
 
-.popup-content-textbox
-{
+.popup-content-textbox {
     border: 1px solid transparent;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -2411,16 +2296,14 @@ div.popuploading
     line-height: 30px;
 }
 
-.popup-content-textarea
-{
+.popup-content-textarea {
     border: solid 1px #D3D3D3;
     resize: none;
     height: 120px;
     padding: 10px 0px 0px 10px;
 }
 
-.popup-content-select
-{
+.popup-content-select {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -2428,16 +2311,14 @@ div.popuploading
     padding: 5px;
 }
 
-.popup-content-actionbar
-{
+.popup-content-actionbar {
     clear: both;
     color: #5A5655;
     display: block;
     overflow: hidden;
 }
 
-.popup-content-actionbar-loading
-{
+.popup-content-actionbar-loading {
     float: left;
     position: absolute;
     z-index: 100000;
@@ -2451,8 +2332,7 @@ div.popuploading
     display: none;
 }
 
-.popup-content-actionbar-warningmsg
-{
+.popup-content-actionbar-warningmsg {
     line-height: 30px;
     min-height: 20px;
     float: left;
@@ -2465,14 +2345,12 @@ div.popuploading
     margin-left: 5px;
 }
 
-.popup-content-actionbar-button
-{
+.popup-content-actionbar-button {
     clear: both;
     float: right;
 }
 
-.popup-content-table
-{
+.popup-content-table {
     min-width: 400px;
     border: solid 1px #D3D3D3;
     border-radius: 5px;
@@ -2482,13 +2360,11 @@ div.popuploading
     margin-bottom: 20px;
 }
 
-.popup-content-table tr
-{
+.popup-content-table tr {
     height: 25px;
 }
 
-.popup-content-table th
-{
+.popup-content-table th {
     vertical-align: middle;
     text-align: center;
     font-weight: bold;
@@ -2500,35 +2376,33 @@ div.popuploading
 /* Popup */
 
 /* Tabs */
-.ui-tabs .ui-widget-header
-{
+.ui-tabs .ui-widget-header {
     background: url(images/content/title_bg.png) repeat-x center center transparent;
     border: none;
 }
-.ui-tabs .ui-state-active
-{
+
+.ui-tabs .ui-state-active {
     background-color: #EFEFEF !important;
     background-image: none !important;
 }
-.ui-tabs .ui-state-default
-{
+
+.ui-tabs .ui-state-default {
     background: url(images/content/title_bg.png) repeat-x center center transparent;
     background-color: #EFEFEF !important;
 }
-.ui-tabs .ui-widget-content
-{
+
+.ui-tabs .ui-widget-content {
     background: #EFEFEF;
 }
-.ui-tabs.ui-widget-content
-{
+
+.ui-tabs.ui-widget-content {
     border: none;
     background: #EFEFEF;
 }
 /* Tabs */
 
 /* Function Permission */
-#tblFunction .active
-{
+#tblFunction .active {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
@@ -2536,8 +2410,8 @@ div.popuploading
     margin: auto;
     cursor: pointer;
 }
-#tblFunction .inactive
-{
+
+#tblFunction .inactive {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
@@ -2545,19 +2419,18 @@ div.popuploading
     margin: auto;
     cursor: pointer;
 }
-#tblFunction .function
-{
+
+#tblFunction .function {
     margin-left: 5px;
 }
-#tblFunction .subfunction
-{
+
+#tblFunction .subfunction {
     margin-left: 15px;
 }
 /* Function Permission */
 
 /* Member */
-.member-level
-{
+.member-level {
     border-radius: 5px 5px 5px 5px;
     float: left;
     height: 30px;
@@ -2567,104 +2440,101 @@ div.popuploading
     width: 188px;
     margin-bottom: 20px;
 }
-.level10
-{
+
+.level10 {
     background-color: #ED1C24;
     color: #fff;
 }
-.level9
-{
+
+.level9 {
     background-color: #669999;
     color: #fff;
 }
-.level8
-{
+
+.level8 {
     background-color: #CCCC99;
     color: #fff;
 }
-.level7
-{
+
+.level7 {
     background-color: #333399;
     color: #fff;
 }
-.level6
-{
+
+.level6 {
     background-color: #006600;
     color: #fff;
 }
-.level5
-{
+
+.level5 {
     background-color: #CC6666;
     color: #fff;
 }
-.level4
-{
+
+.level4 {
     background-color: #FF9900;
     color: #fff;
 }
-.level3
-{
+
+.level3 {
     background-color: #CC6699;
     color: #fff;
 }
-.level2
-{
+
+.level2 {
     background-color: #7F7F7F;
     color: #fff;
 }
-.level1
-{
+
+.level1 {
     background-color: #653232;
     color: #fff;
 }
-.alllevel
-{
+
+.alllevel {
     background-color: #000;
     color: #fff;
 }
-.levelNone
-{
+
+.levelNone {
 }
-.levelNoneColor
-{
+
+.levelNoneColor {
 }
-tr.highlight
-{
+
+tr.highlight {
     background-color: #FFDBA8 !important;
 }
 /* Member */
 
 /* Group */
-table.main > tbody > tr > td.grid-expand
-{
+table.main > tbody > tr > td.grid-expand {
     background: url(images/Content/expand-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
-table.main > tbody > tr > td.grid-collapse
-{
+
+table.main > tbody > tr > td.grid-collapse {
     background: url(images/Content/collapse-small.png) 4px no-repeat;
     background-position: 90% 50%;
     cursor: pointer;
 }
 /* Group */
 
-table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
-{
+table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     color: Red;
 }
 /*Refactor Section: End*/
 
 /* Betrada */
-.betRadar
-{
+.betRadar {
     background: url(images/Content/betradar-icon.png) no-repeat;
     background-position: 5% 50%;
 }
 
 /* betlist detail popup */
 .popup-inner {
-    border: 2px solid #43576d;    
+    border: 2px solid #43576d;
     border-radius: 5px;
     background: white;
 }
@@ -2673,11 +2543,11 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
     min-width: 470px;
 }
 
-.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .container .content{
+.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .container .content {
     border: none;
 }
 
-.popup-inner .combotype-div{
+.popup-inner .combotype-div {
     background: white;
     min-width: 150px;
     height: auto;
@@ -2685,26 +2555,24 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
     padding-top: 3px;
     border-left: solid 2px #43576d;
     padding-left: 3px;
-
 }
 
-.popup-inner .combotype-div .combotype{
-    
+.popup-inner .combotype-div .combotype {
 }
 
 .popup-inner .combotype-div .combotype-title {
-  background: #3f536b url("images/Content/table_tltle_bg.gif") repeat-x scroll center center;
-  border-radius: 5px;
-  clear: both;
-  color: white;
-  cursor: move;
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  height: 20px;
-  line-height: 20px;
-  margin-bottom: 12px;
-  padding: 2px 0 2px 10px !important;
+    background: #3f536b url("images/Content/table_tltle_bg.gif") repeat-x scroll center center;
+    border-radius: 5px;
+    clear: both;
+    color: white;
+    cursor: move;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    padding: 2px 0 2px 10px !important;
 }
 
 .popup-inner .combotype-div .combotype-content {
@@ -2712,12 +2580,12 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam
 }
 
 .draggable-div {
-  background: white none repeat scroll 0 0;
-  cursor: move;
-  height: 30px;
-  margin-bottom: -30px;
-  position: absolute;
-  width: 98%;
-  z-index: 999;
-  opacity: 0;
+    background: white none repeat scroll 0 0;
+    cursor: move;
+    height: 30px;
+    margin-bottom: -30px;
+    position: absolute;
+    width: 98%;
+    z-index: 999;
+    opacity: 0;
 }

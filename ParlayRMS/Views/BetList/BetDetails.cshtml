@@ -13,6 +13,17 @@
                     @Html.Raw(Model.TicketDetail)
                 </div>
             </div>
+            <div class="allField3">
+                <div class="title2">
+                    @ViewLang.ComboType
+                </div>
+                <div class="combo-type">
+                    @if (Model.ComboTypes != null)
+                    {
+                        string.Join("<br />", Model.ComboTypes);
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>

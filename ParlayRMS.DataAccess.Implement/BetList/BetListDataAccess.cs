@@ -1,31 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BetListDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.BetList;
+using ParlayRMS.DTO.BetList;
+using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.BetList
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.BetList;
-    using ParlayRMS.DTO.BetList;
-    using ParlayRMS.Utility.Data;
-
-    /// <summary>
-    /// Bet List Data Access.
-    /// </summary>
     public class BetListDataAccess : BaseDataAccess, IBetListDataAccess
     {
-        /// <summary>
-        /// Gets transaction details of a bet.
-        /// </summary>
-        /// <param name="refNo">Reference number.</param>
-        /// <returns>List of transactions.</returns>
         public IEnumerable<RMS_Parlay_TransDetails> RMS_Parlay_TransDetails(long refNo)
         {
             var result = new List<RMS_Parlay_TransDetails>();
@@ -65,6 +49,29 @@ namespace ParlayRMS.DataAccess.Implement.BetList
             }
 
             return result;
+        }
+
+        public RMS_Monitor_Parlay_BetInfo RMS_Monitor_Parlay_BetInfo(long transId)
+        {
+            using (var db = new ObjectDb("RMS_Monitor_Parlay_BetInfo"))
+            {
+                db.AddInParameter("transid", DbType.Int64, transId);
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new RMS_Monitor_Parlay_BetInfo
+                        {
+                            BetTeam = reader.ToString("betteam"),
+                            BetCheck = reader.ToString("betcheck"),
+                            Hdp1 = Convert.ToInt32(reader.ToDecimal("hdp1")),
+                            Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
+                        };
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
