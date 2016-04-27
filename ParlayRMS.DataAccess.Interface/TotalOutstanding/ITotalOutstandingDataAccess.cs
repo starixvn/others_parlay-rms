@@ -8,8 +8,8 @@
 
 namespace ParlayRMS.DataAccess.Interface.TotalOutstanding
 {
-    using System.Collections.Generic;
     using ParlayRMS.DTO.TotalOutstanding;
+    using System.Collections.Generic;
 
     public interface ITotalOutstandingDataAccess
     {
@@ -20,7 +20,7 @@ namespace ParlayRMS.DataAccess.Interface.TotalOutstanding
         /// <param name="combo">Combo values.</param>
         /// <param name="sportsType">Sport type ID.</param>
         /// <returns>Parlay Outstanding of a member.</returns>
-        List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType);
+        List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType);
 
         /// <summary>
         /// Gets Parlay Outstanding of a agent.
@@ -29,6 +29,6 @@ namespace ParlayRMS.DataAccess.Interface.TotalOutstanding
         /// <param name="combo">Combo values.</param>
         /// <param name="sportsType">Sport type ID.</param>
         /// <returns>Parlay Outstanding of a agent.</returns>
-        List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType);
+        List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType, string parlaysType);
     }
 }

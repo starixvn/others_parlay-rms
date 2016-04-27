@@ -8,8 +8,6 @@
 
 namespace ParlayRMS.ViewModel.TotalOutstanding
 {
-    using System.ComponentModel;
-
     /// <summary>
     /// Index Model.
     /// </summary>
@@ -25,6 +23,8 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
         public string Username { get; set; }
 
         public string Combo { get; set; }
+
+        public string ParlaysType { get; set; }
 
         public string SportsType { get; set; }
     }

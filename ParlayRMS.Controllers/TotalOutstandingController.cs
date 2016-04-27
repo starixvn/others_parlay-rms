@@ -8,9 +8,6 @@
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.TotalOutstanding;
@@ -20,6 +17,9 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.TotalOutstanding;
     using ParlayRMS.Web.Authorization;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Total Outstanding Controller.
@@ -53,25 +53,41 @@ namespace ParlayRMS.Controllers
             combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("6") });
             ViewBag.Combos = combos;
 
+            // Parlay type
+            var parlayTypes = new List<SelectListItem>();
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.MixparLay,
+                Value = ((int)ParlayType.MixParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.MixParlay).ToString())
+            });
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.ComboParlay,
+                Value = ((int)ParlayType.ComboParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.ComboParlay).ToString())
+            });
+            ViewBag.ParlayTypes = parlayTypes;
+
             // Sports Type
             var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Socceronly, 
-                Value = ((int)SportsType.SoccerOnly).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString()) 
+            sportsTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.Socceronly,
+                Value = ((int)SportsType.SoccerOnly).ToString(),
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString())
             });
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Othersports, 
-                Value = ((int)SportsType.OtherSports).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString()) 
+            sportsTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.Othersports,
+                Value = ((int)SportsType.OtherSports).ToString(),
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString())
             });
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Combinedsports, 
-                Value = ((int)SportsType.CombinedSports).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString()) 
+            sportsTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.Combinedsports,
+                Value = ((int)SportsType.CombinedSports).ToString(),
+                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString())
             });
             ViewBag.SportsTypes = sportsTypes;
 
@@ -99,7 +115,7 @@ namespace ParlayRMS.Controllers
 
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
-                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -122,7 +138,7 @@ namespace ParlayRMS.Controllers
             }
             else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
-                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {

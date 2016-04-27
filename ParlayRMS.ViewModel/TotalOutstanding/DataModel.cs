@@ -20,6 +20,8 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
 
         public string Combo { get; set; }
 
+        public string ParlaysType { get; set; }
+
         public string SportsType { get; set; }
 
         [AllowHtml]

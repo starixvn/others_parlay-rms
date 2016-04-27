@@ -94,8 +94,8 @@
     <Setting Key="RMS_DangerousAgentSel" SpName="RMS_DangerousAgentSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="TotalOutstanding">
-    <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_ComboParlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_ComboParlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="DangerMonitor">
     <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />

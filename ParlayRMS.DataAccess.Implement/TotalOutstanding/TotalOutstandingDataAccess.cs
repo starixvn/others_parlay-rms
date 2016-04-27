@@ -8,13 +8,13 @@
 
 namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.TotalOutstanding;
     using ParlayRMS.DTO.TotalOutstanding;
     using ParlayRMS.Utility.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Total Outstanding Data Access.
@@ -28,7 +28,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
         /// <param name="combo">Combo values.</param>
         /// <param name="sportsType">Sport type ID.</param>
         /// <returns>Parlay Outstanding of a member.</returns>
-        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType)
+        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Mem>();
 
@@ -37,6 +37,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 db.AddInParameter("custid", DbType.Int64, custId);
                 db.AddInParameter("selection", DbType.String, combo);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("ParlayType", DbType.String, parlaysType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -51,7 +52,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             Stake = reader.ToDecimal("stake"),
                             StakePt = reader.ToDecimal("stakept"),
                             MaxPayoutPt = reader.ToDecimal("net_win"),
-                            Combo = reader.ToInt32("combo")
+                            TotalBet = reader.ToInt32("TotalBet"),
+                            TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection"))
                         });
                     }
                 }
@@ -67,7 +69,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
         /// <param name="combo">Combo values.</param>
         /// <param name="sportsType">Sport type ID.</param>
         /// <returns>Parlay Outstanding of a agent.</returns>
-        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType)
+        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType, string parlaysType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Ag>();
 
@@ -76,6 +78,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 db.AddInParameter("custid", DbType.Int64, custId);
                 db.AddInParameter("selection", DbType.String, combo);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("ParlayType", DbType.String, parlaysType);
 
                 using (var reader = db.ExecuteReader())
                 {

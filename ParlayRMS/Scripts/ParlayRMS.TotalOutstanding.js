@@ -5,10 +5,32 @@
 ParlayRMS.TotalOutstanding = {
     Init: function () {
         $("#combo").multiselect({
-            minWidth: 132,
+            minWidth: 120,
             height: 136,
             create: function () {
                 $("#combo").multiselect();
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
+        });
+
+        $("#parlaysType").multiselect({
+            minWidth: 120,
+            height: 82,
+            create: function () {
+                $("#parlaysType").multiselect();
             },
             selectedText: function (numChecked, numTotal, checkedItems) {
                 if (numChecked == 0) {
@@ -64,6 +86,14 @@ ParlayRMS.TotalOutstanding = {
             return null;
         }
 
+        var parlaysTypes = $("#parlaysType").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (parlaysTypes == '') {
+            Validators.show($('#parlaysType').multiselect("getButton").get(0), 'Please select your options');
+            return null;
+        }
+
         var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -80,6 +110,7 @@ ParlayRMS.TotalOutstanding = {
 
         var data = {
             Combo: combos,
+            ParlaysType: parlaysTypes,
             SportsType: sportsTypes,
             Username: username
         }
