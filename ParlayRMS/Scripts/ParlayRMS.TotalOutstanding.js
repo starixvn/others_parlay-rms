@@ -70,6 +70,8 @@ ParlayRMS.TotalOutstanding = {
             }
         });
 
+       
+
         $('#submit').click(this.LoadData);
 
         var username = $.trim($('#username').val());
@@ -78,6 +80,8 @@ ParlayRMS.TotalOutstanding = {
         }
     },
     LoadData: function () {
+        
+
         var combos = $("#combo").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -127,6 +131,18 @@ ParlayRMS.TotalOutstanding = {
                 $('#divResult').show();
                 $('#divResult').html(result);
                 $('#result>tbody>tr:even').addClass("even");
+
+                var table = $('#result');
+                var header = $('#header');
+                tableSorter.bind2(header, table, {
+                    type: 'text',
+                    onFinish: function () {
+                        var trs = table.children('tbody').children("tr");
+                        trs.each(function (index, tr) {
+                            $(tr).children('td:first').text(index + 1);
+                        });
+                    }
+                });
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);

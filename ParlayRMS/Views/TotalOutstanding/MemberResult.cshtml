@@ -4,7 +4,7 @@
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
 <div style="width: 970px">
-    <table class="main">
+    <table class="main" id="header">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
@@ -21,7 +21,7 @@
                 <th>
                     #
                 </th>
-                <th>
+                <th class="sortable" data-col-type="date" id="transTime">
                     @ViewLang.TransTime
                 </th>
                 <th>
