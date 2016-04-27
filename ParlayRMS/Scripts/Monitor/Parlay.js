@@ -554,10 +554,13 @@ function ViewTotalOutstanding(username) {
     var combos = $("#combo").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
+    var parlaysTypes = $("#parlayType").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
     var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
-    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
+    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlaysType=' + parlaysTypes;
     window.open(url, '_blank');
 }
 

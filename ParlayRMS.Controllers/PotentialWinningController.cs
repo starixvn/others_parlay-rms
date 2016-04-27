@@ -41,17 +41,17 @@ namespace ParlayRMS.Controllers
         {
             // Combo
             var combos = new List<SelectListItem>();
-            for (int i = 2; i <= 5; i++)
+            for (int i = 2; i <= 9; i++)
             {
                 combos.Add(new SelectListItem
                 {
                     Text = i.ToString(),
                     Value = i.ToString(),
-                    Selected = true
+                    Selected = i >= 2 && i <= 6
                 });
             }
 
-            combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = true });
+            combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
             ViewBag.Combos = combos;
 
             // Parlay type

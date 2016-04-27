@@ -27,7 +27,7 @@ ParlayRMS.TotalOutstanding = {
         });
 
         $("#parlaysType").multiselect({
-            minWidth: 120,
+            minWidth: 140,
             height: 82,
             create: function () {
                 $("#parlaysType").multiselect();

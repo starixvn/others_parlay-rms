@@ -40,7 +40,7 @@ namespace ParlayRMS.Controllers
         {
             // Combo
             var combos = new List<SelectListItem>();
-            for (int i = 2; i <= 5; i++)
+            for (int i = 2; i <= 9; i++)
             {
                 combos.Add(new SelectListItem
                 {
@@ -50,7 +50,7 @@ namespace ParlayRMS.Controllers
                 });
             }
 
-            combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("6") });
+            combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("10") });
             ViewBag.Combos = combos;
 
             // Parlay type

@@ -4,15 +4,17 @@
     <table class="sub" style="width: 100%">
         <colgroup>
             <col style="width: 50px" />
-            <col style="width: 210px" />
+            <col style="width: 220px" />
             <col style="width: 120px" />
             <col style="width: 100px" />
             <col style="width: 110px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
+            <col style="width: 150px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
             <col style="width: 90px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
+            <col style="width: 90px" />
             <col style="width: 80px" />
             <col />
         </colgroup>
@@ -49,10 +51,10 @@
                     @ViewLang.HousePT
                 </th>
                 <th>
-                    @ViewLang.TotalBet
+                    @ViewLang.TotalBets
                 </th>
                 <th>
-                    @ViewLang.TotalSelection
+                    @ViewLang.TotalSelections
                 </th>
                 <th>
                     @ViewLang.BetDetails
@@ -101,7 +103,11 @@
                         @item.Val.HousePT.ToString("#,##0.00")
                     </td>
                     <td class="center">
-                        @item.Val.TotalBet
+                        @{
+                            var betText = (@item.Val.TotalBet > 1) ? " bets" : " bet";
+                        }
+
+                        @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
                     </td>
                     <td class="center">
                         @item.Val.TotalSelection
