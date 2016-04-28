@@ -1,6 +1,6 @@
 ﻿var refreshTime = 60000;
 var isPressSubmit = false;
-function Alert() {    
+function Alert() {
     soundManager.play('aSound');
 }
 
@@ -32,7 +32,7 @@ var uiController = function () {
             return $('#pause').is(':checked');
         }
     }
-} ();
+}();
 
 var settingsController = function () {
     var current = new UserSettings();
@@ -100,7 +100,7 @@ var settingsController = function () {
             return userSettings;
         }
     }
-} ();
+}();
 
 var timerController = function () {
     var timeout = null;
@@ -118,7 +118,7 @@ var timerController = function () {
         var settings = settingsController.get();
         var data = {
             combos: settings.combos,
-            parlaysTypes: settings.parlaysTypes,
+            parlayTypes: settings.parlaysTypes,
             sportsTypes: settings.sportsTypes,
             levels: settings.levels,
             winningAmount: settings.winningAmount,
@@ -187,7 +187,7 @@ var timerController = function () {
             }
         }
     }
-} ();
+}();
 
 $(document).ready(function () {
     $("#winningAmount").bind('keyup', function (event) {
@@ -264,8 +264,6 @@ $(document).ready(function () {
             }
         }
     });
-
-
 
     $("#level").multiselect({
         minWidth: 132,
@@ -388,11 +386,11 @@ function FillData(table, data) {
     var length = records.length;
     var oldUserName = $(table).children('tbody').children('tr');
     var viewTotalBetId = $(table).find("tr.details").attr('custid');
-    var tbody = $(table).children('tbody');    
-    
+    var tbody = $(table).children('tbody');
+
     $(table).children('tbody').html('');
 
-    if (length > 0) {        
+    if (length > 0) {
         var r = new Array();
         var j = -1;
         for (var i = 0; i < length; i++) {
@@ -409,7 +407,7 @@ function FillData(table, data) {
             if (isHighLight) {
                 isSound = true;
             }
-            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));        
+            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));
         }
 
         if (isSound) {
@@ -419,7 +417,6 @@ function FillData(table, data) {
 
         ViewTotalBetDetails(viewTotalBetId);
     } else {
-
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
             var noinfo = CreateNoInfoRow(10);
             tbody.append(noinfo);
@@ -439,7 +436,7 @@ function CreateRow(order, item, isHighLight) {
     else {
         r[++j] = '<tr id="tr_' + item.CustId + '">';
     }
-        
+
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
@@ -495,7 +492,7 @@ function ViewTotalBetDetails(custId) {
         var userName = row.children('td').eq(2).text();
         var data = {
             Combos: userSettings.combos,
-            parlaysTypes: userSettings.parlaysTypes,
+            parlayTypes: userSettings.parlaysTypes,
             SportsTypes: userSettings.sportsTypes,
             CustId: custId,
             UserName: userName

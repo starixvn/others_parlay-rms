@@ -1,41 +1,24 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="PotentialWinningController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.PotentialWinningMonitor;
+using ParlayRMS.Services.Interface.BetList;
+using ParlayRMS.Services.Interface.PotentialWinningMonitor;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Monitoring;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.BetList;
-    using ParlayRMS.Services.Implement.PotentialWinningMonitor;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Interface.PotentialWinningMonitor;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Monitoring;
-    using ParlayRMS.Web.Authorization;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
-
-    /// <summary>
-    /// Monitor Controller.
-    /// </summary>
     [AuthorizationAttribute(Function = FunctionKeys.MonitorPotentialWinning, Policy = UserPolicy.Read)]
     public class PotentialWinningController : BaseController
     {
         private readonly IPotentialWinningMonitor _potentialWinning = new PotentialWinningMonitorService();
         private readonly IBetListService _betlistService = new BetListService();
 
-        #region Mix Parlay
-
-        /// <summary>
-        /// Initialize filter form.
-        /// </summary>
-        /// <returns>Partial view which represents the filter form.</returns> 
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
@@ -97,58 +80,40 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.RefreshTimes = refreshTimes;
-            return this.PartialView();
+            return PartialView();
         }
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
         [HttpGet]
         public ActionResult Index()
         {
-            return this.View();
+            return View();
         }
 
-        /// <summary>
-        /// Gets mix parlay data.
-        /// </summary>
-        /// <param name="model">The model contains filter conditions which are used to query data.</param>
-        /// <returns>JSON result contains queried data.</returns>        
         [HttpPost]
         public ActionResult GetData(PotentialWinningModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
-            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop);
+            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop);
 
-            return this.Json(new
+            return Json(new
             {
                 Code = 0,
                 Records = data,
             });
         }
 
-        /// <summary>
-        /// Gets bet details.
-        /// </summary>
-        /// <param name="detailModel">The options that are used to query data.</param>
-        /// <returns>
-        /// Redirect to BetDetails view which will show the bet details.
-        /// </returns>
         [HttpPost]
         public ActionResult ViewDetailList(PotentialWinningDetailModel detailModel)
         {
-            var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.SportsTypes, detailModel.CustId);
+            var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId);
 
             ViewBag.UserName = detailModel.UserName;
 
             return PartialView(model);
         }
-
-        #endregion Mix Parlay
     }
 }
