@@ -14,8 +14,6 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public decimal Odds { get; set; }
 
-        public decimal AverageStake { get; set; }
-
         public decimal Stake { get; set; }
 
         public int SportType { get; set; }

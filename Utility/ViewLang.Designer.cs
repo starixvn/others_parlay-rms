@@ -2041,7 +2041,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total bets.
+        ///   Looks up a localized string similar to Total Bets.
         /// </summary>
         public static string TotalBets {
             get {
