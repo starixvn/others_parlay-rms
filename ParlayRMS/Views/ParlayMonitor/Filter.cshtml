@@ -44,7 +44,6 @@
                             <td>
                                 @Html.TextBox("filterAfterPT", (string)ViewBag.NetWinStakeAfterPT, new { @maxlength = 15 })
                             </td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -79,9 +78,7 @@
                             <td>
                                 @Html.CheckBox("pause", new { style = "float:left; margin-top: 7px;" })
                                 @Html.Label("pause", @ViewLang.Pause, new { @class = "lable" })
-                            </td>
-                            <td>
-                                <button id="submit" class="button">
+                                <button id="submit" class="button" style="float:right">
                                     <span class="text">@ViewLang.Submit</span>
                                 </button>
                             </td>

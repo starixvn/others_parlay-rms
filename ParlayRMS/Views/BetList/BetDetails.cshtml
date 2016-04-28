@@ -20,7 +20,7 @@
                 <div class="combo-type">
                     @if (Model.ComboTypes != null)
                     {
-                        string.Join("<br />", Model.ComboTypes);
+                        @Html.Raw(string.Join("<br />", Model.ComboTypes))
                     }
                 </div>
             </div>
