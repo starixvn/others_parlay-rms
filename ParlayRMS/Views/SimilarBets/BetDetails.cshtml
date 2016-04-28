@@ -1,14 +1,12 @@
 ﻿@model ParlayRMS.ViewModel.Report.BetDetails
 <div class="boxMain">
-    <div class="container">
-        <div class="content">
-            <div class="allField2">
-                <div class="title2">
-                    Ticket Details - @ViewBag.Username - @ViewBag.BetId
-                </div>
-                <div class="betdetails">
-                    @Html.Raw(Model.TicketDetail)
-                </div>
+    <div class="content">
+        <div class="allField2">
+            <div class="title2">
+                Ticket Details - @ViewBag.Username - @ViewBag.BetId
+            </div>
+            <div class="betdetails">
+                @Html.Raw(Model.TicketDetail)
             </div>
         </div>
     </div>

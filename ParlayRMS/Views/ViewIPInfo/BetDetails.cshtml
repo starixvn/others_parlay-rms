@@ -4,12 +4,11 @@
 }
 @model ParlayRMS.Models.ViewIpInfo.CombinationDetailsByDateViews
 <div class="boxMain">
-    <div class="container">
-        <div class="content black">
-            <div class="title2">
-                    System Parlay -- @ViewBag.ComboType
-            </div>
-            <div style="margin-left: 12px; margin-bottom: 12px">
+    <div class="content black">
+        <div class="title2">
+            System Parlay -- @ViewBag.ComboType
+        </div>
+        <div style="margin-left: 12px; margin-bottom: 12px">
             <table class="main" id="header">
                 <colgroup>
                     <col width='80px' />
@@ -36,7 +35,7 @@
                         <th>
                             @ViewLang.WinLoss
                         </th>
-                            <th>
+                        <th>
                             @ViewLang.Status
                         </th>
                     </tr>
@@ -54,9 +53,9 @@
                             <col width='70px' />
                         </colgroup>
                         <tbody>
-                        @{
-                            decimal total = 0;
-                         }
+                            @{
+                                decimal total = 0;
+                            }
                             @foreach (KeyValuePair<DateTime, List<CombinationDetailsView>> item in Model.ViewDict)
                             {
                                 var needSpan = true;
@@ -98,7 +97,7 @@
                                         <td class="numeric">@viewModel.Stake.ToString("#,##0")</td>
                                         @{
                                             var winLossNegative = viewModel.WinLoss < 0 ? "negative" : "";
-                                         }                                        
+                                        }
                                         <td class="numeric @winLossNegative">
                                             @viewModel.WinLoss.ToString("#,##0.00")
                                         </td>
@@ -106,18 +105,18 @@
                                         @{
                                             total += viewModel.WinLoss;
                                             subTotal += viewModel.WinLoss;
-                                         }
+                                        }
                                     </tr>
-                                }
-                                <tr>
-                                    @{
-                                        var subTotalNegative = subTotal < 0 ? "negative" : "";
-                                    }
-                                    <td colspan=3 class="right">@ViewLang.Subtotal</td>
-                                    <td class="numeric @subTotalNegative">@subTotal.ToString("#,##0.00")</td>
-                                    <td></td>
-                                </tr>
-                            }
+                                            }
+                                            <tr>
+                                                @{
+                                                    var subTotalNegative = subTotal < 0 ? "negative" : "";
+                                                }
+                                                <td colspan=3 class="right">@ViewLang.Subtotal</td>
+                                                <td class="numeric @subTotalNegative">@subTotal.ToString("#,##0.00")</td>
+                                                <td></td>
+                                            </tr>
+                                                    }
                             @if (Model.ViewDict.Count == 0 && Model.Outstanding == -1)
                             {
                                 <tr><td class="noinfo" colspan="7">@ViewLang.NoInformation</td></tr>
@@ -135,41 +134,39 @@
                             <col width='80px' />
                             <col width='70px' />
                         </colgroup>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
             <div style="width: 690px" class="mainfooter">
-            <table class="main foot" id="footer">
-                <colgroup>
-                    <col width='80px' />
-                    <col width='300px' />
-                    <col width='80px' />
-                    <col width='80px' />
-                    <col width='80px' />
-                    <col width='70px' />
-                </colgroup>
-                @if (!(Model.ViewDict.Count == 0 && Model.Outstanding == -1))
-                { 
-                    <tfoot>
-                        <tr style="background-color:#549cba" class="separateFooter">
-                            @{
-                                //var totalNegative = total < 0 ? "negative" : "";
-                            }
-                            <td colspan=4 class="right">@ViewLang.Outstanding:</td>
-                            <td class="numeric">@Model.Outstanding.ToString("#,##0.00")</td>
-                            <td></td>
-                        </tr>
-                        <tr class="separateFooter">
-                            <td colspan=4 class="right">@ViewLang.Total:</td>
-                            <td class="numeric">@total.ToString("#,##0.00")</td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                }
-            </table>
-            </div>
+                <table class="main foot" id="footer">
+                    <colgroup>
+                        <col width='80px' />
+                        <col width='300px' />
+                        <col width='80px' />
+                        <col width='80px' />
+                        <col width='80px' />
+                        <col width='70px' />
+                    </colgroup>
+                    @if (!(Model.ViewDict.Count == 0 && Model.Outstanding == -1))
+                    {
+                        <tfoot>
+                            <tr style="background-color:#549cba" class="separateFooter">
+                                @{
+//var totalNegative = total < 0 ? "negative" : "";
+                                }
+                                <td colspan=4 class="right">@ViewLang.Outstanding:</td>
+                                <td class="numeric">@Model.Outstanding.ToString("#,##0.00")</td>
+                                <td></td>
+                            </tr>
+                            <tr class="separateFooter">
+                                <td colspan=4 class="right">@ViewLang.Total:</td>
+                                <td class="numeric">@total.ToString("#,##0.00")</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                                    }
+                </table>
             </div>
         </div>
     </div>

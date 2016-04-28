@@ -748,13 +748,11 @@ table.scrollGrid td span.function {
 /* Dialog Box ----------------------------------------------------------------*/
 
 .boxMain {
-    border: 0 solid #CCCCCC;
     border-radius: 5px;
     display: block;
     margin: 0;
     overflow: visible;
     padding: 0;
-    position: relative;
     width: auto;
     min-width: 550px;
     min-height: 100px;
@@ -762,40 +760,16 @@ table.scrollGrid td span.function {
     font-family: Arial,Verdana, Sans-Serif, Tahoma;
 }
 
-.boxMain .container {
-    border: 0 solid #CCCCCC;
-    clear: both;
-    display: block;
-    width: auto;
-    min-width: 550px;
-    min-height: 100px;
-    height: auto;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-}
-
-.boxMain .container .content {
-    width: auto;
-    min-width: 550px;
+.boxMain .content {
     background-color: #eaedef;
     border: 2px solid #43576D;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    clear: both;
-    color: #728595;
-    display: inline-block;
-    margin: 0;
-    min-height: 100px;
-    overflow: visible;
-    text-align: left;
-    height: auto;
     font-size: 12px;
 }
 
-.boxMain .container .black {
+.boxMain .black {
     color: #000000;
 }
 
@@ -813,11 +787,25 @@ table.scrollGrid td span.function {
     padding: 2px;
 }
 
-.combo-type {
-    text-align: center;
+table.bet-detail {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.boxMain .container .content .title {
+table.bet-detail th {
+    padding-left: 5px;
+}
+
+table.bet-detail td {
+    text-align: center;
+    
+}
+
+table.bet-detail .combo-type {
+    border-left: 2px solid #43576D;
+}
+
+.boxMain .content .title {
     clear: both;
     color: #293e56;
     display: block;
@@ -830,16 +818,10 @@ table.scrollGrid td span.function {
     height: 10px;
 }
 
-.boxMain .container .content .title2 {
-    clear: both;
+.boxMain .content .title2 {
     color: white;
-    display: block;
-    position: relative;
-    text-align: left;
-    font-size: 12px;
+    height: 24px;
     font-weight: 600;
-    height: 20px;
-    line-height: 20px;
     border-radius: 5px;
     padding: 2px 0px 2px 10px !important;
     background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
@@ -847,20 +829,20 @@ table.scrollGrid td span.function {
     cursor: move;
 }
 
-.boxMain .container .content .lineTop {
+.boxMain .content .lineTop {
     height: 1px;
     background-color: #dce4e8;
     position: relative;
 }
 
-.boxMain .container .content .lineBottom {
+.boxMain .content .lineBottom {
     height: 1px;
     background-color: #fff;
     position: relative;
     margin-bottom: 20px;
 }
 
-.boxMain .container .actionbar {
+.boxMain .actionbar {
     clear: both;
     color: #5A5655;
     display: block;
@@ -873,7 +855,7 @@ table.scrollGrid td span.function {
     text-align: left;
 }
 
-.boxMain .container .actionbar .actionbar-line {
+.boxMain .actionbar .actionbar-line {
     clear: both;
     display: block;
     left: 0;
@@ -885,14 +867,14 @@ table.scrollGrid td span.function {
     margin-top: 10px;
 }
 
-.boxMain .container .actionbar .button-action {
+.boxMain .actionbar .button-action {
     clear: both;
     float: right;
     line-height: 32px;
     padding-right: 5px;
 }
 
-.boxMain .container .labelNoneBorder {
+.boxMain .labelNoneBorder {
     clear: left;
     float: left;
     min-width: 120px;
@@ -904,7 +886,7 @@ table.scrollGrid td span.function {
     color: #3B5998;
 }
 
-.boxMain .container .label {
+.boxMain .label {
     clear: left;
     float: left;
     min-width: 116px;
@@ -922,7 +904,7 @@ table.scrollGrid td span.function {
     color: #3B5998;
 }
 
-.boxMain .container .fieldNoneBorder {
+.boxMain .fieldNoneBorder {
     clear: right;
     float: left;
     text-align: left;
@@ -930,7 +912,7 @@ table.scrollGrid td span.function {
     margin: 0px 0px 10px 0px;
 }
 
-.boxMain .container .field {
+.boxMain .field {
     clear: right;
     float: left;
     text-align: left;
@@ -945,7 +927,7 @@ table.scrollGrid td span.function {
     height: auto;
 }
 
-.boxMain .container .fieldbar {
+.boxMain .fieldbar {
     clear: both;
     color: #5A5655;
     display: block;
@@ -958,7 +940,7 @@ table.scrollGrid td span.function {
     text-align: left;
 }
 
-.boxMain .container .fieldbar table {
+.boxMain .fieldbar table {
     width: 100%;
     border: solid 1px #D3D3D3;
     border-radius: 5px;
@@ -968,7 +950,7 @@ table.scrollGrid td span.function {
     border-collapse: collapse;
 }
 
-.boxMain .container .fieldbar table tr th {
+.boxMain .fieldbar table tr th {
     vertical-align: middle;
     text-align: center;
     font-weight: bold;
@@ -977,23 +959,23 @@ table.scrollGrid td span.function {
     border: solid 1px #D3D3D3;
 }
 
-.boxMain .container .fieldbar table tr {
+.boxMain .fieldbar table tr {
     height: 25px;
 }
 
-.boxMain .container .fieldbar table tr:hover {
+.boxMain .fieldbar table tr:hover {
     background-color: #CED8E2;
 }
 
-.boxMain .container .fieldbar table tr span.function {
+.boxMain .fieldbar table tr span.function {
     margin-left: 5px;
 }
 
-.boxMain .container .fieldbar table tr span.subfunction {
+.boxMain .fieldbar table tr span.subfunction {
     margin-left: 15px;
 }
 
-.boxMain .container .fieldbar table tr td div.inactive {
+.boxMain .fieldbar table tr td div.inactive {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 19px;
     width: 19px;
@@ -1002,7 +984,7 @@ table.scrollGrid td span.function {
     cursor: pointer;
 }
 
-.boxMain .container .fieldbar table tr td div.active {
+.boxMain .fieldbar table tr td div.active {
     background-image: url("images/Content/checkbox.png");
     background-position: 0 0;
     width: 19px;
@@ -1011,7 +993,7 @@ table.scrollGrid td span.function {
     cursor: pointer;
 }
 
-.boxMain .container .field .inputtext {
+.boxMain .field .inputtext {
     border: 1px solid transparent;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -1021,7 +1003,7 @@ table.scrollGrid td span.function {
     min-width: 100px;
 }
 
-.boxMain .container .field_areatext {
+.boxMain .field_areatext {
     clear: right;
     float: left;
     text-align: left;
@@ -1031,7 +1013,7 @@ table.scrollGrid td span.function {
     min-width: 330px;
 }
 
-.boxMain .container .label_areatext {
+.boxMain .label_areatext {
     clear: left;
     float: left;
     min-width: 120px;
@@ -1043,7 +1025,7 @@ table.scrollGrid td span.function {
     color: #3B5998;
 }
 
-.boxMain .container .field_areatext .areatext {
+.boxMain .field_areatext .areatext {
     border: solid 1px #D3D3D3;
     min-width: 330px;
     width: auto;
@@ -1052,7 +1034,7 @@ table.scrollGrid td span.function {
     padding: 10px 0px 0px 10px;
 }
 
-.boxMain .container .fieldNoneBorder select {
+.boxMain .fieldNoneBorder select {
     width: auto;
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -1062,17 +1044,17 @@ table.scrollGrid td span.function {
     padding: 5px;
 }
 
-.boxMain .container .field select:focus {
+.boxMain .field select:focus {
     border: 1px solid #999999;
 }
 
-.boxMain .container .field .inputtext:focus {
+.boxMain .field .inputtext:focus {
 }
 
-.boxMain .container .field .areatext:focus {
+.boxMain .field .areatext:focus {
 }
 
-.boxMain .container .actionbar .line-loading {
+.boxMain .actionbar .line-loading {
     float: left;
     position: absolute;
     z-index: 100000;
@@ -1086,7 +1068,7 @@ table.scrollGrid td span.function {
     display: none;
 }
 
-.boxMain .container .actionbar .warningmsg {
+.boxMain .actionbar .warningmsg {
     line-height: 30px;
     min-height: 20px;
     float: left;
@@ -2541,7 +2523,7 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     min-width: 470px;
 }
 
-.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .container .content {
+.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .content {
     border: none;
 }
 

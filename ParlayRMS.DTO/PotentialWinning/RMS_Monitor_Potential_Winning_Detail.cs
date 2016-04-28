@@ -43,8 +43,6 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public int TotalSelection { get; set; }
 
-        public List<string> ComboTypes { get; set; } = new List<string> { "Double (3)", "Trebles (1)" };
-
         public int Combo { get; set; }
     }
 }
