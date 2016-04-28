@@ -30,11 +30,11 @@ namespace ParlayRMS.Controllers
                 {
                     Text = i.ToString(),
                     Value = i.ToString(),
-                    Selected = i >= 2 && i <= 6
+                    Selected = true
                 });
             }
 
-            combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
+            combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10", Selected = true });
             ViewBag.Combos = combos;
 
             // Parlay type
