@@ -9,6 +9,7 @@ using ParlayRMS.Services.Interface.BetList;
 using ParlayRMS.Services.Interface.SimilarBets;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
+using RemotingRef;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace ParlayRMS.Controllers
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betlistService.CreateChoice(options.RefNo);
             var originalTickets = _betlistService.CreateChoice(options.OriginalRefNo);
-
+            var betInfo = _betlistService.GetBetInfo(options.BetId);
             var ticketsCompare = new List<long>();
             foreach (var ticket in tickets)
             {
@@ -100,9 +101,12 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            var model = new BetDetails();
-            model.TicketDetail = builder.GetBetList();
-            model.TicketCompare = string.Join("-", ticketsCompare);
+            var model = new BetDetails
+            {
+                TicketDetail = builder.GetBetList(),
+                TicketCompare = string.Join("-", ticketsCompare),
+                ComboTypes = RefData.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2, "en")
+            };
 
             return PartialView("BetDetails", model);
         }

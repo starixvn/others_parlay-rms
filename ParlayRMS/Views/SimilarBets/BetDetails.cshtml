@@ -1,14 +1,29 @@
 ﻿@model ParlayRMS.ViewModel.Report.BetDetails
 <div class="boxMain">
     <div class="content">
-        <div class="allField2">
-            <div class="title2">
-                Ticket Details - @ViewBag.Username - @ViewBag.BetId
-            </div>
-            <div class="betdetails">
-                @Html.Raw(Model.TicketDetail)
-            </div>
-        </div>
+        <table class="bet-detail">
+            <tr class="title2">
+                <th>
+                    Ticket Details - @ViewBag.Username - @ViewBag.BetId
+                </th>
+                <th class="combo-type">
+                    @ViewLang.ComboType
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="betdetails">
+                        @Html.Raw(Model.TicketDetail)
+                    </div>
+                </td>
+                <td class="combo-type">
+                    @if (Model.ComboTypes != null)
+                    {
+                        @Html.Raw(string.Join("<br />", Model.ComboTypes))
+                    }
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 <script type="text/javascript">
