@@ -1,0 +1,19 @@
+﻿@model BetDetails
+<div class="boxMain">
+    <div class="content">
+        <table class="bet-detail">
+            <tr class="title2">
+                <th>
+                    Ticket Details - @ViewBag.Username - @ViewBag.BetId
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="betdetails">
+                        @Html.Raw(Model.TicketDetail)
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

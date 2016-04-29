@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [AuthorizationAttribute(Function = FunctionKeys.MonitorPotentialWinning, Policy = UserPolicy.Read)]
+    [Authorization(Function = FunctionKeys.MonitorPotentialWinning, Policy = UserPolicy.Read)]
     public class PotentialWinningController : BaseController
     {
         private readonly IPotentialWinningMonitor _potentialWinning = new PotentialWinningMonitorService();

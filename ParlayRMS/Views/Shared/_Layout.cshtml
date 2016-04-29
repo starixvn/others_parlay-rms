@@ -29,7 +29,7 @@
 <body>
     <div id="mainPage">
         <div class="top-bar">
-            @Html.Action("_Menu", "Shared")
+            @Html.Action("_Menu", "Shared", new { area = string.Empty })
         </div>
         @if (ViewBag.HeaderText != null)
         {

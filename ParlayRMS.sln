@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Common", "ParlayR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Web.Authorization", "ParlayRMS.Web.Authorization\ParlayRMS.Web.Authorization.csproj", "{46A0F82B-E451-4048-8409-031152B587A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.MixParlay", "ParlayRMS.MixParlay\ParlayRMS.MixParlay.csproj", "{4C1B60F6-45BE-4475-B238-0BE34B27E72F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,10 @@ Global
 		{46A0F82B-E451-4048-8409-031152B587A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A0F82B-E451-4048-8409-031152B587A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A0F82B-E451-4048-8409-031152B587A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1B60F6-45BE-4475-B238-0BE34B27E72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1B60F6-45BE-4475-B238-0BE34B27E72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1B60F6-45BE-4475-B238-0BE34B27E72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1B60F6-45BE-4475-B238-0BE34B27E72F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
