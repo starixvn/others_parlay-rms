@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.MixParlay.MixParlayMonitor
 {
-    //[Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
+    [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
     public class MixParlayMonitorController : BaseController
     {
         private readonly IService _service = new Service();

@@ -29,6 +29,8 @@ namespace ParlayRMS.Areas.MixParlay
                     "ParlayRMS.MixParlay.BetList",
                     "ParlayRMS.MixParlay.MixParlayMonitor",
                     "ParlayRMS.MixParlay.PotentialWinningMonitor",
+                    "ParlayRMS.MixParlay.SimilarBet",
+                    "ParlayRMS.MixParlay.TotalOutstanding"
                 }
             );
         }
@@ -39,6 +41,10 @@ namespace ParlayRMS.Areas.MixParlay
                     "~/Areas/MixParlay/Scripts/potential-winning-monitor.js"));
             bundles.Add(new ScriptBundle("~/mix-parlay/mix-parlay-monitor").Include(
                     "~/Areas/MixParlay/Scripts/mix-parlay-monitor.js"));
+            bundles.Add(new ScriptBundle("~/mix-parlay/similar-bet").Include(
+                    "~/Areas/MixParlay/Scripts/similar-bet.js"));
+            bundles.Add(new ScriptBundle("~/mix-parlay/total-outstanding").Include(
+                    "~/Areas/MixParlay/Scripts/total-outstanding.js"));
         }
     }
 }

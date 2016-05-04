@@ -113,5 +113,12 @@
     <Setting Key="RMS_MixParlay_PotentialWinningMonitor_Detail" SpName="RMS_Monitor_Parlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_MixParlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_MixParlay_Monitor" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_MixParlay_SimilarBet" SpName="RMS_Similar_Parlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_MixParlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet">
+      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
+    </Setting>
+    <Setting Key="RMS_MixParlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet">
+      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
+    </Setting>
   </Function>
 </Functions>

@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.SimilarBets;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 310px">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl
+            </div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="group">
+                @Html.Label("betId", "BetID")
+                @Html.TextBox("betId", (string)ViewBag.betid)
+            </div>
+            <div class="group">
+                <button id="btnSearch">
+                    <span class="text">@ViewLang.Submit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both; display: none" id="divResult">
+</div>
+@Scripts.Render("~/Scripts/Member/Core/js")
+@Scripts.Render("~/mix-parlay/similar-bet")

@@ -228,7 +228,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Content Include="Areas\MixParlay\Scripts\mix-parlay-monitor.js" />
+    <Content Include="Areas\MixParlay\Scripts\total-outstanding.js" />
     <Content Include="Areas\MixParlay\Scripts\potential-winning-monitor.js" />
+    <Content Include="Areas\MixParlay\Scripts\similar-bet.js" />
     <Content Include="Content\images\Content\1F.gif" />
     <Content Include="Content\images\Content\1L.gif" />
     <Content Include="Content\images\Content\ajax-loader-line-2.gif" />
@@ -843,6 +845,13 @@
     <Content Include="Areas\MixParlay\Views\BetList\BetDetails.cshtml" />
     <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Filter.cshtml" />
     <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\BetDetails.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\Data.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\NotFound.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\AgentResult.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\MemberResult.cshtml" />
     <None Include="readme.txt" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />

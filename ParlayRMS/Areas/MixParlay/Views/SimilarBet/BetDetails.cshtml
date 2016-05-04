@@ -1,0 +1,31 @@
+﻿@model ParlayRMS.MixParlay.SimilarBet.BetDetails
+<div class="boxMain">
+    <div class="content">
+        <table class="bet-detail">
+            <tr class="title2">
+                <th>
+                    Ticket Details - @ViewBag.Username - @ViewBag.BetId
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="betdetails">
+                        @Html.Raw(Model.TicketDetail)
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    var tickets = {
+        'ticket': '@Model.TicketCompare'
+    };
+    $(function () {
+        var arrTicket = tickets.ticket.split('-');
+        arrTicket = arrTicket.filter(function (value) { return value.length > 0; });
+        for (var i = 0; i < arrTicket.length; i++) {
+            $(".betdetails > div[id=" + arrTicket[i] + "] > div[class=ticketDetail] > div > div[class=match]").prepend('<div class="markDiv"></div>');
+        }
+    });
+</script>

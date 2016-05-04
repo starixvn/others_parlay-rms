@@ -364,7 +364,7 @@ function FillData(table, data) {
             var isHighLight = true;
 
             oldUserName.each(function () {
-                if ($(this).children('td').eq(2).text() == item.UserName) {
+                if ($(this).children('td').eq(2).text() == item.Username) {
                     isHighLight = false;
                     $(this).remove();
                 }
@@ -423,7 +423,7 @@ function ViewTotalOutstanding(username) {
     var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
-    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
+    var url = resolveClientUrl('MixParlay/TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
     window.open(url, '_blank');
 }
 
@@ -493,7 +493,7 @@ function ViewBetDetails(userName, transId, refNo) {
     }
 
     $.ajax({
-        url: resolveClientUrl('SystemParlayMonitor/SystemParlayBetDetails'),
+        url: resolveClientUrl('MixParlay/BetList/BetDetails'),
         type: 'POST',
         data: data,
         dataType: 'html',

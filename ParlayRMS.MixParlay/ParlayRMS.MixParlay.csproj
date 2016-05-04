@@ -113,6 +113,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -179,6 +180,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PotentialWinningMonitor\IService.cs" />
     <Compile Include="PotentialWinningMonitor\Service.cs" />
+    <Compile Include="SimilarBet\BetDetails.cs" />
+    <Compile Include="SimilarBet\BetDetailsViewModel.cs" />
+    <Compile Include="SimilarBet\Criteria.cs" />
+    <Compile Include="SimilarBet\IService.cs" />
+    <Compile Include="SimilarBet\Service.cs" />
+    <Compile Include="SimilarBet\SimilarBetController.cs" />
+    <Compile Include="SimilarBet\Ticket.cs" />
+    <Compile Include="SimilarBet\TicketDetail.cs" />
+    <Compile Include="SimilarBet\ViewModel.cs" />
+    <Compile Include="TotalOutstanding\AgentTicket.cs" />
+    <Compile Include="TotalOutstanding\IService.cs" />
+    <Compile Include="TotalOutstanding\AgentCriteria.cs" />
+    <Compile Include="TotalOutstanding\MemberCriteria.cs" />
+    <Compile Include="TotalOutstanding\MemberTicket.cs" />
+    <Compile Include="TotalOutstanding\Service.cs" />
+    <Compile Include="TotalOutstanding\TotalDataModel.cs" />
+    <Compile Include="TotalOutstanding\TotalOutstandingController.cs" />
+    <Compile Include="TotalOutstanding\ViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
