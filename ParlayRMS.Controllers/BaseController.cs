@@ -9,20 +9,22 @@
 
 namespace ParlayRMS.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using System.Web.SessionState;
+    using ONEbook.UM.Filters;
     using ParlayRMS.DTO;
     using ParlayRMS.Services.Implement.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using System.Web.SessionState;
 
     /// <summary>
     /// Base controller for controller to inherit.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [CheckUMFilter]
     public class BaseController : Controller
     {
         /// <summary>
@@ -50,7 +52,7 @@ namespace ParlayRMS.Controllers
                 return this._currentSession;
             }
         }
-        
+
         /// <summary>
         /// Gets sport type by id.
         /// </summary>

@@ -12,7 +12,7 @@ function ReCheckinOffline() {
         dataType: 'html',
         cache: false,
         success: function (data) {
-            if (data == 3) {
+            if (data.code == 0) {
                 clearInterval(reLoginId);
                 navigateToUrl('Account/Login');
             }
