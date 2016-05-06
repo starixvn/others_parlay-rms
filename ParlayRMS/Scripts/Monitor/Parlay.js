@@ -529,7 +529,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + '</td>';
-    r[++j] = '<td class="center">' + numeral(item.TotalSelection).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + (item.NumberWon === 0 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {
         r[++j] = '<td class="right">----</td>';

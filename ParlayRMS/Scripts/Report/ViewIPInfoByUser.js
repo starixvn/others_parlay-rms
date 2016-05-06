@@ -54,13 +54,7 @@
     }
 
     /*Load report from server and expand choice. */
-    function LoadReport(id, expand) {
-        //get input
-        var refNo = id;
-
-        //Validate input
-
-        //Build query data
+    function LoadReport(refNo, expand) {
         var queryData = {
             RefNo: refNo
         };

@@ -9,15 +9,15 @@
 
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.ViewIPInfo;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Main data-access-class for view-IP-info report and other related reports.
@@ -134,7 +134,10 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             StatusId = reader.ToInt32("statusid"),
                             Status = reader.ToString("status"),
                             Winlost = reader.ToDecimal("winlost"),
-                            Combo = reader.ToInt32("combo")
+                            Hdp1 = Convert.ToInt32(reader.ToDecimal("hdp1")),
+                            Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
+                            BetTeam = reader.ToString("betteam"),
+                            BetCheck = reader.ToString("betcheck"),
                         });
                     }
                 }

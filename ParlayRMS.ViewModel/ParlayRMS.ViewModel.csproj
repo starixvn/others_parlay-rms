@@ -122,6 +122,7 @@
     <Compile Include="ViewIPInfo\ParlayBetDetailsOptions.cs" />
     <Compile Include="ViewIPInfo\ParlayBetDetails.cs" />
     <Compile Include="ViewIPInfo\DrillDownOptions.cs" />
+    <Compile Include="ViewIPInfo\ParlayBetTypeViewModel.cs" />
     <Compile Include="ViewIPInfo\ViewIPInfoOptions.cs" />
     <Compile Include="Report\MemberWinLossOptions.cs" />
     <Compile Include="Report\TopWinnerDetailsOptions.cs" />
