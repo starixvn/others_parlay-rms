@@ -124,10 +124,32 @@ namespace ParlayRMS.Controllers
             var factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = _betlistService.CreateChoice(options.RefNo).ToList();
+            var data = _betlistService.GetBetListData(options.RefNo);
+            var tickets = _betlistService.Map(options.RefNo, data.Tickets);
             int countTicket = 1;
-            string openTag = "</br>";
+            string openTag = string.Empty;
             string endTag = "<hr class = 'hr'>";
+            if (options.BetType == (int)BetType.SystemParlay)
+            {
+                var comboTypes = RefData.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2, "en");
+                var filteredTickets = tickets.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
+                if (comboTypes == null || comboTypes.Length != filteredTickets.Count())
+                {
+                    openTag += "Invalid";
+                }
+                else
+                {
+                    for (var i = 0; i < comboTypes.Length; i++)
+                    {
+                        openTag += "<span class=\"underdog\"> " + comboTypes[i] + " x <span class=\"odds\">" + data.CurrencyName + " " + filteredTickets[i].Stake.ToString("#,##0") + "</span></span><br />";
+                    }
+                }
+            }
+            else
+            {
+                openTag += "<br />";
+            }
+            
             foreach (var ticket in tickets)
             {
                 if (countTicket != 1)
@@ -135,7 +157,7 @@ namespace ParlayRMS.Controllers
                     openTag = string.Empty;
                 }
 
-                if (countTicket == tickets.Count)
+                if (countTicket == tickets.Count())
                 {
                     endTag = string.Empty;
                 }
@@ -144,13 +166,7 @@ namespace ParlayRMS.Controllers
                 countTicket++;
             }
 
-            var result = builder.GetBetList();
-            if (options.BetType == (int)BetType.SystemParlay)
-            {
-                var comboTypes = RefData.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2, "en");
-            }
-
-            return result;
+            return builder.GetBetList();
         }
     }
 }

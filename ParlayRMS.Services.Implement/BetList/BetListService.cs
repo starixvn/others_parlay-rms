@@ -12,7 +12,7 @@ namespace ParlayRMS.Services.Implement.BetList
     {
         private readonly IBetListDataAccess _betListDataAccess = new BetListDataAccess();
 
-        public static IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
+        public IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
         {
             var result = new List<ITicket>();
             foreach (var item in data)
@@ -39,7 +39,8 @@ namespace ParlayRMS.Services.Implement.BetList
                     MatchCode = item.MatchCode.ToString(),
                     RefNo = refNo.ToString(),
                     Status = item.Status,
-                    BetCheck = item.BetCheck
+                    BetCheck = item.BetCheck,
+                    Stake = item.Stake
                 };
 
                 result.Add(ticket);
@@ -48,10 +49,15 @@ namespace ParlayRMS.Services.Implement.BetList
             return result.OrderBy(x => x.BetId).ToList();
         }
 
+        public BetListData GetBetListData(long refNo)
+        {
+            return _betListDataAccess.RMS_Parlay_TransDetails(refNo);
+        }
+
         public IEnumerable<ITicket> CreateChoice(long refNo)
         {
-            var data = _betListDataAccess.RMS_Parlay_TransDetails(refNo);
-            return Map(refNo, data);
+            var data = GetBetListData(refNo);
+            return Map(refNo, data.Tickets);
         }
 
         public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)

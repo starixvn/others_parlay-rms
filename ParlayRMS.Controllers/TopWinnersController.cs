@@ -138,7 +138,7 @@ namespace ParlayRMS.Controllers
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var data = this._topwinnersService.GetBetDetail(options.RefNo);
-            var tickets = BetListService.Map(options.RefNo, data);
+            var tickets = _betlistService.Map(options.RefNo, data);
             var stringBuilder = new StringBuilder();
             foreach (var ticket in tickets)
             {

@@ -41,5 +41,7 @@ namespace ParlayRMS.DTO.BetList
         public string BetStatus { get; set; }
 
         public string BetCheck { get; set; }
+
+        public decimal Stake { get; set; }
     }
 }

@@ -80,7 +80,7 @@
                             </div>
                         </td>
                         <td class="choice right">
-                            <a href="#" class="tdChoice" data-id="@item.RefNo">
+                            <a href="#" class="tdChoice" data-id="@item.RefNo" data-bet-type="@item.BetType" data-bet-team="@item.BetTeam" data-bet-check="@item.BetCheck" data-hdp1="@item.Hdp1" data-hdp2="@item.Hdp2">
                                 @if (item.BetType == (int)BetType.MixParlay)
                                 {
                                     @ViewLang.MixparLay;
@@ -89,10 +89,14 @@
                                 {
                                     var comboTypes = RemotingRef.RefData.GetCombinationTypeCombo(item.BetTeam, item.BetCheck, item.Hdp1, item.Hdp2, "en");
                                     @(ViewLang.SystemparLay)
-                                    foreach (var comboType in comboTypes)
+                                    if (comboTypes != null)
                                     {
-                                        <br />
-                                        <span class="underdog">@comboType</span>
+                                        <div class="combo-type">
+                                            @foreach (var comboType in comboTypes)
+                                            {
+                                            <p class="underdog">@comboType</p>
+                                            }
+                                        </div>
                                     }
                                 }
                             </a>

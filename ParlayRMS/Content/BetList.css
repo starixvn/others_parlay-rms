@@ -21,10 +21,9 @@
     color: #B50000;
     font-weight: bold !important;
 }
-.handicap .odds
+.odds
 {
     color: #003399;
-    font-size: 8pt;
 }
 div.match + div.league
 {

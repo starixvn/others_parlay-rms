@@ -10,18 +10,19 @@ namespace ParlayRMS.DataAccess.Implement.BetList
 {
     public class BetListDataAccess : BaseDataAccess, IBetListDataAccess
     {
-        public IEnumerable<RMS_Parlay_TransDetails> RMS_Parlay_TransDetails(long refNo)
+        public BetListData RMS_Parlay_TransDetails(long refNo)
         {
-            var result = new List<RMS_Parlay_TransDetails>();
-
+            var tickets = new List<RMS_Parlay_TransDetails>();
+            var currencyName = string.Empty;
             using (var db = new ObjectDb("RMS_Parlay_TransDetails"))
             {
                 db.AddInParameter("refno", DbType.Int64, refNo);
+                db.AddOutParameter("currencyname", DbType.String, 50);
                 using (var reader = db.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        result.Add(new RMS_Parlay_TransDetails
+                        tickets.Add(new RMS_Parlay_TransDetails
                         {
                             TransId = reader.ToInt64("transid"),
                             BetType = reader.ToInt32("bettype"),
@@ -42,13 +43,21 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                             MatchId = reader.ToInt32("matchid"),
                             MatchCode = reader.ToInt32("matchcode"),
                             BetStatus = reader.ToString("betstatus"),
-                            BetCheck = reader.ToString("betcheck")
+                            BetCheck = reader.ToString("betcheck"),
+                            Stake = reader.ToDecimal("stake")
                         });
                     }
                 }
+
+                var outputParam = db.GetOuputParams();
+                currencyName = (string)outputParam["currencyname"];
             }
 
-            return result;
+            return new BetListData
+            {
+                Tickets = tickets,
+                CurrencyName = currencyName
+            };
         }
 
         public RMS_Monitor_Parlay_BetInfo RMS_Monitor_Parlay_BetInfo(long transId)
