@@ -10,7 +10,6 @@ namespace ParlayRMS.ViewModel
     public static class Config
     {
         private static List<SelectListItem> _sportsTypes;
-        private static List<SelectListItem> _betTypes;
         private static List<SelectListItem> _selectTops;
         private static List<SelectListItem> _dateRanges;
         private static List<SelectListItem> _combos;
@@ -24,11 +23,6 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() },
                 new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() },
                 new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() }
-            };
-
-            _betTypes = new List<SelectListItem>()
-            {
-                new SelectListItem { Text = ViewLang.MixparLay, Value = BetType.MixParlay.ToString(), Selected = true }
             };
 
             var values = new List<int> { 10, 20, 50, 100 };
@@ -102,14 +96,6 @@ namespace ParlayRMS.ViewModel
             get
             {
                 return _sportsTypes;
-            }
-        }
-
-        public static List<SelectListItem> BetTypes
-        {
-            get
-            {
-                return _betTypes;
             }
         }
 

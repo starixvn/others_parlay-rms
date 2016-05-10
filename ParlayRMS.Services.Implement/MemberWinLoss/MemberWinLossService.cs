@@ -1,33 +1,21 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2013.09.16">Created</change>
-// </history>
+﻿using Fanex.Caching;
+using ParlayRMS.DataAccess.Implement.MemberWinLoss;
+using ParlayRMS.DataAccess.Interface.MemberWinLoss;
+using ParlayRMS.DTO.MemberWinLoss;
+using ParlayRMS.Models;
+using ParlayRMS.Models.MemberWinLoss;
+using ParlayRMS.Services.Implement.Common;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface;
+using ParlayRMS.Services.Interface.MemberWinLoss;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.MemberWinLoss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Fanex.Caching;
-    using ParlayRMS.DataAccess.Implement.MemberWinLoss;
-    using ParlayRMS.DataAccess.Interface.MemberWinLoss;
-    using ParlayRMS.DTO.MemberWinLoss;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.MemberWinLoss;
-    using ParlayRMS.Services.Implement.Common;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.MemberWinLoss;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Member Win Loss Service.
-    /// </summary>
     public class MemberWinLossService : IMemberWinLossService
     {
         private static readonly string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
@@ -37,22 +25,10 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         private readonly ICommonService _commonService = new CommonService();
         private readonly IUsersService _usersService = new UsersService();
 
-        /// <summary>
-        /// Get Member Win Loss data.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="username">Username value.</param>
-        /// <param name="isCached">Whether the data is cached or not.</param>
-        /// <param name="roleId">Role ID of user.</param>
-        /// <returns>Member win loss data.</returns>
         public MemberWinLossData GetMemberWinLoss(
                                      DateTime fromDate,
                                      DateTime toDate,
-                                     BetType betType,
+                                     string parlayTypes,
                                      SportsType sportsType,
                                      string combos,
                                      string username,
@@ -79,11 +55,11 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  toDate,
                                  info.MoveBetsDay,
                                  info.BalanceUpDay,
-                                 (int)betType,
+                                 parlayTypes,
                                  (int)sportsType,
                                  combos,
                                  user.CustId);
-                    _cacheService.Set<MemberWinLossData>(MemberWinLossReportSessionKey, result);
+                    _cacheService.Set(MemberWinLossReportSessionKey, result);
                 }
                 else if (user.RoleId == (int)RoleId.Agent)
                 {
@@ -92,11 +68,11 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  toDate,
                                  info.MoveBetsDay,
                                  info.BalanceUpDay,
-                                 (int)betType,
+                                 parlayTypes,
                                  (int)sportsType,
                                  combos,
                                  user.CustId);
-                    _cacheService.Set<MemberWinLossData>(MemberWinLossReportSessionKey, result);
+                    _cacheService.Set(MemberWinLossReportSessionKey, result);
                 }
             }
 
@@ -104,24 +80,12 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             return result;
         }
 
-        /// <summary>
-        /// Get member win loss data for Member Win Loss report.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Type of the sports.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>Member Win Loss data.</returns>
         private MemberWinLossData GetMemberWinLossData(
                                       DateTime fromDate,
                                       DateTime toDate,
                                       DateTime moveBetsDay,
                                       DateTime balanceUpDay,
-                                      int betType,
+                                      string parlayTypes,
                                       int sportsType,
                                       string combos,
                                       long custId)
@@ -129,12 +93,12 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            records = this._memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
+            records = _memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
                                                        fromDate,
                                                        toDate,
                                                        moveBetsDay,
                                                        balanceUpDay,
-                                                       betType,
+                                                       parlayTypes,
                                                        sportsType,
                                                        combos,
                                                        custId).ToList();
@@ -154,37 +118,25 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             };
         }
 
-        /// <summary>
-        /// Get member win loss data for Agent Win Loss report.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Type of the sports.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>Member Win Loss data.</returns>
         private MemberWinLossData GetAgentWinLossData(
                                       DateTime fromDate,
                                       DateTime toDate,
                                       DateTime moveBetsDay,
                                       DateTime balanceUpDay,
-                                      int betType,
+                                      string parlayTypes,
                                       int sportsType,
                                       string combos,
                                       long custId)
         {
             List<RMS_Rpt_Parlay_MemberWinLoss> rawData = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
-            
-            rawData = this._memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
+
+            rawData = _memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
                                                        fromDate,
                                                        toDate,
                                                        moveBetsDay,
                                                        balanceUpDay,
-                                                       betType,
+                                                       parlayTypes,
                                                        sportsType,
                                                        combos,
                                                        custId).ToList();
@@ -204,11 +156,6 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             };
         }
 
-        /// <summary>
-        /// Group raw data of agent win loss report by month.
-        /// </summary>
-        /// <param name="rawData">Raw data queried from DB.</param>
-        /// <returns>Data for agent win loss report that are grouped by month.</returns>
         private List<RMS_Rpt_Parlay_MemberWinLoss> GroupAgentDataByMonth(List<RMS_Rpt_Parlay_MemberWinLoss> rawData)
         {
             List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
@@ -255,11 +202,6 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             return records;
         }
 
-        /// <summary>
-        /// Format month string from '2013-01' to '01-2013'.
-        /// </summary>
-        /// <param name="date">The string represents that year-month got from DB.</param>
-        /// <returns>Month-year format string, such as 08-2013.</returns>
         private string ReFormatMonthStr(string date)
         {
             int separatorIndex = date.IndexOf('-');

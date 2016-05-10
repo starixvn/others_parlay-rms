@@ -1,60 +1,40 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="WinlossService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.DataAccess.Implement.Winloss;
+using ParlayRMS.DataAccess.Interface.Winloss;
+using ParlayRMS.DTO.Winloss;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Winloss;
+using ParlayRMS.Services.Implement.Common;
+using ParlayRMS.Services.Interface;
+using ParlayRMS.Services.Interface.Winloss;
+using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.Winloss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using ParlayRMS.DataAccess.Implement.Winloss;
-    using ParlayRMS.DataAccess.Interface.Winloss;
-    using ParlayRMS.DTO.Winloss;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Winloss;
-    using ParlayRMS.Services.Implement.Common;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.Winloss;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Win Loss service.
-    /// </summary>
     public class WinlossService : IWinlossService
     {
         private readonly IWinlossDataAccess _winlossDataAccess = new WinlossDataAccess();
         private readonly ICommonService _commonService = new CommonService();
 
-        /// <summary>
-        /// Gets win loss data.
-        /// </summary>
-        /// <param name="fromDate">From Date value.</param>
-        /// <param name="toDate">To Date value.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <param name="combos">Combo values.</param>
-        /// <returns>Win Loss data.</returns>
         public WinlossData GetWinloss(
-                               DateTime fromDate, 
-                               DateTime toDate, 
-                               BetType betType, 
-                               SportsType sportsType, 
+                               DateTime fromDate,
+                               DateTime toDate,
+                               string parlayTypes,
+                               SportsType sportsType,
                                string combos)
         {
             var info = _commonService.GetBalanceUpDayInfo();
-            var data = this._winlossDataAccess.RMS_Rpt_Parlay_Winloss(
-                                fromDate, 
-                                toDate, 
-                                info.MoveBetsDay, 
-                                info.BalanceUpDay, 
-                                (int)betType, 
+            var data = _winlossDataAccess.RMS_Rpt_Parlay_Winloss(
+                                fromDate,
+                                toDate,
+                                info.MoveBetsDay,
+                                info.BalanceUpDay,
+                                parlayTypes,
                                 (int)sportsType,
                                 combos);
-            
+
             Utils.Round(data);
             data.ToList().ForEach(x =>
             {

@@ -8,10 +8,9 @@
 
 namespace ParlayRMS.Common.Models
 {
-    using System.Collections.Generic;
-    using ParlayRMS.Models;
     using ParlayRMS.Models.Members;
     using ParlayRMS.Utility;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Models Helper.
@@ -100,20 +99,18 @@ namespace ParlayRMS.Common.Models
             return "Undefined";
         }
 
-        /// <summary>
-        /// Gets bet type name from resource by ID.
-        /// </summary>
-        /// <param name="betType">Bet type ID.</param>
-        /// <returns>Bet type name.</returns>
-        public static string GetBetType(int betType)
+        public static string GetParlayTitle(string parlayTypes)
         {
-            switch (betType)
+            switch (parlayTypes)
             {
-                case (int)BetType.MixParlay:
+                case "1,2":
+                    return ViewLang.All;
+
+                case "1":
                     return ViewLang.MixparLay;
 
-                case (int)BetType.SystemParlay:
-                    return ViewLang.SystemparLay;
+                case "2":
+                    return ViewLang.ComboParlay;
             }
 
             return "Undefined";

@@ -1,7 +1,7 @@
 ﻿MemberWinLoss = {
     CachedDOM: {
         username: null,
-        bettype: null,
+        parlayType: null,
         combo: null,
         fromDate: null,
         toDate: null,
@@ -10,7 +10,7 @@
     },
     GetCachedDOM: function () {
         MemberWinLoss.CachedDOM.username = $("#username");
-        MemberWinLoss.CachedDOM.bettype = $("#betType");
+        MemberWinLoss.CachedDOM.parlayType = $("#parlayType");
         MemberWinLoss.CachedDOM.combo = $("#combo");
         MemberWinLoss.CachedDOM.fromDate = $("#fromDate");
         MemberWinLoss.CachedDOM.toDate = $("#toDate");
@@ -23,12 +23,26 @@
 
         MemberWinLoss.GetCachedDOM();
 
-        MemberWinLoss.CachedDOM.bettype.multiselect({
-            minWidth: 120,
+        MemberWinLoss.CachedDOM.parlayType.multiselect({
+            minWidth: 132,
             height: 82,
-            header: false,
-            multiple: false,
-            selectedList: 1
+            create: function () {
+                MemberWinLoss.CachedDOM.parlayType.multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
         });
 
         MemberWinLoss.CachedDOM.combo.multiselect({
@@ -112,11 +126,11 @@
             MemberWinLoss.GetData(1, false);
         });
     },
-    Data: function (betType, fromDate, toDate, sportsType, combos, username, pageIndex, isCached) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, username, pageIndex, isCached) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
-            BetType: betType,
+            ParlayTypes: parlayTypes,
             SportsType: sportsType,
             Combos: combos,
             Username: username,
@@ -150,7 +164,6 @@
     },
     GetData: function (pageIndex, isCached) {
         var username = MemberWinLoss.CachedDOM.username.val();
-        var betType = MemberWinLoss.CachedDOM.bettype.val();
         var fromDate = MemberWinLoss.CachedDOM.fromDate.val();
         var toDate = MemberWinLoss.CachedDOM.toDate.val();
         var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
@@ -179,7 +192,15 @@
             return;
         }
 
-        MemberWinLoss.Data(betType, fromDate, toDate, sportsType, combos, username, pageIndex, isCached);
+        var parlayTypes = MemberWinLoss.CachedDOM.parlayType.multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (parlayTypes == '') {
+            Validators.show(MemberWinLoss.CachedDOM.parlayType.multiselect("getButton").get(0), 'Please select your options');
+            return;
+        }
+
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsType, combos, username, pageIndex, isCached);
     }
 }
 function MovePage(pageIndex) {

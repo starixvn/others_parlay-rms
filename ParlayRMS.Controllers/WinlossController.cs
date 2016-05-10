@@ -1,52 +1,29 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="WinlossController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.ExcelService.Writers;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Winloss;
+using ParlayRMS.Services.Interface.Winloss;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel;
+using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
-    using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Winloss;
-    using ParlayRMS.Services.Interface.Winloss;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel;
-    using ParlayRMS.ViewModel.Report;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Win Loss Controller.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
     public class WinlossController : BaseController
     {
         private readonly IWinlossService _winlossService = new WinlossService();
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.BetTypes = Config.BetTypes;
-            ViewBag.SportsTypes = Config.SportsTypes;
-            return this.View();
+            return View();
         }
 
-        /// <summary>
-        /// Gets data for win loss report.
-        /// </summary>
-        /// <param name="options">The options that are used to filter data.</param>
-        /// <returns>Partial view represents the win loss report.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(WinlossOptions options)
         {
@@ -65,32 +42,27 @@ namespace ParlayRMS.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return this.PartialView("_ErrorMessage", GetModelErrorMessage());
+                    return PartialView("_ErrorMessage", GetModelErrorMessage());
                 }
                 else
                 {
-                    var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
+                    var model = _winlossService.GetWinloss(options.FromDate, options.ToDate, options.ParlayTypes, options.SportsType, options.Combos);
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;
-                    return this.PartialView(model);
+                    return PartialView(model);
                 }
             }
             catch (Exception ex)
             {
-                return this.PartialView("_ErrorMessage", ex.Message);
+                return PartialView("_ErrorMessage", ex.Message);
             }
         }
 
-        /// <summary>
-        /// Export to Excel.
-        /// </summary>
-        /// <param name="options">The options that are used to filter data.</param>
-        [AuthorizationAttribute(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
         [HttpGet]
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(WinlossOptions options)
         {
-            var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.BetType, options.SportsType, options.Combos);
+            var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.ParlayTypes, options.SportsType, options.Combos);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 
@@ -127,7 +99,7 @@ namespace ParlayRMS.Controllers
                 ViewLang.NetWinloss
             };
 
-            var footer = new object[] 
+            var footer = new object[]
             {
                 ViewLang.Total,
                 string.Empty,
@@ -148,7 +120,7 @@ namespace ParlayRMS.Controllers
             foreach (var record in model.Records)
             {
                 var totalRow = record.Records.Count;
-                var rowData = new object[] 
+                var rowData = new object[]
                 {
                     ViewLang.Subtotal,
                     string.Empty,
