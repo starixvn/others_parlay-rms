@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopWinnerDetailsOptions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.ViewModel.Report
+﻿namespace ParlayRMS.ViewModel.Report
 {
     using System;
 
-    /// <summary>
-    /// Top Winner Details Options.
-    /// </summary>
     public class TopWinnerDetailsOptions
     {
         public long CustId { get; set; }
@@ -26,5 +15,7 @@ namespace ParlayRMS.ViewModel.Report
         public int SportsType { get; set; }
 
         public string Combos { get; set; }
+
+        public string ParlayTypes { get; set; }
     }
 }

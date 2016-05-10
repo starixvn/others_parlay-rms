@@ -33,6 +33,6 @@ namespace ParlayRMS.DTO.TopWinners
 
         public int Combo { get; set; }
 
-        public decimal Odds { get; set; }
+        public int Selection { get; set; }
     }
 }

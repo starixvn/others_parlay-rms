@@ -876,4 +876,7 @@
   <data name="SimilarSelectionFound" xml:space="preserve">
     <value>Similar Selection Found</value>
   </data>
+  <data name="TotalComboBets" xml:space="preserve">
+    <value>Total Combo Bets</value>
+  </data>
 </root>

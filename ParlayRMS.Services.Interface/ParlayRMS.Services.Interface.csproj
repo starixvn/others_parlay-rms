@@ -69,6 +69,10 @@
       <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
       <Name>ParlayRMS.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.ViewModel\ParlayRMS.ViewModel.csproj">
+      <Project>{c8cb1e7b-e68a-4065-ae30-3f8fb371974a}</Project>
+      <Name>ParlayRMS.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,21 +1,10 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopWinnersOptions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Common.Models;
+using ParlayRMS.Utility;
+using System;
+using System.Linq;
 
 namespace ParlayRMS.ViewModel.Report
 {
-    using System;
-    using System.Linq;
-    using ParlayRMS.Common.Models;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Top Winners Options Model.
-    /// </summary>
     public class TopWinnersOptions
     {
         public DateTime FromDate { get; set; }
@@ -28,10 +17,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Combos { get; set; }
 
-        /// <summary>
-        /// Gets the tile.
-        /// </summary>
-        /// <returns>Top winners report title.</returns>
+        public string ParlayTypes { get; set; }
+
         public string GetTile()
         {
             var combosTitle = ViewLang.All;

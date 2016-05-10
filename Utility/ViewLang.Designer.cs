@@ -2059,6 +2059,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Combo Bets.
+        /// </summary>
+        public static string TotalComboBets {
+            get {
+                return ResourceManager.GetString("TotalComboBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total of losing tickets.
         /// </summary>
         public static string TotalLoseTickets {

@@ -150,6 +150,10 @@
       <Project>{8996A3CA-B459-4301-81A7-0E8624D3828C}</Project>
       <Name>ParlayRMS.Services.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.ViewModel\ParlayRMS.ViewModel.csproj">
+      <Project>{c8cb1e7b-e68a-4065-ae30-3f8fb371974a}</Project>
+      <Name>ParlayRMS.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Web\ParlayRMS.Web.csproj">
       <Project>{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}</Project>
       <Name>ParlayRMS.Web</Name>

@@ -44,10 +44,10 @@
                     @ViewLang.CompanyWinLoss
                 </th>
                 <th>
-                    @ViewLang.TotalCombo
+                    @ViewLang.TotalComboBets
                 </th>
                 <th>
-                    @ViewLang.WinOdds
+                    @ViewLang.TotalSelections
                 </th>
             </tr>
         </thead>
@@ -80,17 +80,14 @@
                         @item.Company_Winlost_BaseRM.ToString("#,##0.00")
                     </td>
                     <td>
-                        @item.Combo
+                        @{
+                            var betText = (@item.Combo > 1) ? " bets" : " bet";
+                        }
+
+                        @Formatter.FormatNumber3(@item.Combo) @betText
                     </td>
                     <td class="numeric">
-                        @if (item.Odds == 0)
-                        {
-                            @Html.Raw("-")
-                        }
-                        else
-                        {
-                            @item.Odds.ToString("#,##0.00")
-                        }
+                        @item.Selection.ToString("#,##0.00")
                     </td>
                 </tr>
             }

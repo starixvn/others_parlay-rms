@@ -1,23 +1,12 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Config.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models;
+using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Web.Mvc;
 
 namespace ParlayRMS.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Web.Mvc;
-    using ParlayRMS.Models;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Configuration class.
-    /// </summary>
     public static class Config
     {
         private static List<SelectListItem> _sportsTypes;
@@ -25,6 +14,7 @@ namespace ParlayRMS.ViewModel
         private static List<SelectListItem> _selectTops;
         private static List<SelectListItem> _dateRanges;
         private static List<SelectListItem> _combos;
+        private static List<SelectListItem> _parlayTypes;
 
         static Config()
         {
@@ -65,7 +55,7 @@ namespace ParlayRMS.ViewModel
             };
 
             _combos = new List<SelectListItem>();
-            for (int i = 2; i <= 5; i++)
+            for (int i = 2; i <= 9; i++)
             {
                 _combos.Add(new SelectListItem
                 {
@@ -74,7 +64,13 @@ namespace ParlayRMS.ViewModel
                 });
             }
 
-            _combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6" });
+            _combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
+
+            _parlayTypes = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
+                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
+            };
         }
 
         public static List<SelectListItem> Combos
@@ -114,6 +110,14 @@ namespace ParlayRMS.ViewModel
             get
             {
                 return _betTypes;
+            }
+        }
+
+        public static List<SelectListItem> ParlayTypes
+        {
+            get
+            {
+                return _parlayTypes;
             }
         }
 

@@ -3,7 +3,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TopWinners;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 880px">
+    <div class="filter-control" style="width: 980px">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl</div>
@@ -39,6 +39,10 @@
                 <div class="group">
                     @Html.Label(ViewLang.Combo)
                     @Html.DropDownList("combo", Config.Combos)
+                </div>
+                <div class="group">
+                    @Html.Label(ViewLang.ParlayType)
+                    @Html.DropDownList("parlayType", Config.ParlayTypes)
                 </div>
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
