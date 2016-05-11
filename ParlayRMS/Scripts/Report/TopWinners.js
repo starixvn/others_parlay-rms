@@ -363,7 +363,7 @@ function ViewDetails(custId) {
             SportsType: userOptions.SportsType,
             SelectTop: userOptions.SelectTop,
             Combos: userOptions.Combos,
-            ParlayTypes: userOptions.parlayTypes
+            ParlayTypes: userOptions.ParlayTypes
         }
 
         $.ajax({
@@ -406,7 +406,7 @@ function ExportExcel() {
         SportsType: userOptions.SportsType,
         SelectTop: userOptions.SelectTop,
         Combos: userOptions.Combos,
-        ParlayTypes: userOptions.parlayTypes
+        ParlayTypes: userOptions.ParlayTypes
     }
 
     var url = 'TopWinners/Excel?' + $.param(data);

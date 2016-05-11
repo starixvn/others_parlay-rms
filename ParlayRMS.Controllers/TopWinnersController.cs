@@ -14,6 +14,7 @@ using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
+using RemotingRef;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -92,7 +93,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpGet]
-        public ActionResult BetDetail(BetDetailsOptions options)
+        public ActionResult BetDetails(BetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;
             ViewBag.Username = options.Username;
@@ -102,6 +103,7 @@ namespace ParlayRMS.Controllers
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var data = _topwinnersService.GetBetDetail(options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data);
+            var betInfo = _betlistService.GetBetInfo(options.BetId);
             var stringBuilder = new StringBuilder();
             foreach (var ticket in tickets)
             {
@@ -127,8 +129,11 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            var model = new BetDetails();
-            model.TicketDetail = builder.GetBetList();
+            var model = new BetDetails
+            {
+                TicketDetail = builder.GetBetList(),
+                ComboTypes = RefData.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2, "en")
+            };
             return View(model);
         }
 

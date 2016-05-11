@@ -1,4 +1,5 @@
-﻿using ParlayRMS.Models;
+﻿using ParlayRMS.Common.Models;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.ParlayMonitor;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
     public class ParlayMonitorController : BaseController
     {
         private readonly IBetListService _betlistService = new BetListService();
@@ -24,12 +26,7 @@ namespace ParlayRMS.Controllers
         private readonly IParlayMonitorService _parlayMonitorCacheService = new ParlayMonitorCacheService();
         private readonly IUsersService _userService = new UsersService();
 
-        /// <summary>
-        /// Initialize filter form.
-        /// </summary>
-        /// <returns>Partial view which represents the filter form.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult Filter()
         {
             // Combo
@@ -102,26 +99,15 @@ namespace ParlayRMS.Controllers
             return PartialView();
         }
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
         [HttpGet]
-        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
             ViewBag.HasReadPermission = _userService.HasReadPermission(CurrentSession.UserId, FunctionKeys.ViewIP);
             return View();
         }
 
-        /// <summary>
-        /// Gets mix parlay data.
-        /// </summary>
-        /// <param name="model">The model contains filter conditions which are used to query data.</param>
-        /// <returns>JSON result contains queried data.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
-        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult Data(DataModel model)
         {
             if (!ModelState.IsValid)
@@ -152,7 +138,7 @@ namespace ParlayRMS.Controllers
             {
                 var combosTitle = ViewLang.All;
                 var combos = model.Combos.Split(',');
-                if (combos.Length < 5)
+                if (combos.Length < 9)
                 {
                     combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
                 }
@@ -196,9 +182,11 @@ namespace ParlayRMS.Controllers
                 }
 
                 title = string.Format(
-                                   "Mix Parlay Monitor - {0} [{1}] - {2} [{3}] - {4} [{5}] - {6} [{7}]",
+                                   "Mix Parlay Monitor - {0} [{1}] - {2} [{3}] - {4} [{5}] - {6} [{7}] - {8} [{9}]",
                                    ViewLang.Combo,
                                    combosTitle,
+                                   ViewLang.ParlayType,
+                                   ModelsHelper.GetParlayTitle(model.ParlayTypes),
                                    ViewLang.SportsType,
                                    sportsTypesTitle,
                                    ViewLang.Level,
@@ -221,10 +209,6 @@ namespace ParlayRMS.Controllers
             });
         }
 
-        /// <summary>
-        /// Gets the mix parlay service.
-        /// </summary>
-        /// <returns>MixParlayMonitorService instance.</returns>
         private IParlayMonitorService GetMixParlayService()
         {
             return _parlayMonitorCacheService;

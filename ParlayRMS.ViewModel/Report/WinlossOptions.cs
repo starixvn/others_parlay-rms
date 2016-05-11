@@ -28,9 +28,9 @@ namespace ParlayRMS.ViewModel.Report
         {
             var combosTitle = ViewLang.All;
             var combos = Combos.Split(',');
-            if (combos.Length < 5)
+            if (combos.Length < 9)
             {
-                combosTitle = string.Join(",", combos.Select(x => x == "6" ? ViewLang.SixUp : x));
+                combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
             }
 
             var title = string.Format(
