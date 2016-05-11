@@ -33,7 +33,7 @@ namespace ParlayRMS.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [UMBackdoorFilter]
+        [CheckUMFilter]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
@@ -80,7 +80,7 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [UMBackdoorFilter]
+        [CheckUMFilter]
         public JsonResult ReCheckInOffline()
         {
             return Json(new
@@ -92,7 +92,7 @@ namespace ParlayRMS.Controllers
 
         public int ReCheckIn()
         {
-            if (_maintenanceService.IsUnderMaintenance())
+            if (!_maintenanceService.IsPassUnderMaintenance())
             {
                 return (int)StatusKickedOut.Maintenance;
             }
