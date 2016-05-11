@@ -50,38 +50,6 @@ namespace ParlayRMS.Utility
             }
         }
 
-        public static string LBUrl
-        {
-            get
-            {
-                return GetValue("LBUrl");
-            }
-        }
-
-        public static bool IsUM
-        {
-            get
-            {
-                return DbConverter.ToBoolean(GetValue("IsUM"));
-            }
-        }
-
-        public static string TimeFrom
-        {
-            get
-            {
-                return GetValue("TimeFrom");
-            }
-        }
-
-        public static string TimeTo
-        {
-            get
-            {
-                return GetValue("TimeTo");
-            }
-        }
-
         public static int PageSize
         {
             get
@@ -166,7 +134,7 @@ namespace ParlayRMS.Utility
         {
             get
             {
-                var value = GetValue("SelectTop");                
+                var value = GetValue("SelectTop");
                 return value.Split(',');
             }
         }

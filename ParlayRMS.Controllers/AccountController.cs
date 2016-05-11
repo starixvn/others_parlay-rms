@@ -80,7 +80,7 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [CheckUMFilter]
+        [UMBackdoorFilter]
         public JsonResult ReCheckInOffline()
         {
             return Json(new
@@ -123,7 +123,6 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [CheckUMFilter]
         public ActionResult SignOut()
         {
             var userId = _currentSession.OnUserId;
@@ -146,9 +145,9 @@ namespace ParlayRMS.Controllers
             {
                 _authorizationService.Logout(userId, userName);
             }
-            catch (Exception)
+            catch
             {
-                throw; ////ex;
+                throw;
             }
             finally
             {
