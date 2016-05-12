@@ -80,9 +80,13 @@
                         @item.Company_Winlost_BaseRM.ToString("#,##0.00")
                     </td>
                     <td>
-                        @item.TotalCombo.ToString("#,##0")
+                        @{
+                            var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
+                        }
+
+                        @Formatter.FormatNumber3(@item.TotalCombo) @betText
                     </td>
-                    <td class="numeric">
+                    <td>
                         @item.Selection.ToString("#,##0")
                     </td>
                 </tr>

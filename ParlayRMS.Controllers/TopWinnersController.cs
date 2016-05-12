@@ -103,7 +103,7 @@ namespace ParlayRMS.Controllers
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var data = _topwinnersService.GetBetDetail(options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data);
-            var betInfo = _betlistService.GetBetInfo(options.BetId);
+            var betInfo = _topwinnersService.GetBetInfo(options.BetId);
             var stringBuilder = new StringBuilder();
             foreach (var ticket in tickets)
             {

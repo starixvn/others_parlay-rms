@@ -35,5 +35,7 @@ namespace ParlayRMS.DataAccess.Interface.TopWinners
                                                          int sportsType,
                                                          string combos,
                                                          string parlayTypes);
+
+        BetInfo GetBetInfo(long transId);
     }
 }

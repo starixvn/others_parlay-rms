@@ -69,5 +69,10 @@ namespace ParlayRMS.Services.Implement.TopWinners
                 }
             }
         }
+
+        public BetInfo GetBetInfo(long transId)
+        {
+            return _topwinnersDataAccess.GetBetInfo(transId);
+        }
     }
 }

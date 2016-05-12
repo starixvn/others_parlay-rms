@@ -12,5 +12,7 @@ namespace ParlayRMS.Services.Interface.TopWinners
         IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> GetTopWinnerDetails(TopWinnerDetailsOptions options);
 
         IEnumerable<RMS_Parlay_TransDetails> GetBetDetail(long refNo);
+
+        BetInfo GetBetInfo(long transId);
     }
 }

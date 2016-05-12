@@ -62,6 +62,7 @@
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
+    <Compile Include="TopWinners\BetInfo.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
     <Compile Include="Common\RMS_SelBalanceUpDay.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner.cs" />
