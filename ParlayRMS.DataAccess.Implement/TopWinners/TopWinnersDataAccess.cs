@@ -102,8 +102,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Stake_BaseRM = reader.ToDecimal("stake_baseRM"),
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
-                            Combo = reader.ToInt32("combo"),
-                            Selection = reader.ToInt32("selection")
+                            TotalCombo = reader.ToInt32("totalcombo"),
+                            Selection = reader.ToInt32("combo")
                         });
                     }
                 }
@@ -191,7 +191,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Stake_BaseRM = reader.ToDecimal("stake_baseRM"),
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
-                            Combo = reader.ToInt32("combo"),
+                            TotalCombo = reader.ToInt32("totalcombo"),
                             Selection = reader.ToInt32("selection")
                         });
                     }

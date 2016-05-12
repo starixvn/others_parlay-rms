@@ -31,7 +31,7 @@ namespace ParlayRMS.DTO.TopWinners
 
         public decimal Company_Winlost_BaseRM { get; set; }
 
-        public int Combo { get; set; }
+        public int TotalCombo { get; set; }
 
         public int Selection { get; set; }
     }

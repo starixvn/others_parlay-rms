@@ -6,7 +6,6 @@ using ParlayRMS.Models.MemberWinLoss;
 using ParlayRMS.Services.Implement.MemberWinLoss;
 using ParlayRMS.Services.Interface.MemberWinLoss;
 using ParlayRMS.Utility;
-using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 using System;
