@@ -124,7 +124,7 @@ namespace ParlayRMS.Models
         Member = 1
     }
 
-    public enum @string : int
+    public enum BetType : int
     {
         /// <summary>
         /// Mix Parlay Bet type.
