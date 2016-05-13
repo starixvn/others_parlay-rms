@@ -849,6 +849,9 @@
     <Content Include="DangerousAgents.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SpNames.sit.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.BACKUPMNL.config">
       <SubType>Designer</SubType>
     </Content>
@@ -984,6 +987,9 @@
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />
     <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
+    <None Include="Web.sit.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
