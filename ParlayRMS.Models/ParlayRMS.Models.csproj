@@ -80,7 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Functions\FunctionKeys.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FunctionKeys.generated.cs</LastGenOutput>
