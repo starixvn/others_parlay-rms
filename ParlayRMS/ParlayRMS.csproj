@@ -987,9 +987,9 @@
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />
     <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
-    <None Include="Web.sit.config">
+    <Content Include="Web.sit.config">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
