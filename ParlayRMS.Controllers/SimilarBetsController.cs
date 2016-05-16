@@ -79,10 +79,7 @@ namespace ParlayRMS.Controllers
             foreach (var ticket in tickets)
             {
                 var similar = originalTickets.Any(originalTicket =>
-                        originalTicket.LeagueId == ticket.LeagueId &&
-                        originalTicket.SportTypeId == ticket.SportTypeId &&
-                        originalTicket.HomeId == ticket.HomeId &&
-                        originalTicket.AwayId == ticket.AwayId &&
+                        originalTicket.MatchId == ticket.MatchId &&
                         originalTicket.BetTypeId == ticket.BetTypeId &&
                         originalTicket.BetTeam == ticket.BetTeam);
 
