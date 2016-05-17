@@ -246,6 +246,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Content Include="App_Configuration\Web.config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.config.txt</LastGenOutput>
+    </Content>
+    <Content Include="App_Configuration\Web.config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\LOCAL\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\PRO\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\MixParlay\Scripts\mix-parlay-monitor.js" />
     <Content Include="Areas\MixParlay\Scripts\total-outstanding.js" />
     <Content Include="Areas\MixParlay\Scripts\potential-winning-monitor.js" />
@@ -518,9 +533,6 @@
     <Content Include="Images\Content\1L.gif" />
     <Content Include="Images\Content\betradar-icon.png" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
-    <Content Include="SpNames.BACKUPMNL.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Images\Content\details-icon.png" />
     <Content Include="Images\UnderMaintenance.gif" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
@@ -849,12 +861,6 @@
     <Content Include="DangerousAgents.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="SpNames.sit.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.BACKUPMNL.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -874,7 +880,35 @@
     <Content Include="Areas\MixParlay\Views\TotalOutstanding\AgentResult.cshtml" />
     <Content Include="Areas\MixParlay\Views\TotalOutstanding\Index.cshtml" />
     <Content Include="Areas\MixParlay\Views\TotalOutstanding\MemberResult.cshtml" />
-    <None Include="readme.txt" />
+    <Content Include="App_Configuration\Configuration.ttinclude" />
+    <Content Include="App_Configuration\DEV\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\LOCAL\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\MASTER\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\MNL\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\PRO\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\SIT\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\UAT\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\Web.DEV.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.LOCAL.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.MASTER.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.MNL.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.PRO.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.SIT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.UAT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />
     <Content Include="Scripts\ManageAgent.js" />
@@ -937,14 +971,7 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
-    <Content Include="SpNames.local.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="SpNames.prod.xml" />
-    <Content Include="SpNames.uat.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="SpNames.xml">
+    <Content Include="App_Data\UAT\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
@@ -976,22 +1003,14 @@
     <Content Include="Views\ViewIPInfo\Index.cshtml" />
     <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
     <Content Include="Views\ViewIPInfo\BetDetails.cshtml" />
-    <Content Include="Web.local.config" />
-    <Content Include="Web.prod.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />
     <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
-    <Content Include="Web.sit.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -1163,6 +1182,7 @@
   <ItemGroup>
     <Content Include="Views\Shared\_ErrorMessage.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
