@@ -131,23 +131,17 @@ namespace ParlayRMS.Controllers
             {
                 var comboTypes = RefData.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2, "en");
                 var filteredTickets = tickets.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
-                if (comboTypes == null || comboTypes.Length != filteredTickets.Count())
+                var count = comboTypes == null ? 0 : comboTypes.Length;
+                for (var i = 0; i < count; i++)
                 {
-                    openTag += "Invalid";
-                }
-                else
-                {
-                    for (var i = 0; i < comboTypes.Length; i++)
-                    {
-                        openTag += "<span class=\"underdog\"> " + comboTypes[i] + " x <span class=\"odds\">" + data.CurrencyName + " " + filteredTickets[i].Stake.ToString("#,##0") + "</span></span><br />";
-                    }
+                    openTag += "<span class=\"underdog\"> " + comboTypes[i] + " x <span class=\"odds\">" + data.CurrencyName + " " + filteredTickets[i].Stake.ToString("#,##0") + "</span></span><br />";
                 }
             }
             else
             {
                 openTag += "<br />";
             }
-            
+
             foreach (var ticket in tickets)
             {
                 if (countTicket != 1)
