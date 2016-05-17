@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TotalOutstandingController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
@@ -21,20 +13,12 @@ namespace ParlayRMS.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
 
-    /// <summary>
-    /// Total Outstanding Controller.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
     public class TotalOutstandingController : BaseController
     {
         private readonly ITotalOutstandingService _service = new TotalOutstandingService();
         private readonly IUsersService _userService = new UsersService();
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <param name="model">The associated model of the view.</param>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
@@ -59,13 +43,13 @@ namespace ParlayRMS.Controllers
             {
                 Text = ViewLang.MixparLay,
                 Value = ((int)ParlayType.MixParlay).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.MixParlay).ToString())
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.MixParlay).ToString())
             });
             parlayTypes.Add(new SelectListItem
             {
                 Text = ViewLang.ComboParlay,
                 Value = ((int)ParlayType.ComboParlay).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.ComboParlay).ToString())
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
             });
             ViewBag.ParlayTypes = parlayTypes;
 
@@ -92,17 +76,10 @@ namespace ParlayRMS.Controllers
             ViewBag.SportsTypes = sportsTypes;
 
             // Select Top
-            return this.View("Index", model);
+            return View("Index", model);
         }
 
-        /// <summary>
-        /// Gets data for total outstanding report.
-        /// </summary>
-        /// <param name="model">The model that contains the filter conditions.</param>
-        /// <returns>Partial view represents the queried data.</returns>
-        ////[ValidateInput(false)]
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
@@ -110,7 +87,7 @@ namespace ParlayRMS.Controllers
             var customerInfo = _userService.GetCustomerInfo(model.Username);
             if (customerInfo == null || customerInfo.CustId == 0)
             {
-                return this.PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
+                return PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
             }
 
             if (customerInfo.RoleId == (int)RoleId.Member)
@@ -134,7 +111,7 @@ namespace ParlayRMS.Controllers
                     };
                 }
 
-                return this.PartialView("MemberResult", data);
+                return PartialView("MemberResult", data);
             }
             else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
@@ -160,7 +137,7 @@ namespace ParlayRMS.Controllers
                     };
                 }
 
-                return this.PartialView("AgentResult", data);
+                return PartialView("AgentResult", data);
             }
             else
             {
@@ -174,7 +151,7 @@ namespace ParlayRMS.Controllers
                     roleName = "super";
                 }
 
-                return this.PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
+                return PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
             }
         }
     }

@@ -192,7 +192,10 @@ ParlayRMS.TotalOutstanding = {
         var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
-        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
+        var parlayTypes = $("#parlaysType").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlayTypes=' + parlayTypes;
         window.open(url, '_blank');
     }
 };
