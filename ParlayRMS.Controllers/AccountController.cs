@@ -1,5 +1,4 @@
-﻿using ONEbook.UM.Filters;
-using ONEbook.UM.Services;
+﻿using ONEbook.UM.Services;
 using ONEbook.UM.Services.Impl;
 using ParlayRMS.DTO;
 using ParlayRMS.Models;
@@ -25,7 +24,6 @@ namespace ParlayRMS.Controllers
         private readonly ICurrentSession _currentSession = new CurrentSession();
 
         [HttpGet]
-        [UMBackdoorFilter]
         public ActionResult Login()
         {
             return PartialView();
@@ -33,7 +31,6 @@ namespace ParlayRMS.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [CheckUMFilter]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
@@ -80,7 +77,6 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [CheckUMFilter]
         public JsonResult ReCheckInOffline()
         {
             return Json(new
@@ -90,36 +86,43 @@ namespace ParlayRMS.Controllers
             });
         }
 
-        public int ReCheckIn()
+        public JsonResult ReCheckIn()
         {
-            if (!_maintenanceService.IsPassUnderMaintenance())
-            {
-                return (int)StatusKickedOut.Maintenance;
-            }
-
             var userId = _currentSession.OnUserId;
             var userName = _currentSession.UserName;
 
             var re_CheckIn = Utility.AppSetting.IsReCheckIn;
             if (!re_CheckIn)
             {
-                return (int)StatusKickedOut.Continue;
+                return Json(new
+                {
+                    code = StatusKickedOut.Continue
+                });
             }
 
             if (userId <= 0)
             {
                 ClearSessionAndCookies();
-                return (int)StatusKickedOut.KickedOut;
+                return Json(new
+                {
+                    code = StatusKickedOut.KickedOut
+                });
             }
 
             if (_authorizationService.ReLogin(userId) == false)
             {
-                return (int)StatusKickedOut.Continue;
+                return Json(new
+                {
+                    code = StatusKickedOut.Continue
+                });
             }
             else
             {
                 LogOut(userId, userName);
-                return (int)StatusKickedOut.KickedOut;
+                return Json(new
+                {
+                    code = StatusKickedOut.KickedOut
+                });
             }
         }
 

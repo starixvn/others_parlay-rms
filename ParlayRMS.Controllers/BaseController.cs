@@ -24,7 +24,6 @@ namespace ParlayRMS.Controllers
     /// Base controller for controller to inherit.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
-    [CheckUMFilter]
     public class BaseController : Controller
     {
         /// <summary>

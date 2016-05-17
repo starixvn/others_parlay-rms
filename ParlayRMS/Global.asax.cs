@@ -10,6 +10,7 @@ namespace ParlayRMS
 {
     using Fanex.Data.Configuration;
     using Fanex.Logging;
+    using ONEbook.UM.Filters;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Web.Session;
     using System;
@@ -122,6 +123,7 @@ namespace ParlayRMS
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CheckUMFilter());
         }
 
         /// <summary>

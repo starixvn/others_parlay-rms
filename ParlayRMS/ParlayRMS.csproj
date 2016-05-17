@@ -122,16 +122,16 @@
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="ONEbook.UM, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.1.0.1.5\lib\net40\ONEbook.UM.dll</HintPath>
+    <Reference Include="ONEbook.UM, Version=2.0.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.2.0.2.6\lib\net40\ONEbook.UM.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ONELab.UMService.Common, Version=1.0.16130.935, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONELab.UMService.1.0.16130.935\lib\net40\ONELab.UMService.Common.dll</HintPath>
+    <Reference Include="ONELab.UMService.Common, Version=1.0.16131.636, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONELab.UMService.1.0.16131.636\lib\net40\ONELab.UMService.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ONELab.UMService.UMClient, Version=1.0.16130.935, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONELab.UMService.1.0.16130.935\lib\net40\ONELab.UMService.UMClient.dll</HintPath>
+    <Reference Include="ONELab.UMService.UMClient, Version=1.0.16131.636, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONELab.UMService.1.0.16131.636\lib\net40\ONELab.UMService.UMClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">

@@ -64,17 +64,16 @@ function navigateToUrl(url, delayTime) {
 function ReCheckin() {
     $.ajax({
         url: resolveClientUrl('Account/ReCheckIn'),
-        type: 'GET',
-        dataType: 'html',
-        cache: false,
+        type: 'POST',
         success: function (data) {
             curRetryTimes = 0;
             // alert(data);
-            if (data == -1) {
+            var code = data.code;
+            if (code == -1) {
                 navigateToUrl('Account/Login');
                 alert('You have logged in from another session or your login session has expired!');
             }
-            else if (data == 2) {
+            else if (code == 2) {
                 navigateToUrl('Account/Login');
             }
         },
