@@ -113,9 +113,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult ParlayBetDetails(ParlayBetDetailsOptions options)
         {
-            ViewBag.ComboType = options.ComboType;
             CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
-
             return View("BetDetails", model);
         }
 

@@ -821,11 +821,11 @@ table.bet-detail .combo-type {
 .boxMain .content .title2 {
     color: white;
     height: 24px;
+    line-height: 24px;
     font-weight: 600;
     border-radius: 5px;
     padding: 2px 0px 2px 10px !important;
     background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
-    margin-bottom: 12px;
     cursor: move;
 }
 

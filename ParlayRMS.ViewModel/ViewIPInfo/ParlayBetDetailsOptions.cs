@@ -3,7 +3,5 @@
     public class ParlayBetDetailsOptions
     {
         public long RefNo { get; set; }
-
-        public string ComboType { get; set; }
     }
 }

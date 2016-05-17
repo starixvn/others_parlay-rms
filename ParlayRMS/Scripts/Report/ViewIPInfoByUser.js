@@ -21,8 +21,7 @@
     /*System Parlay detail click*/
     $(document).on('click', '.tdDetailLink', function () {
         var id = this.getAttribute('data-id');
-        var combo = this.getAttribute('data-combo');
-        ViewBetDetails(id, combo);
+        ViewBetDetails(id);
     });
 
     /*Check choice stage, return true if display:none.*/
@@ -31,10 +30,9 @@
     }
 
     /*View bet details*/
-    function ViewBetDetails(refNo, comboType) {
+    function ViewBetDetails(refNo) {
         var data = {
-            RefNo: refNo,
-            ComboType: comboType
+            RefNo: refNo
         }
         $.ajax({
             url: resolveClientUrl('ViewIPInfo/ParlayBetDetails'),
