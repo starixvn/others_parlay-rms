@@ -29,5 +29,7 @@ namespace ParlayRMS.DTO.PotentialWinning
         public int TotalBet { get; set; }
 
         public int TotalSelection { get; set; }
+
+        public int NumberWon { get; set; }
     }
 }

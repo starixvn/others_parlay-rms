@@ -85,7 +85,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                             Ip = reader.ToString("ip"),
                             HousePT = reader.ToDecimal("housept"),
                             TotalBet = reader.ToInt32("totalbet"),
-                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection"))
+                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
+                            NumberWon = Convert.ToInt32(reader.ToDecimal("numberwon")),
                         });
                     }
                 }

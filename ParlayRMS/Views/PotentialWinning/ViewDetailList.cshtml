@@ -104,14 +104,23 @@
                         @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
                     </td>
                     <td class="center">
-                        @item.Val.TotalSelection
+                        @if (item.Val.NumberWon == 0)
+                        {
+                            @Html.Raw(item.Val.TotalSelection)
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format("{0}/{1}", item.Val.NumberWon, item.Val.TotalSelection))
+                        }
                     </td>
                     <td>
+
                         <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName',@item.Val.TransId, @item.Val.RefNo);">
-                            View</button>
+                            View
+                        </button>
                     </td>
                 </tr>
-            }
+                            }
         </tbody>
     </table>
 </div>
