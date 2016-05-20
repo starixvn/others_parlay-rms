@@ -88,7 +88,14 @@
                                 else if (item.BetType == (int)BetType.SystemParlay)
                                 {
                                     var comboTypes = RemotingRef.RefData.GetCombinationTypeCombo(item.BetTeam, item.BetCheck, item.Hdp1, item.Hdp2, "en");
-                                    @(ViewLang.SystemparLay)
+                                    if (item.BetTeam == "1")
+                                    {
+                                        @ViewLang.MixparLay
+                                    }
+                                    else
+                                    {
+                                        @ViewLang.SystemparLay
+                                    }
                                     if (comboTypes != null)
                                     {
                                         <div class="combo-type">

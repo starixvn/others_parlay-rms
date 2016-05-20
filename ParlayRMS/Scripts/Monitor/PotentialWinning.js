@@ -415,6 +415,13 @@ function FillData(table, data) {
         }
         tbody.html(r.join(''));
 
+        //Order by current ordered column
+        var orderCol = tableSorter.currentOrderCol;
+        if (orderCol) {
+            var type = $(orderCol).attr("data-col-type");
+            tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
+        }
+
         ViewTotalBetDetails(viewTotalBetId);
     } else {
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {

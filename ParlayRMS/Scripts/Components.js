@@ -251,7 +251,7 @@ var popup = function () {
             });
             messageContainer = container.find("#errMsg");
             loadingContainer = container.find("#lineloading");
-            $("#simplemodal-container").draggable({ handle: "div.title2" });
+            $("#simplemodal-container").draggable({ handle: "tr.title2" });
 
             $("body").bind("click", function (e) {
                 if (e.target.id == "simplemodal-overlay") {
