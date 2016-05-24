@@ -310,7 +310,7 @@ function FillData(table, data) {
             r[++j] = '<td class="numeric">' + numeral(item.Winlost_BaseRM).format('0,0.00') + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Company_Winlost_BaseRM).format('0,0.00') + '</td>';
             r[++j] = '<td class="center"><button title="Click to view detail" class="button-disable" style="width:40px;" onclick="ViewDetails(' + item.CustId + ')">' + item.BetCount + '</button></td>';
-            r[++j] = '<td class="numeric">' + numeral(item.Avg_Odds).format('0,0.00') + '</td>';
+            r[++j] = '<td class="numeric">' + numeral(Math.floor(item.Avg_Odds)).format('0,0') + '</td>';
             r[++j] = '</tr>';
         }
 

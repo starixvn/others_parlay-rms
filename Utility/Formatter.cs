@@ -44,7 +44,7 @@ namespace ParlayRMS.Utility
         {
             return string.Format("{0:#,##0}", obj);
         }
-        
+
         /// <summary>
         /// Formats number such as: 1111.20 -> 1,111.2.
         /// </summary>
@@ -74,6 +74,11 @@ namespace ParlayRMS.Utility
         public static string FormatDate(DateTime date)
         {
             return date.ToString("MM/dd/yyyy");
+        }
+
+        public static string FormatWithoutRounding(decimal value)
+        {
+            return FormatNumber3(Math.Floor(value));
         }
     }
 }

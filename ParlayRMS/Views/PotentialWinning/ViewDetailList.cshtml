@@ -72,16 +72,16 @@
                         <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
                     </td>
                     <td class="numeric">
-                        @item.Val.Odds.ToString("#,##0.00")
+                        @Formatter.FormatNumber2(item.Val.Odds)
                     </td>
                     <td class="numeric">
-                        @item.Val.Stake.ToString("#,##0.00")
+                        @Formatter.FormatNumber2(item.Val.Stake)
                     </td>
                     <td class="numeric">
-                        @item.Val.WinningAmount.ToString("#,##0.00")
+                        @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
                     </td>
                     <td class="numeric">
-                        @item.Val.CompanyLoseAmount.ToString("#,##0.00")
+                        @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
                     </td>
                     <td class="numeric">
                         @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
@@ -94,7 +94,7 @@
                         }
                     </td>
                     <td class="numeric">
-                        @item.Val.HousePT.ToString("#,##0.00")
+                        @Formatter.FormatNumber2(item.Val.HousePT)
                     </td>
                     <td class="center">
                         @{

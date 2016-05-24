@@ -17,10 +17,10 @@
                 <th style="width: 120px">
                     @ViewLang.Username
                 </th>
-                <th style="width: 80px">
+                <th style="width: 75px">
                     @ViewLang.Odds
                 </th>
-                <th style="width: 160px">
+                <th style="width: 120px">
                     @ViewLang.AverageStakeAfterPT
                 </th>
                 <th style="width: 120px">
@@ -29,7 +29,7 @@
                 <th style="width: 90px">
                     Total Combo Bets
                 </th>
-                <th style="width: 120px">
+                <th style="width: 90px">
                     @ViewLang.TotalSelections
                 </th>
                 <th style="width: 100px">
@@ -52,13 +52,13 @@
                     @Model.Username
                 </td>
                 <td class="numeric">
-                    @Formatter.FormatNumber2(Model.Odds)
+                    @Formatter.FormatWithoutRounding(Model.Odds)
                 </td>
                 <td class="numeric">
                     @Formatter.FormatNumber2(Model.Stake)
                 </td>
                 <td class="numeric">
-                    @Formatter.FormatNumber2(Model.Max_payout)
+                    @Formatter.FormatWithoutRounding(Model.Max_payout)
                 </td>
                 <td class="center">
                     @string.Format("{0} {1}", Model.TotalBet, Model.TotalBet == 1 ? "bet" : "bets")

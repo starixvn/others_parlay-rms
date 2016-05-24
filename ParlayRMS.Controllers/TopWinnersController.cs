@@ -214,7 +214,7 @@ namespace ParlayRMS.Controllers
                 Winlost_BaseRM = x.Winlost_BaseRM,
                 Company_Winlost_BaseRM = x.Company_Winlost_BaseRM,
                 TotalBets = x.BetCount,
-                Avg_Odds = x.Avg_Odds
+                Avg_Odds = Math.Floor(x.Avg_Odds)
             });
 
             writer.WriteRows(3, select);
