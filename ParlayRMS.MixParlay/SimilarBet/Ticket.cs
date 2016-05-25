@@ -11,7 +11,7 @@ namespace ParlayRMS.MixParlay.SimilarBet
 
         public int Level { get; set; }
 
-        public decimal Max_payout { get; set; }
+        public decimal Net_Win { get; set; }
 
         public decimal Odds { get; set; }
 

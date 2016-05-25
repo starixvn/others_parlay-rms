@@ -31,7 +31,6 @@ namespace ParlayRMS.Services.Implement.SimilarBets
             var data = this._similarbetsDataAccess.RMS_Similar_Parlay_Betlist(transId);
             if (data != null)
             {
-                data.Odds = Math.Round(data.Odds, 2);
                 data.Stake = Math.Round(data.Stake, 2);
                 data.Max_payout = Math.Round(data.Max_payout, 2);
             }

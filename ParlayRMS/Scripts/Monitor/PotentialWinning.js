@@ -447,8 +447,8 @@ function CreateRow(order, item, isHighLight) {
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
-    r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.CompanyLoseAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\'' + ');">' + item.TotalTicket + '</td>';

@@ -10,7 +10,7 @@
 
         public int Level { get; set; }
 
-        public decimal Max_Payout { get; set; }
+        public decimal Net_Win { get; set; }
 
         public int Similar_Combo { get; set; }
     }

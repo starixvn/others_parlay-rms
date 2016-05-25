@@ -78,7 +78,7 @@
                         </a>
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.Odds)
+                        @Formatter.FormatOdds(item.Odds)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(item.StakePt)
@@ -130,7 +130,7 @@
                         @Formatter.FormatNumber2(totalData.StakePt)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(totalData.MaxPayoutPt)
+                        @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
                     </td>
                     <td colspan="3">
                     </td>

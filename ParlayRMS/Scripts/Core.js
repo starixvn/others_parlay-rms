@@ -273,7 +273,7 @@ function SetCaretPosition(oField, iCaretPos) {
         oSel.moveEnd('character', iCaretPos - oField.value.length);
         oSel.select();
     }
-    // Firefox support
+        // Firefox support
     else if (oField.selectionStart || oField.selectionStart == '0') {
         oField.selectionStart = iCaretPos;
         oField.selectionEnd = iCaretPos;
@@ -294,7 +294,7 @@ function GetCaretPosition(oField) {
         oSel.moveStart('character', -oField.value.length);
         iCaretPos = oSel.text.length;
     }
-    // Firefox support
+        // Firefox support
     else if (oField.selectionStart || oField.selectionStart == '0')
         iCaretPos = oField.selectionStart;
 
@@ -311,13 +311,19 @@ function FormatNumberFloat(number) { // Format a number to 12,345
         sign = (number == (number = Math.abs(number)));
         number = Math.floor(number * 100 + 0.50000000001);
         number = Math.floor(number / 100).toString();
-        for (var i = 0; i < Math.floor((number.length - (1 + i)) / 3); i++) {
+        for (var i = 0; i < Math.floor((number.length - (1 + i)) / 3) ; i++) {
             number = number.substring(0, number.length - (4 * i + 3)) + ',' + number.substring(number.length - (4 * i + 3));
         }
         return (((sign) ? String.Empty : '-') + number);
     }
 
     return number;
+}
+
+function formatOdds(odds) {
+    return odds < 10
+        ? numeral(odds).format('0,0.00')
+        : numeral(Math.floor(odds)).format('0,0')
 }
 
 function htmlEncode(value) {

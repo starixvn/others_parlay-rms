@@ -34,9 +34,8 @@ namespace ParlayRMS.Services.Implement.TotalOutstanding
             var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Mem(custId, combo, sportsType, parlaysType);
             foreach (var item in data)
             {
-                item.Odds = Math.Round(item.Odds, 2);
                 item.StakePt = Math.Round(item.StakePt, 2);
-                item.MaxPayoutPt = Math.Round(item.MaxPayoutPt, 2);
+                item.MaxPayoutPt = Math.Floor(item.MaxPayoutPt);
             }
 
             return data;
@@ -55,7 +54,7 @@ namespace ParlayRMS.Services.Implement.TotalOutstanding
             foreach (var item in data)
             {
                 item.StakePt = Math.Round(item.StakePt, 2);
-                item.MaxPayoutPt = Math.Round(item.MaxPayoutPt, 2);
+                item.MaxPayoutPt = Math.Floor(item.MaxPayoutPt);
             }
 
             return data;

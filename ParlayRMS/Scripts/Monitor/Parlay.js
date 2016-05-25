@@ -525,8 +525,8 @@ function CreateRow(order, item) {
         r[++j] = '<td class="numeric"><a href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
     }
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.Odds)).format('0,0') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';

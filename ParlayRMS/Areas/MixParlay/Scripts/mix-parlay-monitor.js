@@ -493,7 +493,7 @@ function CreateRow(order, item) {
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.NetWinAfterPT).format('0,0.00') + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(item.MaxPayout).format('0,0.00') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.Combo).format('0,0') + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {

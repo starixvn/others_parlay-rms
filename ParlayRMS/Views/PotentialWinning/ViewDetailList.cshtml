@@ -15,8 +15,6 @@
             <col style="width: 80px" />
             <col style="width: 90px" />
             <col style="width: 90px" />
-            <col style="width: 80px" />
-            <col />
         </colgroup>
         <thead>
             <tr>
@@ -72,10 +70,10 @@
                         <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(item.Val.Odds)
+                        @Formatter.FormatOdds(item.Val.Odds)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(item.Val.Stake)
+                        @Formatter.FormatOdds(item.Val.Stake)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatWithoutRounding(item.Val.WinningAmount)

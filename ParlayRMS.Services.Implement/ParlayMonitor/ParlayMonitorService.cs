@@ -47,9 +47,8 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
             foreach (var item in data)
             {
-                item.Odds = Math.Round(item.Odds, 2);
                 item.Stake = Math.Round(item.Stake, 2);
-                item.NetWinAfterPT = Math.Round(item.NetWinAfterPT, 2);
+                item.NetWinAfterPT = Math.Floor(item.NetWinAfterPT);
             }
 
             return data;

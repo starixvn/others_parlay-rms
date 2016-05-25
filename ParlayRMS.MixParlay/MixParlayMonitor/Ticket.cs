@@ -18,7 +18,7 @@ namespace ParlayRMS.MixParlay.MixParlayMonitor
 
         public decimal Stake { get; set; }
 
-        public decimal NetWinAfterPT { get; set; }
+        public decimal MaxPayout { get; set; }
 
         public int Combo { get; set; }
 

@@ -80,5 +80,12 @@ namespace ParlayRMS.Utility
         {
             return FormatNumber3(Math.Floor(value));
         }
+
+        public static string FormatOdds(decimal value)
+        {
+            return value < 10
+                ? FormatNumber2(value)
+                : FormatWithoutRounding(value);
+        }
     }
 }
