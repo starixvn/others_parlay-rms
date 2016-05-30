@@ -15,7 +15,7 @@
             container.hide('fade');
         }
     };
-} ();
+}();
 
 // loadingHelper object helps to show or hide loading based on running tasks
 var loadingHelper = function () {
@@ -44,7 +44,7 @@ var loadingHelper = function () {
             return taskCount;
         }
     };
-} ();
+}();
 
 // alert box
 var alertBox = {
@@ -205,12 +205,12 @@ var tableSorter = function () {
                 var x = $.trim($(a).text());
                 var y = $.trim($(b).text());
                 if (type == 'float') {
-                    x = parseFloat(x.replace(',', ''));
-                    y = parseFloat(y.replace(',', ''));
+                    x = parseFloat(x.replace(/,/g, ''));
+                    y = parseFloat(y.replace(/,/g, ''));
                 }
                 else if (type == 'int') {
-                    x = parseInt(x.replace(',', ''));
-                    y = parseInt(y.replace(',', ''));
+                    x = parseInt(x.replace(/,/g, ''));
+                    y = parseInt(y.replace(/,/g, ''));
                 } else if (type == 'date') {
                     x = (new Date(x)).getTime();
                     y = (new Date(y)).getTime();
@@ -230,7 +230,7 @@ var tableSorter = function () {
             });
         }
     };
-} ();
+}();
 
 var popup = function () {
     var container;
@@ -281,7 +281,7 @@ var popup = function () {
             messageContainer.html('');
         }
     };
-} ();
+}();
 
 var validator = function () {
     var hint = {
@@ -471,7 +471,7 @@ var validator = function () {
         validateDateRange: function (fromDate, toDate) {
             var fDate = moment($(fromDate).val());
             var tDate = moment($(toDate).val());
-            
+
             if (moment(fDate, "MMMM DD, YYYY").isValid()
                 && moment(tDate, "MMMM DD, YYYY").isValid()
                 && diffDate(tDate, fDate) > 0) {
@@ -481,7 +481,7 @@ var validator = function () {
             return false;
         }
     };
-} ();
+}();
 
 var closeBox = function () {
     return {
@@ -515,4 +515,4 @@ var closeBox = function () {
             });
         }
     };
-} ();
+}();
