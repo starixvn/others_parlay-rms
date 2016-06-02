@@ -190,10 +190,16 @@ var timerController = function () {
 }();
 
 $(document).ready(function () {
-    $("#winningAmount").bind('keyup', function (event) {
-        FormatNumber(event, true);
-        var winningAmount = parseInt($.trim($(this).val().replace(/,/g, '')));
+    $("#winningAmount").autoNumeric({
+        aSep: ',',
+        aDec: '.',
+        vMin: '0.00',
+        vMax: '999999999999',
+        aPad: false,
+        aForm: false
+    });
 
+    $("#winningAmount").bind('keyup', function (event) {
         if (event.keyCode == 13) {
             $("#submit").click();
         }

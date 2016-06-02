@@ -59,15 +59,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.10-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.11-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.10-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.11-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.10-beta\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.11-beta\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
@@ -532,6 +532,11 @@
     <Content Include="Images\Content\1F.gif" />
     <Content Include="Images\Content\1L.gif" />
     <Content Include="Images\Content\betradar-icon.png" />
+    <None Include="Scripts\jquery-1.7-vsdoc.js" />
+    <Content Include="Scripts\autoNumeric\autoNumeric-1.9.25.js" />
+    <Content Include="Scripts\autoNumeric\autoNumeric-1.9.25.min.js" />
+    <Content Include="Scripts\jquery-1.7.js" />
+    <Content Include="Scripts\jquery-1.7.min.js" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="Images\Content\details-icon.png" />
     <Content Include="Images\UnderMaintenance.gif" />
@@ -920,8 +925,6 @@
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.min.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.more.js" />
-    <Content Include="Scripts\Libs\jquery\jquery.js" />
-    <Content Include="Scripts\Libs\jquery\jquery.min.js" />
     <Content Include="Scripts\Libs\simplemodal\jquery.simplemodal.js" />
     <Content Include="Scripts\Libs\simplemodal\jquery.simplemodal.min.js" />
     <Content Include="Scripts\Libs\sortElements\jquery.sortElements.js" />

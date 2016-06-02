@@ -221,10 +221,16 @@ var timerController = function () {
 }();
 
 $(document).ready(function () {
-    $("#filterAfterPT").bind('keyup', function (event) {
-        FormatNumber(event, true);
-        var filterAfterPT = parseInt($.trim($(this).val().replace(/,/g, '')));
+    $("#filterAfterPT").autoNumeric({
+        aSep: ',',
+        aDec: '.',
+        vMin: '0.00',
+        vMax: '999999999999',
+        aPad: false,
+        aForm: false
+    });
 
+    $("#filterAfterPT").bind('keyup', function (event) {
         if (event.keyCode == 13) {
             $("#submit").click();
         }
