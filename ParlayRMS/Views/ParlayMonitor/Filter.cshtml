@@ -29,7 +29,8 @@
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
                             <td style="width: 150px">
-                                @Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes, new { multiple = "multiple" })
+                                @*@Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes, new { multiple = "multiple" })*@
+                                @RazorHelper.SportTypesDropDown()
                             </td>
                             <td style="width: 15px"></td>
                             <td style="width: 195px">

@@ -173,7 +173,7 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/Libs/css").Include(
                 "~/Content/Libs/jquery-ui/jquery-ui.more.css",
                 "~/Content/Libs/contextmenu/jquery.contextmenu.css",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.css",
+                "~/Scripts/Libs/multiselect/jquery.multiselect-customized.css",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/BetList.css",
@@ -202,7 +202,7 @@ namespace ParlayRMS
                 "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
                 "~/Scripts/autoNumeric/autoNumeric-1.9.25.js",
                 "~/Scripts/Libs/moment/moment.js",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.js",
+                "~/Scripts/Libs/multiselect/jquery.multiselect-customized.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",

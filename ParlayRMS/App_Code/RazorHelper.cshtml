@@ -1,28 +1,45 @@
 ﻿@using ParlayRMS.Utility
 @using ParlayRMS.ViewModel
 @helper Checkboxes(List<System.Web.Mvc.SelectListItem> items, string name)
-    {
-        foreach (var item in items)
-        {
-            var id = name + item.Value;
-    <input type="checkbox" id="@id" checked="checked" name="@name" value="@item.Value" />
-    <label for="@id" class="radio">
-        @item.Text
-    </label>
-        }
+{
+foreach (var item in items)
+{
+    var id = name + item.Value;
+        <input type="checkbox" id="@id" checked="checked" name="@name" value="@item.Value" />
+        <label for="@id" class="radio">
+            @item.Text
+        </label>
+}
 }
 @helper RenderNumberCell(decimal value)
-    {
-    if (value >= 0)
-    {
-    <td class="numeric">
-        @Formatter.FormatNumber2(value)
-    </td>
-    }
-    else
-    {
-    <td class="numeric negative">
-        @Formatter.FormatNumber2(value)
-    </td>
-    }
+{
+if (value >= 0)
+{
+        <td class="numeric">
+            @Formatter.FormatNumber2(value)
+        </td>
+}
+else
+{
+        <td class="numeric negative">
+            @Formatter.FormatNumber2(value)
+        </td>
+}
+}
+@helper SportTypesDropDown()
+{
+var listSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43 };
+    <select id="sportsType" multiple="multiple" name="sportsType">
+        <option value="1">Soccer only</option>
+        <option value="-3">Combined sports</option>
+        <optgroup label="All Other Sports">
+            @foreach (var sportType in listSportTypes)
+            {
+                <option value="@sportType">@RemotingRef.RefData.GetSportName(sportType.ToString(), "en")</option>
+            }
+
+            <option value="-2">Other sports</option>
+            <option value="-1">Combined other sports</option>
+        </optgroup>
+    </select>
 }
