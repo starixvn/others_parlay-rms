@@ -184,11 +184,9 @@ namespace ParlayRMS
                 "~/Content/Paging.css",
                 "~/Content/Site.css",
                 "~/Content/Validators.css"));
-            bundles.Add(new StyleBundle("~/Content/Login/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Login").Include(
                 "~/Content/Login.css"));
-            bundles.Add(new StyleBundle("~/Content/Site/css").Include(
-                "~/Content/Site.css"));
-            bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Validators").Include(
                 "~/Content/Validators.css"));
 
             // JS
