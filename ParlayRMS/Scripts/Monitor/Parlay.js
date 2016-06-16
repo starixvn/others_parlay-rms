@@ -9,10 +9,10 @@ function Alert() {
 }
 
 function UserSettings() {
-    this.combos = '2,3,4,5,6,7,8,9,10';
-    this.parlayTypes = '1,2';
-    this.sportsTypes = '1,2,3';
-    this.levels = '0,1,2,3,4,5,6,7,8,9,10';
+    this.combos = '';
+    this.parlayTypes = '';
+    this.sportsTypes = '';
+    this.levels = '';
     this.selectTop = 20;
     this.markets = '';
     this.stakeAfterPT = 0;
@@ -510,7 +510,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == 0) {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(11);
+                var noinfo = CreateNoInfoRow(12);
                 tbody.append(noinfo);
             }
         }
@@ -536,6 +536,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
+    r[++j] = '<td class="center">' + item.SportTypeName + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {
         r[++j] = '<td class="right">----</td>';

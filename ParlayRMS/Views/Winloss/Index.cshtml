@@ -3,10 +3,11 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.WinLoss;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 750px">
+    <div class="filter-control" style="width: 800px">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -36,9 +37,13 @@
                     @Html.Label(ViewLang.Combo)
                     @Html.DropDownList("combo", Config.Combos)
                 </div>
-                <div id="divSportsTypes" class="group">
+                <div class="group">
                     @Html.Label(ViewLang.SportsType)
-                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                    @RazorHelper.SportTypesDropDown()
+                </div>
+                <div id="divSportsTypes" class="group">
+                    @Html.Label("Report type")
+                    @Html.RadioButtonList("ReportTypes", Config.ReportTypes)
                 </div>
             </div>
         </div>

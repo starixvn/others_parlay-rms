@@ -148,7 +148,11 @@
                         optgroupName = 'ui-multiselect-optgroup_' + optgroups.length;
                         html += '<li class="ui-multiselect-optgroup-label">';
                         html += '<label data-optgroup for="' + optgroupName + '">';
-                        html += '<input id="' + optgroupName + '" type="checkbox" title="' + optLabel + '">';
+                        var optSelectedCheckbox = '';
+                        if ($(parent).attr('selected') === 'selected') {
+                            optSelectedCheckbox = ' checked="checked" ';
+                        }
+                        html += '<input id="' + optgroupName + '"' + optSelectedCheckbox + 'type="checkbox" title="' + optLabel + '">';
                         html += '<span>' + optLabel + '</span>';
                         html += '</label></li>';
                     } else {
@@ -198,6 +202,11 @@
             this.labelsWithoutOptGroup = this.labels.not('[data-optgroup]');
             this.inputs = this.labels.children('input');
             this.inputsWithoutOptGroup = this.labelsWithoutOptGroup.children('input');
+
+            // update optgroup
+            var optgroups = this.labels.filter('[data-optgroup]');
+            $.each(optgroups, function (index, item) {
+            });
 
             // set widths
             this._setButtonWidth();
@@ -656,7 +665,8 @@
         },
 
         getChecked: function () {
-            return this.menu.find('input').filter(':checked');
+            return this.inputsWithoutOptGroup.filter(':checked');
+            //return this.inputsWithoutOptGroup;
         },
 
         destroy: function () {

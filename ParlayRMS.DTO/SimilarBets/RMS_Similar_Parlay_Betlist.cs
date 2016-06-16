@@ -13,6 +13,10 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public int Level { get; set; }
 
+        public int SportType { get; set; }
+
+        public string SportTypeName { get; set; }
+
         public decimal Max_payout { get; set; }
 
         public decimal Odds { get; set; }

@@ -16,7 +16,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                          DateTime toDate,
                                                          DateTime moveBetsDay,
                                                          DateTime balanceUpDay,
-                                                         int sportsType,
+                                                         string sportsType,
                                                          int selectTop,
                                                          string combos,
                                                          string parlayTypes)
@@ -32,10 +32,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("limitedRow", DbType.Int32, selectTop);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -68,7 +65,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                                 DateTime fromDate,
                                                                 DateTime toDate,
                                                                 DateTime moveBetsDay,
-                                                                int sportsType,
+                                                                string sportsType,
                                                                 string combos,
                                                                 string parlayTypes)
         {
@@ -82,10 +79,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -158,7 +152,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                                 long custId,
                                                                 DateTime fromDate,
                                                                 DateTime toDate,
-                                                                int sportsType,
+                                                                string sportsType,
                                                                 string combos,
                                                                 string parlayTypes)
         {
@@ -171,10 +165,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("todate", DbType.DateTime, toDate);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {

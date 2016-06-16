@@ -17,18 +17,11 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    /// <summary>
-    /// Similar Bets Controller.
-    /// </summary>
     public class SimilarBetsController : BaseController
     {
         private readonly ISimilarBetsService _similarbetsService = new SimilarBetsService();
         private readonly IBetListService _betlistService = new BetListService();
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
@@ -37,11 +30,6 @@ namespace ParlayRMS.Controllers
             return View("Index");
         }
 
-        /// <summary>
-        /// Gets similar bets of a specific transaction identifier.
-        /// </summary>
-        /// <param name="transId">The transaction identifier.</param>
-        /// <returns>Partial view demonstrates the similar bet list.</returns>
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(long transId)
@@ -56,11 +44,6 @@ namespace ParlayRMS.Controllers
             return PartialView("Data", model);
         }
 
-        /// <summary>
-        /// Gets the bet details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Partial view represents bet detail.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]

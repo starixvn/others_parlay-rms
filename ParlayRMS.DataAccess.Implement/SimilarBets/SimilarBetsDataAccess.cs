@@ -40,6 +40,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 TotalSelection = Convert.ToInt32(DbConverter.ToDecimal(info["totalselection"])),
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
+                                SportType = DbConverter.ToInt32(info["sporttype"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),

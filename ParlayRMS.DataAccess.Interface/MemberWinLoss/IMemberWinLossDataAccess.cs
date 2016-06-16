@@ -12,7 +12,7 @@ namespace ParlayRMS.DataAccess.Interface.MemberWinLoss
                                                       DateTime moveBetsDay,
                                                       DateTime balanceUpDay,
                                                       string parlayTypes,
-                                                      int sportsType,
+                                                      string sportsType,
                                                       string combos,
                                                       long custId);
 
@@ -22,7 +22,7 @@ namespace ParlayRMS.DataAccess.Interface.MemberWinLoss
                                                       DateTime moveBetsDay,
                                                       DateTime balanceUpDay,
                                                       string parlayTypes,
-                                                      int sportsType,
+                                                      string sportsType,
                                                       string combos,
                                                       long custId);
     }

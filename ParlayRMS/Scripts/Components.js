@@ -117,7 +117,7 @@ var alertBox = {
     };
 
     $.fn.showLoading = function () {
-        var imgURL = resolveClientUrl('Images/Content/icon_wait.gif');
+        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
         var htmlContent = '<img width="15px" height="15px" border="0" alt="waiting" src="' + imgURL + '" />';
         this.html(htmlContent);
     };

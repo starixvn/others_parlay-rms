@@ -117,7 +117,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                 db.AddInParameter("ip", DbType.String, ip);
                 db.AddInParameter("fromdate", DbType.DateTime, date);
                 db.AddInParameter("custid", DbType.Int32, userId);
-                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("sporttype", DbType.String, sportType);
 
                 using (var reader = db.ExecuteReader())
                 {

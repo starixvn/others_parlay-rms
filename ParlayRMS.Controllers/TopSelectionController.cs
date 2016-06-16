@@ -8,13 +8,9 @@
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using System.Linq;
-    using System.Web.Mvc;
     using DotNet.Highcharts;
     using DotNet.Highcharts.Helpers;
+    using Models;
     using ParlayRMS.Common.Highcharts;
     using ParlayRMS.Common.Models;
     using ParlayRMS.Models.Functions;
@@ -24,6 +20,11 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
     using RemotingRef;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Top Selection Controller.
@@ -147,15 +148,15 @@ namespace ParlayRMS.Controllers
             var data = service.GetTopLeagueByTicket(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
             // chart data
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en", string.Empty)).ToArray();
 
-            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point 
-            { 
-                Id = x.Leagueid.ToString(), 
-                Y = x.NoTickets, 
-                Color = Color.FromName("colors[ " + (index + 1) + "]") 
+            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
+            {
+                Id = x.Leagueid.ToString(),
+                Y = x.NoTickets,
+                Color = Color.FromName("colors[ " + (index + 1) + "]")
             }).ToArray();
 
             var chartValues = new ColumnChartValues(titleText, string.Empty, categories, titleY);
@@ -182,7 +183,7 @@ namespace ParlayRMS.Controllers
             int sport = this.GetSportTypeIdByName(sportName);
             var data = service.GetTopLeagueByTurnover(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
 
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en")).ToArray();
@@ -346,10 +347,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
-                                                                        "{0} <b>vs</b> {1}", 
+                                                                        "{0} <b>vs</b> {1}",
                                                                         RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                             55, 
+                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                             55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -390,10 +391,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
-                                                                    "{0} <b>vs</b> {1}", 
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                         55, 
+                                                                    "{0} <b>vs</b> {1}",
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                         55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -433,10 +434,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
-                                                                    "{0} <b>vs</b> {1}", 
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                         55, 
+                                                                    "{0} <b>vs</b> {1}",
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                         55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -475,10 +476,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
-                                                                        "{0} <b>vs</b> {1}", 
-                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"), 
+                                                                        "{0} <b>vs</b> {1}",
+                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"),
                                                                         RefData.GetTeamName(x.Awayid.ToString(), "en")),
-                                                             55, 
+                                                             55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
 
             decimal max = data.Max(a => a.Turnover);

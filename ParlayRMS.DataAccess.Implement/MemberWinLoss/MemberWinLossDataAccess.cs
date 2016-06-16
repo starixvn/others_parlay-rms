@@ -16,7 +16,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              DateTime moveBetsDay,
                                                              DateTime balanceUpDay,
                                                              string parlayTypes,
-                                                             int sportsType,
+                                                             string sportsType,
                                                              string combos,
                                                              long custId)
         {
@@ -31,10 +31,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("custid", DbType.Int32, custId);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -65,7 +62,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              DateTime moveBetsDay,
                                                              DateTime balanceUpDay,
                                                              string parlayTypes,
-                                                             int sportsType,
+                                                             string sportsType,
                                                              string combos,
                                                              long custId)
         {
@@ -80,10 +77,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("custid", DbType.Int32, custId);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {

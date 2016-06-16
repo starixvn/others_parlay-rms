@@ -770,7 +770,7 @@ function onLoad() {
     var height = 16;
     var x = this.chartWidth - width;
     var y = 0;
-    var closeButton = this.renderer.image('../Images/Content/Close.png', x, y, width, height);
+    var closeButton = this.renderer.image('../Content/Images/Content/Close.png', x, y, width, height);
     var chart = this;
     closeButton.on('click', function () {
         var removeDiv = chart.container.parentNode;

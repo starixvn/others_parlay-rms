@@ -14,6 +14,7 @@ namespace ParlayRMS.ViewModel
         private static List<SelectListItem> _dateRanges;
         private static List<SelectListItem> _combos;
         private static List<SelectListItem> _parlayTypes;
+        private static List<SelectListItem> _reportTypes;
 
         static Config()
         {
@@ -65,6 +66,12 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
                 new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
             };
+
+            _reportTypes = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = "Combo", Value = ((int)ReportType.Combo).ToString(), Selected = true },
+                new SelectListItem { Text = "Sport type", Value = ((int)ReportType.SportType).ToString() }
+            };
         }
 
         public static List<SelectListItem> Combos
@@ -104,6 +111,14 @@ namespace ParlayRMS.ViewModel
             get
             {
                 return _parlayTypes;
+            }
+        }
+
+        public static List<SelectListItem> ReportTypes
+        {
+            get
+            {
+                return _reportTypes;
             }
         }
 

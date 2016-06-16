@@ -31,5 +31,9 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public int Level { get; set; }
 
         public bool IsBetRadar { get; set; }
+
+        public int SportType { get; set; }
+
+        public string SportTypeName { get; set; }
     }
 }

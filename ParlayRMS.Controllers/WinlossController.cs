@@ -1,9 +1,9 @@
 ﻿using ParlayRMS.ExcelService.Writers;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.Winloss;
 using ParlayRMS.Services.Interface.Winloss;
 using ParlayRMS.Utility;
-using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 using System;
@@ -46,7 +46,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = _winlossService.GetWinloss(options.FromDate, options.ToDate, options.ParlayTypes, options.SportsType, options.Combos);
+                    var model = _winlossService.GetWinloss(options);
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;
                     return PartialView(model);
@@ -62,7 +62,7 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(WinlossOptions options)
         {
-            var model = this._winlossService.GetWinloss(options.FromDate, options.ToDate, options.ParlayTypes, options.SportsType, options.Combos);
+            var model = _winlossService.GetWinloss(options);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 
@@ -74,7 +74,7 @@ namespace ParlayRMS.Controllers
             var header1 = new object[]
             {
                 ViewLang.Date,
-                ViewLang.Combo,
+                options.ReportType == ReportType.Combo ? ViewLang.Combo : "Sport Type",
                 ViewLang.Ticket,
                 string.Empty,
                 ViewLang.StakeAfterPT,
@@ -135,7 +135,24 @@ namespace ParlayRMS.Controllers
                     record.Total.OurPT_NetWinloss
                 };
 
-                writer.WriteRows(3, record.Records);
+                foreach (var item in record.Records)
+                {
+                    writer.WriteRow(3, new object[]
+                    {
+                        item.WinlostDate,
+                        options.ReportType == ReportType.Combo ? item.Combo : CacheRef.GetSportNameDropDown(item.SportType),
+                        item.Tickets_Won,
+                        item.Tickets_Lose,
+                        item.Stake_Won,
+                        item.Stake_Lose,
+                        item.Member_Won,
+                        item.Member_Lose,
+                        item.OurPT_Won,
+                        item.OurPT_Lose,
+                        item.OurPT_NetWinloss
+                    });
+                }
+
                 writer.WriteCellRange(writer.RowId - totalRow, totalRow, 0, 1, record.Records[0].WinlostDate);
                 writer.WriteRow(4, rowData);
             }

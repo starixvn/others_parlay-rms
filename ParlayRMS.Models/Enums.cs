@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Enums.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Models
+﻿namespace ParlayRMS.Models
 {
     public enum StatusKickedOut
     {
@@ -221,7 +213,9 @@ namespace ParlayRMS.Models
         Combined = 3
     }
 
-    public enum Enums
+    public enum ReportType : int
     {
+        Combo = 1,
+        SportType = 2
     }
 }

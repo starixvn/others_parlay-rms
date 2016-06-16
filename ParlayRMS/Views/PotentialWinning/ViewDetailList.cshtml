@@ -5,16 +5,17 @@
         <colgroup>
             <col style="width: 50px" />
             <col style="width: 220px" />
-            <col style="width: 120px" />
-            <col style="width: 100px" />
-            <col style="width: 110px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 150px" />
             <col style="width: 80px" />
             <col style="width: 80px" />
-            <col style="width: 90px" />
-            <col style="width: 90px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 180px" />
+            <col style="width: 80px" />
         </colgroup>
         <thead>
             <tr>
@@ -50,6 +51,9 @@
                 </th>
                 <th>
                     @ViewLang.TotalSelections
+                </th>
+                <th>
+                    Sport Type
                 </th>
                 <th>
                     @ViewLang.BetDetails
@@ -110,6 +114,9 @@
                         {
                             @Html.Raw(string.Format("{0}/{1}", item.Val.NumberWon, item.Val.TotalSelection))
                         }
+                    </td>
+                    <td class="center">
+                        @item.Val.SportTypeName
                     </td>
                     <td>
 

@@ -15,7 +15,8 @@
             <col style="width: 120px" />
             <col style="width: 150px" />
             <col style="width: 80px" />
-            <col />
+            <col style="width: 80px" />
+            <col style="width: 150px" />
         </colgroup>
         <thead>
             <tr>
@@ -48,6 +49,9 @@
                 </th>
                 <th>
                     @ViewLang.TotalSelections
+                </th>
+                <th>
+                    Sport Type
                 </th>
             </tr>
         </thead>
@@ -88,6 +92,9 @@
                     </td>
                     <td>
                         @item.Selection.ToString("#,##0")
+                    </td>
+                    <td>
+                        @CacheRef.GetSportNameDropDown(item.SportType)
                     </td>
                 </tr>
             }

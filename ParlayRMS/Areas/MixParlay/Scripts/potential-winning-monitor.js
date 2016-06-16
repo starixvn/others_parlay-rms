@@ -449,7 +449,7 @@ function ViewTotalBetDetails(custId) {
         row.after('<tr class="details" custid="' + custId + '"><td colspan="8" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
-        var waitingImg = $('<img src="../Images/Content/icon_wait.gif")" />');
+        var waitingImg = $('<img src="../Content/Images/Content/icon_wait.gif" />');
         td.html(waitingImg);
 
         var userSettings = settingsController.get();

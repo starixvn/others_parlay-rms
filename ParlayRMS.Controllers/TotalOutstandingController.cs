@@ -1,18 +1,18 @@
-﻿namespace ParlayRMS.Controllers
-{
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.TotalOutstanding;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.TotalOutstanding;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.TotalOutstanding;
-    using ParlayRMS.Web.Authorization;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
+﻿using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.TotalOutstanding;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.TotalOutstanding;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.TotalOutstanding;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
+namespace ParlayRMS.Controllers
+{
     [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
     public class TotalOutstandingController : BaseController
     {
@@ -67,13 +67,6 @@
                 Value = ((int)SportsType.OtherSports).ToString(),
                 Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString())
             });
-            sportsTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.Combinedsports,
-                Value = ((int)SportsType.CombinedSports).ToString(),
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString())
-            });
-            ViewBag.SportsTypes = sportsTypes;
 
             // Select Top
             return View("Index", model);

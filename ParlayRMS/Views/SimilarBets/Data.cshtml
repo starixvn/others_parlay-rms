@@ -32,6 +32,9 @@
                 <th style="width: 90px">
                     @ViewLang.TotalSelections
                 </th>
+                <th style="width: 130px">
+                    Sport Type
+                </th>
                 <th style="width: 100px">
                     @ViewLang.BetDetails
                 </th>
@@ -67,6 +70,9 @@
                     @Model.TotalSelection
                 </td>
                 <td class="center">
+                    @Model.SportTypeName
+                </td>
+                <td class="center">
                     <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@Model.Username', @Model.Transid, @Model.Refno, @Model.Refno);">
                         @ViewLang.View
                     </button>
@@ -92,7 +98,7 @@
 <div id="similarbetlist" class="details" style="display: none; width: 750px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
-        <img class="close" src="/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
+        <img class="close" src="/Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
     <div style="width: 754px">
         <table class="sub thead">

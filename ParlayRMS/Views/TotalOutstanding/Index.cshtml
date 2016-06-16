@@ -4,10 +4,11 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TotalOutstanding;
 }
 <div class="filter">
-    <div class="filter-control" style="border: 1px solid black; width: 1000px;">
+    <div class="filter-control" style="border: 1px solid black; width: 1060px;">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -39,7 +40,7 @@
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
                             <td style="width: 150px">
-                                @Html.DropDownListWithMultipleSelected("sportsType", (List<SelectListItem>)ViewBag.SportsTypes)
+                                @RazorHelper.SportTypesDropDown(Model.SportsType)
                             </td>
                             <td>
                                 <button id="submit" class="button">

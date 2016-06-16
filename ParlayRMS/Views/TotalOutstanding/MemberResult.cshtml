@@ -3,7 +3,7 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<div style="width: 915px">
+<div style="width: 1045px">
     <table class="main" id="header">
         <colgroup>
             <col width='30px' />
@@ -14,6 +14,7 @@
             <col width='120px' />
             <col width='90px' />
             <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <thead>
@@ -43,13 +44,16 @@
                     @ViewLang.TotalSelections
                 </th>
                 <th>
+                    Sport Type
+                </th>
+                <th>
                     @ViewLang.BetDetails
                 </th>
             </tr>
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 915px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1045px">
     <table class="main" id="result">
         <colgroup>
             <col width='30px' />
@@ -60,6 +64,7 @@
             <col width='120px' />
             <col width='90px' />
             <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <tbody>
@@ -97,6 +102,9 @@
                         @item.TotalSelection
                     </td>
                     <td class="center">
+                        @item.SportTypeName
+                    </td>
+                    <td class="center">
                         <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno);">
                             @ViewLang.View
                         </button>
@@ -106,7 +114,7 @@
         </tbody>
     </table>
 </div>
-<div style="width: 896px" class="mainfooter">
+<div style="width: 1026px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='30px' />
@@ -117,6 +125,7 @@
             <col width='120px' />
             <col width='90px' />
             <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <tfoot>
@@ -132,14 +141,14 @@
                     <td class="numeric">
                         @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
                     </td>
-                    <td colspan="3">
+                    <td colspan="4">
                     </td>
                 </tr>
             }
             else
             { 
                 <tr>
-                    <td colspan="8" style="text-align: center; width: 851px">
+                    <td colspan="11" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

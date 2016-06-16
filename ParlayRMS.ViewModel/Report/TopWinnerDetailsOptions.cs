@@ -12,7 +12,7 @@
 
         public DateTime ToDate { get; set; }
 
-        public int SportsType { get; set; }
+        public string SportsType { get; set; }
 
         public string Combos { get; set; }
 

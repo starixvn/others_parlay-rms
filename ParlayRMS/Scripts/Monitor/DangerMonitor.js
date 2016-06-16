@@ -25,7 +25,7 @@
 		DangerMonitor.CachedDOM.txtMaxPayout = $("#txtMaxPayout");
 		DangerMonitor.CachedDOM.btnSearch = $("#btnSearch");
 		DangerMonitor.CachedDOM.divResult = $("#divResult");
-		DangerMonitor.CachedDOM.imgWaiting = $('<img src="../Images/Content/icon_wait.gif")" />');
+		DangerMonitor.CachedDOM.imgWaiting = $('<img src="../Content/Images/Content/icon_wait.gif" />');
 	},
 	Init: function () {
 		DangerMonitor.GetCachedDOM();

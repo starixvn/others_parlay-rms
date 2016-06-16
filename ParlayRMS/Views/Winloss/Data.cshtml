@@ -1,19 +1,20 @@
-﻿@model ParlayRMS.Models.Winloss.WinlossData
+﻿@using ParlayRMS.ViewModel.Report
+@model ParlayRMS.Models.Winloss.WinlossData
 @{
-    var filterOption = (ParlayRMS.ViewModel.Report.WinlossOptions)ViewBag.FilterOption;
+    var filterOption = (WinlossOptions)ViewBag.FilterOption;
 }
 <div style="width: 1201px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
-    <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos');" title="Export Excel">
+    <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos', '@((int)filterOption.ReportType)');" title="Export Excel">
     </div>
 </div>
 <div style="width: 1201px">
     <table class="main">
         <colgroup>
-            <col width='100px' />
-            <col width='100px' />
+            <col width='70px' />
+            <col width='130px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />
@@ -30,7 +31,14 @@
                     @ViewLang.Date
                 </th>
                 <th rowspan="2" class="header2rows">
-                    @ViewLang.Combo
+                    @if (filterOption.ReportType == ReportType.Combo)
+                    {
+                        @ViewLang.Combo
+                    }
+                    else
+                    {
+                        @:Sports Type
+                    }
                 </th>
                 <th colspan="2">
                     @ViewLang.Ticket
@@ -80,8 +88,8 @@
 <div class="scrollGridContent" style="max-height: 500px; width: 1220px">
     <table class="main" id="result">
         <colgroup>
-            <col width='100px' />
-            <col width='100px' />
+            <col width='70px' />
+            <col width='130px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />
@@ -106,7 +114,14 @@
                             </td>
                         }
                         <td class="center">
-                            @record.Combo
+                            @if (filterOption.ReportType == ReportType.Combo)
+                            {
+                                @record.Combo
+                            }
+                            else
+                            {
+                                @CacheRef.GetSportNameDropDown(record.SportType)
+                            }
                         </td>
                         <td class="numeric">
                             @Formatter.FormatNumber3(record.Tickets_Won)
@@ -135,7 +150,7 @@
                         @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
                     </tr>
                 }
-                
+
                 <tr class="subTotal">
                     <td class="center" colspan="2">
                         @ViewLang.Subtotal
@@ -173,8 +188,8 @@
 <div style="width: 1201px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='100px' />
-            <col width='100px' />
+            <col width='70px' />
+            <col width='130px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />
@@ -225,7 +240,7 @@
             else
             {
                 <tr>
-                    <td colspan="11" style="text-align: center; width: 1101px">
+                    <td colspan="12" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

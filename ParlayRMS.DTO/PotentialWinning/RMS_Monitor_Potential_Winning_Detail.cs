@@ -31,5 +31,7 @@ namespace ParlayRMS.DTO.PotentialWinning
         public int TotalSelection { get; set; }
 
         public int NumberWon { get; set; }
+
+        public string SportTypeName { get; set; }
     }
 }

@@ -1,22 +1,11 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CacheRef.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using RemotingRef;
+using System.Threading;
 
 namespace ParlayRMS.Utility
 {
-    using System.Threading;
-    using RemotingRef;
-
-    /// <summary>
-    /// Cache reference.
-    /// </summary>
     public class CacheRef
     {
-        public static string CurrentTWLanguage
+        public static string Language
         {
             get
             {
@@ -42,22 +31,11 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Gets bet type name by ID.
-        /// </summary>
-        /// <param name="bettypeId">Bet type ID.</param>
-        /// <returns>Bet type name associated with the passed ID.</returns>
         public static string GetBettype(object bettypeId)
         {
             return GetBettype(bettypeId, null);
         }
 
-        /// <summary>
-        /// Gets bet type name by bet type ID and resource ID.
-        /// </summary>
-        /// <param name="bettypeId">Bet type ID.</param>
-        /// <param name="betID">Resource ID.</param>
-        /// <returns>Bet type name associated with the passed bet type ID and resource ID.</returns>
         public static string GetBettype(object bettypeId, object betID)
         {
             // ResourceId remove first character
@@ -69,7 +47,7 @@ namespace ParlayRMS.Utility
 
             try
             {
-                return RefData.GetBetTypeName(bettypeId.ToString(), CurrentTWLanguage, string.Empty, resourceId);
+                return RefData.GetBetTypeName(bettypeId.ToString(), Language, resourceId);
             }
             catch
             {
@@ -77,16 +55,11 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Gets sport name by ID.
-        /// </summary>
-        /// <param name="sportId">Sport ID value.</param>
-        /// <returns>Sport name associated with the ID.</returns>
         public static string GetSportName(object sportId)
         {
             try
             {
-                return RefData.GetSportName(sportId.ToString(), CurrentTWLanguage, string.Empty);
+                return RefData.GetSportName(sportId.ToString(), Language);
             }
             catch
             {
@@ -94,16 +67,29 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Gets team name by ID.
-        /// </summary>
-        /// <param name="teamId">Team ID value.</param>
-        /// <returns>Team name associated with the ID.</returns>
+        public static string GetSportNameDropDown(int sportId)
+        {
+            switch (sportId)
+            {
+                case -1:
+                    return "Combined other sports";
+
+                case -2:
+                    return "Other sports";
+
+                case -3:
+                    return "Combined sports";
+
+                default:
+                    return GetSportName(sportId);
+            }
+        }
+
         public static string GetTeamName(object teamId)
         {
             try
             {
-                return RefData.GetTeamName(teamId.ToString(), CurrentTWLanguage, string.Empty);
+                return RefData.GetTeamName(teamId.ToString(), Language);
             }
             catch
             {
@@ -111,36 +97,21 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Gets roulette bet name by ID.
-        /// </summary>
-        /// <param name="itemId">Item ID value.</param>
-        /// <returns>Roulette bet name associated with the ID.</returns>
         public static string GetRouletteBetItem(object itemId)
         {
-            return RefData.GetRouletteBetItem(itemId.ToString(), CurrentTWLanguage, string.Empty);
+            return RefData.GetRouletteBetItem(itemId.ToString(), Language);
         }
 
-        /// <summary>
-        /// Gets casino bet name by ID.
-        /// </summary>
-        /// <param name="betStatusId">Bet status ID value.</param>
-        /// <returns>Casino bet name associated with the ID.</returns>
         public static string GetCasinoBetItem(object betStatusId)
         {
-            return RefData.GetCasinoBetItem(betStatusId.ToString(), CurrentTWLanguage, string.Empty);
+            return RefData.GetCasinoBetItem(betStatusId.ToString(), Language);
         }
 
-        /// <summary>
-        /// Gets league name by ID.
-        /// </summary>
-        /// <param name="leagueId">League ID value.</param>
-        /// <returns>League name associated with the ID.</returns>
         public static string GetLeagueName(object leagueId)
         {
             try
             {
-                return RefData.GetLeagueName(leagueId.ToString(), CurrentTWLanguage, string.Empty);
+                return RefData.GetLeagueName(leagueId.ToString(), Language);
             }
             catch
             {
@@ -148,34 +119,19 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Gets FNC Index name by ID.
-        /// </summary>
-        /// <param name="indexId">Index ID value.</param>
-        /// <returns>FNC Index name associated with the ID.</returns>
         public static string GetFncIndexName(object indexId)
         {
-            return RefData.GetFncIndexName(indexId.ToString(), CurrentTWLanguage);
+            return RefData.GetFncIndexName(indexId.ToString(), Language);
         }
 
-        /// <summary>
-        /// Gets horse team name by ID.
-        /// </summary>
-        /// <param name="codeId">Code ID value.</param>
-        /// <returns>Horse team name associated with the ID.</returns>
         public static string GetHorseTeamName(object codeId)
         {
-            return RefData.GetHorseTeamName(codeId.ToString(), CurrentTWLanguage);
+            return RefData.GetHorseTeamName(codeId.ToString(), Language);
         }
 
-        /// <summary>
-        /// Gets odd type name by ID.
-        /// </summary>
-        /// <param name="oddsTypeId">Odd type ID value.</param>
-        /// <returns>Odd type name associated with the ID.</returns>
         public static string GetOddsTypeName(object oddsTypeId)
         {
-            return RefData.GetOddsTypeName(oddsTypeId.ToString(), CurrentTWLanguage);
+            return RefData.GetOddsTypeName(oddsTypeId.ToString(), Language);
         }
     }
 }

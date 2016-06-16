@@ -37,7 +37,7 @@
                 </div>             
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
-                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                    @RazorHelper.SportTypesDropDown()
                 </div>
                 <div class="group">
                     <button id="btnSearch" class="button">

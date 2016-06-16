@@ -21,7 +21,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public string ParlayTypes { get; set; }
 
-        public SportsType SportsType { get; set; }
+        public string SportsType { get; set; }
 
         public string Combos { get; set; }
 
@@ -61,7 +61,7 @@ namespace ParlayRMS.ViewModel.Report
                                 ViewLang.Combo,
                                 combosTitle,
                                 ViewLang.SportsType,
-                                ModelsHelper.GetSportType((int)SportsType));
+                                ModelsHelper.GetSportType(SportsType));
             return title;
         }
     }

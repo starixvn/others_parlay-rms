@@ -1,7 +1,7 @@
 ﻿var userOptions = {
     FromDate: new Date(),
     ToDate: new Date(),
-    SportsType: 0,
+    SportsType: '',
     SelectTop: 100,
     Combos: '2,3,4,5,6,7,8,9,10',
     ParlayTypes: '1,2',
@@ -76,6 +76,28 @@ $(function () {
         height: 136,
         create: function () {
             $("#combo").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+    $("#sportsType").multiselect({
+        minWidth: 210,
+        height: 300,
+        create: function () {
+            $("#sportsType").multiselect("checkAll");
         },
         selectedText: function (numChecked, numTotal, checkedItems) {
             if (numChecked == 0) {
@@ -187,8 +209,6 @@ $(function () {
         var selectTop = $("#selectTop").val();
         var fromDate = $("#fromDate").val();
         var toDate = $("#toDate").val();
-        var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
-
         if (!moment(fromDate, "MMMM DD, YYYY").isValid() || !moment(fromDate).isValid()) {
             Validators.show($("#fromDate").get(0), 'Invalid Date');
             return;
@@ -215,12 +235,20 @@ $(function () {
             return;
         }
 
+        var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (sportsTypes == '') {
+            Validators.show($("#sportsType").multiselect("getButton").get(0), 'Please select your options');
+            return;
+        }
+
         header.find(".sortable").each(function () {
             $(this).removeClass("headerSortDown").removeClass("headerSortUp");
             this.sortDirection = "";
         });
 
-        ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayTypes);
+        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, parlayTypes);
     });
 
     tableSorter.bind2(header, table, {
@@ -351,7 +379,7 @@ function ViewDetails(custId) {
         row.after('<tr class="details" custid="' + custId + '"><td colspan="11" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
-        var waitingImg = $('<img src="../Images/Content/icon_wait.gif")" />');
+        var waitingImg = $('<img src="Content/Images/Content/icon_wait.gif" />');
         td.html(waitingImg);
 
         var username = row.children('td').eq(1).text();

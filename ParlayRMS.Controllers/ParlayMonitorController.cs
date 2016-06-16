@@ -1,5 +1,4 @@
-﻿using ParlayRMS.Common.Models;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.ParlayMonitor;
@@ -49,13 +48,6 @@ namespace ParlayRMS.Controllers
             parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString(), Selected = true });
             parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
             ViewBag.ParlayTypes = parlayTypes;
-
-            // Sports Type
-            var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() });
-            ViewBag.SportsTypes = sportsTypes;
 
             // Level
             var levels = new List<SelectListItem>();
@@ -115,8 +107,7 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var service = GetMixParlayService();
-            var data = service.GetParlayMonitorTickets(
+            var data = _parlayMonitorCacheService.GetParlayMonitorTickets(
                                 model.Combos,
                                 model.ParlayTypes,
                                 model.SportsTypes,
@@ -133,91 +124,13 @@ namespace ParlayRMS.Controllers
                 maxTransId = Math.Max(model.MaxTransId, data.First().TransId);
             }
 
-            string title = string.Empty;
-            if (model.MaxTransId == 0)
-            {
-                var combosTitle = ViewLang.All;
-                var combos = model.Combos.Split(',');
-                if (combos.Length < 9)
-                {
-                    combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
-                }
-
-                var sportsTypesTitle = "All";
-                var sportsTypes = model.SportsTypes.Split(',');
-                if (sportsTypes.Length < 3)
-                {
-                    var list = new List<string>();
-                    foreach (var item in sportsTypes)
-                    {
-                        SportsType sportsType = (SportsType)Convert.ToInt32(item);
-                        switch (sportsType)
-                        {
-                            case SportsType.SoccerOnly:
-                                list.Add(ViewLang.Socceronly);
-                                break;
-
-                            case SportsType.OtherSports:
-                                list.Add(ViewLang.Othersports);
-                                break;
-
-                            case SportsType.CombinedSports:
-                                list.Add(ViewLang.Combinedsports);
-                                break;
-
-                            default:
-                                list.Add(ViewLang.Undefined);
-                                break;
-                        }
-                    }
-
-                    sportsTypesTitle = string.Join(",", list);
-                }
-
-                var levelsTitle = ViewLang.All;
-                var levels = model.Levels.Split(',');
-                if (levels.Length < 11)
-                {
-                    levelsTitle = string.Join(",", levels.Select(x => x == "0" ? ViewLang.None : x));
-                }
-
-                title = string.Format(
-                                   "Mix Parlay Monitor - {0} [{1}] - {2} [{3}] - {4} [{5}] - {6} [{7}] - {8} [{9}]",
-                                   ViewLang.Combo,
-                                   combosTitle,
-                                   ViewLang.ParlayType,
-                                   ModelsHelper.GetParlayTitle(model.ParlayTypes),
-                                   ViewLang.SportsType,
-                                   sportsTypesTitle,
-                                   ViewLang.Level,
-                                   levelsTitle,
-                                   ViewLang.SelectTop,
-                                   model.SelectTop);
-
-                if (model.StakeAfterPT > 0)
-                {
-                    title += string.Format(" - {0} [{1}]", ViewLang.StakeAfterPT, Formatter.FormatNumber2(model.StakeAfterPT));
-                }
-            }
-
             return Json(new
             {
                 code = 0,
                 Records = data,
-                Title = title,
+                Title = string.Empty,
                 MaxTransId = maxTransId
             });
-        }
-
-        private IParlayMonitorService GetMixParlayService()
-        {
-            return _parlayMonitorCacheService;
-            ////if (AppSetting.IsCache)
-            ////{
-            ////    return mixparlayCacheService;
-            ////}
-
-            ////return mixparlayService;
         }
     }
 }

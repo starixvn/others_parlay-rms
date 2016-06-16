@@ -1,33 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TotalOutstandingDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.TotalOutstanding;
+using ParlayRMS.DTO.TotalOutstanding;
+using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
 {
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.TotalOutstanding;
-    using ParlayRMS.DTO.TotalOutstanding;
-    using ParlayRMS.Utility.Data;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-
-    /// <summary>
-    /// Total Outstanding Data Access.
-    /// </summary>
     public class TotalOutstandingDataAccess : BaseDataAccess, ITotalOutstandingDataAccess
     {
-        /// <summary>
-        /// Gets Parlay Outstanding of a member.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="combo">Combo values.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <returns>Parlay Outstanding of a member.</returns>
         public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Mem>();
@@ -53,7 +35,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             StakePt = reader.ToDecimal("stakept"),
                             MaxPayoutPt = reader.ToDecimal("net_win"),
                             TotalBet = reader.ToInt32("TotalBet"),
-                            TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection"))
+                            TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection")),
+                            SportType = reader.ToInt32("sporttype")
                         });
                     }
                 }
@@ -62,13 +45,6 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
             return result;
         }
 
-        /// <summary>
-        /// Gets Parlay Outstanding of a agent.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="combo">Combo values.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <returns>Parlay Outstanding of a agent.</returns>
         public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType, string parlaysType)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Ag>();

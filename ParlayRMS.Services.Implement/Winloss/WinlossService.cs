@@ -7,6 +7,7 @@ using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.Winloss;
 using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Report;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,22 +19,18 @@ namespace ParlayRMS.Services.Implement.Winloss
         private readonly IWinlossDataAccess _winlossDataAccess = new WinlossDataAccess();
         private readonly ICommonService _commonService = new CommonService();
 
-        public WinlossData GetWinloss(
-                               DateTime fromDate,
-                               DateTime toDate,
-                               string parlayTypes,
-                               SportsType sportsType,
-                               string combos)
+        public WinlossData GetWinloss(WinlossOptions options)
         {
             var info = _commonService.GetBalanceUpDayInfo();
             var data = _winlossDataAccess.RMS_Rpt_Parlay_Winloss(
-                                fromDate,
-                                toDate,
+                                options.FromDate,
+                                options.ToDate,
                                 info.MoveBetsDay,
                                 info.BalanceUpDay,
-                                parlayTypes,
-                                (int)sportsType,
-                                combos);
+                                options.ParlayTypes,
+                                options.SportsType,
+                                options.Combos,
+                                (int)options.ReportType);
 
             Utils.Round(data);
             data.ToList().ForEach(x =>

@@ -12,7 +12,8 @@ namespace ParlayRMS.DataAccess.Interface.Winloss
                                                 DateTime moveBetsDay,
                                                 DateTime balanceUpDay,
                                                 string parlayTypes,
-                                                int sportsType,
-                                                string combos);
+                                                string sportsType,
+                                                string combos,
+                                                int reportType);
     }
 }

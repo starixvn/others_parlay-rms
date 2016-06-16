@@ -1,6 +1,7 @@
 ﻿using Fanex.Data;
 using ParlayRMS.DataAccess.Interface.Winloss;
 using ParlayRMS.DTO.Winloss;
+using ParlayRMS.Models;
 using ParlayRMS.Utility.Data;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,9 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                                                        DateTime moveBetsDay,
                                                        DateTime balanceUpDay,
                                                        string parlayTypes,
-                                                       int sportsType,
-                                                       string combos)
+                                                       string sportsType,
+                                                       string combos,
+                                                       int reportType)
         {
             var result = new List<RMS_Rpt_Parlay_Winloss>();
 
@@ -29,10 +31,8 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                 db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("selection", DbType.String, combos);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("reporttype", DbType.Int32, reportType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -40,7 +40,8 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                     {
                         result.Add(new RMS_Rpt_Parlay_Winloss
                         {
-                            Combo = reader.ToInt32("combo").ToString(),
+                            Combo = reportType == (int)ReportType.Combo ? reader.ToInt32("combo").ToString() : string.Empty,
+                            SportType = reportType == (int)ReportType.SportType ? reader.ToInt32("sporttype") : 0,
                             WinlostDate = reader.ToDateTime("winlostdate"),
                             Tickets_Won = reader.ToInt32("tickets_won"),
                             Tickets_Lose = reader.ToInt32("tickets_lose"),

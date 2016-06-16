@@ -2,6 +2,7 @@
 using ParlayRMS.DataAccess.Interface.ParlayMonitor;
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Services.Interface.ParlayMonitor;
+using ParlayRMS.Utility;
 using SignalR;
 using SignalR.Hubs;
 using System;
@@ -49,6 +50,7 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             {
                 item.Stake = Math.Round(item.Stake, 2);
                 item.NetWinAfterPT = Math.Floor(item.NetWinAfterPT);
+                item.SportTypeName = CacheRef.GetSportNameDropDown(item.SportType);
             }
 
             return data;

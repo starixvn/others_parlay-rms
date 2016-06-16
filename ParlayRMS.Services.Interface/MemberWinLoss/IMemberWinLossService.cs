@@ -10,7 +10,7 @@ namespace ParlayRMS.Services.Interface.MemberWinLoss
                               DateTime fromDate,
                               DateTime toDate,
                               string parlayTypes,
-                              SportsType sportsType,
+                              string sportsType,
                               string combos,
                               string username,
                               bool isCached,

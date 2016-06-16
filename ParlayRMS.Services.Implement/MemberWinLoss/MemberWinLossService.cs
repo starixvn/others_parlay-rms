@@ -29,7 +29,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                      DateTime fromDate,
                                      DateTime toDate,
                                      string parlayTypes,
-                                     SportsType sportsType,
+                                     string sportsType,
                                      string combos,
                                      string username,
                                      bool isCached,
@@ -56,7 +56,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  info.MoveBetsDay,
                                  info.BalanceUpDay,
                                  parlayTypes,
-                                 (int)sportsType,
+                                 sportsType,
                                  combos,
                                  user.CustId);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
@@ -69,7 +69,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  info.MoveBetsDay,
                                  info.BalanceUpDay,
                                  parlayTypes,
-                                 (int)sportsType,
+                                 sportsType,
                                  combos,
                                  user.CustId);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
@@ -86,7 +86,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                       DateTime moveBetsDay,
                                       DateTime balanceUpDay,
                                       string parlayTypes,
-                                      int sportsType,
+                                      string sportsType,
                                       string combos,
                                       long custId)
         {
@@ -124,7 +124,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                       DateTime moveBetsDay,
                                       DateTime balanceUpDay,
                                       string parlayTypes,
-                                      int sportsType,
+                                      string sportsType,
                                       string combos,
                                       long custId)
         {

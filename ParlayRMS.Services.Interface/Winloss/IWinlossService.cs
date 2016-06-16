@@ -1,11 +1,10 @@
-﻿using ParlayRMS.Models;
-using ParlayRMS.Models.Winloss;
-using System;
+﻿using ParlayRMS.Models.Winloss;
+using ParlayRMS.ViewModel.Report;
 
 namespace ParlayRMS.Services.Interface.Winloss
 {
     public interface IWinlossService
     {
-        WinlossData GetWinloss(DateTime fromDate, DateTime toDate, string parlayTypes, SportsType sportsType, string combos);
+        WinlossData GetWinloss(WinlossOptions options);
     }
 }

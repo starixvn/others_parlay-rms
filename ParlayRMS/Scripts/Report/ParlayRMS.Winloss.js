@@ -50,6 +50,28 @@ ParlayRMS.Winloss = {
             }
         });
 
+        $("#sportsType").multiselect({
+            minWidth: 210,
+            height: 300,
+            create: function () {
+                $("#sportsType").multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
+        });
+
         $("#fromDate").datepicker({
             dateFormat: "MM dd, yy",
             showButtonPanel: true,
@@ -95,21 +117,12 @@ ParlayRMS.Winloss = {
             $("#divResult").html('');
             var fromDate = $("#fromDate").val();
             var toDate = $("#toDate").val();
-            var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
 
             if (validator.validateDate("#fromDate")) {
                 return;
             }
 
             if (validator.validateDate("#toDate")) {
-                return;
-            }
-
-            var combos = $("#combo").multiselect("getChecked").map(function () {
-                return this.value;
-            }).get().join(',');
-            if (combos == '') {
-                Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
                 return;
             }
 
@@ -121,16 +134,35 @@ ParlayRMS.Winloss = {
                 return;
             }
 
-            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsType, combos);
+            var combos = $("#combo").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (combos == '') {
+                Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
+                return;
+            }
+
+            var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (sportsTypes == '') {
+                Validators.show($("#sportsType").multiselect("getButton").get(0), 'Please select your options');
+                return;
+            }
+
+            var reportType = $('input[name=ReportTypes]:checked').val();
+
+            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, reportType);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, sportsType, combos) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             ParlayTypes: parlayTypes,
             SportsType: sportsType,
-            Combos: combos
+            Combos: combos,
+            ReportType: reportType
         }
 
         $.ajax({
@@ -153,13 +185,14 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             ParlayTypes: parlayTypes,
             SportsType: sportsType,
-            Combos: combos
+            Combos: combos,
+            ReportType: reportType
         }
 
         var url = 'Winloss/Excel?' + $.param(data);

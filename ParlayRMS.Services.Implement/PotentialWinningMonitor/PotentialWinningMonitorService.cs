@@ -2,6 +2,7 @@
 using ParlayRMS.DataAccess.Interface.PotentialWinningMonitor;
 using ParlayRMS.DTO.PotentialWinning;
 using ParlayRMS.Services.Interface.PotentialWinningMonitor;
+using ParlayRMS.Utility;
 using System.Collections.Generic;
 
 namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
@@ -27,7 +28,13 @@ namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
             string sportTypes,
             long custId)
         {
-            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinningDetail(combos, parlayTypes, sportTypes, custId);
+            var result = _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinningDetail(combos, parlayTypes, sportTypes, custId);
+            foreach (var item in result)
+            {
+                item.SportTypeName = CacheRef.GetSportNameDropDown(item.SportType);
+            }
+
+            return result;
         }
     }
 }

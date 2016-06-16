@@ -12,6 +12,7 @@
         MemberWinLoss.CachedDOM.username = $("#username");
         MemberWinLoss.CachedDOM.parlayType = $("#parlayType");
         MemberWinLoss.CachedDOM.combo = $("#combo");
+        MemberWinLoss.CachedDOM.sportsType = $("#sportsType");
         MemberWinLoss.CachedDOM.fromDate = $("#fromDate");
         MemberWinLoss.CachedDOM.toDate = $("#toDate");
         MemberWinLoss.CachedDOM.btnSearch = $("#btnSearch");
@@ -50,6 +51,28 @@
             height: 136,
             create: function () {
                 MemberWinLoss.CachedDOM.combo.multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
+        });
+
+        MemberWinLoss.CachedDOM.sportsType.multiselect({
+            minWidth: 210,
+            height: 300,
+            create: function () {
+                $("#sportsType").multiselect("checkAll");
             },
             selectedText: function (numChecked, numTotal, checkedItems) {
                 if (numChecked == 0) {
@@ -166,7 +189,6 @@
         var username = MemberWinLoss.CachedDOM.username.val();
         var fromDate = MemberWinLoss.CachedDOM.fromDate.val();
         var toDate = MemberWinLoss.CachedDOM.toDate.val();
-        var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
 
         if (validator.validateRequired("#username")) {
             return;
@@ -184,14 +206,6 @@
             return;
         }
 
-        var combos = MemberWinLoss.CachedDOM.combo.multiselect("getChecked").map(function () {
-            return this.value;
-        }).get().join(',');
-        if (combos == '') {
-            Validators.show(MemberWinLoss.CachedDOM.combo.multiselect("getButton").get(0), 'Please select your options');
-            return;
-        }
-
         var parlayTypes = MemberWinLoss.CachedDOM.parlayType.multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -200,7 +214,23 @@
             return;
         }
 
-        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsType, combos, username, pageIndex, isCached);
+        var combos = MemberWinLoss.CachedDOM.combo.multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (combos == '') {
+            Validators.show(MemberWinLoss.CachedDOM.combo.multiselect("getButton").get(0), 'Please select your options');
+            return;
+        }
+
+        var sportsTypes = MemberWinLoss.CachedDOM.sportsType.multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (sportsTypes == '') {
+            Validators.show(MemberWinLoss.CachedDOM.sportsType.multiselect("getButton").get(0), 'Please select your options');
+            return;
+        }
+
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, username, pageIndex, isCached);
     }
 }
 function MovePage(pageIndex) {
@@ -208,7 +238,7 @@ function MovePage(pageIndex) {
 };
 
 String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, ''); 
+    return this.replace(/^\s+|\s+$/g, '');
 };
 
 $(document).ready(function () {

@@ -56,7 +56,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             NumberWon = reader.ToInt32("numberwon"),
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level"),
-                            IsBetRadar = reader.ToBoolean("IsBetRadar")
+                            IsBetRadar = reader.ToBoolean("IsBetRadar"),
+                            SportType = reader.ToInt32("sporttype")
                         });
                     }
                 }

@@ -49,8 +49,8 @@ ParlayRMS.TotalOutstanding = {
         });
 
         $("#sportsType").multiselect({
-            minWidth: 150,
-            height: 82,
+            minWidth: 210,
+            height: 300,
             create: function () {
                 $("#sportsType").multiselect();
             },
@@ -70,8 +70,6 @@ ParlayRMS.TotalOutstanding = {
             }
         });
 
-       
-
         $('#submit').click(this.LoadData);
 
         var username = $.trim($('#username').val());
@@ -80,8 +78,6 @@ ParlayRMS.TotalOutstanding = {
         }
     },
     LoadData: function () {
-        
-
         var combos = $("#combo").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');

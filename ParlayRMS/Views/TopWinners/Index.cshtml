@@ -3,10 +3,11 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TopWinners;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 1010px">
+    <div class="filter-control" style="width: 820px">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -46,7 +47,7 @@
                 </div>
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
-                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                    @RazorHelper.SportTypesDropDown()
                 </div>
             </div>
         </div>
@@ -136,12 +137,11 @@
                 <col width='80px' />
                 <col width='80px' />
             </colgroup>
-            <tbody>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div style="width: 1176px" class="mainfooter">
-        <table class="main" id="footer">
+        <table class="main" id="footer" style="width: 100%">
             <colgroup>
                 <col width='40px' />
                 <col width='140px' />
@@ -160,20 +160,16 @@
                     <td colspan="6" class="right">
                         @ViewLang.Total
                     </td>
-                    <td class="numeric" id="totalStake">
-                    </td>
-                    <td class="numeric" id="totalWA">
-                    </td>
-                    <td class="numeric" id="totalCLA">
-                    </td>
-                    <td class="center" id="totalTB">
-                    </td>
+                    <td class="numeric" id="totalStake"></td>
+                    <td class="numeric" id="totalWA"></td>
+                    <td class="numeric" id="totalCLA"></td>
+                    <td class="center" id="totalTB"></td>
                     <td style="text-align: center">
                         -
                     </td>
                 </tr>
                 <tr id="noinfoRow">
-                    <td colspan="11" style="text-align: center; width: 1141px">
+                    <td colspan="11" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

@@ -12,7 +12,7 @@ namespace ParlayRMS.DataAccess.Interface.TopWinners
                                                   DateTime toDate,
                                                   DateTime moveBetsDay,
                                                   DateTime balanceUpDay,
-                                                  int sportsType,
+                                                  string sportsType,
                                                   int selectTop,
                                                   string combos,
                                                   string parlayTypes);
@@ -22,7 +22,7 @@ namespace ParlayRMS.DataAccess.Interface.TopWinners
                                                          DateTime fromDate,
                                                          DateTime toDate,
                                                          DateTime moveBetsDay,
-                                                         int sportsType,
+                                                         string sportsType,
                                                          string combos,
                                                          string parlayTypes);
 
@@ -32,7 +32,7 @@ namespace ParlayRMS.DataAccess.Interface.TopWinners
                                                          long custId,
                                                          DateTime fromDate,
                                                          DateTime toDate,
-                                                         int sportsType,
+                                                         string sportsType,
                                                          string combos,
                                                          string parlayTypes);
 

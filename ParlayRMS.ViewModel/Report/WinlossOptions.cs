@@ -20,9 +20,11 @@ namespace ParlayRMS.ViewModel.Report
 
         public string ParlayTypes { get; set; }
 
-        public SportsType SportsType { get; set; }
+        public string SportsType { get; set; }
 
         public string Combos { get; set; }
+
+        public ReportType ReportType { get; set; }
 
         public string GetTitle()
         {
@@ -34,7 +36,7 @@ namespace ParlayRMS.ViewModel.Report
             }
 
             var title = string.Format(
-                                   "{0} - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}]",
+                                   "{0} - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}] - Report by [{9}]",
                                    ViewLang.WinLoss,
                                    FromDate.ToString("MMMM dd, yyyy"),
                                    ToDate.ToString("MMMM dd, yyyy"),
@@ -43,7 +45,8 @@ namespace ParlayRMS.ViewModel.Report
                                    ViewLang.Combo,
                                    combosTitle,
                                    ViewLang.SportsType,
-                                   ModelsHelper.GetSportType((int)SportsType));
+                                   ModelsHelper.GetSportType(SportsType),
+                                   ModelsHelper.GetReportType(ReportType));
             return title;
         }
     }

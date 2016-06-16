@@ -43,13 +43,6 @@ namespace ParlayRMS.Controllers
             parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
             ViewBag.ParlayTypes = parlayTypes;
 
-            // Sports Type
-            var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() });
-            sportsTypes.Add(new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() });
-            ViewBag.SportsTypes = sportsTypes;
-
             // Level
             var levels = new List<SelectListItem>();
             levels.Add(new SelectListItem { Text = ViewLang.None, Value = "0" });
@@ -110,9 +103,7 @@ namespace ParlayRMS.Controllers
         public ActionResult ViewDetailList(PotentialWinningDetailModel detailModel)
         {
             var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId);
-
             ViewBag.UserName = detailModel.UserName;
-
             return PartialView(model);
         }
     }

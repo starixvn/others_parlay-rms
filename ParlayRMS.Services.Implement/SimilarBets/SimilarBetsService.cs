@@ -1,38 +1,24 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SimilarBetsService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.DataAccess.Implement.SimilarBets;
+using ParlayRMS.DataAccess.Interface.SimilarBets;
+using ParlayRMS.DTO.SimilarBets;
+using ParlayRMS.Services.Interface.SimilarBets;
+using ParlayRMS.Utility;
+using System;
 
 namespace ParlayRMS.Services.Implement.SimilarBets
 {
-    using System;
-    using ParlayRMS.DataAccess.Implement.SimilarBets;
-    using ParlayRMS.DataAccess.Interface.SimilarBets;
-    using ParlayRMS.DTO.SimilarBets;
-    using ParlayRMS.Services.Interface.SimilarBets;
-
-    /// <summary>
-    /// Similar Bets Service.
-    /// </summary>
     public class SimilarBetsService : BaseService, ISimilarBetsService
     {
         private readonly ISimilarBetsDataAccess _similarbetsDataAccess = new SimilarBetsDataAccess();
 
-        /// <summary>
-        /// Gets similar bets.
-        /// </summary>
-        /// <param name="transId">Transaction ID.</param>
-        /// <returns>List of similar bets.</returns>
         public RMS_Similar_Parlay_Betlist GetSimilarBets(long transId)
         {
-            var data = this._similarbetsDataAccess.RMS_Similar_Parlay_Betlist(transId);
+            var data = _similarbetsDataAccess.RMS_Similar_Parlay_Betlist(transId);
             if (data != null)
             {
                 data.Stake = Math.Round(data.Stake, 2);
                 data.Max_payout = Math.Round(data.Max_payout, 2);
+                data.SportTypeName = CacheRef.GetSportNameDropDown(data.SportType);
             }
 
             return data;
