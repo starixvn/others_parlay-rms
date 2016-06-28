@@ -25,7 +25,7 @@ namespace ParlayRMS.Controllers
         private readonly IParlayMonitorService _parlayMonitorCacheService = new ParlayMonitorCacheService();
         private readonly IUsersService _userService = new UsersService();
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo
@@ -98,7 +98,7 @@ namespace ParlayRMS.Controllers
             return View();
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {

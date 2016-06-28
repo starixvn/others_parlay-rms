@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DateRangeAttribute.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Web.Mvc.DataAnnotations
+﻿namespace ParlayRMS.Web.Mvc.DataAnnotations
 {
     using System;
     using System.ComponentModel.DataAnnotations;

@@ -1,19 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="WorkbookExtensions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2013.10.08">Separated from NPOIExtensions</change>
-// </history>
+﻿using NPOI.SS.UserModel;
 
 namespace ParlayRMS.ExcelService.Utility
 {
-    using NPOI.SS.UserModel;
-
-    /// <summary>
-    /// Workbook Extensions.
-    /// </summary>
     public static class WorkbookExtensions
     {
         /// <summary>

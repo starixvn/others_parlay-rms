@@ -19,7 +19,7 @@ namespace ParlayRMS.MixParlay.BetList
         private readonly IService _service = new Service();
         private readonly ICommonService _commonService = new CommonService();
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult BetDetails(ViewModel model)
         {

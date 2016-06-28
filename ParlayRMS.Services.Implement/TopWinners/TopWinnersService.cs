@@ -7,6 +7,7 @@ using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.TopWinners;
 using ParlayRMS.ViewModel.Report;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace ParlayRMS.Services.Implement.TopWinners
@@ -35,6 +36,7 @@ namespace ParlayRMS.Services.Implement.TopWinners
             return _topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners_Bet_Details(refNo);
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> GetTopWinnerDetails(TopWinnerDetailsOptions options)
         {
             var info = _commonService.GetBalanceUpDayInfo();

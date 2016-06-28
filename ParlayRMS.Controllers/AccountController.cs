@@ -66,9 +66,9 @@ namespace ParlayRMS.Controllers
         {
             if (_maintenanceService.IsUnderMaintenance())
             {
-                var umTime = _maintenanceService.GetUnderMaintenanceTime();
-                ViewBag.UmFromTime = umTime.From;
-                ViewBag.UmToTime = umTime.To;
+                var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
+                ViewBag.UmFromTime = underMaintenanceTime.From;
+                ViewBag.UmToTime = underMaintenanceTime.To;
                 return PartialView();
             }
             else

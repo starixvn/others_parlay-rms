@@ -20,6 +20,7 @@ using ParlayRMS.Web.Authorization;
 using RemotingRef;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -117,6 +118,7 @@ namespace ParlayRMS.Controllers
             return View("BetDetails", model);
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         private string BuildTickets(ParlayBetTypeViewModel options)
         {
             var factory = new BetListHTMLFactory();

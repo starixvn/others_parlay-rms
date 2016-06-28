@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using System.Web.Mvc;
     using ParlayRMS.Web.Mvc;

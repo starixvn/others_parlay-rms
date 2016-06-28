@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.DTO.Charts
+﻿namespace ParlayRMS.DTO.Charts
 {
     /// <summary>
     /// RMS_Monitor_Parlay_SelectionByTicket_Event_BetType_Choice model.

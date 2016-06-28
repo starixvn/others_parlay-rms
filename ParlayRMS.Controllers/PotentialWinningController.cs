@@ -19,7 +19,7 @@ namespace ParlayRMS.Controllers
         private readonly IPotentialWinningMonitor _potentialWinning = new PotentialWinningMonitorService();
         private readonly IBetListService _betlistService = new BetListService();
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo

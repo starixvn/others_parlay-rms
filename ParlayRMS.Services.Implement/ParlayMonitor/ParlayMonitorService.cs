@@ -7,6 +7,7 @@ using SignalR;
 using SignalR.Hubs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
 namespace ParlayRMS.Services.Implement.ParlayMonitor
@@ -33,6 +34,7 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             });
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,
             string parlayTypes,

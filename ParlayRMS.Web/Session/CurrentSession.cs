@@ -1,20 +1,9 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CurrentSession.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models.Users;
+using System;
+using System.Web.UI;
 
 namespace ParlayRMS.Web.Session
 {
-    using System;
-    using System.Web.UI;
-    using ParlayRMS.Models.Users;
-
-    /// <summary>
-    /// Current Session.
-    /// </summary>
     public class CurrentSession : Page, ICurrentSession
     {
         public const string ParlayRmsUsername = "RMS.Username";

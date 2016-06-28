@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Andy.Nguyen" date="2012.5.10">Check login and process view</change>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using ONEbook.UM.Filters;
     using ParlayRMS.DTO;

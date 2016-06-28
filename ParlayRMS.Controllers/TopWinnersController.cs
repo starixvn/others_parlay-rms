@@ -139,7 +139,7 @@ namespace ParlayRMS.Controllers
 
         [HttpGet]
         [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(TopWinnersOptions options)
         {
             var records = _topwinnersService.GetTopWinners(options);

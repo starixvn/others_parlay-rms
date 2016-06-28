@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="HSSFSheetExtensions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="HSSFSheetExtensions.cs" company="">
+// Copyright (c) . All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
@@ -49,7 +49,7 @@ namespace ParlayRMS.ExcelService.Utility
         /// <param name="destinateRowNum">Row index in the destination sheet.</param>
         /// <param name="firstColumn">Index of copying area's start column.</param>
         /// <param name="lastColumn">Index of copying area's end column.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static void CopyRow(this ISheet sheet, ISheet sourceSheet, int sourceRowNum, int destinateRowNum, int firstColumn, int lastColumn)
         {
             if (sheet.LastRowNum < destinateRowNum)
@@ -158,7 +158,7 @@ namespace ParlayRMS.ExcelService.Utility
         /// </summary>
         /// <param name="sheet">Sheet instance.</param>
         /// <param name="columnIndex">Index of removing column.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static void RemoveColumn(this ISheet sheet, int columnIndex)
         {
             int maxColumn = 0;
@@ -371,7 +371,7 @@ namespace ParlayRMS.ExcelService.Utility
         /// </summary>
         /// <param name="newCell">New cell instance.</param>
         /// <param name="oldCell">Old cell instance.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static void CloneCell(ICell newCell, ICell oldCell)
         {
             if (oldCell.CellComment != null)

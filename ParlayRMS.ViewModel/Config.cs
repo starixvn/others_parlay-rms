@@ -3,6 +3,7 @@ using ParlayRMS.Utility;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 
 namespace ParlayRMS.ViewModel
@@ -16,6 +17,7 @@ namespace ParlayRMS.ViewModel
         private static List<SelectListItem> _parlayTypes;
         private static List<SelectListItem> _reportTypes;
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         static Config()
         {
             _sportsTypes = new List<SelectListItem>()

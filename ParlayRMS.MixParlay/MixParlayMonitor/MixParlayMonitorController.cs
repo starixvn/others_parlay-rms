@@ -22,7 +22,7 @@ namespace ParlayRMS.MixParlay.MixParlayMonitor
         private readonly IUsersService _userService = new UsersService();
         private readonly ICommonService _commonService = new CommonService();
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo
@@ -96,7 +96,7 @@ namespace ParlayRMS.MixParlay.MixParlayMonitor
             return View();
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(ViewModel model)
         {

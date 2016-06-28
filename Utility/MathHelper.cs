@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MathHelper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2014.1.24">Created</change>
-// </history>
-
-namespace ParlayRMS.Utility
+﻿namespace ParlayRMS.Utility
 {
     using System.Collections.Generic;
 

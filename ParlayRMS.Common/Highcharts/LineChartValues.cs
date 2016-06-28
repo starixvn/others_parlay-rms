@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LineChartValues.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Common.Highcharts
+﻿namespace ParlayRMS.Common.Highcharts
 {
     using DotNet.Highcharts.Enums;
     using DotNet.Highcharts.Options;

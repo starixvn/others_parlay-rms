@@ -38,7 +38,7 @@ namespace ParlayRMS.MixParlay.SimilarBet
             return PartialView(model);
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsViewModel viewModel)
         {

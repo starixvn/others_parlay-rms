@@ -21,18 +21,19 @@ namespace ParlayRMS.Areas.MixParlay
 
         private void RegisterRoutes(AreaRegistrationContext context)
         {
+            var controllerNamespaces = new[]
+            {
+                "ParlayRMS.MixParlay.BetList",
+                "ParlayRMS.MixParlay.MixParlayMonitor",
+                "ParlayRMS.MixParlay.PotentialWinningMonitor",
+                "ParlayRMS.MixParlay.SimilarBet",
+                "ParlayRMS.MixParlay.TotalOutstanding"
+            };
             context.MapRoute(
                 "MixParlay_default",
                 "MixParlay/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new[] {
-                    "ParlayRMS.MixParlay.BetList",
-                    "ParlayRMS.MixParlay.MixParlayMonitor",
-                    "ParlayRMS.MixParlay.PotentialWinningMonitor",
-                    "ParlayRMS.MixParlay.SimilarBet",
-                    "ParlayRMS.MixParlay.TotalOutstanding"
-                }
-            );
+                controllerNamespaces);
         }
 
         private void RegisterBundles(BundleCollection bundles)

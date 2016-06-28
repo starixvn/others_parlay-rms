@@ -26,7 +26,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="options">The options that are used to query data.</param>
         /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult BetDetails(BetDetailsOptions options)

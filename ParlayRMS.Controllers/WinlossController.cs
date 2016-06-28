@@ -59,7 +59,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpGet]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(WinlossOptions options)
         {
             var model = _winlossService.GetWinloss(options);
@@ -137,7 +137,7 @@ namespace ParlayRMS.Controllers
 
                 foreach (var item in record.Records)
                 {
-                    writer.WriteRow(3, new object[]
+                    var values = new object[]
                     {
                         item.WinlostDate,
                         options.ReportType == ReportType.Combo ? item.Combo : CacheRef.GetSportNameDropDown(item.SportType),
@@ -150,7 +150,8 @@ namespace ParlayRMS.Controllers
                         item.OurPT_Won,
                         item.OurPT_Lose,
                         item.OurPT_NetWinloss
-                    });
+                    };
+                    writer.WriteRow(3, values);
                 }
 
                 writer.WriteCellRange(writer.RowId - totalRow, totalRow, 0, 1, record.Records[0].WinlostDate);

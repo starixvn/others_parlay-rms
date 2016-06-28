@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="UserPolicy.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Web.Authorization
+﻿namespace ParlayRMS.Web.Authorization
 {
     public enum UserPolicy : int
     {

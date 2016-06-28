@@ -10,7 +10,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
 {
     public class SimilarBetsDataAccess : BaseDataAccess, ISimilarBetsDataAccess
     {
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
         {
             using (var db = new ObjectDb("RMS_Similar_Parlay_Betlist"))

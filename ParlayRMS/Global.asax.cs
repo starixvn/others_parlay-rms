@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS
+﻿namespace ParlayRMS
 {
     using Fanex.Data.Configuration;
     using Fanex.Logging;
@@ -149,7 +141,7 @@ namespace ParlayRMS
         /// <summary>
         /// Registers the bundles.
         /// </summary>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static void RegisterBundles()
         {
             var bundles = BundleTable.Bundles;

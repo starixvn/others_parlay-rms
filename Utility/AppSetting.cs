@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AppSetting.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Utility
+﻿namespace ParlayRMS.Utility
 {
     using System;
     using System.Collections.Generic;

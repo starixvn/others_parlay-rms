@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopSelectionController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using DotNet.Highcharts;
     using DotNet.Highcharts.Helpers;
@@ -68,7 +60,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top selections by ticket.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket(MonitoringSummaryModel model)
         {
@@ -104,7 +96,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top selections by turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover(MonitoringSummaryModel model)
         {
@@ -210,8 +202,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top currencies by selection and sport type.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTicket(MonitoringDetailModel model)
         {
@@ -271,8 +263,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top currencies by selection and turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTurnover(MonitoringDetailModel model)
         {
@@ -333,7 +325,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTicket(MonitoringEventModel model)
         {
@@ -377,7 +369,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and league.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTicket(MonitoringEventModel model)
         {
@@ -420,7 +412,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top turnovers and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTurnover(MonitoringEventModel model)
         {
@@ -462,7 +454,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTurnover(MonitoringEventModel model)
         {

@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="FavouriteChoiceController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -48,7 +40,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">MonitoringSummaryModel that contains filter conditions.</param>
         /// <returns>HighChart content represents the top selections by turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopFavouriteByTurnover(MonitoringSummaryModel model)
         {
@@ -83,7 +75,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">MonitoringSummaryModel that contains filter conditions.</param>
         /// <returns>HighChart content represents top selections by ticket.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopFavouriteByTicket(MonitoringSummaryModel model)
         {
@@ -119,7 +111,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">MonitoringEventModel that contains filter conditions.</param>
         /// <returns>HighChart content represents top events by top selections of ticket.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event(MonitoringEventModel model)
         {
@@ -164,8 +156,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">MonitoringEventModel that contains filter conditions.</param>
         /// <returns>HighChart content represents top bet types by event.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType(MonitoringEventModel model)
         {
@@ -242,8 +234,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">The model that contains filter conditions.</param>
         /// <returns>Action Result contains favorite choices by event and bet type.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket_Event_BetType_Choice(MonitoringEventModel model)
         {
@@ -311,7 +303,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">The model that contains filter conditions.</param>
         /// <returns>HighChart content represents top events by top selection of turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event(MonitoringEventModel model)
         {
@@ -354,8 +346,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">The model that contains filter conditions.</param>
         /// <returns>Action Result contains top bet types by event.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType(MonitoringEventModel model)
         {
@@ -431,8 +423,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">The model that contains filter conditions.</param>
         /// <returns>Action Result contains the favorite choices by event and bet type.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.FavouriteChoice, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover_Event_BetType_Choice(MonitoringEventModel model)
         {
@@ -634,8 +626,8 @@ namespace ParlayRMS.Controllers
         /// <param name="awayId">The away identifier.</param>
         /// <param name="bettype">The bet type identifier.</param>
         /// <returns>Formatted team name.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private string TeamNameFormater(string teamName, string homeId, string awayId, int bettype = 0)
         {
             if (bettype == 24)

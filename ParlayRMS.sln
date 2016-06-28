@@ -32,14 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\Dependencies\Settings.StyleCop = ..\Dependencies\Settings.StyleCop
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{92133B03-D70B-40EA-8CA2-39A6D4F4E715}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.ExcelService", "ExcelService\ParlayRMS.ExcelService.csproj", "{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Web", "ParlayRMS.Web\ParlayRMS.Web.csproj", "{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}"

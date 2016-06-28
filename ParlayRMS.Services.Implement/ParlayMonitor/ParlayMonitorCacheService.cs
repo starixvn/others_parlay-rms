@@ -6,7 +6,7 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
     public class ParlayMonitorCacheService : BaseService, IParlayMonitorService
     {
-        private static readonly IParlayMonitorService parlayService = new ParlayMonitorService();
+        private static readonly IParlayMonitorService ParlayService = new ParlayMonitorService();
 
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,
@@ -20,7 +20,7 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             long maxTransId,
             string markets)
         {
-            return parlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
         }
     }
 }
