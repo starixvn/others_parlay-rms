@@ -85,12 +85,30 @@ namespace ParlayRMS.Common.Models
             }
             else if (list.Length == 1)
             {
-                var sportType = (SportsType)Convert.ToInt32(list[0]);
+                var sportType = Convert.ToInt32(list[0]);
                 return GetSportType(sportType);
             }
             else
             {
                 return string.Format("{0} options", list.Length);
+            }
+        }
+
+        public static string GetSportType(int sportType)
+        {
+            switch (sportType)
+            {
+                case -1:
+                    return "Combined other sports";
+
+                case -2:
+                    return "Other sports";
+
+                case -3:
+                    return "Combined sports";
+
+                default:
+                    return CacheRef.GetSportName(sportType);
             }
         }
 
