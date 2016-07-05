@@ -40,7 +40,14 @@
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
                             <td style="width: 150px">
-                                @RazorHelper.SportTypesDropDown(Model.SportsType)
+                                @if (string.IsNullOrEmpty(Model.SportsType))
+                                {
+                                    @RazorHelper.SportTypesDropDown()
+                                }
+                                else
+                                {
+                                    @RazorHelper.SportTypesDropDown(Model.SportsType)
+                                }
                             </td>
                             <td>
                                 <button id="submit" class="button">

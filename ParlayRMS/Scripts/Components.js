@@ -155,6 +155,11 @@ var tableSorter = function () {
             header.attr("title", "Click to sort");
             header.click(function () {
                 var currenObj = this;
+                if (param) {
+                    if (param.onStart) {
+                        param.onStart(currenObj);
+                    }
+                }
 
                 if (currenObj.sortDirection == "asc") {
                     currenObj.sortDirection = "desc";

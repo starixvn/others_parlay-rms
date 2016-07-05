@@ -53,22 +53,6 @@ namespace ParlayRMS.Controllers
             });
             ViewBag.ParlayTypes = parlayTypes;
 
-            // Sports Type
-            var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.Socceronly,
-                Value = ((int)SportsType.SoccerOnly).ToString(),
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString())
-            });
-            sportsTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.Othersports,
-                Value = ((int)SportsType.OtherSports).ToString(),
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString())
-            });
-
-            // Select Top
             return View("Index", model);
         }
 
