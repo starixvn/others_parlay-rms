@@ -281,7 +281,7 @@ $(document).ready(function () {
     });
 
     $("#sportsType").multiselect({
-        minWidth: 210,
+        minWidth: 220,
         height: 300,
         create: function () {
             $("#sportsType").multiselect("checkAll");
