@@ -253,6 +253,9 @@ $(function () {
 
     tableSorter.bind2(header, table, {
         type: 'text',
+        onStart: function () {
+            table.find('tr[custid]').remove();
+        },
         onFinish: function () {
             var trs = table.children('tbody').children("tr");
             trs.each(function (index, tr) {
