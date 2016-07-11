@@ -339,7 +339,7 @@ $(document).ready(function () {
                 $(this).removeClass("headerSortDown").removeClass("headerSortUp");
                 this.sortDirection = "";
             });
-
+            tableSorter.currentOrderCol = null;
             isPressSubmit = true;
             timerController.start();
         }
