@@ -382,7 +382,8 @@ function ViewDetails(custId) {
         row.after('<tr class="details" custid="' + custId + '"><td colspan="11" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
-        var waitingImg = $('<img src="Content/Images/Content/icon_wait.gif" />');
+        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
+        var waitingImg = $('<img src="' + imgURL + '" />');
         td.html(waitingImg);
 
         var username = row.children('td').eq(1).text();
