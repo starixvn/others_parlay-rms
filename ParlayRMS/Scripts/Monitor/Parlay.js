@@ -542,7 +542,7 @@ function CreateRow(order, item) {
         r[++j] = '<td class="right">----</td>';
     }
     else {
-        r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDate + '\'));">' + item.IP + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + item.IP + '</a></td>';
     }
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
     r[++j] = '</tr>';
