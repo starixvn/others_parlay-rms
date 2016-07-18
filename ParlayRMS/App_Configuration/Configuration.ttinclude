@@ -104,7 +104,7 @@
 
                     case SiteEnvironment.SIT:
                     case SiteEnvironment.UAT:
-                        return "tcp://172.16.4.118:8098/CallGetRefFunction";
+                        return "tcp://10.40.40.225:8091/CallGetRefFunction";
 
                     default:
                         return "tcp://10.70.70.242:8888/CallGetRefFunction";
