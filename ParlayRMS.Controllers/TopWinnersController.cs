@@ -132,7 +132,7 @@ namespace ParlayRMS.Controllers
             var model = new BetDetails
             {
                 TicketDetail = builder.GetBetList(),
-                ComboTypes = RefData.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2, "en")
+                ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
             };
             return View(model);
         }

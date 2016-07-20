@@ -131,7 +131,7 @@ namespace ParlayRMS.Controllers
             string endTag = "<hr class = 'hr'>";
             if (options.BetType == (int)BetType.SystemParlay)
             {
-                var comboTypes = RefData.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2, "en");
+                var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
                 var filteredTickets = tickets.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
                 var count = comboTypes == null ? 0 : comboTypes.Length;
                 for (var i = 0; i < count; i++)

@@ -85,7 +85,7 @@ namespace ParlayRMS.Controllers
             {
                 TicketDetail = builder.GetBetList(),
                 TicketCompare = string.Join("-", ticketsCompare),
-                ComboTypes = RefData.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2, "en")
+                ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
             };
 
             return PartialView("BetDetails", model);

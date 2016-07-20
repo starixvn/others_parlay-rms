@@ -1,4 +1,5 @@
 ﻿using RemotingRef;
+using System;
 using System.Threading;
 
 namespace ParlayRMS.Utility
@@ -132,6 +133,12 @@ namespace ParlayRMS.Utility
         public static string GetOddsTypeName(object oddsTypeId)
         {
             return RefData.GetOddsTypeName(oddsTypeId.ToString(), Language);
+        }
+
+        public static string[] GetCombinationTypeCombo(string betTeam, string betCheck, int hdp1, int hdp2)
+        {
+            betCheck = Convert.ToInt32(Convert.ToDouble(betCheck)).ToString();
+            return RefData.GetCombinationTypeCombo(betTeam, betCheck, hdp1, hdp2, Language);
         }
     }
 }
