@@ -1,5 +1,4 @@
 ﻿using RemotingRef;
-using System;
 using System.Threading;
 
 namespace ParlayRMS.Utility
@@ -137,7 +136,7 @@ namespace ParlayRMS.Utility
 
         public static string[] GetCombinationTypeCombo(string betTeam, string betCheck, int hdp1, int hdp2)
         {
-            betCheck = Convert.ToInt32(Convert.ToDouble(betCheck)).ToString();
+            betCheck = betCheck.Replace(".00", string.Empty);
             return RefData.GetCombinationTypeCombo(betTeam, betCheck, hdp1, hdp2, Language);
         }
     }
