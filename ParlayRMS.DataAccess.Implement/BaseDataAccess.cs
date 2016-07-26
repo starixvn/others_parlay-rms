@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.DataAccess.Implement
+﻿namespace ParlayRMS.DataAccess.Implement
 {
     using System;
     using System.Collections;

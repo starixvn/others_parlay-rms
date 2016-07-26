@@ -1,15 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS
+﻿namespace ParlayRMS
 {
     using Fanex.Data.Configuration;
     using Fanex.Logging;
+    using ONEbook.UM.Filters;
     using ParlayRMS.Web.Authorization;
     using ParlayRMS.Web.Session;
     using System;
@@ -93,7 +86,6 @@ namespace ParlayRMS
                 return;
             }
 
-
             // Get base exception data
             var message = exception.Message +
                 "\r\nType: " + exception.GetType().ToString() +
@@ -123,6 +115,7 @@ namespace ParlayRMS
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CheckUMFilter());
         }
 
         /// <summary>
@@ -141,13 +134,14 @@ namespace ParlayRMS
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ParlayRMS.Controllers" });
         }
 
         /// <summary>
         /// Registers the bundles.
         /// </summary>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static void RegisterBundles()
         {
             var bundles = BundleTable.Bundles;
@@ -171,7 +165,7 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/Libs/css").Include(
                 "~/Content/Libs/jquery-ui/jquery-ui.more.css",
                 "~/Content/Libs/contextmenu/jquery.contextmenu.css",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.css",
+                "~/Scripts/Libs/multiselect/jquery.multiselect-customized.css",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/BetList.css",
@@ -182,24 +176,23 @@ namespace ParlayRMS
                 "~/Content/Paging.css",
                 "~/Content/Site.css",
                 "~/Content/Validators.css"));
-            bundles.Add(new StyleBundle("~/Content/Login/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Login").Include(
                 "~/Content/Login.css"));
-            bundles.Add(new StyleBundle("~/Content/Site/css").Include(
-                "~/Content/Site.css"));
-            bundles.Add(new StyleBundle("~/Content/Validators/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Validators").Include(
                 "~/Content/Validators.css"));
 
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
+                "~/Scripts/jquery-1.7.js",
                 "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
                 "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
                 "~/Scripts/Libs/cookie/jquery.cookie.js",
                 "~/Scripts/Libs/highcharts/highcharts.js",
-                "~/Scripts/Libs/jquery/jquery.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
+                "~/Scripts/autoNumeric/autoNumeric-1.9.25.js",
                 "~/Scripts/Libs/moment/moment.js",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.js",
+                "~/Scripts/Libs/multiselect/jquery.multiselect-customized.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
                 "~/Scripts/Libs/numeral/numeral.js",
                 "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
@@ -244,10 +237,8 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/Monitor/MixParlay/js").Include("~/Scripts/Monitor/MixParlay.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/Parlay/js").Include("~/Scripts/Monitor/Parlay.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/PotentialWinning/js").Include("~/Scripts/Monitor/PotentialWinning.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Monitor/SystemParlay/js").Include("~/Scripts/Monitor/SystemParlay.js"));
-
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/DangerMonitor/js").Include("~/Scripts/Monitor/DangerMonitor.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Pager/js").Include("~/Scripts/Pager.js"));

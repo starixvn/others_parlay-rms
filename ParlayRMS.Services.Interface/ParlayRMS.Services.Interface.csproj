@@ -39,19 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.5-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Agents\IAgentService.cs" />
     <Compile Include="DangerMonitor\IDangerMonitorService.cs" />
     <Compile Include="PotentialWinningMonitor\IPotentialWinningMonitor.cs" />
     <Compile Include="ViewIPInfo\IViewIPInfoService.cs" />
     <Compile Include="MemberWinLoss\IMemberWinLossService.cs" />
-    <Compile Include="SystemParlayMonitor\ISystemParlayMonitorService.cs" />
     <Compile Include="TotalOutstanding\ITotalOutstandingService.cs" />
     <Compile Include="Users\IAuthorizationService.cs" />
     <Compile Include="BetList\IBetListService.cs" />
@@ -62,17 +54,13 @@
     <Compile Include="Menus\IMenusService.cs" />
     <Compile Include="Charts\IChartsService.cs" />
     <Compile Include="Users\IUsersService.cs" />
-    <Compile Include="MixParlayMonitor\IMixParlayMonitorService.cs" />
+    <Compile Include="ParlayMonitor\IParlayMonitorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\ISimilarBetsService.cs" />
     <Compile Include="TopWinners\ITopWinnersService.cs" />
     <Compile Include="Winloss\IWinlossService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
-      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
-      <Name>ParlayRMS.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>
@@ -81,8 +69,57 @@
       <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
       <Name>ParlayRMS.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.ViewModel\ParlayRMS.ViewModel.csproj">
+      <Project>{c8cb1e7b-e68a-4065-ae30-3f8fb371974a}</Project>
+      <Name>ParlayRMS.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.BetList.BetTrade, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.Core, Version=2.13.0.21, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Core.Common, Version=1.1.4505.19054, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sunplus.Core.Common.1.1.4505.19054\lib\net40\Sunplus.Core.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TplCore, Version=1.0.4854.17253, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TplCore.1.0.4854.17254\lib\net40\TplCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

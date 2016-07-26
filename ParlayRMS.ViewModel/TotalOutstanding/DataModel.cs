@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="DataModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="DataModel.cs" company="">
+// Copyright (c) . All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
@@ -19,6 +19,8 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
         public DateTime Date { get; set; }
 
         public string Combo { get; set; }
+
+        public string ParlaysType { get; set; }
 
         public string SportsType { get; set; }
 

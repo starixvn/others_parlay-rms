@@ -1,4 +1,6 @@
+#ignore thumbnails created by windows
 Thumbs.db
+#Ignore files build by Visual Studio
 *.obj
 *.exe
 *.pdb
@@ -10,25 +12,26 @@ Thumbs.db
 *_p.c
 *.ncb
 *.suo
-*.sln.docstates
 *.tlb
 *.tlh
 *.bak
 *.cache
 *.ilk
-*.log
 [Bb]in
 [Dd]ebug*/
 *.lib
 *.sbr
 obj/
+LogFiles/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
-ParlayRMS/ParlayRMS.Publish.xml
-ParlayRMS.sln.GhostDoc.xml
-
-/packages
-*.Publish.xml
-Backup*/**
-UpgradeLo*.htm
+*.suo
+packages/
+*.GhostDoc.xml
+*.pubxml
+.sass-cache
+.vs/
+_Chutzpah*
+/Sources/Sites/node_modules
+*.orig

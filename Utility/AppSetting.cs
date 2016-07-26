@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AppSetting.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Utility
+﻿namespace ParlayRMS.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -47,38 +39,6 @@ namespace ParlayRMS.Utility
             get
             {
                 return DbConverter.ToBoolean(GetValue("IsCache"));
-            }
-        }
-
-        public static string LBUrl
-        {
-            get
-            {
-                return GetValue("LBUrl");
-            }
-        }
-
-        public static bool IsUM
-        {
-            get
-            {
-                return DbConverter.ToBoolean(GetValue("IsUM"));
-            }
-        }
-
-        public static string TimeFrom
-        {
-            get
-            {
-                return GetValue("TimeFrom");
-            }
-        }
-
-        public static string TimeTo
-        {
-            get
-            {
-                return GetValue("TimeTo");
             }
         }
 
@@ -166,7 +126,7 @@ namespace ParlayRMS.Utility
         {
             get
             {
-                var value = GetValue("SelectTop");                
+                var value = GetValue("SelectTop");
                 return value.Split(',');
             }
         }

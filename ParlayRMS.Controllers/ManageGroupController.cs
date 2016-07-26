@@ -1,26 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ManageGroupController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Groups;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.Groups;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.ViewModel.ManageGroup;
+using ParlayRMS.Web.Authorization;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Groups;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.ViewModel.ManageGroup;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Group Management Controller.
-    /// </summary>
     public class ManageGroupController : BaseController
     {
         private readonly IGroupsService _groupService = new GroupsService();

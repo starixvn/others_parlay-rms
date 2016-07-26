@@ -50,8 +50,10 @@ function modalPopup(data) {
             $.modal.close();
         }
     });
-    $("#simplemodal-container").draggable({ handle: "div.title2" });
+
+    $("#simplemodal-container").draggable({ handle: "tr.title2" });
 }
+
 function modalClose() {
     $.modal.close();
 }

@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DataReaderExtension.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Utility.Data
+﻿namespace ParlayRMS.Utility.Data
 {
     using System;
     using System.Data;

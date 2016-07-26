@@ -29,7 +29,7 @@
 <body>
     <div id="mainPage">
         <div class="top-bar">
-            @Html.Action("_Menu", "Shared")
+            @Html.Action("_Menu", "Shared", new { area = string.Empty })
         </div>
         @if (ViewBag.HeaderText != null)
         {
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div id="loading" class="loading">
-        <img alt="" src="@Url.Content("~/Images/Content/loading12.gif")" />
+        <img alt="" src="@Url.Content("~/Content/Images/Content/loading12.gif")" />
     </div>
     <div id="popup" class="invisible">
     </div>

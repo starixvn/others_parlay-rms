@@ -1,46 +1,30 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TotalOutstandingController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.TotalOutstanding;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.TotalOutstanding;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.TotalOutstanding;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.TotalOutstanding;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.TotalOutstanding;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.TotalOutstanding;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Total Outstanding Controller.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
     public class TotalOutstandingController : BaseController
     {
         private readonly ITotalOutstandingService _service = new TotalOutstandingService();
         private readonly IUsersService _userService = new UsersService();
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <param name="model">The associated model of the view.</param>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
             // Combo
             var combos = new List<SelectListItem>();
-            for (int i = 2; i <= 5; i++)
+            for (int i = 2; i <= 9; i++)
             {
                 combos.Add(new SelectListItem
                 {
@@ -50,43 +34,29 @@ namespace ParlayRMS.Controllers
                 });
             }
 
-            combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("6") });
+            combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("10") });
             ViewBag.Combos = combos;
 
-            // Sports Type
-            var sportsTypes = new List<SelectListItem>();
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Socceronly, 
-                Value = ((int)SportsType.SoccerOnly).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.SoccerOnly).ToString()) 
+            // Parlay type
+            var parlayTypes = new List<SelectListItem>();
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.MixparLay,
+                Value = ((int)ParlayType.MixParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.MixParlay).ToString())
             });
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Othersports, 
-                Value = ((int)SportsType.OtherSports).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.OtherSports).ToString()) 
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.ComboParlay,
+                Value = ((int)ParlayType.ComboParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
             });
-            sportsTypes.Add(new SelectListItem 
-            { 
-                Text = ViewLang.Combinedsports, 
-                Value = ((int)SportsType.CombinedSports).ToString(), 
-                Selected = string.IsNullOrEmpty(model.SportsType) || model.SportsType.Contains(((int)SportsType.CombinedSports).ToString()) 
-            });
-            ViewBag.SportsTypes = sportsTypes;
+            ViewBag.ParlayTypes = parlayTypes;
 
-            // Select Top
-            return this.View("Index", model);
+            return View("Index", model);
         }
 
-        /// <summary>
-        /// Gets data for total outstanding report.
-        /// </summary>
-        /// <param name="model">The model that contains the filter conditions.</param>
-        /// <returns>Partial view represents the queried data.</returns>
-        ////[ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [AuthorizationAttribute(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
@@ -94,12 +64,12 @@ namespace ParlayRMS.Controllers
             var customerInfo = _userService.GetCustomerInfo(model.Username);
             if (customerInfo == null || customerInfo.CustId == 0)
             {
-                return this.PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
+                return PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
             }
 
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
-                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -118,11 +88,11 @@ namespace ParlayRMS.Controllers
                     };
                 }
 
-                return this.PartialView("MemberResult", data);
+                return PartialView("MemberResult", data);
             }
             else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
-                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType);
+                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -144,7 +114,7 @@ namespace ParlayRMS.Controllers
                     };
                 }
 
-                return this.PartialView("AgentResult", data);
+                return PartialView("AgentResult", data);
             }
             else
             {
@@ -158,7 +128,7 @@ namespace ParlayRMS.Controllers
                     roleName = "super";
                 }
 
-                return this.PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
+                return PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
             }
         }
     }

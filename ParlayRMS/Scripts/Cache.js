@@ -7,7 +7,7 @@
     };
     this.load = function () {
         setCacheTopSelection.set();
-    }
+    };
 }
 
 var isCacheEnabled = false;
@@ -54,7 +54,7 @@ function SetCacheTopSelection() {
                 bettype2: dataSelected.BetType2,
                 matchid: dataSelected.MatchId
             };
-        };
+        }
 
         jqxhr = $.ajax({
             url: resolveClientUrl('Cache/SetTopSelection'),

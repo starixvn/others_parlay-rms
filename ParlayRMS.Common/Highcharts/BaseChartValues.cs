@@ -1,23 +1,12 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseChartValues.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using DotNet.Highcharts.Options;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace ParlayRMS.Common.Highcharts
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using DotNet.Highcharts.Options;
-
-    /// <summary>
-    /// Base Chart Values.
-    /// </summary>
     public abstract class BaseChartValues
     {
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public BaseChartValues(string titleText, string subtitleText, string[] categories, string titleY)
         {
             this.Chart = new Chart()
@@ -176,12 +165,12 @@ namespace ParlayRMS.Common.Highcharts
             this.PlotOptions = this.PlotOptions ?? new PlotOptions();
             this.PlotOptions.Series = this.PlotOptions.Series ?? new PlotOptionsSeries();
             this.PlotOptions.Series.Point = new PlotOptionsSeriesPoint
+            {
+                Events = new PlotOptionsSeriesPointEvents
                 {
-                    Events = new PlotOptionsSeriesPointEvents
-                    {
-                        Click = clickFunction
-                    }
-                };
+                    Click = clickFunction
+                }
+            };
 
             return this;
         }
@@ -199,9 +188,9 @@ namespace ParlayRMS.Common.Highcharts
             this.PlotOptions = this.PlotOptions ?? new PlotOptions();
             this.PlotOptions.Series = this.PlotOptions.Series ?? new PlotOptionsSeries();
             this.PlotOptions.Series.Events = new PlotOptionsSeriesEvents
-                {
-                    LegendItemClick = clickFunction
-                };
+            {
+                LegendItemClick = clickFunction
+            };
 
             return this;
         }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ViewIPInfoDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="ViewIPInfoDataAccess.cs" company="">
+// Copyright (c) . All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
@@ -9,15 +9,15 @@
 
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.Data;
     using ParlayRMS.DataAccess.Interface.ViewIPInfo;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Main data-access-class for view-IP-info report and other related reports.
@@ -117,7 +117,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                 db.AddInParameter("ip", DbType.String, ip);
                 db.AddInParameter("fromdate", DbType.DateTime, date);
                 db.AddInParameter("custid", DbType.Int32, userId);
-                db.AddInParameter("sporttype", DbType.Int32, sportType);
+                db.AddInParameter("sporttype", DbType.String, sportType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -134,7 +134,10 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             StatusId = reader.ToInt32("statusid"),
                             Status = reader.ToString("status"),
                             Winlost = reader.ToDecimal("winlost"),
-                            Combo = reader.ToInt32("combo")
+                            Hdp1 = Convert.ToInt32(reader.ToDecimal("hdp1")),
+                            Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
+                            BetTeam = reader.ToString("betteam"),
+                            BetCheck = reader.ToString("betcheck"),
                         });
                     }
                 }

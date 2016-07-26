@@ -1,46 +1,25 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopWinnersDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.TopWinners;
+using ParlayRMS.DTO.BetList;
+using ParlayRMS.DTO.TopWinners;
+using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.TopWinners;
-    using ParlayRMS.DTO.BetList;
-    using ParlayRMS.DTO.TopWinners;
-    using ParlayRMS.Utility.Data;
-
-    /// <summary>
-    /// Top Winners Data Access.
-    /// </summary>
     public class TopWinnersDataAccess : BaseDataAccess, ITopWinnersDataAccess
     {
-        /// <summary>
-        /// Gets top winners.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <param name="selectTop">Number of top winners will be selected.</param>
-        /// <param name="combos">Combo values.</param>
-        /// <returns>List of top winners.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(
                                                          DateTime fromDate,
                                                          DateTime toDate,
                                                          DateTime moveBetsDay,
                                                          DateTime balanceUpDay,
-                                                         int sportsType,
+                                                         string sportsType,
                                                          int selectTop,
-                                                         string combos)
+                                                         string combos,
+                                                         string parlayTypes)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 
@@ -52,10 +31,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
                 db.AddInParameter("limitedRow", DbType.Int32, selectTop);
                 db.AddInParameter("selection", DbType.String, combos);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -83,23 +60,14 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        /// <summary>
-        /// Gets a top winner details.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <param name="combos">Combo values.</param>
-        /// <returns>Top winner details.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details(
                                                                 long custId,
                                                                 DateTime fromDate,
                                                                 DateTime toDate,
                                                                 DateTime moveBetsDay,
-                                                                int sportsType,
-                                                                string combos)
+                                                                string sportsType,
+                                                                string combos,
+                                                                string parlayTypes)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 
@@ -110,10 +78,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("todate", DbType.DateTime, toDate);
                 db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                 db.AddInParameter("selection", DbType.String, combos);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -130,8 +96,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Stake_BaseRM = reader.ToDecimal("stake_baseRM"),
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
-                            Combo = reader.ToInt32("combo"),
-                            Odds = reader.ToDecimal("odds")
+                            TotalCombo = reader.ToInt32("totalcombo"),
+                            Selection = reader.ToInt32("combo")
                         });
                     }
                 }
@@ -140,11 +106,6 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        /// <summary>
-        /// Gets a top winner bet details.
-        /// </summary>
-        /// <param name="refNo">Reference number.</param>
-        /// <returns>Top winner bet details.</returns>
         public IEnumerable<RMS_Parlay_TransDetails> RMS_Rpt_Parlay_TopWinners_Bet_Details(long refNo)
         {
             var result = new List<RMS_Parlay_TransDetails>();
@@ -187,21 +148,13 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        /// <summary>
-        /// Gets a top winner bet details.
-        /// </summary>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="sportsType">Sport type ID.</param>
-        /// <param name="combos">Combo values.</param>
-        /// <returns>Top winner bet details.</returns>
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> RMS_Rpt_Parlay_TopWinners_Details_old(
                                                                 long custId,
                                                                 DateTime fromDate,
                                                                 DateTime toDate,
-                                                                int sportsType,
-                                                                string combos)
+                                                                string sportsType,
+                                                                string combos,
+                                                                string parlayTypes)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 
@@ -211,10 +164,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("fromdate", DbType.DateTime, fromDate);
                 db.AddInParameter("todate", DbType.DateTime, toDate);
                 db.AddInParameter("selection", DbType.String, combos);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -231,14 +182,37 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Stake_BaseRM = reader.ToDecimal("stake_baseRM"),
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
-                            Combo = reader.ToInt32("combo"),
-                            Odds = reader.ToDecimal("odds")
+                            TotalCombo = reader.ToInt32("totalcombo"),
+                            Selection = reader.ToInt32("selection")
                         });
                     }
                 }
             }
 
             return result;
+        }
+
+        public BetInfo GetBetInfo(long transId)
+        {
+            using (var db = new ObjectDb("RMS_Rpt_Parlay_TopWinner_BetInfo"))
+            {
+                db.AddInParameter("transid", DbType.Int64, transId);
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new BetInfo
+                        {
+                            BetTeam = reader.ToString("betteam"),
+                            BetCheck = reader.ToString("betcheck"),
+                            Hdp1 = Convert.ToInt32(reader.ToDecimal("hdp1")),
+                            Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
+                        };
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

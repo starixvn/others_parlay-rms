@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SharedController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Andy.Nguyen" date="2012.5.23">Format styles</change>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;

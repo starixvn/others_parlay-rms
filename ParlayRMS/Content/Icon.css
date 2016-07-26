@@ -2,7 +2,7 @@
 
 .button span.addNewUSer
 {
-    background: url("../Images/Content/icon/1340012613_emblem-people.png") no-repeat center center transparent;
+    background: url("images/Content/icon/1340012613_emblem-people.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;
@@ -11,7 +11,7 @@
 
 .button span.addNewGroup
 {
-    background: url("../Images/Content/icon/1340071275_emesene.png") no-repeat center center transparent;
+    background: url("images/Content/icon/1340071275_emesene.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;
@@ -20,7 +20,7 @@
 
 .button span.addNewFunction
 {
-    background: url("../Images/Content/icon/1340012440_gtk-about.png") no-repeat center center transparent;
+    background: url("images/Content/icon/1340012440_gtk-about.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;
@@ -28,7 +28,7 @@
 }
 .button span.addNewMenu
 {
-    background: url("../Images/Content/icon/1340013585_stock_task-assigned.png") no-repeat center center transparent;
+    background: url("images/Content/icon/1340013585_stock_task-assigned.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;
@@ -37,7 +37,7 @@
 
 .button span.search
 {
-    background: url("../Images/Content/icon/1340070612_deskbar-applet.png") no-repeat center center transparent;
+    background: url("images/Content/icon/1340070612_deskbar-applet.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;

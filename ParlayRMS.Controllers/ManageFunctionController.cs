@@ -1,27 +1,16 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ManageFunctionController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Functions;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.Functions;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.ManageFunction;
+using ParlayRMS.Web.Authorization;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Functions;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Functions;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.ManageFunction;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Function Management Controller.
-    /// </summary>
     public class ManageFunctionController : BaseController
     {
         private readonly IFunctionsService _functionService = new FunctionsService();
@@ -83,14 +72,14 @@ namespace ParlayRMS.Controllers
 
             int functionId = 0;
             var result = this._functionService.CreateFunction(
-                                                   model.Name, 
-                                                   model.Key, 
-                                                   model.Description, 
-                                                   model.ParentId, 
-                                                   model.ParentName, 
-                                                   model.DisplayOrder, 
-                                                   CurrentSession.UserId, 
-                                                   CurrentContext.Ip4Address, 
+                                                   model.Name,
+                                                   model.Key,
+                                                   model.Description,
+                                                   model.ParentId,
+                                                   model.ParentName,
+                                                   model.DisplayOrder,
+                                                   CurrentSession.UserId,
+                                                   CurrentContext.Ip4Address,
                                                    out functionId);
             return this.Json(new { code = result.Code, message = result.Message, functionId = functionId });
         }
@@ -144,13 +133,13 @@ namespace ParlayRMS.Controllers
             }
 
             var result = this._functionService.UpdateFunction(
-                                                   model.Id, 
-                                                   model.Name, 
-                                                   model.Description, 
-                                                   model.ParentId, 
-                                                   model.ParentName, 
-                                                   model.DisplayOrder, 
-                                                   CurrentSession.UserId, 
+                                                   model.Id,
+                                                   model.Name,
+                                                   model.Description,
+                                                   model.ParentId,
+                                                   model.ParentName,
+                                                   model.DisplayOrder,
+                                                   CurrentSession.UserId,
                                                    CurrentContext.Ip4Address);
             return this.Json(result);
         }

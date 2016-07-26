@@ -1,17 +1,19 @@
 ﻿var refreshTime = 60000;
 var isPressSubmit = false;
-function Alert() {    
+function Alert() {
     soundManager.play('aSound');
 }
 
 function UserSettings() {
-    this.combos = '2,3,4,5,6';
+    this.combos = '2,3,4,5,6,7,8,9,10';
+    this.parlaysTypes = '1,2';
     this.sportsTypes = '1,2,3';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 200000;
     this.winningAmount = 0;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
+            && this.parlaysTypes == settings.parlaysTypes
             && this.sportsTypes == settings.sportsTypes
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
@@ -30,7 +32,7 @@ var uiController = function () {
             return $('#pause').is(':checked');
         }
     }
-} ();
+}();
 
 var settingsController = function () {
     var current = new UserSettings();
@@ -48,6 +50,14 @@ var settingsController = function () {
             }).get().join(',');
             if (combos == '') {
                 Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
+            var parlaysTypes = $("#parlaysType").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (parlaysTypes == '') {
+                Validators.show($('#parlaysType').multiselect("getButton").get(0), 'Please select your options');
                 return null;
             }
 
@@ -81,6 +91,7 @@ var settingsController = function () {
 
             var userSettings = new UserSettings();
             userSettings.combos = combos;
+            userSettings.parlaysTypes = parlaysTypes;
             userSettings.sportsTypes = sportsTypes;
             userSettings.levels = levels;
             userSettings.winningAmount = winningAmount;
@@ -89,7 +100,7 @@ var settingsController = function () {
             return userSettings;
         }
     }
-} ();
+}();
 
 var timerController = function () {
     var timeout = null;
@@ -107,6 +118,7 @@ var timerController = function () {
         var settings = settingsController.get();
         var data = {
             combos: settings.combos,
+            parlayTypes: settings.parlaysTypes,
             sportsTypes: settings.sportsTypes,
             levels: settings.levels,
             winningAmount: settings.winningAmount,
@@ -175,13 +187,19 @@ var timerController = function () {
             }
         }
     }
-} ();
+}();
 
 $(document).ready(function () {
-    $("#winningAmount").bind('keyup', function (event) {
-        FormatNumber(event, true);
-        var winningAmount = parseInt($.trim($(this).val().replace(/,/g, '')));
+    $("#winningAmount").autoNumeric({
+        aSep: ',',
+        aDec: '.',
+        vMin: '0.00',
+        vMax: '999999999999',
+        aPad: false,
+        aForm: false
+    });
 
+    $("#winningAmount").bind('keyup', function (event) {
         if (event.keyCode == 13) {
             $("#submit").click();
         }
@@ -209,9 +227,31 @@ $(document).ready(function () {
         }
     });
 
-    $("#sportsType").multiselect({
+    $("#parlaysType").multiselect({
         minWidth: 150,
         height: 82,
+        create: function () {
+            $("#parlaysType").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+    $("#sportsType").multiselect({
+        minWidth: 220,
+        height: 300,
         create: function () {
             $("#sportsType").multiselect("checkAll");
         },
@@ -299,7 +339,7 @@ $(document).ready(function () {
                 $(this).removeClass("headerSortDown").removeClass("headerSortUp");
                 this.sortDirection = "";
             });
-
+            tableSorter.currentOrderCol = null;
             isPressSubmit = true;
             timerController.start();
         }
@@ -318,6 +358,9 @@ $(document).ready(function () {
     var header = $('#header');
     tableSorter.bind2(header, table, {
         type: 'text',
+        onStart: function () {
+            table.find('tr[custid]').remove();
+        },
         onFinish: function () {
             var trs = table.children('tbody').children("tr");
             trs.each(function (index, tr) {
@@ -352,11 +395,11 @@ function FillData(table, data) {
     var length = records.length;
     var oldUserName = $(table).children('tbody').children('tr');
     var viewTotalBetId = $(table).find("tr.details").attr('custid');
-    var tbody = $(table).children('tbody');    
-    
+    var tbody = $(table).children('tbody');
+
     $(table).children('tbody').html('');
 
-    if (length > 0) {        
+    if (length > 0) {
         var r = new Array();
         var j = -1;
         for (var i = 0; i < length; i++) {
@@ -373,7 +416,7 @@ function FillData(table, data) {
             if (isHighLight) {
                 isSound = true;
             }
-            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));        
+            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));
         }
 
         if (isSound) {
@@ -381,9 +424,15 @@ function FillData(table, data) {
         }
         tbody.html(r.join(''));
 
+        //Order by current ordered column
+        var orderCol = tableSorter.currentOrderCol;
+        if (orderCol) {
+            var type = $(orderCol).attr("data-col-type");
+            tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
+        }
+
         ViewTotalBetDetails(viewTotalBetId);
     } else {
-
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
             var noinfo = CreateNoInfoRow(10);
             tbody.append(noinfo);
@@ -403,14 +452,14 @@ function CreateRow(order, item, isHighLight) {
     else {
         r[++j] = '<tr id="tr_' + item.CustId + '">';
     }
-        
+
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
-    r[++j] = '<td class="numeric">' + numeral(item.Odds).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.WinningAmount).format('0,0.00') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(item.CompanyLoseAmount).format('0,0.00') + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.CompanyLoseAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\'' + ');">' + item.TotalTicket + '</td>';
     r[++j] = '</tr>';
     return r.join('');
@@ -420,10 +469,13 @@ function ViewTotalOutstanding(username) {
     var combos = $("#combo").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
+    var parlaysTypes = $("#parlaysType").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
     var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
-    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes;
+    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlaysType=' + parlaysTypes;
     window.open(url, '_blank');
 }
 
@@ -449,13 +501,15 @@ function ViewTotalBetDetails(custId) {
         row.after('<tr class="details" custid="' + custId + '"><td colspan="8" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
-        var waitingImg = $('<img src="../Images/Content/icon_wait.gif")" />');
+        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
+        var waitingImg = $('<img src="' + imgURL + '" />');
         td.html(waitingImg);
 
         var userSettings = settingsController.get();
         var userName = row.children('td').eq(2).text();
         var data = {
             Combos: userSettings.combos,
+            parlayTypes: userSettings.parlaysTypes,
             SportsTypes: userSettings.sportsTypes,
             CustId: custId,
             UserName: userName
@@ -493,7 +547,7 @@ function ViewBetDetails(userName, transId, refNo) {
     }
 
     $.ajax({
-        url: resolveClientUrl('SystemParlayMonitor/SystemParlayBetDetails'),
+        url: resolveClientUrl('BetList/BetDetails'),
         type: 'POST',
         data: data,
         dataType: 'html',

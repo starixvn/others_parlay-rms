@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_ViewIPInfoByUser.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="RMS_Rpt_Parlay_ViewIPInfoByUser.cs" company="">
+// Copyright (c) . All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
@@ -34,6 +34,12 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public decimal Winlost { get; set; }
 
-        public int Combo { get; set; }
+        public int Hdp1 { get; set; }
+
+        public int Hdp2 { get; set; }
+
+        public string BetTeam { get; set; }
+
+        public string BetCheck { get; set; }
     }
 }

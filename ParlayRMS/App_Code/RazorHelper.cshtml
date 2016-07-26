@@ -1,28 +1,75 @@
 ﻿@using ParlayRMS.Utility
 @using ParlayRMS.ViewModel
 @helper Checkboxes(List<System.Web.Mvc.SelectListItem> items, string name)
-    {
-        foreach (var item in items)
-        {
-            var id = name + item.Value;
-    <input type="checkbox" id="@id" checked="checked" name="@name" value="@item.Value" />
-    <label for="@id" class="radio">
-        @item.Text
-    </label>
-        }
+{
+foreach (var item in items)
+{
+    var id = name + item.Value;
+        <input type="checkbox" id="@id" checked="checked" name="@name" value="@item.Value" />
+        <label for="@id" class="radio">
+            @item.Text
+        </label>
+}
 }
 @helper RenderNumberCell(decimal value)
-    {
-    if (value >= 0)
-    {
-    <td class="numeric">
-        @Formatter.FormatNumber2(value)
-    </td>
-    }
-    else
-    {
-    <td class="numeric negative">
-        @Formatter.FormatNumber2(value)
-    </td>
-    }
+{
+if (value >= 0)
+{
+        <td class="numeric">
+            @Formatter.FormatNumber2(value)
+        </td>
+}
+else
+{
+        <td class="numeric negative">
+            @Formatter.FormatNumber2(value)
+        </td>
+}
+}
+@helper SportTypesDropDown()
+{
+var listSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43 };
+    <select id="sportsType" multiple="multiple" name="sportsType">
+        <option value="1" selected="selected">Soccer only</option>
+        <option value="-3" selected="selected">Combined sports</option>
+        <optgroup label="All Other Sports" selected="selected">
+            @foreach (var sportType in listSportTypes)
+            {
+                <option value="@sportType" selected="selected">@RemotingRef.RefData.GetSportName(sportType.ToString(), "en")</option>
+            }
+
+            <option value="-2" selected="selected">Other sports</option>
+            <option value="-1" selected="selected">Combined other sports</option>
+        </optgroup>
+    </select>
+}
+@helper SportTypesDropDown(string sportTypes)
+{
+var listSportsbookSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43 };
+var listSportTypes = sportTypes.Split(',');
+var optgroupSelected = sportTypes.Contains("2,3,4,5,6,7,8,9,11,43,-2,-1") ? "selected=\"selected\"" : string.Empty;
+    <select id="sportsType" multiple="multiple" name="sportsType">
+        @SportTypesDropDownOption("1", "Soccer only", listSportTypes.Contains("1"))
+        @SportTypesDropDownOption("-3", "Combined sports", listSportTypes.Contains("-3"))
+        <optgroup label="All Other Sports" @optgroupSelected>
+            @foreach (var sportType in listSportsbookSportTypes)
+            {
+                @SportTypesDropDownOption(sportType.ToString(), RemotingRef.RefData.GetSportName(sportType.ToString(), "en"), listSportTypes.Contains(sportType.ToString()))
+            }
+
+            @SportTypesDropDownOption("-2", "Other sports", listSportTypes.Contains("-2"))
+            @SportTypesDropDownOption("-1", "Combined other sports", listSportTypes.Contains("-1"))
+        </optgroup>
+    </select>
+}
+@helper SportTypesDropDownOption(string value, string text, bool isSelected)
+{
+if (isSelected)
+{
+        <option value="@value" selected="selected">@text</option>
+}
+else
+{
+        <option value="@value">@text</option>
+}
 }

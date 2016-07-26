@@ -16,7 +16,7 @@
 .Pager span.PageSize select
 {
     border: solid 1px #3F536B;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     min-width: 50px;
     padding: 2px;
     width: auto;
@@ -46,14 +46,14 @@
     float: left;
     cursor: pointer;
     text-align: center;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     margin: 0px 5px 0px 5px;
     color: White;
     border-radius: 20px;
 }
 .Pager span.Next_Previous:hover
 {
-    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+    background: url("images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
 }
 .Pager span.First_Last_Disabled
 {
@@ -75,7 +75,7 @@
     float: left;
     cursor: pointer;
     text-align: center;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     margin: 0px 5px 0px 5px;
     color: White;
     border-radius: 20px;
@@ -83,7 +83,7 @@
 }
 .Pager span.First_Last:hover
 {
-    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+    background: url("images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
 }
 
 .Pager span.Number
@@ -93,14 +93,14 @@
     margin: 0px 5px 0px 5px;
     cursor: pointer;
     text-align: center;
-    background: url("../Images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
     color: White;
     border-radius: 20px;
     display: inline-block;
 }
 .Pager span.Number:hover
 {
-    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+    background: url("images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
 }
 .Pager span.ActiveNumber
 {
@@ -111,5 +111,5 @@
     text-align: center;
     color: White;
     border-radius: 20px;
-    background: url("../Images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
+    background: url("images/Content/red_bt_bg.png") repeat-x scroll center center transparent;
 }

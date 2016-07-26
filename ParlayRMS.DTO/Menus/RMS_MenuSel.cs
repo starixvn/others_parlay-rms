@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_MenuSel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using System;
 
 namespace ParlayRMS.DTO.Menus
 {
-    using System;
-
-    /// <summary>
-    /// Menu Model.
-    /// </summary>
     public class RMS_MenuSel
     {
         public int MenuId { get; set; }

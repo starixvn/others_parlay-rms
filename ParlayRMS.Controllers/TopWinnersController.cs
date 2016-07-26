@@ -1,61 +1,45 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopWinnersController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.Factories;
+using Fanex.BetList.Core.TicketHelper;
+using ParlayRMS.ExcelService.Writers;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.TopWinners;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.BetList;
+using ParlayRMS.Services.Interface.TopWinners;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel;
+using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
+using RemotingRef;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Factories;
-    using Fanex.BetList.Core.TicketHelper;
-    using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.BetList;
-    using ParlayRMS.Services.Implement.TopWinners;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Interface.TopWinners;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel;
-    using ParlayRMS.ViewModel.Report;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Top Winners Controller.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
     public class TopWinnersController : BaseController
     {
         private readonly ITopWinnersService _topwinnersService = new TopWinnersService();
         private readonly IBetListService _betlistService = new BetListService();
         private readonly IUsersService _userService = new UsersService();
 
-        /// <summary>
-        /// Redirects to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
             SelectListItem[] tempSelectTop = new SelectListItem[4];
             List<SelectListItem> selectTop = new List<SelectListItem>();
             List<int> moreSelection = new List<int> { 200, 500, 1000 };
-
             Config.SelectTops.CopyTo(tempSelectTop);
             selectTop.AddRange(tempSelectTop);
-
             foreach (int option in moreSelection)
             {
                 selectTop.Add(new SelectListItem
@@ -66,31 +50,23 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.SelectTops = selectTop;
-            ViewBag.DateRanges = Config.DateRanges;
-            ViewBag.SportsTypes = Config.SportsTypes;
             ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
 
-            return this.View("Index");
+            return View();
         }
 
-        /// <summary>
-        /// Gets top winners.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>JSON result represents top winners data.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult Data(TopWinnersOptions options)
         {
             try
             {
-                var records = this._topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop, options.Combos);
+                var records = _topwinnersService.GetTopWinners(options);
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
                 var totalBets = records.Sum(x => x.BetCount);
                 string title = options.GetTile();
-                return this.Json(new
+                return Json(new
                 {
                     code = 0,
                     Records = records,
@@ -103,33 +79,21 @@ namespace ParlayRMS.Controllers
             }
             catch (Exception ex)
             {
-                return this.Json(new { code = 1, message = ex.Message });
+                return Json(new { code = 1, message = ex.Message });
             }
         }
 
-        /// <summary>
-        /// Gets top winners' details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Partial view represents the details of top winners.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult DataDetails(TopWinnerDetailsOptions options)
         {
             ViewBag.CustId = options.CustId;
             ViewBag.Username = options.Username;
-            var records = this._topwinnersService.GetTopWinnerDetails(options.CustId, options.FromDate, options.ToDate, options.SportsType, options.Combos);
-            return this.PartialView("DataDetails", records);
+            var records = _topwinnersService.GetTopWinnerDetails(options);
+            return PartialView(records);
         }
 
-        /// <summary>
-        /// Gets detail of a bet.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>View represents the detail of a bet.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
         [HttpGet]
-        public ActionResult BetDetail(BetDetailsOptions options)
+        public ActionResult BetDetails(BetDetailsOptions options)
         {
             ViewBag.BetId = options.BetId;
             ViewBag.Username = options.Username;
@@ -137,16 +101,17 @@ namespace ParlayRMS.Controllers
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var data = this._topwinnersService.GetBetDetail(options.RefNo);
-            var tickets = BetListService.Map(options.RefNo, data);
+            var data = _topwinnersService.GetBetDetail(options.RefNo);
+            var tickets = _betlistService.Map(options.RefNo, data);
+            var betInfo = _topwinnersService.GetBetInfo(options.BetId);
             var stringBuilder = new StringBuilder();
             foreach (var ticket in tickets)
             {
                 if (tickets.Last() == ticket)
                 {
                     builder.AddChoice(
-                        ticket, 
-                        ticketHelper, 
+                        ticket,
+                        ticketHelper,
                         null,
                         string.Format("<div id='{0}'><div class='ticketDetail'>", ticket.BetId),
                         string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div>", ticket.Status),
@@ -155,31 +120,29 @@ namespace ParlayRMS.Controllers
                 else
                 {
                     builder.AddChoice(
-                        ticket, 
-                        ticketHelper, 
-                        null, 
+                        ticket,
+                        ticketHelper,
+                        null,
                         string.Format("<div id='{0}'><div class='ticketDetail'>", ticket.BetId),
                         string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div><div class='line'></div>", ticket.Status),
                         false);
                 }
             }
 
-            var model = new BetDetails();
-            model.TicketDetail = builder.GetBetList();
-            return this.View("BetDetails", model);
+            var model = new BetDetails
+            {
+                TicketDetail = builder.GetBetList(),
+                ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
+            };
+            return View(model);
         }
 
-        /// <summary>
-        /// Export top winners to Excel file.
-        /// </summary>
-        /// <param name="options">The options that are used to filter data.</param>
-        [AuthorizationAttribute(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
         [HttpGet]
         [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(TopWinnersOptions options)
         {
-            var records = this._topwinnersService.GetTopWinners(options.FromDate, options.ToDate, options.SportsType, options.SelectTop, options.Combos);
+            var records = _topwinnersService.GetTopWinners(options);
             var totalStake = records.Sum(x => x.Stake_BaseRM);
             var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
             var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
@@ -221,18 +184,18 @@ namespace ParlayRMS.Controllers
                 ViewLang.CompanyLoseAmount
             };
 
-            var footer = new object[] 
-            { 
-                ViewLang.Total, 
-                string.Empty, 
-                string.Empty, 
-                string.Empty, 
-                string.Empty, 
-                string.Empty, 
-                totalStake, 
-                totalWinlost, 
-                totalCompanyWinlost, 
-                totalBets 
+            var footer = new object[]
+            {
+                ViewLang.Total,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                totalStake,
+                totalWinlost,
+                totalCompanyWinlost,
+                totalBets
             };
 
             writer.WriteRows(1, new List<object[]>() { header1, header2 });
@@ -251,7 +214,7 @@ namespace ParlayRMS.Controllers
                 Winlost_BaseRM = x.Winlost_BaseRM,
                 Company_Winlost_BaseRM = x.Company_Winlost_BaseRM,
                 TotalBets = x.BetCount,
-                Avg_Odds = x.Avg_Odds
+                Avg_Odds = Math.Floor(x.Avg_Odds)
             });
 
             writer.WriteRows(3, select);

@@ -16,19 +16,13 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\SourceCode\Olympus\parlay-rms\Backup1\</UpgradeBackupLocation>
-    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,22 +42,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
-      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Couchbase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Couchbase.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Highcharts, Version=1.1.0.0, Culture=neutral, PublicKeyToken=88854f873df851bf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\DotNet.Highcharts.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.1.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Fanex.BetList.Core.2.1.0.5-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Enyim.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Common">
-      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    <Reference Include="Fanex.BetList.BetTrade, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data">
-      <HintPath>..\packages\Fanex.Data.0.5.404.62\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.13.0.21, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.13.0.21\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Fanex.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -91,24 +108,43 @@
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="ONEbook.UM, Version=2.0.2.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.2.0.2.7\lib\net40\ONEbook.UM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ONELab.UMService.Common, Version=1.0.16131.636, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONELab.UMService.1.0.16131.636\lib\net40\ONELab.UMService.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ONELab.UMService.UMClient, Version=1.0.16131.636, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONELab.UMService.1.0.16131.636\lib\net40\ONELab.UMService.UMClient.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RemotingRef.1.0.0.1\lib\net40\RemotingRef.dll</HintPath>
+      <HintPath>..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SignalR">
       <HintPath>..\Dependencies\SignalR.dll</HintPath>
@@ -126,21 +162,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\System.Net.Http.Formatting.4.0.20126.16343\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -149,67 +181,62 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebApi.Core.4.0.20126.16343\lib\net40\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\System.Web.Http.Common.4.0.20126.16343\lib\net40\System.Web.Http.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebApi.4.0.20126.16343\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetMvc.4.0.20126.16343\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Providers">
-      <HintPath>..\packages\System.Web.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetRazor.Core.2.0.20126.16343\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TplCore.1.0.4694.29951\lib\net40\TplCore.dll</HintPath>
+    <Reference Include="TplCore, Version=1.0.4854.17253, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TplCore.1.0.4854.17254\lib\net40\TplCore.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UMControllerLibrary.1.0.0.1\lib\net40\UMControllerLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\MixParlay\MixParlayAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,15 +246,298 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Content Include="Images\Content\1F.gif" />
-    <Content Include="Images\Content\1L.gif" />
-    <Content Include="Images\Content\betradar-icon.png" />
-    <Content Include="Scripts\Monitor\PotentialWinning.js" />
-    <Content Include="SpNames.BACKUPMNL.xml">
+    <Content Include="App_Configuration\Web.config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.config.txt</LastGenOutput>
+    </Content>
+    <Content Include="App_Configuration\Web.config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\LOCAL\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Images\Content\details-icon.png" />
-    <Content Include="Images\UnderMaintenance.gif" />
+    <Content Include="App_Data\PRO\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\MixParlay\Scripts\mix-parlay-monitor.js" />
+    <Content Include="Areas\MixParlay\Scripts\total-outstanding.js" />
+    <Content Include="Areas\MixParlay\Scripts\potential-winning-monitor.js" />
+    <Content Include="Areas\MixParlay\Scripts\similar-bet.js" />
+    <Content Include="Content\images\Content\1F.gif" />
+    <Content Include="Content\images\Content\1L.gif" />
+    <Content Include="Content\images\Content\ajax-loader-line-2.gif" />
+    <Content Include="Content\images\Content\ajax-loader-main.gif" />
+    <Content Include="Content\images\Content\back.png" />
+    <Content Include="Content\images\Content\betradar-icon.png" />
+    <Content Include="Content\images\Content\bg.jpg" />
+    <Content Include="Content\images\Content\blank.gif" />
+    <Content Include="Content\images\Content\bt_bg.jpg" />
+    <Content Include="Content\images\Content\calendar.png" />
+    <Content Include="Content\images\Content\checkbox.png" />
+    <Content Include="Content\images\Content\close-icon.png" />
+    <Content Include="Content\images\Content\Close.png" />
+    <Content Include="Content\images\Content\closeButton.png" />
+    <Content Include="Content\images\Content\Closeicon.png" />
+    <Content Include="Content\images\Content\collapse-small.png" />
+    <Content Include="Content\images\Content\details-icon.png" />
+    <Content Include="Content\images\Content\disable_button_bg.png" />
+    <Content Include="Content\images\Content\dropdown.png" />
+    <Content Include="Content\images\Content\dropdownicon.png" />
+    <Content Include="Content\images\Content\Drop_down_ico.png" />
+    <Content Include="Content\images\Content\euserr_bt.png" />
+    <Content Include="Content\images\Content\expand-small.png" />
+    <Content Include="Content\images\Content\expand_ico.png" />
+    <Content Include="Content\images\Content\firstGoal.gif" />
+    <Content Include="Content\images\Content\footer_bg.png" />
+    <Content Include="Content\images\Content\hoverbg.png" />
+    <Content Include="Content\images\Content\icon\1340012036_stock_task.png" />
+    <Content Include="Content\images\Content\icon\1340012054_stock_task.png" />
+    <Content Include="Content\images\Content\icon\1340012059_stock_task.png" />
+    <Content Include="Content\images\Content\icon\1340012063_stock_task.png" />
+    <Content Include="Content\images\Content\icon\1340012093_netscape.png" />
+    <Content Include="Content\images\Content\icon\1340012098_netscape.png" />
+    <Content Include="Content\images\Content\icon\1340012101_netscape.png" />
+    <Content Include="Content\images\Content\icon\1340012104_netscape.png" />
+    <Content Include="Content\images\Content\icon\1340012118_application-pgp-signature.png" />
+    <Content Include="Content\images\Content\icon\1340012121_application-pgp-signature.png" />
+    <Content Include="Content\images\Content\icon\1340012125_application-pgp-signature.png" />
+    <Content Include="Content\images\Content\icon\1340012129_application-pgp-signature.png" />
+    <Content Include="Content\images\Content\icon\1340012221_system-software-update.png" />
+    <Content Include="Content\images\Content\icon\1340012231_system-software-update.png" />
+    <Content Include="Content\images\Content\icon\1340012235_system-software-update.png" />
+    <Content Include="Content\images\Content\icon\1340012240_system-software-update.png" />
+    <Content Include="Content\images\Content\icon\1340012338_cog-icon-2-48x48.png" />
+    <Content Include="Content\images\Content\icon\1340012342_cog-icon-2-48x48.png" />
+    <Content Include="Content\images\Content\icon\1340012345_cog-icon-2-48x48.png" />
+    <Content Include="Content\images\Content\icon\1340012349_cog-icon-2-48x48.png" />
+    <Content Include="Content\images\Content\icon\1340012377_gnome-keyring-manager.png" />
+    <Content Include="Content\images\Content\icon\1340012380_gnome-keyring-manager.png" />
+    <Content Include="Content\images\Content\icon\1340012384_gnome-keyring-manager.png" />
+    <Content Include="Content\images\Content\icon\1340012387_gnome-keyring-manager.png" />
+    <Content Include="Content\images\Content\icon\1340012429_gtk-about.png" />
+    <Content Include="Content\images\Content\icon\1340012433_gtk-about.png" />
+    <Content Include="Content\images\Content\icon\1340012437_gtk-about.png" />
+    <Content Include="Content\images\Content\icon\1340012440_gtk-about.png" />
+    <Content Include="Content\images\Content\icon\1340012452_gnome-searchtool.png" />
+    <Content Include="Content\images\Content\icon\1340012455_gnome-searchtool.png" />
+    <Content Include="Content\images\Content\icon\1340012459_gnome-searchtool.png" />
+    <Content Include="Content\images\Content\icon\1340012463_gnome-searchtool.png" />
+    <Content Include="Content\images\Content\icon\1340012512_gnumeric.png" />
+    <Content Include="Content\images\Content\icon\1340012515_gnumeric.png" />
+    <Content Include="Content\images\Content\icon\1340012519_gnumeric.png" />
+    <Content Include="Content\images\Content\icon\1340012523_gnumeric.png" />
+    <Content Include="Content\images\Content\icon\1340012601_emblem-people.png" />
+    <Content Include="Content\images\Content\icon\1340012605_emblem-people.png" />
+    <Content Include="Content\images\Content\icon\1340012609_emblem-people.png" />
+    <Content Include="Content\images\Content\icon\1340012613_emblem-people.png" />
+    <Content Include="Content\images\Content\icon\1340012650_system-config-kickstart.png" />
+    <Content Include="Content\images\Content\icon\1340012653_system-config-kickstart.png" />
+    <Content Include="Content\images\Content\icon\1340012657_system-config-kickstart.png" />
+    <Content Include="Content\images\Content\icon\1340012660_system-config-kickstart.png" />
+    <Content Include="Content\images\Content\icon\1340012670_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012674_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012677_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012681_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012706_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012711_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012715_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012718_kchart.png" />
+    <Content Include="Content\images\Content\icon\1340012775_preferences-contact-list.png" />
+    <Content Include="Content\images\Content\icon\1340012778_preferences-contact-list.png" />
+    <Content Include="Content\images\Content\icon\1340012782_preferences-contact-list.png" />
+    <Content Include="Content\images\Content\icon\1340012785_preferences-contact-list.png" />
+    <Content Include="Content\images\Content\icon\1340012791_kde-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012799_kde-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012807_kde-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012811_kde-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012816_orange-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012820_orange-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012823_orange-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340012826_orange-add-folder-to-archive.png" />
+    <Content Include="Content\images\Content\icon\1340013094_human-folder-public.png" />
+    <Content Include="Content\images\Content\icon\1340013098_human-folder-public.png" />
+    <Content Include="Content\images\Content\icon\1340013101_human-folder-public.png" />
+    <Content Include="Content\images\Content\icon\1340013104_human-folder-public.png" />
+    <Content Include="Content\images\Content\icon\1340013110_human-folder-downloads.png" />
+    <Content Include="Content\images\Content\icon\1340013113_human-folder-downloads.png" />
+    <Content Include="Content\images\Content\icon\1340013117_human-folder-downloads.png" />
+    <Content Include="Content\images\Content\icon\1340013120_human-folder-downloads.png" />
+    <Content Include="Content\images\Content\icon\1340013138_blocks-mm-device-wired.png" />
+    <Content Include="Content\images\Content\icon\1340013141_blocks-mm-device-wired.png" />
+    <Content Include="Content\images\Content\icon\1340013145_blocks-mm-device-wired.png" />
+    <Content Include="Content\images\Content\icon\1340013148_blocks-mm-device-wired.png" />
+    <Content Include="Content\images\Content\icon\1340013158_insert-link.png" />
+    <Content Include="Content\images\Content\icon\1340013162_insert-link.png" />
+    <Content Include="Content\images\Content\icon\1340013166_insert-link.png" />
+    <Content Include="Content\images\Content\icon\1340013169_insert-link.png" />
+    <Content Include="Content\images\Content\icon\1340013178_window-close.png" />
+    <Content Include="Content\images\Content\icon\1340013181_window-close.png" />
+    <Content Include="Content\images\Content\icon\1340013185_window-close.png" />
+    <Content Include="Content\images\Content\icon\1340013188_window-close.png" />
+    <Content Include="Content\images\Content\icon\1340013224_kde-address-book-new.png" />
+    <Content Include="Content\images\Content\icon\1340013227_kde-address-book-new.png" />
+    <Content Include="Content\images\Content\icon\1340013231_kde-address-book-new.png" />
+    <Content Include="Content\images\Content\icon\1340013234_kde-address-book-new.png" />
+    <Content Include="Content\images\Content\icon\1340013468_xfce-system-settings.png" />
+    <Content Include="Content\images\Content\icon\1340013472_xfce-system-settings.png" />
+    <Content Include="Content\images\Content\icon\1340013477_xfce-system-settings.png" />
+    <Content Include="Content\images\Content\icon\1340013480_xfce-system-settings.png" />
+    <Content Include="Content\images\Content\icon\1340013498_insert-object.png" />
+    <Content Include="Content\images\Content\icon\1340013502_insert-object.png" />
+    <Content Include="Content\images\Content\icon\1340013506_insert-object.png" />
+    <Content Include="Content\images\Content\icon\1340013509_insert-object.png" />
+    <Content Include="Content\images\Content\icon\1340013518_application-vnd.ms-excel.png" />
+    <Content Include="Content\images\Content\icon\1340013521_application-vnd.ms-excel.png" />
+    <Content Include="Content\images\Content\icon\1340013525_application-vnd.ms-excel.png" />
+    <Content Include="Content\images\Content\icon\1340013529_application-vnd.ms-excel.png" />
+    <Content Include="Content\images\Content\icon\1340013534_old-view-refresh.png" />
+    <Content Include="Content\images\Content\icon\1340013538_old-view-refresh.png" />
+    <Content Include="Content\images\Content\icon\1340013542_old-view-refresh.png" />
+    <Content Include="Content\images\Content\icon\1340013545_old-view-refresh.png" />
+    <Content Include="Content\images\Content\icon\1340013575_stock_task-assigned.png" />
+    <Content Include="Content\images\Content\icon\1340013578_stock_task-assigned.png" />
+    <Content Include="Content\images\Content\icon\1340013582_stock_task-assigned.png" />
+    <Content Include="Content\images\Content\icon\1340013585_stock_task-assigned.png" />
+    <Content Include="Content\images\Content\icon\1340013927_openofficeorg-calc.png" />
+    <Content Include="Content\images\Content\icon\1340013930_openofficeorg-calc.png" />
+    <Content Include="Content\images\Content\icon\1340013934_openofficeorg-calc.png" />
+    <Content Include="Content\images\Content\icon\1340013938_openofficeorg-calc.png" />
+    <Content Include="Content\images\Content\icon\1340013959_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340013962_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340013979_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340013982_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340014068_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014072_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014075_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014078_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014082_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014085_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014089_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014092_stock_calendar.png" />
+    <Content Include="Content\images\Content\icon\1340014114_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340014117_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340014121_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340014124_gnome-control-center.png" />
+    <Content Include="Content\images\Content\icon\1340014132_gnome-system-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340014135_gnome-system-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340014139_gnome-system-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340014143_gnome-system-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340014220_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014226_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014230_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014236_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014351_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014355_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014361_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014372_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014391_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340014406_system-config-keyboard.png" />
+    <Content Include="Content\images\Content\icon\1340070541_gnome-session-properties.png" />
+    <Content Include="Content\images\Content\icon\1340070545_gnome-session-properties.png" />
+    <Content Include="Content\images\Content\icon\1340070549_gnome-session-properties.png" />
+    <Content Include="Content\images\Content\icon\1340070552_gnome-session-properties.png" />
+    <Content Include="Content\images\Content\icon\1340070581_bonobo-browser.png" />
+    <Content Include="Content\images\Content\icon\1340070587_bonobo-browser.png" />
+    <Content Include="Content\images\Content\icon\1340070591_bonobo-browser.png" />
+    <Content Include="Content\images\Content\icon\1340070594_bonobo-browser.png" />
+    <Content Include="Content\images\Content\icon\1340070601_deskbar-applet.png" />
+    <Content Include="Content\images\Content\icon\1340070604_deskbar-applet.png" />
+    <Content Include="Content\images\Content\icon\1340070608_deskbar-applet.png" />
+    <Content Include="Content\images\Content\icon\1340070612_deskbar-applet.png" />
+    <Content Include="Content\images\Content\icon\1340070634_preferences-system-time.png" />
+    <Content Include="Content\images\Content\icon\1340070638_preferences-system-time.png" />
+    <Content Include="Content\images\Content\icon\1340070642_preferences-system-time.png" />
+    <Content Include="Content\images\Content\icon\1340070646_preferences-system-time.png" />
+    <Content Include="Content\images\Content\icon\1340070670_application-vnd.sun.xml.calc.template.png" />
+    <Content Include="Content\images\Content\icon\1340070674_application-vnd.sun.xml.calc.template.png" />
+    <Content Include="Content\images\Content\icon\1340070677_application-vnd.sun.xml.calc.template.png" />
+    <Content Include="Content\images\Content\icon\1340070682_application-vnd.sun.xml.calc.template.png" />
+    <Content Include="Content\images\Content\icon\1340070688_kmixdocked_error.png" />
+    <Content Include="Content\images\Content\icon\1340070691_kmixdocked_error.png" />
+    <Content Include="Content\images\Content\icon\1340070695_kmixdocked_error.png" />
+    <Content Include="Content\images\Content\icon\1340070699_kmixdocked_error.png" />
+    <Content Include="Content\images\Content\icon\1340071042_galternatives.png" />
+    <Content Include="Content\images\Content\icon\1340071046_galternatives.png" />
+    <Content Include="Content\images\Content\icon\1340071050_galternatives.png" />
+    <Content Include="Content\images\Content\icon\1340071053_galternatives.png" />
+    <Content Include="Content\images\Content\icon\1340071059_stock_disconnect.png" />
+    <Content Include="Content\images\Content\icon\1340071062_stock_disconnect.png" />
+    <Content Include="Content\images\Content\icon\1340071066_stock_disconnect.png" />
+    <Content Include="Content\images\Content\icon\1340071069_stock_disconnect.png" />
+    <Content Include="Content\images\Content\icon\1340071075_bittorrent.png" />
+    <Content Include="Content\images\Content\icon\1340071079_bittorrent.png" />
+    <Content Include="Content\images\Content\icon\1340071083_bittorrent.png" />
+    <Content Include="Content\images\Content\icon\1340071086_bittorrent.png" />
+    <Content Include="Content\images\Content\icon\1340071093_preferences-desktop-user.png" />
+    <Content Include="Content\images\Content\icon\1340071096_preferences-desktop-user.png" />
+    <Content Include="Content\images\Content\icon\1340071099_preferences-desktop-user.png" />
+    <Content Include="Content\images\Content\icon\1340071103_preferences-desktop-user.png" />
+    <Content Include="Content\images\Content\icon\1340071108_gnome-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340071112_gnome-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340071116_gnome-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340071119_gnome-monitor.png" />
+    <Content Include="Content\images\Content\icon\1340071125_streamtuner.png" />
+    <Content Include="Content\images\Content\icon\1340071128_streamtuner.png" />
+    <Content Include="Content\images\Content\icon\1340071132_streamtuner.png" />
+    <Content Include="Content\images\Content\icon\1340071135_streamtuner.png" />
+    <Content Include="Content\images\Content\icon\1340071244_stock_lock-brocken.png" />
+    <Content Include="Content\images\Content\icon\1340071248_stock_lock-brocken.png" />
+    <Content Include="Content\images\Content\icon\1340071253_stock_lock-brocken.png" />
+    <Content Include="Content\images\Content\icon\1340071257_stock_lock-brocken.png" />
+    <Content Include="Content\images\Content\icon\1340071264_emesene.png" />
+    <Content Include="Content\images\Content\icon\1340071268_emesene.png" />
+    <Content Include="Content\images\Content\icon\1340071272_emesene.png" />
+    <Content Include="Content\images\Content\icon\1340071275_emesene.png" />
+    <Content Include="Content\images\Content\icon\1340071305_jajuk.png" />
+    <Content Include="Content\images\Content\icon\1340071309_jajuk.png" />
+    <Content Include="Content\images\Content\icon\1340071330_jajuk.png" />
+    <Content Include="Content\images\Content\icon\1340071335_jajuk.png" />
+    <Content Include="Content\images\Content\icon\excel_icon_small.gif" />
+    <Content Include="Content\images\Content\icon_wait.gif" />
+    <Content Include="Content\images\Content\lastGoal.gif" />
+    <Content Include="Content\images\Content\left_side_bt.png" />
+    <Content Include="Content\images\Content\left_side_search_bar.png" />
+    <Content Include="Content\images\Content\loading12.gif" />
+    <Content Include="Content\images\Content\logo.png" />
+    <Content Include="Content\images\Content\logo_c.png" />
+    <Content Include="Content\images\Content\logo_e.png" />
+    <Content Include="Content\images\Content\Menu_hover.gif" />
+    <Content Include="Content\images\Content\newuser_bt.png" />
+    <Content Include="Content\images\Content\number-sign-icon.png" />
+    <Content Include="Content\images\Content\pattern_submenu.png" />
+    <Content Include="Content\images\Content\pointer.png" />
+    <Content Include="Content\images\Content\red_bt_bg.png" />
+    <Content Include="Content\images\Content\refresh_ico.png" />
+    <Content Include="Content\images\Content\right_side_bt.png" />
+    <Content Include="Content\images\Content\right_side_search_bar.png" />
+    <Content Include="Content\images\Content\Search_bar_bg.png" />
+    <Content Include="Content\images\Content\seperator.png" />
+    <Content Include="Content\images\Content\sprites.png" />
+    <Content Include="Content\images\Content\tablesort.png" />
+    <Content Include="Content\images\Content\tablesortdown.png" />
+    <Content Include="Content\images\Content\tablesortup.png" />
+    <Content Include="Content\images\Content\table_bg.gif" />
+    <Content Include="Content\images\Content\table_title_bar_bg.png" />
+    <Content Include="Content\images\Content\table_tltle_bg.gif" />
+    <Content Include="Content\images\Content\table_tltle_bg_59.gif" />
+    <Content Include="Content\images\Content\title_bg.png" />
+    <Content Include="Content\images\Content\Top_title_bar_bg.png" />
+    <Content Include="Content\images\Content\user_icon.png" />
+    <Content Include="Content\images\Content\warning_1_20x20.png" />
+    <Content Include="Content\images\Login\hover.png" />
+    <Content Include="Content\images\Login\logo.png" />
+    <Content Include="Content\images\Login\red_bt_bg.png" />
+    <Content Include="Content\images\UnderMaintenance.gif" />
+    <None Include="Scripts\jquery-1.7-vsdoc.js" />
+    <Content Include="Scripts\autoNumeric\autoNumeric-1.9.25.js" />
+    <Content Include="Scripts\autoNumeric\autoNumeric-1.9.25.min.js" />
+    <Content Include="Scripts\jquery-1.7.js" />
+    <Content Include="Scripts\jquery-1.7.min.js" />
+    <Content Include="Scripts\Libs\multiselect\jquery.multiselect-customized.css" />
+    <Content Include="Scripts\Libs\multiselect\jquery.multiselect-customized.js" />
+    <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
     <Content Include="Scripts\Report\ViewIPInfo.js" />
   </ItemGroup>
@@ -290,271 +600,6 @@
     <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\confirm\button.gif" />
-    <Content Include="Images\confirm\header.gif" />
-    <Content Include="Images\Content\ajax-loader-line-2.gif" />
-    <Content Include="Images\Content\ajax-loader-main.gif" />
-    <Content Include="Images\Content\back.png" />
-    <Content Include="Images\Content\bg.jpg" />
-    <Content Include="Images\Content\blank.gif" />
-    <Content Include="Images\Content\bt_bg.jpg" />
-    <Content Include="Images\Content\calendar.png" />
-    <Content Include="Images\Content\checkbox.png" />
-    <Content Include="Images\Content\close-icon.png" />
-    <Content Include="Images\Content\Close.png" />
-    <Content Include="Images\Content\closeButton.png" />
-    <Content Include="Images\Content\Closeicon.png" />
-    <Content Include="Images\Content\collapse-small.png" />
-    <Content Include="Images\Content\disable_button_bg.png" />
-    <Content Include="Images\Content\dropdown.png" />
-    <Content Include="Images\Content\dropdownicon.png" />
-    <Content Include="Images\Content\Drop_down_ico.png" />
-    <Content Include="Images\Content\euserr_bt.png" />
-    <Content Include="Images\Content\expand-small.png" />
-    <Content Include="Images\Content\expand_ico.png" />
-    <Content Include="Images\Content\firstGoal.gif" />
-    <Content Include="Images\Content\footer_bg.png" />
-    <Content Include="Images\Content\hoverbg.png" />
-    <Content Include="Images\Content\icon\excel_icon_small.gif" />
-    <Content Include="Images\Content\lastGoal.gif" />
-    <Content Include="Images\Content\left_side_bt.png" />
-    <Content Include="Images\Content\left_side_search_bar.png" />
-    <Content Include="Images\Content\loading12.gif" />
-    <Content Include="Images\Content\logo.png" />
-    <Content Include="Images\Content\logo_c.png" />
-    <Content Include="Images\Content\logo_e.png" />
-    <Content Include="Images\Content\Menu_hover.gif" />
-    <Content Include="Images\Content\newuser_bt.png" />
-    <Content Include="Images\Content\number-sign-icon.png" />
-    <Content Include="Images\Content\pattern_submenu.png" />
-    <Content Include="Images\Content\pointer.png" />
-    <Content Include="Images\Content\red_bt_bg.png" />
-    <Content Include="Images\Content\refresh_ico.png" />
-    <Content Include="Images\Content\right_side_bt.png" />
-    <Content Include="Images\Content\right_side_search_bar.png" />
-    <Content Include="Images\Content\Search_bar_bg.png" />
-    <Content Include="Images\Content\seperator.png" />
-    <Content Include="Images\Content\sprites.png" />
-    <Content Include="Images\Content\tablesort.png" />
-    <Content Include="Images\Content\tablesortdown.png" />
-    <Content Include="Images\Content\tablesortup.png" />
-    <Content Include="Images\Content\table_bg.gif" />
-    <Content Include="Images\Content\table_title_bar_bg.png" />
-    <Content Include="Images\Content\table_tltle_bg.gif" />
-    <Content Include="Images\Content\table_tltle_bg_59.gif" />
-    <Content Include="Images\Content\title_bg.png" />
-    <Content Include="Images\Content\Top_title_bar_bg.png" />
-    <Content Include="Images\Content\user_icon.png" />
-    <Content Include="Images\Content\warning_1_20x20.png" />
-    <Content Include="Images\Content\icon_wait.gif" />
-    <Content Include="Images\Content\icon\1340012036_stock_task.png" />
-    <Content Include="Images\Content\icon\1340012054_stock_task.png" />
-    <Content Include="Images\Content\icon\1340012059_stock_task.png" />
-    <Content Include="Images\Content\icon\1340012063_stock_task.png" />
-    <Content Include="Images\Content\icon\1340012093_netscape.png" />
-    <Content Include="Images\Content\icon\1340012098_netscape.png" />
-    <Content Include="Images\Content\icon\1340012101_netscape.png" />
-    <Content Include="Images\Content\icon\1340012104_netscape.png" />
-    <Content Include="Images\Content\icon\1340012118_application-pgp-signature.png" />
-    <Content Include="Images\Content\icon\1340012121_application-pgp-signature.png" />
-    <Content Include="Images\Content\icon\1340012125_application-pgp-signature.png" />
-    <Content Include="Images\Content\icon\1340012129_application-pgp-signature.png" />
-    <Content Include="Images\Content\icon\1340012221_system-software-update.png" />
-    <Content Include="Images\Content\icon\1340012231_system-software-update.png" />
-    <Content Include="Images\Content\icon\1340012235_system-software-update.png" />
-    <Content Include="Images\Content\icon\1340012240_system-software-update.png" />
-    <Content Include="Images\Content\icon\1340012338_cog-icon-2-48x48.png" />
-    <Content Include="Images\Content\icon\1340012342_cog-icon-2-48x48.png" />
-    <Content Include="Images\Content\icon\1340012345_cog-icon-2-48x48.png" />
-    <Content Include="Images\Content\icon\1340012349_cog-icon-2-48x48.png" />
-    <Content Include="Images\Content\icon\1340012377_gnome-keyring-manager.png" />
-    <Content Include="Images\Content\icon\1340012380_gnome-keyring-manager.png" />
-    <Content Include="Images\Content\icon\1340012384_gnome-keyring-manager.png" />
-    <Content Include="Images\Content\icon\1340012387_gnome-keyring-manager.png" />
-    <Content Include="Images\Content\icon\1340012429_gtk-about.png" />
-    <Content Include="Images\Content\icon\1340012433_gtk-about.png" />
-    <Content Include="Images\Content\icon\1340012437_gtk-about.png" />
-    <Content Include="Images\Content\icon\1340012440_gtk-about.png" />
-    <Content Include="Images\Content\icon\1340012452_gnome-searchtool.png" />
-    <Content Include="Images\Content\icon\1340012455_gnome-searchtool.png" />
-    <Content Include="Images\Content\icon\1340012459_gnome-searchtool.png" />
-    <Content Include="Images\Content\icon\1340012463_gnome-searchtool.png" />
-    <Content Include="Images\Content\icon\1340012512_gnumeric.png" />
-    <Content Include="Images\Content\icon\1340012515_gnumeric.png" />
-    <Content Include="Images\Content\icon\1340012519_gnumeric.png" />
-    <Content Include="Images\Content\icon\1340012523_gnumeric.png" />
-    <Content Include="Images\Content\icon\1340012601_emblem-people.png" />
-    <Content Include="Images\Content\icon\1340012605_emblem-people.png" />
-    <Content Include="Images\Content\icon\1340012609_emblem-people.png" />
-    <Content Include="Images\Content\icon\1340012613_emblem-people.png" />
-    <Content Include="Images\Content\icon\1340012650_system-config-kickstart.png" />
-    <Content Include="Images\Content\icon\1340012653_system-config-kickstart.png" />
-    <Content Include="Images\Content\icon\1340012657_system-config-kickstart.png" />
-    <Content Include="Images\Content\icon\1340012660_system-config-kickstart.png" />
-    <Content Include="Images\Content\icon\1340012670_kchart.png" />
-    <Content Include="Images\Content\icon\1340012674_kchart.png" />
-    <Content Include="Images\Content\icon\1340012677_kchart.png" />
-    <Content Include="Images\Content\icon\1340012681_kchart.png" />
-    <Content Include="Images\Content\icon\1340012706_kchart.png" />
-    <Content Include="Images\Content\icon\1340012711_kchart.png" />
-    <Content Include="Images\Content\icon\1340012715_kchart.png" />
-    <Content Include="Images\Content\icon\1340012718_kchart.png" />
-    <Content Include="Images\Content\icon\1340012775_preferences-contact-list.png" />
-    <Content Include="Images\Content\icon\1340012778_preferences-contact-list.png" />
-    <Content Include="Images\Content\icon\1340012782_preferences-contact-list.png" />
-    <Content Include="Images\Content\icon\1340012785_preferences-contact-list.png" />
-    <Content Include="Images\Content\icon\1340012791_kde-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012799_kde-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012807_kde-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012811_kde-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012816_orange-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012820_orange-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012823_orange-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340012826_orange-add-folder-to-archive.png" />
-    <Content Include="Images\Content\icon\1340013094_human-folder-public.png" />
-    <Content Include="Images\Content\icon\1340013098_human-folder-public.png" />
-    <Content Include="Images\Content\icon\1340013101_human-folder-public.png" />
-    <Content Include="Images\Content\icon\1340013104_human-folder-public.png" />
-    <Content Include="Images\Content\icon\1340013110_human-folder-downloads.png" />
-    <Content Include="Images\Content\icon\1340013113_human-folder-downloads.png" />
-    <Content Include="Images\Content\icon\1340013117_human-folder-downloads.png" />
-    <Content Include="Images\Content\icon\1340013120_human-folder-downloads.png" />
-    <Content Include="Images\Content\icon\1340013138_blocks-mm-device-wired.png" />
-    <Content Include="Images\Content\icon\1340013141_blocks-mm-device-wired.png" />
-    <Content Include="Images\Content\icon\1340013145_blocks-mm-device-wired.png" />
-    <Content Include="Images\Content\icon\1340013148_blocks-mm-device-wired.png" />
-    <Content Include="Images\Content\icon\1340013158_insert-link.png" />
-    <Content Include="Images\Content\icon\1340013162_insert-link.png" />
-    <Content Include="Images\Content\icon\1340013166_insert-link.png" />
-    <Content Include="Images\Content\icon\1340013169_insert-link.png" />
-    <Content Include="Images\Content\icon\1340013178_window-close.png" />
-    <Content Include="Images\Content\icon\1340013181_window-close.png" />
-    <Content Include="Images\Content\icon\1340013185_window-close.png" />
-    <Content Include="Images\Content\icon\1340013188_window-close.png" />
-    <Content Include="Images\Content\icon\1340013224_kde-address-book-new.png" />
-    <Content Include="Images\Content\icon\1340013227_kde-address-book-new.png" />
-    <Content Include="Images\Content\icon\1340013231_kde-address-book-new.png" />
-    <Content Include="Images\Content\icon\1340013234_kde-address-book-new.png" />
-    <Content Include="Images\Content\icon\1340013468_xfce-system-settings.png" />
-    <Content Include="Images\Content\icon\1340013472_xfce-system-settings.png" />
-    <Content Include="Images\Content\icon\1340013477_xfce-system-settings.png" />
-    <Content Include="Images\Content\icon\1340013480_xfce-system-settings.png" />
-    <Content Include="Images\Content\icon\1340013498_insert-object.png" />
-    <Content Include="Images\Content\icon\1340013502_insert-object.png" />
-    <Content Include="Images\Content\icon\1340013506_insert-object.png" />
-    <Content Include="Images\Content\icon\1340013509_insert-object.png" />
-    <Content Include="Images\Content\icon\1340013518_application-vnd.ms-excel.png" />
-    <Content Include="Images\Content\icon\1340013521_application-vnd.ms-excel.png" />
-    <Content Include="Images\Content\icon\1340013525_application-vnd.ms-excel.png" />
-    <Content Include="Images\Content\icon\1340013529_application-vnd.ms-excel.png" />
-    <Content Include="Images\Content\icon\1340013534_old-view-refresh.png" />
-    <Content Include="Images\Content\icon\1340013538_old-view-refresh.png" />
-    <Content Include="Images\Content\icon\1340013542_old-view-refresh.png" />
-    <Content Include="Images\Content\icon\1340013545_old-view-refresh.png" />
-    <Content Include="Images\Content\icon\1340013575_stock_task-assigned.png" />
-    <Content Include="Images\Content\icon\1340013578_stock_task-assigned.png" />
-    <Content Include="Images\Content\icon\1340013582_stock_task-assigned.png" />
-    <Content Include="Images\Content\icon\1340013585_stock_task-assigned.png" />
-    <Content Include="Images\Content\icon\1340013927_openofficeorg-calc.png" />
-    <Content Include="Images\Content\icon\1340013930_openofficeorg-calc.png" />
-    <Content Include="Images\Content\icon\1340013934_openofficeorg-calc.png" />
-    <Content Include="Images\Content\icon\1340013938_openofficeorg-calc.png" />
-    <Content Include="Images\Content\icon\1340013959_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340013962_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340013979_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340013982_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340014068_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014072_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014075_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014078_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014082_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014085_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014089_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014092_stock_calendar.png" />
-    <Content Include="Images\Content\icon\1340014114_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340014117_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340014121_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340014124_gnome-control-center.png" />
-    <Content Include="Images\Content\icon\1340014132_gnome-system-monitor.png" />
-    <Content Include="Images\Content\icon\1340014135_gnome-system-monitor.png" />
-    <Content Include="Images\Content\icon\1340014139_gnome-system-monitor.png" />
-    <Content Include="Images\Content\icon\1340014143_gnome-system-monitor.png" />
-    <Content Include="Images\Content\icon\1340014220_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014226_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014230_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014236_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014351_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014355_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014361_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014372_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014391_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340014406_system-config-keyboard.png" />
-    <Content Include="Images\Content\icon\1340070541_gnome-session-properties.png" />
-    <Content Include="Images\Content\icon\1340070545_gnome-session-properties.png" />
-    <Content Include="Images\Content\icon\1340070549_gnome-session-properties.png" />
-    <Content Include="Images\Content\icon\1340070552_gnome-session-properties.png" />
-    <Content Include="Images\Content\icon\1340070581_bonobo-browser.png" />
-    <Content Include="Images\Content\icon\1340070587_bonobo-browser.png" />
-    <Content Include="Images\Content\icon\1340070591_bonobo-browser.png" />
-    <Content Include="Images\Content\icon\1340070594_bonobo-browser.png" />
-    <Content Include="Images\Content\icon\1340070601_deskbar-applet.png" />
-    <Content Include="Images\Content\icon\1340070604_deskbar-applet.png" />
-    <Content Include="Images\Content\icon\1340070608_deskbar-applet.png" />
-    <Content Include="Images\Content\icon\1340070612_deskbar-applet.png" />
-    <Content Include="Images\Content\icon\1340070634_preferences-system-time.png" />
-    <Content Include="Images\Content\icon\1340070638_preferences-system-time.png" />
-    <Content Include="Images\Content\icon\1340070642_preferences-system-time.png" />
-    <Content Include="Images\Content\icon\1340070646_preferences-system-time.png" />
-    <Content Include="Images\Content\icon\1340070670_application-vnd.sun.xml.calc.template.png" />
-    <Content Include="Images\Content\icon\1340070674_application-vnd.sun.xml.calc.template.png" />
-    <Content Include="Images\Content\icon\1340070677_application-vnd.sun.xml.calc.template.png" />
-    <Content Include="Images\Content\icon\1340070682_application-vnd.sun.xml.calc.template.png" />
-    <Content Include="Images\Content\icon\1340070688_kmixdocked_error.png" />
-    <Content Include="Images\Content\icon\1340070691_kmixdocked_error.png" />
-    <Content Include="Images\Content\icon\1340070695_kmixdocked_error.png" />
-    <Content Include="Images\Content\icon\1340070699_kmixdocked_error.png" />
-    <Content Include="Images\Content\icon\1340071042_galternatives.png" />
-    <Content Include="Images\Content\icon\1340071046_galternatives.png" />
-    <Content Include="Images\Content\icon\1340071050_galternatives.png" />
-    <Content Include="Images\Content\icon\1340071053_galternatives.png" />
-    <Content Include="Images\Content\icon\1340071059_stock_disconnect.png" />
-    <Content Include="Images\Content\icon\1340071062_stock_disconnect.png" />
-    <Content Include="Images\Content\icon\1340071066_stock_disconnect.png" />
-    <Content Include="Images\Content\icon\1340071069_stock_disconnect.png" />
-    <Content Include="Images\Content\icon\1340071075_bittorrent.png" />
-    <Content Include="Images\Content\icon\1340071079_bittorrent.png" />
-    <Content Include="Images\Content\icon\1340071083_bittorrent.png" />
-    <Content Include="Images\Content\icon\1340071086_bittorrent.png" />
-    <Content Include="Images\Content\icon\1340071093_preferences-desktop-user.png" />
-    <Content Include="Images\Content\icon\1340071096_preferences-desktop-user.png" />
-    <Content Include="Images\Content\icon\1340071099_preferences-desktop-user.png" />
-    <Content Include="Images\Content\icon\1340071103_preferences-desktop-user.png" />
-    <Content Include="Images\Content\icon\1340071108_gnome-monitor.png" />
-    <Content Include="Images\Content\icon\1340071112_gnome-monitor.png" />
-    <Content Include="Images\Content\icon\1340071116_gnome-monitor.png" />
-    <Content Include="Images\Content\icon\1340071119_gnome-monitor.png" />
-    <Content Include="Images\Content\icon\1340071125_streamtuner.png" />
-    <Content Include="Images\Content\icon\1340071128_streamtuner.png" />
-    <Content Include="Images\Content\icon\1340071132_streamtuner.png" />
-    <Content Include="Images\Content\icon\1340071135_streamtuner.png" />
-    <Content Include="Images\Content\icon\1340071244_stock_lock-brocken.png" />
-    <Content Include="Images\Content\icon\1340071248_stock_lock-brocken.png" />
-    <Content Include="Images\Content\icon\1340071253_stock_lock-brocken.png" />
-    <Content Include="Images\Content\icon\1340071257_stock_lock-brocken.png" />
-    <Content Include="Images\Content\icon\1340071264_emesene.png" />
-    <Content Include="Images\Content\icon\1340071268_emesene.png" />
-    <Content Include="Images\Content\icon\1340071272_emesene.png" />
-    <Content Include="Images\Content\icon\1340071275_emesene.png" />
-    <Content Include="Images\Content\icon\1340071305_jajuk.png" />
-    <Content Include="Images\Content\icon\1340071309_jajuk.png" />
-    <Content Include="Images\Content\icon\1340071330_jajuk.png" />
-    <Content Include="Images\Content\icon\1340071335_jajuk.png" />
-    <Content Include="Images\Login\hover.png" />
-    <Content Include="Images\Login\logo.png" />
-    <Content Include="Images\Login\red_bt_bg.png" />
-    <Content Include="Images\Tooltip\tipBtm.png" />
-    <Content Include="Images\Tooltip\tipMid.png" />
-    <Content Include="Images\Tooltip\tipTop.png" />
     <Content Include="ExcelTemplates\Winloss.xls" />
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="ExcelTemplates\MemberWinLoss.xls" />
@@ -562,17 +607,57 @@
     <Content Include="DangerousAgents.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.BACKUPMNL.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="readme.txt" />
+    <Content Include="Areas\MixParlay\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Filter.cshtml" />
+    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Detail.cshtml" />
+    <Content Include="Areas\MixParlay\Views\BetList\BetDetails.cshtml" />
+    <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Filter.cshtml" />
+    <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\BetDetails.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\Data.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\SimilarBet\NotFound.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\AgentResult.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\Index.cshtml" />
+    <Content Include="Areas\MixParlay\Views\TotalOutstanding\MemberResult.cshtml" />
+    <Content Include="App_Configuration\Configuration.ttinclude" />
+    <Content Include="App_Configuration\DEV\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\LOCAL\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\MASTER\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\MNL\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\PRO\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\SIT\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\UAT\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\Web.DEV.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.LOCAL.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.MASTER.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.MNL.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.PRO.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.SIT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configuration\Web.UAT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />
     <Content Include="Scripts\ManageAgent.js" />
-    <Content Include="Scripts\Monitor\SystemParlay.js" />
     <Content Include="Scripts\Monitor\DangerMonitor.js" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
@@ -581,8 +666,6 @@
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.min.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.more.js" />
-    <Content Include="Scripts\Libs\jquery\jquery.js" />
-    <Content Include="Scripts\Libs\jquery\jquery.min.js" />
     <Content Include="Scripts\Libs\simplemodal\jquery.simplemodal.js" />
     <Content Include="Scripts\Libs\simplemodal\jquery.simplemodal.min.js" />
     <Content Include="Scripts\Libs\sortElements\jquery.sortElements.js" />
@@ -610,7 +693,7 @@
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.min.js" />
     <Content Include="Scripts\ManageMember.js" />
     <Content Include="Scripts\Libs\contextmenu\jquery.contextMenu.js" />
-    <Content Include="Scripts\Monitor\MixParlay.js" />
+    <Content Include="Scripts\Monitor\Parlay.js" />
     <Content Include="Scripts\Report\SimilarBets.js" />
     <Content Include="Scripts\Report\TopWinners.js" />
     <Content Include="Scripts\UnderMaintenance.js" />
@@ -632,14 +715,7 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
-    <Content Include="SpNames.local.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="SpNames.prod.xml" />
-    <Content Include="SpNames.uat.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="SpNames.xml">
+    <Content Include="App_Data\UAT\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
@@ -667,27 +743,17 @@
     <Content Include="Views\ManageAgent\SearchBar.cshtml" />
     <Content Include="Views\ManageAgent\AddAgent.cshtml" />
     <Content Include="Views\ManageAgent\AgentList.cshtml" />
-    <Content Include="Views\SystemParlayMonitor\Filter.cshtml" />
-    <Content Include="Views\SystemParlayMonitor\Index.cshtml" />
-    <Content Include="Views\SystemParlayMonitor\BetDetails.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\ViewIPInfo\Index.cshtml" />
     <Content Include="Views\ViewIPInfo\Drilldown.cshtml" />
     <Content Include="Views\ViewIPInfo\BetDetails.cshtml" />
-    <Content Include="Web.local.config" />
-    <Content Include="Web.prod.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\ViewIPInfo\IpStats.cshtml" />
     <Content Include="Views\PotentialWinning\Index.cshtml" />
     <Content Include="Views\PotentialWinning\Filter.cshtml" />
     <Content Include="Views\PotentialWinning\ViewDetailList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -702,6 +768,10 @@
     <ProjectReference Include="..\ParlayRMS.Controllers\ParlayRMS.Controllers.csproj">
       <Project>{4C610986-FD5A-4729-A5C7-747667A0EF9E}</Project>
       <Name>ParlayRMS.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParlayRMS.MixParlay\ParlayRMS.MixParlay.csproj">
+      <Project>{4c1b60f6-45be-4475-b238-0be34b27e72f}</Project>
+      <Name>ParlayRMS.MixParlay</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Web.Authorization\ParlayRMS.Web.Authorization.csproj">
       <Project>{46A0F82B-E451-4048-8409-031152B587A2}</Project>
@@ -818,10 +888,10 @@
     <Content Include="Views\ManageMember\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\Index.cshtml" />
+    <Content Include="Views\ParlayMonitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\BetDetails.cshtml" />
+    <Content Include="Views\BetList\BetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Language.cshtml" />
@@ -839,7 +909,7 @@
     <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Monitor\MixParlay\Filter.cshtml" />
+    <Content Include="Views\ParlayMonitor\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ManageUser\ResetOwnerPassword.cshtml" />
@@ -856,6 +926,7 @@
   <ItemGroup>
     <Content Include="Views\Shared\_ErrorMessage.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

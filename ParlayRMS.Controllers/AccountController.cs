@@ -1,61 +1,34 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AccountController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ONEbook.UM.Services;
+using ONEbook.UM.Services.Impl;
+using ParlayRMS.DTO;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Users;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.ViewModel.Account;
+using ParlayRMS.Web.Authorization;
+using ParlayRMS.Web.Context;
+using ParlayRMS.Web.Session;
+using System;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using ParlayRMS.DTO;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Users;
-    using ParlayRMS.Services.Implement.Systems;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.ViewModel.Account;
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Web.Context;
-    using ParlayRMS.Web.Session;
-
-    /// <summary>
-    /// Account Controller.
-    /// </summary>
     public class AccountController : Controller
     {
+        private readonly IMaintenanceService _maintenanceService = new MaintenanceService();
         private readonly IAuthorizationService _authorizationService = new AuthorizationService();
-        private readonly MaintenanceService _maintenanceService = new MaintenanceService();
         private readonly ICurrentContext _currentContext = new CurrentContext();
         private readonly ICurrentSession _currentSession = new CurrentSession();
 
-        #region Login
-
-        /// <summary>
-        /// GET method: gets login form.
-        /// </summary>
-        /// <returns>Login page.</returns>
         [HttpGet]
         public ActionResult Login()
         {
-            var maintenanceInfo = _maintenanceService.GetMaintenanceInfo();
-            if (maintenanceInfo.IsDownTime)
-            {
-                return this.RedirectToAction("Offline", "Account");
-            }
-
-            return this.PartialView();
+            return PartialView();
         }
 
-        /// <summary>
-        /// POST method: submits the login form.
-        /// </summary>
-        /// <param name="model">Model that contains the login information.</param>
-        /// <returns>Whether the user login successfully or not.</returns>
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginModel model)
@@ -67,165 +40,130 @@ namespace ParlayRMS.Controllers
                 var request = new Request
                 {
                     Browser = Request.Browser.Browser,
-                    CountryCode = this._currentContext.CountryCode,
-                    Domain = this._currentContext.FullDomainName,
-                    Ip = this._currentContext.Ip4Address
+                    CountryCode = _currentContext.CountryCode,
+                    Domain = _currentContext.FullDomainName,
+                    Ip = _currentContext.Ip4Address
                 };
 
-                var user = this._authorizationService.ValidateUser(model.UserName, model.Password, this._currentSession.NetSessionId, request, out result, out userId);
+                var user = _authorizationService.ValidateUser(model.UserName, model.Password, _currentSession.NetSessionId, request, out result, out userId);
                 if (result.IsSuccessful)
                 {
-                    this.CreateSession(user, userId);
-                    this.CreateAuthInfo(user);
-                    return this.RedirectToAction("Index", "Home");
+                    CreateSession(user, userId);
+                    CreateAuthInfo(user);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ViewBag.ErrorMessage = result.Message;
-                    return this.PartialView(model);
+                    return PartialView(model);
                 }
             }
 
-            return this.PartialView(model);
+            return PartialView(model);
         }
 
-        #endregion Login
-
-        #region UM Maintenance
-
-        /// <summary>
-        /// Redirects to Under Maintenance.
-        /// </summary>
-        /// <returns>Under Maintenance view.</returns>
         public ActionResult Offline()
         {
-            var maintenanceInfo = _maintenanceService.GetMaintenanceInfo();
-            if (maintenanceInfo.IsDownTime)
+            if (_maintenanceService.IsUnderMaintenance())
             {
-                ViewBag.UmFromTime = maintenanceInfo.TimeFrom;
-                ViewBag.UmToTime = maintenanceInfo.TimeTo;
-                return this.PartialView();
+                var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
+                ViewBag.UmFromTime = underMaintenanceTime.From;
+                ViewBag.UmToTime = underMaintenanceTime.To;
+                return PartialView();
             }
             else
             {
-                return this.RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Account");
             }
         }
 
-        /// <summary>
-        /// Checks whether the system is in the offline time.
-        /// </summary>
-        /// <returns>Status index.</returns>
-        public int ReCheckInOffline()
+        public JsonResult ReCheckInOffline()
         {
-            var maintenanceInfo = _maintenanceService.GetMaintenanceInfo();
-            if (!maintenanceInfo.IsDownTime)
+            return Json(new
             {
-                return (int)StatusKickedOut.Login;
-            }
-
-            return (int)StatusKickedOut.Maintenance;
+                code = 0,
+                message = string.Empty
+            });
         }
 
-        #endregion UM Maintenance
-
-        #region Logout
-
-        /// <summary>
-        /// Re-check the login status.
-        /// </summary>
-        /// <returns>Status index.</returns>
-        public int ReCheckIn()
+        public JsonResult ReCheckIn()
         {
-            var maintenanceInfo = _maintenanceService.GetMaintenanceInfo();
-            var userId = this._currentSession.OnUserId;
-            var userName = this._currentSession.UserName;
-
-            if (maintenanceInfo.IsDownTime)
-            {
-                this.ClearSessionAndCookies();
-
-                this.LogOut(userId, userName);
-                return (int)StatusKickedOut.Maintenance;
-            }
+            var userId = _currentSession.OnUserId;
+            var userName = _currentSession.UserName;
 
             var re_CheckIn = Utility.AppSetting.IsReCheckIn;
             if (!re_CheckIn)
             {
-                return (int)StatusKickedOut.Continue;
+                return Json(new
+                {
+                    code = StatusKickedOut.Continue
+                });
             }
 
             if (userId <= 0)
             {
-                this.ClearSessionAndCookies();
-                return (int)StatusKickedOut.KickedOut;
+                ClearSessionAndCookies();
+                return Json(new
+                {
+                    code = StatusKickedOut.KickedOut
+                });
             }
 
-            if (this._authorizationService.ReLogin(userId) == false)
+            if (_authorizationService.ReLogin(userId) == false)
             {
-                return (int)StatusKickedOut.Continue;
+                return Json(new
+                {
+                    code = StatusKickedOut.Continue
+                });
             }
             else
             {
-                this.LogOut(userId, userName);
-                return (int)StatusKickedOut.KickedOut;
+                LogOut(userId, userName);
+                return Json(new
+                {
+                    code = StatusKickedOut.KickedOut
+                });
             }
         }
 
-        /// <summary>
-        /// Signs the user out.
-        /// </summary>
-        /// <returns>Redirect to Login form.</returns>
         public ActionResult SignOut()
         {
-            var userId = this._currentSession.OnUserId;
-            var userName = this._currentSession.UserName;
+            var userId = _currentSession.OnUserId;
+            var userName = _currentSession.UserName;
             if (userId > 0)
             {
-                this.LogOut(userId, userName);
+                LogOut(userId, userName);
             }
             else
             {
-                this.ClearSessionAndCookies();
+                ClearSessionAndCookies();
             }
 
-            return this.Redirect(FormsAuthentication.LoginUrl);
+            return Redirect(FormsAuthentication.LoginUrl);
         }
 
-        /// <summary>
-        /// Signs the user out.
-        /// </summary>
-        /// <param name="userId">The on user identifier.</param>
-        /// <param name="userName">The username.</param>
         private void LogOut(int userId, string userName)
         {
             try
             {
-                this._authorizationService.Logout(userId, userName);
+                _authorizationService.Logout(userId, userName);
             }
-            catch (Exception)
+            catch
             {
-                throw; ////ex;
+                throw;
             }
             finally
             {
-                this.ClearSessionAndCookies();
+                ClearSessionAndCookies();
             }
         }
 
-        /// <summary>
-        /// Clears the session and cookies.
-        /// </summary>
         private void ClearSessionAndCookies()
         {
             FormsAuthentication.SignOut();
             Session.Clear();
         }
 
-        /// <summary>
-        /// Creates the authentication information.
-        /// </summary>
-        /// <param name="user">The current login user.</param>
         private void CreateAuthInfo(User user)
         {
             var authInfo = new AuthInfo { UserId = user.Id, GroupId = 1, GroupName = "group name" };
@@ -237,19 +175,12 @@ namespace ParlayRMS.Controllers
             Response.Cookies.Add(authCookie);
         }
 
-        /// <summary>
-        /// Creates new session.
-        /// </summary>
-        /// <param name="user">The login user.</param>
-        /// <param name="userId">The on user identifier.</param>
         private void CreateSession(User user, int userId)
         {
-            this._currentSession.UserName = user.Name;
-            this._currentSession.UserId = user.Id;
-            this._currentSession.CustId = user.Id;
-            this._currentSession.OnUserId = userId;
+            _currentSession.UserName = user.Name;
+            _currentSession.UserId = user.Id;
+            _currentSession.CustId = user.Id;
+            _currentSession.OnUserId = userId;
         }
-
-        #endregion Logout
     }
 }

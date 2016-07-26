@@ -1,49 +1,25 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2013.09.16">Created</change>
-// </history>
+﻿using Fanex.Data;
+using ParlayRMS.DataAccess.Interface.MemberWinLoss;
+using ParlayRMS.DTO.MemberWinLoss;
+using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.MemberWinLoss;
-    using ParlayRMS.DTO.MemberWinLoss;
-    using ParlayRMS.Utility.Data;
-
-    /// <summary>
-    /// Member Win Loss Data Access layer.
-    /// </summary>
     public class MemberWinLossDataAccess : BaseDataAccess, IMemberWinLossDataAccess
     {
-        /// <summary>
-        /// Get Member Win Loss data based on passed filter conditions.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Type of the sports.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss.</returns>
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinLoss(
                                                              DateTime fromDate,
                                                              DateTime toDate,
                                                              DateTime moveBetsDay,
                                                              DateTime balanceUpDay,
-                                                             int betType,
-                                                             int sportsType,
+                                                             string parlayTypes,
+                                                             string sportsType,
                                                              string combos,
                                                              long custId)
-        {            
+        {
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
             using (var db = new ObjectDb("RMS_Rpt_Parlay_MemberWinLoss"))
@@ -53,11 +29,9 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                 db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
                 db.AddInParameter("selection", DbType.String, combos);
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("custid", DbType.Int32, custId);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -82,25 +56,13 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
             return result;
         }
 
-        /// <summary>
-        /// Get Member Win Loss data for Agent view based on passed filter conditions.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="toDate">To date value.</param>
-        /// <param name="moveBetsDay">The move bets day.</param>
-        /// <param name="balanceUpDay">Balance Up Day.</param>
-        /// <param name="betType">Bet type ID.</param>
-        /// <param name="sportsType">Type of the sports.</param>
-        /// <param name="combos">Combos value.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <returns>List of RMS_RPT_Parlay_MemberWinLoss objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_AgentWinLoss(
                                                              DateTime fromDate,
                                                              DateTime toDate,
                                                              DateTime moveBetsDay,
                                                              DateTime balanceUpDay,
-                                                             int betType,
-                                                             int sportsType,
+                                                             string parlayTypes,
+                                                             string sportsType,
                                                              string combos,
                                                              long custId)
         {
@@ -112,12 +74,10 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("todate", DbType.DateTime, toDate);
                 db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                 db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
+                db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("custid", DbType.Int32, custId);
-                if (sportsType != 0)
-                {
-                    db.AddInParameter("sporttype", DbType.Int32, sportsType);
-                }
+                db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())
                 {

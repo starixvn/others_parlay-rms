@@ -19,12 +19,17 @@
                                 @Html.DropDownList("combo", (List<SelectListItem>)ViewBag.Combos, new { multiple = "multiple" })
                             </td>
                             <td style="width: 90px">
+                                @Html.Label("parlaysType", ViewLang.ParlayType, new { @class = "lable" })
+                            </td>
+                            <td style="width: 150px">
+                                @Html.DropDownList("parlaysType", (List<SelectListItem>)ViewBag.ParlayTypes, new { multiple = "multiple" })
+                            </td>
+                            <td style="width: 110px">
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
                             <td style="width: 150px">
-                                @Html.DropDownList("sportsType", (List<SelectListItem>)ViewBag.SportsTypes, new { multiple = "multiple" })
+                                @RazorHelper.SportTypesDropDown()
                             </td>
-                            
                             <td>
                                 @Html.Label("winningAmount", ViewLang.WinningAmount + " (RM)", new { @class = "lable" })
                             </td>

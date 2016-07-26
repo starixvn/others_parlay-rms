@@ -1,16 +1,5 @@
-// --------------------------------------------------------------------------
-// <copyright file="RMS_Parlay_TransDetails.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.BetList
 {
-    /// <summary>
-    /// RMS_Parlay_TransDetails model.
-    /// </summary>
     public class RMS_Parlay_TransDetails
     {
         public long TransId { get; set; }
@@ -52,5 +41,7 @@ namespace ParlayRMS.DTO.BetList
         public string BetStatus { get; set; }
 
         public string BetCheck { get; set; }
+
+        public decimal Stake { get; set; }
     }
 }

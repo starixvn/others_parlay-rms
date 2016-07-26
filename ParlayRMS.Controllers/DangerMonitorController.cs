@@ -1,32 +1,20 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DangerMonitorController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2013.10.23">Created</change>
-// </history>
+﻿using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Agents;
+using ParlayRMS.Services.Implement.DangerMonitor;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.Agents;
+using ParlayRMS.Services.Interface.DangerMonitor;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel;
+using ParlayRMS.ViewModel.DangerMonitor;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Agents;
-    using ParlayRMS.Services.Implement.DangerMonitor;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Agents;
-    using ParlayRMS.Services.Interface.DangerMonitor;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel;
-    using ParlayRMS.ViewModel.DangerMonitor;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Danger monitor controller.
-    /// </summary>
     public class DangerMonitorController : BaseController
     {
         private readonly IDangerMonitorService _dangerMonitorService = new DangerMonitorService();

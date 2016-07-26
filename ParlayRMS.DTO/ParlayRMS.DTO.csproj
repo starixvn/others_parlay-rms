@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\RMS_DangerousAgentSel.cs" />
+    <Compile Include="BetList\BetListData.cs" />
+    <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
     <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor.cs" />
     <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor_Details.cs" />
@@ -60,12 +62,12 @@
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="SystemParlayMonitor\RMS_Monitor_SystemParlay_Betlist.cs" />
+    <Compile Include="TopWinners\BetInfo.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
     <Compile Include="Common\RMS_SelBalanceUpDay.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner.cs" />
     <Compile Include="Members\RMS_CustomerSel.cs" />
-    <Compile Include="MixParlayMonitor\RMS_Monitor_Parlay_Betlist.cs" />
+    <Compile Include="ParlayMonitor\RMS_Monitor_Parlay_Betlist.cs" />
     <Compile Include="Charts\RMS_Monitor_Parlay_SelectionByTurnover_Event.cs" />
     <Compile Include="Charts\RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype.cs" />
     <Compile Include="Charts\RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice.cs" />

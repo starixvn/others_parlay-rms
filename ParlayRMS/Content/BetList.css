@@ -21,10 +21,9 @@
     color: #B50000;
     font-weight: bold !important;
 }
-.handicap .odds
+.odds
 {
     color: #003399;
-    font-size: 8pt;
 }
 div.match + div.league
 {
@@ -36,7 +35,6 @@ div.match + div.league
 {
     background: none repeat scroll 0 0 transparent;
     font-weight: normal;
-    
     text-transform: none;
 }
 .bettype
@@ -46,7 +44,7 @@ div.match + div.league
 }
 .firstGoal
 {
-    background: url("../Images/Content/firstGoal.gif") no-repeat scroll center center transparent;
+    background: url("images/Content/firstGoal.gif") no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -54,7 +52,7 @@ div.match + div.league
 }
 .lastGoal
 {
-    background: url("../Images/Content/lastGoal.gif") no-repeat scroll center center transparent;
+    background: url("images/Content/lastGoal.gif") no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -62,7 +60,7 @@ div.match + div.league
 }
 .fhFirstGoal
 {
-    background: url(../Images/Content/1F.gif) no-repeat scroll center center transparent;
+    background: url(images/Content/1F.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -70,7 +68,7 @@ div.match + div.league
 }
 .fhLastGoal
 {
-    background: url(../Images/Content/1L.gif) no-repeat scroll center center transparent;
+    background: url(images/Content/1L.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -106,7 +104,7 @@ div.match + div.league
 }
 .detail
 {
-    background: url("../Images/Content/q_Icon2_1.png") no-repeat scroll center center transparent;
+    background: url("images/Content/q_Icon2_1.png") no-repeat scroll center center transparent;
     color: #755200;
     display: inline;
     font-weight: bold;
@@ -117,7 +115,7 @@ div.match + div.league
 }
 .detail:hover
 {
-    background: url("../Images/Content/q_Icon_2.png") no-repeat scroll center center transparent;
+    background: url("images/Content/q_Icon_2.png") no-repeat scroll center center transparent;
     color: #755200;
     cursor: pointer;
     display: inline;
@@ -136,7 +134,7 @@ div.match + div.league
 }
 .scoremapIcon
 {
-    background: url("../Images/Content/ScoreMapWL.png") no-repeat scroll 0 0 transparent;
+    background: url("images/Content/ScoreMapWL.png") no-repeat scroll 0 0 transparent;
     height: 18px;
     margin: 3px;
     width: 18px;
@@ -184,7 +182,7 @@ div.match + div.league
 
 .markDiv
 {
-    background: url("../Images/Content/number-sign-icon.png") no-repeat scroll center center transparent;
+    background: url("images/Content/number-sign-icon.png") no-repeat scroll center center transparent;
     clear: both;
     display: inline-block;
     height: 16px;
@@ -197,7 +195,7 @@ div.match + div.league
     clear: both;
     float: left;
     max-width: 600px;
-    width: 352px;  
+    width: 352px;
 }
 .ticketStatus
 {
@@ -212,4 +210,3 @@ div.void
 {
     text-decoration: line-through;
 }
-

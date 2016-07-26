@@ -1,37 +1,20 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BetListService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using Fanex.BetList.Core.Entities;
+using ParlayRMS.DataAccess.Implement.BetList;
+using ParlayRMS.DataAccess.Interface.BetList;
+using ParlayRMS.DTO.BetList;
+using ParlayRMS.Services.Interface.BetList;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.BetList
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Fanex.BetList.Core.Entities;
-    using ParlayRMS.DataAccess.Implement.BetList;
-    using ParlayRMS.DataAccess.Interface.BetList;
-    using ParlayRMS.DTO.BetList;
-    using ParlayRMS.Services.Interface.BetList;
-
-    /// <summary>
-    /// Bet List Service.
-    /// </summary>
     public class BetListService : BaseService, IBetListService
     {
         private readonly IBetListDataAccess _betListDataAccess = new BetListDataAccess();
 
-        /// <summary>
-        /// Maps Transaction Detail to Ticket Information.
-        /// </summary>
-        /// <param name="refNo">Reference number.</param>
-        /// <param name="data">Transaction data.</param>
-        /// <returns>List of Ticket objects.</returns>
-        public static IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
+        public IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
         {
-            List<ITicket> result = new List<ITicket>();
+            var result = new List<ITicket>();
             foreach (var item in data)
             {
                 ITicket ticket = new Ticket
@@ -56,7 +39,8 @@ namespace ParlayRMS.Services.Implement.BetList
                     MatchCode = item.MatchCode.ToString(),
                     RefNo = refNo.ToString(),
                     Status = item.Status,
-                    BetCheck = item.BetCheck
+                    BetCheck = item.BetCheck,
+                    Stake = item.Stake
                 };
 
                 result.Add(ticket);
@@ -65,15 +49,20 @@ namespace ParlayRMS.Services.Implement.BetList
             return result.OrderBy(x => x.BetId).ToList();
         }
 
-        /// <summary>
-        /// Creates choice.
-        /// </summary>
-        /// <param name="refNo">Reference number.</param>
-        /// <returns>List of tickets.</returns>
+        public BetListData GetBetListData(long refNo)
+        {
+            return _betListDataAccess.RMS_Parlay_TransDetails(refNo);
+        }
+
         public IEnumerable<ITicket> CreateChoice(long refNo)
         {
-            var data = this._betListDataAccess.RMS_Parlay_TransDetails(refNo);
-            return Map(refNo, data);
+            var data = GetBetListData(refNo);
+            return Map(refNo, data.Tickets);
+        }
+
+        public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
+        {
+            return _betListDataAccess.RMS_Monitor_Parlay_BetInfo(transId);
         }
     }
 }

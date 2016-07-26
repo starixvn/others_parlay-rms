@@ -1,31 +1,23 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Config.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models;
+using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Web.Mvc;
-    using ParlayRMS.Models;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Configuration class.
-    /// </summary>
     public static class Config
     {
         private static List<SelectListItem> _sportsTypes;
-        private static List<SelectListItem> _betTypes;
         private static List<SelectListItem> _selectTops;
         private static List<SelectListItem> _dateRanges;
         private static List<SelectListItem> _combos;
+        private static List<SelectListItem> _parlayTypes;
+        private static List<SelectListItem> _reportTypes;
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         static Config()
         {
             _sportsTypes = new List<SelectListItem>()
@@ -34,11 +26,6 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() },
                 new SelectListItem { Text = ViewLang.Combinedsports, Value = ((int)SportsType.CombinedSports).ToString() },
                 new SelectListItem { Text = ViewLang.Othersports, Value = ((int)SportsType.OtherSports).ToString() }
-            };
-
-            _betTypes = new List<SelectListItem>()
-            {
-                new SelectListItem { Text = ViewLang.MixparLay, Value = BetType.MixParlay.ToString(), Selected = true }
             };
 
             var values = new List<int> { 10, 20, 50, 100 };
@@ -65,7 +52,7 @@ namespace ParlayRMS.ViewModel
             };
 
             _combos = new List<SelectListItem>();
-            for (int i = 2; i <= 5; i++)
+            for (int i = 2; i <= 9; i++)
             {
                 _combos.Add(new SelectListItem
                 {
@@ -74,7 +61,19 @@ namespace ParlayRMS.ViewModel
                 });
             }
 
-            _combos.Add(new SelectListItem { Text = ViewLang.SixUp, Value = "6" });
+            _combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
+
+            _parlayTypes = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
+                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
+            };
+
+            _reportTypes = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = "Combo", Value = ((int)ReportType.Combo).ToString(), Selected = true },
+                new SelectListItem { Text = "Sport type", Value = ((int)ReportType.SportType).ToString() }
+            };
         }
 
         public static List<SelectListItem> Combos
@@ -109,11 +108,19 @@ namespace ParlayRMS.ViewModel
             }
         }
 
-        public static List<SelectListItem> BetTypes
+        public static List<SelectListItem> ParlayTypes
         {
             get
             {
-                return _betTypes;
+                return _parlayTypes;
+            }
+        }
+
+        public static List<SelectListItem> ReportTypes
+        {
+            get
+            {
+                return _reportTypes;
             }
         }
 

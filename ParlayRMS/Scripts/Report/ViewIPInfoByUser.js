@@ -7,7 +7,12 @@
     $(document).on('click', '.tdChoice', function () {
         var id = this.getAttribute('data-id');
         if (CheckExpandStage(id)) {
-            LoadReport(id, Expand);
+            var betType = this.getAttribute('data-bet-type');
+            var betCheck = this.getAttribute('data-bet-check');
+            var betTeam = this.getAttribute('data-bet-team');
+            var hdp1 = this.getAttribute('data-hdp1');
+            var hdp2 = this.getAttribute('data-hdp2');
+            LoadReport(id, betType, betCheck, betTeam, hdp1, hdp2, Expand);
         }
         else {
             Expand(null, id);
@@ -16,8 +21,7 @@
     /*System Parlay detail click*/
     $(document).on('click', '.tdDetailLink', function () {
         var id = this.getAttribute('data-id');
-        var combo = this.getAttribute('data-combo');
-        ViewBetDetails(id, combo);
+        ViewBetDetails(id);
     });
 
     /*Check choice stage, return true if display:none.*/
@@ -26,10 +30,9 @@
     }
 
     /*View bet details*/
-    function ViewBetDetails(refNo, comboType) {
+    function ViewBetDetails(refNo) {
         var data = {
-            RefNo: refNo,
-            ComboType: comboType
+            RefNo: refNo
         }
         $.ajax({
             url: resolveClientUrl('ViewIPInfo/ParlayBetDetails'),
@@ -54,15 +57,14 @@
     }
 
     /*Load report from server and expand choice. */
-    function LoadReport(id, expand) {
-        //get input
-        var refNo = id;
-
-        //Validate input
-
-        //Build query data
+    function LoadReport(refNo, betType, betCheck, betTeam, hdp1, hdp2, expand) {
         var queryData = {
-            RefNo: refNo
+            RefNo: refNo,
+            betType: betType,
+            betCheck: betCheck,
+            betTeam: betTeam,
+            hdp1: hdp1,
+            hdp2: hdp2
         };
 
         $.ajax({
@@ -80,8 +82,7 @@
                     alertBox.showErrorMessage(json.message);
                     return;
                 }
-                expand(json.data, id);
-
+                expand(json.data, refNo);
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -100,5 +101,6 @@
         }
         expandNode.html(content);
         expandNode.slideToggle(toogleSpeed);
+        expandNode.parent().find('.combo-type').slideToggle(toogleSpeed);
     }
 });

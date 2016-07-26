@@ -1,20 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TopSelectionController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.Controllers
+﻿namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using System.Linq;
-    using System.Web.Mvc;
     using DotNet.Highcharts;
     using DotNet.Highcharts.Helpers;
+    using Models;
     using ParlayRMS.Common.Highcharts;
     using ParlayRMS.Common.Models;
     using ParlayRMS.Models.Functions;
@@ -24,6 +12,11 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
     using RemotingRef;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Top Selection Controller.
@@ -67,7 +60,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top selections by ticket.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTicket(MonitoringSummaryModel model)
         {
@@ -103,7 +96,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top selections by turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopSelectionByTurnover(MonitoringSummaryModel model)
         {
@@ -147,15 +140,15 @@ namespace ParlayRMS.Controllers
             var data = service.GetTopLeagueByTicket(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
             // chart data
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en", string.Empty)).ToArray();
 
-            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point 
-            { 
-                Id = x.Leagueid.ToString(), 
-                Y = x.NoTickets, 
-                Color = Color.FromName("colors[ " + (index + 1) + "]") 
+            var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
+            {
+                Id = x.Leagueid.ToString(),
+                Y = x.NoTickets,
+                Color = Color.FromName("colors[ " + (index + 1) + "]")
             }).ToArray();
 
             var chartValues = new ColumnChartValues(titleText, string.Empty, categories, titleY);
@@ -182,7 +175,7 @@ namespace ParlayRMS.Controllers
             int sport = this.GetSportTypeIdByName(sportName);
             var data = service.GetTopLeagueByTurnover(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
-            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType(sport));
+            string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
 
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en")).ToArray();
@@ -209,8 +202,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top currencies by selection and sport type.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTicket(MonitoringDetailModel model)
         {
@@ -270,8 +263,8 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top currencies by selection and turnover.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopCurrencyByTurnover(MonitoringDetailModel model)
         {
@@ -332,7 +325,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTicket(MonitoringEventModel model)
         {
@@ -346,10 +339,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
-                                                                        "{0} <b>vs</b> {1}", 
+                                                                        "{0} <b>vs</b> {1}",
                                                                         RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                             55, 
+                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                             55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -376,7 +369,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and league.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTicket(MonitoringEventModel model)
         {
@@ -390,10 +383,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Tickets;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
-                                                                    "{0} <b>vs</b> {1}", 
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                         55, 
+                                                                    "{0} <b>vs</b> {1}",
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                         55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -419,7 +412,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top turnovers and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventCurrencyByTurnover(MonitoringEventModel model)
         {
@@ -433,10 +426,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
-                                                                    "{0} <b>vs</b> {1}", 
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"), 
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")), 
-                                                         55, 
+                                                                    "{0} <b>vs</b> {1}",
+                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
+                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                         55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -461,7 +454,7 @@ namespace ParlayRMS.Controllers
         /// </summary>
         /// <param name="model">Options that are used to query data.</param>
         /// <returns>HighChart content that represents the top events by top tickets and currency.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [AuthorizationAttribute(Function = FunctionKeys.TopSelection, Policy = UserPolicy.Read)]
         public ActionResult TopEventLeagueByTurnover(MonitoringEventModel model)
         {
@@ -475,10 +468,10 @@ namespace ParlayRMS.Controllers
             string titleY = ViewLang.Turnover;
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
-                                                                        "{0} <b>vs</b> {1}", 
-                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"), 
+                                                                        "{0} <b>vs</b> {1}",
+                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"),
                                                                         RefData.GetTeamName(x.Awayid.ToString(), "en")),
-                                                             55, 
+                                                             55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
 
             decimal max = data.Max(a => a.Turnover);

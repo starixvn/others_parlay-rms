@@ -3,16 +3,18 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<div style="width: 851px">
-    <table class="main">
+<div style="width: 1045px">
+    <table class="main" id="header">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
             <col width='100px' />
-            <col width='80px' />
+            <col width='75px' />
             <col width='120px' />
-            <col width='150px' />
-            <col width='100px' />
+            <col width='120px' />
+            <col width='90px' />
+            <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <thead>
@@ -20,7 +22,7 @@
                 <th>
                     #
                 </th>
-                <th>
+                <th class="sortable" data-col-type="date" id="transTime">
                     @ViewLang.TransTime
                 </th>
                 <th>
@@ -30,13 +32,19 @@
                     @ViewLang.Odds
                 </th>
                 <th>
-                    @ViewLang.StakeAfterPT
+                    @ViewLang.AverageStakeAfterPT
                 </th>
                 <th>
                     @ViewLang.NetWinAfterPT
                 </th>
                 <th>
-                    @ViewLang.TotalCombo
+                    Total Combo Bets
+                </th>
+                <th>
+                    @ViewLang.TotalSelections
+                </th>
+                <th>
+                    Sport Type
                 </th>
                 <th>
                     @ViewLang.BetDetails
@@ -45,21 +53,23 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 870px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1045px">
     <table class="main" id="result">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
             <col width='100px' />
-            <col width='80px' />
+            <col width='75px' />
             <col width='120px' />
-            <col width='150px' />
-            <col width='100px' />
+            <col width='120px' />
+            <col width='90px' />
+            <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <tbody>
             @foreach (var item in Model)
-            { 
+            {
                 <tr>
                     <td class="numeric">
                         @(++id)
@@ -73,16 +83,26 @@
                         </a>
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(item.Odds)
+                        @Formatter.FormatOdds(item.Odds)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(item.StakePt)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(item.MaxPayoutPt)
+                        @Formatter.FormatWithoutRounding(item.MaxPayoutPt)
                     </td>
                     <td class="center">
-                        @item.Combo
+                        @{
+                            var betText = (@item.TotalBet > 1) ? " bets" : " bet";
+                        }
+
+                        @Formatter.FormatNumber3(@item.TotalBet) @betText
+                    </td>
+                    <td class="center">
+                        @item.TotalSelection
+                    </td>
+                    <td class="center">
+                        @item.SportTypeName
                     </td>
                     <td class="center">
                         <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno);">
@@ -94,16 +114,18 @@
         </tbody>
     </table>
 </div>
-<div style="width: 851px" class="mainfooter">
+<div style="width: 1026px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
             <col width='100px' />
-            <col width='80px' />
+            <col width='75px' />
             <col width='120px' />
-            <col width='150px' />
-            <col width='100px' />
+            <col width='120px' />
+            <col width='90px' />
+            <col width='90px' />
+            <col width='130px' />
             <col width='100px' />
         </colgroup>
         <tfoot>
@@ -117,16 +139,16 @@
                         @Formatter.FormatNumber2(totalData.StakePt)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(totalData.MaxPayoutPt)
+                        @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
                     </td>
-                    <td colspan="2">
+                    <td colspan="4">
                     </td>
                 </tr>
             }
             else
             { 
                 <tr>
-                    <td colspan="8" style="text-align: center; width: 851px">
+                    <td colspan="11" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

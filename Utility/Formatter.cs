@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Formatter.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="Formatter.cs" company="">
+// Copyright (c) . All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
@@ -44,7 +44,7 @@ namespace ParlayRMS.Utility
         {
             return string.Format("{0:#,##0}", obj);
         }
-        
+
         /// <summary>
         /// Formats number such as: 1111.20 -> 1,111.2.
         /// </summary>
@@ -74,6 +74,18 @@ namespace ParlayRMS.Utility
         public static string FormatDate(DateTime date)
         {
             return date.ToString("MM/dd/yyyy");
+        }
+
+        public static string FormatWithoutRounding(decimal value)
+        {
+            return FormatNumber3(Math.Floor(value));
+        }
+
+        public static string FormatOdds(decimal value)
+        {
+            return value < 10
+                ? FormatNumber2(value)
+                : FormatWithoutRounding(value);
         }
     }
 }

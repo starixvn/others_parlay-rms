@@ -1,41 +1,32 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ViewIPInfoController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
-// </history>
+﻿using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.Factories;
+using Fanex.BetList.Core.TicketHelper;
+using ParlayRMS.DTO.Common;
+using ParlayRMS.DTO.ViewIPInfo;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Models.ViewIpInfo;
+using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.Common;
+using ParlayRMS.Services.Implement.ViewIPInfo;
+using ParlayRMS.Services.Interface;
+using ParlayRMS.Services.Interface.BetList;
+using ParlayRMS.Services.Interface.ViewIPInfo;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Monitoring;
+using ParlayRMS.ViewModel.ViewIPInfo;
+using ParlayRMS.Web.Authorization;
+using RemotingRef;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Factories;
-    using Fanex.BetList.Core.TicketHelper;
-    using PagedList;
-    using ParlayRMS.DTO.Common;
-    using ParlayRMS.DTO.ViewIPInfo;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.ViewIpInfo;
-    using ParlayRMS.Services.Implement.BetList;
-    using ParlayRMS.Services.Implement.Common;
-    using ParlayRMS.Services.Implement.ViewIPInfo;
-    using ParlayRMS.Services.Interface;
-    using ParlayRMS.Services.Interface.BetList;
-    using ParlayRMS.Services.Interface.ViewIPInfo;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.Monitoring;
-    using ParlayRMS.ViewModel.ViewIPInfo;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Controller for View-IP-Info report.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
     public class ViewIPInfoController : BaseController
     {
         private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
@@ -43,11 +34,6 @@ namespace ParlayRMS.Controllers
         private readonly ICommonService _commonService = new CommonService();
         private int _pageSize = 100;
 
-        /// <summary>
-        /// ViewIPInfo Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -55,15 +41,9 @@ namespace ParlayRMS.Controllers
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
             ViewBag.minDate = info.MinTransdate;
-            return this.View("Index");
+            return View("Index");
         }
 
-        /// <summary>
-        /// Get data for View IP Info main report.
-        /// </summary>
-        /// <param name="options">Model contain filter conditions.</param>
-        /// <returns>JSON String for ViewIP Info main report.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
         public JsonResult MainReportData(ViewIPInfoOptions options)
         {
@@ -71,7 +51,7 @@ namespace ParlayRMS.Controllers
             {
                 IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> records = _ipinfoService.GetIPInfo(options.IP, options.Date);
 
-                return this.Json(new
+                return Json(new
                 {
                     code = 0,
                     Records = records,
@@ -79,16 +59,10 @@ namespace ParlayRMS.Controllers
             }
             catch (Exception ex)
             {
-                return this.Json(new { code = 1, message = ex.Message });
+                return Json(new { code = 1, message = ex.Message });
             }
         }
 
-        /// <summary>
-        /// Get data for View IP Info main report.
-        /// </summary>
-        /// <param name="options">Model contain filter conditions.</param>
-        /// <returns>JSON String for ViewIP Info main report.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult IpStatsData(ViewIPStatsOptions options)
         {
@@ -104,15 +78,9 @@ namespace ParlayRMS.Controllers
             ViewBag.Pager = Pager.Items(data.TotalItems).PerPage(_pageSize).Move(page).Segment(5).Center();
             ViewBag.TotalItems = data.TotalItems;
             ViewBag.MaxTransId = data.MaxTransId;
-            return this.PartialView("IpStats", data);
+            return PartialView("IpStats", data);
         }
 
-        /// <summary>
-        /// View IP info drill down view.
-        /// </summary>
-        /// <param name="model">Model option for Drilldown view.</param>
-        /// <returns>Drilldown view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Drilldown(DrillDownOptions model)
         {
@@ -121,23 +89,17 @@ namespace ParlayRMS.Controllers
 
             IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
 
-            return this.View("Drilldown", models);
+            return View("Drilldown", models);
         }
 
-        /// <summary>
-        /// Gets bet sub tickets.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>List of sub tickets.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         [HttpPost]
-        public JsonResult ParlayBetSubTickets(MixParlayBetDetailsOptions options)
+        public JsonResult ParlayBetSubTickets(ParlayBetTypeViewModel options)
         {
             try
             {
-                string ticketString = BuildTickets(options.RefNo);
+                string ticketString = BuildTickets(options);
 
-                return this.Json(new
+                return Json(new
                 {
                     code = 0,
                     data = ticketString
@@ -145,40 +107,43 @@ namespace ParlayRMS.Controllers
             }
             catch (Exception ex)
             {
-                return this.Json(new { code = 1, message = ex.Message });
+                return Json(new { code = 1, message = ex.Message });
             }
         }
 
-        /// <summary>
-        /// Gets bet details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
         public ActionResult ParlayBetDetails(ParlayBetDetailsOptions options)
         {
-            ViewBag.ComboType = options.ComboType;
             CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
-
             return View("BetDetails", model);
         }
 
-        #region FunctionUtility
-        /// <summary>
-        /// Build sub ticket HTML string.
-        /// </summary>
-        /// <param name="refNo">Bet REFNO.</param>
-        /// <returns>HTML string for ticket.</returns>
-        private string BuildTickets(long refNo)
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        private string BuildTickets(ParlayBetTypeViewModel options)
         {
-            BetListHTMLFactory factory = new BetListHTMLFactory();
+            var factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = this._betlistService.CreateChoice(refNo).ToList();
+            var data = _betlistService.GetBetListData(options.RefNo);
+            var tickets = _betlistService.Map(options.RefNo, data.Tickets);
             int countTicket = 1;
-            string openTag = "</br>";
+            string openTag = string.Empty;
             string endTag = "<hr class = 'hr'>";
+            if (options.BetType == (int)BetType.SystemParlay)
+            {
+                var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
+                var filteredTickets = tickets.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
+                var count = comboTypes == null ? 0 : comboTypes.Length;
+                for (var i = 0; i < count; i++)
+                {
+                    openTag += "<span class=\"underdog\"> " + comboTypes[i] + " x <span class=\"odds\">" + data.CurrencyName + " " + filteredTickets[i].Stake.ToString("#,##0") + "</span></span><br />";
+                }
+            }
+            else
+            {
+                openTag += "<br />";
+            }
+
             foreach (var ticket in tickets)
             {
                 if (countTicket != 1)
@@ -186,7 +151,7 @@ namespace ParlayRMS.Controllers
                     openTag = string.Empty;
                 }
 
-                if (countTicket == tickets.Count)
+                if (countTicket == tickets.Count())
                 {
                     endTag = string.Empty;
                 }
@@ -197,6 +162,5 @@ namespace ParlayRMS.Controllers
 
             return builder.GetBetList();
         }
-        #endregion
     }
 }

@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_TopWinner_Detail.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
-namespace ParlayRMS.DTO.TopWinners
+﻿namespace ParlayRMS.DTO.TopWinners
 {
-    /// <summary>
-    /// Top Winners Detail model.
-    /// </summary>
     public class RMS_Rpt_Parlay_TopWinner_Detail
     {
         public long TransId { get; set; }
@@ -31,8 +20,8 @@ namespace ParlayRMS.DTO.TopWinners
 
         public decimal Company_Winlost_BaseRM { get; set; }
 
-        public int Combo { get; set; }
+        public int TotalCombo { get; set; }
 
-        public decimal Odds { get; set; }
+        public int Selection { get; set; }
     }
 }

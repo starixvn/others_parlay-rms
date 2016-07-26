@@ -1,0 +1,164 @@
+﻿@using ParlayRMS.Common.Models
+@{
+    int counter = 0;
+}
+@model ParlayRMS.MixParlay.SimilarBet.Ticket
+<div>
+    <table class="main">
+        <thead>
+            <tr>
+                <th style="width: 170px">
+                    @ViewLang.TransTime
+                </th>
+                <th style="width: 100px">
+                    @ViewLang.BetID
+                </th>
+                <th style="width: 120px">
+                    @ViewLang.Username
+                </th>
+                <th style="width: 80px">
+                    @ViewLang.Odds
+                </th>
+                <th style="width: 120px">
+                    @ViewLang.StakeAfterPT
+                </th>
+                <th style="width: 150px">
+                    @ViewLang.NetWinAfterPT
+                </th>
+                <th style="width: 100px">
+                    @ViewLang.TotalCombo
+                </th>
+                <th style="width: 100px">
+                    @ViewLang.BetDetails
+                </th>
+                <th style="width: 100px">
+                    @ViewLang.SimilarBets
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Transdate
+                </td>
+                <td class="numeric">
+                    @Model.Transid
+                </td>
+                <td class="@ModelsHelper.GetClassByMemberLevel(@Model.Level)">
+                    @Model.Username
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Odds)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Stake)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Net_Win)
+                </td>
+                <td class="center">
+                    @Model.Combo
+                </td>
+                <td class="center">
+                    <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@Model.Username', @Model.Transid, @Model.Refno,@Model.Refno);">
+                        @ViewLang.View
+                    </button>
+                </td>
+                <td class="center">
+                    @if (Model.Cnt_bets <= 0)
+                    {
+                        <button disabled class="button-disable" style="width: 40px;" onclick="ViewSimilarBets();">
+                            @Model.Cnt_bets
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="button-disable" style="width: 40px;" onclick="ViewSimilarBets();">
+                            @Model.Cnt_bets
+                        </button>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="similarbetlist" class="details" style="display: none; width: 750px">
+    <div class="title">
+        <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
+        <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
+    </div>
+    <div style="width: 754px">
+        <table class="sub thead">
+            <colgroup>
+                <col width='50px' />
+                <col width='140px' />
+                <col width='150px' />
+                <col width='160px' />
+                <col width='150px' />
+                <col width='100px' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        @ViewLang.No
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Username
+                    </th>
+                    <th class="sortable">
+                        @ViewLang.NetWinAfterPT
+                    </th>
+                    <th>
+                        @ViewLang.SimilarComboFound
+                    </th>
+                    <th>
+                        @ViewLang.BetDetails
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 500px; width: 768px">
+        <table class="sub tbody">
+            <colgroup>
+                <col width='50px' />
+                <col width='140px' />
+                <col width='150px' />
+                <col width='160px' />
+                <col width='150px' />
+                <col width='100px' />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model.Details)
+                {
+                    counter = counter + 1;
+                    <tr id="@item.TransId">
+                        <td class="center">
+                            @counter
+                        </td>
+                        <td class="numeric">
+                            @item.TransId
+                        </td>
+                        <td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
+                            @item.Username
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(item.Net_Win)
+                        </td>
+                        <td class="center">
+                            @item.Similar_Combo
+                        </td>
+                        <td class="center">
+                            <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', @item.TransId, @item.Refno,@Model.Refno);">
+                                @ViewLang.View
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

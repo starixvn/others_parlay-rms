@@ -4,17 +4,18 @@
     <table class="sub" style="width: 100%">
         <colgroup>
             <col style="width: 50px" />
-            <col style="width: 210px" />
+            <col style="width: 220px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
             <col style="width: 120px" />
-            <col style="width: 100px" />
-            <col style="width: 110px" />
             <col style="width: 120px" />
             <col style="width: 120px" />
-            <col style="width: 90px" />
+            <col style="width: 120px" />
             <col style="width: 80px" />
             <col style="width: 80px" />
             <col style="width: 80px" />
-            <col />
+            <col style="width: 180px" />
+            <col style="width: 80px" />
         </colgroup>
         <thead>
             <tr>
@@ -31,7 +32,7 @@
                     @ViewLang.Odds
                 </th>
                 <th>
-                    @ViewLang.Stake
+                    @ViewLang.AverageStake
                 </th>
                 <th>
                     @ViewLang.PotentialWinningAmount
@@ -46,7 +47,13 @@
                     @ViewLang.HousePT
                 </th>
                 <th>
-                    @ViewLang.TotalCombo
+                    @ViewLang.TotalComboBets
+                </th>
+                <th>
+                    @ViewLang.TotalSelections
+                </th>
+                <th>
+                    Sport Type
                 </th>
                 <th>
                     @ViewLang.BetDetails
@@ -67,16 +74,16 @@
                         <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
                     </td>
                     <td class="numeric">
-                        @item.Val.Odds.ToString("#,##0.00")
+                        @Formatter.FormatOdds(item.Val.Odds)
                     </td>
                     <td class="numeric">
-                        @item.Val.Stake.ToString("#,##0.00")
+                        @Formatter.FormatOdds(item.Val.Stake)
                     </td>
                     <td class="numeric">
-                        @item.Val.WinningAmount.ToString("#,##0.00")
+                        @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
                     </td>
                     <td class="numeric">
-                        @item.Val.CompanyLoseAmount.ToString("#,##0.00")
+                        @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
                     </td>
                     <td class="numeric">
                         @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
@@ -89,17 +96,36 @@
                         }
                     </td>
                     <td class="numeric">
-                        @item.Val.HousePT.ToString("#,##0.00")
+                        @Formatter.FormatNumber2(item.Val.HousePT)
                     </td>
                     <td class="center">
-                        @item.Val.Combo
+                        @{
+                            var betText = (@item.Val.TotalBet > 1) ? " bets" : " bet";
+                        }
+
+                        @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
+                    </td>
+                    <td class="center">
+                        @if (item.Val.NumberWon == 0)
+                        {
+                            @Html.Raw(item.Val.TotalSelection)
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format("{0}/{1}", item.Val.NumberWon, item.Val.TotalSelection))
+                        }
+                    </td>
+                    <td class="center">
+                        @item.Val.SportTypeName
                     </td>
                     <td>
+
                         <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName',@item.Val.TransId, @item.Val.RefNo);">
-                            View</button>
+                            View
+                        </button>
                     </td>
                 </tr>
-            }
+                            }
         </tbody>
     </table>
 </div>

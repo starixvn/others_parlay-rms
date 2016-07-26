@@ -1,31 +1,20 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ManageMenuController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models.Functions;
+using ParlayRMS.Models.Menus;
+using ParlayRMS.Services.Implement.Functions;
+using ParlayRMS.Services.Implement.Menus;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Interface.Functions;
+using ParlayRMS.Services.Interface.Menus;
+using ParlayRMS.Services.Interface.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.ManageMenu;
+using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.Menus;
-    using ParlayRMS.Services.Implement.Functions;
-    using ParlayRMS.Services.Implement.Menus;
-    using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Functions;
-    using ParlayRMS.Services.Interface.Menus;
-    using ParlayRMS.Services.Interface.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel.ManageMenu;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Menu Management Controller.
-    /// </summary>
     public class ManageMenuController : BaseController
     {
         private readonly IMenusService _menuService = new MenusService();
@@ -101,16 +90,16 @@ namespace ParlayRMS.Controllers
 
             int menuId = 0;
             var result = this._menuService.CreateMenu(
-                                               model.Name, 
-                                               model.Description, 
-                                               model.Url, 
-                                               model.FunctionId, 
-                                               model.ParentId, 
-                                               model.ParentName, 
-                                               model.DisplayOrder, 
-                                               model.IsActive, 
-                                               this.CurrentSession.UserId, 
-                                               this.CurrentContext.Ip4Address, 
+                                               model.Name,
+                                               model.Description,
+                                               model.Url,
+                                               model.FunctionId,
+                                               model.ParentId,
+                                               model.ParentName,
+                                               model.DisplayOrder,
+                                               model.IsActive,
+                                               this.CurrentSession.UserId,
+                                               this.CurrentContext.Ip4Address,
                                                out menuId);
             return this.Json(new { code = result.Code, message = result.Message, menuId = menuId });
         }
@@ -137,7 +126,7 @@ namespace ParlayRMS.Controllers
             }).ToList();
             menuSelectList.Insert(0, new SelectListItem { Value = "0", Text = ViewLang.None });
             ViewBag.MenuSelectList = menuSelectList;
-            
+
             var model = new EditMenuModel
             {
                 MenuId = menu.Id,
@@ -168,15 +157,15 @@ namespace ParlayRMS.Controllers
             }
 
             var result = this._menuService.UpdateMenu(
-                                               model.MenuId, 
-                                               model.MenuName, 
-                                               model.Description, 
-                                               model.Url, 
-                                               model.FunctionId, 
-                                               model.ParentId, 
-                                               model.ParentName, 
-                                               model.DisplayOrder, 
-                                               this.CurrentSession.UserId, 
+                                               model.MenuId,
+                                               model.MenuName,
+                                               model.Description,
+                                               model.Url,
+                                               model.FunctionId,
+                                               model.ParentId,
+                                               model.ParentName,
+                                               model.DisplayOrder,
+                                               this.CurrentSession.UserId,
                                                this.CurrentContext.Ip4Address);
             return this.Json(result);
         }

@@ -92,7 +92,7 @@ function Chart(containerId, url, dataHandler) {
 
     this.showtext = function (text) {
         container.css('display', 'block');
-        var div = "<div id='applicabletext' class='chart chartText'>" + text + "</div>"
+        var div = "<div id='applicabletext' class='chart chartText'>" + text + "</div>";
         container.html(div);
         this.stop();
     };
@@ -182,7 +182,7 @@ function SummaryChart(containerId, url, dataHandler) {
             Other_Sports: x.Other_Sports,
             maxTransId: maxTransId
         };
-    }
+    };
     Chart.call(this, containerId, url, dataHandler);
 }
 
@@ -770,7 +770,7 @@ function onLoad() {
     var height = 16;
     var x = this.chartWidth - width;
     var y = 0;
-    var closeButton = this.renderer.image('../Images/Content/Close.png', x, y, width, height);
+    var closeButton = this.renderer.image('../Content/Images/Content/Close.png', x, y, width, height);
     var chart = this;
     closeButton.on('click', function () {
         var removeDiv = chart.container.parentNode;

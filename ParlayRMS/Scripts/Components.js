@@ -4,7 +4,7 @@
         if (!container) {
             container = $('#loading');
         }
-    }
+    };
     return {
         show: function () {
             init();
@@ -14,8 +14,8 @@
             init();
             container.hide('fade');
         }
-    }
-} ();
+    };
+}();
 
 // loadingHelper object helps to show or hide loading based on running tasks
 var loadingHelper = function () {
@@ -28,7 +28,7 @@ var loadingHelper = function () {
         else {
             loading.show();
         }
-    }
+    };
 
     return {
         increaseTask: function () {
@@ -43,8 +43,8 @@ var loadingHelper = function () {
 
             return taskCount;
         }
-    }
-} ();
+    };
+}();
 
 // alert box
 var alertBox = {
@@ -117,7 +117,7 @@ var alertBox = {
     };
 
     $.fn.showLoading = function () {
-        var imgURL = resolveClientUrl('Images/Content/icon_wait.gif');
+        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
         var htmlContent = '<img width="15px" height="15px" border="0" alt="waiting" src="' + imgURL + '" />';
         this.html(htmlContent);
     };
@@ -155,6 +155,11 @@ var tableSorter = function () {
             header.attr("title", "Click to sort");
             header.click(function () {
                 var currenObj = this;
+                if (param) {
+                    if (param.onStart) {
+                        param.onStart(currenObj);
+                    }
+                }
 
                 if (currenObj.sortDirection == "asc") {
                     currenObj.sortDirection = "desc";
@@ -205,12 +210,12 @@ var tableSorter = function () {
                 var x = $.trim($(a).text());
                 var y = $.trim($(b).text());
                 if (type == 'float') {
-                    x = parseFloat(x.replace(',', ''));
-                    y = parseFloat(y.replace(',', ''));
+                    x = parseFloat(x.replace(/,/g, ''));
+                    y = parseFloat(y.replace(/,/g, ''));
                 }
                 else if (type == 'int') {
-                    x = parseInt(x.replace(',', ''));
-                    y = parseInt(y.replace(',', ''));
+                    x = parseInt(x.replace(/,/g, ''));
+                    y = parseInt(y.replace(/,/g, ''));
                 } else if (type == 'date') {
                     x = (new Date(x)).getTime();
                     y = (new Date(y)).getTime();
@@ -229,8 +234,8 @@ var tableSorter = function () {
                 return this.parentNode;
             });
         }
-    }
-} ();
+    };
+}();
 
 var popup = function () {
     var container;
@@ -251,7 +256,7 @@ var popup = function () {
             });
             messageContainer = container.find("#errMsg");
             loadingContainer = container.find("#lineloading");
-            $("#simplemodal-container").draggable({ handle: "div.title2" });
+            $("#simplemodal-container").draggable({ handle: "tr.title2" });
 
             $("body").bind("click", function (e) {
                 if (e.target.id == "simplemodal-overlay") {
@@ -280,8 +285,8 @@ var popup = function () {
             messageContainer.hide('fade');
             messageContainer.html('');
         }
-    }
-} ();
+    };
+}();
 
 var validator = function () {
     var hint = {
@@ -309,13 +314,13 @@ var validator = function () {
                     hint.style.display = 'none';
                 };
                 document.body.appendChild(hint);
-            };
+            }
             hintPointer = hint.lastChild;
             hint.firstChild.innerHTML = message;
             if (this.timeOutHideTooltip) {
                 clearTimeout(this.timeOutHideTooltip);
                 this.timeOutHideTooltip = null;
-            };
+            }
             this.timeOutHideTooltip = setTimeout(function () {
                 hint.style.display = 'none';
             }, 10000); // Auto hide in 10s
@@ -340,7 +345,7 @@ var validator = function () {
                     hint.style.display = 'none';
                 };
                 elementInput.focus();
-            };
+            }
             hint.style.display = 'block';
         },
         hide: function () {
@@ -428,13 +433,13 @@ var validator = function () {
                     yScroll = document.body.scrollTop;
                     xScroll = document.body.scrollLeft;
                 }
-                return [xScroll, yScroll]
+                return [xScroll, yScroll];
             },
             // Finds the position of an element relative to the viewport.
             findPosRelativeToViewport: function (obj) {
-                var objPos = this.findPos(obj)
-                var scroll = this.getPageScroll()
-                return [objPos[0] - scroll[0], objPos[1] - scroll[1]]
+                var objPos = this.findPos(obj);
+                var scroll = this.getPageScroll();
+                return [objPos[0] - scroll[0], objPos[1] - scroll[1]];
             }
         }
     };
@@ -454,7 +459,7 @@ var validator = function () {
                 $(element).focus();
                 hint.show($(element).get(0), 'Order value must be greater or than 0');
                 return true;
-            };
+            }
             return false;
         },
         validateDate: function (element) {
@@ -471,7 +476,7 @@ var validator = function () {
         validateDateRange: function (fromDate, toDate) {
             var fDate = moment($(fromDate).val());
             var tDate = moment($(toDate).val());
-            
+
             if (moment(fDate, "MMMM DD, YYYY").isValid()
                 && moment(tDate, "MMMM DD, YYYY").isValid()
                 && diffDate(tDate, fDate) > 0) {
@@ -481,7 +486,7 @@ var validator = function () {
             return false;
         }
     };
-} ();
+}();
 
 var closeBox = function () {
     return {
@@ -514,5 +519,5 @@ var closeBox = function () {
                 container.remove();
             });
         }
-    }
-} ();
+    };
+}();

@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Monitor_Potential_Winning_Detail.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using System;
 
 namespace ParlayRMS.DTO.PotentialWinning
 {
-    using System;
-
-    /// <summary>
-    /// Potential Winning Detail model.
-    /// </summary>
     public class RMS_Monitor_Potential_Winning_Detail
     {
         public DateTime TransDate { get; set; }
@@ -21,13 +10,13 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public long TransId { get; set; }
 
-        public long RefNo { get; set; }        
+        public long RefNo { get; set; }
 
         public decimal Odds { get; set; }
 
         public decimal Stake { get; set; }
 
-        public int SportType { get; set; }        
+        public int SportType { get; set; }
 
         public decimal WinningAmount { get; set; }
 
@@ -37,6 +26,12 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public decimal HousePT { get; set; }
 
-        public int Combo { get; set; }        
+        public int TotalBet { get; set; }
+
+        public int TotalSelection { get; set; }
+
+        public int NumberWon { get; set; }
+
+        public string SportTypeName { get; set; }
     }
 }

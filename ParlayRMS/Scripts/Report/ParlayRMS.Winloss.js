@@ -6,12 +6,26 @@ ParlayRMS.Winloss = {
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
-        $("#betType").multiselect({
-            minWidth: 120,
+        $("#parlayType").multiselect({
+            minWidth: 132,
             height: 82,
-            header: false,
-            multiple: false,
-            selectedList: 1
+            create: function () {
+                $("#parlayType").multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
         });
 
         $("#combo").multiselect({
@@ -35,7 +49,29 @@ ParlayRMS.Winloss = {
                 }
             }
         });
-        
+
+        $("#sportsType").multiselect({
+            minWidth: 220,
+            height: 300,
+            create: function () {
+                $("#sportsType").multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
+        });
+
         $("#fromDate").datepicker({
             dateFormat: "MM dd, yy",
             showButtonPanel: true,
@@ -79,16 +115,22 @@ ParlayRMS.Winloss = {
         $("#btnSearch").addClass("button");
         $('#btnSearch').click(function () {
             $("#divResult").html('');
-            var betType = $("#betType").val();
             var fromDate = $("#fromDate").val();
             var toDate = $("#toDate").val();
-            var sportsType = $('input[name=SportsTypes]:checked', '#divSportsTypes').val();
 
             if (validator.validateDate("#fromDate")) {
                 return;
             }
 
             if (validator.validateDate("#toDate")) {
+                return;
+            }
+
+            var parlayTypes = $("#parlayType").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (combos == '') {
+                Validators.show($("#parlayType").multiselect("getButton").get(0), 'Please select your options');
                 return;
             }
 
@@ -100,16 +142,27 @@ ParlayRMS.Winloss = {
                 return;
             }
 
-            ParlayRMS.Winloss.Data(betType, fromDate, toDate, sportsType, combos);
+            var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (sportsTypes == '') {
+                Validators.show($("#sportsType").multiselect("getButton").get(0), 'Please select your options');
+                return;
+            }
+
+            var reportType = $('input[name=ReportTypes]:checked').val();
+
+            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, reportType);
         });
     },
-    Data: function (betType, fromDate, toDate, sportsType, combos) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
-            BetType: betType,
+            ParlayTypes: parlayTypes,
             SportsType: sportsType,
-            Combos: combos
+            Combos: combos,
+            ReportType: reportType
         }
 
         $.ajax({
@@ -132,13 +185,14 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (betType, fromDate, toDate, sportsType, combos) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
-            BetType: betType,
+            ParlayTypes: parlayTypes,
             SportsType: sportsType,
-            Combos: combos
+            Combos: combos,
+            ReportType: reportType
         }
 
         var url = 'Winloss/Excel?' + $.param(data);

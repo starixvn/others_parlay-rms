@@ -1,25 +1,14 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AuthorizationAttribute.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Services.Implement.Systems;
+using ParlayRMS.Web.Context;
+using ParlayRMS.Web.Session;
+using System;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ParlayRMS.Web.Authorization
 {
-    using System;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using ParlayRMS.Services.Implement.Systems;
-    using ParlayRMS.Web.Context;
-    using ParlayRMS.Web.Session;
-
-    /// <summary>
-    /// Authorization Attribute.
-    /// </summary>
     public class AuthorizationAttribute : AuthorizeAttribute, IDisposable
     {
         private readonly CachingService _cachingService = new CachingService();
@@ -39,7 +28,7 @@ namespace ParlayRMS.Web.Authorization
 
             ICurrentSession currentSession = new CurrentSession();
             ICurrentContext currentContext = new CurrentContext();
-         
+
             ////string actionName = filterContext.ActionDescriptor.ActionName;
             ////string controllerName = filterContext.Controller.ToString();
 
@@ -54,7 +43,7 @@ namespace ParlayRMS.Web.Authorization
                 }
 
                 var principal = filterContext.HttpContext.User;
-                
+
                 if (ReferenceEquals(principal, null) || ReferenceEquals(principal.Identity.AuthenticationType, null))
                 {
                     ////string msg6 = string.Format("msg6 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
@@ -71,15 +60,15 @@ namespace ParlayRMS.Web.Authorization
                     return;
                 }
 
-                    ////string msg8 = string.Format("msg8 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
-                    ////WriteLog(msg8);
+                ////string msg8 = string.Format("msg8 userId={0}, controllerName={1}, actionName={2}", currentSession.UserId, controllerName, actionName);
+                ////WriteLog(msg8);
             }
             catch (Exception)
             {
                 throw; ////ex;
             }
         }
-        
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -180,7 +169,7 @@ namespace ParlayRMS.Web.Authorization
             var userCache = _cachingService.GetUserCache(userId);
             var policyList = userCache.Functions;
             var foundItems = policyList.Where(x => x.FunctionKey == functionKey);
-            ////WriteLog(string.Format("userId:{0}, functionId:{1}, policyList.Count()={2}, foundItems.Count()={3}", 
+            ////WriteLog(string.Format("userId:{0}, functionId:{1}, policyList.Count()={2}, foundItems.Count()={3}",
             ////userId, functionId, policyList.Count(), foundItems.Count()));
             if (foundItems.Count() > 0)
             {

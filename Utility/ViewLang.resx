@@ -553,7 +553,7 @@
     <value>Stake</value>
   </data>
   <data name="TotalBets" xml:space="preserve">
-    <value>Total bets</value>
+    <value>Total Bets</value>
   </data>
   <data name="WinningAmount" xml:space="preserve">
     <value>Winning Amount</value>
@@ -845,5 +845,38 @@
   </data>
   <data name="PotentialWinningAmount" xml:space="preserve">
     <value>Potential Winning Amount</value>
+  </data>
+  <data name="ComboParlay" xml:space="preserve">
+    <value>Combo Parlay</value>
+  </data>
+  <data name="TenUp" xml:space="preserve">
+    <value>10 UP</value>
+  </data>
+  <data name="AverageStakeAfterPT" xml:space="preserve">
+    <value>Average Stake after PT</value>
+  </data>
+  <data name="ParlayMonitor" xml:space="preserve">
+    <value>Parlay Monitor</value>
+  </data>
+  <data name="ParlayType" xml:space="preserve">
+    <value>Parlay type</value>
+  </data>
+  <data name="TotalSelections" xml:space="preserve">
+    <value>Total Selections</value>
+  </data>
+  <data name="AverageStake" xml:space="preserve">
+    <value>Average Stake</value>
+  </data>
+  <data name="TotalBet" xml:space="preserve">
+    <value>Total Bet</value>
+  </data>
+  <data name="TotalSelection" xml:space="preserve">
+    <value>Total Selection</value>
+  </data>
+  <data name="SimilarSelectionFound" xml:space="preserve">
+    <value>Similar Selection Found</value>
+  </data>
+  <data name="TotalComboBets" xml:space="preserve">
+    <value>Total Combo Bets</value>
   </data>
 </root>

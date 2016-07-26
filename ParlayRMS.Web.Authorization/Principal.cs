@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Principal.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using System.Security.Principal;
 
 namespace ParlayRMS.Web.Authorization
 {
-    using System.Security.Principal;
-
-    /// <summary>
-    /// Principal object.
-    /// </summary>
     public class Principal : IPrincipal
     {
         private readonly IIdentity _identity;

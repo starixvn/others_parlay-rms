@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ParlayRMS.MixParlay.PotentialWinningMonitor.TicketDetail>
+<div class="details">
+    <table class="sub" style="width: 100%">
+        <colgroup>
+            <col style="width: 50px" />
+            <col style="width: 210px" />
+            <col style="width: 120px" />
+            <col style="width: 100px" />
+            <col style="width: 110px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 90px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    @ViewLang.No
+                </th>
+                <th>
+                    @ViewLang.TransTime
+                </th>
+                <th>
+                    @ViewLang.BetID
+                </th>
+                <th>
+                    @ViewLang.Odds
+                </th>
+                <th>
+                    @ViewLang.Stake
+                </th>
+                <th>
+                    @ViewLang.PotentialWinningAmount
+                </th>
+                <th>
+                    @ViewLang.PotentialCompanyLoseAmount
+                </th>
+                <th>
+                    @ViewLang.IP
+                </th>
+                <th>
+                    @ViewLang.HousePT
+                </th>
+                <th>
+                    @ViewLang.TotalCombo
+                </th>
+                <th>
+                    @ViewLang.BetDetails
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
+            {
+                <tr>
+                    <td class="center">
+                        @item.Ind
+                    </td>
+                    <td class="left">
+                        @item.Val.TransDate.ToString("MM/dd/yyyy h:mm:ss tt")
+                    </td>
+                    <td class="numeric">
+                        <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
+                    </td>
+                    <td class="numeric">
+                        @item.Val.Odds.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @item.Val.Stake.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @item.Val.WinningAmount.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @item.Val.CompanyLoseAmount.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
+                        {
+                            <span>----</span>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@item.Val.Ip</a>
+                        }
+                    </td>
+                    <td class="numeric">
+                        @item.Val.HousePt.ToString("#,##0.00")
+                    </td>
+                    <td class="center">
+                        @item.Val.Combo
+                    </td>
+                    <td>
+                        <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName',@item.Val.TransId, @item.Val.RefNo);">
+                            View</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,33 +1,20 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DrillDownViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.22">Created</change>
-// </history>
+﻿using ParlayRMS.DTO.ViewIPInfo;
+using System;
 
 namespace ParlayRMS.Models.ViewIpInfo
 {
-    using System;
-    using ParlayRMS.DTO.ViewIPInfo;
-
-    /// <summary>
-    /// Model for ViewIPInfo drill down report.
-    /// </summary>
     public class DrillDownViewModel
     {
         public DrillDownViewModel(RMS_Rpt_Parlay_ViewIPInfoByUser model)
         {
-            this.RefNo = model.RefNo;
-            this.TransDate = model.TransDate;
-            this.Stake = model.Stake;
-            this.Winlost = model.Winlost;
-            this.Status = model.Status;
-            this.Odds = model.Odds;
-            this.Choice = string.Empty;
-            this.BetType = model.BetType;
-            this.Combo = model.Combo;
+            RefNo = model.RefNo;
+            TransDate = model.TransDate;
+            Stake = model.Stake;
+            Winlost = model.Winlost;
+            Status = model.Status;
+            Odds = model.Odds;
+            Choice = string.Empty;
+            BetType = model.BetType;
         }
 
         public long RefNo { get; set; }

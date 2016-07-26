@@ -3,7 +3,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.AgentMemberWinLoss;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 877px">
+    <div class="filter-control" style="width: 900px">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl</div>
@@ -18,8 +18,8 @@
                     @Html.TextBox("username")
                 </div>
                 <div class="group">
-                    @Html.Label("betType", ViewLang.Bettype, new { Style = "text-align: right; width: 75px;" })
-                    @Html.DropDownList("betType", Config.BetTypes)
+                    @Html.Label("parlayType", ViewLang.ParlayType, new { Style = "text-align: right; width: 75px;" })
+                    @Html.DropDownList("parlayType", Config.ParlayTypes)
                 </div>                
                 <div class="group">
                     @Html.Label("fromDate", ViewLang.From)
@@ -37,7 +37,7 @@
                 </div>             
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
-                    @Html.RadioButtonList("SportsTypes", Config.SportsTypes)
+                    @RazorHelper.SportTypesDropDown()
                 </div>
                 <div class="group">
                     <button id="btnSearch" class="button">

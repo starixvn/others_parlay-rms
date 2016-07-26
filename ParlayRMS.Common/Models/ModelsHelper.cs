@@ -1,21 +1,11 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ModelsHelper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
+﻿using ParlayRMS.Models;
+using ParlayRMS.Models.Members;
+using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace ParlayRMS.Common.Models
 {
-    using System.Collections.Generic;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Members;
-    using ParlayRMS.Utility;
-
-    /// <summary>
-    /// Models Helper.
-    /// </summary>
     public static class ModelsHelper
     {
         private static List<MemberLevel> memberLevels = new List<MemberLevel>();
@@ -66,54 +56,94 @@ namespace ParlayRMS.Common.Models
             return string.Empty;
         }
 
-        /// <summary>
-        /// Gets list of member levels.
-        /// </summary>
-        /// <returns>List of MemberLevel objects.</returns>
+        public static object GetReportType(ReportType reportType)
+        {
+            switch (reportType)
+            {
+                case ReportType.Combo:
+                    return "Combo";
+
+                case ReportType.SportType:
+                    return "Sport type";
+
+                default:
+                    throw new NotImplementedException("Report type :" + reportType);
+            }
+        }
+
         public static List<MemberLevel> GetMemberLevels()
         {
             return memberLevels;
         }
 
-        /// <summary>
-        /// Gets sport type name from resource by ID.
-        /// </summary>
-        /// <param name="sportType">Sport type ID.</param>
-        /// <returns>Sport type name.</returns>
+        public static string GetSportType(string sportTypes)
+        {
+            var list = sportTypes.Split(',');
+            if (list.Length == 14)
+            {
+                return ViewLang.All;
+            }
+            else if (list.Length == 1)
+            {
+                var sportType = Convert.ToInt32(list[0]);
+                return GetSportType(sportType);
+            }
+            else
+            {
+                return string.Format("{0} options", list.Length);
+            }
+        }
+
         public static string GetSportType(int sportType)
         {
             switch (sportType)
             {
-                case 0:
+                case -1:
+                    return "Combined other sports";
+
+                case -2:
+                    return "Other sports";
+
+                case -3:
+                    return "Combined sports";
+
+                default:
+                    return CacheRef.GetSportName(sportType);
+            }
+        }
+
+        public static string GetSportType(SportsType sportType)
+        {
+            switch (sportType)
+            {
+                case SportsType.AllSports:
                     return ViewLang.Allsports;
 
-                case 1:
+                case SportsType.SoccerOnly:
                     return ViewLang.Socceronly;
 
-                case 2:
+                case SportsType.OtherSports:
                     return ViewLang.Othersports;
 
-                case 3:
+                case SportsType.CombinedSports:
                     return ViewLang.Combinedsports;
             }
 
             return "Undefined";
         }
 
-        /// <summary>
-        /// Gets bet type name from resource by ID.
-        /// </summary>
-        /// <param name="betType">Bet type ID.</param>
-        /// <returns>Bet type name.</returns>
-        public static string GetBetType(int betType)
+        public static string GetParlayTitle(string parlayTypes)
         {
-            switch (betType)
+            switch (parlayTypes)
             {
-                case (int)BetType.MixParlay:
+                case "1,2":
+                    return ViewLang.All;
+
+                case "1":
                     return ViewLang.MixparLay;
 
-                case (int)BetType.SystemParlay:
-                    return ViewLang.SystemparLay;
+                case "2":
+                    return ViewLang.ComboParlay;
             }
 
             return "Undefined";

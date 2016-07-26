@@ -1,60 +1,35 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Jason.Ly" date="2013.09.16">Created</change>
-// </history>
+﻿using PagedList;
+using ParlayRMS.ExcelService.Writers;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Models.MemberWinLoss;
+using ParlayRMS.Services.Implement.MemberWinLoss;
+using ParlayRMS.Services.Interface.MemberWinLoss;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Mvc;
-    using PagedList;
-    using ParlayRMS.ExcelService.Writers;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.MemberWinLoss;
-    using ParlayRMS.Services.Implement.MemberWinLoss;
-    using ParlayRMS.Services.Interface.MemberWinLoss;
-    using ParlayRMS.Utility;
-    using ParlayRMS.ViewModel;
-    using ParlayRMS.ViewModel.Report;
-    using ParlayRMS.Web.Authorization;
-
-    /// <summary>
-    /// Member Win Loss Controller.
-    /// </summary>
+    [Authorization(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
     public class MemberWinLossController : BaseController
     {
         private readonly IMemberWinLossService _memberWinLossService = new MemberWinLossService();
 
-        /// <summary>
-        /// Redirect to Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.BetTypes = Config.BetTypes;
-            ViewBag.SportsTypes = Config.SportsTypes;
             ViewBag.LimitDate = MemberWinLossOptions.GetLimitDate();
-            return this.View();
+            return View();
         }
 
-        /// <summary>
-        /// Get data based on filtered conditions.
-        /// </summary>
-        /// <param name="options">Options contain filter conditions.</param>
-        /// <returns>Partial view represents member win loss report.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(MemberWinLossOptions options)
         {
@@ -76,15 +51,15 @@ namespace ParlayRMS.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return this.PartialView("_ErrorMessage", GetModelErrorMessage());
+                    return PartialView("_ErrorMessage", GetModelErrorMessage());
                 }
                 else
                 {
-                    var model = this._memberWinLossService.GetMemberWinLoss(
-                                                              options.FromDate, 
-                                                              options.ToDate, 
-                                                              options.BetType, 
-                                                              options.SportsType, 
+                    var model = _memberWinLossService.GetMemberWinLoss(
+                                                              options.FromDate,
+                                                              options.ToDate,
+                                                              options.ParlayTypes,
+                                                              options.SportsType,
                                                               options.Combos,
                                                               options.Username,
                                                               options.IsCached,
@@ -98,33 +73,28 @@ namespace ParlayRMS.Controllers
                     {
                         int page = options.PageIndex ?? 1;
                         ViewBag.Pager = Pager.Items(model.Records.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
-                        return this.PartialView("AgentData", model.Records.ToPagedList(page, AppSetting.PageSize));
+                        return PartialView("AgentData", model.Records.ToPagedList(page, AppSetting.PageSize));
                     }
                     else
                     {
-                        return this.PartialView("MemberData", model);
+                        return PartialView("MemberData", model);
                     }
                 }
             }
             catch (Exception ex)
             {
-                return this.PartialView("_ErrorMessage", ex.Message);
+                return PartialView("_ErrorMessage", ex.Message);
             }
         }
 
-        /// <summary>
-        /// Export Member Win Loss Report to Excel file.
-        /// </summary>
-        /// <param name="options">Options contain filter conditions.</param>
-        [AuthorizationAttribute(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
         [HttpGet]
         public void Excel(MemberWinLossOptions options)
         {
             int roleId = 0;
-            var model = this._memberWinLossService.GetMemberWinLoss(
+            var model = _memberWinLossService.GetMemberWinLoss(
                                                       options.FromDate,
                                                       options.ToDate,
-                                                      options.BetType,
+                                                      options.ParlayTypes,
                                                       options.SportsType,
                                                       options.Combos,
                                                       options.Username,
@@ -148,13 +118,7 @@ namespace ParlayRMS.Controllers
             Response.End();
         }
 
-        /// <summary>
-        /// Export report data to Excel file in memory stream.
-        /// </summary>
-        /// <param name="model">Model contains the data of report.</param>
-        /// <param name="title">The title of report.</param>
-        /// <returns>Memory contains the Excel file.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportMemberWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\MemberWinLoss.xls";
@@ -191,7 +155,7 @@ namespace ParlayRMS.Controllers
             };
 
             // Footer
-            var footer = new object[] 
+            var footer = new object[]
             {
                 ViewLang.Total,
                 model.Total.Tickets_Won,
@@ -234,13 +198,7 @@ namespace ParlayRMS.Controllers
             return writer.Render("MemberWinLoss");
         }
 
-        /// <summary>
-        /// Export report data to Excel file in memory stream.
-        /// </summary>
-        /// <param name="model">Model contains the data of report.</param>
-        /// <param name="title">The title of report.</param>
-        /// <returns>Memory contains the Excel file.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportAgentWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\AgentWinLoss.xls";
@@ -279,7 +237,7 @@ namespace ParlayRMS.Controllers
             };
 
             // Footer
-            var footer = new object[] 
+            var footer = new object[]
             {
                 ViewLang.Total,
                 string.Empty,
@@ -337,7 +295,7 @@ namespace ParlayRMS.Controllers
                     writer.WriteRow(3, record);
                 }
             }
-            
+
             // footer
             writer.WriteRow(5, footer);
 
