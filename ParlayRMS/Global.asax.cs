@@ -183,14 +183,14 @@
 
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
-                "~/Scripts/jquery-1.7.js",
+                "~/Scripts/jquery-1.9.0.js",
                 "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
                 "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
                 "~/Scripts/Libs/cookie/jquery.cookie.js",
                 "~/Scripts/Libs/highcharts/highcharts.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
-                "~/Scripts/autoNumeric/autoNumeric-1.9.25.js",
+                "~/Scripts/autoNumeric/autoNumeric.js",
                 "~/Scripts/Libs/moment/moment.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect-customized.js",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
