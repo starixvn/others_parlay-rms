@@ -1,3 +1,5 @@
+using System;
+
 namespace ParlayRMS.DTO.BetList
 {
     public class RMS_Parlay_TransDetails
@@ -43,5 +45,9 @@ namespace ParlayRMS.DTO.BetList
         public string BetCheck { get; set; }
 
         public decimal Stake { get; set; }
+
+        public DateTime TransDate { get; set; }
+
+        public string TransDesc { get; set; }
     }
 }

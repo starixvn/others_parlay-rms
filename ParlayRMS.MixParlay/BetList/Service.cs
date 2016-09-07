@@ -36,7 +36,9 @@ namespace ParlayRMS.MixParlay.BetList
                     MatchCode = item.MatchCode.ToString(),
                     RefNo = refNo.ToString(),
                     Status = item.Status,
-                    BetCheck = item.BetCheck
+                    BetCheck = item.BetCheck,
+                    TransDate = item.TransDate,
+                    TransDesc = item.TransDesc
                 };
 
                 result.Add(ticket);

@@ -40,7 +40,9 @@ namespace ParlayRMS.Services.Implement.BetList
                     RefNo = refNo.ToString(),
                     Status = item.Status,
                     BetCheck = item.BetCheck,
-                    Stake = item.Stake
+                    Stake = item.Stake,
+                    TransDate = item.TransDate,
+                    TransDesc = item.TransDesc
                 };
 
                 result.Add(ticket);
