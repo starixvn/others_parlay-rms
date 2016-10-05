@@ -44,7 +44,9 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                             MatchCode = reader.ToInt32("matchcode"),
                             BetStatus = reader.ToString("betstatus"),
                             BetCheck = reader.ToString("betcheck"),
-                            Stake = reader.ToDecimal("stake")
+                            Stake = reader.ToDecimal("stake"),
+                            TransDate = reader.ToDateTime("transdate"),
+                            TransDesc = reader.ToString("transdesc")
                         });
                     }
                 }

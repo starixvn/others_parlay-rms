@@ -1,4 +1,6 @@
-﻿namespace ParlayRMS.MixParlay.BetList
+﻿using System;
+
+namespace ParlayRMS.MixParlay.BetList
 {
     public class TransDetails
     {
@@ -41,5 +43,9 @@
         public string BetStatus { get; set; }
 
         public string BetCheck { get; set; }
+
+        public DateTime TransDate { get; set; }
+
+        public string TransDesc { get; set; }
     }
 }

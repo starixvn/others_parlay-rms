@@ -66,6 +66,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    var isHideDetails = (item.BetType == (int)BetType.SystemParlay && item.BetTeam == "1") || string.Equals(item.Status, "void", StringComparison.OrdinalIgnoreCase);
                     counter = counter + 1;
                     <tr>
                         <td class="center">
@@ -107,7 +108,7 @@
                                     }
                                 }
                             </a>
-                            @if (item.BetType == (int)BetType.SystemParlay)
+                            @if (!isHideDetails)
                             {
                                 <div class="tdDetail">
                                     <a class="tdDetailLink" data-id="@item.RefNo" href="#">@ViewLang.Details</a>

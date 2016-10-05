@@ -25,6 +25,12 @@
 {
     color: #003399;
 }
+
+.excluding-choices {
+    color: #484848;
+    font-weight: normal;
+}
+
 div.match + div.league
 {
     color: #666666;
