@@ -63,7 +63,7 @@
                         return "http://172.16.4.106/private$/entlib";
 
                     default:
-                        return "http://10.18.200.209/private$/entlib";
+                        return "http://10.35.35.254:808/msmq/Private$/entlib";
                 }
             }
         }
@@ -85,7 +85,7 @@
                         return "http://10.40.40.22:8889/api";
 
                     default:
-                        return "http://10.18.200.124:8889/api";
+                        return "http://ha.nexdev.net:8889/api";
                 }
             }
         }
@@ -107,11 +107,11 @@
                         return "tcp://172.16.4.118:8098/CallGetRefFunction";
 
                     default:
-                        return "tcp://10.70.70.242:8888/CallGetRefFunction";
+                        return "tcp://ha.nexdev.net:8888/CallGetRefFunction";
                 }
             }
         }
-                
+
         public string ErrorMode
         {
             get
@@ -126,7 +126,7 @@
                 }
             }
         }
-        
+
         public string DebugMode
         {
             get
@@ -173,7 +173,7 @@
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=172.16.4.107:42424\" />";
 
                     default:
-                        return "";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.35.35.254:42424\" />";
                 }
             }
         }
