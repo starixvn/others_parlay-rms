@@ -54,7 +54,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "http://10.40.40.127/msmq/Private$/entlib";
+                        return "http://10.40.40.22/msmq/Private$/entlib";
 
                     case SiteEnvironment.MNL:
                         return "http://10.2.98.3/private$/entlib";
@@ -166,7 +166,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.135:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.22:42424\" />";
                     case SiteEnvironment.MNL:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.12.10:42424\" />";
                     case SiteEnvironment.SIT:
