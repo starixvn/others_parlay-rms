@@ -63,7 +63,7 @@
                         return "http://172.16.4.106/private$/entlib";
 
                     default:
-                        return "http://10.35.35.254:808/msmq/Private$/entlib";
+                        return "http://10.35.35.253:808/msmq/Private$/entlib";
                 }
             }
         }
@@ -173,7 +173,7 @@
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=172.16.4.107:42424\" />";
 
                     default:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.35.35.254:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.35.35.253:42424\" />";
                 }
             }
         }

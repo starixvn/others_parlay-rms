@@ -10,7 +10,7 @@
         var fileName = string.Format("Web.{0}.config", site.Environment);
 
         var connectionStringFileName = string.Format("App_Configuration\\{0}\\Web.ConnectionString.config", site.Environment);
-        
+
         manager.StartNewFile(fileName);
 #>
 <?xml version="1.0" encoding="utf-8"?>
@@ -28,7 +28,7 @@
   <dangerousAgents configSource="DangerousAgents.config" />
   <Fanex.Data.DbSettingProvider default="XmlDbSettingProvider">
         <providers>
-             <add name="XmlDbSettingProvider" 
+             <add name="XmlDbSettingProvider"
                 type="Fanex.Data.DbSettingProviderExtension.XmlDbSettingProvider3, Fanex.Data.DbSettingProviderExtension"
                 resourcePath="<#=site.SPName#>" enableWatching="0" />
         </providers>
