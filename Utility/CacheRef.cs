@@ -23,28 +23,9 @@ namespace ParlayRMS.Utility
             }
         }
 
-        private static bool IsWebService
-        {
-            get
-            {
-                return false;
-            }
-        }
-
         public static string GetBettype(object bettypeId)
         {
-            return GetBettype(bettypeId, null);
-        }
-
-        public static string GetBettype(object bettypeId, object betID)
-        {
-            // ResourceId remove first character
             string resourceId = string.Empty;
-            if (betID != null && betID.ToString().Length > 1)
-            {
-                resourceId = betID.ToString().Substring(1);
-            }
-
             try
             {
                 return RefData.GetBetTypeName(bettypeId.ToString(), Language, resourceId);
