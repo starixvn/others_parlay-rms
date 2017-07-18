@@ -187,14 +187,9 @@
                     case SiteEnvironment.MASTER:
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.MNL:
-                        return "~/App_Data/PRO/";
-
-                    case SiteEnvironment.SIT:
-                    case SiteEnvironment.UAT:
-                        return "~/App_Data/UAT/";
-
+                        return "~/App_Data/LIVE/";
                     default:
-                        return "~/App_Data/LOCAL/";
+                        return "~/App_Data/TEST/";
                 }
             }
         }

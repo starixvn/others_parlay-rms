@@ -216,3 +216,7 @@ div.void
 {
     text-decoration: line-through;
 }
+
+.light-blue {
+    color: #0017CD;
+}

@@ -255,10 +255,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\LOCAL\SpNames.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\PRO\SpNames.xml">
+    <Content Include="App_Data\LIVE\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\MixParlay\Scripts\mix-parlay-monitor.js" />
@@ -719,7 +716,7 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
-    <Content Include="App_Data\UAT\SpNames.xml">
+    <Content Include="App_Data\TEST\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
