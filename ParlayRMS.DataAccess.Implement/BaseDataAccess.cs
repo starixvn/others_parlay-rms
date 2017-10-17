@@ -1,12 +1,9 @@
 ﻿namespace ParlayRMS.DataAccess.Implement
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Data;
     using Fanex.Data.DNAide;
-    using Fanex.Logging;
 
     /// <summary>
     /// Base Data Access.

@@ -1,12 +1,6 @@
 ﻿namespace ParlayRMS
 {
-    using Fanex.Data.Configuration;
-    using Fanex.Logging;
-    using ONEbook.UM.Filters;
-    using ParlayRMS.Web.Authorization;
-    using ParlayRMS.Web.Session;
     using System;
-    using System.Data.SqlClient;
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Http;
@@ -14,6 +8,10 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using System.Web.Security;
+    using App_Start;
+    using Fanex.Data.Configuration;
+    using ONEbook.UM.Filters;
+    using ParlayRMS.Web.Authorization;
 
     /// <summary>
     /// MVC Application.
@@ -29,7 +27,7 @@
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles();
-
+            FanexLogging.Register();
             DbSettingProviderManager.Current.Start();
         }
 
@@ -79,33 +77,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            var exception = Server.GetLastError().GetBaseException();
-            var httpException = exception as HttpException;
-            if (httpException != null || Request.IsLocal)
-            {
-                return;
-            }
-
-            // Get base exception data
-            var message = exception.Message +
-                "\r\nType: " + exception.GetType().ToString() +
-                "\r\nSource: " + exception.Source +
-                "\r\nUsername: " + CurrentSession.Instance.UserName +
-                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                "\r\nForm: " + Request.Form.ToString() +
-                "\r\nQueryString: " + Request.QueryString.ToString() +
-                "\r\nTargetSite: " + exception.TargetSite +
-                "\r\nStackTrace: " + exception.StackTrace;
-
-            // Get additional exception data
-            if (exception is SqlException)
-            {
-                message += "\r\nProcedure: " + ((SqlException)exception).Procedure +
-                    "\r\nLine Number: " + ((SqlException)exception).LineNumber +
-                    "\r\nServer: " + ((SqlException)exception).Server;
-            }
-
-            LogService.Error(message);
+            FanexLogging.HandleApplicationError(Server);
         }
 
         /// <summary>
