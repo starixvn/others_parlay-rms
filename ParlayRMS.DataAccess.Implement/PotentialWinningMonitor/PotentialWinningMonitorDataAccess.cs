@@ -39,6 +39,7 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                             TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
                             CustId = reader.ToInt64("custid"),
                             UserName = reader.ToString("username"),
+                            Currency = reader.ToString("currency"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             WinningAmount = reader.ToDecimal("winningamount"),

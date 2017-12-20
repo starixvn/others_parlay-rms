@@ -3,7 +3,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.WinLoss;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 800px">
+    <div class="filter-control" style="width: 800px; margin-bottom: 10px;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl
@@ -48,7 +48,14 @@
             </div>
         </div>
     </div>
-    <div style="clear: both; padding-top: 20px;" id="divResult">
+    <div style="clear: both; margin-bottom: 10px;" id="divResult">
+    </div>
+    <div class="note note-collapse">
+        <div class="note-header"><i class="note-icon"></i>Note</div>
+        <ul class="note-content">
+            <li>- House Net Win Loss is before Extra PT</li>
+            <li>- This Win Loss Amount does not exclude Commission that House gives to Super</li>
+        </ul>
     </div>
     @Scripts.Render("~/Scripts/Report/Winloss/js")
     <script type="text/javascript">

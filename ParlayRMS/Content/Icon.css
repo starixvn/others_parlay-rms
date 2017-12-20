@@ -1,7 +1,6 @@
 ﻿/* File Created: June 19, 2012 */
 
-.button span.addNewUSer
-{
+.button span.addNewUSer {
     background: url("images/Content/icon/1340012613_emblem-people.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
@@ -9,8 +8,7 @@
     margin-right: 3px;
 }
 
-.button span.addNewGroup
-{
+.button span.addNewGroup {
     background: url("images/Content/icon/1340071275_emesene.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
@@ -18,16 +16,15 @@
     margin-right: 3px;
 }
 
-.button span.addNewFunction
-{
+.button span.addNewFunction {
     background: url("images/Content/icon/1340012440_gtk-about.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
     float: left;
     margin-right: 3px;
 }
-.button span.addNewMenu
-{
+
+.button span.addNewMenu {
     background: url("images/Content/icon/1340013585_stock_task-assigned.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
@@ -35,8 +32,7 @@
     margin-right: 3px;
 }
 
-.button span.search
-{
+.button span.search {
     background: url("images/Content/icon/1340070612_deskbar-applet.png") no-repeat center center transparent;
     width: 16px;
     height: 16px;
@@ -44,8 +40,7 @@
     margin-right: 3px;
 }
 
-.button span.text
-{
+.button span.text {
     line-height: 20px;
     color: #fff;
 }

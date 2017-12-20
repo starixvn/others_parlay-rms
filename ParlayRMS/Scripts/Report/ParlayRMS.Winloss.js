@@ -201,5 +201,6 @@ ParlayRMS.Winloss = {
 }
 
 $(document).ready(function () {
+    note.init();
     ParlayRMS.Winloss.Init();
 });

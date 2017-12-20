@@ -515,6 +515,8 @@
     <Content Include="Content\images\Content\logo_e.png" />
     <Content Include="Content\images\Content\Menu_hover.gif" />
     <Content Include="Content\images\Content\newuser_bt.png" />
+    <Content Include="Content\images\Content\note-collpase.png" />
+    <Content Include="Content\images\Content\note-expand.png" />
     <Content Include="Content\images\Content\number-sign-icon.png" />
     <Content Include="Content\images\Content\pattern_submenu.png" />
     <Content Include="Content\images\Content\pointer.png" />

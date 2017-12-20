@@ -43,47 +43,47 @@ ul {
     float: left;
 }
 
-#mainPage .body .content {
-    background: #EFEFEF;
-    min-height: 630px;
-}
+    #mainPage .body .content {
+        background: #EFEFEF;
+        min-height: 630px;
+    }
 
-#mainPage .content {
-    margin: auto 2px;
-}
+    #mainPage .content {
+        margin: auto 2px;
+    }
 
-#mainPage .header {
-    margin-bottom: 2px;
-    padding-top: 0;
-    background: url(images/content/title_bg.png) repeat-x center center transparent;
-    height: 31px;
-}
+    #mainPage .header {
+        margin-bottom: 2px;
+        padding-top: 0;
+        background: url(images/content/title_bg.png) repeat-x center center transparent;
+        height: 31px;
+    }
 
-#mainPage .header.showcase .content {
-    margin: auto;
-    padding: 3px 0;
-    position: relative;
-    vertical-align: middle;
-}
+        #mainPage .header.showcase .content {
+            margin: auto;
+            padding: 3px 0;
+            position: relative;
+            vertical-align: middle;
+        }
 
-#mainPage h1, #mainPage h2, #mainPage h3, #mainPage h4 {
-    border: 0 none;
-    margin: 0;
-    padding: 0;
-}
+    #mainPage h1, #mainPage h2, #mainPage h3, #mainPage h4 {
+        border: 0 none;
+        margin: 0;
+        padding: 0;
+    }
 
-#mainPage .header h1 {
-    font-family: Abel,Verdana, Sans-Serif, Tahoma, Arial;
-    font-size: 20px;
-    font-weight: 600;
-    width: 70%;
-    color: #242323;
-    margin-left: 30px;
-}
+    #mainPage .header h1 {
+        font-family: Abel,Verdana, Sans-Serif, Tahoma, Arial;
+        font-size: 20px;
+        font-weight: 600;
+        width: 70%;
+        color: #242323;
+        margin-left: 30px;
+    }
 
-#mainPage .top-bar {
-    background-color: #10243C;
-}
+    #mainPage .top-bar {
+        background-color: #10243C;
+    }
 
 /* WINLOSS FILTER & FULLVIEW */
 
@@ -103,14 +103,14 @@ ul {
     height: 30px;
 }
 
-.bar.new-cmd .group {
-    float: left;
-}
+    .bar.new-cmd .group {
+        float: left;
+    }
 
-.bar.new-cmd .user {
-    float: left;
-    padding-left: 5px;
-}
+    .bar.new-cmd .user {
+        float: left;
+        padding-left: 5px;
+    }
 
 /* SCROLLABLE TABLE */
 
@@ -121,25 +121,25 @@ ul {
     background-color: #3F536B;
 }
 
-.scrollGridHeader table.scrollGrid td {
-    vertical-align: middle;
-    text-align: center;
-    font-weight: 600;
-    color: #3f4142;
-    border: solid 1px #0A1E36;
-    background-color: #3F536B;
-    background: url('images/Content/table_tltle_bg.gif') repeat-x center center #3F536B;
-    height: 28px;
-    border-bottom: 0;
-    color: #fff;
-    text-transform: uppercase;
-}
+    .scrollGridHeader table.scrollGrid td {
+        vertical-align: middle;
+        text-align: center;
+        font-weight: 600;
+        color: #3f4142;
+        border: solid 1px #0A1E36;
+        background-color: #3F536B;
+        background: url('images/Content/table_tltle_bg.gif') repeat-x center center #3F536B;
+        height: 28px;
+        border-bottom: 0;
+        color: #fff;
+        text-transform: uppercase;
+    }
 
-.scrollGridHeader table.scrollGrid td a {
-    font-weight: bold;
-    color: #3f4142;
-    text-decoration: none !important;
-}
+        .scrollGridHeader table.scrollGrid td a {
+            font-weight: bold;
+            color: #3f4142;
+            text-decoration: none !important;
+        }
 
 .scrollGridContent {
     overflow: auto;
@@ -147,105 +147,105 @@ ul {
     border-bottom-left-radius: 5px;
 }
 
-.scrollGridContent table.scrollGrid td div.divcolor {
-    text-align: center;
-    width: 100px;
-    line-height: 30px;
-    border-radius: 5px;
-    text-align: center;
-    clear: both;
-    margin: 0 auto;
-    width: 100px;
-}
+    .scrollGridContent table.scrollGrid td div.divcolor {
+        text-align: center;
+        width: 100px;
+        line-height: 30px;
+        border-radius: 5px;
+        text-align: center;
+        clear: both;
+        margin: 0 auto;
+        width: 100px;
+    }
 
-.scrollGridContent table.scrollGrid td div.divcolor:hover {
-    color: #C6DEFF;
-}
+        .scrollGridContent table.scrollGrid td div.divcolor:hover {
+            color: #C6DEFF;
+        }
 
-.scrollGridContent table.scrollGrid td div.following {
-    width: 100px;
-    line-height: 30px;
-    background-color: #27B4E8;
-    border-radius: 5px;
-    text-align: center;
-    clear: both;
-    margin: 0 auto;
-    color: #fff;
-    cursor: pointer;
-}
+    .scrollGridContent table.scrollGrid td div.following {
+        width: 100px;
+        line-height: 30px;
+        background-color: #27B4E8;
+        border-radius: 5px;
+        text-align: center;
+        clear: both;
+        margin: 0 auto;
+        color: #fff;
+        cursor: pointer;
+    }
 
-.scrollGridContent table.scrollGrid td div.following:hover {
-    width: 100px;
-    line-height: 30px;
-    background-color: #D74C46;
-    border-radius: 5px;
-    text-align: center;
-    clear: both;
-    margin: 0 auto;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-}
+        .scrollGridContent table.scrollGrid td div.following:hover {
+            width: 100px;
+            line-height: 30px;
+            background-color: #D74C46;
+            border-radius: 5px;
+            text-align: center;
+            clear: both;
+            margin: 0 auto;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-.scrollGridContent table.scrollGrid td div.follow {
-    width: 100px;
-    line-height: 30px;
-    background-color: #E6E6E6;
-    border-radius: 5px;
-    text-align: center;
-    clear: both;
-    margin: 0 auto;
-    color: #000;
-    cursor: pointer;
-}
+    .scrollGridContent table.scrollGrid td div.follow {
+        width: 100px;
+        line-height: 30px;
+        background-color: #E6E6E6;
+        border-radius: 5px;
+        text-align: center;
+        clear: both;
+        margin: 0 auto;
+        color: #000;
+        cursor: pointer;
+    }
 
-.scrollGridContent table.scrollGrid td div.follow:hover {
-    width: 100px;
-    line-height: 30px;
-    border-radius: 5px;
-    text-align: center;
-    clear: both;
-    margin: 0 auto;
-    color: #000;
-    cursor: pointer;
-    font-weight: bold;
-}
+        .scrollGridContent table.scrollGrid td div.follow:hover {
+            width: 100px;
+            line-height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            clear: both;
+            margin: 0 auto;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-.scrollGridContent table.scrollGrid td div.active {
-    background-image: url("images/Content/checkbox.png");
-    background-position: 0 0;
-    width: 19px;
-    height: 19px;
-    margin: auto;
-    cursor: pointer;
-}
+    .scrollGridContent table.scrollGrid td div.active {
+        background-image: url("images/Content/checkbox.png");
+        background-position: 0 0;
+        width: 19px;
+        height: 19px;
+        margin: auto;
+        cursor: pointer;
+    }
 
-.scrollGridContent table.scrollGrid td div.inactive {
-    background-image: url("images/Content/checkbox.png");
-    background-position: 0 19px;
-    width: 19px;
-    height: 19px;
-    margin: auto;
-    cursor: pointer;
-}
+    .scrollGridContent table.scrollGrid td div.inactive {
+        background-image: url("images/Content/checkbox.png");
+        background-position: 0 19px;
+        width: 19px;
+        height: 19px;
+        margin: auto;
+        cursor: pointer;
+    }
 
-.scrollGridContent table.scrollGrid td div.resetPassword {
-    background: url("images/Content/refresh_ico.png") no-repeat scroll 0px 0px transparent;
-    width: 15px;
-    height: 15px;
-    margin: auto;
-    cursor: pointer;
-}
+    .scrollGridContent table.scrollGrid td div.resetPassword {
+        background: url("images/Content/refresh_ico.png") no-repeat scroll 0px 0px transparent;
+        width: 15px;
+        height: 15px;
+        margin: auto;
+        cursor: pointer;
+    }
 
-.scrollGridContent table.scrollGrid td div.removeIcon {
-    background-image: url(Libs/jquery-ui/images/ui-icons_cd0a0a_256x240.png);
-    background-position: -16px -192px;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    float: right;
-    margin-right: 5px;
-}
+    .scrollGridContent table.scrollGrid td div.removeIcon {
+        background-image: url(Libs/jquery-ui/images/ui-icons_cd0a0a_256x240.png);
+        background-position: -16px -192px;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        float: right;
+        margin-right: 5px;
+    }
 
 table.scrollGrid {
     border-collapse: collapse;
@@ -253,39 +253,39 @@ table.scrollGrid {
     width: 100%;
 }
 
-table.scrollGrid th {
-    vertical-align: middle;
-    text-align: center;
-    border: solid 1px #d5d5d5;
-    padding: 2px;
-    height: 25px;
-    border-bottom: 0;
-}
+    table.scrollGrid th {
+        vertical-align: middle;
+        text-align: center;
+        border: solid 1px #d5d5d5;
+        padding: 2px;
+        height: 25px;
+        border-bottom: 0;
+    }
 
-table.scrollGrid th a {
-    color: #3f4142;
-    text-decoration: none !important;
-}
+        table.scrollGrid th a {
+            color: #3f4142;
+            text-decoration: none !important;
+        }
 
-table.scrollGrid th a span.sort.asc {
-    background: transparent url(images/Content/arw-down-white.png) no-repeat;
-    width: 7px;
-    height: 4px;
-    line-height: 0;
-    text-indent: -99999px;
-    overflow: hidden;
-    display: inline-block;
-}
+            table.scrollGrid th a span.sort.asc {
+                background: transparent url(images/Content/arw-down-white.png) no-repeat;
+                width: 7px;
+                height: 4px;
+                line-height: 0;
+                text-indent: -99999px;
+                overflow: hidden;
+                display: inline-block;
+            }
 
-table.scrollGrid td {
-    border: solid 1px #d5d5d5;
-    text-align: left;
-    padding: 0px;
-}
+    table.scrollGrid td {
+        border: solid 1px #d5d5d5;
+        text-align: left;
+        padding: 0px;
+    }
 
-table.scrollGrid tr {
-    height: 20px;
-}
+    table.scrollGrid tr {
+        height: 20px;
+    }
 
 .scrollGridContent table.scrollGrid tr:hover {
     background-color: #CED8E2;
@@ -311,21 +311,21 @@ table.scrollGrid td a {
     text-decoration: none;
 }
 
-table.scrollGrid td a:visited {
-    color: #5A72FF;
-    font-weight: normal;
-    text-decoration: none;
-}
+    table.scrollGrid td a:visited {
+        color: #5A72FF;
+        font-weight: normal;
+        text-decoration: none;
+    }
 
-table.scrollGrid td a:active {
-    color: #5A72FF;
-    font-weight: normal;
-    text-decoration: none;
-}
+    table.scrollGrid td a:active {
+        color: #5A72FF;
+        font-weight: normal;
+        text-decoration: none;
+    }
 
-table.scrollGrid td a:hover {
-    text-decoration: underline;
-}
+    table.scrollGrid td a:hover {
+        text-decoration: underline;
+    }
 
 table.scrollGrid td span.subfunction {
     margin-left: 15px;
@@ -343,25 +343,25 @@ table.scrollGrid td span.function {
     clear: both;
 }
 
-#mainPage .menu-slidedown .pointer-slidedown {
-    width: 100px;
-    cursor: n-resize;
-    margin: 0px auto;
-}
+    #mainPage .menu-slidedown .pointer-slidedown {
+        width: 100px;
+        cursor: n-resize;
+        margin: 0px auto;
+    }
 
-#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-1 {
-    width: 70px;
-    border-bottom: 2px solid #DBDCDF;
-    height: 2px;
-    margin: 0px auto;
-}
+        #mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-1 {
+            width: 70px;
+            border-bottom: 2px solid #DBDCDF;
+            height: 2px;
+            margin: 0px auto;
+        }
 
-#mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-2 {
-    width: 30px;
-    border-bottom: 2px solid #DBDCDF;
-    height: 2px;
-    margin: 0px auto;
-}
+        #mainPage .menu-slidedown .pointer-slidedown .pointer-slidedown-2 {
+            width: 30px;
+            border-bottom: 2px solid #DBDCDF;
+            height: 2px;
+            margin: 0px auto;
+        }
 
 #mainPage .menu {
     width: 100%;
@@ -370,121 +370,121 @@ table.scrollGrid td span.function {
     clear: both;
 }
 
-#mainPage .menu, #mainPage .menu a {
-    color: #b3b3b3;
-}
+    #mainPage .menu, #mainPage .menu a {
+        color: #b3b3b3;
+    }
 
-#mainPage .menu .content {
-    height: 40px;
-    padding: 0 16px 0 16px;
-}
+        #mainPage .menu .content {
+            height: 40px;
+            padding: 0 16px 0 16px;
+        }
 
-#mainPage .menu a.logo, #mainPage .menu a.l {
-    float: left;
-    text-decoration: none;
-}
+        #mainPage .menu a.logo, #mainPage .menu a.l {
+            float: left;
+            text-decoration: none;
+        }
 
-#mainPage .menu a.l:hover {
-    text-decoration: underline;
-}
+            #mainPage .menu a.l:hover {
+                text-decoration: underline;
+            }
 
-#mainPage .menu a.logo {
-    font-family: 'Segoe UI', Verdana, Tahoma, Arial;
-    font-size: 20px;
-    color: #FFF;
-    margin: 0 10px 0 0;
-    padding-top: 10px;
-    padding-right: 20px;
-    height: 30px;
-    background: url('images/Content/logo.png') no-repeat left transparent;
-    width: 111px;
-}
+        #mainPage .menu a.logo {
+            font-family: 'Segoe UI', Verdana, Tahoma, Arial;
+            font-size: 20px;
+            color: #FFF;
+            margin: 0 10px 0 0;
+            padding-top: 10px;
+            padding-right: 20px;
+            height: 30px;
+            background: url('images/Content/logo.png') no-repeat left transparent;
+            width: 111px;
+        }
 
-#mainPage .menu a.logo span {
-    background-color: #FFF;
-    border: #333 solid 1px;
-    color: #3B5998;
-    padding: 0 3px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
+            #mainPage .menu a.logo span {
+                background-color: #FFF;
+                border: #333 solid 1px;
+                color: #3B5998;
+                padding: 0 3px;
+                border-radius: 3px;
+                -moz-border-radius: 3px;
+                -webkit-border-radius: 3px;
+            }
 
-#mainPage .menu a.l {
-    line-height: 31px;
-    padding: 2px 11px;
-    margin-top: 3px;
-}
+        #mainPage .menu a.l {
+            line-height: 31px;
+            padding: 2px 11px;
+            margin-top: 3px;
+        }
 
-#mainPage .menu .content .welcome {
-    right: 0px;
-    padding: 5px 20px 5px 20px;
-    margin-top: 5px;
-    position: absolute;
-    z-index: 94;
-    cursor: pointer;
-    margin-right: 20px;
-}
+        #mainPage .menu .content .welcome {
+            right: 0px;
+            padding: 5px 20px 5px 20px;
+            margin-top: 5px;
+            position: absolute;
+            z-index: 94;
+            cursor: pointer;
+            margin-right: 20px;
+        }
 
-#mainPage .menu .content .welcome:hover {
-    right: 0px;
-    padding: 5px 20px 5px 20px;
-    margin-top: 5px;
-    position: absolute;
-    z-index: 94;
-    cursor: pointer;
-    margin-right: 20px;
-    background-color: #3F536B;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
+            #mainPage .menu .content .welcome:hover {
+                right: 0px;
+                padding: 5px 20px 5px 20px;
+                margin-top: 5px;
+                position: absolute;
+                z-index: 94;
+                cursor: pointer;
+                margin-right: 20px;
+                background-color: #3F536B;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+            }
 
-#mainPage .menu .content .welcome .welcomehead {
-    float: right;
-    margin-bottom: 5px;
-    clear: both;
-    color: #fff;
-}
+            #mainPage .menu .content .welcome .welcomehead {
+                float: right;
+                margin-bottom: 5px;
+                clear: both;
+                color: #fff;
+            }
 
-#mainPage .menu .content .welcome .welcomehead .arrow {
-    float: right;
-    list-style-type: none;
-    vertical-align: middle;
-    text-transform: uppercase;
-    line-height: 5px;
-    margin-left: 10px;
-    margin-top: 5px;
-    background: url('images/Content/dropdown.png') no-repeat center transparent;
-    height: 6px;
-    width: 8px;
-    cursor: pointer;
-}
+                #mainPage .menu .content .welcome .welcomehead .arrow {
+                    float: right;
+                    list-style-type: none;
+                    vertical-align: middle;
+                    text-transform: uppercase;
+                    line-height: 5px;
+                    margin-left: 10px;
+                    margin-top: 5px;
+                    background: url('images/Content/dropdown.png') no-repeat center transparent;
+                    height: 6px;
+                    width: 8px;
+                    cursor: pointer;
+                }
 
-#mainPage .menu .content .welcome .welcomebody {
-    clear: both;
-    display: none;
-    color: #B3B3B3;
-    margin-top: 30px;
-}
+            #mainPage .menu .content .welcome .welcomebody {
+                clear: both;
+                display: none;
+                color: #B3B3B3;
+                margin-top: 30px;
+            }
 
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: dotted 1px #F8FBFF;
-}
+                #mainPage .menu .content .welcome .welcomebody .welcomebody-sub {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-top: dotted 1px #F8FBFF;
+                }
 
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a {
-    text-decoration: none;
-    color: #B3B3B3;
-    padding: 10px 0px 10px 0px;
-}
+                    #mainPage .menu .content .welcome .welcomebody .welcomebody-sub a {
+                        text-decoration: none;
+                        color: #B3B3B3;
+                        padding: 10px 0px 10px 0px;
+                    }
 
-#mainPage .menu .content .welcome .welcomebody .welcomebody-sub a:hover {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 0px 10px 0px;
-}
+                        #mainPage .menu .content .welcome .welcomebody .welcomebody-sub a:hover {
+                            color: #fff;
+                            text-decoration: none;
+                            padding: 10px 0px 10px 0px;
+                        }
 
 .nav {
     float: left;
@@ -506,17 +506,17 @@ table.scrollGrid td span.function {
     padding: 0px 10px;
 }
 
-.nav .tab span {
-    display: block;
-    padding: 1px 9px;
-}
+    .nav .tab span {
+        display: block;
+        padding: 1px 9px;
+    }
 
-.nav .tab.hover, .nav .tab:hover {
-    color: #fff;
-}
+    .nav .tab.hover, .nav .tab:hover {
+        color: #fff;
+    }
 
-.nav .tab.hover span, .nav .tab:hover span {
-}
+        .nav .tab.hover span, .nav .tab:hover span {
+        }
 
 .nav .hover span, .nav li:hover span {
     position: relative;
@@ -575,11 +575,11 @@ table.scrollGrid td span.function {
     border-bottom: 1px solid #c2c0bd;
 }
 
-.nav .sub-nav li a:hover {
-    color: #d53846 !important;
-    text-decoration: none;
-    border-bottom: 1px solid #e6e4e2;
-}
+    .nav .sub-nav li a:hover {
+        color: #d53846 !important;
+        text-decoration: none;
+        border-bottom: 1px solid #e6e4e2;
+    }
 
 /* MISC
 -----------------------------------------------------------*/
@@ -685,65 +685,65 @@ table.scrollGrid td span.function {
     color: #fff;
 }
 
-.search-content .level {
-    float: left;
-    width: 100px;
-    list-style: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: 0em 1em;
-    line-height: 30px;
-    text-align: center;
-}
+    .search-content .level {
+        float: left;
+        width: 100px;
+        list-style: none;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        margin: 0em 1em;
+        line-height: 30px;
+        text-align: center;
+    }
 
-.search-content .inputtext {
-    border: 1px solid #D3D3D3;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    height: 22px;
-    margin-left: 10px;
-    background-color: #D6D7D5;
-}
+    .search-content .inputtext {
+        border: 1px solid #D3D3D3;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        height: 22px;
+        margin-left: 10px;
+        background-color: #D6D7D5;
+    }
 
-.search-content .inputtext:focus {
-    border: 1px solid #999999;
-    background-color: #ecedf0;
-}
+        .search-content .inputtext:focus {
+            border: 1px solid #999999;
+            background-color: #ecedf0;
+        }
 
-.search-content div.search-input {
-    float: left;
-}
+    .search-content div.search-input {
+        float: left;
+    }
 
-.search-content div.search-autocomplete {
-    float: left;
-    padding-left: 5px;
-    padding-right: 35px;
-}
+    .search-content div.search-autocomplete {
+        float: left;
+        padding-left: 5px;
+        padding-right: 35px;
+    }
 
-.search-content .search-button {
-    float: left;
-}
+    .search-content .search-button {
+        float: left;
+    }
 
-.search-content .search-statistic {
-    float: right;
-    line-height: 30px;
-}
+    .search-content .search-statistic {
+        float: right;
+        line-height: 30px;
+    }
 
-.search-content .search-statistic .search-active {
-    float: left;
-    padding-right: 10px;
-    font-weight: bold;
-    border-right: 1px solid #D6D7D5;
-}
+        .search-content .search-statistic .search-active {
+            float: left;
+            padding-right: 10px;
+            font-weight: bold;
+            border-right: 1px solid #D6D7D5;
+        }
 
-.search-content .search-statistic .search-inactive {
-    float: left;
-    font-weight: bold;
-    padding-left: 10px;
-    border-left: 1px solid #D6D7D5;
-}
+        .search-content .search-statistic .search-inactive {
+            float: left;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 1px solid #D6D7D5;
+        }
 
 /* Dialog Box ----------------------------------------------------------------*/
 
@@ -760,18 +760,18 @@ table.scrollGrid td span.function {
     font-family: Arial,Verdana, Sans-Serif, Tahoma;
 }
 
-.boxMain .content {
-    background-color: #eaedef;
-    border: 2px solid #43576D;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    font-size: 12px;
-}
+    .boxMain .content {
+        background-color: #eaedef;
+        border: 2px solid #43576D;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        font-size: 12px;
+    }
 
-.boxMain .black {
-    color: #000000;
-}
+    .boxMain .black {
+        color: #000000;
+    }
 
 .allField2 {
     float: left;
@@ -792,18 +792,17 @@ table.bet-detail {
     border-collapse: collapse;
 }
 
-table.bet-detail th {
-    padding-left: 5px;
-}
+    table.bet-detail th {
+        padding-left: 5px;
+    }
 
-table.bet-detail td {
-    text-align: center;
-    
-}
+    table.bet-detail td {
+        text-align: center;
+    }
 
-table.bet-detail .combo-type {
-    border-left: 2px solid #43576D;
-}
+    table.bet-detail .combo-type {
+        border-left: 2px solid #43576D;
+    }
 
 .boxMain .content .title {
     clear: both;
@@ -855,24 +854,24 @@ table.bet-detail .combo-type {
     text-align: left;
 }
 
-.boxMain .actionbar .actionbar-line {
-    clear: both;
-    display: block;
-    left: 0;
-    min-height: 33px;
-    overflow: auto;
-    padding: 0;
-    position: relative;
-    text-align: left;
-    margin-top: 10px;
-}
+    .boxMain .actionbar .actionbar-line {
+        clear: both;
+        display: block;
+        left: 0;
+        min-height: 33px;
+        overflow: auto;
+        padding: 0;
+        position: relative;
+        text-align: left;
+        margin-top: 10px;
+    }
 
-.boxMain .actionbar .button-action {
-    clear: both;
-    float: right;
-    line-height: 32px;
-    padding-right: 5px;
-}
+    .boxMain .actionbar .button-action {
+        clear: both;
+        float: right;
+        line-height: 32px;
+        padding-right: 5px;
+    }
 
 .boxMain .labelNoneBorder {
     clear: left;
@@ -940,58 +939,58 @@ table.bet-detail .combo-type {
     text-align: left;
 }
 
-.boxMain .fieldbar table {
-    width: 100%;
-    border: solid 1px #D3D3D3;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    height: auto;
-    border-collapse: collapse;
-}
+    .boxMain .fieldbar table {
+        width: 100%;
+        border: solid 1px #D3D3D3;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        height: auto;
+        border-collapse: collapse;
+    }
 
-.boxMain .fieldbar table tr th {
-    vertical-align: middle;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    background-color: #10243C;
-    border: solid 1px #D3D3D3;
-}
+        .boxMain .fieldbar table tr th {
+            vertical-align: middle;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            background-color: #10243C;
+            border: solid 1px #D3D3D3;
+        }
 
-.boxMain .fieldbar table tr {
-    height: 25px;
-}
+        .boxMain .fieldbar table tr {
+            height: 25px;
+        }
 
-.boxMain .fieldbar table tr:hover {
-    background-color: #CED8E2;
-}
+            .boxMain .fieldbar table tr:hover {
+                background-color: #CED8E2;
+            }
 
-.boxMain .fieldbar table tr span.function {
-    margin-left: 5px;
-}
+            .boxMain .fieldbar table tr span.function {
+                margin-left: 5px;
+            }
 
-.boxMain .fieldbar table tr span.subfunction {
-    margin-left: 15px;
-}
+            .boxMain .fieldbar table tr span.subfunction {
+                margin-left: 15px;
+            }
 
-.boxMain .fieldbar table tr td div.inactive {
-    background-image: url("images/Content/checkbox.png");
-    background-position: 0 19px;
-    width: 19px;
-    height: 19px;
-    margin: auto;
-    cursor: pointer;
-}
+            .boxMain .fieldbar table tr td div.inactive {
+                background-image: url("images/Content/checkbox.png");
+                background-position: 0 19px;
+                width: 19px;
+                height: 19px;
+                margin: auto;
+                cursor: pointer;
+            }
 
-.boxMain .fieldbar table tr td div.active {
-    background-image: url("images/Content/checkbox.png");
-    background-position: 0 0;
-    width: 19px;
-    height: 19px;
-    margin: auto;
-    cursor: pointer;
-}
+            .boxMain .fieldbar table tr td div.active {
+                background-image: url("images/Content/checkbox.png");
+                background-position: 0 0;
+                width: 19px;
+                height: 19px;
+                margin: auto;
+                cursor: pointer;
+            }
 
 .boxMain .field .inputtext {
     border: 1px solid transparent;
@@ -1121,72 +1120,72 @@ table.bet-detail .combo-type {
     margin-bottom: 10px;
 }
 
-.filter select {
-    padding: 2px;
-}
+    .filter select {
+        padding: 2px;
+    }
 
-.filter .data {
-    float: left;
-    width: auto;
-    min-width: 300px;
-    height: auto;
-    margin: 2px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border: 1px solid #43576D;
-    padding-bottom: 1px;
-}
+    .filter .data {
+        float: left;
+        width: auto;
+        min-width: 300px;
+        height: auto;
+        margin: 2px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #43576D;
+        padding-bottom: 1px;
+    }
 
-.filter .data .minimizetitle {
-    color: #fff;
-}
+        .filter .data .minimizetitle {
+            color: #fff;
+        }
 
-.filter .data table {
-    width: 400px;
-    height: auto;
-    border-collapse: collapse;
-    margin: 0px 1px;
-}
+        .filter .data table {
+            width: 400px;
+            height: auto;
+            border-collapse: collapse;
+            margin: 0px 1px;
+        }
 
-.filter .data table thead {
-    font-weight: bold;
-}
+            .filter .data table thead {
+                font-weight: bold;
+            }
 
-.filter .data table tr {
-    height: 25px;
-    background-color: #fff;
-}
+            .filter .data table tr {
+                height: 25px;
+                background-color: #fff;
+            }
 
-.filter .data table tr td {
-    margin: 2px;
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
-    border-color: #0A1E36 #0A1E36 -moz-use-text-color;
-    border-style: solid solid none;
-    border-width: 1px 1px 0;
-    color: #FFFFFF;
-    font-weight: 600;
-    height: 20px;
-    text-align: center;
-    text-transform: uppercase;
-    vertical-align: middle;
-    font-size: 11px;
-}
+                .filter .data table tr td {
+                    margin: 2px;
+                    -moz-border-bottom-colors: none;
+                    -moz-border-image: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+                    border-color: #0A1E36 #0A1E36 -moz-use-text-color;
+                    border-style: solid solid none;
+                    border-width: 1px 1px 0;
+                    color: #FFFFFF;
+                    font-weight: 600;
+                    height: 20px;
+                    text-align: center;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                    font-size: 11px;
+                }
 
-.filter .data table tr th.Nobackground {
-    background-color: transparent;
-    font-weight: bold;
-}
+                .filter .data table tr th.Nobackground {
+                    background-color: transparent;
+                    font-weight: bold;
+                }
 
-.filter .data table tr th.valueChanged {
-    background-color: Yellow;
-    color: Blue;
-}
+                .filter .data table tr th.valueChanged {
+                    background-color: Yellow;
+                    color: Blue;
+                }
 
 div.tabularcontainer table tr td.valueChanged {
     background-color: Yellow;
@@ -1201,9 +1200,9 @@ div.tabularcontainer table tr td.valueChanged {
     font-weight: normal;
 }
 
-.filter .data table tr th:hover {
-    background-color: #CED8E2;
-}
+    .filter .data table tr th:hover {
+        background-color: #CED8E2;
+    }
 
 .filter .filter-control {
     float: left;
@@ -1216,9 +1215,9 @@ div.tabularcontainer table tr td.valueChanged {
     margin: 2px 0px 0px 0px;
 }
 
-.filter .filter-control .minimizetitle {
-    color: #fff;
-}
+    .filter .filter-control .minimizetitle {
+        color: #fff;
+    }
 
 .filter .container {
     width: auto;
@@ -1305,68 +1304,68 @@ div.tabularcontainer table tr td.valueChanged {
     float: left;
 }
 
-.topSelection .toptitle {
-    height: 20px;
-    vertical-align: middle;
-    color: #5B5B53;
-    text-align: center;
-    font-weight: bold;
-    background-color: #e0e5ed;
-    line-height: 20px;
-    padding: 3px 0px;
-}
+    .topSelection .toptitle {
+        height: 20px;
+        vertical-align: middle;
+        color: #5B5B53;
+        text-align: center;
+        font-weight: bold;
+        background-color: #e0e5ed;
+        line-height: 20px;
+        padding: 3px 0px;
+    }
 
-.topSelection #topSelectionByTicket {
-    clear: both;
-    float: left;
-    margin-bottom: 10px;
-}
+    .topSelection #topSelectionByTicket {
+        clear: both;
+        float: left;
+        margin-bottom: 10px;
+    }
 
-.topSelection #topSelectionByTurnover {
-    clear: right;
-    float: left;
-    margin-bottom: 10px;
-}
+    .topSelection #topSelectionByTurnover {
+        clear: right;
+        float: left;
+        margin-bottom: 10px;
+    }
 
-.topSelection #topSelectionByCurrency {
-    clear: left;
-    float: left;
-    margin-bottom: 10px;
-}
+    .topSelection #topSelectionByCurrency {
+        clear: left;
+        float: left;
+        margin-bottom: 10px;
+    }
 
-.topSelection #topSelectionByLeague {
-    clear: right;
-    float: left;
-    margin-bottom: 10px;
-}
+    .topSelection #topSelectionByLeague {
+        clear: right;
+        float: left;
+        margin-bottom: 10px;
+    }
 
-.topSelection #popularEvent {
-    clear: right;
-    float: left;
-    margin-bottom: 10px;
-}
+    .topSelection #popularEvent {
+        clear: right;
+        float: left;
+        margin-bottom: 10px;
+    }
 
-.topSelection #favoriteEvent {
-    float: left;
-    width: 970px;
-    height: 300px;
-    margin-bottom: 10px;
-}
+    .topSelection #favoriteEvent {
+        float: left;
+        width: 970px;
+        height: 300px;
+        margin-bottom: 10px;
+    }
 
-.topSelection #favoriteChoice {
-    float: left;
-    width: 480px;
-    height: 350px;
-    margin-bottom: 10px;
-}
+    .topSelection #favoriteChoice {
+        float: left;
+        width: 480px;
+        height: 350px;
+        margin-bottom: 10px;
+    }
 
-.topSelection #favoriteBetType {
-    float: left;
-    width: 480px;
-    height: 350px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-}
+    .topSelection #favoriteBetType {
+        float: left;
+        width: 480px;
+        height: 350px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
 
 #TopSelectionByTurnover_Event_BetType_container {
     height: 300px;
@@ -1470,13 +1469,13 @@ div.tabularcontainer {
     float: left;
 }
 
-div.tabularcontainer table {
-    width: auto;
-    height: auto;
-    border-collapse: collapse;
-    min-width: 420px;
-    max-width: 480px;
-}
+    div.tabularcontainer table {
+        width: auto;
+        height: auto;
+        border-collapse: collapse;
+        min-width: 420px;
+        max-width: 480px;
+    }
 
 table#tblTicket {
     max-width: 1000px;
@@ -1492,14 +1491,14 @@ div.tabularcontainer table tr {
     text-align: center;
 }
 
-div.tabularcontainer table tr td {
-    border: 1px solid #D5D5D5;
-    height: 20px;
-    min-width: 70px;
-    font-weight: normal;
-    background-color: #fff;
-    text-align: right;
-}
+    div.tabularcontainer table tr td {
+        border: 1px solid #D5D5D5;
+        height: 20px;
+        min-width: 70px;
+        font-weight: normal;
+        background-color: #fff;
+        text-align: right;
+    }
 
 div.tabularcontainer table td.hover {
     background-color: #f8cb62 !important;
@@ -1521,12 +1520,12 @@ div.tabularcontainer table tr th {
     font-weight: bold;
 }
 
-div.tabularcontainer table tr th.Nobackground {
-    background-color: transparent;
-    font-weight: bold;
-    text-align: right;
-    margin-right: 3px;
-}
+    div.tabularcontainer table tr th.Nobackground {
+        background-color: transparent;
+        font-weight: bold;
+        text-align: right;
+        margin-right: 3px;
+    }
 /* Button -------------------------------------------- */
 
 .button {
@@ -1543,19 +1542,19 @@ div.tabularcontainer table tr th.Nobackground {
     padding: 0 5px;
 }
 
-.button:hover {
-    width: auto;
-    height: 27px;
-    border: 1px solid #B32936;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    background: url("images/Content/hoverbg.png") repeat-x center center;
-    cursor: pointer;
-    font-family: Verdana, Sans-Serif, Tahoma, Arial;
-    font-size: 11px;
-    padding: 0 5px;
-}
+    .button:hover {
+        width: auto;
+        height: 27px;
+        border: 1px solid #B32936;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background: url("images/Content/hoverbg.png") repeat-x center center;
+        cursor: pointer;
+        font-family: Verdana, Sans-Serif, Tahoma, Arial;
+        font-size: 11px;
+        padding: 0 5px;
+    }
 
 .button-disable {
     width: auto;
@@ -1665,9 +1664,9 @@ b {
     margin: 2px 2px 0px 0px;
 }
 
-.excel:hover {
-    border: 1px solid #FF9900;
-}
+    .excel:hover {
+        border: 1px solid #FF9900;
+    }
 
 .right {
     text-align: right;
@@ -1703,87 +1702,87 @@ table.main {
     border-collapse: collapse;
 }
 
-table.main > thead > tr > th {
-    font-size: 0.9em;
-    vertical-align: middle;
-    text-align: center;
-    font-weight: bold;
-    border: solid 1px #D5D5D5;
-    background-color: #3F536B;
-    height: 26px;
-    text-transform: uppercase;
-    color: White;
-}
+    table.main > thead > tr > th {
+        font-size: 0.9em;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: bold;
+        border: solid 1px #D5D5D5;
+        background-color: #3F536B;
+        height: 26px;
+        text-transform: uppercase;
+        color: White;
+    }
 
-table.main > thead > tr > th.header2rows {
-    background-color: #3F536B;
-}
+        table.main > thead > tr > th.header2rows {
+            background-color: #3F536B;
+        }
 
-table.main > tbody > tr {
-    background-color: #F8F8F8;
-    height: 30px;
-}
+    table.main > tbody > tr {
+        background-color: #F8F8F8;
+        height: 30px;
+    }
 
-table.main > tbody > tr.even {
-    background-color: #F0F0F0;
-}
+        table.main > tbody > tr.even {
+            background-color: #F0F0F0;
+        }
 
-table.main > tbody > tr:hover {
-    background-color: #E8EAEF;
-}
+        table.main > tbody > tr:hover {
+            background-color: #E8EAEF;
+        }
 
-table.main > tbody > tr.details {
-    background-color: white;
-}
+        table.main > tbody > tr.details {
+            background-color: white;
+        }
 
-table.main > tbody > tr > td {
-    font-size: 0.9em;
-    padding: 1px 3px;
-    border: solid 1px #d5d5d5;
-}
+        table.main > tbody > tr > td {
+            font-size: 0.9em;
+            padding: 1px 3px;
+            border: solid 1px #d5d5d5;
+        }
 
-table.main > tbody > tr > td .tdDetail {
-    padding: 3px 3px;
-}
+            table.main > tbody > tr > td .tdDetail {
+                padding: 3px 3px;
+            }
 
-table.main > tbody > tr > td .tdDetailLink {
-    font-weight: bold;
-    padding: 1px 3px;
-    color: #006400;
-    background-image: url('images/Content/details-icon.png');
-    background-repeat: no-repeat;
-    padding-left: 18px; /* width of the image plus a little extra padding */
-}
+            table.main > tbody > tr > td .tdDetailLink {
+                font-weight: bold;
+                padding: 1px 3px;
+                color: #006400;
+                background-image: url('images/Content/details-icon.png');
+                background-repeat: no-repeat;
+                padding-left: 18px; /* width of the image plus a little extra padding */
+            }
 
-table.main > tbody > tr > td > a {
-    color: #2E64FE;
-    text-decoration: none;
-}
+            table.main > tbody > tr > td > a {
+                color: #2E64FE;
+                text-decoration: none;
+            }
 
-table.main > tbody > tr > td > a:hover {
-    color: #2E64FE;
-    text-decoration: none;
-}
+                table.main > tbody > tr > td > a:hover {
+                    color: #2E64FE;
+                    text-decoration: none;
+                }
 
-table.main > tfoot > tr > td {
-    font-size: 1.0em;
-    font-weight: bold;
-    height: 31px;
-    border: solid 1px #d5d5d5;
-    padding-right: 3px;
-}
+    table.main > tfoot > tr > td {
+        font-size: 1.0em;
+        font-weight: bold;
+        height: 31px;
+        border: solid 1px #d5d5d5;
+        padding-right: 3px;
+    }
 
-table.main.foot > tfoot > tr {
-    border: solid 1px #d5d5d5;
-}
+    table.main.foot > tfoot > tr {
+        border: solid 1px #d5d5d5;
+    }
 
-table.main.foot > tfoot > tr > td {
-    font-size: 1.0em;
-    font-weight: bold;
-    height: 27px;
-    border: none;
-    padding-right: 3px;
-}
+        table.main.foot > tfoot > tr > td {
+            font-size: 1.0em;
+            font-weight: bold;
+            height: 27px;
+            border: none;
+            padding-right: 3px;
+        }
 /*Main Table*/
 
 /*Sub Table*/
@@ -1791,59 +1790,59 @@ table.sub {
     border-collapse: collapse;
 }
 
-table.sub > thead > tr > th {
-    font-weight: normal;
-    vertical-align: middle;
-    text-align: center;
-    border: solid 1px #eeffff;
-    background-color: #00405d;
-    height: 20px;
-    color: White;
-}
+    table.sub > thead > tr > th {
+        font-weight: normal;
+        vertical-align: middle;
+        text-align: center;
+        border: solid 1px #eeffff;
+        background-color: #00405d;
+        height: 20px;
+        color: White;
+    }
 
-table.sub > thead > tr > th.bold {
-    font-weight: bold;
-}
+        table.sub > thead > tr > th.bold {
+            font-weight: bold;
+        }
 
-table.sub > thead > tr > th.header2rows {
-    font-weight: bold;
-}
+        table.sub > thead > tr > th.header2rows {
+            font-weight: bold;
+        }
 
-table.sub > tbody > tr {
-    height: 26px;
-    background-color: #DEDEDE;
-}
+    table.sub > tbody > tr {
+        height: 26px;
+        background-color: #DEDEDE;
+    }
 
-table.sub > tbody > tr > td.columneven {
-    background-color: #CDC0B0;
-}
+        table.sub > tbody > tr > td.columneven {
+            background-color: #CDC0B0;
+        }
 
-table.sub > tbody > tr > td.columnodd {
-    background-color: #C1CDC1;
-}
+        table.sub > tbody > tr > td.columnodd {
+            background-color: #C1CDC1;
+        }
 
-table.sub > tbody > tr.even {
-    background-color: #CCCCCC;
-}
+        table.sub > tbody > tr.even {
+            background-color: #CCCCCC;
+        }
 
-table.sub > tbody > tr:hover {
-    background-color: #e6e6e6;
-}
+        table.sub > tbody > tr:hover {
+            background-color: #e6e6e6;
+        }
 
-table.sub > tbody > tr > td {
-    padding: 1px 3px;
-    border: solid 1px #eeffff;
-}
+        table.sub > tbody > tr > td {
+            padding: 1px 3px;
+            border: solid 1px #eeffff;
+        }
 
-table.sub > tfoot > tr > td {
-    font-weight: bold;
-    height: 31px;
-    border: solid 1px #eeffff;
-}
+    table.sub > tfoot > tr > td {
+        font-weight: bold;
+        height: 31px;
+        border: solid 1px #eeffff;
+    }
 
-table.sub td.numeric {
-    text-align: right;
-}
+    table.sub td.numeric {
+        text-align: right;
+    }
 
 table .hr {
     background-color: #d5d5d5;
@@ -1858,13 +1857,13 @@ table.total {
     border-collapse: collapse;
 }
 
-table.total > tfoot > tr > td {
-    font-size: 1.0em;
-    font-weight: bold;
-    height: 27px;
-    border: solid 1px #d5d5d5;
-    padding-right: 3px;
-}
+    table.total > tfoot > tr > td {
+        font-size: 1.0em;
+        font-weight: bold;
+        height: 27px;
+        border: solid 1px #d5d5d5;
+        padding-right: 3px;
+    }
 /*total table*/
 
 /*Details Cell*/
@@ -1872,30 +1871,30 @@ div.details {
     padding: 5px;
 }
 
-div.details div.title {
-    background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
-    border-color: #0A1E36 #0A1E36 -moz-use-text-color;
-    border-radius: 3px 3px 3px 3px;
-    border-style: solid solid none;
-    border-width: 1px 1px 0;
-    height: 20px;
-    margin: 1px;
-    min-width: 300px;
-    width: auto;
-}
+    div.details div.title {
+        background: url("images/Content/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+        border-color: #0A1E36 #0A1E36 -moz-use-text-color;
+        border-radius: 3px 3px 3px 3px;
+        border-style: solid solid none;
+        border-width: 1px 1px 0;
+        height: 20px;
+        margin: 1px;
+        min-width: 300px;
+        width: auto;
+    }
 
-div.details div.title span.title {
-    font-size: 11px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #fff;
-}
+        div.details div.title span.title {
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 20px;
+            color: #fff;
+        }
 
-div.details div.title img.close {
-    float: right;
-    cursor: pointer;
-    height: 20px;
-}
+        div.details div.title img.close {
+            float: right;
+            cursor: pointer;
+            height: 20px;
+        }
 
 a.link {
     cursor: pointer;
@@ -2340,18 +2339,18 @@ div.popuploading {
     margin-bottom: 20px;
 }
 
-.popup-content-table tr {
-    height: 25px;
-}
+    .popup-content-table tr {
+        height: 25px;
+    }
 
-.popup-content-table th {
-    vertical-align: middle;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    background-color: #10243C;
-    border: solid 1px #D3D3D3;
-}
+    .popup-content-table th {
+        vertical-align: middle;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        background-color: #10243C;
+        border: solid 1px #D3D3D3;
+    }
 
 /* Popup */
 
@@ -2519,45 +2518,45 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     background: white;
 }
 
-.popup-inner .betlist-div {
-    min-width: 470px;
-}
+    .popup-inner .betlist-div {
+        min-width: 470px;
+    }
 
-.popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .content {
-    border: none;
-}
+        .popup-inner .betlist-div .allField2, .popup-inner .betlist-div .boxMain .content {
+            border: none;
+        }
 
-.popup-inner .combotype-div {
-    background: white;
-    min-width: 150px;
-    height: auto;
-    text-align: center;
-    padding-top: 3px;
-    border-left: solid 2px #43576d;
-    padding-left: 3px;
-}
+    .popup-inner .combotype-div {
+        background: white;
+        min-width: 150px;
+        height: auto;
+        text-align: center;
+        padding-top: 3px;
+        border-left: solid 2px #43576d;
+        padding-left: 3px;
+    }
 
-.popup-inner .combotype-div .combotype {
-}
+        .popup-inner .combotype-div .combotype {
+        }
 
-.popup-inner .combotype-div .combotype-title {
-    background: #3f536b url("images/Content/table_tltle_bg.gif") repeat-x scroll center center;
-    border-radius: 5px;
-    clear: both;
-    color: white;
-    cursor: move;
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    height: 20px;
-    line-height: 20px;
-    margin-bottom: 12px;
-    padding: 2px 0 2px 10px !important;
-}
+        .popup-inner .combotype-div .combotype-title {
+            background: #3f536b url("images/Content/table_tltle_bg.gif") repeat-x scroll center center;
+            border-radius: 5px;
+            clear: both;
+            color: white;
+            cursor: move;
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            height: 20px;
+            line-height: 20px;
+            margin-bottom: 12px;
+            padding: 2px 0 2px 10px !important;
+        }
 
-.popup-inner .combotype-div .combotype-content {
-    height: 100%;
-}
+        .popup-inner .combotype-div .combotype-content {
+            height: 100%;
+        }
 
 .draggable-div {
     background: white none repeat scroll 0 0;
@@ -2568,4 +2567,33 @@ table.sub > thead > tr > th.awayTeam, table.main > thead > tr > th.awayTeam {
     width: 98%;
     z-index: 999;
     opacity: 0;
+}
+
+.note .note-header {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.note .note-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: sub;
+}
+
+.note.note-collapse .note-icon {
+    background: url("images/Content/note-collpase.png") no-repeat center center transparent;
+}
+
+.note.note-expand .note-icon {
+    background: url("images/Content/note-expand.png") no-repeat center center transparent;
+}
+
+.note .note-content {
+    margin-left: 10px;
+}
+
+.note.note-expand .note-content {
+    display: none;
 }

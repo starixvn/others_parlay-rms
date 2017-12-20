@@ -17,6 +17,26 @@
     };
 }();
 
+var note = function () {
+    return {
+        init: function () {
+            var noteElement = $('.note');
+            var noteHeaderElement = $('.note .note-header');
+            noteHeaderElement.click(function (event, element) {
+                if (noteElement.hasClass('note-collapse')) {
+                    noteElement.removeClass('note-collapse');
+                    noteElement.addClass('note-expand');
+                } else if (noteElement.hasClass('note-expand')) {
+                    noteElement.removeClass('note-expand');
+                    noteElement.addClass('note-collapse');
+                } else {
+                    noteElement.addClass('note-collapse');
+                }
+            });
+        }
+    };
+}();
+
 // loadingHelper object helps to show or hide loading based on running tasks
 var loadingHelper = function () {
     var taskCount = 0;
