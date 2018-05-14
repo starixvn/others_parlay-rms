@@ -1,10 +1,10 @@
-﻿using Fanex.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Fanex.Data;
 using ParlayRMS.DataAccess.Interface.BetList;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.Utility.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.BetList
 {
@@ -52,7 +52,7 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                 }
 
                 var outputParam = db.GetOuputParams();
-                currencyName = (string)outputParam["currencyname"];
+                currencyName = outputParam["currencyname"] == DBNull.Value ? string.Empty : (string)outputParam["currencyname"];
             }
 
             return new BetListData

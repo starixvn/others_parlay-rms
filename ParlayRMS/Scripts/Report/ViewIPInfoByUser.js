@@ -20,8 +20,11 @@
     });
     /*System Parlay detail click*/
     $(document).on('click', '.tdDetailLink', function () {
-        var id = this.getAttribute('data-id');
-        ViewBetDetails(id);
+        var id = $(this).attr('data-id');
+        var betTeam = $(this).attr('data-bet-team');
+        var betType = $(this).attr('data-bet-type');
+        var betTypeName = betType === "9" || betTeam === "1" ? "Mix Parlay" : "System Parlay";
+        ViewBetDetails(id, $.trim(betTypeName));
     });
 
     /*Check choice stage, return true if display:none.*/
@@ -30,9 +33,11 @@
     }
 
     /*View bet details*/
-    function ViewBetDetails(refNo) {
+    function ViewBetDetails(refNo, betTypeName) {
         var data = {
-            RefNo: refNo
+            RefNo: refNo,
+            betTypeName: betTypeName
+
         }
         $.ajax({
             url: resolveClientUrl('ViewIPInfo/ParlayBetDetails'),

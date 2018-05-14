@@ -74,7 +74,7 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
         {
             //// Get records from DataAcess
             RMS_SystemParlay_CombinationDetails records = this._viewIPInfoDataAccess.RMS_SystemParlay_CombinationDetails(refNo);
-            
+
             //// Convert to view model
             CombinationDetailsViews viewModel = MakeCombinationDetailsView(records);
 

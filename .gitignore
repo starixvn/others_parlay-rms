@@ -35,3 +35,4 @@ packages/
 _Chutzpah*
 /Sources/Sites/node_modules
 *.orig
+/ParlayRMS/Logs/
