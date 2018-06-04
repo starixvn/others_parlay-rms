@@ -46,6 +46,7 @@
     <add key="RecheckIn" value="True" />
     <add key="HiddenGroups" value="IT;Test" />
     <add key="RemoteRefURL" value="<#= site.RemoteRefURL #>" />
+    <add key="Log2File" value="True"/>
     <add key="RemoteRefUrl_Msg" value="" />
     <add key="PageSize" value="100" />
     <add key="LimitDataFromDate" value="10/31/2012" />
