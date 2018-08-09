@@ -1,18 +1,22 @@
-﻿namespace ParlayRMS
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web;
-    using System.Web.Http;
-    using System.Web.Mvc;
-    using System.Web.Optimization;
-    using System.Web.Routing;
-    using System.Web.Security;
-    using App_Start;
-    using Fanex.Data.Configuration;
-    using ONEbook.UM.Filters;
-    using ParlayRMS.Web.Authorization;
+﻿using System;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+using System.Web.Security;
+using Fanex.BetList.Core;
+using Fanex.BetList.Core.RemotingRef;
+using Fanex.Data.Configuration;
+using Fanex.RemotingRef;
+using ONEbook.UM.Filters;
+using ParlayRMS.App_Start;
+using ParlayRMS.Web.Authorization;
 
+namespace ParlayRMS
+{
     /// <summary>
     /// MVC Application.
     /// </summary>
@@ -23,6 +27,11 @@
         /// </summary>
         protected void Application_Start()
         {
+            RefDataTypeContainer
+                .ConnectTo(new Uri(ConfigurationManager.AppSettings["Fanex.RemotingRef.Service.Url"]))
+                .FromApplication("NAP-ParlayRMS")
+                .RegisterSupportedLanguages("en-US");
+            BetListManager.RegisterRemotingRef(new CacheRef());
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

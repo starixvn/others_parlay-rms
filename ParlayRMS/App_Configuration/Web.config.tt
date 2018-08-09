@@ -33,6 +33,13 @@
                 resourcePath="<#=site.SPName#>" enableWatching="0" />
         </providers>
   </Fanex.Data.DbSettingProvider>
+ <ONEbook.UM ServiceUris="<#=site.ONEbookUMAddress#>"
+              EnableCheckUM="<#=site.EnableCheckUM#>"
+              EnableUnscheduledUM="false"
+              UMFrom="01:00"
+              UMTo="23:00"
+              SiteId="2000000" UMPageUrl="~/Account/Offline">
+    </ONEbook.UM>
   <Fanex.Logging msmqPath="FormatName:DIRECT=<#= site.MSMQPath #>" defaultCategory="PARLAY_RMS" />
   <connectionStrings configSource="<#= connectionStringFileName #>"/>
   <appSettings>
@@ -43,11 +50,10 @@
     <add key="PreserveLoginUrl" value="True" />
     <add key="ClientValidationEnabled" value="True" />
     <add key="UnobtrusiveJavaScriptEnabled" value="True" />
+	<add key="StoredProcedurePath" value="App_Data" />
     <add key="RecheckIn" value="True" />
     <add key="HiddenGroups" value="IT;Test" />
-    <add key="RemoteRefURL" value="<#= site.RemoteRefURL #>" />
-    <add key="Log2File" value="True"/>
-    <add key="RemoteRefUrl_Msg" value="" />
+    <add key="Fanex.RemotingRef.Service.Url" value="<#= site.RemoteRefURL #>" />
     <add key="PageSize" value="100" />
     <add key="LimitDataFromDate" value="10/31/2012" />
     <add key="UserPolicyCacheTime" value="5" />
@@ -63,7 +69,8 @@
     <httpRuntime executionTimeout="600" maxRequestLength="2000000000" maxUrlLength="200" maxQueryStringLength="2097151" requestValidationMode="2.0" requestPathInvalidCharacters="" />
     <compilation debug="<#= site.DebugMode #>" targetFramework="4.0">
       <assemblies>
-        <add assembly="System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <add assembly="System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />        
       </assemblies>
     </compilation>
     <trust level="Full" />
@@ -133,14 +140,6 @@
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
-  <ONEbook.UM ServiceUris="<#=site.UMServiceURL#>" EnableCheckUM="<#=site.EnableCheckUM#>" EnableUnscheduledUM="false" UMFrom="03:00" UMTo="04:00" SiteId="2000005" UMPageUrl="~/Account/Offline">
-    <AllowedIPs AllowAll="true">
-      <add Value="10.19.10.54" />
-      <!--Exact IP-->
-      <add From="10.19.10.100" To="10.19.10.200" />
-      <!--IP Range-->
-    </AllowedIPs>
-  </ONEbook.UM>
 </configuration>
 <#
     }

@@ -1,10 +1,12 @@
-﻿using RemotingRef;
-using System.Threading;
+﻿using System.Threading;
+using Fanex.RemotingRef;
 
 namespace ParlayRMS.Utility
 {
     public class CacheRef
     {
+        public static RemotingRefService RemotingRefService = new RemotingRefService();
+
         public static string Language
         {
             get
@@ -25,10 +27,9 @@ namespace ParlayRMS.Utility
 
         public static string GetBettype(object bettypeId)
         {
-            string resourceId = string.Empty;
             try
             {
-                return RefData.GetBetTypeName(bettypeId.ToString(), Language, resourceId);
+                return RemotingRefService.GetBetTypeName(bettypeId.ToString(), Language);
             }
             catch
             {
@@ -40,7 +41,7 @@ namespace ParlayRMS.Utility
         {
             try
             {
-                return RefData.GetSportName(sportId.ToString(), Language);
+                return RemotingRefService.GetSportName(sportId.ToString(), Language);
             }
             catch
             {
@@ -70,7 +71,7 @@ namespace ParlayRMS.Utility
         {
             try
             {
-                return RefData.GetTeamName(teamId.ToString(), Language);
+                return RemotingRefService.GetTeamName(teamId.ToString(), Language);
             }
             catch
             {
@@ -80,19 +81,19 @@ namespace ParlayRMS.Utility
 
         public static string GetRouletteBetItem(object itemId)
         {
-            return RefData.GetRouletteBetItem(itemId.ToString(), Language);
+            return RemotingRefService.GetRouletteBetItem(itemId.ToString(), Language);
         }
 
         public static string GetCasinoBetItem(object betStatusId)
         {
-            return RefData.GetCasinoBetItem(betStatusId.ToString(), Language);
+            return RemotingRefService.GetCasinoBetItem(betStatusId.ToString(), Language);
         }
 
         public static string GetLeagueName(object leagueId)
         {
             try
             {
-                return RefData.GetLeagueName(leagueId.ToString(), Language);
+                return RemotingRefService.GetLeagueName(leagueId.ToString(), Language);
             }
             catch
             {
@@ -100,25 +101,20 @@ namespace ParlayRMS.Utility
             }
         }
 
-        public static string GetFncIndexName(object indexId)
-        {
-            return RefData.GetFncIndexName(indexId.ToString(), Language);
-        }
-
         public static string GetHorseTeamName(object codeId)
         {
-            return RefData.GetHorseTeamName(codeId.ToString(), Language);
+            return RemotingRefService.GetHorseTeamName(codeId.ToString(), Language);
         }
 
         public static string GetOddsTypeName(object oddsTypeId)
         {
-            return RefData.GetOddsTypeName(oddsTypeId.ToString(), Language);
+            return RemotingRefService.GetOddsTypeName(oddsTypeId.ToString(), Language);
         }
 
         public static string[] GetCombinationTypeCombo(string betTeam, string betCheck, int hdp1, int hdp2)
         {
             betCheck = betCheck.Replace(".00", string.Empty);
-            return RefData.GetCombinationTypeCombo(betTeam, betCheck, hdp1, hdp2, Language);
+            return RemotingRefService.GetCombinationTypeCombo(betTeam, betCheck, hdp1, hdp2, Language);
         }
     }
 }

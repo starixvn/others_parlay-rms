@@ -11,10 +11,6 @@
         },
         new SiteInfo
         {
-            Environment = SiteEnvironment.MASTER
-        },
-        new SiteInfo
-        {
             Environment = SiteEnvironment.SIT
         },
         new SiteInfo
@@ -36,7 +32,7 @@
     {
         DEV,
         LOCAL,
-        MASTER,
+
         SIT,
         UAT,
         MNL,
@@ -54,7 +50,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "http://10.40.40.22/msmq/Private$/entlib";
+                        return "tcp:10.40.40.22\private$\entlib";
 
                     case SiteEnvironment.MNL:
                         return "http://10.2.98.3/private$/entlib";
@@ -68,24 +64,40 @@
             }
         }
 
-        public string UMServiceURL
+       public string ONEbookUMAddress
         {
             get
             {
                 switch(Environment)
                 {
-					case SiteEnvironment.UAT:
+                    case SiteEnvironment.DEV:
+					case SiteEnvironment.LOCAL:
+                        return "http://ha.nexdev.net:8889/api";
                     case SiteEnvironment.PRO:
                         return "http://10.40.40.22:8889/api";
-
-                    case SiteEnvironment.MNL:
-                        return "http://10.2.98.3:8889/api";
-
+                    case SiteEnvironment.UAT:
+                        return "http://10.40.40.248:8889/api";
                     case SiteEnvironment.SIT:
-                        return "http://10.40.40.22:8889/api";
-
+                        return "http://172.16.4.106:8889/api";
+                    case SiteEnvironment.MNL:
+                        return "http://10.40.40.202:8889/api";
                     default:
-                        return "http://ha.nexdev.net:8889/api";
+                        return string.Empty;
+                }
+            }
+        }
+
+        public string EnableCheckUM
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.MNL:
+                        return "true";
+                    default:
+                        return "false";
                 }
             }
         }
@@ -97,17 +109,15 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
+                        return "http://10.40.40.248:7207/Main/";
                     case SiteEnvironment.PRO:
-                        return "tcp://10.40.40.29:8098/CallGetRefFunction";
-
+                        return "http://10.40.40.47:7258/";
                     case SiteEnvironment.MNL:
-                        return "tcp://10.40.40.130:8098/CallGetRefFunction";
-
+                        return "http://10.40.40.202:7258/";
                     case SiteEnvironment.SIT:
-                        return "tcp://172.16.4.118:8098/CallGetRefFunction";
-
+                        return "http://172.16.4.105:6207/Main/";
                     default:
-                        return "tcp://ha.nexdev.net:8888/CallGetRefFunction";
+                        return "http://ha.nexdev.net:7258/Main/";
                 }
             }
         }
@@ -142,21 +152,6 @@
             }
         }
 
-        public string EnableCheckUM
-        {
-            get
-            {
-                switch(Environment)
-                {
-                    case SiteEnvironment.PRO:
-                    case SiteEnvironment.MNL:
-                        return "true";
-
-                    default:
-                        return "false";
-                }
-            }
-        }
 
         public string SessionStateString
         {
@@ -184,7 +179,6 @@
             {
                 switch(Environment)
                 {
-                    case SiteEnvironment.MASTER:
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.MNL:
                         return "~/App_Data/LIVE/";

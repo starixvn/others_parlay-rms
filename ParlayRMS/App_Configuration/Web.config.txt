@@ -6,6 +6,5 @@
 // ParlayRMS\App_Configuration\Web.MNL.config
 // ParlayRMS\App_Configuration\Web.UAT.config
 // ParlayRMS\App_Configuration\Web.SIT.config
-// ParlayRMS\App_Configuration\Web.MASTER.config
 // ParlayRMS\App_Configuration\Web.DEV.config
 // ParlayRMS\App_Configuration\Web.LOCAL.config

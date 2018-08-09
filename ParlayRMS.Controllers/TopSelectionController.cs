@@ -1,5 +1,10 @@
 ﻿namespace ParlayRMS.Controllers
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
     using DotNet.Highcharts;
     using DotNet.Highcharts.Helpers;
     using Models;
@@ -11,12 +16,6 @@
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
-    using RemotingRef;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using System.Linq;
-    using System.Web.Mvc;
 
     /// <summary>
     /// Top Selection Controller.
@@ -142,7 +141,7 @@
             // chart data
             string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
             string titleY = ViewLang.Tickets;
-            string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en", string.Empty)).ToArray();
+            string[] categories = data.Select(x => CacheRef.GetLeagueName(x.Leagueid.ToString())).ToArray();
 
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -178,7 +177,7 @@
             string titleText = string.Format(ViewLang.SelectionByLeague, model.Selection, ModelsHelper.GetSportType((SportsType)sport));
 
             string titleY = ViewLang.Turnover;
-            string[] categories = data.Select(x => RefData.GetLeagueName(x.Leagueid.ToString(), "en")).ToArray();
+            string[] categories = data.Select(x => CacheRef.GetLeagueName(x.Leagueid.ToString())).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = DbConverter.ToDouble(x.Turnover),
@@ -340,16 +339,16 @@
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
                                                                         "{0} <b>vs</b> {1}",
-                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                                        CacheRef.GetTeamName(x.Homeid.ToString()),
+                                                                        CacheRef.GetTeamName(x.Awayid.ToString())),
                                                              55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Tickets),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
-                Name = RefData.GetLeagueName(x.Leagueid.ToString(), "en"),
-                DataLabels = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en")
+                Name = CacheRef.GetLeagueName(x.Leagueid.ToString()),
+                DataLabels = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString())
             }).ToArray();
 
             var chartValues = new BarChartValues(titleText, ViewLang.Currency + ": " + model.CurrencyName, categories, titleY);
@@ -384,15 +383,15 @@
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
                                                                     "{0} <b>vs</b> {1}",
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                                    CacheRef.GetTeamName(x.Homeid.ToString()),
+                                                                    CacheRef.GetTeamName(x.Awayid.ToString())),
                                                          55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Tickets),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
-                Name = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"),
+                Name = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString()),
             }).ToArray();
 
             var chartValues = new BarChartValues(titleText, ViewLang.League + ": " + model.LeagueName, categories, titleY);
@@ -427,16 +426,16 @@
             string[] categories = data.Select(x => Utils.TruncateString(
                                                          string.Format(
                                                                     "{0} <b>vs</b> {1}",
-                                                                    RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                    RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                                    CacheRef.GetTeamName(x.Homeid.ToString()),
+                                                                    CacheRef.GetTeamName(x.Awayid.ToString())),
                                                          55,
                                                          Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = data.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Turnover),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
-                Name = RefData.GetLeagueName(x.Leagueid.ToString(), "en"),
-                DataLabels = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en")
+                Name = CacheRef.GetLeagueName(x.Leagueid.ToString()),
+                DataLabels = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString())
             }).ToArray();
 
             var chartValues = new BarChartValues(titleText, ViewLang.Currency + ": " + model.CurrencyName, categories, titleY);
@@ -469,8 +468,8 @@
             string[] categories = data.Select(x => Utils.TruncateString(
                                                              string.Format(
                                                                         "{0} <b>vs</b> {1}",
-                                                                        RefData.GetTeamName(x.Homeid.ToString(), "en"),
-                                                                        RefData.GetTeamName(x.Awayid.ToString(), "en")),
+                                                                        CacheRef.GetTeamName(x.Homeid.ToString()),
+                                                                        CacheRef.GetTeamName(x.Awayid.ToString())),
                                                              55,
                                                              Utils.TruncateOptions.IncludeEllipsis)).ToArray();
 
@@ -485,7 +484,7 @@
             {
                 Y = Convert.ToDouble(x.Turnover),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
-                Name = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en")
+                Name = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString())
             }).ToArray();
 
             var chartValues = new BarChartValues(titleText, ViewLang.League + ": " + model.LeagueName, categories, titleY);

@@ -14,7 +14,6 @@
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
-    using RemotingRef;
 
     /// <summary>
     /// Favorite Choice Controller.
@@ -119,17 +118,17 @@
             var sport = this.GetSportTypeIdByName(model.SportType);
             var dataByTicket = service.GetTopSelectionByTicket_Event(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
-            string[] categories = dataByTicket.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = dataByTicket.Select(x => Utils.TruncateString(CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString()), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = dataByTicket.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Tickets),
-                DataLabels = RefData.GetLeagueName(x.Leagueid.ToString(), "en"),
+                DataLabels = CacheRef.GetLeagueName(x.Leagueid.ToString()),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
                 Drilldown = new DotNet.Highcharts.Helpers.Drilldown()
                 {
                     Name = x.Matchid.ToString()
                 },
-                Name = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"),
+                Name = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString()),
                 Id = x.Homeid + ":" + x.Awayid
             }).ToArray();
 
@@ -175,7 +174,7 @@
             }
 
             var totalTicketsNotShow = data.Where(o => o.Margin == 0.0m).Sum(x => x.Tickets);
-            var categories = data.Where(o => o.Margin > 0.0m).Select(x => RefData.GetBetTypeName(x.BetType.ToString(), "en")).ToArray();
+            var categories = data.Where(o => o.Margin > 0.0m).Select(x => CacheRef.GetBettype(x.BetType.ToString())).ToArray();
 
             var listSeriesData = data.Where(o => o.Margin > 0.0m).Select((x, index) => new DotNet.Highcharts.Options.Point
             {
@@ -185,7 +184,7 @@
                 Color = Color.FromName("colors[ " + (index + 1) + "]"),
                 Drilldown = new DotNet.Highcharts.Helpers.Drilldown()
                 {
-                    Name = RefData.GetBetTypeName(x.BetType.ToString(), "en", ViewLang.Others).Replace("Both/One/Neither", "B/O/N")
+                    Name = CacheRef.GetBettype(x.BetType.ToString()).Replace("Both/One/Neither", "B/O/N")
                 }
             }).ToArray();
 
@@ -193,7 +192,7 @@
 
             var titleY = ViewLang.Tickets;
 
-            var matchName = RefData.GetTeamName(model.HomeId.ToString(), "en") + " vs " + RefData.GetTeamName(model.AwayId.ToString(), "en");
+            var matchName = CacheRef.GetTeamName(model.HomeId.ToString()) + " vs " + CacheRef.GetTeamName(model.AwayId.ToString());
             var chartValues = new PieChartValues(titleText, Utils.TruncateString(matchName, 70, Utils.TruncateOptions.IncludeEllipsis), categories, titleY);
 
             chartValues.Tooltip.Formatter = @"function() { return '<b>'+ this.point.drilldown.name + ': ' + this.point.name + '</b><br/>'+ '" + ViewLang.TotalOfTickets + ": '+ this.y.format2d();}";
@@ -242,11 +241,11 @@
             var service = GetService();
             var sport = this.GetSportTypeIdByName(model.SportType);
             var dataByTicket = service.GetTopSelectionByTicket_Event_Bettype_Choice(
-                                           model.Selection, 
-                                           sport, 
-                                           model.MatchId, 
-                                           model.BetType2, 
-                                           model.WinlostDate, 
+                                           model.Selection,
+                                           sport,
+                                           model.MatchId,
+                                           model.BetType2,
+                                           model.WinlostDate,
                                            model.MaxTransId).OrderByDescending(x => x.Tickets);
 
             var dto = dataByTicket.Where(o => o.BetTeam == "Others");
@@ -311,17 +310,17 @@
             var sport = this.GetSportTypeIdByName(model.SportType);
             var dataByTurnover = service.GetTopSelectionByTurnover_Event(model.Selection, sport, model.WinlostDate, model.MaxTransId);
 
-            string[] categories = dataByTurnover.Select(x => Utils.TruncateString(RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
+            string[] categories = dataByTurnover.Select(x => Utils.TruncateString(CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString()), 55, Utils.TruncateOptions.IncludeEllipsis)).ToArray();
             var listSeriesData = dataByTurnover.Select((x, index) => new DotNet.Highcharts.Options.Point
             {
                 Y = Convert.ToDouble(x.Turnover),
-                DataLabels = RefData.GetLeagueName(x.Leagueid.ToString(), "en"),
+                DataLabels = CacheRef.GetLeagueName(x.Leagueid.ToString()),
                 Color = Color.FromName("colors[ " + (index >= 9 ? index-- - 1 : index + 1) + "]"),
                 Drilldown = new DotNet.Highcharts.Helpers.Drilldown()
                 {
                     Name = x.Matchid.ToString()
                 },
-                Name = RefData.GetTeamName(x.Homeid.ToString(), "en") + " " + "<b>vs</b>" + " " + RefData.GetTeamName(x.Awayid.ToString(), "en"),
+                Name = CacheRef.GetTeamName(x.Homeid.ToString()) + " " + "<b>vs</b>" + " " + CacheRef.GetTeamName(x.Awayid.ToString()),
                 Id = x.Homeid + ":" + x.Awayid
             }).ToArray();
 
@@ -364,7 +363,7 @@
             }
 
             var totalTurnoverNotShow = data.Where(o => o.Margin == 0.0m).Sum(x => x.Turnover);
-            var categories = data.Where(o => o.Margin > 0.0m).Select(x => RefData.GetBetTypeName(x.BetType.ToString(), "en")).ToArray();
+            var categories = data.Where(o => o.Margin > 0.0m).Select(x => CacheRef.GetBettype(x.BetType.ToString())).ToArray();
             var total = dataByTurnover.Select(o => o.Turnover).Sum();
 
             var listSeriesData = data.Where(o => o.Margin > 0.0m).Select((x, index) => new DotNet.Highcharts.Options.Point
@@ -375,12 +374,12 @@
                 Color = Color.FromName("colors[ " + (index + 1) + "]"),
                 Drilldown = new DotNet.Highcharts.Helpers.Drilldown()
                 {
-                    Name = RefData.GetBetTypeName(x.BetType.ToString(), "en", ViewLang.Others).Replace("Both/One/Neither", "B/O/N")
+                    Name = CacheRef.GetBettype(x.BetType.ToString()).Replace("Both/One/Neither", "B/O/N")
                 }
             }).ToArray();
 
             var titleText = ViewLang.PopularBetType;
-            var matchName = RefData.GetTeamName(model.HomeId.ToString(), "en") + " vs " + RefData.GetTeamName(model.AwayId.ToString(), "en");
+            var matchName = CacheRef.GetTeamName(model.HomeId.ToString()) + " vs " + CacheRef.GetTeamName(model.AwayId.ToString());
             var titleY = ViewLang.Turnover;
             var chartValues = new PieChartValues(titleText, Utils.TruncateString(matchName, 70, Utils.TruncateOptions.IncludeEllipsis), categories, titleY);
 
@@ -431,11 +430,11 @@
             var service = GetService();
             var sport = this.GetSportTypeIdByName(model.SportType);
             var dataByTurnover = service.GetTopSelectionByTurnover_Event_Bettype_Choice(
-                                             model.Selection, 
-                                             sport, 
-                                             model.MatchId, 
-                                             model.BetType2, 
-                                             model.WinlostDate, 
+                                             model.Selection,
+                                             sport,
+                                             model.MatchId,
+                                             model.BetType2,
+                                             model.WinlostDate,
                                              model.MaxTransId).OrderByDescending(x => x.Turnover);
 
             var dto = dataByTurnover.Where(o => o.BetTeam == "Others");
@@ -522,11 +521,11 @@
         /// <returns>Color index.</returns>
         private int ColorHomeAndAway(string teamHA, int index)
         {
-            if ((teamHA.Contains("h") || teamHA.Contains("a")) 
-                && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) 
-                && !teamHA.Contains("h:") 
-                && !teamHA.Contains("a:") 
-                && !IsCleanSheetBettype(teamHA) 
+            if ((teamHA.Contains("h") || teamHA.Contains("a"))
+                && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase)
+                && !teamHA.Contains("h:")
+                && !teamHA.Contains("a:")
+                && !IsCleanSheetBettype(teamHA)
                 && !teamHA.Contains("/"))
             {
                 if (this.IsHomeTeam(teamHA))
@@ -584,11 +583,11 @@
         /// <returns>Whether the team is home.</returns>
         private bool IsHomeTeam(string teamHA, int betType2 = 0)
         {
-            return (teamHA.Contains("h") || teamHA.Equals("1")) 
-                   && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase) 
-                   && betType2 != 3 
-                   && betType2 != 8 
-                   && betType2 != 2 
+            return (teamHA.Contains("h") || teamHA.Equals("1"))
+                   && !teamHA.Equals(ViewLang.Others, StringComparison.OrdinalIgnoreCase)
+                   && betType2 != 3
+                   && betType2 != 8
+                   && betType2 != 2
                    && betType2 != 13;
         }
 
@@ -600,10 +599,10 @@
         /// <returns>Whether the team is away.</returns>
         private bool IsAwayTeam(string teamHA, int betType2 = 0)
         {
-            return (teamHA.Contains("a") || teamHA.Equals("2")) 
-                   && betType2 != 3 
-                   && betType2 != 8 
-                   && betType2 != 2 
+            return (teamHA.Contains("a") || teamHA.Equals("2"))
+                   && betType2 != 3
+                   && betType2 != 8
+                   && betType2 != 2
                    && betType2 != 13;
         }
 
@@ -811,9 +810,9 @@
                 switch (teamName)
                 {
                     case "1":
-                        return "[1] " + RefData.GetTeamName(homeId, "en");
+                        return "[1] " + CacheRef.GetTeamName(homeId);
                     case "2":
-                        return "[2] " + RefData.GetTeamName(awayId, "en");
+                        return "[2] " + CacheRef.GetTeamName(awayId);
                     case "x":
                         return "[x] " + ViewLang.Both;
                 }
@@ -823,9 +822,9 @@
                 switch (teamName)
                 {
                     case "h":
-                        return RefData.GetTeamName(homeId, "en");
+                        return CacheRef.GetTeamName(homeId);
                     case "a":
-                        return RefData.GetTeamName(awayId, "en");
+                        return CacheRef.GetTeamName(awayId);
                 }
             }
 
