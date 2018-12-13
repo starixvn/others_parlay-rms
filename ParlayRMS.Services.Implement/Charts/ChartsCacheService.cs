@@ -14,7 +14,6 @@ namespace ParlayRMS.Services.Implement.Charts
     using ParlayRMS.DTO.Charts;
     using ParlayRMS.Models.Charts;
     using ParlayRMS.Services.Interface.Charts;
-    using ParlayRMS.Web.Session;
 
     /// <summary>
     /// Charts Cache Service.
@@ -33,7 +32,7 @@ namespace ParlayRMS.Services.Implement.Charts
 
         private const int ExpiredCache = 60; // 60s
 
-        private static readonly ICache CacheServiceInstance = CacheService.CreateInstance(CacheType.MemoryCache);
+        private static readonly CacheService CacheServiceInstance = new CacheServiceImpl();
         private static readonly IChartsService ChartsServiceInstance = new ChartsService();
 
         private static object locker = new object();
@@ -114,9 +113,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency> GetTopCurrencyByTicket(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             return this.GetTopSelectionByTicketCache(selection, sportType, winlostDate).SelectionbyTicket_Currency;
@@ -146,9 +145,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League> GetTopLeagueByTurnover(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             return this.GetTopSelectionByTurnoverCache(selection, sportType, winlostDate).SelectionByTurnover_League;
@@ -163,9 +162,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTurnover_Currency> GetTopCurrencyByTurnover(
-                                                                                int selection, 
-                                                                                int sportType, 
-                                                                                DateTime winlostDate, 
+                                                                                int selection,
+                                                                                int sportType,
+                                                                                DateTime winlostDate,
                                                                                 long maxTransId)
         {
             return this.GetTopSelectionByTurnoverCache(selection, sportType, winlostDate).SelectionbyTurnover_Currency;
@@ -186,11 +185,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event> GetTopSelectionTicketEventByCurrency(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int currency, 
-                                                                                    string topCurrency, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int currency,
+                                                                                    string topCurrency,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this.GetTopSelectionByTicketEventByCurrencyCache(selection, sportType, currency, topCurrency, winlostDate).SelectionbyTicketEventByCurrency;
@@ -207,11 +206,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event> GetTopSelectionTurnoverEventByCurrency(
-                                                                                      int selection, 
-                                                                                      int sportType, 
-                                                                                      int currency, 
-                                                                                      string topCurrency, 
-                                                                                      DateTime winlostDate, 
+                                                                                      int selection,
+                                                                                      int sportType,
+                                                                                      int currency,
+                                                                                      string topCurrency,
+                                                                                      DateTime winlostDate,
                                                                                       long maxTransId)
         {
             return this.GetTopSelectionByTurnoverEventByCurrencyCache(selection, sportType, currency, topCurrency, winlostDate).SelectionbyTurnoverEventByCurrency;
@@ -231,10 +230,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League_Event> GetTopSelectionTicketEventByLeague(
-                                                                                  int selection, 
-                                                                                  int sportType, 
-                                                                                  int leagueId, 
-                                                                                  DateTime winlostDate, 
+                                                                                  int selection,
+                                                                                  int sportType,
+                                                                                  int leagueId,
+                                                                                  DateTime winlostDate,
                                                                                   long maxTransId)
         {
             return this.GetTopSelectionByTicketEventByLeagueCache(selection, sportType, leagueId, winlostDate).SelectionbyTicketEventByLeague;
@@ -250,10 +249,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League_Event> GetTopSelectionTurnoverEventByLeague(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int leagueId, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int leagueId,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this.GetTopSelectionByTurnoverEventByLeagueCache(selection, sportType, leagueId, winlostDate).SelectionbyTurnoverEventByLeague;
@@ -272,9 +271,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event> GetTopSelectionByTurnover_Event(
-                                                                             int selection, 
-                                                                             int sportType, 
-                                                                             DateTime winlostDate, 
+                                                                             int selection,
+                                                                             int sportType,
+                                                                             DateTime winlostDate,
                                                                              long maxTransId)
         {
             return this.GetTopSelectionByTurnoverEventCache(selection, sportType, winlostDate).SelectionByTurnoverEvent;
@@ -290,10 +289,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype> GetTopSelectionByTurnover_Event_Bettype(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int matchId, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int matchId,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this.GetTopSelectionByTuroverBettypeCache(selection, sportType, matchId, winlostDate).SelectionByTurnoverEventBettype;
@@ -310,11 +309,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice> GetTopSelectionByTurnover_Event_Bettype_Choice(
-                                                                                            int selection, 
-                                                                                            int sportType, 
-                                                                                            int matchId, 
-                                                                                            int betType2, 
-                                                                                            DateTime winlostDate, 
+                                                                                            int selection,
+                                                                                            int sportType,
+                                                                                            int matchId,
+                                                                                            int betType2,
+                                                                                            DateTime winlostDate,
                                                                                             long maxTransId)
         {
             return this.GetTopSelectionByTurnoverEventBettypeChoiceCache(selection, sportType, matchId, betType2, winlostDate).SelectionByTurnoverEventBettypeChoice;
@@ -329,9 +328,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event> GetTopSelectionByTicket_Event(
-                                                                            int selection, 
-                                                                            int sportType, 
-                                                                            DateTime winlostDate, 
+                                                                            int selection,
+                                                                            int sportType,
+                                                                            DateTime winlostDate,
                                                                             long maxTransId)
         {
             return this.GetTopSelectionByTicketEventCache(selection, sportType, winlostDate).SelectionByTicketEvent;
@@ -347,10 +346,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype> GetTopSelectionByTicket_Event_Bettype(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int matchId, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int matchId,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this.GetTopSelectionByTicketEventBettypeCache(selection, sportType, matchId, winlostDate).SelectionByTicketEventBettype;
@@ -367,11 +366,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice> GetTopSelectionByTicket_Event_Bettype_Choice(
-                                                                                          int selection, 
-                                                                                          int sportType, 
-                                                                                          int matchId, 
-                                                                                          int betType2, 
-                                                                                          DateTime winlostDate, 
+                                                                                          int selection,
+                                                                                          int sportType,
+                                                                                          int matchId,
+                                                                                          int betType2,
+                                                                                          DateTime winlostDate,
                                                                                           long maxTransId)
         {
             return this.GetTopSelectionByTicketEventBettypeChoiceCache(selection, sportType, matchId, betType2, winlostDate).SelectionByTicketEventBettypeChoice;
@@ -420,13 +419,13 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="topCurrency">Top Currencies.</param>
         /// <param name="leagueId">League ID.</param>
         public void SetCache(
-                        int bettype, 
-                        DateTime winlostDate, 
-                        bool isTicket, 
-                        int selection, 
-                        int sportType, 
-                        int currency, 
-                        string topCurrency, 
+                        int bettype,
+                        DateTime winlostDate,
+                        bool isTicket,
+                        int selection,
+                        int sportType,
+                        int currency,
+                        string topCurrency,
                         int leagueId)
         {
             if (!IsCache)
@@ -477,7 +476,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(lastTimeSummary) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         var result = GetSummary(bettype, winlostDate);
-                        CacheServiceInstance.Set<ChartSummaryCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartSummaryCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                         lastTimeSummary = DateTime.Now;
                     }
                 }
@@ -503,22 +502,22 @@ namespace ParlayRMS.Services.Implement.Charts
 
             if (currency != -1)
             {
-                if (isTicket) 
+                if (isTicket)
                 {
                     this.SetTopSelectionByTicketEventByCurrencyCache(selection, sportType, currency, topCurrency, winlostDate);
                 }
-                else 
+                else
                 {
                     this.SetTopSelectionByTurnoverEventByCurrencyCache(selection, sportType, currency, topCurrency, winlostDate);
                 }
             }
-            else 
+            else
             {
-                if (isTicket) 
+                if (isTicket)
                 {
                     this.SetTopSelectionByTicketEventByLeagueCache(selection, sportType, leagueId, winlostDate);
                 }
-                else 
+                else
                 {
                     this.SetTopSelectionByTurnoverEventByLeagueCache(selection, sportType, leagueId, winlostDate);
                 }
@@ -618,7 +617,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetSummary(bettype, winlostDate);
-                CacheServiceInstance.Set<ChartSummaryCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartSummaryCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -643,7 +642,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTicket(selection, sportType, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -685,7 +684,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTicket(selection, sportType, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -710,7 +709,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTurnover(selection, sportType, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -752,7 +751,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTurnover(selection, sportType, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -796,7 +795,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTicketEventByCurrency(selection, sportType, currency, topCurrency, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -840,7 +839,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTurnoverEventByCurrency(selection, sportType, currency, topCurrency, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -882,7 +881,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTicketEventByLeague(selection, sportType, leagueId, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -924,7 +923,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = GetTopSelectionByTurnoverEventByLeague(selection, sportType, leagueId, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -951,7 +950,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTicketEventByCurrency(selection, sportType, currency, topCurrency, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -978,7 +977,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTurnoverEventByCurrency(selection, sportType, currency, topCurrency, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1004,7 +1003,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTicketEventByLeague(selection, sportType, leagueId, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1030,7 +1029,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = GetTopSelectionByTurnoverEventByLeague(selection, sportType, leagueId, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1054,7 +1053,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTicketEventBettype(selection, sportType, matchId, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1096,7 +1095,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTicketEventBettype(selection, sportType, matchId, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -1120,7 +1119,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTuroverBettype(selection, sportType, matchId, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1162,7 +1161,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTuroverBettype(selection, sportType, matchId, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -1187,7 +1186,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTicketEventBettypeChoice(selection, sportType, matchId, betType2, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1231,7 +1230,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTicketEventBettypeChoice(selection, sportType, matchId, betType2, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -1256,7 +1255,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTurnoverEventBettypeChoice(selection, sportType, matchId, betType2, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1300,7 +1299,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTurnoverEventBettypeChoice(selection, sportType, matchId, betType2, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -1323,7 +1322,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTicketEvent(selection, sportType, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1363,7 +1362,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTicketEvent(selection, sportType, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;
@@ -1386,7 +1385,7 @@ namespace ParlayRMS.Services.Implement.Charts
                     if (DateTime.Now.Subtract(result.LastUpdateTime) > TimeSpan.FromSeconds(RefreshCache))
                     {
                         result = this.GetTopSelectionByTurnoverEvent(selection, sportType, winlostDate);
-                        CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                        CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
                     }
                 }
             }
@@ -1426,7 +1425,7 @@ namespace ParlayRMS.Services.Implement.Charts
             if (result == null)
             {
                 result = this.GetTopSelectionByTurnoverEvent(selection, sportType, winlostDate);
-                CacheServiceInstance.Set<ChartDetailCache>(key, result, TimeSpan.FromSeconds(ExpiredCache));
+                CacheServiceInstance.Set<ChartDetailCache>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromSeconds(ExpiredCache) });
             }
 
             return result;

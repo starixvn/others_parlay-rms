@@ -1,4 +1,7 @@
-﻿using Fanex.Caching;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Fanex.Caching;
 using ParlayRMS.DataAccess.Implement.MemberWinLoss;
 using ParlayRMS.DataAccess.Interface.MemberWinLoss;
 using ParlayRMS.DTO.MemberWinLoss;
@@ -10,9 +13,6 @@ using ParlayRMS.Services.Interface;
 using ParlayRMS.Services.Interface.MemberWinLoss;
 using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ParlayRMS.Services.Implement.MemberWinLoss
 {
@@ -20,7 +20,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
     {
         private static readonly string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
 
-        private readonly ICache _cacheService = CacheService.CreateInstance(CacheType.MemoryCache);
+        private readonly CacheService _cacheService = new CacheServiceImpl();
         private readonly IMemberWinLossDataAccess _memberWinLossDataAccess = new MemberWinLossDataAccess();
         private readonly ICommonService _commonService = new CommonService();
         private readonly IUsersService _usersService = new UsersService();

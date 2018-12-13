@@ -22,7 +22,7 @@ namespace ParlayRMS.Services.Implement.Common
     /// </summary>
     public class CommonService : BaseService, ICommonService
     {
-        private static readonly ICache CacheServiceInstance = CacheService.CreateInstance(CacheType.MemoryCache);
+        private static readonly CacheService CacheServiceInstance = new CacheServiceImpl();
         private readonly ICommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ParlayRMS.Services.Implement.Common
             if (result == null)
             {
                 result = this._commonDataAccess.RMS_SelBalanceUpDay();
-                CacheServiceInstance.Set<RMS_SelBalanceUpDay>(key, result, TimeSpan.FromMinutes(1));
+                CacheServiceInstance.Set<RMS_SelBalanceUpDay>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
             }
 
             return result;
@@ -63,7 +63,7 @@ namespace ParlayRMS.Services.Implement.Common
             if (result == null)
             {
                 result = this._commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
-                CacheServiceInstance.Set<RMS_Rpt_Parlay_SelMinTransdate>(key, result, TimeSpan.FromMinutes(1));
+                CacheServiceInstance.Set<RMS_Rpt_Parlay_SelMinTransdate>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
             }
 
             return result;
@@ -87,7 +87,7 @@ namespace ParlayRMS.Services.Implement.Common
             if (result == null)
             {
                 result = this._commonDataAccess.GetBettypeBelongsBetRadar();
-                CacheServiceInstance.Set<List<int>>(key, result, TimeSpan.FromDays(1));
+                CacheServiceInstance.Set<List<int>>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromDays(1) });
             }
 
             return result;
