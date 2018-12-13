@@ -49,7 +49,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return @"tcp:10.40.40.22\private$\entlib";
+                        return @"tcp:10.40.40.127\private$\entlib";
 
                     case SiteEnvironment.MNL:
                         return @"tcp:10.2.98.3\private$\entlib";
@@ -73,7 +73,7 @@
 					case SiteEnvironment.LOCAL:
                         return "http://ha.nexdev.net:8889/api";
                     case SiteEnvironment.PRO:
-                        return "http://10.40.40.22:8889/api";
+                        return "http://10.40.40.47:8889/api";
                     case SiteEnvironment.UAT:
                         return "http://10.40.40.248:8889/api";
                     case SiteEnvironment.SIT:
@@ -160,7 +160,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.22:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.127:42424\" />";
                     case SiteEnvironment.MNL:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.12.10:42424\" />";
                     case SiteEnvironment.SIT:
