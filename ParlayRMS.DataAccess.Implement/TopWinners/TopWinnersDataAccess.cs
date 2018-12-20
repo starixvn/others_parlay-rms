@@ -1,11 +1,11 @@
-﻿using Fanex.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Fanex.Data;
 using ParlayRMS.DataAccess.Interface.TopWinners;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Utility.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
@@ -139,7 +139,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             MatchId = reader.ToInt32("matchid"),
                             MatchCode = reader.ToInt32("matchcode"),
                             BetStatus = reader.ToString("betstatus"),
-                            BetCheck = reader.ToString("betcheck")
+                            BetCheck = reader.ToString("betcheck"),
+                            TransDesc = reader.ToString("transdesc"),
                         });
                     }
                 }
