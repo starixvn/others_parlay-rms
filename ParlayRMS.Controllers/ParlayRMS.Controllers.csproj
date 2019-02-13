@@ -218,7 +218,6 @@
     <Compile Include="CacheController.cs" />
     <Compile Include="PotentialWinningController.cs" />
     <Compile Include="ViewIPInfoController.cs" />
-    <Compile Include="DangerMonitorController.cs" />
     <Compile Include="ErrorController.cs" />
     <Compile Include="FavouriteChoiceController.cs" />
     <Compile Include="ManageAgentController.cs" />

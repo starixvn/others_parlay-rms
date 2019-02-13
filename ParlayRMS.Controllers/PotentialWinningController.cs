@@ -41,6 +41,7 @@ namespace ParlayRMS.Controllers
             var parlayTypes = new List<SelectListItem>();
             parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() });
             parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
+            parlayTypes.Add(new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() });
             ViewBag.ParlayTypes = parlayTypes;
 
             // Level

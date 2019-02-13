@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Functions>
+<Functions SiteName="NAP - Parlay RMS">
   <Function Name="User">
     <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBCUST.CustDB.bodbRMSNet" />
     <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBCUST.CustDB.bodbRMSNet" />
@@ -62,11 +62,10 @@
     <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" SpName="RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_TransDetails" SpName="RMS_Monitor_Parlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_BetInfo" SpName="RMS_Monitor_ComboParlay_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_old" DbName="DBARC.bodb_Archive.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_Old" DbName="DBARC.bodb_Archive.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinner_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -80,7 +79,7 @@
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning_UAT4" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="Member">
@@ -103,23 +102,9 @@
     <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
-  <Function Name="SystemParlayMonitor">
-    <Setting Key="RMS_Monitor_SystemParlay_Betlist" SpName="RMS_Monitor_SystemParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
+
   <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" />
   </Function>
-  <Function Name="MixParlay">
-    <Setting Key="RMS_MixParlay_PotentialWinningMonitor" SpName="RMS_Monitor_Parlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MixParlay_PotentialWinningMonitor_Detail" SpName="RMS_Monitor_Parlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MixParlay_TransDetails" SpName="RMS_Parlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MixParlay_Monitor" SpName="RMS_Monitor_Parlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MixParlay_SimilarBet" SpName="RMS_Similar_Parlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MixParlay_Outstanding_Mem" SpName="RMS_Rpt_Parlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet">
-      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
-    </Setting>
-    <Setting Key="RMS_MixParlay_Outstanding_Ag" SpName="RMS_Rpt_Parlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet">
-      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
-    </Setting>
-  </Function>
+
 </Functions>

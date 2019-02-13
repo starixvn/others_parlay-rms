@@ -1,4 +1,7 @@
-﻿using ParlayRMS.Models;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.TotalOutstanding;
 using ParlayRMS.Services.Implement.Users;
@@ -7,9 +10,6 @@ using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -51,6 +51,13 @@ namespace ParlayRMS.Controllers
                 Value = ((int)ParlayType.ComboParlay).ToString(),
                 Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
             });
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.SingleMatchParlay,
+                Value = ((int)ParlayType.SingleMatchParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.SingleMatchParlay).ToString())
+            });
+
             ViewBag.ParlayTypes = parlayTypes;
 
             return View("Index", model);

@@ -27,7 +27,7 @@ ParlayRMS.TotalOutstanding = {
         });
 
         $("#parlaysType").multiselect({
-            minWidth: 140,
+            minWidth: 170,
             height: 82,
             create: function () {
                 $("#parlaysType").multiselect();
@@ -49,7 +49,7 @@ ParlayRMS.TotalOutstanding = {
         });
 
         $("#sportsType").multiselect({
-            minWidth: 220,
+            minWidth: 190,
             height: 300,
             create: function () {
                 $("#sportsType").multiselect();

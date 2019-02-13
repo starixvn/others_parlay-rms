@@ -1,10 +1,10 @@
-﻿using Fanex.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Fanex.Data;
 using ParlayRMS.DataAccess.Interface.ParlayMonitor;
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Utility.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
 {
@@ -57,7 +57,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level"),
                             IsBetRadar = reader.ToBoolean("IsBetRadar"),
-                            SportType = reader.ToInt32("sporttype")
+                            SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype")
                         });
                     }
                 }

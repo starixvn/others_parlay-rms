@@ -228,7 +228,7 @@ $(document).ready(function () {
     });
 
     $("#parlaysType").multiselect({
-        minWidth: 150,
+        minWidth: 180,
         height: 82,
         create: function () {
             $("#parlaysType").multiselect("checkAll");
@@ -250,7 +250,7 @@ $(document).ready(function () {
     });
 
     $("#sportsType").multiselect({
-        minWidth: 220,
+        minWidth: 190,
         height: 300,
         create: function () {
             $("#sportsType").multiselect("checkAll");

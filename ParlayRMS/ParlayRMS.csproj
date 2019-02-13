@@ -272,7 +272,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FanexLogging.cs" />
-    <Compile Include="Areas\MixParlay\MixParlayAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,13 +290,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
+    <None Include="App_Configuration\Web.ConnectionString.LOCAL.config">
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </None>
+    <None Include="App_Configuration\Web.ConnectionString.MNL.config">
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </None>
+    <None Include="App_Configuration\Web.ConnectionString.PRO.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </None>
+    <None Include="App_Configuration\Web.ConnectionString.SIT.config">
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </None>
+    <None Include="App_Configuration\Web.ConnectionString.UAT.config">
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </None>
     <Content Include="App_Data\LIVE\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\MixParlay\Scripts\mix-parlay-monitor.js" />
-    <Content Include="Areas\MixParlay\Scripts\total-outstanding.js" />
-    <Content Include="Areas\MixParlay\Scripts\potential-winning-monitor.js" />
-    <Content Include="Areas\MixParlay\Scripts\similar-bet.js" />
     <Content Include="Content\images\Content\1F.gif" />
     <Content Include="Content\images\Content\1L.gif" />
     <Content Include="Content\images\Content\ajax-loader-line-2.gif" />
@@ -648,31 +659,8 @@
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\MixParlay\Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Filter.cshtml" />
-    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Index.cshtml" />
-    <Content Include="Areas\MixParlay\Views\PotentialWinningMonitor\Detail.cshtml" />
-    <Content Include="Areas\MixParlay\Views\BetList\BetDetails.cshtml" />
-    <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Filter.cshtml" />
-    <Content Include="Areas\MixParlay\Views\MixParlayMonitor\Index.cshtml" />
-    <Content Include="Areas\MixParlay\Views\SimilarBet\BetDetails.cshtml" />
-    <Content Include="Areas\MixParlay\Views\SimilarBet\Data.cshtml" />
-    <Content Include="Areas\MixParlay\Views\SimilarBet\Index.cshtml" />
-    <Content Include="Areas\MixParlay\Views\SimilarBet\NotFound.cshtml" />
-    <Content Include="Areas\MixParlay\Views\TotalOutstanding\AgentResult.cshtml" />
-    <Content Include="Areas\MixParlay\Views\TotalOutstanding\Index.cshtml" />
-    <Content Include="Areas\MixParlay\Views\TotalOutstanding\MemberResult.cshtml" />
     <Content Include="App_Configuration\Configuration.ttinclude" />
-    <Content Include="App_Configuration\DEV\Web.ConnectionString.config" />
-    <Content Include="App_Configuration\LOCAL\Web.ConnectionString.config" />
-    <Content Include="App_Configuration\MNL\Web.ConnectionString.config" />
-    <Content Include="App_Configuration\PRO\Web.ConnectionString.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Configuration\SIT\Web.ConnectionString.config" />
-    <Content Include="App_Configuration\UAT\Web.ConnectionString.config" />
+    <Content Include="App_Configuration\Web.ConnectionString.DEV.config" />
     <Content Include="App_Configuration\Web.DEV.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
@@ -694,7 +682,6 @@
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.js" />
     <Content Include="Scripts\ManageAgent.js" />
-    <Content Include="Scripts\Monitor\DangerMonitor.js" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
     <Content Include="Scripts\Libs\highcharts\highcharts.js" />
@@ -772,9 +759,6 @@
     <Content Include="Views\MemberWinLoss\Index.cshtml" />
     <Content Include="Views\MemberWinLoss\MemberData.cshtml" />
     <Content Include="Views\MemberWinLoss\AgentData.cshtml" />
-    <Content Include="Views\DangerMonitor\Index.cshtml" />
-    <Content Include="Views\DangerMonitor\Data.cshtml" />
-    <Content Include="Views\DangerMonitor\Details.cshtml" />
     <Content Include="Views\ManageAgent\Index.cshtml" />
     <Content Include="Views\ManageAgent\SearchBar.cshtml" />
     <Content Include="Views\ManageAgent\AddAgent.cshtml" />
@@ -799,10 +783,6 @@
     <ProjectReference Include="..\ParlayRMS.Controllers\ParlayRMS.Controllers.csproj">
       <Project>{4C610986-FD5A-4729-A5C7-747667A0EF9E}</Project>
       <Name>ParlayRMS.Controllers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.MixParlay\ParlayRMS.MixParlay.csproj">
-      <Project>{4c1b60f6-45be-4475-b238-0be34b27e72f}</Project>
-      <Name>ParlayRMS.MixParlay</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Web.Authorization\ParlayRMS.Web.Authorization.csproj">
       <Project>{46A0F82B-E451-4048-8409-031152B587A2}</Project>
@@ -959,6 +939,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.9.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

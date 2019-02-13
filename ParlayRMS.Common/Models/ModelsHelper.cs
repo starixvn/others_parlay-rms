@@ -1,8 +1,8 @@
-﻿using ParlayRMS.Models;
+﻿using System;
+using System.Collections.Generic;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Members;
 using ParlayRMS.Utility;
-using System;
-using System.Collections.Generic;
 
 namespace ParlayRMS.Common.Models
 {
@@ -134,19 +134,15 @@ namespace ParlayRMS.Common.Models
 
         public static string GetParlayTitle(string parlayTypes)
         {
-            switch (parlayTypes)
+            if (parlayTypes == "1,2,3")
             {
-                case "1,2":
-                    return ViewLang.All;
-
-                case "1":
-                    return ViewLang.MixparLay;
-
-                case "2":
-                    return ViewLang.ComboParlay;
+                return ViewLang.All;
             }
 
-            return "Undefined";
+            return parlayTypes.Replace("1", ViewLang.MixparLay)
+                .Replace("2", ViewLang.ComboParlay)
+                .Replace("3", ViewLang.SingleMatchParlay)
+                .Replace(",", ", ");
         }
     }
 }

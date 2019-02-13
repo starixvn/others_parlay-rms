@@ -51,8 +51,6 @@
     <Compile Include="BetList\BetListData.cs" />
     <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
-    <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor.cs" />
-    <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor_Details.cs" />
     <Compile Include="Functions\RMS_FunctionSel.cs" />
     <Compile Include="Groups\RMS_GroupInfoSel.cs" />
     <Compile Include="Groups\RMS_GroupInfoSelAllGroup.cs" />

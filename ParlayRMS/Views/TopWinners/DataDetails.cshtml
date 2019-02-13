@@ -86,9 +86,10 @@
                     <td>
                         @{
                             var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
+                            var singleMatchParlayText = item.IsSingleMatchParlay ? "(S)" : "";
                         }
 
-                        @Formatter.FormatNumber3(@item.TotalCombo) @betText
+                        @Formatter.FormatNumber3(@item.TotalCombo) @betText @singleMatchParlayText
                     </td>
                     <td>
                         @item.Selection.ToString("#,##0")

@@ -23,5 +23,7 @@
         public int TotalCombo { get; set; }
 
         public int Selection { get; set; }
+
+        public bool IsSingleMatchParlay { get; set; }
     }
 }

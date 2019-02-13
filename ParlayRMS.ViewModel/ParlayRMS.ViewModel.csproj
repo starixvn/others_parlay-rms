@@ -77,8 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\LoginModel.cs" />
-    <Compile Include="DangerMonitor\DangerMonitorDetailOptions.cs" />
-    <Compile Include="DangerMonitor\DangerMonitorOptions.cs" />
     <Compile Include="ManageAgent\AddAgentModel.cs" />
     <Compile Include="ManageAgent\AgentListModel.cs" />
     <Compile Include="ManageAgent\DeleteAgentModel.cs" />

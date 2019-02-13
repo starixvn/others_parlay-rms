@@ -76,7 +76,6 @@
     <Compile Include="Agents\AgentsDataAccess.cs" />
     <Compile Include="BetList\BetListDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />
-    <Compile Include="DangerMonitor\DangerMonitorDataAccess.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
     <Compile Include="ParlayMonitor\ParlayMonitorDataAccess.cs" />
     <Compile Include="Members\MembersDataAccess.cs" />

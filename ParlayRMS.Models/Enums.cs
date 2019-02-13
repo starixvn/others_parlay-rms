@@ -29,7 +29,9 @@
 
         MixParlay = 1,
 
-        ComboParlay = 2
+        ComboParlay = 2,
+
+        SingleMatchParlay = 3
     }
 
     public enum SportsType : int

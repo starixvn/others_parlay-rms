@@ -97,7 +97,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
                             TotalCombo = reader.ToInt32("totalcombo"),
-                            Selection = reader.ToInt32("combo")
+                            Selection = reader.ToInt32("combo"),
+                            IsSingleMatchParlay = reader.ToBoolean("IsSingleMatchParlay")
                         });
                     }
                 }

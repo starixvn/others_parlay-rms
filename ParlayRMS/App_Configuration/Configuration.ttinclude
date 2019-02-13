@@ -101,6 +101,21 @@
             }
         }
 
+         public string EnableRecheckIn
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.MNL:
+                        return "True";
+                    default:
+                        return "False";
+                }
+            }
+        }
+
         public string RemoteRefURL
         {
             get

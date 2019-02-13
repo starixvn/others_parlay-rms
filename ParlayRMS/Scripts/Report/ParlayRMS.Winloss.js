@@ -7,7 +7,7 @@ ParlayRMS.Winloss = {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
         $("#parlayType").multiselect({
-            minWidth: 132,
+            minWidth: 162,
             height: 82,
             create: function () {
                 $("#parlayType").multiselect("checkAll");

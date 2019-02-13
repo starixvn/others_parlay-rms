@@ -49,7 +49,6 @@
     <Compile Include="Agents\IAgentsDataAccess.cs" />
     <Compile Include="BetList\IBetListDataAccess.cs" />
     <Compile Include="Common\ICommonDataAccess.cs" />
-    <Compile Include="DangerMonitor\IDangerMonitorDataAccess.cs" />
     <Compile Include="Members\IMembersDataAccess.cs" />
     <Compile Include="Functions\IFunctionsDataAccess.cs" />
     <Compile Include="Groups\IGroupsDataAccess.cs" />
