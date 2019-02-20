@@ -11,7 +11,6 @@ namespace ParlayRMS.Services.Implement.Users
     using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.Users;
-    using ParlayRMS.DataAccess.Interface.Users;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Users;
     using ParlayRMS.Models;
@@ -21,18 +20,16 @@ namespace ParlayRMS.Services.Implement.Users
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Groups;
     using ParlayRMS.Services.Implement.Systems;
-    using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Session;
 
     /// <summary>
     /// Users Service.
     /// </summary>
-    public class UsersService : BaseService, IUsersService
+    public class UsersService : BaseService
     {
-        private readonly IUsersDataAccess _usersDataAccess = new UsersDataAccess();
-        private readonly IGroupsService _groupsService = new GroupsService();
+        private readonly UsersDataAccess _usersDataAccess = new UsersDataAccess();
+        private readonly GroupsService _groupsService = new GroupsService();
         private readonly ICurrentSession _currentSession = CurrentSession.Instance;
 
         /// <summary>
@@ -166,7 +163,7 @@ namespace ParlayRMS.Services.Implement.Users
             {
                 data = data.Where(x => x.FuncKey != FunctionKeys.ManageFunction && x.FuncKey != FunctionKeys.ManageMenu);
             }
-            
+
             return data.Select(x => new Function
             {
                 Id = x.FuncId,
@@ -252,17 +249,17 @@ namespace ParlayRMS.Services.Implement.Users
         {
             var data = this._usersDataAccess.RMS_MenuSelByUserID(userId);
             var menus = data.Menus.Select(x => new Menu
+            {
+                Id = x.MenuId,
+                Name = x.MenuName,
+                Url = x.Url,
+                Parent = x.ParentId == 0 ? null : new Menu
                 {
-                    Id = x.MenuId,
-                    Name = x.MenuName,
-                    Url = x.Url,
-                    Parent = x.ParentId == 0 ? null : new Menu
-                    {
-                        Id = x.ParentId,
-                        Name = x.ParentName
-                    },
-                    DisplayOrder = x.DisplayOrder
-                });
+                    Id = x.ParentId,
+                    Name = x.ParentName
+                },
+                DisplayOrder = x.DisplayOrder
+            });
 
             var functions = data.Functions.Select(x => new FunctionPolicy
             {

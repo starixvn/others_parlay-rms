@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.TopWinners;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
-    public class TopWinnersDataAccess : BaseDataAccess, ITopWinnersDataAccess
+    public class TopWinnersDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(
                                                          DateTime fromDate,

@@ -8,14 +8,11 @@
 
 namespace ParlayRMS.DataAccess.Implement.Users
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using ParlayRMS.Common.Models;
     using ParlayRMS.DataAccess.Implement.Groups;
-    using ParlayRMS.DataAccess.Interface.Groups;
-    using ParlayRMS.DataAccess.Interface.Users;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Users;
     using ParlayRMS.Utility;
@@ -24,9 +21,9 @@ namespace ParlayRMS.DataAccess.Implement.Users
     /// <summary>
     /// Users Data Access.
     /// </summary>
-    public class UsersDataAccess : BaseDataAccess, IUsersDataAccess
+    public class UsersDataAccess : BaseDataAccess
     {
-        private readonly IGroupsDataAccess _groupDataAccess = new GroupsDataAccess();
+        private readonly GroupsDataAccess _groupDataAccess = new GroupsDataAccess();
 
         /// <summary>
         /// Gets user by username and group ID.

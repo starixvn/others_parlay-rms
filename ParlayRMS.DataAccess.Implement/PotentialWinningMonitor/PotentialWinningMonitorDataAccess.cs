@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.PotentialWinningMonitor;
-using ParlayRMS.DTO.PotentialWinning;
-using ParlayRMS.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
+using ParlayRMS.DTO.PotentialWinning;
+using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
 {
-    public class PotentialWinningMonitorDataAccess : BaseDataAccess, IPotentialWinningMonitorDataAccess
+    public class PotentialWinningMonitorDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Monitor_Potential_Winning> RMS_Monitor_Parlay_PotentialWinning(
             string combos,

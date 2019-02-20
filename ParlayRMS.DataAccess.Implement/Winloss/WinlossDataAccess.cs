@@ -1,15 +1,14 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.Winloss;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Fanex.Data;
 using ParlayRMS.DTO.Winloss;
 using ParlayRMS.Models;
 using ParlayRMS.Utility.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.Winloss
 {
-    public class WinlossDataAccess : BaseDataAccess, IWinlossDataAccess
+    public class WinlossDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Rpt_Parlay_Winloss> RMS_Rpt_Parlay_Winloss(
                                                        DateTime fromDate,

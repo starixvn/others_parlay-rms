@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.TotalOutstanding;
-using ParlayRMS.DTO.TotalOutstanding;
-using ParlayRMS.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
+using ParlayRMS.DTO.TotalOutstanding;
+using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
 {
-    public class TotalOutstandingDataAccess : BaseDataAccess, ITotalOutstandingDataAccess
+    public class TotalOutstandingDataAccess : BaseDataAccess
     {
         public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType)
         {

@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.SimilarBets;
-using ParlayRMS.DTO.SimilarBets;
-using ParlayRMS.Utility;
-using System;
+﻿using System;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.Data;
+using ParlayRMS.DTO.SimilarBets;
+using ParlayRMS.Utility;
 
 namespace ParlayRMS.DataAccess.Implement.SimilarBets
 {
-    public class SimilarBetsDataAccess : BaseDataAccess, ISimilarBetsDataAccess
+    public class SimilarBetsDataAccess : BaseDataAccess
     {
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)

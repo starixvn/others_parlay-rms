@@ -8,8 +8,6 @@ using Fanex.BetList.Core.TicketHelper;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.BetList;
 using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.Web.Authorization;
 
@@ -17,8 +15,8 @@ namespace ParlayRMS.Controllers
 {
     public class BetListController : BaseController
     {
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly ICommonService _commonService = new CommonService();
+        private readonly BetListService _betlistService = new BetListService();
+        private readonly CommonService _commonService = new CommonService();
 
         /// <summary>
         /// Gets bet details.

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.ParlayMonitor;
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
 {
-    public class ParlayMonitorDataAccess : BaseDataAccess, IParlayMonitorDataAccess
+    public class ParlayMonitorDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
             string combos,

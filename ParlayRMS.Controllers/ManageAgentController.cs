@@ -15,8 +15,6 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Agents;
     using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Agents;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageAgent;
     using ParlayRMS.Web.Authorization;
@@ -26,8 +24,8 @@ namespace ParlayRMS.Controllers
     /// </summary>
     public class ManageAgentController : BaseController
     {
-        private readonly IUsersService _userService = new UsersService();
-        private readonly IAgentService _agentService = new AgentService();
+        private readonly UsersService _userService = new UsersService();
+        private readonly AgentService _agentService = new AgentService();
         private int _pageSize = AppSetting.PageSize;
 
         public ManageAgentController()

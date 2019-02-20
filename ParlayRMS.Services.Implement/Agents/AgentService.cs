@@ -11,17 +11,15 @@ namespace ParlayRMS.Services.Implement.Agents
 {
     using System.Collections.Generic;
     using ParlayRMS.DataAccess.Implement.Agents;
-    using ParlayRMS.DataAccess.Interface.Agents;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Agents;
-    using ParlayRMS.Services.Interface.Agents;
 
     /// <summary>
     /// Agent service.
     /// </summary>
-    public class AgentService : BaseService, IAgentService
+    public class AgentService : BaseService
     {
-        private readonly IAgentsDataAccess _agentDataAccess = new AgentsDataAccess();
+        private readonly AgentsDataAccess _agentDataAccess = new AgentsDataAccess();
 
         /// <summary>
         /// Gets dangerous agent list.

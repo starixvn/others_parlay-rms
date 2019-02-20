@@ -9,20 +9,19 @@
 
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
 {
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.ViewIPInfo;
-    using ParlayRMS.DTO.ViewIPInfo;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Fanex.Data;
+    using ParlayRMS.DTO.ViewIPInfo;
+    using ParlayRMS.Utility;
+    using ParlayRMS.Utility.Data;
 
     /// <summary>
     /// Main data-access-class for view-IP-info report and other related reports.
     /// </summary>
-    public class ViewIPInfoDataAccess : BaseDataAccess, IViewIPInfoDataAccess
+    public class ViewIPInfoDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Get bets statistics by IP and WINLOST date.

@@ -5,8 +5,6 @@ using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.TotalOutstanding;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.TotalOutstanding;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
@@ -16,8 +14,8 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
     public class TotalOutstandingController : BaseController
     {
-        private readonly ITotalOutstandingService _service = new TotalOutstandingService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly TotalOutstandingService _service = new TotalOutstandingService();
+        private readonly UsersService _userService = new UsersService();
 
         [HttpGet]
         public ActionResult Index(IndexModel model)

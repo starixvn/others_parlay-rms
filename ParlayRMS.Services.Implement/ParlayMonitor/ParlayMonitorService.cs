@@ -1,22 +1,20 @@
-﻿using ParlayRMS.DataAccess.Implement.ParlayMonitor;
-using ParlayRMS.DataAccess.Interface.ParlayMonitor;
-using ParlayRMS.DTO.ParlayMonitor;
-using ParlayRMS.Services.Interface.ParlayMonitor;
-using ParlayRMS.Utility;
-using SignalR;
-using SignalR.Hubs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
+using ParlayRMS.DataAccess.Implement.ParlayMonitor;
+using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Utility;
+using SignalR;
+using SignalR.Hubs;
 
 namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
-    public class ParlayMonitorService : BaseService, IParlayMonitorService
+    public class ParlayMonitorService : BaseService
     {
         private static IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<ParlayMonitorHub>();
 
-        private readonly IParlayMonitorDataAccess _parlayDataAccess = new ParlayMonitorDataAccess();
+        private readonly ParlayMonitorDataAccess _parlayDataAccess = new ParlayMonitorDataAccess();
 
         /// <summary>
         /// Starts this instance.

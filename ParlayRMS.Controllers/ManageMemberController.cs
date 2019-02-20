@@ -16,8 +16,6 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Members;
     using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Members;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageMember;
     using ParlayRMS.Web.Authorization;
@@ -27,8 +25,8 @@ namespace ParlayRMS.Controllers
     /// </summary>
     public class ManageMemberController : BaseController
     {
-        private readonly IUsersService _userService = new UsersService();
-        private readonly IMembersService _customerService = new MembersService();
+        private readonly UsersService _userService = new UsersService();
+        private readonly MembersService _customerService = new MembersService();
         private int _pageSize = AppSetting.PageSize;
 
         public ManageMemberController()

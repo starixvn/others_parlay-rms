@@ -42,9 +42,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -96,10 +93,6 @@
     <ProjectReference Include="..\ParlayRMS.Services.Implement\ParlayRMS.Services.Implement.csproj">
       <Project>{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}</Project>
       <Name>ParlayRMS.Services.Implement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.Services.Interface\ParlayRMS.Services.Interface.csproj">
-      <Project>{8996A3CA-B459-4301-81A7-0E8624D3828C}</Project>
-      <Name>ParlayRMS.Services.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Web\ParlayRMS.Web.csproj">
       <Project>{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}</Project>

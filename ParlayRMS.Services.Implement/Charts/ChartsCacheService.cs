@@ -13,7 +13,6 @@ namespace ParlayRMS.Services.Implement.Charts
     using Fanex.Caching;
     using ParlayRMS.DTO.Charts;
     using ParlayRMS.Models.Charts;
-    using ParlayRMS.Services.Interface.Charts;
 
     /// <summary>
     /// Charts Cache Service.
@@ -33,7 +32,7 @@ namespace ParlayRMS.Services.Implement.Charts
         private const int ExpiredCache = 60; // 60s
 
         private static readonly CacheService CacheServiceInstance = new CacheServiceImpl();
-        private static readonly IChartsService ChartsServiceInstance = new ChartsService();
+        private static readonly ChartsService ChartsServiceInstance = new ChartsService();
 
         private static object locker = new object();
 

@@ -9,8 +9,6 @@ using Fanex.BetList.Core.TicketHelper;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.SimilarBets;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.SimilarBets;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 
@@ -18,8 +16,8 @@ namespace ParlayRMS.Controllers
 {
     public class SimilarBetsController : BaseController
     {
-        private readonly ISimilarBetsService _similarbetsService = new SimilarBetsService();
-        private readonly IBetListService _betlistService = new BetListService();
+        private readonly SimilarBetsService _similarbetsService = new SimilarBetsService();
+        private readonly BetListService _betlistService = new BetListService();
 
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpGet]

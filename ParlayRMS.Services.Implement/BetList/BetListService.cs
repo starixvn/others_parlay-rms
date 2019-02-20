@@ -1,16 +1,14 @@
-﻿using Fanex.BetList.Core.Entities;
-using ParlayRMS.DataAccess.Implement.BetList;
-using ParlayRMS.DataAccess.Interface.BetList;
-using ParlayRMS.DTO.BetList;
-using ParlayRMS.Services.Interface.BetList;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Fanex.BetList.Core.Entities;
+using ParlayRMS.DataAccess.Implement.BetList;
+using ParlayRMS.DTO.BetList;
 
 namespace ParlayRMS.Services.Implement.BetList
 {
-    public class BetListService : BaseService, IBetListService
+    public class BetListService : BaseService
     {
-        private readonly IBetListDataAccess _betListDataAccess = new BetListDataAccess();
+        private readonly BetListDataAccess _betListDataAccess = new BetListDataAccess();
 
         public IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
         {

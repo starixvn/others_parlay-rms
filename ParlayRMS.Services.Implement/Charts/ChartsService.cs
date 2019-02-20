@@ -11,16 +11,14 @@ namespace ParlayRMS.Services.Implement.Charts
     using System;
     using System.Collections.Generic;
     using ParlayRMS.DataAccess.Implement.Charts;
-    using ParlayRMS.DataAccess.Interface.Charts;
     using ParlayRMS.DTO.Charts;
-    using ParlayRMS.Services.Interface.Charts;
 
     /// <summary>
     /// Charts Service.
     /// </summary>
     public class ChartsService : BaseService, IChartsService
     {
-        private readonly IChartsDataAccess _monitorDataAccess = new ChartsDataAccess();
+        private readonly ChartsDataAccess _monitorDataAccess = new ChartsDataAccess();
 
         #region SummaryData
 
@@ -60,9 +58,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League> GetTopLeagueByTicket(
-                                                                            int selection, 
-                                                                            int sportType, 
-                                                                            DateTime winlostDate, 
+                                                                            int selection,
+                                                                            int sportType,
+                                                                            DateTime winlostDate,
                                                                             long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTicket_League(selection, sportType, winlostDate, maxTransId);
@@ -77,9 +75,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency> GetTopCurrencyByTicket(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTicket_Currency(selection, sportType, winlostDate, maxTransId);
@@ -109,9 +107,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League> GetTopLeagueByTurnover(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_League(selection, sportType, winlostDate, maxTransId);
@@ -126,9 +124,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTurnover_Currency> GetTopCurrencyByTurnover(
-                                                                                int selection, 
-                                                                                int sportType, 
-                                                                                DateTime winlostDate, 
+                                                                                int selection,
+                                                                                int sportType,
+                                                                                DateTime winlostDate,
                                                                                 long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_Currency(selection, sportType, winlostDate, maxTransId);
@@ -149,11 +147,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event> GetTopSelectionTicketEventByCurrency(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int currency, 
-                                                                                    string topCurrency, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int currency,
+                                                                                    string topCurrency,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event(selection, sportType, currency, topCurrency, winlostDate, maxTransId);
@@ -170,11 +168,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event> GetTopSelectionTurnoverEventByCurrency(
-                                                                                      int selection, 
-                                                                                      int sportType, 
-                                                                                      int currency, 
-                                                                                      string topCurrency, 
-                                                                                      DateTime winlostDate, 
+                                                                                      int selection,
+                                                                                      int sportType,
+                                                                                      int currency,
+                                                                                      string topCurrency,
+                                                                                      DateTime winlostDate,
                                                                                       long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event(selection, sportType, currency, topCurrency, winlostDate, maxTransId);
@@ -194,10 +192,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League_Event> GetTopSelectionTicketEventByLeague(
-                                                                                  int selection, 
-                                                                                  int sportType, 
-                                                                                  int leagueId, 
-                                                                                  DateTime winlostDate, 
+                                                                                  int selection,
+                                                                                  int sportType,
+                                                                                  int leagueId,
+                                                                                  DateTime winlostDate,
                                                                                   long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTicket_League_Event(selection, sportType, leagueId, winlostDate, maxTransId);
@@ -213,10 +211,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League_Event> GetTopSelectionTurnoverEventByLeague(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int leagueId, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int leagueId,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_League_Event(selection, sportType, leagueId, winlostDate, maxTransId);
@@ -235,9 +233,9 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event> GetTopSelectionByTurnover_Event(
-                                                                             int selection, 
-                                                                             int sportType, 
-                                                                             DateTime winlostDate, 
+                                                                             int selection,
+                                                                             int sportType,
+                                                                             DateTime winlostDate,
                                                                              long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_Event(selection, sportType, winlostDate, maxTransId);
@@ -253,10 +251,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype> GetTopSelectionByTurnover_Event_Bettype(
-                                                                                     int selection, 
-                                                                                     int sportType, 
-                                                                                     int matchId, 
-                                                                                     DateTime winlostDate, 
+                                                                                     int selection,
+                                                                                     int sportType,
+                                                                                     int matchId,
+                                                                                     DateTime winlostDate,
                                                                                      long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype(selection, sportType, matchId, winlostDate, maxTransId);
@@ -273,11 +271,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice> GetTopSelectionByTurnover_Event_Bettype_Choice(
-                                                                                            int selection, 
-                                                                                            int sportType, 
-                                                                                            int matchId, 
-                                                                                            int betType2, 
-                                                                                            DateTime winlostDate, 
+                                                                                            int selection,
+                                                                                            int sportType,
+                                                                                            int matchId,
+                                                                                            int betType2,
+                                                                                            DateTime winlostDate,
                                                                                             long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice(selection, sportType, matchId, betType2, winlostDate, maxTransId);
@@ -310,10 +308,10 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype> GetTopSelectionByTicket_Event_Bettype(
-                                                                                   int selection, 
-                                                                                   int sportType, 
-                                                                                   int matchId, 
-                                                                                   DateTime winlostDate, 
+                                                                                   int selection,
+                                                                                   int sportType,
+                                                                                   int matchId,
+                                                                                   DateTime winlostDate,
                                                                                    long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype(selection, sportType, matchId, winlostDate, maxTransId);
@@ -330,11 +328,11 @@ namespace ParlayRMS.Services.Implement.Charts
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice> GetTopSelectionByTicket_Event_Bettype_Choice(
-                                                                                         int selection, 
-                                                                                         int sportType, 
-                                                                                         int matchId, 
-                                                                                         int betType2, 
-                                                                                         DateTime winlostDate, 
+                                                                                         int selection,
+                                                                                         int sportType,
+                                                                                         int matchId,
+                                                                                         int betType2,
+                                                                                         DateTime winlostDate,
                                                                                          long maxTransId)
         {
             return this._monitorDataAccess.RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice(selection, sportType, matchId, betType2, winlostDate, maxTransId);

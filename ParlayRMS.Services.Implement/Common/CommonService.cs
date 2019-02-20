@@ -12,18 +12,16 @@ namespace ParlayRMS.Services.Implement.Common
     using System.Collections.Generic;
     using Fanex.Caching;
     using ParlayRMS.DataAccess.Implement.Common;
-    using ParlayRMS.DataAccess.Interface.Common;
     using ParlayRMS.DTO.Common;
-    using ParlayRMS.Services.Interface;
     using ParlayRMS.Utility;
 
     /// <summary>
     /// Common Services.
     /// </summary>
-    public class CommonService : BaseService, ICommonService
+    public class CommonService : BaseService
     {
         private static readonly CacheService CacheServiceInstance = new CacheServiceImpl();
-        private readonly ICommonDataAccess _commonDataAccess = new CommonDataAccess();
+        private readonly CommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         /// <summary>
         /// Gets balance up day information.

@@ -15,9 +15,6 @@ using ParlayRMS.Models.ViewIpInfo;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ViewIPInfo;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.ViewIPInfo;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.ViewIPInfo;
@@ -28,9 +25,9 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
     public class ViewIPInfoController : BaseController
     {
-        private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly ICommonService _commonService = new CommonService();
+        private readonly ViewIPInfoService _ipinfoService = new ViewIPInfoService();
+        private readonly BetListService _betlistService = new BetListService();
+        private readonly CommonService _commonService = new CommonService();
         private int _pageSize = 100;
 
         [HttpGet]

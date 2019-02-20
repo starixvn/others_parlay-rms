@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.BetList;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.BetList
 {
-    public class BetListDataAccess : BaseDataAccess, IBetListDataAccess
+    public class BetListDataAccess : BaseDataAccess
     {
         public BetListData RMS_Parlay_TransDetails(long refNo)
         {

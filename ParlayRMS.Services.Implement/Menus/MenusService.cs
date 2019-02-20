@@ -11,19 +11,17 @@ namespace ParlayRMS.Services.Implement.Menus
     using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.Menus;
-    using ParlayRMS.DataAccess.Interface.Menus;
     using ParlayRMS.DTO;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Menus;
     using ParlayRMS.Services.Implement.Systems;
-    using ParlayRMS.Services.Interface.Menus;
 
     /// <summary>
     /// Menus Service.
     /// </summary>
-    public class MenusService : BaseService, IMenusService
+    public class MenusService : BaseService
     {
-        private readonly IMenusDataAccess _menuDataAccess = new MenusDataAccess();
+        private readonly MenusDataAccess _menuDataAccess = new MenusDataAccess();
 
         /// <summary>
         /// Gets all menus.
@@ -82,16 +80,16 @@ namespace ParlayRMS.Services.Implement.Menus
         /// <param name="menuId">Output menu ID value.</param>
         /// <returns>Whether or not menu is created successfully.</returns>
         public Result CreateMenu(
-                          string name, 
-                          string description, 
-                          string url, 
-                          int functionId, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          bool isActive, 
-                          int adminId, 
-                          string ip, 
+                          string name,
+                          string description,
+                          string url,
+                          int functionId,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          bool isActive,
+                          int adminId,
+                          string ip,
                           out int menuId)
         {
             return this._menuDataAccess.RMS_MenuIns(name, description, url, functionId, parentId, parentName, displayOrder, isActive, adminId, ip, out menuId);
@@ -112,15 +110,15 @@ namespace ParlayRMS.Services.Implement.Menus
         /// <param name="ip">IP of machine which updates the menu.</param>
         /// <returns>Whether or not menu is updated successfully.</returns>
         public Result UpdateMenu(
-                          int id, 
-                          string name, 
-                          string description, 
-                          string url, 
-                          int functionId, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          int adminId, 
+                          int id,
+                          string name,
+                          string description,
+                          string url,
+                          int functionId,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          int adminId,
                           string ip)
         {
             return this._menuDataAccess.RMS_MenuUpd(id, name, description, url, functionId, parentId, parentName, displayOrder, adminId, ip);

@@ -1,23 +1,19 @@
-﻿using ParlayRMS.Models;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.PotentialWinningMonitor;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.Web.Authorization;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
     [Authorization(Function = FunctionKeys.MonitorPotentialWinning, Policy = UserPolicy.Read)]
     public class PotentialWinningController : BaseController
     {
-        private readonly IPotentialWinningMonitor _potentialWinning = new PotentialWinningMonitorService();
-        private readonly IBetListService _betlistService = new BetListService();
+        private readonly PotentialWinningMonitorService _potentialWinning = new PotentialWinningMonitorService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()

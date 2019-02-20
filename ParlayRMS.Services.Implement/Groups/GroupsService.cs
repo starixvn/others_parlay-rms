@@ -11,23 +11,21 @@ namespace ParlayRMS.Services.Implement.Groups
     using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.Groups;
-    using ParlayRMS.DataAccess.Interface.Groups;
     using ParlayRMS.DTO;
     using ParlayRMS.Models;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Groups;
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Groups;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Session;
 
     /// <summary>
     /// Groups Service.
     /// </summary>
-    public class GroupsService : BaseService, IGroupsService
+    public class GroupsService : BaseService
     {
-        private readonly IGroupsDataAccess _groupDataAccess = new GroupsDataAccess();
+        private readonly GroupsDataAccess _groupDataAccess = new GroupsDataAccess();
         private readonly ICurrentSession _currentSession = CurrentSession.Instance;
 
         /// <summary>

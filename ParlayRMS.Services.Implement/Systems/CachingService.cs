@@ -11,7 +11,6 @@ namespace ParlayRMS.Services.Implement.Systems
     using System;
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.Web.Session;
 
     /// <summary>
@@ -19,8 +18,8 @@ namespace ParlayRMS.Services.Implement.Systems
     /// </summary>
     public class CachingService : BaseService, IDisposable
     {
-        private readonly IUsersService _usersService = new UsersService();
-        private readonly ICurrentSession _session = new CurrentSession();
+        private readonly UsersService _usersService = new UsersService();
+        private readonly CurrentSession _session = new CurrentSession();
         private bool _disposed = false;
 
         /// <summary>

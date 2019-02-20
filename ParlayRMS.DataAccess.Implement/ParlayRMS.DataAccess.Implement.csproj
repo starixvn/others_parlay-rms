@@ -98,10 +98,6 @@
       <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
       <Name>ParlayRMS.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.DataAccess.Interface\ParlayRMS.DataAccess.Interface.csproj">
-      <Project>{B77B0E05-2BC3-4F0A-B814-3243E90D4A7F}</Project>
-      <Name>ParlayRMS.DataAccess.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>

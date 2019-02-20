@@ -12,7 +12,6 @@ namespace ParlayRMS.DataAccess.Implement.Menus
     using System.Collections;
     using System.Collections.Generic;
     using ParlayRMS.Common.Models;
-    using ParlayRMS.DataAccess.Interface.Menus;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Menus;
     using ParlayRMS.Utility;
@@ -21,7 +20,7 @@ namespace ParlayRMS.DataAccess.Implement.Menus
     /// <summary>
     /// Menus Data Access.
     /// </summary>
-    public class MenusDataAccess : BaseDataAccess, IMenusDataAccess
+    public class MenusDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Gets list of menus.
@@ -71,16 +70,16 @@ namespace ParlayRMS.DataAccess.Implement.Menus
         /// <param name="menuId">Output menu ID value.</param>
         /// <returns>Whether or not menu is created successfully.</returns>
         public Result RMS_MenuIns(
-                          string name, 
-                          string description, 
-                          string url, 
-                          int functionId, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          bool isActive, 
-                          int adminId, 
-                          string ip, 
+                          string name,
+                          string description,
+                          string url,
+                          int functionId,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          bool isActive,
+                          int adminId,
+                          string ip,
                           out int menuId)
         {
             menuId = 0;
@@ -123,15 +122,15 @@ namespace ParlayRMS.DataAccess.Implement.Menus
         /// <param name="ip">IP of machine which updates the menu.</param>
         /// <returns>Whether or not menu is updated successfully.</returns>
         public Result RMS_MenuUpd(
-                          int id, 
-                          string name, 
-                          string description, 
-                          string url, 
-                          int functionId, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          int adminId, 
+                          int id,
+                          string name,
+                          string description,
+                          string url,
+                          int functionId,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          int adminId,
                           string ip)
         {
             Hashtable param = new Hashtable();

@@ -8,11 +8,9 @@
 
 namespace ParlayRMS.DataAccess.Implement.Groups
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using ParlayRMS.Common.Models;
-    using ParlayRMS.DataAccess.Interface.Groups;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Groups;
     using ParlayRMS.Utility;
@@ -21,7 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.Groups
     /// <summary>
     /// Group Data Access.
     /// </summary>
-    public class GroupsDataAccess : BaseDataAccess, IGroupsDataAccess
+    public class GroupsDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Gets all user groups.

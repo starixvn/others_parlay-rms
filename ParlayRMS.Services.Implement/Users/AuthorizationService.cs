@@ -9,18 +9,16 @@
 namespace ParlayRMS.Services.Implement.Users
 {
     using ParlayRMS.DataAccess.Implement.Users;
-    using ParlayRMS.DataAccess.Interface.Users;
     using ParlayRMS.DTO;
     using ParlayRMS.Models.Groups;
     using ParlayRMS.Models.Users;
-    using ParlayRMS.Services.Interface.Users;
 
     /// <summary>
     /// Authorization Service.
     /// </summary>
-    public class AuthorizationService : BaseService, IAuthorizationService
+    public class AuthorizationService : BaseService
     {
-        private readonly IUsersDataAccess _usersDataAccess = new UsersDataAccess();
+        private readonly UsersDataAccess _usersDataAccess = new UsersDataAccess();
 
         /// <summary>
         /// Login user process.
@@ -71,14 +69,14 @@ namespace ParlayRMS.Services.Implement.Users
         {
             userId = 0;
             var data = this._usersDataAccess.RMS_UserLogin(
-                                                 userName, 
-                                                 passWord, 
-                                                 request.Ip, 
-                                                 request.Domain, 
-                                                 request.Browser, 
-                                                 request.Platform, 
-                                                 request.CountryCode, 
-                                                 request.Language, 
+                                                 userName,
+                                                 passWord,
+                                                 request.Ip,
+                                                 request.Domain,
+                                                 request.Browser,
+                                                 request.Platform,
+                                                 request.CountryCode,
+                                                 request.Language,
                                                  out result);
 
             if (result.IsSuccessful)

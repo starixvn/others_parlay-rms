@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.Charts;
     using ParlayRMS.DTO.Charts;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
@@ -13,7 +12,7 @@
     /// <summary>
     /// Chart Data Access.
     /// </summary>
-    public class ChartsDataAccess : BaseDataAccess, IChartsDataAccess
+    public class ChartsDataAccess : BaseDataAccess
     {
         #region Data Sum
 
@@ -104,9 +103,9 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League> RMS_Monitor_Parlay_SelectionByTicket_League(
-                                                                            int selection, 
-                                                                            int sportType, 
-                                                                            DateTime winlostDate, 
+                                                                            int selection,
+                                                                            int sportType,
+                                                                            DateTime winlostDate,
                                                                             long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_League>();
@@ -141,9 +140,9 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency> RMS_Monitor_Parlay_SelectionByTicket_Currency(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             var results = new List<RMS_Monitor_Parlay_SelectionbyTicket_Currency>();
@@ -184,9 +183,9 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League> RMS_Monitor_Parlay_SelectionByTurnover_League(
-                                                                              int selection, 
-                                                                              int sportType, 
-                                                                              DateTime winlostDate, 
+                                                                              int selection,
+                                                                              int sportType,
+                                                                              DateTime winlostDate,
                                                                               long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_League>();
@@ -254,9 +253,9 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTurnover_Currency> RMS_Monitor_Parlay_SelectionByTurnover_Currency(
-                                                                                int selection, 
-                                                                                int sportType, 
-                                                                                DateTime winlostDate, 
+                                                                                int selection,
+                                                                                int sportType,
+                                                                                DateTime winlostDate,
                                                                                 long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionbyTurnover_Currency>();
@@ -299,11 +298,11 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event> RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event(
-                                                                                    int selection, 
-                                                                                    int sportType, 
-                                                                                    int currency, 
-                                                                                    string topCurrency, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int selection,
+                                                                                    int sportType,
+                                                                                    int currency,
+                                                                                    string topCurrency,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionbyTicket_Currency_Event>();
@@ -348,11 +347,11 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event> RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event(
-                                                                                      int selection, 
-                                                                                      int sportType, 
-                                                                                      int currency, 
-                                                                                      string topCurrency, 
-                                                                                      DateTime winlostDate, 
+                                                                                      int selection,
+                                                                                      int sportType,
+                                                                                      int currency,
+                                                                                      string topCurrency,
+                                                                                      DateTime winlostDate,
                                                                                       long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Currency_Event>();
@@ -400,10 +399,10 @@
         /// <param name="maxTransId">Maximum transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_League_Event> RMS_Monitor_Parlay_SelectionByTicket_League_Event(
-                                                                                  int selection, 
-                                                                                  int sportType, 
-                                                                                  int leagueId, 
-                                                                                  DateTime winlostDate, 
+                                                                                  int selection,
+                                                                                  int sportType,
+                                                                                  int leagueId,
+                                                                                  DateTime winlostDate,
                                                                                   long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_League_Event>();
@@ -447,9 +446,9 @@
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_League_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_League_Event> RMS_Monitor_Parlay_SelectionByTurnover_League_Event(
                                                                                     int selection,
-                                                                                    int sportType, 
-                                                                                    int leagueId, 
-                                                                                    DateTime winlostDate, 
+                                                                                    int sportType,
+                                                                                    int leagueId,
+                                                                                    DateTime winlostDate,
                                                                                     long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_League_Event>();
@@ -495,9 +494,9 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event> RMS_Monitor_Parlay_SelectionByTurnover_Event(
-                                                                             int selection, 
-                                                                             int sportType, 
-                                                                             DateTime winlostDate, 
+                                                                             int selection,
+                                                                             int sportType,
+                                                                             DateTime winlostDate,
                                                                              long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event>();
@@ -539,10 +538,10 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype> RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype(
-                                                                                     int selection, 
-                                                                                     int sportType, 
-                                                                                     int matchId, 
-                                                                                     DateTime winlostDate, 
+                                                                                     int selection,
+                                                                                     int sportType,
+                                                                                     int matchId,
+                                                                                     DateTime winlostDate,
                                                                                      long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype>();
@@ -585,11 +584,11 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTurnover_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice> RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice(
-                                                                                            int selection, 
-                                                                                            int sportType, 
-                                                                                            int matchId, 
-                                                                                            int betType2, 
-                                                                                            DateTime winlostDate, 
+                                                                                            int selection,
+                                                                                            int sportType,
+                                                                                            int matchId,
+                                                                                            int betType2,
+                                                                                            DateTime winlostDate,
                                                                                             long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTurnover_Event_Bettype_Choice>();
@@ -629,9 +628,9 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event> RMS_Monitor_Parlay_SelectionByTicket_Event(
-                                                                           int selection, 
-                                                                           int sportType, 
-                                                                           DateTime winlostDate, 
+                                                                           int selection,
+                                                                           int sportType,
+                                                                           DateTime winlostDate,
                                                                            long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event>();
@@ -673,10 +672,10 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype> RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype(
-                                                                                   int selection, 
-                                                                                   int sportType, 
-                                                                                   int matchId, 
-                                                                                   DateTime winlostDate, 
+                                                                                   int selection,
+                                                                                   int sportType,
+                                                                                   int matchId,
+                                                                                   DateTime winlostDate,
                                                                                    long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype>();
@@ -719,11 +718,11 @@
         /// <param name="maxTransId">Maximum Transaction ID.</param>
         /// <returns>List of RMS_Monitor_Parlay_SelectionByTicket_Event_BetType_Choice objects.</returns>
         public IEnumerable<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice> RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice(
-                                                                                          int selection, 
-                                                                                          int sportType, 
-                                                                                          int matchId, 
-                                                                                          int betType2, 
-                                                                                          DateTime winlostDate, 
+                                                                                          int selection,
+                                                                                          int sportType,
+                                                                                          int matchId,
+                                                                                          int betType2,
+                                                                                          DateTime winlostDate,
                                                                                           long maxTransId)
         {
             var result = new List<RMS_Monitor_Parlay_SelectionByTicket_Event_Bettype_Choice>();

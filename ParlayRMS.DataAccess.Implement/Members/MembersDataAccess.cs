@@ -8,13 +8,11 @@
 
 namespace ParlayRMS.DataAccess.Implement.Members
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.Common.Models;
-    using ParlayRMS.DataAccess.Interface.Members;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Members;
     using ParlayRMS.Utility;
@@ -23,7 +21,7 @@ namespace ParlayRMS.DataAccess.Implement.Members
     /// <summary>
     /// Member Data Access.
     /// </summary>
-    public class MembersDataAccess : BaseDataAccess, IMembersDataAccess
+    public class MembersDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Gets customer by username and level.

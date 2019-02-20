@@ -17,8 +17,6 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models.Users;
     using ParlayRMS.Services.Implement.Groups;
     using ParlayRMS.Services.Implement.Users;
-    using ParlayRMS.Services.Interface.Groups;
-    using ParlayRMS.Services.Interface.Users;
     using ParlayRMS.ViewModel.ManageUser;
     using ParlayRMS.Web.Authorization;
 
@@ -27,8 +25,8 @@ namespace ParlayRMS.Controllers
     /// </summary>
     public class ManageUserController : BaseController
     {
-        private readonly IUsersService _userService = new UsersService();
-        private readonly IGroupsService _groupService = new GroupsService();
+        private readonly UsersService _userService = new UsersService();
+        private readonly GroupsService _groupService = new GroupsService();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ManageUserController"/> class.
@@ -228,12 +226,12 @@ namespace ParlayRMS.Controllers
         public ActionResult CreateUser(CreateUserModel model)
         {
             var result = this._userService.CreateUser(
-                                               CurrentSession.UserId, 
-                                               model.UserName, 
-                                               model.Password, 
-                                               model.FirstName, 
-                                               model.LastName, 
-                                               model.GroupId, 
+                                               CurrentSession.UserId,
+                                               model.UserName,
+                                               model.Password,
+                                               model.FirstName,
+                                               model.LastName,
+                                               model.GroupId,
                                                CurrentContext.Ip4Address);
             return this.Json(result);
         }

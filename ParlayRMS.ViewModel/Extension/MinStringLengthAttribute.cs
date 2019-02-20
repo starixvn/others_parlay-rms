@@ -9,10 +9,8 @@
 namespace ParlayRMS.ViewModel.Extension
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
-    using System.Text;
 
     /// <summary>
     /// Min String Length Attribute.

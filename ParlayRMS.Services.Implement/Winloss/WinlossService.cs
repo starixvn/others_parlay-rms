@@ -1,23 +1,19 @@
-﻿using ParlayRMS.DataAccess.Implement.Winloss;
-using ParlayRMS.DataAccess.Interface.Winloss;
-using ParlayRMS.DTO.Winloss;
-using ParlayRMS.Models;
-using ParlayRMS.Models.Winloss;
-using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.Winloss;
-using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.Report;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ParlayRMS.DataAccess.Implement.Winloss;
+using ParlayRMS.DTO.Winloss;
+using ParlayRMS.Models.Winloss;
+using ParlayRMS.Services.Implement.Common;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Report;
 
 namespace ParlayRMS.Services.Implement.Winloss
 {
-    public class WinlossService : IWinlossService
+    public class WinlossService
     {
-        private readonly IWinlossDataAccess _winlossDataAccess = new WinlossDataAccess();
-        private readonly ICommonService _commonService = new CommonService();
+        private readonly WinlossDataAccess _winlossDataAccess = new WinlossDataAccess();
+        private readonly CommonService _commonService = new CommonService();
 
         public WinlossData GetWinloss(WinlossOptions options)
         {

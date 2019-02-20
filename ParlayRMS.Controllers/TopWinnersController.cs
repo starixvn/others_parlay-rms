@@ -14,9 +14,6 @@ using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.TopWinners;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
@@ -27,9 +24,9 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
     public class TopWinnersController : BaseController
     {
-        private readonly ITopWinnersService _topwinnersService = new TopWinnersService();
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly TopWinnersService _topwinnersService = new TopWinnersService();
+        private readonly BetListService _betlistService = new BetListService();
+        private readonly UsersService _userService = new UsersService();
 
         [HttpGet]
         public ActionResult Index()
