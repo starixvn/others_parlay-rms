@@ -105,7 +105,7 @@
                         @item.SportTypeName
                     </td>
                     <td class="center">
-                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno);">
+                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno, @item.BetType, @ViewBag.CustId);">
                             @ViewLang.View
                         </button>
                     </td>

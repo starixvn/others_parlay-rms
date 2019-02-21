@@ -507,13 +507,13 @@ function ViewTotalBetDetails(custId) {
         td.html(waitingImg);
 
         var userSettings = settingsController.get();
-        var userName = row.children('td').eq(2).text();
+        var username = row.children('td').eq(2).text();
         var data = {
             Combos: userSettings.combos,
             parlayTypes: userSettings.parlaysTypes,
             SportsTypes: userSettings.sportsTypes,
             CustId: custId,
-            UserName: userName
+            UserName: username
         }
 
         $.ajax({
@@ -540,32 +540,73 @@ function ViewTotalBetDetails(custId) {
     return false;
 }
 
-function ViewBetDetails(userName, transId, refNo) {
-    var data = {
-        BetId: transId,
-        RefNo: refNo,
-        Username: userName
+function ViewBetDetails(username, transId, refNo, betType, custId) {
+    if (betType === 38) {
+        ViewSingleMatchParlayDetails(transId, custId, username);
+    }
+    else {
+        ViewSystemParlayDetails(username, transId, refNo);
     }
 
-    $.ajax({
-        url: resolveClientUrl('BetList/BetDetails'),
-        type: 'POST',
-        data: data,
-        dataType: 'html',
-        cache: false,
-        beforeSend: function () {
-            loading.show();
-        },
-        success: function (result) {
-            modalPopup(result);
-            $(".betdetails").css('overflow-y', 'auto');
-            $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
-        },
-        error: function (xhr, status, err) {
-            alertBox.showError(xhr.responseText);
-        },
-        complete: function () {
-            loading.hide();
+
+    function ViewSystemParlayDetails(username, transId, refNo) {
+
+        var data = {
+            TransId: transId,
+            RefNo: refNo,
+            Username: username
         }
-    });
+
+        $.ajax({
+            url: resolveClientUrl('BetList/BetDetails'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                loading.show();
+            },
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr.responseText);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    };
+
+    function ViewSingleMatchParlayDetails(transId, custId, username) {
+        var data = {
+            TransId: transId,
+            CustId: custId,
+            Username: username
+        }
+
+        $.ajax({
+            url: resolveClientUrl('BetList/SingleMatchParlayDetailPopup'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                loading.show();
+            },
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr.responseText);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    };
 }

@@ -14,12 +14,12 @@
 }
 @model IEnumerable<ParlayRMS.DTO.ViewIPInfo.RMS_Rpt_Parlay_ViewIPInfoByUser>
 <div>
-    <div style="width: 990px">
+    <div style="width: 1040px">
         <table class="main" id="header">
             <colgroup>
                 <col width='100px' />
                 <col width='150px' />
-                <col width='250px' />
+                <col width='300px' />
                 <col width='120px' />
                 <col width='120px' />
                 <col width='120px' />
@@ -52,12 +52,12 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 780px; width: 1000px">
+    <div class="scrollGridContent" style="max-height: 780px; width: 1050px">
         <table class="main" id="result">
             <colgroup>
                 <col width='100px' />
                 <col width='150px' />
-                <col width='250px' />
+                <col width='300px' />
                 <col width='120px' />
                 <col width='120px' />
                 <col width='120px' />
@@ -66,7 +66,8 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var isHideDetails = string.Equals(item.Status, "void", StringComparison.OrdinalIgnoreCase)|| string.Equals(item.Status, "reject", StringComparison.OrdinalIgnoreCase);
+                    var isHideDetails = string.Equals(item.Status, "void", StringComparison.OrdinalIgnoreCase) || string.Equals(item.Status, "reject", StringComparison.OrdinalIgnoreCase);
+                    isHideDetails = isHideDetails || item.BetType == 38;
                     counter = counter + 1;
                     <tr>
                         <td class="center">
@@ -102,12 +103,17 @@
                                         <div class="combo-type">
                                             @foreach (var comboType in comboTypes)
                                             {
-                                            <p class="underdog">@comboType</p>
+                                                <p class="underdog">@comboType</p>
                                             }
                                         </div>
                                     }
                                 }
                             </a>
+                            @if (item.BetType == (int)BetType.SingleMatchParlay)
+                            {
+                                <br />
+                                @Html.Raw(item.Choice)
+                            }
                             @if (!isHideDetails)
                             {
                                 <div class="tdDetail">
@@ -157,12 +163,12 @@
     </div>
     @if (counter != 0)
     {
-        <div style="width: 981px" id="divResult" class="separateFooter">
+        <div style="width: 1031px" id="divResult" class="separateFooter">
             <table class="total" id="footer">
                 <colgroup>
                     <col width='100px' />
                     <col width='150px' />
-                    <col width='250px' />
+                    <col width='300px' />
                     <col width='120px' />
                     <col width='120px' />
                     <col width='120px' />

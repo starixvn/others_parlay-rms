@@ -101,6 +101,7 @@ namespace ParlayRMS.Controllers
         {
             var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId);
             ViewBag.UserName = detailModel.UserName;
+            ViewBag.CustId = detailModel.CustId;
             return PartialView(model);
         }
     }

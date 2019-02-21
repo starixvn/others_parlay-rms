@@ -128,7 +128,9 @@
         /// <summary>
         /// System Parlay Bet type.
         /// </summary>
-        SystemParlay = 29
+        SystemParlay = 29,
+
+        SingleMatchParlay = 38
     }
 
     public enum SystemParlayCombo : int

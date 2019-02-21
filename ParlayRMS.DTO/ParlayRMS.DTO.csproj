@@ -98,6 +98,7 @@
     <Compile Include="Users\RMS_UserInfoSel.cs" />
     <Compile Include="Users\RMS_UserInfoSelByUserID.cs" />
     <Compile Include="Users\RMS_UserPolicySel.cs" />
+    <Compile Include="BetList\RMS_BetList_BetBuilder_DetailModel.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats.cs" />
     <Compile Include="ViewIPInfo\RMS_SystemParlay_CombinationDetails_ComboRef.cs" />

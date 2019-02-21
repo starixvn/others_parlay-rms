@@ -57,7 +57,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             Level = reader.ToInt32("level"),
                             IsBetRadar = reader.ToBoolean("IsBetRadar"),
                             SportType = reader.ToInt32("sporttype"),
-                            BetType = reader.ToInt32("bettype")
+                            BetType = reader.ToInt32("bettype"),
+                            CustId = reader.ToInt32("custid")
                         });
                     }
                 }

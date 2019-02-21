@@ -68,7 +68,7 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                 db.AddInParameter("transid", DbType.Int64, transId);
                 using (var reader = db.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         return new RMS_Monitor_Parlay_BetInfo
                         {

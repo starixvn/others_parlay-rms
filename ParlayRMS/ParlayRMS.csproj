@@ -54,11 +54,11 @@
       <HintPath>..\Dependencies\DotNet.Highcharts.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.76.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.2.78.0-beta03\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.76.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.76.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.78.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.78.0-beta03\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -101,8 +101,8 @@
       <HintPath>..\packages\Fanex.Logging.Extensions.Web.1.0.6\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.RemotingRef, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
+    <Reference Include="Fanex.RemotingRef, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.RemotingRef.1.4.0-beta1\lib\net461\Fanex.RemotingRef.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
@@ -290,22 +290,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <None Include="App_Configuration\Web.ConnectionString.LOCAL.config">
+    <Content Include="App_Configuration\Web.ConnectionString.LOCAL.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
-    </None>
-    <None Include="App_Configuration\Web.ConnectionString.MNL.config">
+    </Content>
+    <Content Include="App_Configuration\Web.ConnectionString.MNL.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
-    </None>
-    <None Include="App_Configuration\Web.ConnectionString.PRO.config">
+    </Content>
+    <Content Include="App_Configuration\Web.ConnectionString.PRO.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
-    </None>
-    <None Include="App_Configuration\Web.ConnectionString.SIT.config">
+    </Content>
+    <Content Include="App_Configuration\Web.ConnectionString.SIT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
-    </None>
-    <None Include="App_Configuration\Web.ConnectionString.UAT.config">
+    </Content>
+    <Content Include="App_Configuration\Web.ConnectionString.UAT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="App_Data\LIVE\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -589,6 +589,7 @@
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
     <Content Include="Scripts\Report\ViewIPInfo.js" />
+    <Content Include="Views\BetList\SingleMatchParlayDetailPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

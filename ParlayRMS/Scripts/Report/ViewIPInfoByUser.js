@@ -109,3 +109,46 @@
         expandNode.parent().find('.combo-type').slideToggle(toogleSpeed);
     }
 });
+
+function showSingleMatchParlayDetail(transId, custId, index) {
+    var queryData = {
+        transId: transId,
+        custId: custId,
+        index: index
+    };
+    var divId = transId + "" + index;
+    var expandNode = $('#divEvent_' + divId);
+    if (expandNode.is(":visible")) {
+        expandNode.slideToggle(150);
+        return;
+    }
+
+    $.ajax({
+        url: resolveClientUrl('BetList/SingleMatchParlay'),
+        type: 'POST',
+        data: queryData,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function (xhr) {
+            loading.show();
+        },
+        success: function (result) {
+            expand(result, divId);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+
+    var expand = function (content, id) {
+        var expandNode = $('#divEvent_' + id);
+        if (content === '') {
+            content = '</br><div class="noinfo" style="text-align: right">' + Language.NoInformation + '</div>';
+        }
+        expandNode.html(content);
+        expandNode.slideToggle(150);
+    }
+}

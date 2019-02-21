@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Fanex.BetList.Core.Entities;
+using Fanex.Data.Repository;
 using ParlayRMS.DataAccess.Implement.BetList;
 using ParlayRMS.DTO.BetList;
 
@@ -63,6 +64,14 @@ namespace ParlayRMS.Services.Implement.BetList
         public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
         {
             return _betListDataAccess.RMS_Monitor_Parlay_BetInfo(transId);
+        }
+
+
+        public List<RMS_BetList_BetBuilder_DetailModel> RMS_BetList_BetBuilder_Detail(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        {
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_BetBuilder_DetailModel>(criteria).ToList();
         }
     }
 }

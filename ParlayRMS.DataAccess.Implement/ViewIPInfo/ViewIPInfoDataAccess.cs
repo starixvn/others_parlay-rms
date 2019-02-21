@@ -14,6 +14,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
+    using Fanex.Data.Repository;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Utility;
     using ParlayRMS.Utility.Data;
@@ -137,6 +138,12 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
                             BetTeam = reader.ToString("betteam"),
                             BetCheck = reader.ToString("betcheck"),
+                            HomeId = reader.ToInt32("homeid"),
+                            AwayId = reader.ToInt32("awayid"),
+                            SportTypeId = reader.ToInt32("sporttype"),
+                            LeagueId = reader.ToInt32("leagueid"),
+                            IsNeutral = reader.ToBoolean("IsNeutral"),
+                            EventDate = reader.ToDateTime("eventdate")
                         });
                     }
                 }
@@ -200,4 +207,5 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
             return result;
         }
     }
+
 }

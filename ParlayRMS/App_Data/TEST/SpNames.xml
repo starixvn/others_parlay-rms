@@ -81,6 +81,7 @@
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+
   </Function>
   <Function Name="Member">
     <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -105,6 +106,7 @@
 
   <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" />
+    <Setting Key="RMS_BetList_BetBuilder_Detail" SpName="RMS_BetList_BetBuilder_Detail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
 
 </Functions>

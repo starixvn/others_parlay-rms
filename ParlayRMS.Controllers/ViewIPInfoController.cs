@@ -84,9 +84,44 @@ namespace ParlayRMS.Controllers
             ViewBag.UserName = model.UserName;
 
             IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
+            var singleMatchParlayTickets = models.Where(m => m.BetType == (int)BetType.SingleMatchParlay).ToArray();
+            if (singleMatchParlayTickets.Any())
+            {
+                UpdateChoiceForSingleMatchParlay(model, singleMatchParlayTickets);
+            }
 
             return View("Drilldown", models);
         }
+
+        private static void UpdateChoiceForSingleMatchParlay(DrillDownOptions model, RMS_Rpt_Parlay_ViewIPInfoByUser[] singleMatchParlayTickets)
+        {
+            var index = 0;
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            foreach (var m in singleMatchParlayTickets)
+            {
+                if (m.BetType == (int)BetType.SingleMatchParlay)
+                {
+                    BetListHTMLBuilder builder = factory.CreateBuilder();
+                    var ticket = new Ticket
+                    {
+                        HomeId = m.HomeId,
+                        AwayId = m.AwayId,
+                        SportTypeId = m.SportTypeId,
+                        LeagueId = m.LeagueId,
+                        EventDate = m.EventDate,
+                        BetTypeId = m.BetType,
+                        TransId = m.TransID,
+                        CustId = model.UserId,
+
+                    };
+                    index++;
+                    ticketHelper.Index = index;
+                    m.Choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+                }
+            }
+        }
+
 
         [HttpPost]
         public JsonResult ParlayBetSubTickets(ParlayBetTypeViewModel options)

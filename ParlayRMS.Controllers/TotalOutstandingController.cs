@@ -67,6 +67,7 @@ namespace ParlayRMS.Controllers
         {
             ViewBag.Username = model.Username;
             var customerInfo = _userService.GetCustomerInfo(model.Username);
+            ViewBag.CustId = customerInfo.CustId;
             if (customerInfo == null || customerInfo.CustId == 0)
             {
                 return PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));

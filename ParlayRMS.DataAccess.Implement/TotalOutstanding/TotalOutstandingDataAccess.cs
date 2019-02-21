@@ -35,7 +35,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             MaxPayoutPt = reader.ToDecimal("net_win"),
                             TotalBet = reader.ToInt32("TotalBet"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection")),
-                            SportType = reader.ToInt32("sporttype")
+                            SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype")
                         });
                     }
                 }

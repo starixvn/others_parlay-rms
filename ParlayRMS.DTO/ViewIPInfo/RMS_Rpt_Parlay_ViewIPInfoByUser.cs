@@ -41,5 +41,19 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public string BetTeam { get; set; }
 
         public string BetCheck { get; set; }
+
+        public string Choice { get; set; }
+
+        public int HomeId { get; set; }
+
+        public int AwayId { get; set; }
+
+        public bool IsNeutral { get; set; }
+
+        public int SportTypeId { get; set; }
+
+        public int LeagueId { get; set; }
+
+        public DateTime EventDate { get; set; }
     }
 }

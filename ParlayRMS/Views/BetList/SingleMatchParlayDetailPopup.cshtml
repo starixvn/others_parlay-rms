@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+@model string
+<div class="boxMain">
+    <div class="content">
+        <table class="bet-detail">
+            <tr class="title2">
+                <th>
+                    Ticket Details - @ViewBag.Username - @ViewBag.TransId
+                </th>
+                <th class="combo-type">
+                    @ViewLang.ComboType
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="betdetails">
+                        @Html.Raw(ViewBag.Details)
+                    </div>
+                </td>
+                <td class="combo-type">
+                    @ViewLang.SingleMatchParlay
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

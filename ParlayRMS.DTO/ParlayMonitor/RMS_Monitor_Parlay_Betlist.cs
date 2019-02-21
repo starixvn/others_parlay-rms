@@ -37,5 +37,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public string SportTypeName { get; set; }
 
         public int BetType { get; set; }
+
+        public int CustId { get; set; }
     }
 }

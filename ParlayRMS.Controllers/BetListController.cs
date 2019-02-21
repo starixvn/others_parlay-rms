@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -28,7 +29,7 @@ namespace ParlayRMS.Controllers
         [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
-            ViewBag.BetId = options.BetId;
+            ViewBag.BetId = options.TransId;
             ViewBag.Username = options.Username;
 
             var betTypeBelongsBetRadar = _commonService.GetBettypeBelongsBetRadar();
@@ -37,7 +38,7 @@ namespace ParlayRMS.Controllers
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betlistService.CreateChoice(options.RefNo);
-            var betInfo = _betlistService.GetBetInfo(options.BetId);
+            var betInfo = _betlistService.GetBetInfo(options.TransId);
             foreach (var ticket in tickets)
             {
                 var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
@@ -58,6 +59,62 @@ namespace ParlayRMS.Controllers
                 ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SingleMatchParlay(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        {
+            var result = new StringBuilder();
+            var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
+
+            if (selections.Any())
+            {
+                var selectionIds = selections.Select(s => s.SelectionType).ToArray();
+                var selectionNames = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(selectionIds, "en-US");
+
+
+
+                result.AppendLine("<hr class=\"hr\">");
+                for (var i = 0; i < selectionNames.Length; i++)
+                {
+                    result.AppendFormat("<div class=\"match\">{0} - {1}\r\n<hr class=\"hr\"></div>\r\n", selectionNames[i], selections[i].Result);
+                }
+            }
+
+            return Content(result.ToString());
+        }
+
+        /// <summary>
+        /// Gets bet details.
+        /// </summary>
+        /// <param name="options">The options that are used to query data.</param>
+        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [HttpPost]
+        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
+        public ActionResult SingleMatchParlayDetailPopup(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        {
+            ViewBag.TransId = criteria.TransId;
+            ViewBag.Username = criteria.Username;
+
+            var result = new StringBuilder();
+
+            var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
+
+            if (selections.Any())
+            {
+                var selectionIds = selections.Select(s => s.SelectionType).ToArray();
+                var selectionNames = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(selectionIds, "en-US");
+
+                result.AppendLine("<hr class=\"hr\">");
+                for (var i = 0; i < selectionNames.Length; i++)
+                {
+                    result.AppendFormat("<div class=\"match\">{0} - {1}\r\n<hr class=\"hr\"></div>\r\n", selectionNames[i], selections[i].Result);
+                }
+            }
+
+            ViewBag.Details = result.ToString();
+            return View();
         }
     }
 }
