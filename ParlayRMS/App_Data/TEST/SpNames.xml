@@ -106,7 +106,13 @@
 
   <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" />
+    
+  </Function>
+
+  <Function Name="BetBuilder">
+    
     <Setting Key="RMS_BetList_BetBuilder_Detail" SpName="RMS_BetList_BetBuilder_Detail" DbName="DBACC.bodb02.bodbRMSNet" />
+    <Setting Key="RMS_BetList_BetBuilder_MatchDetail" SpName="RMS_BetList_BetBuilder_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
 
 </Functions>

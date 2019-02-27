@@ -7,6 +7,8 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
+using Fizzler.Systems.HtmlAgilityPack;
+using HtmlAgilityPack;
 using ParlayRMS.DTO.Common;
 using ParlayRMS.DTO.ViewIPInfo;
 using ParlayRMS.Models;
@@ -102,26 +104,42 @@ namespace ParlayRMS.Controllers
             {
                 if (m.BetType == (int)BetType.SingleMatchParlay)
                 {
-                    BetListHTMLBuilder builder = factory.CreateBuilder();
-                    var ticket = new Ticket
-                    {
-                        HomeId = m.HomeId,
-                        AwayId = m.AwayId,
-                        SportTypeId = m.SportTypeId,
-                        LeagueId = m.LeagueId,
-                        EventDate = m.EventDate,
-                        BetTypeId = m.BetType,
-                        TransId = m.TransID,
-                        CustId = model.UserId,
-
-                    };
+                    m.Choice = BuildSingleMatchParlayChoice(ticketHelper, factory, m, model.UserId, index);
                     index++;
-                    ticketHelper.Index = index;
-                    m.Choice = builder.BuildChoice(ticket, ticketHelper, null, false);
                 }
             }
         }
 
+        private static string BuildSingleMatchParlayChoice(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
+        {
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportTypeId,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                BetTypeId = model.BetType,
+                TransId = model.TransID,
+                IsNeutral = model.IsNeutral,
+                CustId = userId,
+            };
+            index++;
+            ticketHelper.Index = index;
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            return document.OuterHtml;
+        }
 
         [HttpPost]
         public JsonResult ParlayBetSubTickets(ParlayBetTypeViewModel options)

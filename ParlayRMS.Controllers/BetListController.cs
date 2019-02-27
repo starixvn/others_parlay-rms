@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -6,6 +7,8 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
+using Fizzler.Systems.HtmlAgilityPack;
+using HtmlAgilityPack;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
@@ -98,20 +101,74 @@ namespace ParlayRMS.Controllers
             var result = new StringBuilder();
 
             var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
-
+            var selectionNames = new List<string>();
+            var resultTexts = new List<string>();
             if (selections.Any())
             {
-                var selectionIds = selections.Select(s => s.SelectionType).ToArray();
-                var selectionNames = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(selectionIds, "en-US");
-
-                for (var i = 0; i < selectionNames.Length; i++)
+                foreach (var s in selections)
                 {
-                    result.AppendFormat("<div class=\"match\">{0} - <span style=\"color:blue\">{1}</span></div>\r\n", selectionNames[i], selections[i].Result);
+                    var name = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(new[] { s.SelectionType }, "en-US");
+                    selectionNames.Add(name.FirstOrDefault());
+                    resultTexts.Add(s.Result);
                 }
             }
+            var choice = GetChoiceForSingleMatchParlayDetailPopup(criteria.TransId);
 
-            ViewBag.Details = $"<div style=\"margin-right:10px; padding: 2px 5px; border-right: 3px solid black\">{result.ToString()}</div> ";
+            ViewBag.ResultTexts = resultTexts;
+            ViewBag.SelectionNames = selectionNames;
+            ViewBag.Choice = choice;
+
             return View();
+        }
+
+        private string GetChoiceForSingleMatchParlayDetailPopup(long transId)
+        {
+            var model = _betlistService.RMS_BetList_BetBuilder_MatchDetail(transId).FirstOrDefault();
+
+            if (model == null)
+            {
+                return string.Empty;
+            }
+
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportType,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                TransId = model.TransId,
+                BetTypeId = (int)Models.BetType.SingleMatchParlay
+            };
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var matchNode = document.QuerySelector(".match");
+            var leagueNode = document.QuerySelector(".league");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            document.RemoveAllChildren();
+
+            if (matchNode != null)
+            {
+                document.ChildNodes.Add(matchNode);
+            }
+
+            if (leagueNode != null)
+            {
+                document.ChildNodes.Add(leagueNode);
+            }
+
+            return document.OuterHtml;
         }
     }
 }

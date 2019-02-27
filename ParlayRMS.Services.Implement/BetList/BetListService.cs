@@ -73,5 +73,16 @@ namespace ParlayRMS.Services.Implement.BetList
 
             return repository.Fetch<RMS_BetList_BetBuilder_DetailModel>(criteria).ToList();
         }
+
+        public List<RMS_BetList_BetBuilder_MatchDetailModel> RMS_BetList_BetBuilder_MatchDetail(long transId)
+        {
+            var criteria = new RMS_BetList_BetBuilder_MatchDetailCriteria
+            {
+                TransId = transId
+            };
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_BetBuilder_MatchDetailModel>(criteria).ToList();
+        }
     }
 }
