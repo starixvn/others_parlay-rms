@@ -72,16 +72,14 @@ namespace ParlayRMS.Controllers
                 var selectionIds = selections.Select(s => s.SelectionType).ToArray();
                 var selectionNames = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(selectionIds, "en-US");
 
-
-
-                result.AppendLine("<hr class=\"hr\">");
                 for (var i = 0; i < selectionNames.Length; i++)
                 {
-                    result.AppendFormat("<div class=\"match\">{0} - {1}\r\n<hr class=\"hr\"></div>\r\n", selectionNames[i], selections[i].Result);
+                    result.AppendFormat("<div class=\"match\">{0} - <span style=\"color:blue\">{1}</span></div>\r\n", selectionNames[i], selections[i].Result);
                 }
             }
 
-            return Content(result.ToString());
+            var content = $"<div style=\"margin-right:10px; padding: 2px 5px; border-right: 3px solid black\">{result.ToString()}</div> ";
+            return Content(content);
         }
 
         /// <summary>
@@ -106,14 +104,13 @@ namespace ParlayRMS.Controllers
                 var selectionIds = selections.Select(s => s.SelectionType).ToArray();
                 var selectionNames = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(selectionIds, "en-US");
 
-                result.AppendLine("<hr class=\"hr\">");
                 for (var i = 0; i < selectionNames.Length; i++)
                 {
-                    result.AppendFormat("<div class=\"match\">{0} - {1}\r\n<hr class=\"hr\"></div>\r\n", selectionNames[i], selections[i].Result);
+                    result.AppendFormat("<div class=\"match\">{0} - <span style=\"color:blue\">{1}</span></div>\r\n", selectionNames[i], selections[i].Result);
                 }
             }
 
-            ViewBag.Details = result.ToString();
+            ViewBag.Details = $"<div style=\"margin-right:10px; padding: 2px 5px; border-right: 3px solid black\">{result.ToString()}</div> ";
             return View();
         }
     }
