@@ -29,7 +29,11 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public long Transid { get; set; }
 
+        public int CustId { get; set; }
+
         public string Username { get; set; }
+
+        public int BetType { get; set; }
 
         public IEnumerable<RMS_Similar_Parlay_Betlist_Detail> Details { get; set; }
     }

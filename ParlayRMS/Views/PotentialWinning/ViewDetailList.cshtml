@@ -100,7 +100,7 @@
                     </td>
                     <td class="center">
                         @{
-                            var betText = (@item.Val.TotalBet > 1) ? " bets" : " bet";
+                            var betText = item.Val.BetType == 38 ? " bet(S)" : (item.Val.TotalBet > 1 ? " bets" : " bet");
                         }
 
                         @Formatter.FormatNumber3(@item.Val.TotalBet) @betText

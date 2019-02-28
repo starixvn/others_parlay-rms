@@ -82,7 +82,19 @@ function CloseSimilarBets() {
     $('#similarbetlist').hide();
 }
 
-function ViewBetDetails(username, transId, refNo, originalRefNo) {
+function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo, custId, originalCustId, betType) {
+
+    if (betType === 38) {
+        ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username);
+    }
+    else {
+        ViewSystemParlayDetails(username, transId, refNo, originalRefNo);
+    }
+
+}
+
+
+function ViewSystemParlayDetails(username, transId, refNo, originalRefNo) {
     var data = {
         BetId: transId,
         Username: username,
@@ -106,6 +118,39 @@ function ViewBetDetails(username, transId, refNo, originalRefNo) {
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+
+function ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username) {
+    var data = {
+        TransId: transId,
+        OriginalTransId: originalTransId,
+        CustId: custId,
+        OriginalCustId: originalCustId,
+        Username: username
+    }
+
+    $.ajax({
+        url: resolveClientUrl('SimilarBets/SingleMatchParlayDetailPopup'),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            modalPopup(result);
+            $(".betdetails").css('overflow-y', 'auto');
+            $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
         },
         complete: function () {
             loading.hide();

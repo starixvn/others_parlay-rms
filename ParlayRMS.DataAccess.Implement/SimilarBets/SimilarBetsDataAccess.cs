@@ -31,6 +31,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Transdate = DbConverter.ToDateTime(info["transdate"]),
                                 Transid = DbConverter.ToInt64(info["transid"]),
                                 Refno = DbConverter.ToInt64(info["refno"]),
+                                CustId = DbConverter.ToInt32(info["custid"]),
                                 Username = DbConverter.ToString(info["username"]),
                                 Odds = DbConverter.ToDecimal(info["odds"]),
                                 Stake = DbConverter.ToDecimal(info["stake"]),
@@ -40,11 +41,13 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
                                 SportType = DbConverter.ToInt32(info["sporttype"]),
+                                BetType = DbConverter.ToInt32(info["bettype"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),
                                     Refno = DbConverter.ToInt64(row["refno"]),
                                     Username = DbConverter.ToString(row["username"]),
+                                    CustId = DbConverter.ToInt32(row["custid"]),
                                     Level = DbConverter.ToInt32(row["level"]),
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
                                     Similar_Selection = DbConverter.ToInt32(row["similar_selection"])

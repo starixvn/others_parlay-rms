@@ -64,7 +64,10 @@
                     @Formatter.FormatWithoutRounding(Model.Max_payout)
                 </td>
                 <td class="center">
-                    @string.Format("{0} {1}", Model.TotalBet, Model.TotalBet == 1 ? "bet" : "bets")
+                    @{ 
+                        var totalBetText = Model.BetType == (int)BetType.SingleMatchParlay ? "bet(S)" : (Model.TotalBet == 1 ? "bet" : "bets");
+                    }
+                    @string.Format("{0} {1}", Model.TotalBet, totalBetText)
                 </td>
                 <td class="center">
                     @Model.TotalSelection
@@ -73,7 +76,7 @@
                     @Model.SportTypeName
                 </td>
                 <td class="center">
-                    <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@Model.Username', @Model.Transid, @Model.Refno, @Model.Refno);">
+                    <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@Model.Username', @Model.Transid, @Model.Transid, @Model.Refno, @Model.Refno, @Model.CustId, @Model.CustId, @Model.BetType);">
                         @ViewLang.View
                     </button>
                 </td>
@@ -98,7 +101,7 @@
 <div id="similarbetlist" class="details" style="display: none; width: 750px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
-        <img class="close" src="/Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
+        <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
     <div style="width: 754px">
         <table class="sub thead">
@@ -165,7 +168,7 @@
                             @item.Similar_Selection
                         </td>
                         <td class="center">
-                            <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', @item.TransId, @item.Refno,@Model.Refno);">
+                            <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', @item.TransId, @Model.Transid, @item.Refno,@Model.Refno, @Model.CustId, @item.CustId, @Model.BetType);">
                                 @ViewLang.View
                             </button>
                         </td>

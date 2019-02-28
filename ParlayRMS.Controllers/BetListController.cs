@@ -98,8 +98,6 @@ namespace ParlayRMS.Controllers
             ViewBag.TransId = criteria.TransId;
             ViewBag.Username = criteria.Username;
 
-            var result = new StringBuilder();
-
             var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
             var selectionNames = new List<string>();
             var resultTexts = new List<string>();
