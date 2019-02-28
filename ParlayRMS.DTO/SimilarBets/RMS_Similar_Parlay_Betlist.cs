@@ -9,6 +9,8 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public int TotalBet { get; set; }
 
+        public int NumberWon { get; set; }
+
         public int TotalSelection { get; set; }
 
         public int Level { get; set; }

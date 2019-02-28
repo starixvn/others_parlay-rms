@@ -535,7 +535,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + (item.BetType === 38 ? ' (S)' : '') + '</td>';
-    r[++j] = '<td class="center">' + (item.NumberWon === 0 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
+    r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
     r[++j] = '<td class="center">' + item.SportTypeName + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {

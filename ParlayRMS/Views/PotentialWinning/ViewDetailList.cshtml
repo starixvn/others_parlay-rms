@@ -106,7 +106,7 @@
                         @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
                     </td>
                     <td class="center">
-                        @if (item.Val.NumberWon == 0)
+                        @if (item.Val.NumberWon == 0 || item.Val.BetType ==(int)BetType.SingleMatchParlay)
                         {
                             @Html.Raw(item.Val.TotalSelection)
                         }

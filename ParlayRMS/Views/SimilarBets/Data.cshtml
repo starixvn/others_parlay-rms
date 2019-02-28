@@ -11,7 +11,7 @@
                 <th style="width: 170px">
                     @ViewLang.TransTime
                 </th>
-                <th style="width: 100px">
+                <th style="width: 130px">
                     @ViewLang.BetID
                 </th>
                 <th style="width: 120px">
@@ -70,7 +70,14 @@
                     @string.Format("{0} {1}", Model.TotalBet, totalBetText)
                 </td>
                 <td class="center">
-                    @Model.TotalSelection
+                    @if (Model.NumberWon == 0 || Model.BetType == (int)BetType.SingleMatchParlay)
+                    {
+                        @Html.Raw(Model.TotalSelection)
+                    }
+                    else
+                    {
+                        @Html.Raw(string.Format("{0}/{1}", Model.NumberWon, Model.TotalSelection))
+                    }                    
                 </td>
                 <td class="center">
                     @Model.SportTypeName

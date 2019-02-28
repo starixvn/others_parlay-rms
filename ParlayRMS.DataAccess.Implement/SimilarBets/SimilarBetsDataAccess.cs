@@ -38,6 +38,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Max_payout = DbConverter.ToDecimal(info["net_win"]),
                                 TotalBet = DbConverter.ToInt32(info["totalbet"]),
                                 TotalSelection = Convert.ToInt32(DbConverter.ToDecimal(info["totalselection"])),
+                                NumberWon = DbConverter.ToInt32(info["numberwon"]),
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
                                 SportType = DbConverter.ToInt32(info["sporttype"]),
