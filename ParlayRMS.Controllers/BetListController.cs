@@ -85,14 +85,9 @@ namespace ParlayRMS.Controllers
             return Content(content);
         }
 
-        /// <summary>
-        /// Gets bet details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
+
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult SingleMatchParlayDetailPopup(RMS_BetList_BetBuilder_DetailCriteria criteria)
         {
             ViewBag.TransId = criteria.TransId;

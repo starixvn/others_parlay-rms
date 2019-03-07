@@ -425,8 +425,13 @@ function ViewDetails(custId) {
     return false;
 }
 
-function ViewBetDetail(transId) {
-    alert(transId);
+function ViewTopWinnerBetDetail(refNo, transId, username, custId, bettype) {
+    if (bettype == 38) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+    else {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetails?refno=' + refNo + '&betid=' + transId + '&username=' + username), 700, 600);
+    }
 }
 
 function ExportExcel() {

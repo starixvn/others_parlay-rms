@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.TicketDetails;
+    var selectionNames = (List<string>)ViewBag.SelectionNames;
+    var resultTexts = (List<string>)ViewBag.ResultTexts;
+    var selectionCount = selectionNames.Count;
+}
+@model string
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html" charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abel" />
+    @Styles.Render("~/Content/Libs/jquery-ui/themes/base/css")
+    @Styles.Render("~/Content/Libs/css")
+    @Styles.Render("~/Content/css")
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div style="text-align: left; margin-left: auto; margin-right: auto; overflow: hidden">
+        <div style="float: left; left: 50%; position: relative">
+            <div class="boxMain" style="float: left; position: relative; right: 50%;">
+                <div class="content">
+                    <table class="bet-detail">
+                        <tr class="title2">
+                            <th>
+                                Ticket Details - @ViewBag.Username - @ViewBag.TransId
+                            </th>
+                            <th class="combo-type">
+                                @ViewLang.ComboType
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="betdetails">
+
+                                    <table style="width:100%">
+                                        <colgroup>
+                                            <col />
+                                            <col width="100" />
+                                        </colgroup>
+                                        @for (var i = 0; i < selectionCount; i++)
+                                        {
+                                            <tr>
+                                                <td>@selectionNames[i]</td>
+                                                <td>[@resultTexts[i].ToUpper()]</td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td>@Html.Raw(ViewBag.Choice)</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td class="combo-type">
+                                @ViewLang.SingleMatchParlay
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

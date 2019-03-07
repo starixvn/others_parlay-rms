@@ -603,6 +603,7 @@
     <Content Include="Scripts\Report\ViewIPInfo.js" />
     <Content Include="Views\BetList\SingleMatchParlayDetailPopup.cshtml" />
     <Content Include="Views\SimilarBets\SingleMatchParlayDetailPopup.cshtml" />
+    <Content Include="Views\TopWinners\SingleMatchParlayBetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

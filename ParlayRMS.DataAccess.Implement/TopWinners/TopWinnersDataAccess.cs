@@ -89,6 +89,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             TransId = reader.ToInt64("transid"),
                             RefNo = reader.ToInt64("refno"),
                             SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype"),
                             Stake = reader.ToDecimal("stake"),
                             Winlost = reader.ToDecimal("winlost"),
                             Company_Winlost = reader.ToDecimal("company_winlost"),

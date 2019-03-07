@@ -8,6 +8,8 @@
 
         public int SportType { get; set; }
 
+        public int BetType { get; set; }
+
         public decimal Stake { get; set; }
 
         public decimal Winlost { get; set; }
