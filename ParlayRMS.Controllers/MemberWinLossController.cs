@@ -273,7 +273,6 @@ namespace ParlayRMS.Controllers
                         item.OurPT_NetWinloss
                     };
                     writer.WriteRow(4, subtotal);
-                    writer.WriteCellRange(writer.RowId - item.NumOfSubrows - 1, item.NumOfSubrows, 0, 1, item.Month);
                 }
                 else
                 {
