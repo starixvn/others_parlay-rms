@@ -10,17 +10,15 @@ namespace ParlayRMS.Services.Implement.Members
 {
     using System.Collections.Generic;
     using ParlayRMS.DataAccess.Implement.Members;
-    using ParlayRMS.DataAccess.Interface.Members;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Members;
-    using ParlayRMS.Services.Interface.Members;
 
     /// <summary>
     /// Member Service.
     /// </summary>
-    public class MembersService : BaseService, IMembersService
+    public class MembersService : BaseService
     {
-        private readonly IMembersDataAccess _customerDataAccess = new MembersDataAccess();
+        private readonly MembersDataAccess _customerDataAccess = new MembersDataAccess();
 
         /// <summary>
         /// Gets a customer by username and level.

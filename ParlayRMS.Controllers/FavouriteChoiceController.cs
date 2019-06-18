@@ -10,7 +10,6 @@
     using ParlayRMS.Common.Highcharts;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Services.Implement.Charts;
-    using ParlayRMS.Services.Interface.Charts;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Monitoring;
     using ParlayRMS.Web.Authorization;
@@ -20,8 +19,8 @@
     /// </summary>
     public class FavouriteChoiceController : BaseController
     {
-        private readonly IChartsService _monitorService = new ChartsService();
-        private readonly IChartsService _monitorCacheService = new ChartsCacheService();
+        private readonly ChartsService _monitorService = new ChartsService();
+        private readonly ChartsCacheService _monitorCacheService = new ChartsCacheService();
 
         /// <summary>
         /// Redirects to Index view.

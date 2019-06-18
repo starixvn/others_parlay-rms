@@ -1,19 +1,17 @@
-﻿using ParlayRMS.Models.Functions;
+﻿using System.Linq;
+using System.Web.Mvc;
+using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.Groups;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.Groups;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.ViewModel.ManageGroup;
 using ParlayRMS.Web.Authorization;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
     public class ManageGroupController : BaseController
     {
-        private readonly IGroupsService _groupService = new GroupsService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly GroupsService _groupService = new GroupsService();
+        private readonly UsersService _userService = new UsersService();
 
         public ManageGroupController()
         {

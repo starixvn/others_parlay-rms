@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.SimilarBets;
-using ParlayRMS.DTO.SimilarBets;
-using ParlayRMS.Utility;
-using System;
+﻿using System;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.Data;
+using ParlayRMS.DTO.SimilarBets;
+using ParlayRMS.Utility;
 
 namespace ParlayRMS.DataAccess.Implement.SimilarBets
 {
-    public class SimilarBetsDataAccess : BaseDataAccess, ISimilarBetsDataAccess
+    public class SimilarBetsDataAccess : BaseDataAccess
     {
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
@@ -32,20 +31,24 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Transdate = DbConverter.ToDateTime(info["transdate"]),
                                 Transid = DbConverter.ToInt64(info["transid"]),
                                 Refno = DbConverter.ToInt64(info["refno"]),
+                                CustId = DbConverter.ToInt32(info["custid"]),
                                 Username = DbConverter.ToString(info["username"]),
                                 Odds = DbConverter.ToDecimal(info["odds"]),
                                 Stake = DbConverter.ToDecimal(info["stake"]),
                                 Max_payout = DbConverter.ToDecimal(info["net_win"]),
                                 TotalBet = DbConverter.ToInt32(info["totalbet"]),
                                 TotalSelection = Convert.ToInt32(DbConverter.ToDecimal(info["totalselection"])),
+                                NumberWon = DbConverter.ToInt32(info["numberwon"]),
                                 Level = DbConverter.ToInt32(info["level"]),
                                 Cnt_bets = DbConverter.ToInt32(info["cnt_bets"]),
                                 SportType = DbConverter.ToInt32(info["sporttype"]),
+                                BetType = DbConverter.ToInt32(info["bettype"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),
                                     Refno = DbConverter.ToInt64(row["refno"]),
                                     Username = DbConverter.ToString(row["username"]),
+                                    CustId = DbConverter.ToInt32(row["custid"]),
                                     Level = DbConverter.ToInt32(row["level"]),
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
                                     Similar_Selection = DbConverter.ToInt32(row["similar_selection"])

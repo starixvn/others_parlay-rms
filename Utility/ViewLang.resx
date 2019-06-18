@@ -879,4 +879,7 @@
   <data name="TotalComboBets" xml:space="preserve">
     <value>Total Combo Bets</value>
   </data>
+  <data name="SingleMatchParlay" xml:space="preserve">
+    <value>Single Match Parlay</value>
+  </data>
 </root>

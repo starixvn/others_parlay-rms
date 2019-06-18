@@ -1,12 +1,11 @@
-﻿using ParlayRMS.DTO.ParlayMonitor;
-using ParlayRMS.Services.Interface.ParlayMonitor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ParlayRMS.DTO.ParlayMonitor;
 
 namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
-    public class ParlayMonitorCacheService : BaseService, IParlayMonitorService
+    public class ParlayMonitorCacheService : BaseService
     {
-        private static readonly IParlayMonitorService ParlayService = new ParlayMonitorService();
+        private static readonly ParlayMonitorService ParlayService = new ParlayMonitorService();
 
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,

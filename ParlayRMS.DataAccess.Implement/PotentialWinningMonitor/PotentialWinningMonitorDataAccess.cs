@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.PotentialWinningMonitor;
-using ParlayRMS.DTO.PotentialWinning;
-using ParlayRMS.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
+using ParlayRMS.DTO.PotentialWinning;
+using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
 {
-    public class PotentialWinningMonitorDataAccess : BaseDataAccess, IPotentialWinningMonitorDataAccess
+    public class PotentialWinningMonitorDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Monitor_Potential_Winning> RMS_Monitor_Parlay_PotentialWinning(
             string combos,
@@ -88,7 +87,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                             TotalBet = reader.ToInt32("totalbet"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
                             NumberWon = Convert.ToInt32(reader.ToDecimal("numberwon")),
-                            SportType = reader.ToInt32("sporttype")
+                            SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype")
                         });
                     }
                 }

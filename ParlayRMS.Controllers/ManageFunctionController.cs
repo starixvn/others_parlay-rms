@@ -1,20 +1,18 @@
-﻿using ParlayRMS.Models.Functions;
+﻿using System.Linq;
+using System.Web.Mvc;
+using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.Functions;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.Functions;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.ManageFunction;
 using ParlayRMS.Web.Authorization;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
     public class ManageFunctionController : BaseController
     {
-        private readonly IFunctionsService _functionService = new FunctionsService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly FunctionsService _functionService = new FunctionsService();
+        private readonly UsersService _userService = new UsersService();
 
         public ManageFunctionController()
         {

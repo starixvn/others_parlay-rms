@@ -22,10 +22,14 @@ namespace ParlayRMS.DTO.TotalOutstanding
 
         public int TotalSelection { get; set; }
 
+        public int NumberWon { get; set; }
+
         public int Combo { get; set; }
 
         public int SportType { get; set; }
 
         public string SportTypeName { get; set; }
+
+        public int BetType { get; set; }
     }
 }

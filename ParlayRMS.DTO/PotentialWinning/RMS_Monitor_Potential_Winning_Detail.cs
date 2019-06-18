@@ -18,6 +18,9 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public int SportType { get; set; }
 
+        public int BetType { get; set; }
+
+
         public decimal WinningAmount { get; set; }
 
         public decimal CompanyLoseAmount { get; set; }

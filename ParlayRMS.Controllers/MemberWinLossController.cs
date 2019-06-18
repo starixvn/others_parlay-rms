@@ -1,26 +1,25 @@
-﻿using PagedList;
-using ParlayRMS.ExcelService.Writers;
-using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Models.MemberWinLoss;
-using ParlayRMS.Services.Implement.MemberWinLoss;
-using ParlayRMS.Services.Interface.MemberWinLoss;
-using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
+using ParlayRMS.ExcelService.Writers;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Models.MemberWinLoss;
+using ParlayRMS.Services.Implement.MemberWinLoss;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
     [Authorization(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
     public class MemberWinLossController : BaseController
     {
-        private readonly IMemberWinLossService _memberWinLossService = new MemberWinLossService();
+        private readonly MemberWinLossService _memberWinLossService = new MemberWinLossService();
 
         [HttpGet]
         public ActionResult Index()
@@ -274,7 +273,6 @@ namespace ParlayRMS.Controllers
                         item.OurPT_NetWinloss
                     };
                     writer.WriteRow(4, subtotal);
-                    writer.WriteCellRange(writer.RowId - item.NumOfSubrows - 1, item.NumOfSubrows, 0, 1, item.Month);
                 }
                 else
                 {

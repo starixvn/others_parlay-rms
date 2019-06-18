@@ -9,20 +9,20 @@
 
 namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
 {
-    using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.ViewIPInfo;
-    using ParlayRMS.DTO.ViewIPInfo;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+    using ParlayRMS.DTO.ViewIPInfo;
+    using ParlayRMS.Utility;
+    using ParlayRMS.Utility.Data;
 
     /// <summary>
     /// Main data-access-class for view-IP-info report and other related reports.
     /// </summary>
-    public class ViewIPInfoDataAccess : BaseDataAccess, IViewIPInfoDataAccess
+    public class ViewIPInfoDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Get bets statistics by IP and WINLOST date.
@@ -138,6 +138,12 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
                             BetTeam = reader.ToString("betteam"),
                             BetCheck = reader.ToString("betcheck"),
+                            HomeId = reader.ToInt32("homeid"),
+                            AwayId = reader.ToInt32("awayid"),
+                            SportTypeId = reader.ToInt32("sporttype"),
+                            LeagueId = reader.ToInt32("leagueid"),
+                            IsNeutral = reader.ToBoolean("IsNeutral"),
+                            EventDate = reader.ToDateTime("eventdate")
                         });
                     }
                 }
@@ -201,4 +207,5 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
             return result;
         }
     }
+
 }

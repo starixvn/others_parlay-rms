@@ -1,27 +1,25 @@
-﻿using ONEbook.UM.Services;
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 using ONEbook.UM.Services.Impl;
 using ParlayRMS.DTO;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Users;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.ViewModel.Account;
 using ParlayRMS.Web.Authorization;
 using ParlayRMS.Web.Context;
 using ParlayRMS.Web.Session;
-using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
 
 namespace ParlayRMS.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IMaintenanceService _maintenanceService = new MaintenanceService();
-        private readonly IAuthorizationService _authorizationService = new AuthorizationService();
-        private readonly ICurrentContext _currentContext = new CurrentContext();
-        private readonly ICurrentSession _currentSession = new CurrentSession();
+        private readonly MaintenanceService _maintenanceService = new MaintenanceService();
+        private readonly AuthorizationService _authorizationService = new AuthorizationService();
+        private readonly CurrentContext _currentContext = new CurrentContext();
+        private readonly CurrentSession _currentSession = new CurrentSession();
 
         [HttpGet]
         public ActionResult Login()

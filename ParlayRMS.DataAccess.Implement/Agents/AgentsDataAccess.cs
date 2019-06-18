@@ -5,7 +5,6 @@
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.Common.Models;
-    using ParlayRMS.DataAccess.Interface.Agents;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Agents;
     using ParlayRMS.Utility.Data;
@@ -13,7 +12,7 @@
     /// <summary>
     /// Agent data access.
     /// </summary>
-    public class AgentsDataAccess : BaseDataAccess, IAgentsDataAccess
+    public class AgentsDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Gets dangerous agent list.

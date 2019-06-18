@@ -1,16 +1,14 @@
-﻿using ParlayRMS.DataAccess.Implement.TotalOutstanding;
-using ParlayRMS.DataAccess.Interface.TotalOutstanding;
-using ParlayRMS.DTO.TotalOutstanding;
-using ParlayRMS.Services.Interface.TotalOutstanding;
-using ParlayRMS.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ParlayRMS.DataAccess.Implement.TotalOutstanding;
+using ParlayRMS.DTO.TotalOutstanding;
+using ParlayRMS.Utility;
 
 namespace ParlayRMS.Services.Implement.TotalOutstanding
 {
-    public class TotalOutstandingService : ITotalOutstandingService
+    public class TotalOutstandingService
     {
-        private readonly ITotalOutstandingDataAccess _dataAccess = new TotalOutstandingDataAccess();
+        private readonly TotalOutstandingDataAccess _dataAccess = new TotalOutstandingDataAccess();
 
         public List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(long custId, string combo, string sportsType, string parlaysType)
         {

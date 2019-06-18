@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.ParlayMonitor;
-using ParlayRMS.DTO.ParlayMonitor;
-using ParlayRMS.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
+using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
 {
-    public class ParlayMonitorDataAccess : BaseDataAccess, IParlayMonitorDataAccess
+    public class ParlayMonitorDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Monitor_Parlay_Betlist> RMS_Monitor_Parlay_Betlist(
             string combos,
@@ -57,7 +56,9 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             IP = reader.ToString("ip"),
                             Level = reader.ToInt32("level"),
                             IsBetRadar = reader.ToBoolean("IsBetRadar"),
-                            SportType = reader.ToInt32("sporttype")
+                            SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype"),
+                            CustId = reader.ToInt32("custid")
                         });
                     }
                 }

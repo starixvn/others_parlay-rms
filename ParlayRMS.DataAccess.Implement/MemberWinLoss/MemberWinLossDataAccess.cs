@@ -1,14 +1,13 @@
-﻿using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.MemberWinLoss;
-using ParlayRMS.DTO.MemberWinLoss;
-using ParlayRMS.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
+using ParlayRMS.DTO.MemberWinLoss;
+using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
 {
-    public class MemberWinLossDataAccess : BaseDataAccess, IMemberWinLossDataAccess
+    public class MemberWinLossDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> RMS_Rpt_Parlay_MemberWinLoss(
                                                              DateTime fromDate,

@@ -13,17 +13,15 @@ namespace ParlayRMS.Services.Implement.ViewIPInfo
     using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.ViewIPInfo;
-    using ParlayRMS.DataAccess.Interface.ViewIPInfo;
     using ParlayRMS.DTO.ViewIPInfo;
     using ParlayRMS.Models.ViewIpInfo;
-    using ParlayRMS.Services.Interface.ViewIPInfo;
 
     /// <summary>
     /// Main service class for view-IP-info report and other related reports.
     /// </summary>
-    public class ViewIPInfoService : BaseService, IViewIPInfoService
+    public class ViewIPInfoService : BaseService
     {
-        private readonly IViewIPInfoDataAccess _viewIPInfoDataAccess = new ViewIPInfoDataAccess();
+        private readonly ViewIPInfoDataAccess _viewIPInfoDataAccess = new ViewIPInfoDataAccess();
 
         /// <summary>
         /// Get bets statistics base on specific IP and date.

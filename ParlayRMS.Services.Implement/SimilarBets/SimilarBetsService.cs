@@ -1,15 +1,13 @@
-﻿using ParlayRMS.DataAccess.Implement.SimilarBets;
-using ParlayRMS.DataAccess.Interface.SimilarBets;
+﻿using System;
+using ParlayRMS.DataAccess.Implement.SimilarBets;
 using ParlayRMS.DTO.SimilarBets;
-using ParlayRMS.Services.Interface.SimilarBets;
 using ParlayRMS.Utility;
-using System;
 
 namespace ParlayRMS.Services.Implement.SimilarBets
 {
-    public class SimilarBetsService : BaseService, ISimilarBetsService
+    public class SimilarBetsService : BaseService
     {
-        private readonly ISimilarBetsDataAccess _similarbetsDataAccess = new SimilarBetsDataAccess();
+        private readonly SimilarBetsDataAccess _similarbetsDataAccess = new SimilarBetsDataAccess();
 
         public RMS_Similar_Parlay_Betlist GetSimilarBets(long transId)
         {

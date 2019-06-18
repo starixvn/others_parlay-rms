@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using ParlayRMS.Services.Implement.Menus;
-    using ParlayRMS.Services.Interface.Menus;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Shared;
 
@@ -13,7 +12,7 @@
     /// </summary>
     public class SharedController : BaseController
     {
-        private readonly IMenusService _menuService = new MenusService();
+        private readonly MenusService _menuService = new MenusService();
 
         /// <summary>
         /// Gets authentication information menu.

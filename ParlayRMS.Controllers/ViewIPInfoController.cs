@@ -7,6 +7,8 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
+using Fizzler.Systems.HtmlAgilityPack;
+using HtmlAgilityPack;
 using ParlayRMS.DTO.Common;
 using ParlayRMS.DTO.ViewIPInfo;
 using ParlayRMS.Models;
@@ -15,9 +17,6 @@ using ParlayRMS.Models.ViewIpInfo;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ViewIPInfo;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.ViewIPInfo;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.ViewIPInfo;
@@ -28,9 +27,9 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
     public class ViewIPInfoController : BaseController
     {
-        private readonly IViewIPInfoService _ipinfoService = new ViewIPInfoService();
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly ICommonService _commonService = new CommonService();
+        private readonly ViewIPInfoService _ipinfoService = new ViewIPInfoService();
+        private readonly BetListService _betlistService = new BetListService();
+        private readonly CommonService _commonService = new CommonService();
         private int _pageSize = 100;
 
         [HttpGet]
@@ -87,8 +86,59 @@ namespace ParlayRMS.Controllers
             ViewBag.UserName = model.UserName;
 
             IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
+            var singleMatchParlayTickets = models.Where(m => m.BetType == (int)BetType.SingleMatchParlay).ToArray();
+            if (singleMatchParlayTickets.Any())
+            {
+                UpdateChoiceForSingleMatchParlay(model, singleMatchParlayTickets);
+            }
 
             return View("Drilldown", models);
+        }
+
+        private static void UpdateChoiceForSingleMatchParlay(DrillDownOptions model, RMS_Rpt_Parlay_ViewIPInfoByUser[] singleMatchParlayTickets)
+        {
+            var index = 0;
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            foreach (var m in singleMatchParlayTickets)
+            {
+                if (m.BetType == (int)BetType.SingleMatchParlay)
+                {
+                    m.Choice = BuildSingleMatchParlayChoice(ticketHelper, factory, m, model.UserId, index);
+                    index++;
+                }
+            }
+        }
+
+        private static string BuildSingleMatchParlayChoice(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
+        {
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportTypeId,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                BetTypeId = model.BetType,
+                TransId = model.TransID,
+                IsNeutral = model.IsNeutral,
+                CustId = userId,
+            };
+            index++;
+            ticketHelper.Index = index;
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            return document.OuterHtml;
         }
 
         [HttpPost]

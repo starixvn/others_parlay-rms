@@ -1,15 +1,13 @@
-﻿using ParlayRMS.DataAccess.Implement.PotentialWinningMonitor;
-using ParlayRMS.DataAccess.Interface.PotentialWinningMonitor;
+﻿using System.Collections.Generic;
+using ParlayRMS.DataAccess.Implement.PotentialWinningMonitor;
 using ParlayRMS.DTO.PotentialWinning;
-using ParlayRMS.Services.Interface.PotentialWinningMonitor;
 using ParlayRMS.Utility;
-using System.Collections.Generic;
 
 namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
 {
-    public class PotentialWinningMonitorService : BaseService, IPotentialWinningMonitor
+    public class PotentialWinningMonitorService : BaseService
     {
-        private readonly IPotentialWinningMonitorDataAccess _potentialWinningDataAccess = new PotentialWinningMonitorDataAccess();
+        private readonly PotentialWinningMonitorDataAccess _potentialWinningDataAccess = new PotentialWinningMonitorDataAccess();
 
         public IEnumerable<RMS_Monitor_Potential_Winning> GetPotentialWinningList(
             string combos,

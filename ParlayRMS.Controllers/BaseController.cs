@@ -20,12 +20,12 @@
         /// <summary>
         /// Context of current logging in session.
         /// </summary>
-        private readonly ICurrentContext _currentContext = new CurrentContext();
+        private readonly CurrentContext _currentContext = new CurrentContext();
 
         /// <summary>
         /// Session of logging in user.
         /// </summary>
-        private readonly ICurrentSession _currentSession = new CurrentSession();
+        private readonly CurrentSession _currentSession = new CurrentSession();
 
         public ICurrentContext CurrentContext
         {

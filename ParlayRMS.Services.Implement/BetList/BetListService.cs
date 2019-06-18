@@ -1,16 +1,15 @@
-﻿using Fanex.BetList.Core.Entities;
-using ParlayRMS.DataAccess.Implement.BetList;
-using ParlayRMS.DataAccess.Interface.BetList;
-using ParlayRMS.DTO.BetList;
-using ParlayRMS.Services.Interface.BetList;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Fanex.BetList.Core.Entities;
+using Fanex.Data.Repository;
+using ParlayRMS.DataAccess.Implement.BetList;
+using ParlayRMS.DTO.BetList;
 
 namespace ParlayRMS.Services.Implement.BetList
 {
-    public class BetListService : BaseService, IBetListService
+    public class BetListService : BaseService
     {
-        private readonly IBetListDataAccess _betListDataAccess = new BetListDataAccess();
+        private readonly BetListDataAccess _betListDataAccess = new BetListDataAccess();
 
         public IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
         {
@@ -65,6 +64,25 @@ namespace ParlayRMS.Services.Implement.BetList
         public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
         {
             return _betListDataAccess.RMS_Monitor_Parlay_BetInfo(transId);
+        }
+
+
+        public List<RMS_BetList_BetBuilder_DetailModel> RMS_BetList_BetBuilder_Detail(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        {
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_BetBuilder_DetailModel>(criteria).ToList();
+        }
+
+        public List<RMS_BetList_BetBuilder_MatchDetailModel> RMS_BetList_BetBuilder_MatchDetail(long transId)
+        {
+            var criteria = new RMS_BetList_BetBuilder_MatchDetailCriteria
+            {
+                TransId = transId
+            };
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_BetBuilder_MatchDetailModel>(criteria).ToList();
         }
     }
 }

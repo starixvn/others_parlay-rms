@@ -11,17 +11,15 @@ namespace ParlayRMS.Services.Implement.Functions
     using System.Collections.Generic;
     using System.Linq;
     using ParlayRMS.DataAccess.Implement.Functions;
-    using ParlayRMS.DataAccess.Interface.Functions;
     using ParlayRMS.DTO;
     using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Interface.Functions;
 
     /// <summary>
     /// Functions Service.
     /// </summary>
-    public class FunctionsService : BaseService, IFunctionsService
+    public class FunctionsService : BaseService
     {
-        private readonly IFunctionsDataAccess _functionsDataAccess = new FunctionsDataAccess();
+        private readonly FunctionsDataAccess _functionsDataAccess = new FunctionsDataAccess();
 
         /// <summary>
         /// Creates a new function.
@@ -37,14 +35,14 @@ namespace ParlayRMS.Services.Implement.Functions
         /// <param name="functionId">ID of created function.</param>
         /// <returns>Result indicates whether the function is created successfully or not.</returns>
         public Result CreateFunction(
-                          string name, 
-                          string key, 
-                          string description, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          int adminId, 
-                          string ip, 
+                          string name,
+                          string key,
+                          string description,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          int adminId,
+                          string ip,
                           out int functionId)
         {
             return this._functionsDataAccess.RMS_FunctionIns(name, key, description, parentId, parentName, displayOrder, adminId, ip, out functionId);

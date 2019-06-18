@@ -1,10 +1,10 @@
-﻿using ParlayRMS.Models;
-using ParlayRMS.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
+using ParlayRMS.Models;
+using ParlayRMS.Utility;
 
 namespace ParlayRMS.ViewModel
 {
@@ -66,7 +66,8 @@ namespace ParlayRMS.ViewModel
             _parlayTypes = new List<SelectListItem>()
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
-                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
+                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
+                new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
             };
 
             _reportTypes = new List<SelectListItem>()

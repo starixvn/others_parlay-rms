@@ -9,7 +9,7 @@
     {
         var fileName = string.Format("Web.{0}.config", site.Environment);
 
-        var connectionStringFileName = string.Format("App_Configuration\\{0}\\Web.ConnectionString.config", site.Environment);
+        var connectionStringFileName = string.Format("App_Configuration\\Web.ConnectionString.{0}.config", site.Environment);
 
         manager.StartNewFile(fileName);
 #>
@@ -58,7 +58,7 @@
     <add key="ClientValidationEnabled" value="True" />
     <add key="UnobtrusiveJavaScriptEnabled" value="True" />
 	<add key="StoredProcedurePath" value="App_Data" />
-    <add key="RecheckIn" value="True" />
+    <add key="RecheckIn" value="<#= site.EnableRecheckIn #>" />
     <add key="HiddenGroups" value="IT;Test" />
     <add key="Fanex.RemotingRef.Service.Url" value="<#= site.RemoteRefURL #>" />
     <add key="PageSize" value="100" />

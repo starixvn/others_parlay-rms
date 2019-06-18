@@ -8,6 +8,8 @@
 
         public string Username { get; set; }
 
+        public int CustId { get; set; }
+
         public int Level { get; set; }
 
         public decimal Max_Payout { get; set; }

@@ -12,7 +12,6 @@ namespace ParlayRMS.DataAccess.Implement.Functions
     using System.Collections;
     using System.Collections.Generic;
     using ParlayRMS.Common.Models;
-    using ParlayRMS.DataAccess.Interface.Functions;
     using ParlayRMS.DTO;
     using ParlayRMS.DTO.Functions;
     using ParlayRMS.Utility;
@@ -21,7 +20,7 @@ namespace ParlayRMS.DataAccess.Implement.Functions
     /// <summary>
     /// Function Data Access.
     /// </summary>
-    public class FunctionsDataAccess : BaseDataAccess, IFunctionsDataAccess
+    public class FunctionsDataAccess : BaseDataAccess
     {
         /// <summary>
         /// Gets list of functions.
@@ -66,14 +65,14 @@ namespace ParlayRMS.DataAccess.Implement.Functions
         /// <param name="functionId">Function ID.</param>
         /// <returns>Whether or not function is created successfully.</returns>
         public Result RMS_FunctionIns(
-                         string name, 
-                         string key, 
-                         string description, 
-                         int parentId, 
-                         string parentName, 
-                         int displayOrder, 
-                         int adminId, 
-                         string ip, 
+                         string name,
+                         string key,
+                         string description,
+                         int parentId,
+                         string parentName,
+                         int displayOrder,
+                         int adminId,
+                         string ip,
                          out int functionId)
         {
             functionId = 0;
@@ -120,13 +119,13 @@ namespace ParlayRMS.DataAccess.Implement.Functions
         /// <param name="ip">IP of machine which updates function.</param>
         /// <returns>Whether or not function is updated successfully.</returns>
         public Result RMS_FunctionUpd(
-                          int id, 
-                          string name, 
-                          string description, 
-                          int parentId, 
-                          string parentName, 
-                          int displayOrder, 
-                          int adminId, 
+                          int id,
+                          string name,
+                          string description,
+                          int parentId,
+                          string parentName,
+                          int displayOrder,
+                          int adminId,
                           string ip)
         {
             Hashtable param = new Hashtable();

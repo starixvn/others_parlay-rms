@@ -8,6 +8,8 @@
 
         public int SportType { get; set; }
 
+        public int BetType { get; set; }
+
         public decimal Stake { get; set; }
 
         public decimal Winlost { get; set; }
@@ -23,5 +25,7 @@
         public int TotalCombo { get; set; }
 
         public int Selection { get; set; }
+
+        public bool IsSingleMatchParlay { get; set; }
     }
 }

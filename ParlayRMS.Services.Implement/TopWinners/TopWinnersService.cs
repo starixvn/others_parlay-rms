@@ -1,21 +1,18 @@
-﻿using ParlayRMS.DataAccess.Implement.TopWinners;
-using ParlayRMS.DataAccess.Interface.TopWinners;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using ParlayRMS.DataAccess.Implement.TopWinners;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.TopWinners;
 using ParlayRMS.ViewModel.Report;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace ParlayRMS.Services.Implement.TopWinners
 {
-    public class TopWinnersService : BaseService, ITopWinnersService
+    public class TopWinnersService : BaseService
     {
-        private readonly ITopWinnersDataAccess _topwinnersDataAccess = new TopWinnersDataAccess();
-        private readonly ICommonService _commonService = new CommonService();
+        private readonly TopWinnersDataAccess _topwinnersDataAccess = new TopWinnersDataAccess();
+        private readonly CommonService _commonService = new CommonService();
 
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> GetTopWinners(TopWinnersOptions options)
         {

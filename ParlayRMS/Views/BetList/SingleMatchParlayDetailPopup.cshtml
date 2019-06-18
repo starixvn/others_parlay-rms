@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+    var selectionNames = (List<string>)ViewBag.SelectionNames;
+    var resultTexts = (List<string>)ViewBag.ResultTexts;
+    var selectionCount = selectionNames.Count;
+}
+@model string
+<div class="boxMain">
+    <div class="content">
+        <table class="bet-detail">
+            <tr class="title2">
+                <th>
+                    Ticket Details - @ViewBag.Username - @ViewBag.TransId
+                </th>
+                <th class="combo-type">
+                    @ViewLang.ComboType
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="betdetails">
+
+                        <table style="width:100%">
+                            <colgroup>
+                                <col />
+                                <col width="100" />
+                            </colgroup>
+                            @for (var i = 0; i < selectionCount; i++)
+                            {
+                                <tr>
+                                    <td>@selectionNames[i]</td>
+                                    <td>[@resultTexts[i].ToUpper()]</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>@Html.Raw(ViewBag.Choice)</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="combo-type">
+                    @ViewLang.SingleMatchParlay
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

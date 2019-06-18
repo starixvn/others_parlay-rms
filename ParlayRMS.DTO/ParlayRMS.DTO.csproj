@@ -49,10 +49,9 @@
   <ItemGroup>
     <Compile Include="Agents\RMS_DangerousAgentSel.cs" />
     <Compile Include="BetList\BetListData.cs" />
+    <Compile Include="BetList\RMS_BetList_BetBuilder_MatchDetailModel.cs" />
     <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
-    <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor.cs" />
-    <Compile Include="DangerMonitor\RMS_Rpt_Parlay_DangerMonitor_Details.cs" />
     <Compile Include="Functions\RMS_FunctionSel.cs" />
     <Compile Include="Groups\RMS_GroupInfoSel.cs" />
     <Compile Include="Groups\RMS_GroupInfoSelAllGroup.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
+    <Compile Include="SimilarBets\SingleMatchParlaySimilarDetailOption.cs" />
     <Compile Include="TopWinners\BetInfo.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
     <Compile Include="Common\RMS_SelBalanceUpDay.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="Users\RMS_UserInfoSel.cs" />
     <Compile Include="Users\RMS_UserInfoSelByUserID.cs" />
     <Compile Include="Users\RMS_UserPolicySel.cs" />
+    <Compile Include="BetList\RMS_BetList_BetBuilder_DetailModel.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats.cs" />
     <Compile Include="ViewIPInfo\RMS_SystemParlay_CombinationDetails_ComboRef.cs" />

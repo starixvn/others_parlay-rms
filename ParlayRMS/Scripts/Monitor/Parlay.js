@@ -259,7 +259,7 @@ $(document).ready(function () {
     });
 
     $("#parlayType").multiselect({
-        minWidth: 132,
+        minWidth: 162,
         height: 82,
         create: function () {
             $("#parlayType").multiselect();
@@ -534,8 +534,8 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
-    r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + '</td>';
-    r[++j] = '<td class="center">' + (item.NumberWon === 0 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + (item.BetType === 38 ? ' (S)' : '') + '</td>';
+    r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
     r[++j] = '<td class="center">' + item.SportTypeName + '</td>';
 
     if (!item.IP || item.IP === 'Null' || item.IP === 'NULL') {
@@ -544,7 +544,7 @@ function CreateRow(order, item) {
     else {
         r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + item.IP + '</a></td>';
     }
-    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + item.RefNo + ');">View</td>';
+    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + +item.RefNo + ', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -570,16 +570,55 @@ function ViewTotalOutstanding(username) {
     var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlayTypes=' + parlaysTypes;
     window.open(url, '_blank');
 }
+function ViewBetDetails(username, transId, refNo, betType, custId) {
+    if (betType === 38) {
+        ViewSingleMatchParlayDetails(transId, custId, username);
+    }
+    else {
+        ViewSystemParlayDetails(username, transId, refNo);
+    }
+}
 
-function ViewBetDetails(userName, transId, refNo) {
+function ViewSystemParlayDetails(username, transId, refNo) {
     var data = {
-        BetId: transId,
+        TransId: transId,
         RefNo: refNo,
-        Username: userName
+        Username: username
     }
 
     $.ajax({
         url: resolveClientUrl('BetList/BetDetails'),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            modalPopup(result);
+            $(".betdetails").css('overflow-y', 'auto');
+            $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+
+function ViewSingleMatchParlayDetails(transId, custId, username) {
+    var data = {
+        TransId: transId,
+        CustId: custId,
+        Username: username
+    }
+
+    $.ajax({
+        url: resolveClientUrl('BetList/SingleMatchParlayDetailPopup'),
         type: 'POST',
         data: data,
         dataType: 'html',

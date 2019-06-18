@@ -1,25 +1,22 @@
-﻿using ParlayRMS.Models.Functions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using ParlayRMS.Models.Functions;
 using ParlayRMS.Models.Menus;
 using ParlayRMS.Services.Implement.Functions;
 using ParlayRMS.Services.Implement.Menus;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.Functions;
-using ParlayRMS.Services.Interface.Menus;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.ManageMenu;
 using ParlayRMS.Web.Authorization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
     public class ManageMenuController : BaseController
     {
-        private readonly IMenusService _menuService = new MenusService();
-        private readonly IFunctionsService _functionService = new FunctionsService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly MenusService _menuService = new MenusService();
+        private readonly FunctionsService _functionService = new FunctionsService();
+        private readonly UsersService _userService = new UsersService();
 
         public ManageMenuController()
         {

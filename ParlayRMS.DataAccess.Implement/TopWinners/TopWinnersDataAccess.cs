@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
-using ParlayRMS.DataAccess.Interface.TopWinners;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
-    public class TopWinnersDataAccess : BaseDataAccess, ITopWinnersDataAccess
+    public class TopWinnersDataAccess : BaseDataAccess
     {
         public IEnumerable<RMS_Rpt_Parlay_TopWinner> RMS_Rpt_Parlay_TopWinners(
                                                          DateTime fromDate,
@@ -90,6 +89,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             TransId = reader.ToInt64("transid"),
                             RefNo = reader.ToInt64("refno"),
                             SportType = reader.ToInt32("sporttype"),
+                            BetType = reader.ToInt32("bettype"),
                             Stake = reader.ToDecimal("stake"),
                             Winlost = reader.ToDecimal("winlost"),
                             Company_Winlost = reader.ToDecimal("company_winlost"),
@@ -97,7 +97,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
                             TotalCombo = reader.ToInt32("totalcombo"),
-                            Selection = reader.ToInt32("combo")
+                            Selection = reader.ToInt32("combo"),
+                            IsSingleMatchParlay = reader.ToBoolean("IsSingleMatchParlay")
                         });
                     }
                 }

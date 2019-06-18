@@ -29,8 +29,9 @@ ParlayRMS.Core =
             location.href = url;
         }, delayTime);
     },
-    OpenWindow: function (url) {
-        var popH = $(window).height(), popW = $(window).width();
+    OpenWindow: function (url, width, height) {
+        var popH = width == null ? $(window).height() : width
+        var popW = height == null ? $(window).width() : height;
         var formatter = new Array(
                 "resizable=no",
                 "scrollbars=yes",
@@ -39,7 +40,9 @@ ParlayRMS.Core =
                 "location=no",
                 "addressbar=no",
                 "directories=no",
-                "status=yes"
+                "status=yes",
+                "width="+width,
+                "height="+height,
             ).join(',');
 
         window.open(url, '_blank', '' + ',' + formatter);

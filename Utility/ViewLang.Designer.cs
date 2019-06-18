@@ -1771,6 +1771,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Single Match Parlay.
+        /// </summary>
+        public static string SingleMatchParlay {
+            get {
+                return ResourceManager.GetString("SingleMatchParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 6 UP.
         /// </summary>
         public static string SixUp {

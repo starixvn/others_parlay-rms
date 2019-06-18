@@ -11,14 +11,13 @@ namespace ParlayRMS.DataAccess.Implement.Common
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
-    using ParlayRMS.DataAccess.Interface.Common;
     using ParlayRMS.DTO.Common;
     using ParlayRMS.Utility.Data;
 
     /// <summary>
     /// Common Data Access.
     /// </summary>
-    public class CommonDataAccess : BaseDataAccess, ICommonDataAccess
+    public class CommonDataAccess : BaseDataAccess
     {
         #region Balance Up Day
 

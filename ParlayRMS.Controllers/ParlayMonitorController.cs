@@ -1,29 +1,24 @@
-﻿using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.BetList;
-using ParlayRMS.Services.Implement.ParlayMonitor;
-using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.ParlayMonitor;
-using ParlayRMS.Services.Interface.Users;
-using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.PalayMonitor;
-using ParlayRMS.Web.Authorization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
+using ParlayRMS.Models;
+using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.ParlayMonitor;
+using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.PalayMonitor;
+using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
     [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
     public class ParlayMonitorController : BaseController
     {
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly IParlayMonitorService _parlayMonitorService = new ParlayMonitorService();
-        private readonly IParlayMonitorService _parlayMonitorCacheService = new ParlayMonitorCacheService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly ParlayMonitorCacheService _parlayMonitorCacheService = new ParlayMonitorCacheService();
+        private readonly UsersService _userService = new UsersService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
@@ -47,6 +42,7 @@ namespace ParlayRMS.Controllers
             var parlayTypes = new List<SelectListItem>();
             parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString(), Selected = true });
             parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
+            parlayTypes.Add(new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() });
             ViewBag.ParlayTypes = parlayTypes;
 
             // Level

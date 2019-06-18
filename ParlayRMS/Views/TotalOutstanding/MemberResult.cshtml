@@ -3,12 +3,12 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<div style="width: 1045px">
+<div style="width: 1075px">
     <table class="main" id="header">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
-            <col width='100px' />
+            <col width='130px' />
             <col width='75px' />
             <col width='120px' />
             <col width='120px' />
@@ -53,12 +53,12 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1045px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1075px">
     <table class="main" id="result">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
-            <col width='100px' />
+            <col width='130px' />
             <col width='75px' />
             <col width='120px' />
             <col width='120px' />
@@ -93,19 +93,27 @@
                     </td>
                     <td class="center">
                         @{
-                            var betText = (@item.TotalBet > 1) ? " bets" : " bet";
+                            var betText = item.BetType == 38 ? " bet(S)" : (item.TotalBet > 1 ? " bets" : " bet");
                         }
 
                         @Formatter.FormatNumber3(@item.TotalBet) @betText
                     </td>
                     <td class="center">
-                        @item.TotalSelection
+                        @if (item.NumberWon == 0 || item.BetType == (int)BetType.SingleMatchParlay)
+                        {
+                            @Html.Raw(item.TotalSelection)
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format("{0}/{1}", item.NumberWon, item.TotalSelection))
+                        }
+                        
                     </td>
                     <td class="center">
                         @item.SportTypeName
                     </td>
                     <td class="center">
-                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno);">
+                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno, @item.BetType, @ViewBag.CustId);">
                             @ViewLang.View
                         </button>
                     </td>
@@ -114,12 +122,12 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1026px" class="mainfooter">
+<div style="width: 1056px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
-            <col width='100px' />
+            <col width='130px' />
             <col width='75px' />
             <col width='120px' />
             <col width='120px' />

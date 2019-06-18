@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
+using Fizzler.Systems.HtmlAgilityPack;
+using HtmlAgilityPack;
 using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.BetList;
-using ParlayRMS.Services.Interface.TopWinners;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
@@ -27,9 +25,9 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
     public class TopWinnersController : BaseController
     {
-        private readonly ITopWinnersService _topwinnersService = new TopWinnersService();
-        private readonly IBetListService _betlistService = new BetListService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly TopWinnersService _topwinnersService = new TopWinnersService();
+        private readonly BetListService _betlistService = new BetListService();
+        private readonly UsersService _userService = new UsersService();
 
         [HttpGet]
         public ActionResult Index()
@@ -103,7 +101,6 @@ namespace ParlayRMS.Controllers
             var data = _topwinnersService.GetBetDetail(options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data);
             var betInfo = _topwinnersService.GetBetInfo(options.BetId);
-            var stringBuilder = new StringBuilder();
             foreach (var ticket in tickets)
             {
                 if (tickets.Last() == ticket)
@@ -228,6 +225,92 @@ namespace ParlayRMS.Controllers
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());
             Response.End();
+        }
+
+
+        [HttpGet]
+        public ActionResult SingleMatchParlayBetDetails(int custId, long transId, string username)
+        {
+            var criteria = new RMS_BetList_BetBuilder_DetailCriteria
+            {
+                CustId = custId,
+                TransId = transId,
+                Username = username
+            };
+
+
+            ViewBag.TransId = transId;
+            ViewBag.Username = username;
+
+            var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
+            var selectionNames = new List<string>();
+            var resultTexts = new List<string>();
+            if (selections.Any())
+            {
+                foreach (var s in selections)
+                {
+                    var name = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(new[] { s.SelectionType }, "en-US");
+                    selectionNames.Add(name.FirstOrDefault());
+                    resultTexts.Add(s.Result);
+                }
+            }
+            var choice = GetChoiceForSingleMatchParlayDetailPopup(criteria.TransId);
+
+            ViewBag.ResultTexts = resultTexts;
+            ViewBag.SelectionNames = selectionNames;
+            ViewBag.Choice = choice;
+
+            return View();
+        }
+
+        private string GetChoiceForSingleMatchParlayDetailPopup(long transId)
+        {
+            var model = _betlistService.RMS_BetList_BetBuilder_MatchDetail(transId).FirstOrDefault();
+
+            if (model == null)
+            {
+                return string.Empty;
+            }
+
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportType,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                TransId = model.TransId,
+                BetTypeId = (int)Models.BetType.SingleMatchParlay
+            };
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var matchNode = document.QuerySelector(".match");
+            var leagueNode = document.QuerySelector(".league");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            document.RemoveAllChildren();
+
+            if (matchNode != null)
+            {
+                document.ChildNodes.Add(matchNode);
+            }
+
+            if (leagueNode != null)
+            {
+                document.ChildNodes.Add(leagueNode);
+            }
+
+            return document.OuterHtml;
         }
     }
 }

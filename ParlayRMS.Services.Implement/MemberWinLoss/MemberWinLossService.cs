@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using Fanex.Caching;
 using ParlayRMS.DataAccess.Implement.MemberWinLoss;
-using ParlayRMS.DataAccess.Interface.MemberWinLoss;
 using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.Models;
 using ParlayRMS.Models.MemberWinLoss;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface;
-using ParlayRMS.Services.Interface.MemberWinLoss;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 
 namespace ParlayRMS.Services.Implement.MemberWinLoss
 {
-    public class MemberWinLossService : IMemberWinLossService
+    public class MemberWinLossService
     {
         private static readonly string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
 
         private readonly CacheService _cacheService = new CacheServiceImpl();
-        private readonly IMemberWinLossDataAccess _memberWinLossDataAccess = new MemberWinLossDataAccess();
-        private readonly ICommonService _commonService = new CommonService();
-        private readonly IUsersService _usersService = new UsersService();
+        private readonly MemberWinLossDataAccess _memberWinLossDataAccess = new MemberWinLossDataAccess();
+        private readonly CommonService _commonService = new CommonService();
+        private readonly UsersService _usersService = new UsersService();
 
         public MemberWinLossData GetMemberWinLoss(
                                      DateTime fromDate,

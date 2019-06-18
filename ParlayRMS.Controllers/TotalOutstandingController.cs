@@ -1,23 +1,21 @@
-﻿using ParlayRMS.Models;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.TotalOutstanding;
 using ParlayRMS.Services.Implement.Users;
-using ParlayRMS.Services.Interface.TotalOutstanding;
-using ParlayRMS.Services.Interface.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
     [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
     public class TotalOutstandingController : BaseController
     {
-        private readonly ITotalOutstandingService _service = new TotalOutstandingService();
-        private readonly IUsersService _userService = new UsersService();
+        private readonly TotalOutstandingService _service = new TotalOutstandingService();
+        private readonly UsersService _userService = new UsersService();
 
         [HttpGet]
         public ActionResult Index(IndexModel model)
@@ -51,6 +49,13 @@ namespace ParlayRMS.Controllers
                 Value = ((int)ParlayType.ComboParlay).ToString(),
                 Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
             });
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.SingleMatchParlay,
+                Value = ((int)ParlayType.SingleMatchParlay).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.SingleMatchParlay).ToString())
+            });
+
             ViewBag.ParlayTypes = parlayTypes;
 
             return View("Index", model);
@@ -62,6 +67,7 @@ namespace ParlayRMS.Controllers
         {
             ViewBag.Username = model.Username;
             var customerInfo = _userService.GetCustomerInfo(model.Username);
+            ViewBag.CustId = customerInfo.CustId;
             if (customerInfo == null || customerInfo.CustId == 0)
             {
                 return PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
