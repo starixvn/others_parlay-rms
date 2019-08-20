@@ -175,7 +175,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.127:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.40.40.47:42424\" />";
                     case SiteEnvironment.MNL:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.12.10:42424\" />";
                     case SiteEnvironment.SIT:
