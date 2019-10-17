@@ -281,5 +281,10 @@ namespace ParlayRMS.Services.Implement.Users
         {
             return this._usersDataAccess.RMS_CustomerSelInfoByUsername(username);
         }
+
+        public List<int> GetAgents(int masterId)
+        {
+            return this._usersDataAccess.RMS_CustomerAgentOfMasterSel(masterId).ToList();
+        }
     }
 }

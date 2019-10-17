@@ -107,12 +107,13 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             return result;
         }
 
-        public IEnumerable<RMS_Parlay_TransDetails> RMS_Rpt_Parlay_TopWinners_Bet_Details(long refNo)
+        public IEnumerable<RMS_Parlay_TransDetails> RMS_Rpt_Parlay_TopWinners_Bet_Details(long transId, long refNo)
         {
             var result = new List<RMS_Parlay_TransDetails>();
 
             using (var db = new ObjectDb("RMS_Rpt_Parlay_TopWinners_Bet_Details"))
             {
+                db.AddInParameter("transid", DbType.Int64, transId);
                 db.AddInParameter("refno", DbType.Int64, refNo);
 
                 using (var reader = db.ExecuteReader())
@@ -142,6 +143,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             BetStatus = reader.ToString("betstatus"),
                             BetCheck = reader.ToString("betcheck"),
                             TransDesc = reader.ToString("transdesc"),
+                            Stake = reader.ToDecimal("stake")
                         });
                     }
                 }

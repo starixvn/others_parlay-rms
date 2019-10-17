@@ -124,7 +124,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent/Member Win Loss.
+        ///   Looks up a localized string similar to MA/Member Win Loss.
         /// </summary>
         public static string AgentMemberWinLoss {
             get {

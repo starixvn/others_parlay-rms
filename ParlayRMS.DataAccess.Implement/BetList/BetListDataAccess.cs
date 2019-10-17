@@ -9,12 +9,13 @@ namespace ParlayRMS.DataAccess.Implement.BetList
 {
     public class BetListDataAccess : BaseDataAccess
     {
-        public BetListData RMS_Parlay_TransDetails(long refNo)
+        public BetListData RMS_Parlay_TransDetails(long transId, long refNo)
         {
             var tickets = new List<RMS_Parlay_TransDetails>();
             var currencyName = string.Empty;
             using (var db = new ObjectDb("RMS_Parlay_TransDetails"))
             {
+                db.AddInParameter("transid", DbType.Int64, transId);
                 db.AddInParameter("refno", DbType.Int64, refNo);
                 db.AddOutParameter("currencyname", DbType.String, 50);
                 using (var reader = db.ExecuteReader())

@@ -174,7 +174,7 @@ namespace ParlayRMS.Controllers
             var factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var data = _betlistService.GetBetListData(options.RefNo);
+            var data = _betlistService.GetBetListData(options.TransId, options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data.Tickets);
             int countTicket = 1;
             string openTag = string.Empty;

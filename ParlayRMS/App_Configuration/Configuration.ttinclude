@@ -186,20 +186,5 @@
                 }
             }
         }
-
-        public string SPName
-        {
-            get
-            {
-                switch(Environment)
-                {
-                    case SiteEnvironment.PRO:
-                    case SiteEnvironment.MNL:
-                        return "~/App_Data/LIVE/";
-                    default:
-                        return "~/App_Data/TEST/";
-                }
-            }
-        }
     }
 #>

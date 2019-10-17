@@ -50,14 +50,14 @@ namespace ParlayRMS.Services.Implement.BetList
             return result.OrderBy(x => x.BetId).ToList();
         }
 
-        public BetListData GetBetListData(long refNo)
+        public BetListData GetBetListData(long transId, long refNo)
         {
-            return _betListDataAccess.RMS_Parlay_TransDetails(refNo);
+            return _betListDataAccess.RMS_Parlay_TransDetails(transId, refNo);
         }
 
-        public IEnumerable<ITicket> CreateChoice(long refNo)
+        public IEnumerable<ITicket> CreateChoice(long transId, long refNo)
         {
-            var data = GetBetListData(refNo);
+            var data = GetBetListData(transId, refNo);
             return Map(refNo, data.Tickets);
         }
 

@@ -318,7 +318,7 @@
     <Content Include="App_Configuration\Web.ConnectionString.UAT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
-    <Content Include="App_Data\LIVE\SpNames.xml">
+    <Content Include="App_Data\Fanex.Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\images\Content\1F.gif" />
@@ -753,9 +753,6 @@
     <Content Include="Scripts\Core.js" />
     <Content Include="Scripts\Validators.js" />
     <Content Include="Sounds\alert.mp3" />
-    <Content Include="App_Data\TEST\SpNames.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

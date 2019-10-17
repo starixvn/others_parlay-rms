@@ -721,7 +721,7 @@
     <value>Ticket Details</value>
   </data>
   <data name="AgentMemberWinLoss" xml:space="preserve">
-    <value>Agent/Member Win Loss</value>
+    <value>MA/Member Win Loss</value>
   </data>
   <data name="Month" xml:space="preserve">
     <value>Month</value>

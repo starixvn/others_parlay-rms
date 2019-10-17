@@ -82,7 +82,7 @@
                             </div>
                         </td>
                         <td class="choice right">
-                            <a href="#" class="tdChoice" data-id="@item.RefNo" data-bet-type="@item.BetType" data-bet-team="@item.BetTeam" data-bet-check="@item.BetCheck" data-hdp1="@item.Hdp1" data-hdp2="@item.Hdp2">
+                            <a href="#" class="tdChoice" data-transid="@item.TransID" data-refno="@item.RefNo" data-bet-type="@item.BetType" data-bet-team="@item.BetTeam" data-bet-check="@item.BetCheck" data-hdp1="@item.Hdp1" data-hdp2="@item.Hdp2">
                                 @if (item.BetType == (int)BetType.MixParlay)
                                 {
                                     @ViewLang.MixparLay;
@@ -117,7 +117,7 @@
                             @if (!isHideDetails)
                             {
                                 <div class="tdDetail">
-                                    <a class="tdDetailLink" data-id="@item.RefNo" data-bet-type="@item.BetType" data-bet-team="@item.BetTeam" href="#">@ViewLang.Details</a>
+                                    <a class="tdDetailLink" data-transid="@item.TransID" data-refno="@item.RefNo" data-bet-type="@item.BetType" data-bet-team="@item.BetTeam" href="#">@ViewLang.Details</a>
                                 </div>
                             }
                             <div style="display:none" class="Expand" id="exp_@item.RefNo">

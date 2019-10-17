@@ -430,7 +430,7 @@ function ViewTopWinnerBetDetail(refNo, transId, username, custId, bettype) {
         ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
     }
     else {
-        ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetails?refno=' + refNo + '&betid=' + transId + '&username=' + username), 700, 600);
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
     }
 }
 

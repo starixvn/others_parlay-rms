@@ -63,7 +63,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              string parlayTypes,
                                                              string sportsType,
                                                              string combos,
-                                                             long custId)
+                                                             List<int> custIds)
         {
             var result = new List<RMS_Rpt_Parlay_MemberWinLoss>();
 
@@ -75,7 +75,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("balanceupday", DbType.DateTime, balanceUpDay);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("selection", DbType.String, combos);
-                db.AddInParameter("custid", DbType.Int32, custId);
+                db.AddInParameter("recommends", DbType.String, string.Join(",", custIds));
                 db.AddInParameter("sporttype", DbType.String, sportsType);
 
                 using (var reader = db.ExecuteReader())

@@ -446,5 +446,25 @@ namespace ParlayRMS.DataAccess.Implement.Users
                 RoleId = DbConverter.ToInt32(r.Outputs["roleid"])
             };
         }
+
+
+
+        /// <summary>
+        /// Gets user information by user ID.
+        /// </summary>
+        /// <param name="userId">User ID value.</param>
+        /// <returns>User information.</returns>
+        public IEnumerable<int> RMS_CustomerAgentOfMasterSel(int masterId)
+        {
+            var htb = new Hashtable();
+            htb.Add("custid", masterId);
+            using (var reader = ExecSpDataReader("RMS_CustomerAgentOfMasterSel", htb))
+            {
+                while (reader.Read())
+                {
+                    yield return reader.ToInt32("custid");
+                }
+            }
+        }
     }
 }

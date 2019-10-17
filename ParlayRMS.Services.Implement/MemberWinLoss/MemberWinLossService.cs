@@ -57,8 +57,12 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  user.CustId);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
                 }
-                else if (user.RoleId == (int)RoleId.Agent)
+                else if (user.RoleId == (int)RoleId.Agent || user.RoleId == (int)RoleId.Master)
                 {
+                    var agentIds = user.RoleId == (int)RoleId.Agent
+                        ? new List<int> { (int)user.CustId }
+                        : _usersService.GetAgents((int)user.CustId);
+
                     result = GetAgentWinLossData(
                                  fromDate,
                                  toDate,
@@ -67,7 +71,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  parlayTypes,
                                  sportsType,
                                  combos,
-                                 user.CustId);
+                                 agentIds);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
                 }
             }
@@ -122,12 +126,11 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                       string parlayTypes,
                                       string sportsType,
                                       string combos,
-                                      long custId)
+                                      List<int> custIds)
         {
-            List<RMS_Rpt_Parlay_MemberWinLoss> rawData = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            rawData = _memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
+            var rawData = _memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
                                                        fromDate,
                                                        toDate,
                                                        moveBetsDay,
@@ -135,7 +138,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                        parlayTypes,
                                                        sportsType,
                                                        combos,
-                                                       custId).ToList();
+                                                       custIds).ToList();
 
             Utils.Round(rawData);
             rawData.ToList().ForEach(x =>

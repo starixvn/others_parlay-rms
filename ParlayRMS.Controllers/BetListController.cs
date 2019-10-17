@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -40,7 +41,7 @@ namespace ParlayRMS.Controllers
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var tickets = _betlistService.CreateChoice(options.RefNo);
+            var tickets = _betlistService.CreateChoice(options.TransId, options.RefNo);
             var betInfo = _betlistService.GetBetInfo(options.TransId);
             foreach (var ticket in tickets)
             {
@@ -56,12 +57,35 @@ namespace ParlayRMS.Controllers
                 }
             }
 
+            var comboTypeAndStake = GetComboTypeAndStake(tickets, betInfo);
+
             var model = new BetDetails
             {
                 TicketDetail = builder.GetBetList(),
-                ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
+                ComboTypes = comboTypeAndStake
             };
             return View(model);
+        }
+
+        private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, DTO.BetList.RMS_Monitor_Parlay_BetInfo betInfo)
+        {
+            var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
+            var comboTypesAndStake = new List<string>();
+            var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
+            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count());
+            for (var i = 0; i < count; i++)
+            {
+                comboTypesAndStake.Add(comboTypes[i] + " - " + FormatStake(hasStaketickets[i].Stake));
+            }
+
+            return comboTypesAndStake;
+        }
+
+        private static string FormatStake(decimal stake)
+        {
+            return stake < 10
+                ? $"{stake:#,0.00}"
+                : $"{Math.Floor(stake):#,0}";
         }
 
         [HttpPost]

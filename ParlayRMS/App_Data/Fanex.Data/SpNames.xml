@@ -17,6 +17,7 @@
     <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerSelInfoByUsername" SpName="RMS_CustomerSelInfoByUsername" DbName="DBACC.bodb02.bodbRMSNet" />
+    <Setting Key="RMS_CustomerAgentOfMasterSel" SpName="RMS_CustomerAgentOfMasterSel" DbName="DBACC.bodb02.bodbRMSNet" />
   </Function>
   <Function Name="Menu">
     <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -66,14 +67,14 @@
     <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_Old" DbName="DBARC.bodb_Archive.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details_UAT1" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinner_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_ComboParlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_ComboParlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />    
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -89,6 +90,7 @@
     <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    
   </Function>
   <Function Name="Agent">
     <Setting Key="RMS_DangerousAgentIns" SpName="RMS_DangerousAgentIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -106,11 +108,11 @@
 
   <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" />
-    
+
   </Function>
 
   <Function Name="BetBuilder">
-    
+
     <Setting Key="RMS_BetList_BetBuilder_Detail" SpName="RMS_BetList_BetBuilder_Detail" DbName="DBACC.bodb02.bodbRMSNet" />
     <Setting Key="RMS_BetList_BetBuilder_MatchDetail" SpName="RMS_BetList_BetBuilder_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>

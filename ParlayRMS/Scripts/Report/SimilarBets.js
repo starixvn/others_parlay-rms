@@ -88,15 +88,16 @@ function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo
         ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username);
     }
     else {
-        ViewSystemParlayDetails(username, transId, refNo, originalRefNo);
+        ViewSystemParlayDetails(username, transId, originalTransId, refNo, originalRefNo);
     }
 
 }
 
 
-function ViewSystemParlayDetails(username, transId, refNo, originalRefNo) {
+function ViewSystemParlayDetails(username, transId, originalTransId, refNo, originalRefNo) {
     var data = {
-        BetId: transId,
+        TransId: transId,
+        OriginalTransId: originalTransId,
         Username: username,
         RefNo: refNo,
         OriginalRefNo: originalRefNo

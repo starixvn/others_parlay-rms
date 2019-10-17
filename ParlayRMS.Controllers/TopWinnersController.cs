@@ -10,6 +10,7 @@ using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
+using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
@@ -92,15 +93,15 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
-            ViewBag.BetId = options.BetId;
+            ViewBag.BetId = options.TransId;
             ViewBag.Username = options.Username;
 
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
-            var data = _topwinnersService.GetBetDetail(options.RefNo);
+            var data = _topwinnersService.GetBetDetail(options.TransId, options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data);
-            var betInfo = _topwinnersService.GetBetInfo(options.BetId);
+            var betInfo = _topwinnersService.GetBetInfo(options.TransId);
             foreach (var ticket in tickets)
             {
                 if (tickets.Last() == ticket)
@@ -125,12 +126,35 @@ namespace ParlayRMS.Controllers
                 }
             }
 
+            var comboTypeAndStake = GetComboTypeAndStake(tickets, betInfo);
+
             var model = new BetDetails
             {
                 TicketDetail = builder.GetBetList(),
-                ComboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2)
+                ComboTypes = comboTypeAndStake
             };
             return View(model);
+        }
+
+        private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, BetInfo betInfo)
+        {
+            var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
+            var comboTypesAndStake = new List<string>();
+            var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
+            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count());
+            for (var i = 0; i < count; i++)
+            {
+                comboTypesAndStake.Add(comboTypes[i] + " - " + FormatStake(hasStaketickets[i].Stake));
+            }
+
+            return comboTypesAndStake;
+        }
+
+        private static string FormatStake(decimal stake)
+        {
+            return stake < 10
+                ? $"{stake:#,0.00}"
+                : $"{Math.Floor(stake):#,0}";
         }
 
         [HttpGet]

@@ -111,7 +111,7 @@ namespace ParlayRMS.Controllers
                 ms = ExportMemberWinLossRpt(model, title);
             }
 
-            Response.AddHeader("content-disposition", "attachment; filename=" + "AgentMemberWinLoss.xls");
+            Response.AddHeader("content-disposition", "attachment; filename=" + "MAMemberWinLoss.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());
             Response.End();

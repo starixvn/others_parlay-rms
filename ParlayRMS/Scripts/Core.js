@@ -329,6 +329,10 @@ function formatOdds(odds) {
         : numeral(Math.floor(odds)).format('0,0')
 }
 
+function format2Digits(number){
+    return numeral(number).format('0,0.00');
+}
+
 function htmlEncode(value) {
     return $('<div/>').text(value).html();
 }

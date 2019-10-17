@@ -31,7 +31,7 @@
         <providers>
              <add name="XmlDbSettingProvider"
                 type="Fanex.Data.DbSettingProviderExtension.XmlDbSettingProvider3, Fanex.Data.DbSettingProviderExtension"
-                resourcePath="<#=site.SPName#>" enableWatching="0" />
+                resourcePath="~/App_Data/Fanex.Data" enableWatching="0" />
         </providers>
   </Fanex.Data.DbSettingProvider>
   <Fanex.Caching cacheType="Fanex.Caching.Memory.MemoryCache, Fanex.Caching">
@@ -57,7 +57,7 @@
     <add key="PreserveLoginUrl" value="True" />
     <add key="ClientValidationEnabled" value="True" />
     <add key="UnobtrusiveJavaScriptEnabled" value="True" />
-	<add key="StoredProcedurePath" value="App_Data" />
+	<add key="StoredProcedurePath" value="App_Data/Fanex.data" />
     <add key="RecheckIn" value="<#= site.EnableRecheckIn #>" />
     <add key="HiddenGroups" value="IT;Test" />
     <add key="Fanex.RemotingRef.Service.Url" value="<#= site.RemoteRefURL #>" />

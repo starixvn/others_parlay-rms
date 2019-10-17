@@ -5,6 +5,9 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
     public class ParlayBetTypeViewModel
     {
         [Required]
+        public long TransId { get; set; }
+
+        [Required]
         public long RefNo { get; set; }
 
         [Required]

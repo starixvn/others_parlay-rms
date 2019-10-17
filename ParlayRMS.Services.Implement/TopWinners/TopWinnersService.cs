@@ -28,9 +28,9 @@ namespace ParlayRMS.Services.Implement.TopWinners
                 options.ParlayTypes);
         }
 
-        public IEnumerable<RMS_Parlay_TransDetails> GetBetDetail(long refNo)
+        public IEnumerable<RMS_Parlay_TransDetails> GetBetDetail(long transId, long refNo)
         {
-            return _topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners_Bet_Details(refNo);
+            return _topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners_Bet_Details(transId, refNo);
         }
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
