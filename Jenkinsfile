@@ -23,33 +23,10 @@ pipeline {
           pipelineLib.msBuild("ParlayRMS.sln")
         }
       }
-    }
-   
-    
-    stage("SonarQube Analysis"){
-      steps{       
-        script{
-          pipelineLib.endSonarQubeForMsBuild()
-        }
-      }
-      
-      post{
-        always{
-          script{
-            if(manager.logContains(".*Quality gate status.*")){              
-              pipelineLib.generateSonarQubeReport("ParlayRMS")
-            }
-          }
-        }
-      }
-    }
+    }     
   }
 
-  post{
-    always{
-      archiveArtifacts "*.xml,*.email"
-      step([$class: 'ACIPluginPublisher', name: '*.xml', shownOnProjectPage: false])
-    }
+  post{  
     unsuccessful{
       emailext body: '$DEFAULT_CONTENT', subject: '$DEFAULT_SUBJECT', to: 'franklin.nguyen@starixsoft.com'
     }
