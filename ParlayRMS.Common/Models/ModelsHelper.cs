@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Members;
 using ParlayRMS.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace ParlayRMS.Common.Models
 {
@@ -34,6 +34,40 @@ namespace ParlayRMS.Common.Models
                     LevelValue = DbConverter.ToInt32(entry.Key) == 0 ? "None" : ViewLang.Level + " " + entry.Key.ToString()
                 });
             }
+        }
+
+        public static Dictionary<int, string> LeagueGroupColors = new Dictionary<int, string>
+        {
+            { 0, "#000000" },
+            { 1, "#5b9ad5" },
+            { 2, "#f4b083" },
+            { 3, "#548235" },
+            { 4, "#cf51c9" },
+            { 5, "#843c0c" },
+            { 6, "#6f30a0" },
+            { 7, "#bf9000" },
+            { 8, "#ff0000" },
+        };
+        public static string GetColorByLeagueGroup(int groupId)
+        {
+            return LeagueGroupColors.ContainsKey(groupId) ? LeagueGroupColors[groupId] : string.Empty;
+        }
+
+        public static Dictionary<int, string> LeagueGroupNames = new Dictionary<int, string>
+        {
+            { 0, "All Group" },
+            { 1, "MJ" },
+            { 2, "M1" },
+            { 3, "M2" },
+            { 4, "M3" },
+            { 5, "M4 (a)" },
+            { 6, "M4 (b)" },
+            { 7, "M4 (x)" },
+            { 8, "Blacklisted" },
+        };
+        public static string GetNameByLeagueGroup(int groupId)
+        {
+            return LeagueGroupNames.ContainsKey(groupId) ? LeagueGroupNames[groupId] : string.Empty;
         }
 
         /// <summary>

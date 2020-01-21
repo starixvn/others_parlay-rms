@@ -57,6 +57,7 @@
     <Compile Include="Groups\RMS_GroupInfoSelAllGroup.cs" />
     <Compile Include="Groups\RMS_GroupInfoSelByGroupID.cs" />
     <Compile Include="Groups\RMS_GroupPolicySel.cs" />
+    <Compile Include="Leagues\RMS_LeagueSel.cs" />
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss.cs" />
     <Compile Include="Menus\RMS_MenuSel.cs" />
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />

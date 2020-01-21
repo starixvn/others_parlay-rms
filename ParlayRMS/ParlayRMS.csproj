@@ -589,6 +589,7 @@
     <Content Include="Content\images\Login\red_bt_bg.png" />
     <Content Include="Content\images\UnderMaintenance.gif" />
     <Content Include="packages.config" />
+    <Content Include="ExcelTemplates\SpecialLeague.xls" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Content\under-maintenance.css" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />
@@ -597,6 +598,7 @@
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect-customized.css" />
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect-customized.js" />
+    <Content Include="Scripts\ManageLeague.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
@@ -604,6 +606,10 @@
     <Content Include="Views\BetList\SingleMatchParlayDetailPopup.cshtml" />
     <Content Include="Views\SimilarBets\SingleMatchParlayDetailPopup.cshtml" />
     <Content Include="Views\TopWinners\SingleMatchParlayBetDetails.cshtml" />
+    <Content Include="Views\ManageLeague\AddLeague.cshtml" />
+    <Content Include="Views\ManageLeague\Index.cshtml" />
+    <Content Include="Views\ManageLeague\LeagueList.cshtml" />
+    <Content Include="Views\ManageLeague\SearchBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

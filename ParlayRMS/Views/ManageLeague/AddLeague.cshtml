@@ -1,0 +1,33 @@
+﻿@model ParlayRMS.ViewModel.ManageLeague.AddLeagueModel
+@{
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+    ViewBag.Title = "Add League";
+    ViewBag.Submit = "AddLeaguePost()";
+}
+<div class="popup-content-label">
+    @Html.LabelFor(m => m.League)
+</div>
+<div class="popup-content-input">
+    @Html.TextBoxFor(m => m.League, string.Empty, new { @class = "popup-content-textbox w175" })
+</div>
+<div class="popup-content-label2">
+    @Html.LabelFor(m => m.Group)
+</div>
+<div class="popup-content-input2">
+    <div class="member-level" style="background-color:#5b9ad5">
+        <span id="addNewGroupName" style="color:#ffffff">MJ</span> <span id="getColor" class="arrowDown" valcolor="1"
+                                                   title="Click to change group"></span>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#getColor").contextMenu({
+            menu: 'GroupList'
+        }, function (elOption, elMenu, pos) {
+            $("#addNewGroupName").text(elOption.html());
+            var currentClass = $(elMenu).parent().attr('class');
+            $(elMenu).parent().css("background-color", elOption.attr('color'));
+            $(elMenu).attr('valColor', elOption.attr('group'));
+        });
+    });
+</script>

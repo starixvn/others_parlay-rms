@@ -20,7 +20,7 @@ namespace ParlayRMS.DTO
         }
 
         public Result()
-            : this(-1, string.Empty)
+            : this(0, string.Empty)
         {
         }
 

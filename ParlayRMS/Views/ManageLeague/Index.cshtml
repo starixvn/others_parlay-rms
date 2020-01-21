@@ -1,0 +1,43 @@
+﻿@using ParlayRMS.DTO.Leagues;
+@using ParlayRMS.Utility;
+@{
+    ViewBag.Title = ViewBag.HeaderText = "League Management";
+}
+<div id="barSpecialLeague" class="bar new-cmd title" style="width: 550px;">
+    @if (ViewBag.HasWritePermission)
+    { 
+        <div style="float: left;">
+            <button id="btnAddSpecialLeague" onclick="javascript:AddLeague();">
+                <span class="text">Add League</span>
+            </button>
+        </div>
+    }
+    <div class="excel" onclick="ExportExcel();" title="Export Excel">
+    </div>
+</div>
+@Html.Action("SearchBar")
+<div class="scrollGridBorder" style="width: 560px">
+    <div class="scrollGridHeader" style="width: 542px">
+        <table class="scrollGrid" style="width: 542px">
+            <tr>
+                <td style="width: 30px">
+                    @ViewLang.No
+                </td>
+                <td style="width: auto">
+                    League Name
+                </td>
+                <td style="width: 130px">
+                    Group
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="content">
+    </div>
+</div>
+
+
+
+@section Script{
+    @Scripts.Render("~/Scripts/ManageLeague/js")
+}

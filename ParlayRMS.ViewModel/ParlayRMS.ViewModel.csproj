@@ -81,6 +81,11 @@
     <Compile Include="ManageAgent\AgentListModel.cs" />
     <Compile Include="ManageAgent\DeleteAgentModel.cs" />
     <Compile Include="ManageAgent\SearchBarModel.cs" />
+    <Compile Include="ManageLeague\AddLeagueModel.cs" />
+    <Compile Include="ManageLeague\ExportExcelModel.cs" />
+    <Compile Include="ManageLeague\LeagueListModel.cs" />
+    <Compile Include="ManageLeague\SearchBarModel.cs" />
+    <Compile Include="ManageLeague\UpdateGroupModel.cs" />
     <Compile Include="ManageMember\ChangeLevelModel.cs" />
     <Compile Include="ManageMember\ExportExcelModel.cs" />
     <Compile Include="ManageMember\MemberListModel.cs" />

@@ -1,0 +1,43 @@
+﻿@using ParlayRMS.DTO.Leagues
+@using ParlayRMS.Utility
+@using ParlayRMS.Common.Models
+@model IEnumerable<RMS_LeagueSel>
+@{
+    Layout = null;
+    string groupName = string.Empty;
+}
+<div id="groupScrollGrid" class="scrollGridContent" style="width: 560px; max-height: 630px;">
+    <table id="tblSpecialMemberList" class="scrollGrid" style="width: 542px;">
+        @{
+            if (Model == null || Model.Count()==0)
+            {
+            <tr>
+                <td colspan="3" style="text-align: center">
+                    @ViewLang.NoInformation
+                </td>
+            </tr>
+            }
+        }
+        @foreach (var league in Model)
+        {
+            <tr>
+                <td style="width: 30px; text-align: center">
+                    @league.No
+                </td>
+                <td style="width: auto; padding-left: 3px;" id="league-name-@league.LeagueId">
+                    @league.LeagueName
+                </td>
+                <td style="width: 130px">
+                    <div class="divcolor" style="background-color:@ModelsHelper.GetColorByLeagueGroup(league.GroupId); color: #fff">
+                        <span id="groupName_@league.LeagueId">
+                            @ModelsHelper.GetNameByLeagueGroup(league.GroupId)
+                        </span><span title="Click to change group" class="arrowDown_div @Utils.ResolvePermission(ViewBag.HasWritePermission)" group="@league.GroupId" league="@league.LeagueId">
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+@Html.Partial("_Pager", (object)@ViewBag.Pager)

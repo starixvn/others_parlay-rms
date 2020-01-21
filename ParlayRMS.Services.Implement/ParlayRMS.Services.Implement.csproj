@@ -175,6 +175,7 @@
     <Compile Include="Agents\AgentService.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_MailDetailCriteria.cs" />
     <Compile Include="Charts\IChartsService.cs" />
+    <Compile Include="Leagues\LeaguesService.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossService.cs" />
     <Compile Include="PotentialWinningMonitor\PotentialWinningMonitorService.cs" />
     <Compile Include="TotalOutstanding\TotalOutstandingService.cs" />

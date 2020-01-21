@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Fanex.BetList.Core;
+using Fanex.BetList.Core.RemotingRef;
+using Fanex.Data.Configuration;
+using Fanex.RemotingRef;
+using ONEbook.UM.Filters;
+using ParlayRMS.App_Start;
+using ParlayRMS.Web.Authorization;
+using System;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
@@ -7,13 +14,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using Fanex.BetList.Core;
-using Fanex.BetList.Core.RemotingRef;
-using Fanex.Data.Configuration;
-using Fanex.RemotingRef;
-using ONEbook.UM.Filters;
-using ParlayRMS.App_Start;
-using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS
 {
@@ -213,6 +213,7 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMember/js").Include("~/Scripts/ManageMember.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/ManageLeague/js").Include("~/Scripts/ManageLeague.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageAgent/js").Include("~/Scripts/ManageAgent.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageGroup/js").Include("~/Scripts/ManageGroup.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));

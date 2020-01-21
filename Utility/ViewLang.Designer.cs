@@ -1438,7 +1438,7 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our PT.
+        ///   Looks up a localized string similar to House Win Loss.
         /// </summary>
         public static string OurPT {
             get {

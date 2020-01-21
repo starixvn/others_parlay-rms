@@ -92,6 +92,11 @@
     <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     
   </Function>
+  <Function Name="League">
+    <Setting Key="RMS_LeagueIns" SpName="RMS_LeagueIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_LeagueUpd" SpName="RMS_LeagueUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_LeagueSel" SpName="RMS_LeagueSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+  </Function>
   <Function Name="Agent">
     <Setting Key="RMS_DangerousAgentIns" SpName="RMS_DangerousAgentIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_DangerousAgentDel" SpName="RMS_DangerousAgentDel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />

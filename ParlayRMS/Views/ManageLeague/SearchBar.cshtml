@@ -1,0 +1,58 @@
+﻿@using ParlayRMS.Common.Models
+@model ParlayRMS.ViewModel.ManageLeague.SearchBarModel
+<div class="search-content" style="width: 530px">
+    <div class="search-input">
+        @Html.Label("lblLeagueName", "League")
+        @Html.TextBox("txtLeague", "", new { @class = "inputtext w150" })
+    </div>
+    <div class="level" style="background-color:@Model.Color">
+        <span id="searchGroupName">
+            @Model.GroupName
+        </span><span id="groupColor" class="arrowDown" valgroup="@Model.Group" title="Click to change group">
+        </span>
+    </div>
+    <div class="search-button">
+        <button id="LeagueSearch" onclick="SearchLeague_onclick();">
+            @ViewLang.Search
+        </button>
+        &nbsp;
+        <button id="LeagueShowAll" onclick="SearchAllLeague_onclick();">
+            @ViewLang.ShowAll
+        </button>
+    </div>
+</div>
+<ul id="myColor" class="contextMenu">
+    @foreach (var item in ModelsHelper.LeagueGroupColors)
+    {
+        <li style="background-color:@item.Value" title="Click to change group">
+            <a href="#" group="@item.Key" color="@item.Value">
+                @ModelsHelper.LeagueGroupNames[item.Key]
+            </a>
+        </li>
+    }
+</ul>
+
+
+<ul id="GroupList" class="contextMenu">
+    @foreach (var item in ModelsHelper.LeagueGroupColors.Where(l => l.Key > 0))
+    {
+    <li style="background-color:@item.Value" title="Click to change group">
+        <a href="#" group="@item.Key" color="@item.Value">
+            @ModelsHelper.LeagueGroupNames[item.Key]
+        </a>
+    </li>
+    }
+</ul>
+
+<script type="text/javascript">
+    $(function () {
+        $('#txtLeague').keypress(function (event) {
+            if (event.keyCode == 13) {
+                SearchLeague_onclick();
+            }
+        });
+
+        $("#LeagueSearch").button();
+        $("#LeagueShowAll").button();
+    });
+</script>
