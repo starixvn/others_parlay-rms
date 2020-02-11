@@ -58,8 +58,6 @@
     <Compile Include="MemberWinLoss\MemberWinLossData.cs" />
     <Compile Include="Systems\MaintenanceInfo.cs" />
     <Compile Include="Menus\Menu.cs" />
-    <Compile Include="Charts\ChartDetailCache.cs" />
-    <Compile Include="Charts\ChartSummaryCache.cs" />
     <Compile Include="Functions\Policy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\User.cs" />

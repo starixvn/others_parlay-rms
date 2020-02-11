@@ -77,12 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Extension.cs" />
-    <Compile Include="Highcharts\BarChartValues.cs" />
-    <Compile Include="Highcharts\BaseChartValues.cs" />
-    <Compile Include="Highcharts\ColumnChartValues.cs" />
-    <Compile Include="Highcharts\Extension.cs" />
-    <Compile Include="Highcharts\LineChartValues.cs" />
-    <Compile Include="Highcharts\PieChartValues.cs" />
     <Compile Include="Models\ModelsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

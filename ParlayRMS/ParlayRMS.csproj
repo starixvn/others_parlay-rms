@@ -705,8 +705,6 @@
     <Content Include="Scripts\ManageAgent.js" />
     <Content Include="Scripts\Components.js" />
     <Content Include="Scripts\Libs\cookie\jquery.cookie.js" />
-    <Content Include="Scripts\Libs\highcharts\highcharts.js" />
-    <Content Include="Scripts\Libs\highcharts\highcharts.min.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.custom.min.js" />
     <Content Include="Scripts\Libs\jquery-ui\jquery-ui.more.js" />
@@ -722,7 +720,6 @@
     <Content Include="Scripts\Libs\soundManager\swf\soundmanager2_flash9.swf" />
     <Content Include="Scripts\Libs\soundManager\swf\soundmanager2_flash9_debug.swf" />
     <Content Include="Scripts\Member\Core.js" />
-    <Content Include="Scripts\Monitoring.js" />
     <Content Include="Scripts\ParlayRMS.TotalOutstanding.js" />
     <Content Include="Scripts\Report\MemberWinLoss.js" />
     <Content Include="Scripts\Report\ParlayRMS.Winloss.js" />
@@ -741,12 +738,8 @@
     <Content Include="Scripts\Report\SimilarBets.js" />
     <Content Include="Scripts\Report\TopWinners.js" />
     <Content Include="Scripts\UnderMaintenance.js" />
-    <Content Include="Scripts\Cache.js" />
-    <Content Include="Scripts\Data.js" />
     <Content Include="Scripts\Libs\SignalR\jquery.signalR.js" />
     <Content Include="Scripts\Libs\SignalR\jquery.signalR.min.js" />
-    <Content Include="Scripts\Tabular.js" />
-    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Confirm.js" />
     <Content Include="Scripts\ManageUser.js" />
     <Content Include="Scripts\ManageGroup.js" />
@@ -875,15 +868,9 @@
     <Content Include="Views\ManageGroup\EditGroupPolicy.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TopSelection\Index.cshtml" />
-    <Content Include="Views\TopSelection\FilterControl.cshtml" />
-    <Content Include="Views\TopSelection\DataSum.cshtml" />
     <Content Include="Views\ManageUser\EditUserPolicy.cshtml" />
     <Content Include="Views\Shared\_ConfirmBox.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\FavouriteChoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Offline.cshtml" />

@@ -168,7 +168,6 @@ namespace ParlayRMS
                 "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
                 "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
                 "~/Scripts/Libs/cookie/jquery.cookie.js",
-                "~/Scripts/Libs/highcharts/highcharts.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
                 "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
                 "~/Scripts/autoNumeric/autoNumeric.js",
@@ -199,12 +198,6 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/Report/MemberWinLoss/js").Include("~/Scripts/Report/MemberWinLoss.js"));
 
             // chart
-            bundles.Add(new ScriptBundle("~/Scripts/Data/js").Include("~/Scripts/Data.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Tabular/js").Include("~/Scripts/Tabular.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Chart/js").Include("~/Scripts/Chart.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Cache/js").Include("~/Scripts/Cache.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Monitoring/js").Include("~/Scripts/Monitoring.js"));
-
             // report
             bundles.Add(new ScriptBundle("~/Scripts/Member/Core/js").Include("~/Scripts/Member/Core.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/SimilarBets/js").Include("~/Scripts/Report/SimilarBets.js"));

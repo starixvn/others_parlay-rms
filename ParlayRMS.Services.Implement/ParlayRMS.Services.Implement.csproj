@@ -174,7 +174,6 @@
   <ItemGroup>
     <Compile Include="Agents\AgentService.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_MailDetailCriteria.cs" />
-    <Compile Include="Charts\IChartsService.cs" />
     <Compile Include="Leagues\LeaguesService.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossService.cs" />
     <Compile Include="PotentialWinningMonitor\PotentialWinningMonitorService.cs" />
@@ -190,8 +189,6 @@
     <Compile Include="Groups\GroupsService.cs" />
     <Compile Include="ParlayMonitor\ParlayMonitorHub.cs" />
     <Compile Include="Menus\MenusService.cs" />
-    <Compile Include="Charts\ChartsCacheService.cs" />
-    <Compile Include="Charts\ChartsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarBets\SimilarBetsService.cs" />
     <Compile Include="TopWinners\TopWinnersService.cs" />
