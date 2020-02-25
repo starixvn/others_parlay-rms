@@ -293,29 +293,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Content Include="App_Configuration\Web.config.tt">
+    <Content Include="App_Configurations\Web.config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.config.txt</LastGenOutput>
     </Content>
-    <Content Include="App_Configuration\Web.config.txt">
+    <Content Include="App_Configurations\Web.config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.ConnectionString.LOCAL.config">
+    <Content Include="App_Configurations\Web.ConnectionString.LOCAL.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.ConnectionString.MNL.config">
+    <Content Include="App_Configurations\Web.ConnectionString.MNL.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.ConnectionString.PRO.config">
+    <Content Include="App_Configurations\Web.ConnectionString.PRO.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.ConnectionString.SIT.config">
+    <Content Include="App_Configurations\Web.ConnectionString.SIT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.ConnectionString.UAT.config">
+    <Content Include="App_Configurations\Web.ConnectionString.UAT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
     <Content Include="App_Data\Fanex.Data\SpNames.xml">
@@ -680,24 +680,24 @@
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Configuration\Configuration.ttinclude" />
-    <Content Include="App_Configuration\Web.ConnectionString.DEV.config" />
-    <Content Include="App_Configuration\Web.DEV.config">
+    <Content Include="App_Configurations\Configuration.ttinclude" />
+    <Content Include="App_Configurations\Web.ConnectionString.DEV.config" />
+    <Content Include="App_Configurations\Web.DEV.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.LOCAL.config">
+    <Content Include="App_Configurations\Web.LOCAL.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.MNL.config">
+    <Content Include="App_Configurations\Web.MNL.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.PRO.config">
+    <Content Include="App_Configurations\Web.PRO.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.SIT.config">
+    <Content Include="App_Configurations\Web.SIT.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
-    <Content Include="App_Configuration\Web.UAT.config">
+    <Content Include="App_Configurations\Web.UAT.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />

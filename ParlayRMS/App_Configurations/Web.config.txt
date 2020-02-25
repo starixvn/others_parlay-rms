@@ -1,0 +1,10 @@
+﻿
+
+// Generated helper templates
+// Generated items
+// ParlayRMS\App_Configurations\Web.PRO.config
+// ParlayRMS\App_Configurations\Web.MNL.config
+// ParlayRMS\App_Configurations\Web.UAT.config
+// ParlayRMS\App_Configurations\Web.SIT.config
+// ParlayRMS\App_Configurations\Web.DEV.config
+// ParlayRMS\App_Configurations\Web.LOCAL.config
