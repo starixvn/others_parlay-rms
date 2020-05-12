@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fanex.BetList.Core.Entities;
+﻿using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
 using ParlayRMS.DataAccess.Implement.BetList;
 using ParlayRMS.DTO.BetList;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.BetList
 {
@@ -83,6 +83,17 @@ namespace ParlayRMS.Services.Implement.BetList
             var repository = new DynamicRepository();
 
             return repository.Fetch<RMS_BetList_BetBuilder_MatchDetailModel>(criteria).ToList();
+        }
+
+        public List<RMS_BetList_PenaltyShootout_MatchDetailModel> RMS_BetList_PenaltyShootout_MatchDetail(long transId)
+        {
+            var criteria = new RMS_BetList_PenaltyShootout_MatchDetailCriteria
+            {
+                TransId = transId
+            };
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_PenaltyShootout_MatchDetailModel>(criteria).ToList();
         }
     }
 }

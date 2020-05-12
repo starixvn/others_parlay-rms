@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Web.Mvc;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.TotalOutstanding;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -48,6 +48,12 @@ namespace ParlayRMS.Controllers
                 Text = ViewLang.ComboParlay,
                 Value = ((int)ParlayType.ComboParlay).ToString(),
                 Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
+            });
+            parlayTypes.Add(new SelectListItem
+            {
+                Text = ViewLang.PenaltyShootoutCombo,
+                Value = ((int)ParlayType.PenaltyShootoutCombo).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.PenaltyShootoutCombo).ToString())
             });
             parlayTypes.Add(new SelectListItem
             {

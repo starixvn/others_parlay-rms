@@ -138,6 +138,19 @@ namespace ParlayRMS.Controllers
             return View();
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
+        [HttpPost]
+        public ActionResult PenaltyShootoutParlayDetailPopup(RMS_BetList_PenaltyShootout_DetailCriteria criteria)
+        {
+            ViewBag.TransId = criteria.TransId;
+            ViewBag.Username = criteria.Username;
+            var choice = GetChoiceForPenaltyShootoutParlayDetailPopup(criteria.TransId);
+            ViewBag.Choice = choice;
+
+            return View();
+        }
+
+
         private string GetChoiceForSingleMatchParlayDetailPopup(long transId)
         {
             var model = _betlistService.RMS_BetList_BetBuilder_MatchDetail(transId).FirstOrDefault();
@@ -183,6 +196,50 @@ namespace ParlayRMS.Controllers
             if (leagueNode != null)
             {
                 document.ChildNodes.Add(leagueNode);
+            }
+
+            return document.OuterHtml;
+        }
+
+        private string GetChoiceForPenaltyShootoutParlayDetailPopup(long transId)
+        {
+            var model = _betlistService.RMS_BetList_PenaltyShootout_MatchDetail(transId).FirstOrDefault();
+
+            if (model == null)
+            {
+                return string.Empty;
+            }
+
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportType,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                TransId = model.TransId,
+                BetTypeId = 376,
+                BetCheck = model.BetCheck,
+                BetTeam = model.BetTeam
+            };
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var bettype = document.QuerySelector(".bettype");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            if (bettype != null)
+            {
+                bettype.Remove();
             }
 
             return document.OuterHtml;

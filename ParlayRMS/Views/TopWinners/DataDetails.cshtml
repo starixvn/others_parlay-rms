@@ -87,10 +87,20 @@
                     <td>
                         @{
                             var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
-                            var singleMatchParlayText = item.IsSingleMatchParlay ? "(S)" : "";
+                            var parlayText = string.Empty;
+                            if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
+                            {
+                                parlayText = "(S)";
+                            }
+
+                            if (item.ParlayType == (int)ParlayType.PenaltyShootoutCombo)
+                            {
+                                parlayText = "(P)";
+                            }
+
                         }
 
-                        @Formatter.FormatNumber3(@item.TotalCombo) @betText @singleMatchParlayText
+                        @Formatter.FormatNumber3(@item.TotalCombo) @betText @parlayText
                     </td>
                     <td>
                         @item.Selection.ToString("#,##0")

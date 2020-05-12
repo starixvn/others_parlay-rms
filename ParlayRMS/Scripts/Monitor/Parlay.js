@@ -259,8 +259,8 @@ $(document).ready(function () {
     });
 
     $("#parlayType").multiselect({
-        minWidth: 162,
-        height: 82,
+        minWidth: 200,
+        height: 120,
         create: function () {
             $("#parlayType").multiselect();
         },
@@ -520,6 +520,15 @@ function FillData(table, data) {
 }
 
 function CreateRow(order, item) {
+    var betSuffix = '';
+    if (item.BetType === 38) {
+        betSuffix = ' (S)';
+    }
+
+    if (item.BetType === 376) {
+        betSuffix = ' (P)';
+    }
+
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
@@ -534,7 +543,7 @@ function CreateRow(order, item) {
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
-    r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + (item.BetType === 38 ? ' (S)' : '') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + betSuffix + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
     r[++j] = '<td class="center">' + item.SportTypeName + '</td>';
 
@@ -573,6 +582,8 @@ function ViewTotalOutstanding(username) {
 function ViewBetDetails(username, transId, refNo, betType, custId) {
     if (betType === 38) {
         ViewSingleMatchParlayDetails(transId, custId, username);
+    } else if (betType === 376) {
+        ViewPenaltyShootoutParlayDetails(transId, username);
     }
     else {
         ViewSystemParlayDetails(username, transId, refNo);
@@ -619,6 +630,35 @@ function ViewSingleMatchParlayDetails(transId, custId, username) {
 
     $.ajax({
         url: resolveClientUrl('BetList/SingleMatchParlayDetailPopup'),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            modalPopup(result);
+            $(".betdetails").css('overflow-y', 'auto');
+            $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+function ViewPenaltyShootoutParlayDetails(transId, username) {
+    var data = {
+        TransId: transId,
+        Username: username
+    }
+
+    $.ajax({
+        url: resolveClientUrl('BetList/PenaltyShootoutParlayDetailPopup'),
         type: 'POST',
         data: data,
         dataType: 'html',
