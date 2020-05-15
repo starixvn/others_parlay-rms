@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using ParlayRMS.DataAccess.Implement.TopWinners;
-using ParlayRMS.DTO.BetList;
+﻿using ParlayRMS.DataAccess.Implement.TopWinners;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.ViewModel.Report;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.TopWinners
 {
@@ -26,11 +25,6 @@ namespace ParlayRMS.Services.Implement.TopWinners
                 options.SelectTop,
                 options.Combos,
                 options.ParlayTypes);
-        }
-
-        public IEnumerable<RMS_Parlay_TransDetails> GetBetDetail(long transId, long refNo)
-        {
-            return _topwinnersDataAccess.RMS_Rpt_Parlay_TopWinners_Bet_Details(transId, refNo);
         }
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
@@ -67,11 +61,6 @@ namespace ParlayRMS.Services.Implement.TopWinners
                     return listEntity;
                 }
             }
-        }
-
-        public BetInfo GetBetInfo(long transId)
-        {
-            return _topwinnersDataAccess.GetBetInfo(transId);
         }
     }
 }

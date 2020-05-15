@@ -29,5 +29,6 @@
         public const string TotalOutstanding = "TotalOutstanding";
         public const string DangerMonitor = "DangerMonitor";
         public const string ViewIP = "ViewIP";
+        public const string ParlayWon = "ParlayWon";
     }
 }

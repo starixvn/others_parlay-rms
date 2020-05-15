@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.PotentialWinningMonitor;
+}
+@Styles.Render("~/Content/simplepagination")
+@Html.Action("Filter")
+<div style="clear: both; margin-bottom: 10px;" id="divResult">
+</div>
+@Scripts.Render("~/Scripts/Report/ParlayWon/js")
+<script type="text/javascript">
+    var dateRanges = {
+        LimitDataFromDate: '@DateTime.Now.AddMonths(-1)',
+        NowDate: '@DateTime.Now'
+    };
+</script>
+
+

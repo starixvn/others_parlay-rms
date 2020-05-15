@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Fanex.BetList.Core.Builder;
+﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -15,6 +9,12 @@ using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.Web.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {

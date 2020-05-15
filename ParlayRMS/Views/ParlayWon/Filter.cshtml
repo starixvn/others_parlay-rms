@@ -1,0 +1,61 @@
+﻿@using ParlayRMS.Web.Mvc
+@{
+    ViewBag.Title = ViewBag.HeaderText = ViewLang.WinLoss;
+}
+<div class="filter">
+    <div class="filter-control" style="width: 1100px; margin-bottom: 10px;">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl
+            </div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.Label("parlayType", ViewLang.ParlayType)
+                    @Html.DropDownList("parlayType", Config.ParlayTypes)
+                </div>
+                <div class="group">
+                    @Html.Label(ViewLang.Combo)
+                    @Html.DropDownList("combo", Config.Combos)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("fromDate")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("toDate")
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Level)
+                    @Html.DropDownList("level", (List<SelectListItem>)ViewBag.Levels)
+                </div>
+                <div class="group">
+                    @Html.Label(ViewLang.SportsType)
+                    @RazorHelper.SportTypesDropDown()
+                </div>
+
+                <div class="group">
+                    @Html.Label("", ViewLang.HouseLoseAmount)
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("houseLoseAmountFrom", (object)ViewBag.HouseLoseAmountFrom)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("houseLoseAmountTo", (object)ViewBag.HouseLoseAmountTo)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

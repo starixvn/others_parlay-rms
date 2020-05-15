@@ -882,4 +882,13 @@
   <data name="SingleMatchParlay" xml:space="preserve">
     <value>Single Match Parlay</value>
   </data>
+  <data name="PenaltyShootoutCombo" xml:space="preserve">
+    <value>Penalty Shootout Combo</value>
+  </data>
+  <data name="HouseLoseAmount" xml:space="preserve">
+    <value>House Lose Amount</value>
+  </data>
+  <data name="SportType" xml:space="preserve">
+    <value>Sport Type</value>
+  </data>
 </root>

@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\RMS_DangerousAgentSel.cs" />
+    <Compile Include="BetDetails\ParlayBetDetails.cs" />
+    <Compile Include="BetDetails\BetInfo.cs" />
     <Compile Include="BetList\BetListData.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_MatchDetailModel.cs" />
     <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
@@ -61,12 +63,12 @@
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss.cs" />
     <Compile Include="Menus\RMS_MenuSel.cs" />
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />
+    <Compile Include="ParlayWon\RMS_Rpt_Parlay_ParlayWon.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SimilarBets\SingleMatchParlaySimilarDetailOption.cs" />
-    <Compile Include="TopWinners\BetInfo.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
     <Compile Include="Common\RMS_SelBalanceUpDay.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner.cs" />

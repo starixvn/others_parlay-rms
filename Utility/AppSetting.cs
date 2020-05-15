@@ -122,6 +122,22 @@
             }
         }
 
+        public static int HouseLoseAmountFrom
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("HouseLoseAmountFrom"));
+            }
+        }
+
+        public static int HouseLoseAmountTo
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("HouseLoseAmountTo"));
+            }
+        }
+
         public static string[] SelectTop
         {
             get

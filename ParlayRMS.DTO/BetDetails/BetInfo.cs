@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.TopWinners
+﻿namespace ParlayRMS.DTO.BetDetails
 {
     public class BetInfo
     {
