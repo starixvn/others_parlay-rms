@@ -49,5 +49,7 @@ namespace ParlayRMS.DTO.BetList
         public DateTime TransDate { get; set; }
 
         public string TransDesc { get; set; }
+
+        public bool IsBlacklistLeague { get; set; }
     }
 }

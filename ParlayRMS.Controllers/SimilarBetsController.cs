@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Web.Mvc;
-using Fanex.BetList.Core.Builder;
+﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -16,6 +11,11 @@ using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.SimilarBets;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -61,9 +61,9 @@ namespace ParlayRMS.Controllers
             var originalTickets = _betlistService.CreateChoice(options.OriginalTransId, options.OriginalRefNo);
             var betInfo = _betlistService.GetBetInfo(options.TransId);
             var ticketsCompare = new List<long>();
-            foreach (var ticket in tickets)
+            foreach (var ticket in tickets.Item2)
             {
-                var similar = originalTickets.Any(originalTicket =>
+                var similar = originalTickets.Item2.Any(originalTicket =>
                         originalTicket.MatchId == ticket.MatchId &&
                         originalTicket.BetTypeId == ticket.BetTypeId &&
                         originalTicket.BetTeam == ticket.BetTeam);
@@ -73,7 +73,7 @@ namespace ParlayRMS.Controllers
                     ticketsCompare.Add(ticket.TransId);
                 }
 
-                if (tickets.Last() == ticket)
+                if (tickets.Item2.Last() == ticket)
                 {
                     builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
                 }
@@ -83,7 +83,7 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            var comboTypeAndStake = GetComboTypeAndStake(tickets, betInfo);
+            var comboTypeAndStake = GetComboTypeAndStake(tickets.Item2, betInfo);
 
             var model = new BetDetails
             {

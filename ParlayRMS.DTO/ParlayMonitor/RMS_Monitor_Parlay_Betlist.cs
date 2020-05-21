@@ -39,5 +39,9 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public int BetType { get; set; }
 
         public int CustId { get; set; }
+
+        public bool IsLive { get; set; }
+
+        public bool IsBlacklistLeague { get; set; }
     }
 }

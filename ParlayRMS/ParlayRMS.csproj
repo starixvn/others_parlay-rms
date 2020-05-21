@@ -551,6 +551,8 @@
     <Content Include="Content\images\Content\icon\1340071330_jajuk.png" />
     <Content Include="Content\images\Content\icon\1340071335_jajuk.png" />
     <Content Include="Content\images\Content\icon\excel_icon_small.gif" />
+    <Content Include="Content\images\Content\icon\icon_blacklist.png" />
+    <Content Include="Content\images\Content\icon\icon_live.png" />
     <Content Include="Content\images\Content\icon_wait.gif" />
     <Content Include="Content\images\Content\lastGoal.gif" />
     <Content Include="Content\images\Content\left_side_bt.png" />

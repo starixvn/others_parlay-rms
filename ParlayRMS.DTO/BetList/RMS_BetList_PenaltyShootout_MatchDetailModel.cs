@@ -21,5 +21,7 @@ namespace ParlayRMS.DTO.BetList
         public string BetTeam { get; set; }
 
         public string BetCheck { get; set; }
+
+        public bool IsBlacklistLeague { get; set; }
     }
 }

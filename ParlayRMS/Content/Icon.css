@@ -44,3 +44,21 @@
     line-height: 20px;
     color: #fff;
 }
+.live {
+    background: url("images/Content/icon/icon_live.png") no-repeat top center transparent;
+    width: 16px;
+    height: 18px;
+    float: left;
+    margin-right: 2px;
+    display: inline-block;
+    line-height: 18px;
+}
+.blackListClass {
+    background: url("images/Content/icon/icon_blacklist.png") no-repeat top center transparent;
+    width: 16px;
+    height: 18px;
+    float: left;
+    margin-right: 2px;
+    display: inline-block;
+    line-height: 18px;
+}
