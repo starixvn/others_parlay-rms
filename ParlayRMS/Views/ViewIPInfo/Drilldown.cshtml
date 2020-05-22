@@ -67,7 +67,7 @@
                 @foreach (var item in Model)
                 {
                     var isHideDetails = string.Equals(item.Status, "void", StringComparison.OrdinalIgnoreCase) || string.Equals(item.Status, "reject", StringComparison.OrdinalIgnoreCase);
-                    isHideDetails = isHideDetails || item.BetType == 38;
+                    isHideDetails = isHideDetails || item.BetType == 38 || item.BetType == 376;
                     counter = counter + 1;
                     <tr>
                         <td class="center">
@@ -110,6 +110,11 @@
                                 }
                             </a>
                             @if (item.BetType == (int)BetType.SingleMatchParlay)
+                            {
+                                <br />
+                                @Html.Raw(item.Choice)
+                            }
+                            @if (item.BetType == (int)BetType.PenaltyShootout)
                             {
                                 <br />
                                 @Html.Raw(item.Choice)

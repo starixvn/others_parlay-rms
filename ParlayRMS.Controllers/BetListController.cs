@@ -61,20 +61,7 @@ namespace ParlayRMS.Controllers
                     builder.AddChoice(ticket, ticketHelper, null, "<div id = '" + ticket.BetId + "'><div  class='" + blackListLeague + "'></div><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
                 }
             }
-            //foreach (var ticket in tickets.Item2)
-            //{
-            //    var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
-            //    var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : string.Empty;
-            //    if (tickets.Item2.Last() == ticket)
-            //    {
-            //        builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
-            //    }
-            //    else
-            //    {
-            //        builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.BetId + "'><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
-            //    }
-            //}
-
+           
             var comboTypeAndStake = GetComboTypeAndStake(tickets.Item2, betInfo);
 
             var model = new BetDetails

@@ -92,6 +92,12 @@ namespace ParlayRMS.Controllers
                 UpdateChoiceForSingleMatchParlay(model, singleMatchParlayTickets);
             }
 
+            var penaltyShootoutParlayTickets = models.Where(m => m.BetType == (int)BetType.PenaltyShootout).ToArray();
+            if (penaltyShootoutParlayTickets.Any())
+            {
+                UpdateChoiceForPenaltyShootoutParlay(model, penaltyShootoutParlayTickets);
+            }
+
             return View("Drilldown", models);
         }
 
@@ -211,6 +217,56 @@ namespace ParlayRMS.Controllers
             }
 
             return builder.GetBetList();
+        }
+
+        private static void UpdateChoiceForPenaltyShootoutParlay(DrillDownOptions model, RMS_Rpt_Parlay_ViewIPInfoByUser[] singleMatchParlayTickets)
+        {
+            var index = 0;
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            foreach (var m in singleMatchParlayTickets)
+            {
+                if (m.BetType == (int)BetType.PenaltyShootout)
+                {
+                    m.Choice = BuildPenaltyShootoutParlayChoice(ticketHelper, factory, m, model.UserId, index);
+                    index++;
+                }
+            }
+        }
+
+        private static string BuildPenaltyShootoutParlayChoice(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
+        {
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportTypeId,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                BetTypeId = model.BetType,
+                TransId = model.TransID,
+                IsNeutral = model.IsNeutral,
+                CustId = userId,
+                BetCheck = model.BetCheck,
+                BetTeam = model.BetTeam
+            };
+
+            index++;
+            ticketHelper.Index = index;
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var bettype = document.QuerySelector(".bettype");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            return document.OuterHtml;
         }
     }
 }
