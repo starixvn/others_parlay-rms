@@ -1510,6 +1510,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parlay Won.
+        /// </summary>
+        public static string ParlayWon {
+            get {
+                return ResourceManager.GetString("ParlayWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

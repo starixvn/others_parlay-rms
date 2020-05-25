@@ -891,4 +891,7 @@
   <data name="SportType" xml:space="preserve">
     <value>Sport Type</value>
   </data>
+  <data name="ParlayWon" xml:space="preserve">
+    <value>Parlay Won</value>
+  </data>
 </root>
