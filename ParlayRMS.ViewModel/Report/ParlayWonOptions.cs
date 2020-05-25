@@ -1,6 +1,9 @@
-﻿using ParlayRMS.Web.Mvc.DataAnnotations;
+﻿using ParlayRMS.Common.Models;
+using ParlayRMS.Utility;
+using ParlayRMS.Web.Mvc.DataAnnotations;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ParlayRMS.ViewModel.Report
 {
@@ -28,7 +31,41 @@ namespace ParlayRMS.ViewModel.Report
 
         public string GetTitle()
         {
-            return string.Empty;
+            var combosTitle = ViewLang.All;
+            var combos = Combos.Split(',');
+            if (combos.Length < 9)
+            {
+                combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
+            }
+
+            var levelTitle = ViewLang.All;
+            var levels = Levels.Split(',');
+            if (levels.Length < 11)
+            {
+                levelTitle = string.Join(",", levels.Select(x => x));
+            }
+
+            if (levelTitle == "0")
+            {
+                levelTitle = levelTitle.Replace("0", ViewLang.None);
+            }
+
+            levelTitle = levelTitle.Replace("0,", "None,");
+
+            var title = string.Format(
+                                "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} [{7}] - {8} - [{9}] {10}",
+                                ViewLang.ParlayWon,
+                                FromDate.ToString("MMMM dd, yyyy"),
+                                ToDate.ToString("MMMM dd, yyyy"),
+                                ViewLang.ParlayType,
+                                ModelsHelper.GetParlayTitle(ParlayTypes),
+                                ViewLang.Combo,
+                                combosTitle,
+                                ViewLang.SportsType,
+                                ModelsHelper.GetSportType(SportsType),
+                                ViewLang.Level,
+                                levelTitle);
+            return title;
         }
     }
 }

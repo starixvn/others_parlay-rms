@@ -81,6 +81,7 @@ namespace ParlayRMS.Controllers
                 {
                     var model = _service.GetParlayWonList(options);
                     ViewBag.FilterOption = options;
+                    ViewBag.Title = options.GetTitle();
                     return PartialView(model);
                 }
             }
