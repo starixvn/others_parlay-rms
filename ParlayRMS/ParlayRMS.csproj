@@ -619,6 +619,7 @@
     <Content Include="Views\ParlayWon\Filter.cshtml" />
     <Content Include="Views\BetList\PenaltyShootoutParlayDetailPopup.cshtml" />
     <Content Include="Views\ParlayWon\Index.cshtml" />
+    <Content Include="Views\TopWinners\PenaltyShootoutParlayBetDetails.cshtml" />
     <Content Include="Views\ParlayWon\Data.cshtml" />
     <Content Include="Views\ParlayWon\BetDetails.cshtml" />
     <Content Include="Views\TopWinners\BetDetails.cshtml" />

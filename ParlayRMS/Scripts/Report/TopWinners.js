@@ -429,6 +429,9 @@ function ViewTopWinnerBetDetail(refNo, transId, username, custId, bettype) {
     if (bettype == 38) {
         ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
     }
+    else if (bettype == 376) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/PenaltyShootoutParlayBetDetails?&TransId=' + transId + '&username=' + username), 700, 600);
+    }
     else {
         ParlayRMS.Core.OpenWindow(resolveClientUrl('TopWinners/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
     }
