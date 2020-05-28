@@ -1,5 +1,19 @@
 ﻿ParlayWon = {
+    cachedObject: {},
     Init: function () {
+        ParlayWon.cachedObject = {
+            fromDate: null,
+            toDate: null,
+            combos: null,
+            levels: null,
+            sportsType: null,
+            houseAmountFrom: 0,
+            houseAmountTo: 0,
+            sortById: null,
+            isSortAsc: null,
+            pageIndex: 1,
+            pageSize: 100
+        };
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
         $("#parlayType").multiselect({
@@ -133,6 +147,7 @@
         $("#btnSearch").addClass("button");
         $('#btnSearch').click(function () {
             $("#divResult").html('');
+            ParlayWon.ResetCachedObject();
             var fromDate = $("#fromDate").val();
             var toDate = $("#toDate").val();
 
@@ -179,21 +194,105 @@
             var houseLoseAmountFrom = $('#houseLoseAmountFrom').val();
             var houseLoseAmountTo = $('#houseLoseAmountTo').val();
 
-            ParlayWon.Data(parlayTypes, fromDate, toDate, combos, levels, sportsTypes, houseLoseAmountFrom, houseLoseAmountTo);
+            ParlayWon.Data(parlayTypes,
+                fromDate,
+                toDate,
+                combos,
+                levels,
+                sportsTypes,
+                houseLoseAmountFrom,
+                houseLoseAmountTo,
+                ParlayWon.cachedObject.sortById,
+                ParlayWon.cachedObject.isSortAsc,
+                ParlayWon.cachedObject.pageIndex,
+                ParlayWon.cachedObject.pageSize);
+        });
+
+        $(document).on('click', '#pagination .page-item', function (e) {
+            $("#pagination .page-item").removeClass("current");
+            $(this).addClass("current");
+            ParlayWon.cachedObject.pageIndex = parseInt($(this).text());
+            ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
+                ParlayWon.cachedObject.fromDate,
+                ParlayWon.cachedObject.toDate,
+                ParlayWon.cachedObject.combos,
+                ParlayWon.cachedObject.levels,
+                ParlayWon.cachedObject.sportsType,
+                ParlayWon.cachedObject.houseAmountFrom,
+                ParlayWon.cachedObject.houseAmountTo,
+                ParlayWon.cachedObject.sortById,
+                ParlayWon.cachedObject.isSortAsc,
+                ParlayWon.cachedObject.pageIndex,
+                ParlayWon.cachedObject.pageSize);
+        });
+
+        $(document).on("click", '#header .sortable', function () {
+            var currentObject = this;
+            var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
+
+            if (currentColIndex == ParlayWon.cachedObject.sortById) {
+                if (ParlayWon.cachedObject.isSortAsc) {
+                    ParlayWon.cachedObject.isSortAsc = false;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                } else {
+                    ParlayWon.cachedObject.isSortAsc = true;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                }
+            } else {
+                if (currentObject.sortDirection == 'asc') {
+                    ParlayWon.cachedObject.isSortAsc = false;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                } else {
+                    ParlayWon.cachedObject.isSortAsc = true;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                }
+
+                $('#header').find(".sortable").each(function () {
+                    if ($(currentObject).index() != $(this).index()) {
+                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                        this.sortDirection = "";
+                    }
+                });
+            }
+           
+
+            if (!currentColIndex) {
+                currentColIndex = $(currentObject).index();
+            }
+
+            ParlayWon.cachedObject.sortById = parseInt(currentColIndex);
+            ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
+              ParlayWon.cachedObject.fromDate,
+              ParlayWon.cachedObject.toDate,
+              ParlayWon.cachedObject.combos,
+              ParlayWon.cachedObject.levels,
+              ParlayWon.cachedObject.sportsType,
+              ParlayWon.cachedObject.houseAmountFrom,
+              ParlayWon.cachedObject.houseAmountTo,
+              ParlayWon.cachedObject.sortById,
+              ParlayWon.cachedObject.isSortAsc,
+              ParlayWon.cachedObject.pageIndex,
+              ParlayWon.cachedObject.pageSize);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo) {
+    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, sortById, isSortAsc, pageIndex, pageSize) {
         var data = {
-            FromDate: fromDate,
-            ToDate: toDate,
-            ParlayTypes: parlayTypes,
-            SportsType: sportsType,
-            Combos: combos,
-            Levels: levels,
-            HouseAmountFrom: houseLoseAmountFrom,
-            HouseAmountTo: houseLoseAmountTo
+            fromDate: fromDate,
+            toDate: toDate,
+            parlayTypes: parlayTypes,
+            sportsType: sportsType,
+            combos: combos,
+            levels: levels,
+            houseAmountFrom: houseLoseAmountFrom,
+            houseAmountTo: houseLoseAmountTo,
+            sortById: sortById,
+            isSortAsc: isSortAsc,
+            pageIndex: pageIndex,
+            pageSize: pageSize
         }
 
+        ParlayWon.cachedObject = data;
+ 
         $.ajax({
             url: resolveClientUrl('ParlayWon/Data'),
             type: 'POST',
@@ -205,25 +304,20 @@
             },
             success: function (result) {
                 $("#divResult").html(result);
-                var table = $('#result');
-                var header = $('#header');
-                tableSorter.bind2(header, table, {
-                    type: 'text',
-                    onFinish: function () {
-                        var trs = table.children('tbody').children("tr");
-                        trs.each(function (index, tr) {
-                            $(tr).attr('style', function (i, style) {
-                                return style && style.replace(/display[^;]+;?/g, '');
-                            });
-
-                            $(tr).children('td:first').text(index + 1);
-                        });
-
-                        ParlayWon.Paging();
+                var totalRows = parseInt($("#totalRows").val());
+               
+                $('#header').find(".sortable").each(function () {
+                    if ($(this).attr("data-col-index") == ParlayWon.cachedObject.sortById) {
+                        if (ParlayWon.cachedObject.isSortAsc) {
+                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                          
+                        } else {
+                            $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                        }
                     }
                 });
-                
-                ParlayWon.Paging();
+
+                ParlayWon.Paging(totalRows, data.pageIndex);
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -256,31 +350,115 @@
             ParlayRMS.Core.OpenWindow(resolveClientUrl('ParlayWon/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
         }
     },
-    Paging: function () {
-        var items = $("#result tbody tr");
-        var numItems = items.length;
-        var perPage = 100;
+    Paging: function (totalRows, pageIndex) {
+        // Number of items and limits the number of items per page
+        var numberOfItems = totalRows;
+        var limitPerPage = 100;
+        // Total pages rounded upwards
+        var totalPages = Math.ceil(numberOfItems / limitPerPage);
+        // Number of buttons at the top, not counting prev/next,
+        // but including the dotted buttons.
+        // Must be at least 5:
+        var paginationSize = 7;
+        var currentPage = pageIndex;
 
-        // Only show the first 2 (or first `per_page`) items initially.
-        items.slice(perPage).hide();
+        function showPage(whichPage) {
+            if (whichPage < 1 || whichPage > totalPages) return false;
+            currentPage = whichPage;
+            // Replace the navigation items (not prev/next):            
+            $(".pagination li").slice(1, -1).remove();
+            ParlayWon.GetPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                $("<li>").addClass("page-item")
+                         .addClass(item ? "current-page" : "disabled")
+                         .append(
+                    $("<a>").addClass(item === currentPage ? "page-link active" : "page-link").attr({
+                        href: "javascript:void(0)"
+                    }).text(item || "...")
+                ).insertBefore("#next-page");
+            });
+            // Disable prev/next when at first/last page:
+            $("#previous-page").toggleClass("disabled", currentPage === 1);
+            $("#next-page").toggleClass("disabled", currentPage === totalPages);
+            return true;
+        }
 
-        // Now setup the pagination using the `#pagination` div.
-        $("#pagination").pagination({
-                items: numItems,
-                itemsOnPage: perPage,
-                cssStyle: "light-theme",
-                // This is the actual page changing functionality.
-                onPageClick: function(pageNumber) {
-                    // We need to show and hide `tr`s appropriately.
-                    var showFrom = perPage *(pageNumber -1);
-                    var showTo = showFrom + perPage;
+        // Include the prev/next buttons:
+        $(".pagination ul").append(
+            $("<li>").addClass("page-item").attr({ id: "previous-page" }).append(
+                $("<a>").addClass("page-link").attr({
+                    href: "javascript:void(0)"
+                }).text("Prev")
+            ),
+            $("<li>").addClass("page-item").attr({ id: "next-page" }).append(
+                $("<a>").addClass("page-link").attr({
+                    href: "javascript:void(0)"
+                }).text("Next")
+            )
+        );
+        // Show the page links
+        showPage(currentPage);
 
-                        // We'll first hide everything...
-                    items.hide()
-                        // ... and then only show the appropriate rows.
-                    .slice(showFrom, showTo).show();
-                }
+        // Use event delegation, as these items are recreated later    
+        $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+            return showPage(+$(this).text());
         });
+        $("#next-page").on("click", function () {
+            return showPage(currentPage + 1);
+        });
+
+        $("#previous-page").on("click", function () {
+            return showPage(currentPage - 1);
+        });
+    },
+
+    // Returns an array of maxLength (or less) page numbers
+    // where a 0 in the returned array denotes a gap in the series.
+    // Parameters:
+    //   totalPages:     total number of pages
+    //   page:           current page
+    //   maxLength:      maximum size of returned array
+    GetPageList: function(totalPages, page, maxLength) {
+        if (maxLength < 5) throw "maxLength must be at least 5";
+
+        function range(start, end) {
+            return Array.from(Array(end - start + 1), (_, i) => i + start); 
+        }
+
+        var sideWidth = maxLength < 9 ? 1 : 2;
+        var leftWidth = (maxLength - sideWidth*2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth*2 - 2) >> 1;
+        if (totalPages <= maxLength) {
+            // no breaks in list
+            return range(1, totalPages);
+        }
+        if (page <= maxLength - sideWidth - 1 - rightWidth) {
+            // no break on left of page
+            return range(1, maxLength - sideWidth - 1)
+                .concat(0, range(totalPages - sideWidth + 1, totalPages));
+        }
+        if (page >= totalPages - sideWidth - 1 - rightWidth) {
+            // no break on right of page
+            return range(1, sideWidth)
+                .concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+        }
+        // Breaks on both sides
+        return range(1, sideWidth)
+            .concat(0, range(page - leftWidth, page + rightWidth),
+                    0, range(totalPages - sideWidth + 1, totalPages));
+    },
+
+    ResetCachedObject: function() {
+        ParlayWon.cachedObject.fromDate = null;
+        ParlayWon.cachedObject.toDate = null;
+        ParlayWon.cachedObject.combos = null;
+        ParlayWon.cachedObject.levels = null;
+        ParlayWon.cachedObject.sportsType =  null;
+        ParlayWon.cachedObject.houseAmountFrom =  0;
+        ParlayWon.cachedObject.houseAmountTo = 0;
+        ParlayWon.cachedObject.sortById = null;
+        ParlayWon.cachedObject.isSortAsc = null;
+        ParlayWon.cachedObject.pageIndex = 1;
+        ParlayWon.cachedObject.pageSize = 100;
     }
 }
 

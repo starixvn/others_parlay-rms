@@ -7,6 +7,7 @@ using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -51,8 +52,11 @@ namespace ParlayRMS.Controllers
         {
             try
             {
+                Hashtable outputParams = null;
                 ModelState.Remove("HouseAmountFrom");
                 ModelState.Remove("HouseAmountTo");
+                ModelState.Remove("SortById");
+                ModelState.Remove("IsSortAsc");
 
                 if (options.FromDate > options.ToDate)
                 {
@@ -79,9 +83,10 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = _service.GetParlayWonList(options);
+                    var model = _service.GetParlayWonList(options, ref outputParams);
                     ViewBag.FilterOption = options;
                     ViewBag.Title = options.GetTitle();
+                    ViewBag.TotalRows = outputParams == null ? 0 : Convert.ToInt32(outputParams["totalrows"]);
                     return PartialView(model);
                 }
             }
@@ -136,7 +141,8 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(ParlayWonOptions options)
         {
-            var records = _service.GetParlayWonList(options);
+            Hashtable outputParams = null;
+            var records = _service.GetParlayWonList(options, ref outputParams);
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\ParlayWon.xls";
             var writer = new TemplateWriter(templatePath);

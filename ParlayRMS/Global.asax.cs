@@ -163,6 +163,9 @@ namespace ParlayRMS
                 "~/Content/Validators.css"));
             bundles.Add(new StyleBundle("~/Content/simplepagination").Include("~/Content/Libs/simplepagination/simplePagination.css"));
 
+            bundles.Add(new StyleBundle("~/Content/ParlayWon").Include(
+              "~/Content/ParlayWon.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",

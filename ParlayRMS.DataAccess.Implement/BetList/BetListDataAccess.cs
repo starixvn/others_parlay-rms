@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Fanex.Data;
+﻿using Fanex.Data;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.BetList
 {

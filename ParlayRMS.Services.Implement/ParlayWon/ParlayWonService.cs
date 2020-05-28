@@ -2,6 +2,7 @@
 using ParlayRMS.DTO.ParlayWon;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.ViewModel.Report;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ParlayRMS.Services.Implement.ParlayWon
@@ -11,7 +12,7 @@ namespace ParlayRMS.Services.Implement.ParlayWon
         private readonly ParlayWonDataAccess _dataAccess = new ParlayWonDataAccess();
         private readonly CommonService _commonService = new CommonService();
 
-        public IEnumerable<RMS_Rpt_Parlay_ParlayWon> GetParlayWonList(ParlayWonOptions options)
+        public IEnumerable<RMS_Rpt_Parlay_ParlayWon> GetParlayWonList(ParlayWonOptions options, ref Hashtable outputParams)
 
         {
             var info = _commonService.GetBalanceUpDayInfo();
@@ -25,7 +26,12 @@ namespace ParlayRMS.Services.Implement.ParlayWon
                 options.Combos,
                 options.Levels,
                 options.HouseAmountFrom,
-                options.HouseAmountTo);
+                options.HouseAmountTo,
+                options.SortById,
+                options.IsSortAsc,
+                options.PageIndex,
+                options.PageSize,
+                ref outputParams);
         }
     }
 }

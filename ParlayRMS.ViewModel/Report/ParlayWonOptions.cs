@@ -29,6 +29,14 @@ namespace ParlayRMS.ViewModel.Report
 
         public decimal HouseAmountTo { get; set; }
 
+        public int SortById { get; set; }
+
+        public bool IsSortAsc { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
+
         public string GetTitle()
         {
             var combosTitle = ViewLang.All;

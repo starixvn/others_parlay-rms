@@ -2,6 +2,7 @@
 using ParlayRMS.DTO.ParlayWon;
 using ParlayRMS.Utility.Data;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -18,7 +19,12 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                                                        string combos,
                                                        string level,
                                                        decimal houseAmountFrom,
-                                                       decimal houseAmountTo)
+                                                       decimal houseAmountTo,
+                                                       int sortById,
+                                                       bool isSortAsc,
+                                                       int pageIndex,
+                                                       int pageSize,
+                                                       ref Hashtable outputParam)
         {
             var result = new List<RMS_Rpt_Parlay_ParlayWon>();
 
@@ -33,6 +39,11 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                 db.AddInParameter("Level", DbType.String, level);
                 db.AddInParameter("FromHouseAmt", DbType.Decimal, houseAmountFrom);
                 db.AddInParameter("ToHouseAmt", DbType.Decimal, houseAmountTo);
+                db.AddInParameter("SortById", DbType.Int32, sortById);
+                db.AddInParameter("IsSortAsc", DbType.Boolean, isSortAsc);
+                db.AddInParameter("PageIndex", DbType.Int32, pageIndex);
+                db.AddInParameter("PageSize", DbType.Int32, pageSize);
+                db.AddOutParameter("totalrows", DbType.Int32, Int32.MaxValue);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -58,6 +69,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                         });
                     }
                 }
+
+                outputParam = db.GetOuputParams();
             }
 
             return result;

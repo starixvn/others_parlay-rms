@@ -589,6 +589,7 @@
     <Content Include="Content\images\Login\red_bt_bg.png" />
     <Content Include="Content\images\UnderMaintenance.gif" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
+    <Content Include="Content\ParlayWon.css" />
     <Content Include="packages.config" />
     <Content Include="ExcelTemplates\SpecialLeague.xls" />
     <Content Include="ExcelTemplates\ParlayWon.xls" />
@@ -619,6 +620,7 @@
     <Content Include="Views\ParlayWon\BetDetails.cshtml" />
     <Content Include="Views\TopWinners\BetDetails.cshtml" />
     <Content Include="Views\TopWinners\SingleMatchParlayBetDetails.cshtml" />
+    <Content Include="Views\ParlayWon\SingleMatchParlayBetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

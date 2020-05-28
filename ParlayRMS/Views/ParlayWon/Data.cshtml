@@ -1,10 +1,12 @@
 ﻿@using ParlayRMS.ViewModel.Report
 @using ParlayRMS.DTO.ParlayWon;
+@using System;
 @model IEnumerable<RMS_Rpt_Parlay_ParlayWon> 
 @{
     var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
-    var index = 0;
+    var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
 }
+<input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
 <div style="width: 1560px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
@@ -40,22 +42,22 @@
                 <th>
                     @ViewLang.BetID
                 </th>
-                <th class="sortable" data-col-type="string" data-col-index="3">
+                <th class="sortable" data-col-index="2">
                     @ViewLang.Username
                 </th>
                 <th>
                     @ViewLang.Odds
                 </th>
-                <th class="sortable" data-col-type="float" data-col-index="5">
+                <th class="sortable" data-col-index="3">
                     @ViewLang.Stake
                 </th>
-                <th  class="sortable" data-col-type="float" data-col-index="6">
+                <th  class="sortable" data-col-index="4">
                     @ViewLang.StakeAfterPT
                 </th>
-                <th  class="sortable" data-col-type="float" data-col-index="7">
+                <th  class="sortable" data-col-index="5">
                     @ViewLang.WinningAmount
                 </th>
-                <th  class="sortable" data-col-type="float" data-col-index="8">
+                <th  class="sortable" data-col-index="6">
                     @ViewLang.HouseLoseAmount
                 </th>
                 <th>
@@ -102,7 +104,7 @@
                         @Formatter.FormatDate(item.TransDate)
                     </td>
                     <td class="center">
-                        <a href="#@item.RefNo" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', @item.BetType)">@item.TransId</a>
+                        <a href="#@item.RefNo" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', '@item.CustId', @item.BetType)">@item.TransId</a>
                     </td>
                     <td class="center">
                         @item.Username
@@ -168,5 +170,10 @@
 <br />
 @if (index != 0)
 {
-    <div id="pagination"></div>
+    <div id="pagination" class="pagination">
+        <ul>
+        </ul>
+
+    </div>
 }
+
