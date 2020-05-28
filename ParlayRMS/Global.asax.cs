@@ -161,23 +161,27 @@ namespace ParlayRMS
                 "~/Content/Login.css"));
             bundles.Add(new StyleBundle("~/Content/Validators").Include(
                 "~/Content/Validators.css"));
+            bundles.Add(new StyleBundle("~/Content/simplepagination").Include("~/Content/Libs/simplepagination/simplePagination.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ParlayWon").Include(
+              "~/Content/ParlayWon.css"));
 
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
-                "~/Scripts/jquery-1.9.0.js",
-                "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
-                "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
-                "~/Scripts/Libs/cookie/jquery.cookie.js",
-                "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
-                "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
-                "~/Scripts/autoNumeric/autoNumeric.js",
-                "~/Scripts/Libs/moment/moment.js",
-                "~/Scripts/Libs/multiselect/jquery.multiselect-customized.js",
-                "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
-                "~/Scripts/Libs/numeral/numeral.js",
-                "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
-                "~/Scripts/Libs/sortElements/jquery.sortElements.js",
-                "~/Scripts/Libs/soundManager/soundmanager2-nodebug.js"));
+                     "~/Scripts/jquery-1.9.0.js",
+                     "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
+                     "~/Scripts/Libs/contextmenu/jquery.contextMenu.js",
+                     "~/Scripts/Libs/cookie/jquery.cookie.js",
+                     "~/Scripts/Libs/jquery-ui/jquery-ui.custom.js",
+                     "~/Scripts/Libs/jquery-ui/jquery-ui.more.js",
+                     "~/Scripts/autoNumeric/autoNumeric.js",
+                     "~/Scripts/Libs/moment/moment.js",
+                     "~/Scripts/Libs/multiselect/jquery.multiselect-customized.js",
+                     "~/Scripts/Libs/multiselect/jquery.multiselect.filter.js",
+                     "~/Scripts/Libs/numeral/numeral.js",
+                     "~/Scripts/Libs/simplemodal/jquery.simplemodal.js",
+                     "~/Scripts/Libs/sortElements/jquery.sortElements.js",
+                     "~/Scripts/Libs/soundManager/soundmanager2-nodebug.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Core/js").Include(
                 "~/Scripts/Core.js",
                 "~/Scripts/Components.js",
@@ -220,6 +224,11 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/UnderMaintenance/js").Include("~/Scripts/UnderMaintenance.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Login/js").Include("~/Scripts/Login.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Report/ParlayWon/js").Include(
+                "~/Scripts/Libs/simplepagination/jquery.simplePagination.js",
+                "~/Scripts/Report/ParlayWon.js"
+                 ));
         }
     }
 }

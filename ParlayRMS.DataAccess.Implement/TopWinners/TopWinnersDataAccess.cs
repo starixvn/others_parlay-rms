@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Fanex.Data;
+﻿using Fanex.Data;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.TopWinners
 {
@@ -194,29 +194,6 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
             }
 
             return result;
-        }
-
-        public BetInfo GetBetInfo(long transId)
-        {
-            using (var db = new ObjectDb("RMS_Rpt_Parlay_TopWinner_BetInfo"))
-            {
-                db.AddInParameter("transid", DbType.Int64, transId);
-                using (var reader = db.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        return new BetInfo
-                        {
-                            BetTeam = reader.ToString("betteam"),
-                            BetCheck = reader.ToString("betcheck"),
-                            Hdp1 = Convert.ToInt32(reader.ToDecimal("hdp1")),
-                            Hdp2 = Convert.ToInt32(reader.ToDecimal("hdp2")),
-                        };
-                    }
-                }
-            }
-
-            return null;
         }
     }
 }

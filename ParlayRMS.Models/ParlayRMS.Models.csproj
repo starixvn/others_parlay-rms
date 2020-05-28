@@ -56,6 +56,7 @@
     <Compile Include="Groups\Group.cs" />
     <Compile Include="Members\MemberLevel.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossData.cs" />
+    <Compile Include="ParlayWon\ParlayWonModel.cs" />
     <Compile Include="Systems\MaintenanceInfo.cs" />
     <Compile Include="Menus\Menu.cs" />
     <Compile Include="Functions\Policy.cs" />
@@ -95,6 +96,7 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>

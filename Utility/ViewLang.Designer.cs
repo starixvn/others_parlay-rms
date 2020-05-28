@@ -925,6 +925,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House Lose Amount.
+        /// </summary>
+        public static string HouseLoseAmount {
+            get {
+                return ResourceManager.GetString("HouseLoseAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to House PT.
         /// </summary>
         public static string HousePT {
@@ -1501,6 +1510,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parlay Won.
+        /// </summary>
+        public static string ParlayWon {
+            get {
+                return ResourceManager.GetString("ParlayWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -1515,6 +1533,15 @@ namespace ParlayRMS.Utility {
         public static string Pause {
             get {
                 return ResourceManager.GetString("Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalty Shootout Combo.
+        /// </summary>
+        public static string PenaltyShootoutCombo {
+            get {
+                return ResourceManager.GetString("PenaltyShootoutCombo", resourceCulture);
             }
         }
         
@@ -1812,6 +1839,15 @@ namespace ParlayRMS.Utility {
         public static string SportsType {
             get {
                 return ResourceManager.GetString("SportsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sport Type.
+        /// </summary>
+        public static string SportType {
+            get {
+                return ResourceManager.GetString("SportType", resourceCulture);
             }
         }
         

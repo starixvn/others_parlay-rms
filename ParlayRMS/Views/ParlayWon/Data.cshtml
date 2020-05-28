@@ -1,0 +1,179 @@
+﻿@using ParlayRMS.ViewModel.Report
+@using ParlayRMS.DTO.ParlayWon;
+@using System;
+@model IEnumerable<RMS_Rpt_Parlay_ParlayWon> 
+@{
+    var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
+    var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
+}
+<input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
+<div style="width: 1560px;" class="maintitle">
+    <div class="information">
+        @ViewBag.Title
+    </div>
+    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo')" title="Export Excel">
+    </div>
+</div>
+<div style="width: 1560px">
+    <table class="main" id="header">
+        <colgroup>
+            <col width='70px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='150px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    @ViewLang.No
+                </th>
+                <th class="sortable" data-col-type="date" data-col-index="1">
+                    @ViewLang.TransTime
+                </th>
+                <th>
+                    @ViewLang.BetID
+                </th>
+                <th class="sortable" data-col-index="2">
+                    @ViewLang.Username
+                </th>
+                <th>
+                    @ViewLang.Odds
+                </th>
+                <th class="sortable" data-col-index="3">
+                    @ViewLang.Stake
+                </th>
+                <th  class="sortable" data-col-index="4">
+                    @ViewLang.StakeAfterPT
+                </th>
+                <th  class="sortable" data-col-index="5">
+                    @ViewLang.WinningAmount
+                </th>
+                <th  class="sortable" data-col-index="6">
+                    @ViewLang.HouseLoseAmount
+                </th>
+                <th>
+                    @ViewLang.TotalComboBets
+                </th>
+                <th>
+                    @ViewLang.TotalSelections
+                </th>
+                <th>
+                    @ViewLang.SportType
+                </th>
+                <th>
+                    @ViewLang.IP
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1580px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='70px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='150px' />
+        </colgroup>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">
+                        @Formatter.FormatNumber3(index + 1)
+                    </td>
+                    <td class="center">
+                        @Formatter.FormatDate(item.TransDate)
+                    </td>
+                    <td class="center">
+                        <a href="#@item.RefNo" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', '@item.CustId', @item.BetType)">@item.TransId</a>
+                    </td>
+                    <td class="center">
+                        @item.Username
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatOdds(item.Odds)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.Stake)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.StakeAfterPT)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.WinningAmount)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.HouseLoseAmount)
+                    </td>
+                    <td class="center">
+                        @item.TotalBet
+                    </td>
+                    <td class="center">
+                        @item.TotalSelection
+                    </td>
+                    <td class="center">
+                        @CacheRef.GetSportNameDropDown(item.SportType)
+                    </td>
+                    <td class="center">
+                        @item.IP
+                    </td>
+                </tr>
+                index++;
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 1560px" class="mainfooter">
+    <table class="main" id="footer">
+        <colgroup>
+            <col width='70px' />
+            <col width='120px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='150px' />
+        </colgroup>
+        <tfoot>
+            @if (index == 0)
+            {
+                <tr><td class="noinfo" colspan="13">@ViewLang.NoInformation</td></tr>
+            }
+        </tfoot>
+</table>
+</div>
+<br />
+@if (index != 0)
+{
+    <div id="pagination" class="pagination">
+        <ul>
+        </ul>
+
+    </div>
+}
+
