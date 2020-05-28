@@ -69,14 +69,6 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
                 }
 
-                if (options.HouseAmountTo != 0)
-                {
-                    if (options.HouseAmountFrom > options.HouseAmountTo)
-                    {
-                        ModelState.AddModelError("HouseAmountFrom", "House Lose Amount From must be less than To");
-                    }
-                }
-
                 if (!ModelState.IsValid)
                 {
                     return PartialView("_ErrorMessage", GetModelErrorMessage());

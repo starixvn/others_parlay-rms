@@ -173,7 +173,7 @@
             if (combos == '') {
                 Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
                 return;
-        }
+            }
 
             var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
                 return this.value;
@@ -191,8 +191,18 @@
                 return;
             }
 
-            var houseLoseAmountFrom = $('#houseLoseAmountFrom').val();
-            var houseLoseAmountTo = $('#houseLoseAmountTo').val();
+            var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
+            if (houseLoseAmountFrom < 1000) {
+                Validators.show($("#houseLoseAmountFrom"), 'House Lose Amount From must be greater or equal than 1000');
+                return;
+            }
+
+            var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));
+
+            if (houseLoseAmountTo > 0 && houseLoseAmountFrom > houseLoseAmountTo) {
+                Validators.show($("#houseLoseAmountTo"), 'House Lose Amount From must be less than To');
+                return;
+            }
 
             ParlayWon.Data(parlayTypes,
                 fromDate,
@@ -211,10 +221,25 @@
         $(document).on('click', '#pagination .page-item', function (e) {
             $("#pagination .page-item").removeClass("current");
             $(this).addClass("current");
-            ParlayWon.cachedObject.pageIndex = parseInt($(this).text());
 
-            if (isNaN(ParlayWon.cachedObject.pageIndex)) {
+            if ($(this).text() == "...") {
                 return;
+            }
+
+            if ($(this).text() == "Prev" && ParlayWon.cachedObject.pageIndex == 1) {
+                return;
+            }
+
+            if ($(this).text() == "Next" && ParlayWon.cachedObject.pageIndex == ParlayWon.cachedObject.maxPage) {
+                return;
+            }
+
+            if ($(this).text() == "Prev") {
+                ParlayWon.cachedObject.pageIndex -= 1;
+            } else if ($(this).text() == "Next") {
+                ParlayWon.cachedObject.pageIndex += 1;
+            } else {
+                ParlayWon.cachedObject.pageIndex = parseInt($(this).text());
             }
 
             ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
@@ -365,6 +390,7 @@
         var limitPerPage = 100;
         // Total pages rounded upwards
         var totalPages = Math.ceil(numberOfItems / limitPerPage);
+        ParlayWon.cachedObject.maxPage = totalPages;
         // Number of buttons at the top, not counting prev/next,
         // but including the dotted buttons.
         // Must be at least 5:
@@ -406,18 +432,6 @@
         );
         // Show the page links
         showPage(currentPage);
-
-        // Use event delegation, as these items are recreated later    
-        $(document).on("click", ".pagination li.current-page:not(.active)", function () {
-            return showPage(+$(this).text());
-        });
-        $("#next-page").on("click", function () {
-            return showPage(currentPage + 1);
-        });
-
-        $("#previous-page").on("click", function () {
-            return showPage(currentPage - 1);
-        });
     },
 
     // Returns an array of maxLength (or less) page numbers
