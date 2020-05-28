@@ -1,5 +1,4 @@
-﻿using ParlayRMS.DTO.BetList;
-using ParlayRMS.ExcelService.Writers;
+﻿using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
 using ParlayRMS.Services.Implement.BetList;
@@ -8,6 +7,7 @@ using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
+using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -17,7 +17,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    //[Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
+    [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
     public class TopWinnersController : BaseController
     {
         private readonly TopWinnersService _topwinnersService = new TopWinnersService();
@@ -206,12 +206,11 @@ namespace ParlayRMS.Controllers
                 Username = username
             };
 
-
             ViewBag.TransId = transId;
             ViewBag.Username = username;
 
             var selectionAndResult = _betDetailsService.GetSelectionAndResult(custId, transId, username);
-            var choice = _betDetailsService.GetChoice(criteria.TransId);
+            var choice = _betDetailsService.GetChoiceForSingleMatchParlay(criteria.TransId);
 
             ViewBag.SelectionNames = selectionAndResult.Item1;
             ViewBag.ResultTexts = selectionAndResult.Item2;
@@ -219,63 +218,19 @@ namespace ParlayRMS.Controllers
 
             return View();
         }
+
         [HttpGet]
         public ActionResult PenaltyShootoutParlayBetDetails(long transId, string username)
         {
             ViewBag.TransId = transId;
             ViewBag.Username = username;
 
-            var model = _betlistService.RMS_BetList_PenaltyShootout_MatchDetail(transId).FirstOrDefault();
+            var detail = _betDetailsService.GetPenaltyShootoutDetail(transId);
+            ViewBag.Choice = detail.Item2;
 
-            var choice = GetChoiceForPenaltyShootoutParlayDetailPopup(model);
-            ViewBag.Choice = choice;
-
-            ViewBag.IsBlackListLeague = model == null ? false : model.IsBlacklistLeague;
+            ViewBag.IsBlackListLeague = detail.Item1;
 
             return View();
-        }
-
-
-        private string GetChoiceForPenaltyShootoutParlayDetailPopup(RMS_BetList_PenaltyShootout_MatchDetailModel model)
-        {
-            if (model == null)
-            {
-                return string.Empty;
-            }
-
-            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
-            var factory = new BetListHTMLFactory();
-            var builder = factory.CreateBuilder();
-            var ticket = new Ticket
-            {
-                HomeId = model.HomeId,
-                AwayId = model.AwayId,
-                SportTypeId = model.SportType,
-                LeagueId = model.LeagueId,
-                EventDate = model.EventDate,
-                TransId = model.TransId,
-                BetTypeId = 376,
-                BetCheck = model.BetCheck,
-                BetTeam = model.BetTeam
-            };
-
-            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
-            var html = new HtmlDocument();
-            html.LoadHtml(choice);
-            var document = html.DocumentNode;
-            var bettype = document.QuerySelector(".bettype");
-            var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
-
-            if (bettype != null)
-            {
-                bettype.Remove();
-            }
-
-            return document.OuterHtml;
         }
     }
 }

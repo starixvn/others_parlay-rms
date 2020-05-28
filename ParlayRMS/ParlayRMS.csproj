@@ -625,6 +625,7 @@
     <Content Include="Views\TopWinners\BetDetails.cshtml" />
     <Content Include="Views\TopWinners\SingleMatchParlayBetDetails.cshtml" />
     <Content Include="Views\ParlayWon\SingleMatchParlayBetDetails.cshtml" />
+    <Content Include="Views\ParlayWon\PenaltyShootoutParlayBetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

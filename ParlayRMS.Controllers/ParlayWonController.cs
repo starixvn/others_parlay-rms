@@ -119,7 +119,7 @@ namespace ParlayRMS.Controllers
             ViewBag.Username = username;
 
             var selectionAndResult = _betDetailsService.GetSelectionAndResult(custId, transId, username);
-            var choice = _betDetailsService.GetChoice(criteria.TransId);
+            var choice = _betDetailsService.GetChoiceForSingleMatchParlay(criteria.TransId);
 
             ViewBag.SelectionNames = selectionAndResult.Item1;
             ViewBag.ResultTexts = selectionAndResult.Item2;
@@ -191,6 +191,20 @@ namespace ParlayRMS.Controllers
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());
             Response.End();
+        }
+
+        [HttpGet]
+        public ActionResult PenaltyShootoutParlayBetDetails(long transId, string username)
+        {
+            ViewBag.TransId = transId;
+            ViewBag.Username = username;
+
+            var detail = _betDetailsService.GetPenaltyShootoutDetail(transId);
+            ViewBag.Choice = detail.Item2;
+
+            ViewBag.IsBlackListLeague = detail.Item1;
+
+            return View();
         }
     }
 }

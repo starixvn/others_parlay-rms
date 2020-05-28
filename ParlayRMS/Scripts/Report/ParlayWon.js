@@ -17,8 +17,8 @@
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
         $("#parlayType").multiselect({
-            minWidth: 162,
-            height: 82,
+            minWidth: 210,
+            height: 120,
             create: function () {
                 $("#parlayType").multiselect("checkAll");
             },
@@ -379,8 +379,9 @@
     ViewBetDetail: function(refNo, transId, username, custId, bettype) {
         if (bettype == 38) {
             ParlayRMS.Core.OpenWindow(resolveClientUrl('ParlayWon/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
-        }
-        else {
+        } else if (bettype == 376) {
+            ParlayRMS.Core.OpenWindow(resolveClientUrl('ParlayWon/PenaltyShootoutParlayBetDetails?&TransId=' + transId + '&username=' + username), 700, 600);
+        } else {
             ParlayRMS.Core.OpenWindow(resolveClientUrl('ParlayWon/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
         }
     },

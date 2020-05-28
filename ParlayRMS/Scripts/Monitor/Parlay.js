@@ -259,7 +259,7 @@ $(document).ready(function () {
     });
 
     $("#parlayType").multiselect({
-        minWidth: 200,
+        minWidth: 210,
         height: 120,
         create: function () {
             $("#parlayType").multiselect();

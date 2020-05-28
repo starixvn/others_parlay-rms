@@ -228,7 +228,7 @@ $(document).ready(function () {
     });
 
     $("#parlaysType").multiselect({
-        minWidth: 200,
+        minWidth: 210,
         height: 120,
         create: function () {
             $("#parlaysType").multiselect("checkAll");

@@ -6,6 +6,7 @@ using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using ParlayRMS.DataAccess.Implement.BetDetails;
 using ParlayRMS.DTO.BetDetails;
+using ParlayRMS.DTO.BetList;
 using ParlayRMS.Services.Implement.BetList;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ namespace ParlayRMS.Services.Implement.BetDetails
             var data = _dataAccess.RMS_Rpt_Parlay_Bet_Details(transId, refNo);
             var tickets = _betlistService.Map(refNo, data);
             var betInfo = _dataAccess.GetBetInfo(transId);
-            foreach (var ticket in tickets)
+            foreach (var ticket in tickets.Item2)
             {
-                if (tickets.Last() == ticket)
+                if (tickets.Item2.Last() == ticket)
                 {
                     builder.AddChoice(
                         ticket,
@@ -52,7 +53,7 @@ namespace ParlayRMS.Services.Implement.BetDetails
                 }
             }
 
-            var comboTypeAndStake = GetComboTypeAndStake(tickets, betInfo);
+            var comboTypeAndStake = GetComboTypeAndStake(tickets.Item2, betInfo);
 
             return new ParlayBetDetails
             {
@@ -61,10 +62,16 @@ namespace ParlayRMS.Services.Implement.BetDetails
             };
         }
 
-        public string GetChoice(long transId)
+        public string GetChoiceForSingleMatchParlay(long transId)
         {
             return GetChoiceForSingleMatchParlayDetailPopup(transId);
         }
+
+        public Tuple<bool, string> GetPenaltyShootoutDetail(long transId)
+        {
+            return GetPenaltyShootoutParlayDetailPopup(transId);
+        }
+
         public Tuple<List<string>, List<string>> GetSelectionAndResult(int custId, long transId, string username)
         {
             var criteria = new RMS_BetList_BetBuilder_DetailCriteria
@@ -88,6 +95,26 @@ namespace ParlayRMS.Services.Implement.BetDetails
             }
 
             return new Tuple<List<string>, List<string>>(selectionNames, resultTexts);
+        }
+
+        public List<RMS_BetList_BetBuilder_DetailModel> GetSingleMatchParlaySelection(int custId, long transId)
+        {
+            var criteria = new RMS_BetList_BetBuilder_DetailCriteria
+            {
+                CustId = custId,
+                TransId = transId
+            };
+            return _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
+        }
+
+        public Tuple<List<bool>, List<ITicket>> CreateChoice(long transId, long refNo)
+        {
+            return _betlistService.CreateChoice(transId, transId);
+        }
+
+        public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
+        {
+            return _betlistService.GetBetInfo(transId);
         }
 
         private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, BetInfo betInfo)
@@ -159,6 +186,51 @@ namespace ParlayRMS.Services.Implement.BetDetails
             }
 
             return document.OuterHtml;
+        }
+
+        private Tuple<bool, string> GetPenaltyShootoutParlayDetailPopup(long transId)
+        {
+            var detail = new Tuple<bool, string>(false, string.Empty);
+            var model = _betlistService.RMS_BetList_PenaltyShootout_MatchDetail(transId).FirstOrDefault();
+
+            if (model == null)
+            {
+                return new Tuple<bool, string>(false, string.Empty);
+            }
+
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportType,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                TransId = model.TransId,
+                BetTypeId = 376,
+                BetCheck = model.BetCheck,
+                BetTeam = model.BetTeam
+            };
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var bettype = document.QuerySelector(".bettype");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            if (bettype != null)
+            {
+                bettype.Remove();
+            }
+
+            return new Tuple<bool, string>(model.IsBlacklistLeague, document.OuterHtml);
         }
     }
 }
