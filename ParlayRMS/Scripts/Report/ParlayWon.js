@@ -212,6 +212,11 @@
             $("#pagination .page-item").removeClass("current");
             $(this).addClass("current");
             ParlayWon.cachedObject.pageIndex = parseInt($(this).text());
+
+            if (isNaN(ParlayWon.cachedObject.pageIndex)) {
+                return;
+            }
+
             ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
                 ParlayWon.cachedObject.fromDate,
                 ParlayWon.cachedObject.toDate,
@@ -329,14 +334,18 @@
     },
     ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo) {
         var data = {
-            FromDate: fromDate,
-            ToDate: toDate,
-            ParlayTypes: parlayTypes,
-            SportsType: sportsType,
-            Combos: combos,
-            Levels: levels,
-            HouseAmountFrom: houseLoseAmountFrom,
-            HouseAmountTo: houseLoseAmountTo
+            fromDate: fromDate,
+            toDate: toDate,
+            parlayTypes: parlayTypes,
+            sportsType: sportsType,
+            combos: combos,
+            levels: levels,
+            houseAmountFrom: houseLoseAmountFrom,
+            houseAmountTo: houseLoseAmountTo,
+            sortById: null,
+            isSortAsc: null,
+            pageIndex: 0,
+            pageSize: 0
         };
 
         var url = 'ParlayWon/Excel?' + $.param(data);
