@@ -50,7 +50,7 @@
     <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_Old_xtest" DbName="DBARC.bodb_Archive.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_TopWinner_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_ComboParlay_Betlist_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -87,7 +87,7 @@
   </Function>
   <Function Name="TotalOutstanding">
     <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_ComboParlay_Outstanding_Mem_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_ComboParlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_ComboParlay_Outstanding_Ag_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="DangerMonitor">
     <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -105,7 +105,7 @@
   </Function>
 
   <Function Name="BetDetail">
-    <Setting Key="RMS_Rpt_Parlay_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="PenaltyShootout">

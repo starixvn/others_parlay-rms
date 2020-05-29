@@ -34,7 +34,7 @@ namespace ParlayRMS.Controllers
         [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
-            ViewBag.BetId = options.TransId;
+            ViewBag.TransId = options.TransId;
             ViewBag.Username = options.Username;
 
             var betTypeBelongsBetRadar = _commonService.GetBettypeBelongsBetRadar();
@@ -48,7 +48,7 @@ namespace ParlayRMS.Controllers
 
             for (int i = 0; i < tickets.Item2.Count; i++)
             {
-                var blackListLeague = tickets.Item1[i] ? "blackListClass" : string.Empty;
+                var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
                 var ticket = tickets.Item2[i];
                 var usedClass = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "ticketDetail betRadar" : "ticketDetail";
                 var toolTip = betTypeBelongsBetRadar.Contains(ticket.BetTypeId) ? "Betradar" : string.Empty;
@@ -61,7 +61,7 @@ namespace ParlayRMS.Controllers
                     builder.AddChoice(ticket, ticketHelper, null, "<div id = '" + ticket.BetId + "'><div  class='" + blackListLeague + "'></div><div class='" + usedClass + "' title='" + toolTip + "'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
                 }
             }
-           
+
             var comboTypeAndStake = GetComboTypeAndStake(tickets.Item2, betInfo);
 
             var model = new BetDetails

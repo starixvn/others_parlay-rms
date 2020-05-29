@@ -214,7 +214,8 @@ namespace ParlayRMS.Controllers
 
             ViewBag.SelectionNames = selectionAndResult.Item1;
             ViewBag.ResultTexts = selectionAndResult.Item2;
-            ViewBag.Choice = choice;
+            ViewBag.Choice = choice.Item2;
+            ViewBag.IsBlackListLeague = choice.Item1;
 
             return View();
         }

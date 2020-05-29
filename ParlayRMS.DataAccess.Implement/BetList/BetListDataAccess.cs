@@ -47,7 +47,7 @@ namespace ParlayRMS.DataAccess.Implement.BetList
                             Stake = reader.ToDecimal("stake"),
                             TransDate = reader.ToDateTime("transdate"),
                             TransDesc = reader.ToString("transdesc"),
-                            IsBlacklistLeague = reader.ToBoolean("isblacklistleague")
+                            IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1
                         });
                     }
                 }

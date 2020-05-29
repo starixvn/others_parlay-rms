@@ -29,15 +29,18 @@ namespace ParlayRMS.Services.Implement.BetDetails
             var data = _dataAccess.RMS_Rpt_Parlay_Bet_Details(transId, refNo);
             var tickets = _betlistService.Map(refNo, data);
             var betInfo = _dataAccess.GetBetInfo(transId);
-            foreach (var ticket in tickets.Item2)
+
+            for (int i = 0; i < tickets.Item2.Count; i++)
             {
+                var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
+                var ticket = tickets.Item2[i];
                 if (tickets.Item2.Last() == ticket)
                 {
                     builder.AddChoice(
                         ticket,
                         ticketHelper,
                         null,
-                        string.Format("<div id='{0}'><div class='ticketDetail'>", ticket.BetId),
+                        string.Format("<div  class='" + blackListLeague + "'></div><div id='{0}'><div class='ticketDetail'>", ticket.BetId),
                         string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div>", ticket.Status),
                         false);
                 }
@@ -47,7 +50,7 @@ namespace ParlayRMS.Services.Implement.BetDetails
                         ticket,
                         ticketHelper,
                         null,
-                        string.Format("<div id='{0}'><div class='ticketDetail'>", ticket.BetId),
+                        string.Format("<div  class='" + blackListLeague + "'></div><div id='{0}'><div class='ticketDetail'>", ticket.BetId),
                         string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div><div class='line'></div>", ticket.Status),
                         false);
                 }
@@ -62,7 +65,7 @@ namespace ParlayRMS.Services.Implement.BetDetails
             };
         }
 
-        public string GetChoiceForSingleMatchParlay(long transId)
+        public Tuple<bool, string> GetChoiceForSingleMatchParlay(long transId)
         {
             return GetChoiceForSingleMatchParlayDetailPopup(transId);
         }
@@ -109,7 +112,7 @@ namespace ParlayRMS.Services.Implement.BetDetails
 
         public Tuple<List<bool>, List<ITicket>> CreateChoice(long transId, long refNo)
         {
-            return _betlistService.CreateChoice(transId, transId);
+            return _betlistService.CreateChoice(transId, refNo);
         }
 
         public RMS_Monitor_Parlay_BetInfo GetBetInfo(long transId)
@@ -138,13 +141,13 @@ namespace ParlayRMS.Services.Implement.BetDetails
                 : $"{Math.Floor(stake):#,0}";
         }
 
-        private string GetChoiceForSingleMatchParlayDetailPopup(long transId)
+        private Tuple<bool, string> GetChoiceForSingleMatchParlayDetailPopup(long transId)
         {
             var model = _betlistService.RMS_BetList_BetBuilder_MatchDetail(transId).FirstOrDefault();
 
             if (model == null)
             {
-                return string.Empty;
+                return new Tuple<bool, string>(false, string.Empty);
             }
 
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
@@ -185,12 +188,11 @@ namespace ParlayRMS.Services.Implement.BetDetails
                 document.ChildNodes.Add(leagueNode);
             }
 
-            return document.OuterHtml;
+            return new Tuple<bool, string>(model.IsBlacklistLeague, document.OuterHtml);
         }
 
         private Tuple<bool, string> GetPenaltyShootoutParlayDetailPopup(long transId)
         {
-            var detail = new Tuple<bool, string>(false, string.Empty);
             var model = _betlistService.RMS_BetList_PenaltyShootout_MatchDetail(transId).FirstOrDefault();
 
             if (model == null)

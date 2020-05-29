@@ -59,8 +59,10 @@ namespace ParlayRMS.Controllers
             var originalTickets = _betDetailService.CreateChoice(options.OriginalTransId, options.OriginalRefNo);
             var betInfo = _betDetailService.GetBetInfo(options.TransId);
             var ticketsCompare = new List<long>();
-            foreach (var ticket in tickets.Item2)
+            for (int i = 0; i < tickets.Item2.Count; i++)
             {
+                var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
+                var ticket = tickets.Item2[i];
                 var similar = originalTickets.Item2.Any(originalTicket =>
                         originalTicket.MatchId == ticket.MatchId &&
                         originalTicket.BetTypeId == ticket.BetTypeId &&
@@ -73,11 +75,11 @@ namespace ParlayRMS.Controllers
 
                 if (tickets.Item2.Last() == ticket)
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div  class='" + blackListLeague + "'></div><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div>", false);
                 }
                 else
                 {
-                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
+                    builder.AddChoice(ticket, ticketHelper, null, "<div id='" + ticket.TransId + "'><div  class='" + blackListLeague + "'></div><div class='ticketDetail'>", "</div><div class='ticketStatus'><div class='divstatus'>[" + ticket.Status + "]</div></div></div><div class='line'></div>", false);
                 }
             }
 
@@ -148,7 +150,8 @@ namespace ParlayRMS.Controllers
             ViewBag.ResultTexts = resultTexts;
             ViewBag.SelectionNames = selectionNames;
             ViewBag.Differences = differences;
-            ViewBag.Choice = choice;
+            ViewBag.Choice = choice.Item2;
+            ViewBag.IsBlackListLeague = choice.Item1;
 
             return View();
         }

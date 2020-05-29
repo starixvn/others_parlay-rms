@@ -60,7 +60,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             BetType = reader.ToInt32("bettype"),
                             CustId = reader.ToInt32("custid"),
                             IsLive = reader.ToBoolean("islive"),
-                            IsBlacklistLeague = reader.ToBoolean("isblacklistleague")
+                            IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1
                         });
                     }
                 }
