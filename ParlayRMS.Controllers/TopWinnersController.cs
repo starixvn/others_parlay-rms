@@ -199,23 +199,30 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult SingleMatchParlayBetDetails(int custId, long transId, string username)
         {
-            var criteria = new RMS_BetList_BetBuilder_DetailCriteria
-            {
-                CustId = custId,
-                TransId = transId,
-                Username = username
-            };
-
-
             ViewBag.TransId = transId;
             ViewBag.Username = username;
 
             var selectionAndResult = _betDetailsService.GetSelectionAndResult(custId, transId, username);
-            var choice = _betDetailsService.GetChoice(criteria.TransId);
+            var choice = _betDetailsService.GetChoiceForSingleMatchParlay(transId);
 
             ViewBag.SelectionNames = selectionAndResult.Item1;
             ViewBag.ResultTexts = selectionAndResult.Item2;
-            ViewBag.Choice = choice;
+            ViewBag.Choice = choice.Item2;
+            ViewBag.IsBlackListLeague = choice.Item1;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PenaltyShootoutParlayBetDetails(long transId, string username)
+        {
+            ViewBag.TransId = transId;
+            ViewBag.Username = username;
+
+            var detail = _betDetailsService.GetPenaltyShootoutDetail(transId);
+            ViewBag.Choice = detail.Item2;
+
+            ViewBag.IsBlackListLeague = detail.Item1;
 
             return View();
         }

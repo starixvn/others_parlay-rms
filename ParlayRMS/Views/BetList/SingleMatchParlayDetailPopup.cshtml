@@ -9,6 +9,10 @@
     <div class="content">
         <table class="bet-detail">
             <tr class="title2">
+                @if (ViewBag.IsBlackListLeague)
+                {
+                    <th></th>
+                }
                 <th>
                     Ticket Details - @ViewBag.Username - @ViewBag.TransId
                 </th>
@@ -17,9 +21,12 @@
                 </th>
             </tr>
             <tr>
+                @if (ViewBag.IsBlackListLeague)
+                {
+                    <td><a href="#"class="blackListClass"></a></td>
+                }
                 <td>
                     <div class="betdetails">
-
                         <table style="width:100%">
                             <colgroup>
                                 <col />

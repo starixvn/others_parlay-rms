@@ -100,7 +100,6 @@
   </Function>
 
   <Function Name="BetBuilder">
-
     <Setting Key="RMS_BetList_BetBuilder_Detail" SpName="RMS_BetList_BetBuilder_Detail" DbName="DBACC.bodb02.bodbRMSNet" />
     <Setting Key="RMS_BetList_BetBuilder_MatchDetail" SpName="RMS_BetList_BetBuilder_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
@@ -109,5 +108,7 @@
     <Setting Key="RMS_Rpt_Parlay_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
-
+  <Function Name="PenaltyShootout">
+    <Setting Key="RMS_BetList_PenaltyShootout_MatchDetail" SpName="RMS_BetList_PenaltyShootout_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+  </Function>
 </Functions>

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Web.Mvc;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.Web.Authorization;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -37,6 +37,7 @@ namespace ParlayRMS.Controllers
             var parlayTypes = new List<SelectListItem>();
             parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() });
             parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
+            parlayTypes.Add(new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() });
             parlayTypes.Add(new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() });
             ViewBag.ParlayTypes = parlayTypes;
 

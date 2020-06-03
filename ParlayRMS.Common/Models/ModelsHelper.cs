@@ -168,7 +168,7 @@ namespace ParlayRMS.Common.Models
 
         public static string GetParlayTitle(string parlayTypes)
         {
-            if (parlayTypes == "1,2,3")
+            if (parlayTypes == "1,2,3,4")
             {
                 return ViewLang.All;
             }
@@ -176,6 +176,7 @@ namespace ParlayRMS.Common.Models
             return parlayTypes.Replace("1", ViewLang.MixparLay)
                 .Replace("2", ViewLang.ComboParlay)
                 .Replace("3", ViewLang.SingleMatchParlay)
+                .Replace("4", ViewLang.PenaltyShootoutCombo)
                 .Replace(",", ", ");
         }
     }

@@ -27,5 +27,7 @@
         public int Selection { get; set; }
 
         public bool IsSingleMatchParlay { get; set; }
+
+        public int ParlayType { get; set; }
     }
 }

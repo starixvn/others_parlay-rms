@@ -86,6 +86,8 @@ function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo
 
     if (betType === 38) {
         ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username);
+    } else if (betType === 376) {
+        ViewPenaltyShootoutParlayDetails(transId, username);
     }
     else {
         ViewSystemParlayDetails(username, transId, originalTransId, refNo, originalRefNo);
@@ -138,6 +140,35 @@ function ViewSingleMatchParlayDetails(transId, originalTransId, custId, original
 
     $.ajax({
         url: resolveClientUrl('SimilarBets/SingleMatchParlayDetailPopup'),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            modalPopup(result);
+            $(".betdetails").css('overflow-y', 'auto');
+            $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+function ViewPenaltyShootoutParlayDetails(transId, username) {
+    var data = {
+        TransId: transId,
+        Username: username
+    }
+
+    $.ajax({
+        url: resolveClientUrl('BetList/PenaltyShootoutParlayDetailPopup'),
         type: 'POST',
         data: data,
         dataType: 'html',

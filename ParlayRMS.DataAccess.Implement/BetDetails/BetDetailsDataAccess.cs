@@ -46,7 +46,8 @@ namespace ParlayRMS.DataAccess.Implement.BetDetails
                             BetStatus = reader.ToString("betstatus"),
                             BetCheck = reader.ToString("betcheck"),
                             TransDesc = reader.ToString("transdesc"),
-                            Stake = reader.ToDecimal("stake")
+                            Stake = reader.ToDecimal("stake"),
+                            IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1
                         });
                     }
                 }

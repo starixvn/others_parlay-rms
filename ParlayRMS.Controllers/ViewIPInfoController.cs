@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Web.Mvc;
-using Fanex.BetList.Core.Builder;
+﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -21,6 +16,11 @@ using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.ViewIPInfo;
 using ParlayRMS.Web.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -90,6 +90,12 @@ namespace ParlayRMS.Controllers
             if (singleMatchParlayTickets.Any())
             {
                 UpdateChoiceForSingleMatchParlay(model, singleMatchParlayTickets);
+            }
+
+            var penaltyShootoutParlayTickets = models.Where(m => m.BetType == (int)BetType.PenaltyShootout).ToArray();
+            if (penaltyShootoutParlayTickets.Any())
+            {
+                UpdateChoiceForPenaltyShootoutParlay(model, penaltyShootoutParlayTickets);
             }
 
             return View("Drilldown", models);
@@ -182,7 +188,7 @@ namespace ParlayRMS.Controllers
             if (options.BetType == (int)BetType.SystemParlay)
             {
                 var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
-                var filteredTickets = tickets.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
+                var filteredTickets = tickets.Item2.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
                 var count = comboTypes == null ? 0 : comboTypes.Length;
                 for (var i = 0; i < count && i < filteredTickets.Count; i++)
                 {
@@ -194,14 +200,14 @@ namespace ParlayRMS.Controllers
                 openTag += "<br />";
             }
 
-            foreach (var ticket in tickets)
+            foreach (var ticket in tickets.Item2)
             {
                 if (countTicket != 1)
                 {
                     openTag = string.Empty;
                 }
 
-                if (countTicket == tickets.Count())
+                if (countTicket == tickets.Item2.Count())
                 {
                     endTag = string.Empty;
                 }
@@ -211,6 +217,56 @@ namespace ParlayRMS.Controllers
             }
 
             return builder.GetBetList();
+        }
+
+        private static void UpdateChoiceForPenaltyShootoutParlay(DrillDownOptions model, RMS_Rpt_Parlay_ViewIPInfoByUser[] singleMatchParlayTickets)
+        {
+            var index = 0;
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            foreach (var m in singleMatchParlayTickets)
+            {
+                if (m.BetType == (int)BetType.PenaltyShootout)
+                {
+                    m.Choice = BuildPenaltyShootoutParlayChoice(ticketHelper, factory, m, model.UserId, index);
+                    index++;
+                }
+            }
+        }
+
+        private static string BuildPenaltyShootoutParlayChoice(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
+        {
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportTypeId,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                BetTypeId = model.BetType,
+                TransId = model.TransID,
+                IsNeutral = model.IsNeutral,
+                CustId = userId,
+                BetCheck = model.BetCheck,
+                BetTeam = model.BetTeam
+            };
+
+            index++;
+            ticketHelper.Index = index;
+
+            var choice = builder.BuildChoice(ticket, ticketHelper, null, false);
+            var html = new HtmlDocument();
+            html.LoadHtml(choice);
+            var document = html.DocumentNode;
+            var bettype = document.QuerySelector(".bettype");
+            var eventDateNode = document.QuerySelector(".event-date");
+            if (eventDateNode != null)
+            {
+                eventDateNode.Remove();
+            }
+
+            return document.OuterHtml;
         }
     }
 }

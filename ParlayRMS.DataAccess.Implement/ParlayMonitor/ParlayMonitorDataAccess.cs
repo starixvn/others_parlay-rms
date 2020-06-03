@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Fanex.Data;
+﻿using Fanex.Data;
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Utility.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
 {
@@ -58,7 +58,9 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             IsBetRadar = reader.ToBoolean("IsBetRadar"),
                             SportType = reader.ToInt32("sporttype"),
                             BetType = reader.ToInt32("bettype"),
-                            CustId = reader.ToInt32("custid")
+                            CustId = reader.ToInt32("custid"),
+                            IsLive = reader.ToBoolean("islive"),
+                            IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1
                         });
                     }
                 }

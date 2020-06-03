@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fanex.BetList.Core.Entities;
+﻿using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
 using ParlayRMS.DataAccess.Implement.BetList;
 using ParlayRMS.DTO.BetList;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParlayRMS.Services.Implement.BetList
 {
@@ -11,9 +12,10 @@ namespace ParlayRMS.Services.Implement.BetList
     {
         private readonly BetListDataAccess _betListDataAccess = new BetListDataAccess();
 
-        public IEnumerable<ITicket> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
+        public Tuple<List<bool>, List<ITicket>> Map(long refNo, IEnumerable<RMS_Parlay_TransDetails> data)
         {
             var result = new List<ITicket>();
+            var blackListLeagues = new List<bool>();
             foreach (var item in data)
             {
                 ITicket ticket = new Ticket
@@ -45,9 +47,11 @@ namespace ParlayRMS.Services.Implement.BetList
                 };
 
                 result.Add(ticket);
+
+                blackListLeagues.Add(item.IsBlacklistLeague);
             }
 
-            return result.OrderBy(x => x.BetId).ToList();
+            return new Tuple<List<bool>, List<ITicket>>(blackListLeagues, result.OrderBy(x => x.BetId).ToList());
         }
 
         public BetListData GetBetListData(long transId, long refNo)
@@ -55,7 +59,7 @@ namespace ParlayRMS.Services.Implement.BetList
             return _betListDataAccess.RMS_Parlay_TransDetails(transId, refNo);
         }
 
-        public IEnumerable<ITicket> CreateChoice(long transId, long refNo)
+        public Tuple<List<bool>, List<ITicket>> CreateChoice(long transId, long refNo)
         {
             var data = GetBetListData(transId, refNo);
             return Map(refNo, data.Tickets);
@@ -83,6 +87,17 @@ namespace ParlayRMS.Services.Implement.BetList
             var repository = new DynamicRepository();
 
             return repository.Fetch<RMS_BetList_BetBuilder_MatchDetailModel>(criteria).ToList();
+        }
+
+        public List<RMS_BetList_PenaltyShootout_MatchDetailModel> RMS_BetList_PenaltyShootout_MatchDetail(long transId)
+        {
+            var criteria = new RMS_BetList_PenaltyShootout_MatchDetailCriteria
+            {
+                TransId = transId
+            };
+            var repository = new DynamicRepository();
+
+            return repository.Fetch<RMS_BetList_PenaltyShootout_MatchDetailModel>(criteria).ToList();
         }
     }
 }

@@ -198,7 +198,6 @@ div.match + div.league
 }
 .ticketDetail
 {
-    clear: both;
     float: left;
     max-width: 600px;
     width: 352px;
@@ -219,4 +218,11 @@ div.void
 
 .light-blue {
     color: #0017CD;
+}
+.bettype-description {
+    color: #003399;
+    font-weight: normal;
+}
+.blackListMargin {
+    margin: 15px 0 0 2px;
 }

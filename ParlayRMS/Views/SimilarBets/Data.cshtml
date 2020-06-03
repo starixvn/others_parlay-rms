@@ -65,7 +65,21 @@
                 </td>
                 <td class="center">
                     @{ 
-                        var totalBetText = Model.BetType == (int)BetType.SingleMatchParlay ? "bet(S)" : (Model.TotalBet == 1 ? "bet" : "bets");
+                        var totalBetText = string.Empty;
+
+                        if (Model.BetType == 38)
+                        {
+                            totalBetText = " bet(S)";
+                        }
+
+                        else if (Model.BetType == 376)
+                        {
+                            totalBetText = " bet(P)";
+                        }
+                        else
+                        {
+                            totalBetText = Model.TotalBet > 1 ? " bets" : " bet";
+                        }
                     }
                     @string.Format("{0} {1}", Model.TotalBet, totalBetText)
                 </td>

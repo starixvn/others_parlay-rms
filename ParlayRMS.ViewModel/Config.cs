@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ParlayRMS.Models;
+using ParlayRMS.Utility;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using ParlayRMS.Models;
-using ParlayRMS.Utility;
 
 namespace ParlayRMS.ViewModel
 {
@@ -67,6 +67,7 @@ namespace ParlayRMS.ViewModel
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
                 new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
+                new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() },
                 new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
             };
 

@@ -132,7 +132,9 @@
         /// </summary>
         SystemParlay = 29,
 
-        SingleMatchParlay = 38
+        SingleMatchParlay = 38,
+
+        PenaltyShootout = 376
     }
 
     public enum SystemParlayCombo : int

@@ -52,6 +52,7 @@
     <Compile Include="BetDetails\BetInfo.cs" />
     <Compile Include="BetList\BetListData.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_MatchDetailModel.cs" />
+    <Compile Include="BetList\RMS_BetList_PenaltyShootout_MatchDetailModel.cs" />
     <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
     <Compile Include="Functions\RMS_FunctionSel.cs" />
