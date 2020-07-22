@@ -1,0 +1,35 @@
+﻿@using ParlayRMS.ViewModel.Report
+@using ParlayRMS.DTO.LeagueBetTypeAnalysis;
+@using System;
+@model IEnumerable<RMS_Rpt_LeagueBettype_Analysis>
+@{
+    var filterOption = (LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
+    var totalRows = @Convert.ToInt32(ViewBag.TotalRows);
+    var isReportByLeague = filterOption.ReportBy == 1 ? true : false;
+}
+@if (totalRows > 0)
+{
+    <div style="width: @(isReportByLeague ? "1290px" : "1190px")" class="maintitle">
+        <div class="information">
+            League & Bet Type Data Analysis (Soccer)
+        </div>
+        <div class="excel" onclick="LeagueBetTypeAnalysis.ExportExcel('@filterOption.ParlayType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Leagues',  '@filterOption.LeagueGroups','@filterOption.Site', '@filterOption.ReportBy', '@filterOption.Page')" title="Export Excel">
+        </div>
+    </div>
+}
+@if (isReportByLeague)
+{
+    @Html.Partial("_LeagueData", Model)
+}
+else
+{
+    @Html.Partial("_BetTypeData", Model)
+
+}
+<br />
+@if (totalRows > AppSetting.PageSize)
+{
+    <div  style="width: @(isReportByLeague ? "1290px" : "1190px")">
+        @Html.Partial("_Pager", (object)@ViewBag.Pager)
+    </div>
+}

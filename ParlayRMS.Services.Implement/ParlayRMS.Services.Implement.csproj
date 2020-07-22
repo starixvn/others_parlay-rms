@@ -189,6 +189,7 @@
     <Compile Include="BetList\RMS_BetList_PenaltyShootout_DetailCriteria.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_MailDetailCriteria.cs" />
     <Compile Include="BetList\RMS_BetList_PenaltyShootout_MatchDetailCriteria.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueBetTypeAnalysisService.cs" />
     <Compile Include="Leagues\LeaguesService.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossService.cs" />
     <Compile Include="ParlayWon\ParlayWonService.cs" />

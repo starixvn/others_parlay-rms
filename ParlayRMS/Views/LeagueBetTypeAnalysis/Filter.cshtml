@@ -1,0 +1,57 @@
+﻿@using ParlayRMS.Web.Mvc
+
+<div class="filter">
+    <div class="filter-control" style="width: 1100px; margin-bottom: 10px;">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl
+            </div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.Label("", ViewLang.ParlayType)
+                    @Html.DropDownList("ddlParlayType", Config.ParlayTypes)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("fromDate")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("toDate")
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.Ratio)
+                    @Html.TextBox("txtRatio", "", new { @class = "inputtext w100", @type = "number" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label("", ViewLang.Group)
+                    @Html.DropDownList("ddlGroup", Config.LeagueGroups)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.League)
+                    @Html.DropDownList("ddlLeague", (List<SelectListItem>)ViewBag.Leagues)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.Site)
+                    @Html.DropDownList("ddlSite", Config.Sites)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.ReportBy)
+                    @Html.DropDownList("ddlReportBy", Config.ReportBy)
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

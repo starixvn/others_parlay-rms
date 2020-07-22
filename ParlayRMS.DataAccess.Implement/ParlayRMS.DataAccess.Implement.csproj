@@ -77,6 +77,7 @@
     <Compile Include="BetDetails\BetDetailsDataAccess.cs" />
     <Compile Include="BetList\BetListDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueBetTypeAnalysisDataAccess.cs" />
     <Compile Include="Leagues\LeaguesDataAccess.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
     <Compile Include="ParlayMonitor\ParlayMonitorDataAccess.cs" />

@@ -16,6 +16,9 @@ namespace ParlayRMS.ViewModel
         private static List<SelectListItem> _combos;
         private static List<SelectListItem> _parlayTypes;
         private static List<SelectListItem> _reportTypes;
+        private static List<SelectListItem> _leagueGroups;
+        private static List<SelectListItem> _sites;
+        private static List<SelectListItem> _reportBy;
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         static Config()
@@ -75,6 +78,33 @@ namespace ParlayRMS.ViewModel
             {
                 new SelectListItem { Text = "Combo", Value = ((int)ReportType.Combo).ToString(), Selected = true },
                 new SelectListItem { Text = "Sport type", Value = ((int)ReportType.SportType).ToString() }
+            };
+
+            _leagueGroups = new List<SelectListItem> {
+                new SelectListItem { Text = ViewLang.None, Value = "-1" },
+                new SelectListItem { Text = "MJ", Value = "1" },
+                new SelectListItem { Text = "M1", Value = "2" },
+                new SelectListItem { Text = "M2", Value = "3" },
+                new SelectListItem { Text = "M3", Value = "4" },
+                new SelectListItem { Text = "M4 (a)", Value = "5" },
+                new SelectListItem { Text = "M4 (b)", Value = "6" },
+                new SelectListItem { Text = "M4 (x)", Value = "7" },
+                new SelectListItem { Text = "Virtual", Value = "8" },
+                new SelectListItem { Text = "Blacklisted", Value = "9" },
+
+            };
+
+            _reportBy = new List<SelectListItem> {
+                new SelectListItem { Text = "League", Value = "1" },
+                new SelectListItem { Text = "BetType", Value = "2" },
+
+            };
+
+            _sites = new List<SelectListItem> {
+                new SelectListItem { Text = "All", Value = "2" },
+                new SelectListItem { Text = "Credit", Value = "0" },
+                new SelectListItem { Text = "Deposit", Value = "1" },
+
             };
         }
 
@@ -138,6 +168,30 @@ namespace ParlayRMS.ViewModel
                 {
                     return DateTime.Now.AddDays(-1).Date;
                 }
+            }
+        }
+
+        public static List<SelectListItem> LeagueGroups
+        {
+            get
+            {
+                return _leagueGroups;
+            }
+        }
+
+        public static List<SelectListItem> Sites
+        {
+            get
+            {
+                return _sites;
+            }
+        }
+
+        public static List<SelectListItem> ReportBy
+        {
+            get
+            {
+                return _reportBy;
             }
         }
     }

@@ -46,6 +46,7 @@ namespace ParlayRMS.Common.Models
             { 5, "#843c0c" },
             { 6, "#6f30a0" },
             { 7, "#bf9000" },
+            { 9, "#2244bf"},
             { 8, "#ff0000" },
         };
         public static string GetColorByLeagueGroup(int groupId)
@@ -63,6 +64,7 @@ namespace ParlayRMS.Common.Models
             { 5, "M4 (a)" },
             { 6, "M4 (b)" },
             { 7, "M4 (x)" },
+            { 9, "Virtual"},
             { 8, "Blacklisted" },
         };
         public static string GetNameByLeagueGroup(int groupId)
