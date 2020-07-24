@@ -47,25 +47,13 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                if (options.FromDate > options.ToDate)
-                {
-                    ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
-                }
-
-                if (!ModelState.IsValid)
-                {
-                    return PartialView("_ErrorMessage", GetModelErrorMessage());
-                }
-                else
-                {
-                    var model = service.GetLeagueBetTypeList(options);
-                    ViewBag.FilterOption = options;
-                    int page = options.Page <= 0 ? 1 : options.Page;
-                    ViewBag.FilterOption = options;
-                    ViewBag.TotalRows = model.Count;
-                    ViewBag.Pager = Pager.Items(model.Count).PerPage(pageSize).Move(page).Segment(5).Center();
-                    return PartialView(model.ToPagedList(page, pageSize));
-                }
+                var model = service.GetLeagueBetTypeList(options);
+                ViewBag.FilterOption = options;
+                int page = options.Page <= 0 ? 1 : options.Page;
+                ViewBag.FilterOption = options;
+                ViewBag.TotalRows = model.Count;
+                ViewBag.Pager = Pager.Items(model.Count).PerPage(pageSize).Move(page).Segment(5).Center();
+                return PartialView(model.ToPagedList(page, pageSize));
             }
             catch (Exception ex)
             {
@@ -73,14 +61,10 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [HttpGet]
-        [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        public void ExportExcelForBetType(LeagueBetTypeAnalysisOptions options)
+        [HttpPost]
+        public ActionResult ExportExcelForBetType(LeagueBetTypeAnalysisOptions options)
         {
-            var model = service.GetLeagueBetTypeList(options);
-            int page = options.Page <= 0 ? 1 : options.Page;
-            var records = model.ToPagedList(page, pageSize);
+            var records = service.GetLeagueBetTypeList(options);
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\BetTypeDataAnalysis.xls";
             var writer = new TemplateWriter(templatePath);
@@ -126,20 +110,14 @@ namespace ParlayRMS.Controllers
             writer.SyncColumnWidths(10);
 
             MemoryStream ms = writer.Render("BetTypeDataAnalysis");
-            Response.AddHeader("content-disposition", "attachment; filename=" + "BetTypeDataAnalysis.xls");
-            Response.AddHeader("content-type", "application/vnd.ms-excel");
-            Response.BinaryWrite(ms.ToArray());
-            Response.End();
+            ms.Seek(0, 0);
+            return this.File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
         }
 
-        [HttpGet]
-        [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        public void ExportExcelForLeague(LeagueBetTypeAnalysisOptions options)
+        [HttpPost]
+        public ActionResult ExportExcelForLeague(LeagueBetTypeAnalysisOptions options)
         {
-            var model = service.GetLeagueBetTypeList(options);
-            int page = options.Page <= 0 ? 1 : options.Page;
-            var records = model.ToPagedList(page, pageSize);
+            var records = service.GetLeagueBetTypeList(options);
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\LeagueDataAnalysis.xls";
             var writer = new TemplateWriter(templatePath);
@@ -187,10 +165,8 @@ namespace ParlayRMS.Controllers
             writer.SyncColumnWidths(11);
 
             MemoryStream ms = writer.Render("LeagueDataAnalysis");
-            Response.AddHeader("content-disposition", "attachment; filename=" + "LeagueDataAnalysis.xls");
-            Response.AddHeader("content-type", "application/vnd.ms-excel");
-            Response.BinaryWrite(ms.ToArray());
-            Response.End();
+            ms.Seek(0, 0);
+            return this.File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
         }
     }
 }

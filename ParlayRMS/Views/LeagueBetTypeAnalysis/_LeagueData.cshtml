@@ -28,7 +28,7 @@
                 <th>
                     @ViewLang.LeagueName
                 </th>
-                <th class="sortable" data-col-index="1">
+                <th class="sortable" data-col-type="float" data-col-index="3">
                     @ViewLang.TotalTickets
                 </th>
                 <th>
@@ -114,7 +114,7 @@
     </table>
 </div>
 <div style="width: 1290px" class="mainfooter">
-    <table class="main" id="footer">
+    <table class="main" style="width:1290px;" id="footer">
         <colgroup>
             <col width='70px' />
             <col width='100px' />
@@ -131,7 +131,7 @@
         <tfoot>
             @if (Model.Count() == 0)
             {
-                <tr><td class="noinfo" colspan="10">@ViewLang.NoInformation</td></tr>
+                <tr><td class="noinfo" colspan="11">@ViewLang.NoInformation</td></tr>
             }
         </tfoot>
     </table>

@@ -8,6 +8,7 @@
             leagueGroups: null,
             leagues: null,
             site: null,
+            ratio: null,
             reportBy: null,
             page: 1
         };
@@ -171,6 +172,10 @@
             var leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
+            if ($("#ddlLeague").multiselect("getButton").get(0).innerText == 'All') {
+                leagues = '-1,' + leagues;
+            }
+
             if (leagues == '') {
                 Validators.show($("#ddlLeague").multiselect("getButton").get(0), 'Please select your options');
                 return;
@@ -180,7 +185,12 @@
 
             var reportBy = parseInt($("#ddlReportBy").val());
 
-            var ratio = parseFloat(($('#txtRatio').val()).replace(/,/g, ''));
+            var ratio = isNaN(parseInt($("#txtRatio").val())) ? 0 : parseFloat($("#txtRatio").val()) / 100;
+
+            $('#header').find(".sortable").each(function () {
+                $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                this.sortDirection = "";
+            });
 
             LeagueBetTypeAnalysis.Data(parlayType,
                 fromDate,
@@ -188,56 +198,13 @@
                 leagueGroups,
                 leagues,
                 site,
+                ratio,
                 reportBy,
                 LeagueBetTypeAnalysis.cachedObject.page);
         });
-
-        $(document).on("click", '#header .sortable', function () {
-            var currentObject = this;
-            var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
-
-            if (currentColIndex == LeagueBetTypeAnalysis.cachedObject.sortById) {
-                if (LeagueBetTypeAnalysis.cachedObject.isSortAsc) {
-                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = false;
-                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
-                } else {
-                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = true;
-                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
-                }
-            } else {
-                if (currentObject.sortDirection == 'asc') {
-                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = false;
-                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
-                } else {
-                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = true;
-                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
-                }
-
-                $('#header').find(".sortable").each(function () {
-                    if ($(currentObject).index() != $(this).index()) {
-                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
-                        this.sortDirection = "";
-                    }
-                });
-            }
-
-
-            if (!currentColIndex) {
-                currentColIndex = $(currentObject).index();
-            }
-
-            //LeagueBetTypeAnalysis.cachedObject.sortById = parseInt(currentColIndex);
-            LeagueBetTypeAnalysis.Data(LeagueBetTypeAnalysis.cachedObject.parlayType,
-              LeagueBetTypeAnalysis.cachedObject.fromDate,
-              LeagueBetTypeAnalysis.cachedObject.toDate,
-              LeagueBetTypeAnalysis.cachedObject.leagueGroups,
-              LeagueBetTypeAnalysis.cachedObject.leagues,
-              LeagueBetTypeAnalysis.cachedObject.site,
-              LeagueBetTypeAnalysis.cachedObject.reportBy,
-              LeagueBetTypeAnalysis.cachedObject.page);
-        });
     },
-    Data: function (parlayType, fromDate, toDate, leagueGroups, leagues, site, reportBy, page) {
+
+    Data: function (parlayType, fromDate, toDate, leagueGroups, leagues, site, ratio, reportBy, page) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -245,6 +212,7 @@
             leagueGroups: leagueGroups,
             leagues: leagues,
             site: site,
+            ratio: ratio,
             reportBy: reportBy,
             page: page
         }
@@ -262,19 +230,7 @@
             },
             success: function (result) {
                 $("#divResult").html(result);
-                var totalRows = parseInt($("#totalRows").val());
-
-                $('#header').find(".sortable").each(function () {
-                    if ($(this).attr("data-col-index") == LeagueBetTypeAnalysis.cachedObject.sortById) {
-                        if (LeagueBetTypeAnalysis.cachedObject.isSortAsc) {
-                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
-
-                        } else {
-                            $(this).removeClass("headerSortDown").addClass("headerSortUp");
-                        }
-                    }
-                });
-
+                tableSorter.bind2($('#header'), $('#result'), {});
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -284,7 +240,7 @@
             }
         });
     },
-    ExportExcel: function (parlayType, fromDate, toDate, leagues, leagueGroups, site, reportBy, page) {
+    ExportExcel: function (parlayType, fromDate, toDate, leagues, leagueGroups, site, ratio, reportBy) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -292,12 +248,29 @@
             leagueGroups: leagueGroups,
             leagues: leagues,
             site: site,
-            reportBy: reportBy,
-            page: page
+            ratio: ratio,
+            reportBy: reportBy
         };
-        var api = reportBy == 1 ? 'LeagueBetTypeAnalysis/ExportExcelForLeague?' : 'LeagueBetTypeAnalysis/ExportExcelForBetType?'
-        var url = api + $.param(data);
-        window.location.href = resolveClientUrl(url);
+
+        var url = reportBy == 1 ? 'LeagueBetTypeAnalysis/ExportExcelForLeague' : 'LeagueBetTypeAnalysis/ExportExcelForBetType';
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            var element;
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                element = document.createElement('a');
+                element.href = window.URL.createObjectURL(xhttp.response);
+                element.download = "LeagueBetTypeDataAnalysis.xls";
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+            }
+        };
+        xhttp.open("POST", resolveClientUrl(url));
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.responseType = 'blob';
+        xhttp.send(JSON.stringify(data));
+
     },
 
     ResetCachedObject: function () {
@@ -307,8 +280,19 @@
         LeagueBetTypeAnalysis.cachedObject.leagueGroups = null;
         LeagueBetTypeAnalysis.cachedObject.leagues = null;
         LeagueBetTypeAnalysis.cachedObject.site = null;
+        LeagueBetTypeAnalysis.cachedObject.ratio = null;
         LeagueBetTypeAnalysis.cachedObject.reportBy = 0;
         LeagueBetTypeAnalysis.cachedObject.page = 1
+    },
+
+    IsNumberLessThan100: function (event) {
+        var number = isNaN(parseInt($("#txtRatio").val())) ? 0 : parseInt($("#txtRatio").val());
+        var code = event.keyCode;
+        if (code >= 48 && code <= 57 && (number * 10 + parseInt(event.key)) <= 100) {
+            return true;
+        }
+
+        return false;
     }
 }
 
@@ -323,6 +307,7 @@ function MovePage(pageNumber) {
                 LeagueBetTypeAnalysis.cachedObject.leagueGroups,
                 LeagueBetTypeAnalysis.cachedObject.leagues,
                 LeagueBetTypeAnalysis.cachedObject.site,
+                LeagueBetTypeAnalysis.cachedObject.ratio,
                 LeagueBetTypeAnalysis.cachedObject.reportBy,
                 pageNumber);
 }

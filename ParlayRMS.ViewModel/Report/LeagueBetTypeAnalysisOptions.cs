@@ -16,6 +16,8 @@
 
         public int Site { get; set; }
 
+        public double Ratio { get; set; }
+
         public int ReportBy { get; set; }
 
         public int Page { get; set; }

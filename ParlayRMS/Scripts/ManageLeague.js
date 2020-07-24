@@ -147,10 +147,10 @@ function SearchLeague_onclick() {
 
 function SearchAllLeague_onclick() {
     $('#txtLeague').val('');
-    $('#searchGroupName').html('All group');
+    $('#searchGroupName').html('All Group');
     $('#groupColor').attr('valgroup', '0');
     
-    $('#groupColor').css("background-color", "#000000");
+    $('.level').css("background-color", "#000000");
 
     LoadSpecialLeague($("#txtLeague").val(), $("#groupColor").attr('valgroup'), $(".Pager .ActiveNumber").text().trim());
 }

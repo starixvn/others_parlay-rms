@@ -17,6 +17,7 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                                                        string leagueGroups,
                                                        string leagues,
                                                        int site,
+                                                       double ratio,
                                                        int reportBy)
         {
             var result = new List<RMS_Rpt_LeagueBettype_Analysis>();
@@ -29,6 +30,7 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                 db.AddInParameter("LeagueGroups", DbType.String, leagueGroups);
                 db.AddInParameter("Leagues", DbType.String, leagues);
                 db.AddInParameter("Site", DbType.Int32, site);
+                db.AddInParameter("Ratio", DbType.Double, ratio);
                 db.AddInParameter("ReportBy", DbType.Int32, reportBy);
 
                 using (var reader = db.ExecuteReader())

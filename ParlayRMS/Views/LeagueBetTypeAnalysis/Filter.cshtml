@@ -18,15 +18,15 @@
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.From)
-                    @Html.TextBox("fromDate")
+                    @Html.TextBox("fromDate", "", new { @readonly = "true" })
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.To)
-                    @Html.TextBox("toDate")
+                    @Html.TextBox("toDate", "", new { @readonly = "true" })
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.Ratio)
-                    @Html.TextBox("txtRatio", "", new { @class = "inputtext w100", @type = "number" })
+                    @Html.TextBox("txtRatio", "", new { @class = "inputtext w100", onkeypress = "return LeagueBetTypeAnalysis.IsNumberLessThan100(event)" })
                 </div>
             </div>
             <div class="row">

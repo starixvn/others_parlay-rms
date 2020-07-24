@@ -20,6 +20,7 @@ namespace ParlayRMS.Services.Implement.LeagueBetTypeAnalysis
                 options.LeagueGroups,
                 options.Leagues,
                 options.Site,
+                options.Ratio,
                 options.ReportBy);
         }
     }
