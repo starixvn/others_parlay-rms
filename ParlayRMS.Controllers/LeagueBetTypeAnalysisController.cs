@@ -11,7 +11,6 @@ namespace ParlayRMS.Controllers
     using Web.Authorization;
     using Utility;
     using PagedList;
-    using System.Diagnostics.CodeAnalysis;
     using ExcelService.Writers;
     using System.Linq;
     using System.IO;
@@ -70,7 +69,7 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = "League & Bet Type Data Analysis (Soccer)";
+            string title = "League Report";
             writer.WriteRow(0, new object[] { title });
 
             // header
@@ -123,7 +122,7 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = "League & Bet Type Data Analysis (Soccer)";
+            string title = "League Report";
             writer.WriteRow(0, new object[] { title });
 
             // header

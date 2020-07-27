@@ -16,8 +16,8 @@
         var minDate = moment(dateRanges.LimitDataFromDate).format('MMMM DD, YYYY');
 
         $("#ddlParlayType").multiselect({
-            minWidth: 210,
-            height: 120,
+            minWidth: 165,
+            height: 82,
             create: function () {
                 $("#ddlParlayType").multiselect("checkAll");
             },
