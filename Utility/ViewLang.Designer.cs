@@ -1087,6 +1087,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to League Report.
+        /// </summary>
+        public static string LeagueReport {
+            get {
+                return ResourceManager.GetString("LeagueReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {

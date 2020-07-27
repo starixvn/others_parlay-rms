@@ -50,6 +50,7 @@ namespace ParlayRMS.Controllers
                 ViewBag.FilterOption = options;
                 int page = options.Page <= 0 ? 1 : options.Page;
                 ViewBag.FilterOption = options;
+                ViewBag.Title = options.GetTitle();
                 ViewBag.TotalRows = model.Count;
                 ViewBag.Pager = Pager.Items(model.Count).PerPage(pageSize).Move(page).Segment(5).Center();
                 return PartialView(model.ToPagedList(page, pageSize));
@@ -69,7 +70,7 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = "League Report";
+            string title = ViewLang.LeagueReport;
             writer.WriteRow(0, new object[] { title });
 
             // header
@@ -122,7 +123,7 @@ namespace ParlayRMS.Controllers
             var writer = new TemplateWriter(templatePath);
 
             // title
-            string title = "League Report";
+            string title = ViewLang.LeagueReport;
             writer.WriteRow(0, new object[] { title });
 
             // header

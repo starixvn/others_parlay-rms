@@ -11,7 +11,7 @@
 {
     <div style="width: @(isReportByLeague ? "1290px" : "1190px")" class="maintitle">
         <div class="information">
-            League & Bet Type Data Analysis (Soccer)
+            @ViewBag.Title
         </div>
         <div class="excel" onclick="LeagueBetTypeAnalysis.ExportExcel('@filterOption.ParlayType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Leagues',  '@filterOption.LeagueGroups','@filterOption.Site', '@filterOption.Ratio', '@filterOption.ReportBy')" title="Export Excel">
         </div>
