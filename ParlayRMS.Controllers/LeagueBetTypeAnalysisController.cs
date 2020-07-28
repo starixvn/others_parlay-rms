@@ -14,6 +14,7 @@ namespace ParlayRMS.Controllers
     using ExcelService.Writers;
     using System.Linq;
     using System.IO;
+    using Newtonsoft.Json;
 
     [Authorization(Function = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = UserPolicy.Read)]
     public class LeagueBetTypeAnalysisController : BaseController
@@ -31,6 +32,7 @@ namespace ParlayRMS.Controllers
         public ActionResult Filter()
         {
             var leagueList = this.leagueService.GetListLeague("", 0);
+            ViewBag.LeagueList = JsonConvert.SerializeObject(leagueList);
             var leaguesListItem = new List<SelectListItem>();
             foreach (var item in leagueList)
             {

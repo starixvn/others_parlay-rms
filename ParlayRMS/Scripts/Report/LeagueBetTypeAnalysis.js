@@ -1,5 +1,6 @@
 ﻿LeagueBetTypeAnalysis = {
     cachedObject: {},
+    LeagueList: [],
     Init: function () {
         LeagueBetTypeAnalysis.cachedObject = {
             parlayType: null,
@@ -14,6 +15,7 @@
         };
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
         var minDate = moment(dateRanges.LimitDataFromDate).format('MMMM DD, YYYY');
+        LeagueBetTypeAnalysis.LeagueList = $("#leagueList").data('value');
 
         $("#ddlParlayType").multiselect({
             minWidth: 165,
@@ -169,11 +171,16 @@
                 return;
             }
 
-            var leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
-                return this.value;
-            }).get().join(',');
-            if ($("#ddlLeague").multiselect("getButton").get(0).innerText == 'All') {
-                leagues = '-1,' + leagues;
+            var leagues = '';
+            if ($('#ddlLeague').is(':disabled')) {
+                leagues = '-1';
+            } else {
+                leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
+                    return this.value;
+                }).get().join(',');
+                if ($("#ddlLeague").multiselect("getButton").get(0).innerText == 'All' && leagueGroups.search('-1') > -1) {
+                    leagues = '-1,' + leagues;
+                }
             }
 
             if (leagues == '') {
@@ -201,6 +208,24 @@
                 ratio,
                 reportBy,
                 LeagueBetTypeAnalysis.cachedObject.page);
+        });
+
+        $('#ddlGroup').on('change', function () {
+            var data = $("#ddlGroup").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (data == '-1' || data == '') {
+                $("#ddlLeague").multiselect("disable");
+                var html = data == '' ? '' : '<option value="0" aria-selected="true">All</option>';
+                $('#ddlLeague').html(html);
+                $('#ddlLeague').multiselect('refresh');
+            } else {
+                $("#ddlLeague").multiselect("enable");
+                var leagueList = LeagueBetTypeAnalysis.LeagueList.filter(function (obj) {
+                    return data.search(obj.GroupId.toString()) > -1
+                });
+                LeagueBetTypeAnalysis.ReloadLeagues(leagueList);
+            }
         });
     },
 
@@ -293,6 +318,16 @@
         }
 
         return false;
+    },
+
+    ReloadLeagues: function (data) {
+        var html = '';
+        $.each(data, function (key, obj) {
+            html += '<option value="' + obj.LeagueId + '" aria-selected="true">' + obj.LeagueName + '</option>';
+        });
+        $('#ddlLeague').html(html);
+        $('#ddlLeague').multiselect('refresh');
+        $("#ddlLeague").multiselect("checkAll");
     }
 }
 
