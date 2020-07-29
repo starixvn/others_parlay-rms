@@ -102,9 +102,9 @@ namespace ParlayRMS.Controllers
                 DrawTickets = Formatter.FormatNumber3(x.DrawTickets),
                 Ratio = x.Ratio,
                 ParlayWonTickets = Formatter.FormatNumber3(x.ParlayWonTickets),
-                Turnover = Formatter.FormatNumber3(x.TurnOver),
-                MemberWinLoss = Formatter.FormatNumber3(x.MemberWinloss),
-                HouseWinLoss = Formatter.FormatNumber3(x.MainHouseWinloss)
+                Turnover = x.TurnOver.ToString("#,##0.00"),
+                MemberWinLoss = (Math.Floor(x.MemberWinloss * 100) / 100).ToString("#,##0.00"),
+                HouseWinLoss = (Math.Floor(x.MainHouseWinloss * 100) / 100).ToString("#,##0.00")
             });
 
             writer.WriteRows(2, select);
@@ -157,9 +157,9 @@ namespace ParlayRMS.Controllers
                 DrawTickets = Formatter.FormatNumber3(x.DrawTickets),
                 Ratio = x.Ratio,
                 ParlayWonTickets = Formatter.FormatNumber3(x.ParlayWonTickets),
-                Turnover = Formatter.FormatNumber3(x.TurnOver),
-                MemberWinLoss = Formatter.FormatNumber3(x.MemberWinloss),
-                HouseWinLoss = Formatter.FormatNumber3(x.MainHouseWinloss)
+                Turnover = x.TurnOver.ToString("#,##0.00"),
+                MemberWinLoss = (Math.Floor(x.MemberWinloss * 100) / 100).ToString("#,##0.00"),
+                HouseWinLoss = (Math.Floor(x.MainHouseWinloss * 100) / 100).ToString("#,##0.00")
             });
 
             writer.WriteRows(2, select);

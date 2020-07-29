@@ -78,8 +78,7 @@ namespace ParlayRMS.ViewModel
             _simpleParlayTypes = new List<SelectListItem>()
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
-                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
-                new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
+                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
             };
 
             _reportTypes = new List<SelectListItem>()

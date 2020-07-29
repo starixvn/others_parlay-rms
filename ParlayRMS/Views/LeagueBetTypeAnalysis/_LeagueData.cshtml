@@ -100,13 +100,13 @@
                         @Formatter.FormatNumber3(item.ParlayWonTickets)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber3(item.TurnOver)
+                        @item.TurnOver.ToString("#,##0.00")
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber3(item.MemberWinloss)
+                        @((Math.Floor(item.MemberWinloss * 100) / 100).ToString("#,##0.00"))
                     </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(item.MainHouseWinloss)
+                    <td class="numeric" style="color: @(item.MainHouseWinloss < 0 ? "red" : "#3f4142")">
+                        @((Math.Floor(item.MainHouseWinloss * 100) / 100).ToString("#,##0.00"))
                     </td>
                 </tr>
             }

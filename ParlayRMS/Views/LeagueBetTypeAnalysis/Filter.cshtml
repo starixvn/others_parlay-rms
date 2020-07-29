@@ -26,8 +26,8 @@
                     @Html.TextBox("toDate", "", new { @readonly = "true" })
                 </div>
                 <div class="group">
-                    @Html.Label("", ViewLang.Ratio)
-                    @Html.TextBox("txtRatio", "40", new { @class = "inputtext w100", onkeypress = "return LeagueBetTypeAnalysis.IsNumberLessThan100(event)" })
+                    @Html.Label("", ViewLang.Ratio + " >=")
+                    @Html.TextBox("txtRatio", "40", new { @class = "inputtext w100", onkeypress = "return LeagueBetTypeAnalysis.IsNumber(event)" })
                 </div>
             </div>
             <div class="row">

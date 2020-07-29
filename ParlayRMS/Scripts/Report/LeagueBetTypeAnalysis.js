@@ -19,7 +19,7 @@
 
         $("#ddlParlayType").multiselect({
             minWidth: 165,
-            height: 82,
+            height: 55,
             create: function () {
                 $("#ddlParlayType").multiselect("checkAll");
             },
@@ -194,6 +194,11 @@
 
             var ratio = isNaN(parseInt($("#txtRatio").val())) ? 0 : parseFloat($("#txtRatio").val()) / 100;
 
+            if (ratio > 1) {
+                Validators.show($("#txtRatio"), 'Invalid Ratio');
+                return;
+            }
+
             $('#header').find(".sortable").each(function () {
                 $(this).removeClass("headerSortDown").removeClass("headerSortUp");
                 this.sortDirection = "";
@@ -310,10 +315,9 @@
         LeagueBetTypeAnalysis.cachedObject.page = 1
     },
 
-    IsNumberLessThan100: function (event) {
-        var number = isNaN(parseInt($("#txtRatio").val())) ? 0 : parseInt($("#txtRatio").val());
+    IsNumber: function (event) {
         var code = event.keyCode;
-        if (code >= 48 && code <= 57 && (number * 10 + parseInt(event.key)) <= 100) {
+        if (code >= 48 && code <= 57) {
             return true;
         }
 

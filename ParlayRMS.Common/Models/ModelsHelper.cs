@@ -184,14 +184,13 @@ namespace ParlayRMS.Common.Models
 
         public static string GetSimpleParlayTitle(string parlayTypes)
         {
-            if (parlayTypes == "1,2,3")
+            if (parlayTypes == "1,2")
             {
                 return ViewLang.All;
             }
 
             return parlayTypes.Replace("1", ViewLang.MixparLay)
                 .Replace("2", ViewLang.ComboParlay)
-                .Replace("3", ViewLang.SingleMatchParlay)
                 .Replace(",", ", ");
         }
 
