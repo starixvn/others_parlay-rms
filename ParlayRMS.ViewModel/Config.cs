@@ -102,7 +102,7 @@ namespace ParlayRMS.ViewModel
             };
 
             _reportBy = new List<SelectListItem> {
-                new SelectListItem { Text = "League", Value = "1" },
+                new SelectListItem { Text = "League", Value = "1", Selected = true },
                 new SelectListItem { Text = "BetType", Value = "2" },
 
             };

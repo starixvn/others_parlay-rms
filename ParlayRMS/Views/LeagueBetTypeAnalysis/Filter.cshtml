@@ -2,7 +2,7 @@
 
 <input type="hidden" id="leagueList" data-value="@ViewBag.LeagueList" />
 <div class="filter">
-    <div class="filter-control" style="width: 1100px; margin-bottom: 10px;">
+    <div class="filter-control" style="width: 925px; margin-bottom: 10px;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl
@@ -14,10 +14,6 @@
         <div id="filtercontent" class="container">
             <div class="row">
                 <div class="group">
-                    @Html.Label("", ViewLang.ParlayType)
-                    @Html.DropDownList("ddlParlayType", Config.SimpleParlayTypes)
-                </div>
-                <div class="group">
                     @Html.Label("", ViewLang.From)
                     @Html.TextBox("fromDate", "", new { @readonly = "true" })
                 </div>
@@ -28,6 +24,10 @@
                 <div class="group">
                     @Html.Label("", ViewLang.Ratio + " >=")
                     @Html.TextBox("txtRatio", "40", new { @class = "inputtext w100", onkeypress = "return LeagueBetTypeAnalysis.IsNumber(event)" })
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.ReportBy)
+                    @Html.RadioButtonList("rdlReportBy", Config.ReportBy)
                 </div>
             </div>
             <div class="row">
@@ -44,8 +44,8 @@
                     @Html.DropDownList("ddlSite", Config.Sites)
                 </div>
                 <div class="group">
-                    @Html.Label("", ViewLang.ReportBy)
-                    @Html.DropDownList("ddlReportBy", Config.ReportBy)
+                    @Html.Label("", ViewLang.ParlayType)
+                    @Html.DropDownList("ddlParlayType", Config.SimpleParlayTypes)
                 </div>
                 <div class="group">
                     <button id="btnSearch">

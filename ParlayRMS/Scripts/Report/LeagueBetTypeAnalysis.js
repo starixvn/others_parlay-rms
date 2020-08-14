@@ -1,6 +1,8 @@
 ﻿LeagueBetTypeAnalysis = {
     cachedObject: {},
     LeagueList: [],
+    totalLeagueGroup: 0,
+    totalLeague: 0,
     Init: function () {
         LeagueBetTypeAnalysis.cachedObject = {
             parlayType: null,
@@ -16,6 +18,8 @@
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
         var minDate = moment(dateRanges.LimitDataFromDate).format('MMMM DD, YYYY');
         LeagueBetTypeAnalysis.LeagueList = $("#leagueList").data('value');
+        LeagueBetTypeAnalysis.totalLeagueGroup = 10;
+        LeagueBetTypeAnalysis.totalLeague = LeagueBetTypeAnalysis.LeagueList.length;
 
         $("#ddlParlayType").multiselect({
             minWidth: 165,
@@ -45,6 +49,7 @@
             create: function () {
                 $("#ddlGroup").multiselect("checkAll");
             },
+            checkAll: function () { LeagueBetTypeAnalysis.HandleLeagueControl(1) },
             selectedText: function (numChecked, numTotal, checkedItems) {
                 if (numChecked == 0) {
                     return "Select options";
@@ -68,6 +73,7 @@
             create: function () {
                 $("#ddlLeague").multiselect("checkAll");
             },
+            checkAll: function () { LeagueBetTypeAnalysis.HandleLeagueControl(2) },
             selectedText: function (numChecked, numTotal, checkedItems) {
                 if (numChecked == 0) {
                     return "Select options";
@@ -87,14 +93,6 @@
         $("#ddlSite").multiselect({
             minWidth: 80,
             height: 80,
-            header: false,
-            multiple: false,
-            selectedList: 1
-        });
-
-        $("#ddlReportBy").multiselect({
-            minWidth: 80,
-            height: 56,
             header: false,
             multiple: false,
             selectedList: 1
@@ -142,6 +140,7 @@
 
         $("#btnSearch").addClass("button");
         $('#btnSearch').click(function () {
+            Validators.hide();
             $("#divResult").html('');
             LeagueBetTypeAnalysis.ResetCachedObject();
             var fromDate = $("#fromDate").val();
@@ -172,7 +171,7 @@
             }
 
             var leagues = '';
-            if ($('#ddlLeague').is(':disabled')) {
+            if (leagueGroups == '-1') {
                 leagues = '-1';
             } else {
                 leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
@@ -188,9 +187,17 @@
                 return;
             }
 
-            var site = parseInt($("#ddlSite").val());
+            var reportBy = $('input[name=rdlReportBy]:checked').val();
 
-            var reportBy = parseInt($("#ddlReportBy").val());
+            if (leagueGroups == '-1' && reportBy == '2') {
+                Validators.show($("#ddlGroup").multiselect("getButton").get(0), 'Please select another option to get correct report!');
+            }
+
+            if (leagues.split(',').length > 1 && reportBy == '2' && $("#ddlGroup").multiselect("getButton").get(0).innerText != 'All') {
+                Validators.show($("#ddlLeague").multiselect("getButton").get(0), 'Please select single League to get correct report!');
+            }
+
+            var site = parseInt($("#ddlSite").val());
 
             var ratio = isNaN(parseInt($("#txtRatio").val())) ? 0 : parseFloat($("#txtRatio").val()) / 100;
 
@@ -216,20 +223,39 @@
         });
 
         $('#ddlGroup').on('change', function () {
-            var data = $("#ddlGroup").multiselect("getChecked").map(function () {
+            var leagueGroups = $("#ddlGroup").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
-            if (data == '-1' || data == '') {
+            var leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (LeagueBetTypeAnalysis.IsDisabled($('input[name=rdlReportBy]:checked').val(), leagueGroups, leagues)) {
                 $("#ddlLeague").multiselect("disable");
-                var html = data == '' ? '' : '<option value="0" aria-selected="true">All</option>';
-                $('#ddlLeague').html(html);
-                $('#ddlLeague').multiselect('refresh');
+                if (leagueGroups == '-1') {
+                    var html = leagueGroups == '' ? '' : '<option value="0" aria-selected="true">All</option>';
+                    $('#ddlLeague').html(html);
+                    $('#ddlLeague').multiselect('refresh');
+                }
             } else {
                 $("#ddlLeague").multiselect("enable");
-                var leagueList = LeagueBetTypeAnalysis.LeagueList.filter(function (obj) {
-                    return data.search(obj.GroupId.toString()) > -1
-                });
-                LeagueBetTypeAnalysis.ReloadLeagues(leagueList);
+                LeagueBetTypeAnalysis.ReloadLeagues(leagueGroups);
+            }
+        });
+
+        $('input[name=rdlReportBy]').on('change', function () {
+            var leagueGroups = $("#ddlGroup").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            var leagues = $("#ddlLeague").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (LeagueBetTypeAnalysis.IsDisabled(this.value, leagueGroups, leagues)) {
+                $("#ddlLeague").multiselect("disable");
+                if (leagueGroups.split(',').length == LeagueBetTypeAnalysis.totalLeagueGroup) {
+                    LeagueBetTypeAnalysis.ReloadLeagues(leagueGroups);
+                }
+            } else {
+                $("#ddlLeague").multiselect("enable");
             }
         });
     },
@@ -324,7 +350,11 @@
         return false;
     },
 
-    ReloadLeagues: function (data) {
+    ReloadLeagues: function (leagueGroups) {
+        var data = LeagueBetTypeAnalysis.LeagueList.filter(function (obj) {
+            return leagueGroups.search(obj.GroupId.toString()) > -1
+        });
+        LeagueBetTypeAnalysis.totalLeague = data.length;
         var html = '';
         $.each(data, function (key, obj) {
             html += '<option value="' + obj.LeagueId + '" aria-selected="true">' + obj.LeagueName + '</option>';
@@ -332,6 +362,28 @@
         $('#ddlLeague').html(html);
         $('#ddlLeague').multiselect('refresh');
         $("#ddlLeague").multiselect("checkAll");
+    },
+
+    IsDisabled: function (reportBy, leagueGroups, leagues) {
+        return leagueGroups == '-1' || leagueGroups == '' ||
+                (leagueGroups.split(',').length == LeagueBetTypeAnalysis.totalLeagueGroup
+                && reportBy == '2');
+    },
+
+    HandleLeagueControl: function (type) {
+        var reportBy = $('input[name=rdlReportBy]:checked').val();
+        var leagueGroups = $("#ddlGroup").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (reportBy == '2') {
+            if (type == 2 && leagueGroups.split(',').length == LeagueBetTypeAnalysis.totalLeagueGroup) {
+                $("#ddlLeague").multiselect("disable");
+            }
+            if (type == 1 && leagueGroups.split(',').length == LeagueBetTypeAnalysis.totalLeagueGroup) {
+                $("#ddlLeague").multiselect("disable");
+                LeagueBetTypeAnalysis.ReloadLeagues(leagueGroups);
+            }
+        }
     }
 }
 
