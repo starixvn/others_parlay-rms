@@ -1,0 +1,58 @@
+﻿@using ParlayRMS.Web.Mvc
+
+<input type="hidden" id="leagueList" data-value="@ViewBag.LeagueList" />
+<div class="filter">
+    <div class="filter-control" style="width: 925px; margin-bottom: 10px;">
+        <div class="minimizetitle">
+            <div class="minimizecontent">
+                @ViewLang.FilterControl
+            </div>
+            <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
+                -
+            </div>
+        </div>
+        <div id="filtercontent" class="container">
+            <div class="row">
+                <div class="group">
+                    @Html.Label("", ViewLang.From)
+                    @Html.TextBox("fromDate", "", new { @readonly = "true" })
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.To)
+                    @Html.TextBox("toDate", "", new { @readonly = "true" })
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.Ratio + " >=")
+                    @Html.TextBox("txtRatio", "40", new { @class = "inputtext w100", onkeypress = "return LeagueBetTypeAnalysis.IsNumber(event)" })
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.ReportBy)
+                    @Html.RadioButtonList("rdlReportBy", Config.ReportBy)
+                </div>
+            </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label("", ViewLang.Group)
+                    @Html.DropDownList("ddlGroup", Config.LeagueGroups)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.League)
+                    @Html.DropDownList("ddlLeague", (List<SelectListItem>)ViewBag.Leagues)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.Site)
+                    @Html.DropDownList("ddlSite", Config.Sites)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.ParlayType)
+                    @Html.DropDownList("ddlParlayType", Config.SimpleParlayTypes)
+                </div>
+                <div class="group">
+                    <button id="btnSearch">
+                        <span class="text">@ViewLang.Submit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

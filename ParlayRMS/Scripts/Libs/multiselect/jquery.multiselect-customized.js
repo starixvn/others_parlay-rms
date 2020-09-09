@@ -84,7 +84,7 @@
                     .appendTo(header),
 
                 checkboxContainer = (this.checkboxContainer = $('<ul />'))
-                    .addClass('ui-multiselect-checkboxes ui-helper-reset')
+                    .addClass(el.attr('id') + ' ui-multiselect-checkboxes ui-helper-reset ')
                     .appendTo(menu);
 
             // perform event bindings

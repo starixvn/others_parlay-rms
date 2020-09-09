@@ -1,0 +1,138 @@
+﻿@using ParlayRMS.DTO.LeagueBetTypeAnalysis;
+@using System;
+@model IEnumerable<RMS_Rpt_LeagueBettype_Analysis>
+
+<div style="width: 1290px">
+    <table class="main" id="header">
+        <colgroup>
+            <col width='70px' />
+            <col width='100px' />
+            <col width='170px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='80px' />
+            <col width='150px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    @ViewLang.No
+                </th>
+                <th>
+                    @ViewLang.Group
+                </th>
+                <th>
+                    @ViewLang.LeagueName
+                </th>
+                <th class="sortable" data-col-type="float" data-col-index="3">
+                    @ViewLang.TotalTickets
+                </th>
+                <th>
+                    @ViewLang.WonTickets
+                </th>
+                <th>
+                    @ViewLang.DrawTickets
+                </th>
+                <th>
+                    @ViewLang.Ratio
+                </th>
+                <th>
+                    @ViewLang.ParlayWonTickets
+                </th>
+                <th>
+                    @ViewLang.Turnover
+                </th>
+                <th>
+                    @ViewLang.MemberWinLoss
+                </th>
+                <th>
+                    @ViewLang.HouseWinLoss
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1310px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='70px' />
+            <col width='100px' />
+            <col width='170px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='80px' />
+            <col width='150px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">
+                        @item.No
+                    </td>
+                    <td class="center">
+                        @item.GroupName
+                    </td>
+                    <td class="left">
+                        @item.League
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.TotalTickets)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.WonTickets)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.DrawTickets)
+                    </td>
+                    <td class="center">
+                        @item.Ratio
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.ParlayWonTickets)
+                    </td>
+                    <td class="numeric">
+                        @item.TurnOver.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @((Math.Floor(item.MemberWinloss * 100) / 100).ToString("#,##0.00"))
+                    </td>
+                    <td class="numeric" style="color: @(item.MainHouseWinloss < 0 ? "red" : "#3f4142")">
+                        @((Math.Floor(item.MainHouseWinloss * 100) / 100).ToString("#,##0.00"))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 1290px" class="mainfooter">
+    <table class="main" style="width:1290px;" id="footer">
+        <colgroup>
+            <col width='70px' />
+            <col width='100px' />
+            <col width='170px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tfoot>
+            @if (Model.Count() == 0)
+            {
+                <tr><td class="noinfo" colspan="11">@ViewLang.NoInformation</td></tr>
+            }
+        </tfoot>
+    </table>
+</div>

@@ -590,11 +590,14 @@
     <Content Include="Content\images\Login\logo.png" />
     <Content Include="Content\images\Login\red_bt_bg.png" />
     <Content Include="Content\images\UnderMaintenance.gif" />
+    <Content Include="Content\LeagueBetTypeAnalysis.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\ParlayWon.css" />
     <Content Include="packages.config" />
     <Content Include="ExcelTemplates\SpecialLeague.xls" />
     <Content Include="ExcelTemplates\ParlayWon.xls" />
+    <Content Include="ExcelTemplates\BetTypeDataAnalysis.xls" />
+    <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Content\under-maintenance.css" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />
@@ -607,6 +610,7 @@
     <Content Include="Scripts\ManageLeague.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Monitor\PotentialWinning.js" />
+    <Content Include="Scripts\Report\LeagueBetTypeAnalysis.js" />
     <Content Include="Scripts\Report\ParlayWon.js" />
     <Content Include="Scripts\Report\ViewIPInfoByUser.js" />
     <Content Include="Scripts\Report\ViewIPInfo.js" />
@@ -626,6 +630,11 @@
     <Content Include="Views\TopWinners\SingleMatchParlayBetDetails.cshtml" />
     <Content Include="Views\ParlayWon\SingleMatchParlayBetDetails.cshtml" />
     <Content Include="Views\ParlayWon\PenaltyShootoutParlayBetDetails.cshtml" />
+    <Content Include="Views\LeagueBetTypeAnalysis\Index.cshtml" />
+    <Content Include="Views\LeagueBetTypeAnalysis\Filter.cshtml" />
+    <Content Include="Views\LeagueBetTypeAnalysis\Data.cshtml" />
+    <Content Include="Views\LeagueBetTypeAnalysis\_LeagueData.cshtml" />
+    <Content Include="Views\LeagueBetTypeAnalysis\_BetTypeData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

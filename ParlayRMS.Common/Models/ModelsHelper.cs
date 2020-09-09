@@ -46,6 +46,7 @@ namespace ParlayRMS.Common.Models
             { 5, "#843c0c" },
             { 6, "#6f30a0" },
             { 7, "#bf9000" },
+            { 9, "#2244bf"},
             { 8, "#ff0000" },
         };
         public static string GetColorByLeagueGroup(int groupId)
@@ -63,6 +64,7 @@ namespace ParlayRMS.Common.Models
             { 5, "M4 (a)" },
             { 6, "M4 (b)" },
             { 7, "M4 (x)" },
+            { 9, "Virtual"},
             { 8, "Blacklisted" },
         };
         public static string GetNameByLeagueGroup(int groupId)
@@ -178,6 +180,76 @@ namespace ParlayRMS.Common.Models
                 .Replace("3", ViewLang.SingleMatchParlay)
                 .Replace("4", ViewLang.PenaltyShootoutCombo)
                 .Replace(",", ", ");
+        }
+
+        public static string GetSimpleParlayTitle(string parlayTypes)
+        {
+            if (parlayTypes == "1,2")
+            {
+                return ViewLang.All;
+            }
+
+            return parlayTypes.Replace("1", ViewLang.MixparLay)
+                .Replace("2", ViewLang.ComboParlay)
+                .Replace(",", ", ");
+        }
+
+        public static string GetSiteTitle(int site)
+        {
+            switch (site)
+            {
+                case 1:
+                    return "Deposit";
+                case 0:
+                    return "Credit";
+                default:
+                    return ViewLang.All;
+            }
+        }
+
+        public static string GetLeagueGroup(int leagueGroup)
+        {
+            switch (leagueGroup)
+            {
+                case -1:
+                    return "None";
+                case 1:
+                    return "MJ";
+                case 2:
+                    return "M1";
+                case 3:
+                    return "M2";
+                case 4:
+                    return "M3";
+                case 5:
+                    return "M4 (a)";
+                case 6:
+                    return "M4 (b)";
+                case 7:
+                    return "M4 (x)";
+                case 8:
+                    return "Blacklist";
+                default:
+                    return "Virtual";
+            }
+        }
+
+        public static string GetLeagueGroupTitle(string leagueGroups)
+        {
+            var list = leagueGroups.Split(',');
+            if (list.Length == 10)
+            {
+                return ViewLang.All;
+            }
+            else if (list.Length == 1)
+            {
+                var sportType = Convert.ToInt32(list[0]);
+                return GetLeagueGroup(sportType);
+            }
+            else
+            {
+                return string.Format("{0} options", list.Length);
+            }
         }
     }
 }

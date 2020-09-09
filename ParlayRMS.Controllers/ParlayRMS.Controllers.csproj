@@ -227,6 +227,7 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="BaseController.cs" />
+    <Compile Include="LeagueBetTypeAnalysisController.cs" />
     <Compile Include="ManageLeagueController.cs" />
     <Compile Include="ParlayWonController.cs" />
     <Compile Include="PotentialWinningController.cs" />

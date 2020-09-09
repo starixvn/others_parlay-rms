@@ -166,6 +166,9 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/ParlayWon").Include(
               "~/Content/ParlayWon.css"));
 
+            bundles.Add(new StyleBundle("~/Content/LeagueBetTypeAnalysis").Include(
+              "~/Content/LeagueBetTypeAnalysis.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
@@ -228,6 +231,11 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/Report/ParlayWon/js").Include(
                 "~/Scripts/Libs/simplepagination/jquery.simplePagination.js",
                 "~/Scripts/Report/ParlayWon.js"
+                 ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Report/LeagueBetTypeAnalysis/js").Include(
+                "~/Scripts/Libs/simplepagination/jquery.simplePagination.js",
+                "~/Scripts/Report/LeagueBetTypeAnalysis.js"
                  ));
         }
     }

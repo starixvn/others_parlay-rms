@@ -894,4 +894,40 @@
   <data name="ParlayWon" xml:space="preserve">
     <value>Parlay Won</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>Report By</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Ratio (%)</value>
+  </data>
+  <data name="DrawTickets" xml:space="preserve">
+    <value>Draw Tickets</value>
+  </data>
+  <data name="HouseWinLoss" xml:space="preserve">
+    <value>House Win Loss</value>
+  </data>
+  <data name="MemberWinLoss" xml:space="preserve">
+    <value>Member Win Loss</value>
+  </data>
+  <data name="ParlayWonTickets" xml:space="preserve">
+    <value>Parlay Won Tickets</value>
+  </data>
+  <data name="TotalTickets" xml:space="preserve">
+    <value>Total Tickets</value>
+  </data>
+  <data name="WonTickets" xml:space="preserve">
+    <value>Won Tickets</value>
+  </data>
+  <data name="LeagueName" xml:space="preserve">
+    <value>League Name</value>
+  </data>
+  <data name="LeagueReport" xml:space="preserve">
+    <value>League Report</value>
+  </data>
 </root>

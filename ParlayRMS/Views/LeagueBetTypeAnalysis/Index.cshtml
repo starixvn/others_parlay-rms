@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = ViewBag.HeaderText = "League & Bet Type Data Analysis (Soccer)";
+}
+@Styles.Render("~/Content/simplepagination")
+@Styles.Render("~/Content/LeagueBetTypeAnalysis")
+@Html.Action("Filter")
+<div style="clear: both; margin-bottom: 10px;" id="divResult">
+</div>
+@Scripts.Render("~/Scripts/Report/LeagueBetTypeAnalysis/js")
+<script type="text/javascript">
+    var dateRanges = {
+        LimitDataFromDate: '@DateTime.Now.AddMonths(-6)',
+        NowDate: '@DateTime.Now'
+    };
+</script>
