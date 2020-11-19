@@ -1,15 +1,15 @@
-﻿using ParlayRMS.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Web.Mvc;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.PalayMonitor;
 using ParlayRMS.Web.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
@@ -56,7 +56,7 @@ namespace ParlayRMS.Controllers
             ViewBag.Levels = levels;
 
             // Select Top
-            var values = new List<int> { 10, 20, 50, 100, 200 };
+            var values = new List<int> { 10, 20, 50, 100, 200, 1000, 2000, 3000, 5000 };
             var selectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
