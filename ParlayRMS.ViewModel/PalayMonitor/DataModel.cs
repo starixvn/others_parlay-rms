@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ParlayRMS.Web.Mvc.DataAnnotations;
+﻿using ParlayRMS.Web.Mvc.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParlayRMS.ViewModel.PalayMonitor
 {
@@ -23,7 +23,7 @@ namespace ParlayRMS.ViewModel.PalayMonitor
 
         public int ReportType { get; set; }
 
-        [Required, Values(10, 20, 50, 100, 200, 1000, 2000, 3000, 5000)]
+        [Required, Values(10, 20, 50, 100, 200, 1000, 2000, 3000)]
         public int SelectTop { get; set; }
 
         [Required, Range(0, long.MaxValue)]
