@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Configuration;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Fanex.Common;
+using Newtonsoft.Json;
 using ONEbook.UM.Services.Impl;
 using ParlayRMS.DTO;
+using ParlayRMS.DTO.Users;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Users;
 using ParlayRMS.Services.Implement.Users;
@@ -48,7 +53,17 @@ namespace ParlayRMS.Controllers
                 {
                     CreateSession(user, userId);
                     CreateAuthInfo(user);
-                    return RedirectToAction("Index", "Home");
+
+                    var aspNetCoreAuth = GetAspNetCoreAuth();
+                    if (!string.IsNullOrEmpty(aspNetCoreAuth))
+                    {
+                        string aspNetCoreAuthUrl = GetAspNetCoreAuthUrl(model, request, aspNetCoreAuth);
+                        return Redirect(aspNetCoreAuthUrl);
+                    }
+                    else
+                    {
+                        return Redirect(FormsAuthentication.DefaultUrl);
+                    }
                 }
                 else
                 {
@@ -58,6 +73,57 @@ namespace ParlayRMS.Controllers
             }
 
             return PartialView(model);
+        }
+
+        private string GetAspNetCoreAuthUrl(LoginModel model, Request request, string aspNetCoreAuth)
+        {
+            var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth, FormsAuthentication.DefaultUrl);
+
+            var command = new UserLoginParameter
+            {
+                Username = model.UserName,
+                Userpwd = Cryptography.CfsEnCode(model.Password),
+                LoginIp = request.Ip,
+                LoginDomain = request.Domain,
+                BrowserName = request.Browser,
+                Platform = request.Platform,
+                CountryCode = request.CountryCode,
+                Language = request.Language
+            };
+
+            var jsonCommand = JsonConvert.SerializeObject(command);
+            var loginParameters = HttpUtility.UrlEncode(jsonCommand);
+
+            var aspNetCoreAuthUrl = aspNetCoreAuth
+                + $"/Login?loginParameters={loginParameters}&redirectUrl={redirectUrl}";
+            return aspNetCoreAuthUrl;
+        }
+
+        private string GetAspNetCoreAuth()
+        {
+            var aspNetCoreAuth = ConfigurationManager.AppSettings["AspNetCoreAuth"];
+            if (!string.IsNullOrEmpty(aspNetCoreAuth))
+            {
+                var applicationPath = Request.ApplicationPath.Replace("/", "");
+                applicationPath = "NetCore" + applicationPath;
+                aspNetCoreAuth = aspNetCoreAuth.Replace("{ApplicationPath}", applicationPath);
+                return aspNetCoreAuth;
+            }
+
+            return string.Empty;
+        }
+
+        private string GetNetCoreAuthRedirectUrl(string aspNetCoreAuth, string defaultUrl)
+        {
+            var redirectUrl = new Uri(Request.Url, defaultUrl).ToString();
+            var isSsl = aspNetCoreAuth.StartsWith("https", StringComparison.CurrentCultureIgnoreCase)
+                && redirectUrl.IndexOf("https", StringComparison.CurrentCultureIgnoreCase) < 0;
+            if (isSsl)
+            {
+                redirectUrl = Regex.Replace(redirectUrl, "http", "https", RegexOptions.IgnoreCase);
+            }
+
+            return HttpUtility.UrlEncode(redirectUrl);
         }
 
         public ActionResult Offline()
@@ -135,6 +201,14 @@ namespace ParlayRMS.Controllers
             else
             {
                 ClearSessionAndCookies();
+            }
+
+            var aspNetCoreAuth = GetAspNetCoreAuth();
+            if (!string.IsNullOrEmpty(aspNetCoreAuth))
+            {
+                var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth, FormsAuthentication.LoginUrl); ;
+
+                return Redirect(aspNetCoreAuth + $"/LogOut?redirectUrl={redirectUrl}");
             }
 
             return Redirect(FormsAuthentication.LoginUrl);

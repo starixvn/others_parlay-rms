@@ -13,7 +13,14 @@
                         <ul class="sub-nav" style="display: none">
                             @foreach (var menu in value.Children)
                             {
-                                <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
+                                if (menu.Url.Contains("/NetCore"))
+                                {
+                                    <li><a href='@menu.Url' target="_blank">@menu.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
+                                }
                             }
                         </ul>
                     }
