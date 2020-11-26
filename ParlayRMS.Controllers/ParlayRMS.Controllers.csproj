@@ -231,6 +231,7 @@
     <Compile Include="ManageLeagueController.cs" />
     <Compile Include="ParlayWonController.cs" />
     <Compile Include="PotentialWinningController.cs" />
+    <Compile Include="ServerTimeController.cs" />
     <Compile Include="ViewIPInfoController.cs" />
     <Compile Include="ErrorController.cs" />
     <Compile Include="ManageAgentController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="SharedController.cs" />
     <Compile Include="TotalOutstandingController.cs" />
     <Compile Include="WinlossController.cs" />
+    <Compile Include="WinLossRiskControlController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExcelService\ParlayRMS.ExcelService.csproj">

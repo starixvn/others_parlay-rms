@@ -1,0 +1,16 @@
+<nav class="navbar fixed-top navbar-toggleable">
+  <a class="navbar-brand" href="#">
+      <div class="logo"></div>
+  </a>
+</nav>
+<div>
+  <div class="nap-header">
+    <div class="title">
+      Win Loss Risk Control
+    </div>
+  </div>
+  <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <nap-toast></nap-toast>
+  <app-grid *ngIf="filterModel" [filterModel]="filterModel"></app-grid>
+</div>
+<nap-spinner></nap-spinner>

@@ -1,0 +1,113 @@
+<ng-template #colgroup>
+  <colgroup>
+      <col style="width: 140px" />
+      <col style="width: 130px" />
+      <col style="width: 90px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+  </colgroup>
+</ng-template>
+<ng-template #thead>
+  <thead>
+      <tr>
+          <th>Site/Username</th>
+          <th>No. Member</th>
+          <th>Bet Count</th>
+          <th>Member Win Loss</th>
+          <th>SMA Win Loss</th>
+          <th>Extra PT</th>
+          <th>Commission</th>
+          <th>Real Income</th>
+          <th>Real Turnover</th>
+          <th>Margin</th>
+      </tr>
+  </thead>
+</ng-template>
+<ng-template #rowItem let-item="item">
+  <td *ngIf="item.rows.length > 0; else drillDown" (click)="onCollapsed(item)">
+    <i [ngClass]="{'fa': 1, 'fa-caret-down': !item.isCollapsed, 'fa-caret-up': item.isCollapsed }"></i>
+    <span><a href="javascript:;">{{ item.username }}</a></span>
+  </td>
+  <ng-template #drillDown>
+    <td>
+      <a href="javascript:;" (click)="showSuperOrAgent(item.username, item.isDeposit)">{{ item.username }}</a>
+    </td>
+  </ng-template>
+  <td class="text-right" [napDecimalFormat]="item.noMember"></td>
+  <td class="text-right" [napDecimalFormat]="item.betCount"></td>
+  <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>
+  <td [ngClass]="{'red': item.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.smaWinLoss"></td>
+  <td class="text-right" [napDecimalFormat]="item.extraPT"></td>
+  <td class="text-right" [napDecimalFormat]="item.commission"></td>
+  <td [ngClass]="{'red': item.realIncome <= 0 , 'text-right' : 1}" [napDecimalFormat]="item.realIncome"></td>
+  <td class="text-right" [napDecimalFormat]="item.realTurnover"></td>
+   <td [ngClass]="{'red': item.margin <= 0, 'text-right' : 1}">
+     <span [napDecimalFormat]="item.margin"></span>%
+   </td>
+</ng-template>
+<div *ngIf="siteWinLoss" [ngSwitch]="siteWinLoss.rows.length > 0">
+  <div class="nap-grid">
+      <div style="width: 1290px;">
+          <div class="header">
+              <table>
+                  <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                  <ng-template [ngTemplateOutlet]="thead"></ng-template>
+              </table>
+          </div>
+          <div *ngSwitchCase="true" class="body">
+            <table class="table-striped">
+              <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+              <tbody>
+                <ng-template ngFor let-group [ngForOf]="siteWinLoss.rows">
+                  <tr class="font-weight-bold site-group">
+                    <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: group }">
+                    </ng-template>
+                  </tr>
+                  <tr *ngFor="let item of group.rows" [hidden]="group.isCollapsed">
+                    <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                    </ng-template>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+          <div *ngSwitchCase="false" class="body stretch">
+              <table>
+                  <tbody>
+                      <tr>
+                          <th class="no-data" colspan="10">
+                              There is no data
+                          </th>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div *ngSwitchCase="true" class="footer">
+              <table>
+                  <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                  <tfoot>
+                      <tr class="font-weight-bold">
+                          <td class="text-right">{{siteWinLoss.username}}</td>
+                          <td class="text-right" [napDecimalFormat]="siteWinLoss.noMember"></td>
+                          <td class="text-right" [napDecimalFormat]="siteWinLoss.betCount"></td>
+                          <td [ngClass]="{'red': siteWinLoss.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="siteWinLoss.memberWinLoss"></td>
+                          <td [ngClass]="{'red': siteWinLoss.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="siteWinLoss.smaWinLoss"></td>
+                          <td class="text-right" [napDecimalFormat]="siteWinLoss.extraPT"></td>
+                          <td class="text-right" [napDecimalFormat]="siteWinLoss.commission"></td>
+                          <td [ngClass]="{'red': siteWinLoss.realIncome <= 0 , 'text-right' : 1}" [napDecimalFormat]="siteWinLoss.realIncome"></td>
+                          <td class="text-right" [napDecimalFormat]="siteWinLoss.realTurnover"></td>
+                          <td [ngClass]="{'red': siteWinLoss.margin <= 0, 'text-right' : 1}">
+                            <span [napDecimalFormat]="siteWinLoss.margin"></span>%
+                          </td>
+                      </tr>
+                  </tfoot>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
