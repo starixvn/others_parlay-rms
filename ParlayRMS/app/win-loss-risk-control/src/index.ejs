@@ -4,8 +4,9 @@
 }
 @section Head {
     <% files.css.forEach(function(css){ %>
-    <link href="<%= css%>" rel="stylesheet"/><% }) %>
+    <link href='@Url.Content("~/<%= css%>")' rel="stylesheet"/><% }) %>
 }
 <app-root netcore-api-url="@ViewBag.AspNetCoreApiUrl"></app-root>
 <% files.js.forEach(function(js){ %>
-<script src="<%= js%>"></script><% }) %>
+<script src='@Url.Content("~/<%= js %>")'></script>
+<%})%>

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace ParlayRMS.Controllers
 {
     // [Authorization(Function = FunctionKeys.WinLossRiskControl, Policy = UserPolicy.Read)]
-    public class WinLossRiskControlController : BaseController
+    public class BlankTabWinLossRiskControlController : BaseController
     {
         [HttpGet]
         public ActionResult Index()

@@ -1,7 +1,6 @@
 ﻿namespace ParlayRMS.Controllers
 {
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Linq;
     using System.Web.Mvc;
     using ParlayRMS.Services.Implement.Menus;
@@ -31,7 +30,7 @@
         public ActionResult _Menu()
         {
             // load menus
-            var menuList = this._menuService.GetMenusByUserId(CurrentSession.UserId).ToList();
+            var menuList = this._menuService.GetMenusByUserId(CurrentSession.UserId);
             var rootMenuList = menuList.Where(x => x.Parent == null);
             var menuDict = new Dictionary<string, MenuItem>();
 
@@ -41,7 +40,7 @@
                 MenuItem menuItem = new MenuItem
                 {
                     Name = item.Name,
-                    Url = GetMenuUrl(item.Url),
+                    Url = item.Url,
                     Children = new List<MenuItem>()
                 };
 
@@ -49,9 +48,9 @@
                     x => new MenuItem
                     {
                         Name = x.Name,
-                        Url = GetMenuUrl(x.Url),
-                    }).ToList();
-                menuItem.Children.AddRange(value);
+                        Url = x.Url
+                    });
+                menuItem.Children.AddRange(value.ToList());
 
                 if (menuItem.Children.Count > 0 || !string.IsNullOrEmpty(menuItem.Url))
                 {
@@ -61,28 +60,6 @@
 
             return this.PartialView(menuDict);
         }
-
-        private string GetMenuUrl(string menuUrl)
-        {
-            menuUrl = string.IsNullOrEmpty(menuUrl) ? string.Empty : menuUrl;
-            if (!menuUrl.Contains("~/NetCore/"))
-            {
-                return menuUrl;
-            }
-
-            var aspNetCoreAuth = ConfigurationManager.AppSettings["AspNetCoreAuth"];
-            if (!string.IsNullOrEmpty(aspNetCoreAuth))
-            {
-                var applicationPath = Request.ApplicationPath.Replace("/", "");
-                applicationPath = "NetCore" + applicationPath;
-                aspNetCoreAuth = aspNetCoreAuth.Replace("{ApplicationPath}", applicationPath);
-
-                return aspNetCoreAuth.Replace("PropagationAuth", "") + menuUrl.Replace("~/NetCore/", "");
-            }
-
-            return string.Empty;
-        }
-
 
         /// <summary>
         /// Gets message box view.

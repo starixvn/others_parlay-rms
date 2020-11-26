@@ -250,7 +250,7 @@
     <Compile Include="SharedController.cs" />
     <Compile Include="TotalOutstandingController.cs" />
     <Compile Include="WinlossController.cs" />
-    <Compile Include="WinLossRiskControlController.cs" />
+    <Compile Include="BlankTabWinLossRiskControlController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExcelService\ParlayRMS.ExcelService.csproj">

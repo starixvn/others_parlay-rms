@@ -13,9 +13,9 @@
                         <ul class="sub-nav" style="display: none">
                             @foreach (var menu in value.Children)
                             {
-                                if (menu.Url.Contains("/NetCore"))
+                                if (menu.Url.Contains("BlankTab"))
                                 {
-                                    <li><a href='@menu.Url' target="_blank">@menu.Name</a></li>
+                                    <li><a href='@Url.Content(menu.Url)' target="_blank">@menu.Name</a></li>
                                 }
                                 else
                                 {
