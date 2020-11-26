@@ -204,7 +204,7 @@
 					case SiteEnvironment.LOCAL:
                         return "https://ha.nexdev.net:7301/{ApplicationPath}/PropagationAuth";
                     default:
-                        return "https://ha.nexdev.net:7301/{ApplicationPath}/PropagationAuth";
+                        return "";
                 }
             }
         } 

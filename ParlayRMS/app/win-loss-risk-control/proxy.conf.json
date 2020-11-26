@@ -1,6 +1,17 @@
 {
   "/api": {
-      "target": "https://localhost:44339/",
-      "secure": false
+    "target": "https://localhost:44339",
+    "secure": false
+  },
+  "/ServerTime": {
+    "target": "https://localhost:44339",
+    "secure": false,
+    "pathRewrite": {
+      "^/ServerTime/today": "api/application/today"
+    }
+  },
+  "/PropagationAuth": {
+    "target": "https://localhost:44339",
+    "secure": false
   }
 }

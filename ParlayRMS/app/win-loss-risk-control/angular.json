@@ -64,7 +64,9 @@
             "browserTarget": "win-loss-risk-control:build",
             "proxyConfig": "proxy.conf.json",
             "port": 5002,
-            "aot": false
+            "aot": false,
+            "sslKey": "server.key",
+            "sslCert": "server.crt"
           },
           "configurations": {
             "production": {
