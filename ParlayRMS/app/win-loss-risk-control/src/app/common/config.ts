@@ -6,7 +6,7 @@ export class DateConfig {
     constructor(private day: moment.Moment) { }
 
     get today(): moment.Moment {
-        return this.day;
+        return moment.utc(this.day);
     }
 
     get yesterday(): moment.Moment {

@@ -45,11 +45,11 @@ export class FilterComponent implements OnInit {
   });
   public selectedSportsType: string[] = [];
 
-  fromDate: NapDateStruct = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday);
-  toDate: NapDateStruct = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday);
+  fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
+  toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
-  minStartDate: NapDateStruct = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday.add(-6, 'month'));
-  maxEndDate: NapDateStruct = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday);
+  minStartDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today.add(-6, 'month'));
+  maxEndDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
   constructor(
     private readonly filterService: FilterService,
     private toastService: ToastService
