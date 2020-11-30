@@ -1,19 +1,6 @@
 ﻿ParlayWon = {
     cachedObject: {},
     Init: function () {
-        ParlayWon.cachedObject = {
-            fromDate: null,
-            toDate: null,
-            combos: null,
-            levels: null,
-            sportsType: null,
-            houseAmountFrom: 0,
-            houseAmountTo: 0,
-            sortById: null,
-            isSortAsc: null,
-            pageIndex: 1,
-            pageSize: 100
-        };
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
         $("#parlayType").multiselect({
@@ -388,7 +375,7 @@
     Paging: function (totalRows, pageIndex) {
         // Number of items and limits the number of items per page
         var numberOfItems = totalRows;
-        var limitPerPage = 100;
+        var limitPerPage = ParlayWon.cachedObject.pageSize;
         // Total pages rounded upwards
         var totalPages = Math.ceil(numberOfItems / limitPerPage);
         ParlayWon.cachedObject.maxPage = totalPages;
@@ -482,7 +469,7 @@
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;
-        ParlayWon.cachedObject.pageSize = 100;
+        ParlayWon.cachedObject.pageSize = 1000;
     }
 }
 
