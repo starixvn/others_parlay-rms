@@ -38,8 +38,8 @@
       <a href="javascript:;" (click)="showSuperOrAgent(item.username, item.isDeposit)">{{ item.username }}</a>
     </td>
   </ng-template>
-  <td class="text-right" [napDecimalFormat]="item.noMember"></td>
-  <td class="text-right" [napDecimalFormat]="item.betCount"></td>
+  <td class="text-right">{{item.noMember}}</td>
+  <td class="text-right">{{item.betCount}}</td>
   <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>
   <td [ngClass]="{'red': item.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.smaWinLoss"></td>
   <td class="text-right" [napDecimalFormat]="item.extraPT"></td>
@@ -93,8 +93,8 @@
                   <tfoot>
                       <tr class="font-weight-bold">
                           <td class="text-right">{{siteWinLoss.username}}</td>
-                          <td class="text-right" [napDecimalFormat]="siteWinLoss.noMember"></td>
-                          <td class="text-right" [napDecimalFormat]="siteWinLoss.betCount"></td>
+                          <td class="text-right">{{siteWinLoss.noMember}}</td>
+                          <td class="text-right">{{siteWinLoss.betCount}}</td>
                           <td [ngClass]="{'red': siteWinLoss.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="siteWinLoss.memberWinLoss"></td>
                           <td [ngClass]="{'red': siteWinLoss.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="siteWinLoss.smaWinLoss"></td>
                           <td class="text-right" [napDecimalFormat]="siteWinLoss.extraPT"></td>

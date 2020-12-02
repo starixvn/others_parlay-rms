@@ -28,7 +28,7 @@
 </ng-template>
 <ng-template #rowItem let-item="item">
   <td>{{ item.username }}</td>
-  <td class="text-right" [napDecimalFormat]="item.betCount"></td>
+  <td class="text-right">{{item.betCount}}</td>
   <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>
   <td [ngClass]="{'red': item.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.smaWinLoss"></td>
   <td class="text-right" [napDecimalFormat]="item.extraPT"></td>
@@ -76,7 +76,7 @@
                   <tfoot>
                       <tr class="font-weight-bold">
                           <td class="text-right">{{winLoss.username}}</td>
-                          <td class="text-right" [napDecimalFormat]="winLoss.betCount"></td>
+                          <td class="text-right">{{winLoss.betCount}}</td>
                           <td [ngClass]="{'red': winLoss.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.memberWinLoss"></td>
                           <td [ngClass]="{'red': winLoss.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.smaWinLoss"></td>
                           <td class="text-right" [napDecimalFormat]="winLoss.extraPT"></td>

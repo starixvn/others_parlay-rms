@@ -24,6 +24,7 @@ export class MemberGridService {
     private createQueryModel() {
         const filterModel = this.gridService.filterModel;
         return {
+            breadCrumb: this.gridService.breadCrumb,
             fromDate: filterModel.fromDate,
             toDate: filterModel.toDate,
             custId: this.model.custId,
@@ -38,7 +39,8 @@ export class MemberGridService {
         const queryModel = this.createQueryModel();
         const fromDate = moment(queryModel.fromDate).format('YYYY_MM_DD');
         const toDate = moment(queryModel.toDate).format('YYYY_MM_DD');
-        this.httpService.download('api/win-loss-risk-control/agent-win-loss-excel', queryModel).subscribe(response => {
+        const api = `${this.gridService.filterModel.netcoreApiUrl}api/win-loss-risk-control/agent-win-loss-excel`;
+        this.httpService.download(api, queryModel).subscribe(response => {
             const fileName = `Member_Win_Loss_From_${fromDate}_To_${toDate}.xlsx`;
             Helper.downloadFile(response, fileName);
         });

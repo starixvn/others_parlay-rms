@@ -120,6 +120,8 @@ export class GridComponent implements OnInit, OnChanges, OnDestroy {
       const componentTitle = component.instance.title;
       this.breadcrumbItems.push(componentTitle);
     });
+
+    this.gridService.breadCrumb = this.breadcrumbItems.join(' > ');
   }
 
   private showOnlyLastGrid() {
