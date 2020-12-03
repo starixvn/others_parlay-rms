@@ -1,4 +1,4 @@
-import { WinLossModel } from "src/app/common/win-loss.model";
+import { WinLossModel } from '../../common/win-loss.model';
 
 export interface MemberWinLossModel extends WinLossModel {
    totalRecords: number;

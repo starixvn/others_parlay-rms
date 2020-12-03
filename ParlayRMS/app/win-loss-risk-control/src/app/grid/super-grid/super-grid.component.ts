@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { Grid, GridType } from '../grid.model';
 import { GridService } from '../grid.service';
@@ -32,7 +32,7 @@ export class SuperGridComponent implements Grid {
     }
 
     exportExcel() {
-      //this.ticketService.exportExcel();
+      this.superGridService.exportExcel();
     }
 
     get hasExcel(): boolean {

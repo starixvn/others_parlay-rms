@@ -1,5 +1,4 @@
 export interface FilterModel {
-  netcoreApiUrl: string;
   fromDate: string;
   toDate: string;
   custId: number;

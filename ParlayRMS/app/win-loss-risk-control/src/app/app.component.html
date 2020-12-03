@@ -11,6 +11,6 @@
   </div>
   <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
   <nap-toast></nap-toast>
-  <app-grid *ngIf="filterModel" [filterModel]="filterModel"></app-grid>
+  <app-grid *ngIf="filterModel" [filterModel]="filterModel" [netcoreApiUrl]="netcoreApiUrl"></app-grid>
 </div>
 <nap-spinner></nap-spinner>

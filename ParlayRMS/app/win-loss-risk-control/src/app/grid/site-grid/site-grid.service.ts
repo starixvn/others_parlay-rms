@@ -17,7 +17,7 @@ export class SiteGridService {
 
     public query(): Observable<WinLossModel> {
         const queryModel = this.gridService.filterModel;
-        const api = `${queryModel.netcoreApiUrl}api/win-loss-risk-control/get-site`;
+        const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/get-site`;
         return this.httpService.post<WinLossModel>(api, queryModel);
     }
 

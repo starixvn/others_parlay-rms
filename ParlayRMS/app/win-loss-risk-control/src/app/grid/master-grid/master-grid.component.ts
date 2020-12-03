@@ -32,7 +32,7 @@ export class MasterGridComponent implements Grid {
     }
 
     exportExcel() {
-      //this.ticketService.exportExcel();
+      this.masterGridService.exportExcel();
     }
 
     get hasExcel(): boolean {

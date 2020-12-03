@@ -7,5 +7,6 @@ export class GridService {
     filterModel: FilterModel;
     activeGrid: Grid;
     breadCrumb: string;
+    netcoreApi: string;
     generate: (gridType: GridType) => void;
 }

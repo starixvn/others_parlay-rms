@@ -14,18 +14,19 @@ export class SuperGridService {
     public model: SuperGridModel;
     constructor(
         private readonly httpService: HttpService,
-        private readonly gridService: GridService
-    ) { }
+        private readonly gridService: GridService){
+    }
 
     public query(): Observable<WinLossModel> {
         const queryModel = this.createQueryModel();
-        const api = `${this.gridService.filterModel.netcoreApiUrl}api/win-loss-risk-control/company-win-loss`;
+        const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/company-win-loss`;
         return this.httpService.post<WinLossModel>(api, queryModel);
     }
 
     private createQueryModel() {
         const filterModel = this.gridService.filterModel;
         return {
+            breadCrumb: this.gridService.breadCrumb,
             fromDate: filterModel.fromDate,
             toDate: filterModel.toDate,
             company: this.model.username,
@@ -42,12 +43,14 @@ export class SuperGridService {
         };
     }
 
-    // exportExcel() {
-    //     const queryModel = this.gridService.filterModel;
-    //     const winlostDate = moment(queryModel.winlostDate).format('YYYY_MM_DD');
-    //     this.httpService.download('api/voiding-settled-tickets/products-excel', queryModel).subscribe(response => {
-    //         const fileName = `Voiding_Settled_Tickets_Report_For_${winlostDate}.xlsx`;
-    //         Helper.downloadFile(response, fileName);
-    //     });
-    // }
+    exportExcel() {
+      const queryModel = this.createQueryModel();
+      const fromDate = moment(queryModel.fromDate).format('YYYY_MM_DD');
+      const toDate = moment(queryModel.toDate).format('YYYY_MM_DD');
+      const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/company-win-loss-excel`;
+      this.httpService.download(api, queryModel).subscribe(response => {
+          const fileName = `Super_Win_Loss_From_${fromDate}_To_${toDate}.xlsx`;
+          Helper.downloadFile(response, fileName);
+      });
+    }
 }

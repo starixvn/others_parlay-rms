@@ -105,7 +105,6 @@ export class FilterComponent implements OnInit {
     const toDate = DateHelper.convertDateStructToMoment(this.toDate);
 
     const model: FilterModel = {
-      netcoreApiUrl: this.netcoreApiUrl,
       custId: 0,
       roleId: 0,
       fromDate: DateHelper.formatMomentDate(fromDate, DateFormat.Date),

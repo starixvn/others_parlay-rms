@@ -17,7 +17,7 @@ export class MemberGridService {
 
     public query(): Observable<MemberWinLossModel> {
         const queryModel = this.createQueryModel();
-        const api = `${this.gridService.filterModel.netcoreApiUrl}api/win-loss-risk-control/agent-win-loss`;
+        const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/agent-win-loss`;
         return this.httpService.post<MemberWinLossModel>(api, queryModel);
     }
 
@@ -39,7 +39,7 @@ export class MemberGridService {
         const queryModel = this.createQueryModel();
         const fromDate = moment(queryModel.fromDate).format('YYYY_MM_DD');
         const toDate = moment(queryModel.toDate).format('YYYY_MM_DD');
-        const api = `${this.gridService.filterModel.netcoreApiUrl}api/win-loss-risk-control/agent-win-loss-excel`;
+        const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/member-win-loss-excel`;
         this.httpService.download(api, queryModel).subscribe(response => {
             const fileName = `Member_Win_Loss_From_${fromDate}_To_${toDate}.xlsx`;
             Helper.downloadFile(response, fileName);

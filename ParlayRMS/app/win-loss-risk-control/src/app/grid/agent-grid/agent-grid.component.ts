@@ -32,7 +32,7 @@ export class AgentGridComponent implements Grid {
     }
 
     exportExcel() {
-      //this.ticketService.exportExcel();
+      this.agentGridService.exportExcel();
     }
 
     get hasExcel(): boolean {

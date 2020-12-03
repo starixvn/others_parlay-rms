@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import { AgentGridModel } from './agent-grid.model';
 import { MemberGridModel } from '../member-grid/member-grid.model';
 import { Role } from 'src/app/common/role.model';
+import { Helper } from 'nap-components/helper';
 
 @Injectable()
 export class AgentGridService {
@@ -19,34 +20,23 @@ export class AgentGridService {
 
     public query(): Observable<WinLossModel> {
         const queryModel = this.createQueryModel();
-        const api = (this.model.custId < 1 && this.model.isDeposit)
-                ? 'api/win-loss-risk-control/company-win-loss'
-                : 'api/win-loss-risk-control/agent-win-loss';
-        return this.httpService.post<WinLossModel>(`${this.gridService.filterModel.netcoreApiUrl}${api}`, queryModel);
+        const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/agent-win-loss`;
+        return this.httpService.post<WinLossModel>(api, queryModel);
     }
 
     private createQueryModel() {
         const filterModel = this.gridService.filterModel;
-        if (this.model.custId < 1 && this.model.isDeposit) {
-            return {
-                fromDate: filterModel.fromDate,
-                toDate: filterModel.toDate,
-                isDeposit: true,
-                company: this.model.username,
-                parlayType: filterModel.parlayType,
-                sportType: filterModel.sportType,
-            };
-        } else {
-            return {
-                netcoreApiUrl: filterModel.netcoreApiUrl,
-                fromDate: filterModel.fromDate,
-                toDate: filterModel.toDate,
-                custId: this.model.custId,
-                roleId: Role.master,
-                parlayType: filterModel.parlayType,
-                sportType: filterModel.sportType,
-            };
-        }
+        return {
+            breadCrumb: this.gridService.breadCrumb,
+            fromDate: filterModel.fromDate,
+            toDate: filterModel.toDate,
+            custId: this.model.custId,
+            isDeposit: this.model.isDeposit,
+            company: this.model.username,
+            roleId: Role.master,
+            parlayType: filterModel.parlayType,
+            sportType: filterModel.sportType,
+        };
     }
 
     public createMemberGridModel(username: string, custId: number): MemberGridModel {
@@ -56,12 +46,14 @@ export class AgentGridService {
         };
     }
 
-    // exportExcel() {
-    //     const queryModel = this.gridService.filterModel;
-    //     const winlostDate = moment(queryModel.winlostDate).format('YYYY_MM_DD');
-    //     this.httpService.download('api/voiding-settled-tickets/products-excel', queryModel).subscribe(response => {
-    //         const fileName = `Voiding_Settled_Tickets_Report_For_${winlostDate}.xlsx`;
-    //         Helper.downloadFile(response, fileName);
-    //     });
-    // }
+    exportExcel() {
+      const queryModel = this.createQueryModel();
+      const fromDate = moment(queryModel.fromDate).format('YYYY_MM_DD');
+      const toDate = moment(queryModel.toDate).format('YYYY_MM_DD');
+      const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/agent-win-loss-excel`;
+      this.httpService.download(api, queryModel).subscribe(response => {
+          const fileName = `Agent_Win_Loss_From_${fromDate}_To_${toDate}.xlsx`;
+          Helper.downloadFile(response, fileName);
+      });
+    }
 }
