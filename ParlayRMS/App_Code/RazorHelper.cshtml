@@ -29,14 +29,22 @@ else
 }
 @helper SportTypesDropDown()
 {
-var listSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
+var listSportTypes = new int[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
     <select id="sportsType" multiple="multiple" name="sportsType">
         <option value="1" selected="selected">Soccer only</option>
+        <option value="-4" selected="selected">Virtual Soccer</option>
         <option value="-3" selected="selected">Combined sports</option>
         <optgroup label="All Other Sports" selected="selected">
             @foreach (var sportType in listSportTypes)
             {
-                <option value="@sportType" selected="selected">@CacheRef.GetSportName(sportType.ToString())</option>
+                if (sportType == -5)
+                {
+                    <option value="-5" selected="selected">Virtual Basketball</option>
+                }
+                else
+                {
+                    <option value="@sportType" selected="selected">@CacheRef.GetSportName(sportType.ToString())</option>
+                }
             }
 
             <option value="-2" selected="selected">Other sports</option>
@@ -46,16 +54,24 @@ var listSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
 }
 @helper SportTypesDropDown(string sportTypes)
 {
-var listSportsbookSportTypes = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
+var listSportsbookSportTypes = new int[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
 var listSportTypes = sportTypes.Split(',');
-var optgroupSelected = sportTypes.Contains("2,3,4,5,6,7,8,9,11,43,44,-2,-1") ? "selected=\"selected\"" : string.Empty;
+var optgroupSelected = sportTypes.Contains("2,-5,3,4,5,6,7,8,9,11,43,44,-2,-1") ? "selected=\"selected\"" : string.Empty;
     <select id="sportsType" multiple="multiple" name="sportsType">
         @SportTypesDropDownOption("1", "Soccer only", listSportTypes.Contains("1"))
+        @SportTypesDropDownOption("-4", "Virtual Soccer", listSportTypes.Contains("-4"))
         @SportTypesDropDownOption("-3", "Combined sports", listSportTypes.Contains("-3"))
         <optgroup label="All Other Sports" @optgroupSelected>
             @foreach (var sportType in listSportsbookSportTypes)
             {
-                @SportTypesDropDownOption(sportType.ToString(), CacheRef.GetSportName(sportType.ToString()), listSportTypes.Contains(sportType.ToString()))
+                if (sportType == -5)
+                {
+                    @SportTypesDropDownOption(sportType.ToString(), "Virtual Basketball", listSportTypes.Contains(sportType.ToString()))
+                }
+                else
+                {
+                    @SportTypesDropDownOption(sportType.ToString(), CacheRef.GetSportName(sportType.ToString()), listSportTypes.Contains(sportType.ToString()))
+                }
             }
 
             @SportTypesDropDownOption("-2", "Other sports", listSportTypes.Contains("-2"))

@@ -1,5 +1,5 @@
-﻿using System.Threading;
-using Fanex.RemotingRef;
+﻿using Fanex.RemotingRef;
+using System.Threading;
 
 namespace ParlayRMS.Utility
 {
@@ -61,6 +61,12 @@ namespace ParlayRMS.Utility
 
                 case -3:
                     return "Combined sports";
+
+                case -4:
+                    return "Virtual Soccer";
+
+                case -5:
+                    return "Virtual Basketball";
 
                 default:
                     return GetSportName(sportId);
