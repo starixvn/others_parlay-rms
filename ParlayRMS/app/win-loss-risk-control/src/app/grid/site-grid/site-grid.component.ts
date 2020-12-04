@@ -34,7 +34,7 @@ export class SiteGridComponent implements Grid {
     }
 
     exportExcel() {
-        //this.siteGridService.exportExcel();
+        this.siteGridService.exportExcel();
     }
 
     get hasExcel(): boolean {
@@ -56,7 +56,7 @@ export class SiteGridComponent implements Grid {
       } else {
         this.superGridService.model = this.siteGridService.createSuperGridModel(username);
         this.gridService.generate(GridType.Super);
-      }  
+      }
     }
 
     public onCollapsed(site: WinLossModel) {

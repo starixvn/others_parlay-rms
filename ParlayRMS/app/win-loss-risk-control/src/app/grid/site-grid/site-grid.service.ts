@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { WinLossModel } from 'src/app/common/win-loss.model';
 import { SuperGridModel } from '../super-grid/super-grid.model';
 import { AgentGridModel } from '../agent-grid/agent-grid.model';
+import { Helper } from 'nap-components/helper';
 
 @Injectable()
 export class SiteGridService {
@@ -35,12 +36,14 @@ export class SiteGridService {
             custId: 0
         };
     }
-    // exportExcel() {
-    //     const queryModel = this.gridService.filterModel;
-    //     const winlostDate = moment(queryModel.winlostDate).format('YYYY_MM_DD');
-    //     this.httpService.download('api/voiding-settled-tickets/products-excel', queryModel).subscribe(response => {
-    //         const fileName = `Voiding_Settled_Tickets_Report_For_${winlostDate}.xlsx`;
-    //         Helper.downloadFile(response, fileName);
-    //     });
-    // }
+    exportExcel() {
+      const queryModel = this.gridService.filterModel;
+      const fromDate = moment(queryModel.fromDate).format('YYYY_MM_DD');
+      const toDate = moment(queryModel.toDate).format('YYYY_MM_DD');
+      const api = `${this.gridService.netcoreApi}api/win-loss-risk-control/site-win-loss-excel`;
+      this.httpService.download(api, queryModel).subscribe(response => {
+          const fileName = `Site_Win_Loss_From_${fromDate}_To_${toDate}.xlsx`;
+          Helper.downloadFile(response, fileName);
+      });
+    }
 }
