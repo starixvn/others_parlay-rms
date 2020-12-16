@@ -9,7 +9,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
 {
     public class TotalOutstandingDataAccess : BaseDataAccess
     {
-        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType)
+        public List<RMS_Rpt_Parlay_Outstanding_Mem> RMS_Rpt_Parlay_Outstanding_Mem(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Mem>();
 
@@ -19,6 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 db.AddInParameter("selection", DbType.String, combo);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("ParlayType", DbType.String, parlaysType);
+                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -46,7 +47,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
             return result;
         }
 
-        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType, string parlaysType)
+        public List<RMS_Rpt_Parlay_Outstanding_Ag> RMS_Rpt_Parlay_Outstanding_Ag(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
             var result = new List<RMS_Rpt_Parlay_Outstanding_Ag>();
 
@@ -56,6 +57,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                 db.AddInParameter("selection", DbType.String, combo);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("ParlayType", DbType.String, parlaysType);
+                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
 
                 using (var reader = db.ExecuteReader())
                 {

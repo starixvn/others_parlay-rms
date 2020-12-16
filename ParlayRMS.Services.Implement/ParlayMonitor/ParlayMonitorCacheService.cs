@@ -17,9 +17,10 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             int reportType,
             int selectTop,
             long maxTransId,
-            string markets)
+            string markets,
+            bool isCornerParlay)
         {
-            return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay);
         }
     }
 }

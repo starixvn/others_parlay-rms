@@ -28,5 +28,7 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
         public string Username { get; set; }
 
         public int SearchBy { get; set; }
+
+        public bool IsCornerParlay { get; set; }
     }
 }

@@ -412,6 +412,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Corner Parlay.
+        /// </summary>
+        public static string CornerParlay {
+            get {
+                return ResourceManager.GetString("CornerParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreatedDate {

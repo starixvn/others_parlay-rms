@@ -11,6 +11,7 @@ function UserSettings() {
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 200000;
     this.winningAmount = 0;
+    this.isCornerParlay = false;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlaysTypes == settings.parlaysTypes
@@ -18,7 +19,8 @@ function UserSettings() {
             && this.levels == settings.levels
             && this.selectTop == settings.selectTop
             && this.winningAmount == settings.winningAmount
-            && this.reportType == settings.reportType) {
+            && this.reportType == settings.reportType
+            && this.isCornerParlay == setting.isCornerParlay) {
             return false;
         }
 
@@ -89,6 +91,8 @@ var settingsController = function () {
 
             var selectTop = parseInt($("#selectTop").val());
 
+            var isCornerParlay = $("#cornerParlay").is(":checked");
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlaysTypes = parlaysTypes;
@@ -96,6 +100,7 @@ var settingsController = function () {
             userSettings.levels = levels;
             userSettings.winningAmount = winningAmount;
             userSettings.selectTop = selectTop;
+            userSettings.isCornerParlay = isCornerParlay;
 
             return userSettings;
         }
@@ -122,7 +127,8 @@ var timerController = function () {
             sportsTypes: settings.sportsTypes,
             levels: settings.levels,
             winningAmount: settings.winningAmount,
-            selectTop: settings.selectTop
+            selectTop: settings.selectTop,
+            isCornerParlay: settings.isCornerParlay
         };
 
         $.ajax({
@@ -513,7 +519,8 @@ function ViewTotalBetDetails(custId) {
             parlayTypes: userSettings.parlaysTypes,
             SportsTypes: userSettings.sportsTypes,
             CustId: custId,
-            UserName: username
+            UserName: username,
+            IsCornerParlay: userSettings.isCornerParlay
         }
 
         $.ajax({

@@ -81,7 +81,7 @@ namespace ParlayRMS.Controllers
 
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
-                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
+                var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -104,7 +104,7 @@ namespace ParlayRMS.Controllers
             }
             else if (customerInfo.RoleId == (int)RoleId.Agent)
             {
-                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType);
+                var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {

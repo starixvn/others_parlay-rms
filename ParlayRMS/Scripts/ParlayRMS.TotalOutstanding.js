@@ -108,11 +108,14 @@ ParlayRMS.TotalOutstanding = {
             return null;
         }
 
+        var isCornerParlay = $("#cornerParlay").is(":checked");
+
         var data = {
             Combo: combos,
             ParlaysType: parlaysTypes,
             SportsType: sportsTypes,
-            Username: username
+            Username: username,
+            IsCornerParlay: isCornerParlay
         }
         $.ajax({
             url: resolveClientUrl('TotalOutstanding/Data'),

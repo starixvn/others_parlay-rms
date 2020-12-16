@@ -930,4 +930,7 @@
   <data name="LeagueReport" xml:space="preserve">
     <value>League Report</value>
   </data>
+  <data name="CornerParlay" xml:space="preserve">
+    <value>Corner Parlay</value>
+  </data>
 </root>

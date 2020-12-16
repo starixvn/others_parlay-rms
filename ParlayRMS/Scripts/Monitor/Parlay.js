@@ -18,6 +18,7 @@ function UserSettings() {
     this.stakeAfterPT = 0;
     this.netWinAfterPT = 0;
     this.reportType = 1;
+    this.isCornerParlay = false;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -27,7 +28,8 @@ function UserSettings() {
             && this.markets == settings.markets
             && this.stakeAfterPT == settings.stakeAfterPT
             && this.netWinAfterPT == settings.netWinAfterPT
-            && this.reportType == settings.reportType) {
+            && this.reportType == settings.reportType
+            && this.isCornerParlay == setting.isCornerParlay) {
             return false;
         }
 
@@ -108,6 +110,8 @@ var settingsController = function () {
 
             var reportType = $('input[name=radFilterAfterPT]:checked').val() * 1;
 
+            var isCornerParlay = $("#cornerParlay").is(":checked");
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlayTypes = parlayTypes;
@@ -124,6 +128,7 @@ var settingsController = function () {
             }
             userSettings.selectTop = selectTop;
             userSettings.markets = markets;
+            userSettings.isCornerParlay = isCornerParlay;
             return userSettings;
         }
     }
@@ -153,7 +158,8 @@ var timerController = function () {
             reportType: settings.reportType,
             selectTop: settings.selectTop,
             maxTransId: maxTransId,
-            markets: settings.markets
+            markets: settings.markets,
+            isCornerParlay: settings.isCornerParlay
         }
 
         $.ajax({
@@ -281,7 +287,7 @@ $(document).ready(function () {
     });
 
     $("#sportsType").multiselect({
-        minWidth: 220,
+        minWidth: 193,
         height: 300,
         create: function () {
             $("#sportsType").multiselect("checkAll");

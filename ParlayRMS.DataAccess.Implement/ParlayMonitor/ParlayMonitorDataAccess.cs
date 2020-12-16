@@ -19,7 +19,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
             int reportType,
             int selectTop,
             long maxTransId,
-            string markets)
+            string markets,
+            bool isCornerParlay)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
@@ -35,6 +36,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitrowcount", DbType.Int32, selectTop);
                 db.AddInParameter("market", DbType.String, markets);
+                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
 
                 using (var reader = db.ExecuteReader())
                 {

@@ -28,5 +28,7 @@ namespace ParlayRMS.ViewModel.PalayMonitor
 
         [Required, Range(0, long.MaxValue)]
         public long MaxTransId { get; set; }
+
+        public bool IsCornerParlay { get; set; }
     }
 }

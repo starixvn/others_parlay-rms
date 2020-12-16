@@ -15,18 +15,20 @@ namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
             string sportTypes,
             string levels,
             decimal winningAmount,
-            int selectTop)
+            int selectTop,
+            bool isCornerParlay)
         {
-            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop);
+            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop, isCornerParlay);
         }
 
         public IEnumerable<RMS_Monitor_Potential_Winning_Detail> GetPotentialWinningDetailList(
             string combos,
             string parlayTypes,
             string sportTypes,
-            long custId)
+            long custId,
+            bool isCornerParlay)
         {
-            var result = _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinningDetail(combos, parlayTypes, sportTypes, custId);
+            var result = _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinningDetail(combos, parlayTypes, sportTypes, custId, isCornerParlay);
             foreach (var item in result)
             {
                 item.SportTypeName = CacheRef.GetSportNameDropDown(item.SportType);
