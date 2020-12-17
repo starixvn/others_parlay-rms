@@ -195,6 +195,7 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
+					 return "https://newparlayrms.starixuat.com";
                     case SiteEnvironment.PRO:
                         return "";
                     case SiteEnvironment.MNL:
