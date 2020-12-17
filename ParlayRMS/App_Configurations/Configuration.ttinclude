@@ -202,9 +202,9 @@
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
-                        return "https://ha.nexdev.net:7301/{ApplicationPath}/PropagationAuth";
+                        return "https://prms-netcore-v1.nexdev.net";
                     default:
-                        return "";
+                        return "http://localhost:61034";
                 }
             }
         } 

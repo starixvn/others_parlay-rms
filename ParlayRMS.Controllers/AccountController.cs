@@ -1,10 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using Fanex.Common;
+﻿using Fanex.Common;
 using Newtonsoft.Json;
 using ONEbook.UM.Services.Impl;
 using ParlayRMS.DTO;
@@ -16,6 +10,12 @@ using ParlayRMS.ViewModel.Account;
 using ParlayRMS.Web.Authorization;
 using ParlayRMS.Web.Context;
 using ParlayRMS.Web.Session;
+using System;
+using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ParlayRMS.Controllers
 {
@@ -102,15 +102,7 @@ namespace ParlayRMS.Controllers
         private string GetAspNetCoreAuth()
         {
             var aspNetCoreAuth = ConfigurationManager.AppSettings["AspNetCoreAuth"];
-            if (!string.IsNullOrEmpty(aspNetCoreAuth))
-            {
-                var applicationPath = Request.ApplicationPath.Replace("/", "");
-                applicationPath = "NetCore" + applicationPath;
-                aspNetCoreAuth = aspNetCoreAuth.Replace("{ApplicationPath}", applicationPath);
-                return aspNetCoreAuth;
-            }
-
-            return string.Empty;
+            return !string.IsNullOrEmpty(aspNetCoreAuth) ? $"{aspNetCoreAuth}/PropagationAuth" : string.Empty;
         }
 
         private string GetNetCoreAuthRedirectUrl(string aspNetCoreAuth, string defaultUrl)
