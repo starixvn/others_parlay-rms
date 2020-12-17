@@ -1,10 +1,11 @@
-﻿using System.Configuration;
+﻿using ParlayRMS.Web.Authorization;
+using System.Configuration;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    // [Authorization(Function = FunctionKeys.WinLossRiskControl, Policy = UserPolicy.Read)]
-    public class BlankTabWinLossRiskControlController : BaseController
+    [Authorization]
+    public class WinLossRiskControlController : BaseController
     {
         [HttpGet]
         public ActionResult Index()

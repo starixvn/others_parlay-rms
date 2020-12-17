@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FilterComponent } from './filter/filter.component';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { GridModule } from './grid/grid.module';
 import * as moment from 'moment';
 import { AppService } from './app.service';
 import { CONFIG, DateConfig } from './common/config';
+import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,9 @@ import { CONFIG, DateConfig } from './common/config';
     TreeviewModule.forRoot()
   ],
   providers: [
+    [
+        { provide: HTTP_INTERCEPTORS, useClass: CustomHttpRequestInterceptor, multi: true }
+    ],
     ToastService,
     AppService,
     {
