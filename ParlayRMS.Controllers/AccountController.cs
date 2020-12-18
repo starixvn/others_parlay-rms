@@ -77,7 +77,7 @@ namespace ParlayRMS.Controllers
 
         private string GetAspNetCoreAuthUrl(LoginModel model, Request request, string aspNetCoreAuth)
         {
-            var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth, FormsAuthentication.DefaultUrl);
+            var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth);
 
             var command = new UserLoginParameter
             {
@@ -105,9 +105,9 @@ namespace ParlayRMS.Controllers
             return !string.IsNullOrEmpty(aspNetCoreAuth) ? $"{aspNetCoreAuth}/PropagationAuth" : string.Empty;
         }
 
-        private string GetNetCoreAuthRedirectUrl(string aspNetCoreAuth, string defaultUrl)
+        private string GetNetCoreAuthRedirectUrl(string aspNetCoreAuth)
         {
-            var redirectUrl = new Uri(Request.Url, defaultUrl).ToString();
+            var redirectUrl = GetRedirectUrl();
             var isSsl = aspNetCoreAuth.StartsWith("https", StringComparison.CurrentCultureIgnoreCase)
                 && redirectUrl.IndexOf("https", StringComparison.CurrentCultureIgnoreCase) < 0;
             if (isSsl)
@@ -116,6 +116,14 @@ namespace ParlayRMS.Controllers
             }
 
             return HttpUtility.UrlEncode(redirectUrl);
+        }
+
+        private string GetRedirectUrl()
+        {
+            var defaultUrl = FormsAuthentication.DefaultUrl;
+            return Request.Url.Host.Contains("localhost")
+                ? new Uri(Request.Url, defaultUrl).ToString()
+                : $"{Request.Url.Scheme}://{Request.Url.Host}{defaultUrl}";
         }
 
         public ActionResult Offline()
@@ -198,7 +206,7 @@ namespace ParlayRMS.Controllers
             var aspNetCoreAuth = GetAspNetCoreAuth();
             if (!string.IsNullOrEmpty(aspNetCoreAuth))
             {
-                var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth, FormsAuthentication.LoginUrl); ;
+                var redirectUrl = GetNetCoreAuthRedirectUrl(aspNetCoreAuth);
 
                 return Redirect(aspNetCoreAuth + $"/LogOut?redirectUrl={redirectUrl}");
             }
