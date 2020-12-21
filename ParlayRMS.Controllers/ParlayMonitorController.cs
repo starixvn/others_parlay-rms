@@ -113,7 +113,8 @@ namespace ParlayRMS.Controllers
                                 model.ReportType,
                                 model.SelectTop,
                                 model.MaxTransId,
-                                model.Markets);
+                                model.Markets,
+                                model.IsCornerParlay);
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {

@@ -43,9 +43,10 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             int reportType,
             int selectTop,
             long maxTransId,
-            string markets)
+            string markets,
+            bool isCornerParlay)
         {
-            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets);
+            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay);
             foreach (var item in data)
             {
                 item.Stake = Math.Round(item.Stake, 2);

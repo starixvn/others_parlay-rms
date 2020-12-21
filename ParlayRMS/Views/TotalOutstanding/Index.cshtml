@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TotalOutstanding;
 }
 <div class="filter">
-    <div class="filter-control" style="border: 1px solid black; width: 1090px;">
+    <div class="filter-control" style="border: 1px solid black; width: 1230px;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl
@@ -35,6 +35,11 @@
                             </td>
                             <td style="width: 150px">
                                 @Html.DropDownListWithMultipleSelected("parlaysType", (List<SelectListItem>)ViewBag.ParlayTypes)
+                            </td>
+                            <td style="width: 15px"></td>
+                            <td style="width: 125px;">
+                                @Html.CheckBox("cornerParlay")
+                                @Html.Label("cornerParlay", ViewLang.CornerParlay, new { @class = "lable" })
                             </td>
                             <td style="width: 90px">
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })

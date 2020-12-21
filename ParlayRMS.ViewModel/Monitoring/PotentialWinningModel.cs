@@ -17,5 +17,7 @@ namespace ParlayRMS.ViewModel.Monitoring
 
         [Required]
         public int SelectTop { get; set; }
+
+        public bool IsCornerParlay { get; set; }
     }
 }

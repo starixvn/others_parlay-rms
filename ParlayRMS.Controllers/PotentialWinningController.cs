@@ -88,7 +88,7 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop);
+            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay);
 
             return Json(new
             {
@@ -100,7 +100,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult ViewDetailList(PotentialWinningDetailModel detailModel)
         {
-            var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId);
+            var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId, detailModel.IsCornerParlay);
             ViewBag.UserName = detailModel.UserName;
             ViewBag.CustId = detailModel.CustId;
             return PartialView(model);

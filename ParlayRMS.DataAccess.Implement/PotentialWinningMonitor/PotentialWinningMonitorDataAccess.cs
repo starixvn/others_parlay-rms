@@ -15,7 +15,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
             string sportsTypes,
             string levels,
             decimal winningAmount,
-            int selectTop)
+            int selectTop,
+            bool isCornerParlay)
         {
             var result = new List<RMS_Monitor_Potential_Winning>();
 
@@ -27,6 +28,7 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                 db.AddInParameter("level", DbType.String, levels);
                 db.AddInParameter("winningamount", DbType.Decimal, winningAmount);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
+                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -57,7 +59,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
             string combos,
             string parlayTypes,
             string sportsTypes,
-            long custId)
+            long custId,
+            bool isCornerParlay)
         {
             var result = new List<RMS_Monitor_Potential_Winning_Detail>();
 
@@ -67,6 +70,7 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsTypes);
+                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
 
                 using (var reader = db.ExecuteReader())
                 {

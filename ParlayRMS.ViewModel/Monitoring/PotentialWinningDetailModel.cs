@@ -11,5 +11,7 @@
         public long CustId { get; set; }
 
         public string UserName { get; set; }
+
+        public bool IsCornerParlay { get; set; }
     }
 }

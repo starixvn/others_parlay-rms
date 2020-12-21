@@ -10,9 +10,9 @@ namespace ParlayRMS.Services.Implement.TotalOutstanding
     {
         private readonly TotalOutstandingDataAccess _dataAccess = new TotalOutstandingDataAccess();
 
-        public List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(long custId, string combo, string sportsType, string parlaysType)
+        public List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
-            var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Mem(custId, combo, sportsType, parlaysType);
+            var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Mem(custId, combo, sportsType, parlaysType, isCornerParlay);
             foreach (var item in data)
             {
                 item.StakePt = Math.Round(item.StakePt, 2);
@@ -23,9 +23,9 @@ namespace ParlayRMS.Services.Implement.TotalOutstanding
             return data;
         }
 
-        public List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(long custId, string combo, string sportsType, string parlaysType)
+        public List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
-            var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Ag(custId, combo, sportsType, parlaysType);
+            var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Ag(custId, combo, sportsType, parlaysType, isCornerParlay);
             foreach (var item in data)
             {
                 item.StakePt = Math.Round(item.StakePt, 2);

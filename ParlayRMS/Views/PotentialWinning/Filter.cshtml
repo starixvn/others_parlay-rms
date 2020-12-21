@@ -24,6 +24,10 @@
                             <td style="width: 150px">
                                 @Html.DropDownList("parlaysType", (List<SelectListItem>)ViewBag.ParlayTypes, new { multiple = "multiple" })
                             </td>
+                            <td style="width: 120px;">
+                                @Html.CheckBox("cornerParlay")
+                                @Html.Label("cornerParlay", ViewLang.CornerParlay, new { @class = "lable" })
+                            </td>
                             <td style="width: 110px">
                                 @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
                             </td>
@@ -60,7 +64,7 @@
                             <td>
                                 @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
                             </td>
-                            <td>
+                            <td colspan="2">
                                 @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
                             </td>
                             <td>
