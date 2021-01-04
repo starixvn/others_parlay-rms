@@ -16,7 +16,9 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
             string levels,
             decimal winningAmount,
             int selectTop,
-            bool isCornerParlay)
+            bool isCornerParlay,
+            byte filterBy,
+            int? agentId)
         {
             var result = new List<RMS_Monitor_Potential_Winning>();
 
@@ -29,25 +31,43 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                 db.AddInParameter("winningamount", DbType.Decimal, winningAmount);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
                 db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
+                db.AddInParameter("IsAgentView", DbType.Boolean, filterBy > 0);
+                db.AddInParameter("Recommend", DbType.Int32, agentId);
 
                 using (var reader = db.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (filterBy > 0 && agentId == null)
                     {
-                        result.Add(new RMS_Monitor_Potential_Winning
+                        while (reader.Read())
                         {
-                            TransDate = reader.ToDateTime("transdate"),
-                            TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-                            CustId = reader.ToInt64("custid"),
-                            UserName = reader.ToString("username"),
-                            Currency = reader.ToString("currency"),
-                            Odds = reader.ToDecimal("odds"),
-                            Stake = reader.ToDecimal("stake"),
-                            WinningAmount = reader.ToDecimal("winningamount"),
-                            CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
-                            Level = reader.ToInt32("level"),
-                            TotalTicket = reader.ToInt32("totalbets")
-                        });
+                            result.Add(new RMS_Monitor_Potential_Winning
+                            {
+                                AgentName = reader.ToString("agentname"),
+                                WinningAmount = reader.ToDecimal("winningamount"),
+                                TotalMember = reader.ToInt32("totalmember"),
+                                Recommend = reader.ToInt32("recommend")
+                            });
+                        }
+                    }
+                    else
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(new RMS_Monitor_Potential_Winning
+                            {
+                                TransDate = reader.ToDateTime("transdate"),
+                                TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
+                                CustId = reader.ToInt64("custid"),
+                                UserName = reader.ToString("username"),
+                                Currency = reader.ToString("currency"),
+                                Odds = reader.ToDecimal("odds"),
+                                Stake = reader.ToDecimal("stake"),
+                                WinningAmount = reader.ToDecimal("winningamount"),
+                                CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
+                                Level = reader.ToInt32("level"),
+                                TotalTicket = reader.ToInt32("totalbets")
+                            });
+                        }
                     }
                 }
             }

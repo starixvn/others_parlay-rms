@@ -1,0 +1,69 @@
+﻿<div id="divMemberResult">
+    <div style="width: 1390px">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='50' />
+                <col width='160' />
+                <col width='150' />
+                <col width='90' />
+                <col width='150' />
+                <col width='150' />
+                <col width='160' />
+                <col width='180' />
+                <col width='90' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.No
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-type="date" data-col-index="1">
+                        @ViewLang.TransTime
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="2">
+                        @ViewLang.Username
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-index="3">
+                        @ViewLang.Currency
+                    </th>
+                    <th colspan="4" class="header2rows">
+                        @ViewLang.BaseCurrency
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.TotalBets
+                    </th>
+                </tr>
+                <tr>
+                    <th data-col-type="float" class="sortable" data-col-index="4">
+                        @ViewLang.Odds
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="5">
+                        @ViewLang.Stake
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="6">
+                        @ViewLang.WinningAmount
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="7">
+                        @ViewLang.CompanyLoseAmount
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 630px; width: 1200px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='50' />
+                <col width='160' />
+                <col width='150' />
+                <col width='90' />
+                <col width='150' />
+                <col width='150' />
+                <col width='160' />
+                <col width='180' />
+                <col width='90' />
+            </colgroup>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

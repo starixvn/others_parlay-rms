@@ -676,6 +676,8 @@
     <Content Include="Views\LeagueBetTypeAnalysis\_BetTypeData.cshtml" />
     <Content Include="Views\Shared\_LayoutAngular.cshtml" />
     <Content Include="wwwroot\Web.config">
+    <Content Include="Views\PotentialWinning\_MemberData.cshtml" />
+    <Content Include="Views\PotentialWinning\_AgentData.cshtml" />
       <SubType>Designer</SubType>
     </Content>
     <Content Include="wwwroot\win-loss-risk-control\fontawesome-webfont.1e59d2330b4c6deb84b3.ttf" />

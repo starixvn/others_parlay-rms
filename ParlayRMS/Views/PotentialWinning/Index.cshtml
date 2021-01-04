@@ -23,73 +23,9 @@
     </ul>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1390px">
-        <table class="main" id="header">
-            <colgroup>
-                <col width='50px' />
-                <col width='160px' />
-                <col width='150px' />
-                <col width='90px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='160px' />
-                <col width='180px' />
-                <col width='90px' />
-            </colgroup>
-            <thead>
-                <tr>
-                    <th rowspan="2" class="header2rows">
-                        @ViewLang.No
-                    </th>
-                    <th rowspan="2" class="header2rows sortable" data-col-type="date" data-col-index="1">
-                        @ViewLang.TransTime
-                    </th>
-                    <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="2">
-                        @ViewLang.Username
-                    </th>
-                    <th rowspan="2" class="header2rows sortable" data-col-index="3">
-                        @ViewLang.Currency
-                    </th>
-                    <th colspan="4" class="header2rows">
-                        @ViewLang.BaseCurrency
-                    </th>
-                    <th rowspan="2" class="header2rows">
-                        @ViewLang.TotalBets
-                    </th>
-                </tr>
-                <tr>
-                    <th data-col-type="float" class="sortable" data-col-index="4">
-                        @ViewLang.Odds
-                    </th>
-                    <th data-col-type="float" class="sortable" data-col-index="5">
-                        @ViewLang.Stake
-                    </th>
-                    <th data-col-type="float" class="sortable" data-col-index="6">
-                        @ViewLang.WinningAmount
-                    </th>
-                    <th data-col-type="float" class="sortable" data-col-index="7">
-                        @ViewLang.CompanyLoseAmount
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="scrollGridContent" style="max-height: 630px; width: 1200px">
-        <table class="main" id="result">
-            <colgroup>
-                <col width='50px' />
-                <col width='160px' />
-                <col width='150px' />
-                <col width='90px' />
-                <col width='150px' />
-                <col width='150px' />
-                <col width='160px' />
-                <col width='180px' />
-                <col width='90px' />
-            </colgroup>
-            <tbody></tbody>
-        </table>
-    </div>
+    <div id="divBreadcrumb" style="margin-bottom: 10px;"></div>
+    @Html.Partial("_MemberData")
+    @Html.Partial("_AgentData")
 </div>
 @Scripts.Render("~/Scripts/Monitor/PotentialWinning/js")
 @Scripts.Render("~/Scripts/Member/Core/js")

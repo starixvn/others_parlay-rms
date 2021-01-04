@@ -19,5 +19,9 @@ namespace ParlayRMS.ViewModel.Monitoring
         public int SelectTop { get; set; }
 
         public bool IsCornerParlay { get; set; }
+
+        public byte FilterBy { get; set; }
+
+        public int? AgentId { get; set; }
     }
 }

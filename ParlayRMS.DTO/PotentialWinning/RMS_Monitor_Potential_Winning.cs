@@ -25,5 +25,11 @@
         public int TotalTicket { get; set; }
 
         public int Level { get; set; }
+
+        public int Recommend { get; set; }
+
+        public string AgentName { get; set; }
+
+        public int TotalMember { get; set; }
     }
 }
