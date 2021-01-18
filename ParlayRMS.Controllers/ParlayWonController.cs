@@ -1,7 +1,6 @@
 ﻿using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
@@ -34,6 +33,15 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.Levels = levels;
+
+            // Currency
+            var currencies = new List<SelectListItem>();
+            for (int i = 1; i <= 10; i++)
+            {
+                currencies.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+            }
+
+            ViewBag.Currencies = currencies;
 
             ViewBag.HouseLoseAmountFrom = Formatter.FormatNumber3(AppSetting.HouseLoseAmountFrom);
             ViewBag.HouseLoseAmountTo = Formatter.FormatNumber3(AppSetting.HouseLoseAmountTo);
@@ -143,6 +151,7 @@ namespace ParlayRMS.Controllers
                 ViewLang.TransTime,
                 ViewLang.BetID,
                 ViewLang.Username,
+                ViewLang.Currency,
                 ViewLang.Odds,
                 ViewLang.Stake,
                 ViewLang.StakeAfterPT,
@@ -164,6 +173,7 @@ namespace ParlayRMS.Controllers
                 TransTime = Formatter.FormatDate(x.TransDate),
                 TransId = x.TransId,
                 Username = x.Username,
+                Currency = x.Currency,
                 Odds = Formatter.FormatOdds(x.Odds),
                 Stake = Formatter.FormatNumber3(x.Stake),
                 StakeAfterPT = Formatter.FormatNumber3(x.StakeAfterPT),

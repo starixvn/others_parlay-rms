@@ -936,4 +936,7 @@
   <data name="GodOfFortune" xml:space="preserve">
     <value>God Of Fortune</value>
   </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page size</value>
+  </data>
 </root>

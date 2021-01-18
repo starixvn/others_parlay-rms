@@ -504,6 +504,18 @@ var validator = function () {
                 return true;
             }
             return false;
+        },
+        validateDateInOneWeek: function (fromDate, toDate) {
+            var fDate = moment($(fromDate).val());
+            var tDate = moment($(toDate).val());
+
+            if (moment(fDate, "MMMM DD, YYYY").isValid()
+                && moment(tDate, "MMMM DD, YYYY").isValid()
+                && diffDate(fDate, tDate) > 7) {
+                hint.show($(fromDate).get(0), 'Only support view data in range of time: 1 week');
+                return true;
+            }
+            return false;
         }
     };
 }();

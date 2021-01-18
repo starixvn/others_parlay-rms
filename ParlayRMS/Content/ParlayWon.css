@@ -1,4 +1,10 @@
-﻿.pagination ul li {
+﻿.pagination {
+    width: 1720px;
+    line-height: 27px;
+    height: 27px;
+    margin-top: -5px;
+}
+.pagination ul li {
     list-style-type: none;
     float: left;
 }
@@ -43,4 +49,19 @@
     cursor: not-allowed;
     background-color: #fff;
     border-color: #ddd;
+}
+
+#pageSizeDiv {
+    width: 150px;
+    float: left;
+}
+#pageSizeDiv label {
+    color: #2E64FE;
+    font-weight: 700;
+    padding-left: 5px;
+}
+
+#detailPagination {
+    float:right;
+    padding-right: 5px;
 }

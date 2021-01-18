@@ -29,6 +29,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public decimal HouseAmountTo { get; set; }
 
+        public string Currenies { get; set; }
+
         public int SortById { get; set; }
 
         public bool IsSortAsc { get; set; }
