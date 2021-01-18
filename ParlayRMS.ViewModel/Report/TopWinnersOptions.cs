@@ -19,6 +19,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public string ParlayTypes { get; set; }
 
+        public string Currencies { get; set; }
+
         public string GetTile()
         {
             var combosTitle = ViewLang.All;

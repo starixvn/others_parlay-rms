@@ -30,7 +30,7 @@ namespace ParlayRMS.Controllers
         {
             SelectListItem[] tempSelectTop = new SelectListItem[4];
             List<SelectListItem> selectTop = new List<SelectListItem>();
-            List<int> moreSelection = new List<int> { 200, 500, 1000 };
+            List<int> moreSelection = new List<int> { 200, 500, 1000, 2000, 3000 };
             Config.SelectTops.CopyTo(tempSelectTop);
             selectTop.AddRange(tempSelectTop);
             foreach (int option in moreSelection)
@@ -41,8 +41,16 @@ namespace ParlayRMS.Controllers
                     Value = option.ToString()
                 });
             }
-
             ViewBag.SelectTops = selectTop;
+
+            // Currency
+            var currencies = new List<SelectListItem>();
+            for (int i = 1; i <= 10; i++)
+            {
+                currencies.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+            }
+            ViewBag.Currencies = currencies;
+
             ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
 
             return View();
@@ -178,7 +186,7 @@ namespace ParlayRMS.Controllers
                 Winlost_BaseRM = x.Winlost_BaseRM,
                 Company_Winlost_BaseRM = x.Company_Winlost_BaseRM,
                 TotalBets = x.BetCount,
-                Avg_Odds = Math.Floor(x.Avg_Odds)
+                Avg_Odds = Formatter.FormatOdds(x.Avg_Odds)
             });
 
             writer.WriteRows(3, select);

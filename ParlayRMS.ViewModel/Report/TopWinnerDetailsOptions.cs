@@ -17,5 +17,7 @@
         public string Combos { get; set; }
 
         public string ParlayTypes { get; set; }
+
+        public string Currencies { get; set; }
     }
 }

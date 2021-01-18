@@ -50,6 +50,12 @@
                     @RazorHelper.SportTypesDropDown()
                 </div>
             </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Currency)
+                    @Html.DropDownList("currencies", (List<SelectListItem>)ViewBag.Currency)
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -109,7 +115,7 @@
                     <th>
                         @ViewLang.CompanyLoseAmount
                     </th>
-                    <th>
+                    <th class="sortable" data-col-type="float" data-col-index="6">
                         @ViewLang.Stake
                     </th>
                     <th class="sortable" data-col-type="float" data-col-index="7">
