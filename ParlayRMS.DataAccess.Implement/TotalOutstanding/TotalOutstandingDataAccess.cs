@@ -38,7 +38,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection")),
                             NumberWon = reader.ToInt32("numberwon"),
                             SportType = reader.ToInt32("sporttype"),
-                            BetType = reader.ToInt32("bettype")
+                            BetType = reader.ToInt32("bettype"),
+                            IsGOF = reader.ToBoolean("IsGOF")
                         });
                     }
                 }

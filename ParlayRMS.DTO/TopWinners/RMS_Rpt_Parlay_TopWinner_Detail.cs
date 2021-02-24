@@ -29,5 +29,7 @@
         public bool IsSingleMatchParlay { get; set; }
 
         public int ParlayType { get; set; }
+
+        public bool IsGOF { get; set; }
     }
 }

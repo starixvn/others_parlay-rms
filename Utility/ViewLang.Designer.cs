@@ -835,6 +835,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to God Of Fortune.
+        /// </summary>
+        public static string GodOfFortune {
+            get {
+                return ResourceManager.GetString("GodOfFortune", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goliath.
         /// </summary>
         public static string Goliath {

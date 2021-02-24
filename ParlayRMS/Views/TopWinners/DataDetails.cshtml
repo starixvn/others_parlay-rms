@@ -88,6 +88,11 @@
                         @{
                             var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
                             var parlayText = string.Empty;
+                            if (item.IsGOF)
+                            {
+                                parlayText = "(G)";
+                            }
+
                             if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
                             {
                                 parlayText = "(S)";

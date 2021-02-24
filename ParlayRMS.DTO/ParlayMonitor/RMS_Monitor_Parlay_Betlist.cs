@@ -43,5 +43,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public bool IsLive { get; set; }
 
         public bool IsBlacklistLeague { get; set; }
+
+        public bool IsGOF { get; set; }
     }
 }

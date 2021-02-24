@@ -143,7 +143,11 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             SportTypeId = reader.ToInt32("sporttype"),
                             LeagueId = reader.ToInt32("leagueid"),
                             IsNeutral = reader.ToBoolean("IsNeutral"),
-                            EventDate = reader.ToDateTime("eventdate")
+                            EventDate = reader.ToDateTime("eventdate"),
+                            ExtraInfo = reader.ToString("ExtraInfo"),
+                            OddsSpread = reader.ToDecimal("oddsspread"),
+                            ActualStake = reader.ToDecimal("actual_stake"),
+                            IsGOF = reader.ToBoolean("IsGOF")
                         });
                     }
                 }

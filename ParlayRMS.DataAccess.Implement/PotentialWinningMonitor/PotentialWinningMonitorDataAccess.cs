@@ -92,7 +92,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
                             NumberWon = Convert.ToInt32(reader.ToDecimal("numberwon")),
                             SportType = reader.ToInt32("sporttype"),
-                            BetType = reader.ToInt32("bettype")
+                            BetType = reader.ToInt32("bettype"),
+                            IsGOF = reader.ToBoolean("IsGOF")
                         });
                     }
                 }

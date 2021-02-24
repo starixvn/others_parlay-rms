@@ -3,18 +3,18 @@
 @{
     var filterOption = (WinlossOptions)ViewBag.FilterOption;
 }
-<div style="width: 1201px;" class="maintitle">
+<div style="width: 1300px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos', '@((int)filterOption.ReportType)');" title="Export Excel">
     </div>
 </div>
-<div style="width: 1201px">
+<div style="width: 1300px">
     <table class="main">
         <colgroup>
-            <col width='70px' />
-            <col width='130px' />
+            <col width='100px' />
+            <col width='199px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />
@@ -85,11 +85,11 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1220px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1300px">
     <table class="main" id="result">
         <colgroup>
-            <col width='70px' />
-            <col width='130px' />
+            <col width='100px' />
+            <col width='199px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />
@@ -185,11 +185,11 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1201px" class="mainfooter">
+<div style="width: 1300px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='70px' />
-            <col width='130px' />
+            <col width='100px' />
+            <col width='199px' />
             <col width='80px' />
             <col width='80px' />
             <col width='120px' />

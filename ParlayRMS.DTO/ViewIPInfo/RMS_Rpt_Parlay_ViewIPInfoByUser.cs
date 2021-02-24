@@ -28,6 +28,10 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public decimal Stake { get; set; }
 
+        public decimal ActualStake { get; set; }
+
+        public string StakeString { get; set; }
+
         public int StatusId { get; set; }
 
         public string Status { get; set; }
@@ -55,5 +59,11 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public int LeagueId { get; set; }
 
         public DateTime EventDate { get; set; }
+
+        public decimal OddsSpread { get; set; }
+
+        public string ExtraInfo { get; set; }
+
+        public bool IsGOF { get; set; }
     }
 }

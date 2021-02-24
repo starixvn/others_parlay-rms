@@ -98,7 +98,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
                             TotalCombo = reader.ToInt32("totalcombo"),
                             Selection = reader.ToInt32("combo"),
-                            ParlayType = reader.ToInt32("ParlayType")
+                            ParlayType = reader.ToInt32("ParlayType"),
+                            IsGOF = reader.ToBoolean("IsGOF")
                         });
                     }
                 }
@@ -189,7 +190,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             TotalCombo = reader.ToInt32("totalcombo"),
                             Selection = reader.ToInt32("combo"),
                             ParlayType = reader.ToInt32("ParlayType"),
-                            BetType = reader.ToInt32("bettype")
+                            BetType = reader.ToInt32("bettype"),
+                            IsGOF = reader.ToBoolean("IsGOF")
                         });
                     }
                 }
