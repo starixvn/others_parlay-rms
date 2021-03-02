@@ -76,6 +76,10 @@
                         {
                             totalBetText = " bet(P)";
                         }
+                        else if (Model.IsGOF)
+                        {
+                            totalBetText = " bet(G)";
+                        }
                         else
                         {
                             totalBetText = Model.TotalBet > 1 ? " bets" : " bet";

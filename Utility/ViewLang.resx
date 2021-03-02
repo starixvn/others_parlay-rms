@@ -933,4 +933,7 @@
   <data name="CornerParlay" xml:space="preserve">
     <value>Corner Parlay</value>
   </data>
+  <data name="GodOfFortune" xml:space="preserve">
+    <value>God Of Fortune</value>
+  </data>
 </root>

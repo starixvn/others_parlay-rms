@@ -45,6 +45,12 @@ namespace ParlayRMS.Controllers
             });
             parlayTypes.Add(new SelectListItem
             {
+                Text = ViewLang.GodOfFortune,
+                Value = ((int)ParlayType.GodOfFortune).ToString(),
+                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.GodOfFortune).ToString())
+            });
+            parlayTypes.Add(new SelectListItem
+            {
                 Text = ViewLang.ComboParlay,
                 Value = ((int)ParlayType.ComboParlay).ToString(),
                 Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())

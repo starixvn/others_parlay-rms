@@ -266,7 +266,7 @@ $(document).ready(function () {
 
     $("#parlayType").multiselect({
         minWidth: 210,
-        height: 120,
+        height: 138,
         create: function () {
             $("#parlayType").multiselect();
         },
@@ -379,6 +379,17 @@ $(document).ready(function () {
     $("#refreshNow").button();
     $("#refreshNow").button('disable');
     $("#pause").prop('disabled', true);
+
+    $('#parlayType').on('change', function () {
+        var selectedParlays = $("#parlayType").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (selectedParlays == '5') {
+            $('#filterAfterPT').val(500);
+        } else {
+            $('#filterAfterPT').val('5,000');
+        }
+    });
 
     $("#refreshNow").click(function () {
         var userSettings = settingsController.validate();
@@ -535,6 +546,11 @@ function CreateRow(order, item) {
 
     if (item.BetType === 376) {
         betSuffix = ' (P)';
+    }
+
+    if (item.IsGOF == true)
+    {
+        betSuffix = ' (G)';
     }
 
     var r = new Array();

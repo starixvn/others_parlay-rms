@@ -20,6 +20,7 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public int BetType { get; set; }
 
+        public bool IsGOF { get; set; }
 
         public decimal WinningAmount { get; set; }
 

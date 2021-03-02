@@ -111,6 +111,10 @@
                             {
                                 betText = " bet(P)";
                             }
+                            else if (item.Val.IsGOF)
+                            {
+                                betText = " bet(G)";
+                            }
                             else
                             {
                                 betText = item.Val.TotalBet > 1 ? " bets" : " bet";

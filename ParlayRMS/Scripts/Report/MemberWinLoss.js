@@ -26,7 +26,7 @@
 
         MemberWinLoss.CachedDOM.parlayType.multiselect({
             minWidth: 210,
-            height: 120,
+            height: 138,
             create: function () {
                 MemberWinLoss.CachedDOM.parlayType.multiselect("checkAll");
             },

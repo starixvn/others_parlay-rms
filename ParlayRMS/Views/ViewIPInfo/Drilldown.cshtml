@@ -138,7 +138,16 @@
                                 @item.Odds.ToString("#,##0.000")
                             }
                         </td>
-                        <td class="numeric">@item.Stake.ToString("#,##0")</td>
+                        <td class="numeric">
+                            @if (item.IsGOF)
+                            {
+                                @Html.Raw(item.StakeString)
+                            }
+                            else
+                            {
+                                @item.Stake.ToString("#,##0")
+                            }
+                        </td>
                         @{
                             var winLossNegative = (item.Winlost < 0 && item.StatusId != 0) ? "negative" : "";
                         }

@@ -98,6 +98,12 @@ namespace ParlayRMS.Controllers
                 UpdateChoiceForPenaltyShootoutParlay(model, penaltyShootoutParlayTickets);
             }
 
+            var gOFParlayTickets = models.Where(m => m.IsGOF).ToArray();
+            if (gOFParlayTickets.Any())
+            {
+                UpdateStakeForGoFParlay(model, gOFParlayTickets);
+            }
+
             return View("Drilldown", models);
         }
 
@@ -267,6 +273,46 @@ namespace ParlayRMS.Controllers
             }
 
             return document.OuterHtml;
+        }
+
+        private static void UpdateStakeForGoFParlay(DrillDownOptions model, RMS_Rpt_Parlay_ViewIPInfoByUser[] gOFParlayTickets)
+        {
+            var index = 0;
+            ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = false };
+            var factory = new BetListHTMLFactory();
+            foreach (var m in gOFParlayTickets)
+            {
+                m.StakeString = BuildStakeForGoF(ticketHelper, factory, m, model.UserId, index);
+                index++;
+            }
+        }
+
+        private static string BuildStakeForGoF(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
+        {
+            var builder = factory.CreateBuilder();
+            var ticket = new Ticket
+            {
+                HomeId = model.HomeId,
+                AwayId = model.AwayId,
+                SportTypeId = model.SportTypeId,
+                LeagueId = model.LeagueId,
+                EventDate = model.EventDate,
+                BetTypeId = model.BetType,
+                TransId = model.TransID,
+                IsNeutral = model.IsNeutral,
+                CustId = userId,
+                BetCheck = model.BetCheck,
+                BetTeam = model.BetTeam,
+                OddsSpread = model.OddsSpread,
+                ExtraInfo = model.ExtraInfo,
+                Stake = model.Stake,
+                ActualStake = model.ActualStake
+            };
+
+            index++;
+            ticketHelper.Index = index;
+
+            return builder.BuildStake(ticket, ticketHelper);
         }
     }
 }

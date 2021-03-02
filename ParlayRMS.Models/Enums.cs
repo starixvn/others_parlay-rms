@@ -33,7 +33,9 @@
 
         SingleMatchParlay = 3,
 
-        PenaltyShootoutCombo = 4
+        PenaltyShootoutCombo = 4,
+
+        GodOfFortune = 5
     }
 
     public enum SportsType : int

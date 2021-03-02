@@ -37,6 +37,8 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public int BetType { get; set; }
 
+        public bool IsGOF { get; set; }
+
         public IEnumerable<RMS_Similar_Parlay_Betlist_Detail> Details { get; set; }
     }
 }
