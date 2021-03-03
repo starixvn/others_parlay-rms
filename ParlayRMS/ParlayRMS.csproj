@@ -15,13 +15,13 @@
     <AssemblyName>ParlayRMS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>57420</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -612,6 +612,7 @@
     <Content Include="wwwroot\win-loss-risk-control\runtime.js" />
     <Content Include="wwwroot\win-loss-risk-control\spinner.39d0d6bd1fbec2b1c53f.gif" />
     <Content Include="wwwroot\win-loss-risk-control\styles.css" />
+    <Content Include="ExcelTemplates\SpecialMembers.xls" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Content\under-maintenance.css" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />
@@ -1015,12 +1016,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57420</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:57420</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
