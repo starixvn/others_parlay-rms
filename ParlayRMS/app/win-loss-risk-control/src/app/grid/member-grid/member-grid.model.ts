@@ -7,4 +7,5 @@ export interface MemberWinLossModel extends WinLossModel {
 export interface MemberGridModel {
    username: string;
    custId: number;
+   site: string;
 }

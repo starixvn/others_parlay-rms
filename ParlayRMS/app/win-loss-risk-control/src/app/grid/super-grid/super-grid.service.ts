@@ -36,10 +36,11 @@ export class SuperGridService {
         };
     }
 
-    public createMasterGridModel(username: string, custId: number): MasterGridModel {
+    public createMasterGridModel(username: string, custId: number, site: string): MasterGridModel {
         return {
             username,
-            custId
+            custId,
+            site
         };
     }
 

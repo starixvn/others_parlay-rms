@@ -31,6 +31,7 @@ export class AgentGridService {
             fromDate: filterModel.fromDate,
             toDate: filterModel.toDate,
             custId: this.model.custId,
+            site: this.model.site,
             isDeposit: this.model.isDeposit,
             company: this.model.username,
             roleId: Role.master,
@@ -39,10 +40,11 @@ export class AgentGridService {
         };
     }
 
-    public createMemberGridModel(username: string, custId: number): MemberGridModel {
+    public createMemberGridModel(username: string, custId: number, site: string): MemberGridModel {
         return {
             username,
-            custId
+            custId,
+            site
         };
     }
 

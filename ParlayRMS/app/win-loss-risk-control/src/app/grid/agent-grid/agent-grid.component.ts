@@ -47,8 +47,8 @@ export class AgentGridComponent implements Grid {
       return this.agentGridService.model.username;
     }
 
-    public showMember(username: string, custId: number) {
-        this.memberGridService.model = this.agentGridService.createMemberGridModel(username, custId);
+    public showMember(username: string, custId: number, site: string) {
+        this.memberGridService.model = this.agentGridService.createMemberGridModel(username, custId, site);
         this.gridService.generate(GridType.Member);
     }
 }

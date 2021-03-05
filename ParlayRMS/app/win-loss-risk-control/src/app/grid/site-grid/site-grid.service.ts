@@ -33,7 +33,8 @@ export class SiteGridService {
         return {
             username,
             isDeposit: true,
-            custId: 0
+            custId: 0,
+            site: ""
         };
     }
     exportExcel() {

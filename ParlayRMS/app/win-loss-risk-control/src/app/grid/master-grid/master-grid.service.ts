@@ -31,16 +31,18 @@ export class MasterGridService {
             fromDate: filterModel.fromDate,
             toDate: filterModel.toDate,
             custId: this.model.custId,
+            site: this.model.site,
             roleId: Role.super,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
         };
     }
 
-    public createAgentGridModel(username: string, custId: number): AgentGridModel {
+    public createAgentGridModel(username: string, custId: number, site: string): AgentGridModel {
         return {
             username,
             custId,
+            site,
             isDeposit: false
         };
     }

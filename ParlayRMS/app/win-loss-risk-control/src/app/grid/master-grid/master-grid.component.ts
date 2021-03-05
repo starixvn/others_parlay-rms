@@ -47,8 +47,8 @@ export class MasterGridComponent implements Grid {
       return this.masterGridService.model.username;
     }
 
-    public showAgent(username: string, custId: number) {
-      this.agentGridService.model = this.masterGridService.createAgentGridModel(username, custId);
+    public showAgent(username: string, custId: number, site: string) {
+      this.agentGridService.model = this.masterGridService.createAgentGridModel(username, custId, site);
       this.gridService.generate(GridType.Agent);
     }
 }

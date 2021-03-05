@@ -29,6 +29,7 @@ export class MemberGridService {
             toDate: filterModel.toDate,
             custId: this.model.custId,
             roleId: Role.agent,
+            site: this.model.site,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
             pageSize: filterModel.pageSize,

@@ -12,4 +12,5 @@ export interface WinLossModel {
   margin: number;
   rows: WinLossModel[];
   isCollapsed: boolean;
+  site: string;
 }

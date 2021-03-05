@@ -29,7 +29,7 @@
   </thead>
 </ng-template>
 <ng-template #rowItem let-item="item">
-  <td><a href="javascript:;" (click)="showAgent(item.username, item.custId)">{{ item.username }}</a></td>
+  <td><a href="javascript:;" (click)="showAgent(item.username, item.custId, item.site)">{{ item.username }}</a></td>
   <td class="text-right">{{item.noMember}}</td>
   <td class="text-right">{{item.betCount}}</td>
   <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>

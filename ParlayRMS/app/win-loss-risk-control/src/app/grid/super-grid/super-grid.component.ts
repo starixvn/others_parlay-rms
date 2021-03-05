@@ -47,8 +47,8 @@ export class SuperGridComponent implements Grid {
       return this.superGridService.model.username;
     }
 
-    public showMaster(username: string, custId: number) {
-        this.masterGridService.model = this.superGridService.createMasterGridModel(username, custId);
+    public showMaster(username: string, custId: number, site: string) {
+        this.masterGridService.model = this.superGridService.createMasterGridModel(username, custId, site);
         this.gridService.generate(GridType.Master);
     }
 }
