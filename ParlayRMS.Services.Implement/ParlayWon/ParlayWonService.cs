@@ -13,7 +13,6 @@ namespace ParlayRMS.Services.Implement.ParlayWon
         private readonly CommonService _commonService = new CommonService();
 
         public IEnumerable<RMS_Rpt_Parlay_ParlayWon> GetParlayWonList(ParlayWonOptions options, ref Hashtable outputParams)
-
         {
             var info = _commonService.GetBalanceUpDayInfo();
 
@@ -31,7 +30,8 @@ namespace ParlayRMS.Services.Implement.ParlayWon
                 options.IsSortAsc,
                 options.PageIndex,
                 options.PageSize,
-                ref outputParams);
+                ref outputParams,
+                options.Currencies);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
@@ -19,6 +20,7 @@ namespace ParlayRMS.Controllers
     public class ParlayWonController : BaseController
     {
         private readonly ParlayWonService _service = new ParlayWonService();
+        private readonly CommonService commonService = new CommonService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
@@ -35,12 +37,12 @@ namespace ParlayRMS.Controllers
             ViewBag.Levels = levels;
 
             // Currency
+            var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();
-            for (int i = 1; i <= 10; i++)
+            foreach(var currency in currenciesList)
             {
-                currencies.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                currencies.Add(new SelectListItem { Text = currency.CurrencyCode, Value = currency.Id.ToString() });
             }
-
             ViewBag.Currencies = currencies;
 
             ViewBag.HouseLoseAmountFrom = Formatter.FormatNumber3(AppSetting.HouseLoseAmountFrom);

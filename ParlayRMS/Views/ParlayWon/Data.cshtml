@@ -12,7 +12,7 @@
     <div class="information">
         @ViewBag.Title
     </div>
-    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo')" title="Export Excel">
+    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies')" title="Export Excel">
     </div>
 </div>
 <div style="width: 1720px">
@@ -183,13 +183,13 @@
         <tfoot>
             @if (index == 0)
             {
-                <tr><td class="noinfo" colspan="14">@ViewLang.NoInformation</td></tr>
+                <tr><td class="noinfo" colspan="15">@ViewLang.NoInformation</td></tr>
             }
         </tfoot>
 </table>
 </div>
 <br />
-@if (index != 0)
+@if (index > 0)
 {
     <div id="pagination" class="pagination">
         <div id="pageSizeDiv">
@@ -200,9 +200,7 @@
             new SelectListItem { Text = "300", Value = "300" },
             new SelectListItem { Text = "500", Value = "500" },})
         </div>
-        <ul>
-        </ul>
+        <ul></ul>
         <div id="detailPagination">Displaying <b>@start</b> to <b>@index</b> of <b>@ViewBag.TotalRows</b> item(s)</div>
     </div>
 }
-

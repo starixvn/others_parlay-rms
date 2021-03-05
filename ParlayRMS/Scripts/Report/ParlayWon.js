@@ -524,7 +524,7 @@
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;
-        ParlayWon.cachedObject.pageSize = 10;
+        ParlayWon.cachedObject.pageSize = 100;
     }
 }
 
