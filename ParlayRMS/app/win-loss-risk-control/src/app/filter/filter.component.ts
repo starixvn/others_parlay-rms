@@ -48,7 +48,7 @@ export class FilterComponent implements OnInit {
   fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
   toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
-  minStartDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today.add(-6, 'month'));
+  minStartDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today.add(-1, 'month'));
   maxEndDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
   constructor(
     private readonly filterService: FilterService,
@@ -72,15 +72,15 @@ export class FilterComponent implements OnInit {
   private getParlay() {
     this.filterService.getParlay(this.netcoreApiUrl).subscribe((parlay: ParlayType[]) => this.parlayType = parlay);
   }
-  public onGenerate() {
-
-  }
 
   public onFromDateChange() {
     let fromDate: moment.Moment;
     fromDate = DateHelper.convertDateStructToMoment(this.fromDate);
     fromDate = moment.utc(fromDate);
     this.fromDate = DateHelper.convertMomentToDateStruct(fromDate);
+
+    const maxEndDate = fromDate.add(1, 'month');
+    this.maxEndDate = DateHelper.convertMomentToDateStruct(maxEndDate);
   }
 
   public onToDateChange() {
@@ -88,6 +88,9 @@ export class FilterComponent implements OnInit {
     toDate = DateHelper.convertDateStructToMoment(this.toDate);
     toDate = moment.utc(toDate);
     this.toDate = DateHelper.convertMomentToDateStruct(toDate);
+
+    const minStartDate = toDate.subtract(1, 'month');
+    this.minStartDate = DateHelper.convertMomentToDateStruct(minStartDate);
   }
 
   public onSubmit() {
