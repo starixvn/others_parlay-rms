@@ -197,7 +197,7 @@
 					case SiteEnvironment.UAT:
 					 return "https://newparlayrms.starixuat.com";
                     case SiteEnvironment.PRO:
-                        return "";
+                        return "https://newparlayrms.oneops.net";
                     case SiteEnvironment.MNL:
                         return "";
                     case SiteEnvironment.SIT:
