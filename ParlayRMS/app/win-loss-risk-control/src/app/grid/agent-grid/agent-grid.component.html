@@ -1,0 +1,99 @@
+<ng-template #colgroup>
+  <colgroup>
+      <col style="width: 140px" />
+      <col style="width: 130px" />
+      <col style="width: 90px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+      <col style="width: 130px" />
+  </colgroup>
+</ng-template>
+<ng-template #thead>
+  <thead>
+      <tr>
+          <th>Agent</th>
+          <th>No. Member</th>
+          <th>Bet Count</th>
+          <th>Member Win Loss</th>
+          <th>SMA Win Loss</th>
+          <th>Extra PT</th>
+          <th>Commission</th>
+          <th>Real Income</th>
+          <th>Real Turnover</th>
+          <th>Margin</th>
+      </tr>
+  </thead>
+</ng-template>
+<ng-template #rowItem let-item="item">
+  <td><a href="javascript:;" (click)="showMember(item.username, item.custId, item.site)">{{ item.username }}</a></td>
+  <td class="text-right">{{item.noMember}}</td>
+  <td class="text-right">{{item.betCount}}</td>
+  <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>
+  <td [ngClass]="{'red': item.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.smaWinLoss"></td>
+  <td class="text-right" [napDecimalFormat]="item.extraPT"></td>
+  <td class="text-right" [napDecimalFormat]="item.commission"></td>
+  <td [ngClass]="{'red': item.realIncome <= 0 , 'text-right' : 1}" [napDecimalFormat]="item.realIncome"></td>
+  <td class="text-right" [napDecimalFormat]="item.realTurnover"></td>
+   <td [ngClass]="{'red': item.margin <= 0, 'text-right' : 1}">
+     <span [napDecimalFormat]="item.margin"></span>%
+   </td>
+</ng-template>
+<div *ngIf="winLoss" [ngSwitch]="winLoss.rows.length > 0">
+  <div class="nap-grid">
+      <div style="width: 1290px;">
+          <div class="header">
+              <table>
+                  <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                  <ng-template [ngTemplateOutlet]="thead"></ng-template>
+              </table>
+          </div>
+          <div *ngSwitchCase="true" class="body">
+            <table class="table-striped">
+              <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+              <tbody>
+                <tr *ngFor="let item of winLoss.rows">
+                  <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                  </ng-template>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngSwitchCase="false" class="body stretch">
+              <table>
+                  <tbody>
+                      <tr>
+                          <th class="no-data" colspan="10">
+                              There is no data
+                          </th>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div *ngSwitchCase="true" class="footer">
+              <table>
+                  <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                  <tfoot>
+                      <tr class="font-weight-bold">
+                          <td class="text-right">{{winLoss.username}}</td>
+                          <td class="text-right">{{winLoss.noMember}}</td>
+                          <td class="text-right">{{winLoss.betCount}}</td>
+                          <td [ngClass]="{'red': winLoss.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.memberWinLoss"></td>
+                          <td [ngClass]="{'red': winLoss.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.smaWinLoss"></td>
+                          <td class="text-right" [napDecimalFormat]="winLoss.extraPT"></td>
+                          <td class="text-right" [napDecimalFormat]="winLoss.commission"></td>
+                          <td [ngClass]="{'red': winLoss.realIncome <= 0 , 'text-right' : 1}" [napDecimalFormat]="winLoss.realIncome"></td>
+                          <td class="text-right" [napDecimalFormat]="winLoss.realTurnover"></td>
+                          <td [ngClass]="{'red': winLoss.margin <= 0, 'text-right' : 1}">
+                            <span [napDecimalFormat]="winLoss.margin"></span>%
+                          </td>
+                      </tr>
+                  </tfoot>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>

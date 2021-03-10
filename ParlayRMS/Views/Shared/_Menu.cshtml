@@ -6,14 +6,23 @@
         @foreach (var value in Model.Values)
         {
             <ul class="@(Model.Values.First() == value ? "nav nav_line" : "nav")">
-                <li class="tab"><a href="@(string.IsNullOrEmpty(value.Url) ? '#'.ToString() : @Url.Content(value.Url))">
-                    <span>@value.Name</span></a>
+                <li class="tab">
+                    <a href="@(string.IsNullOrEmpty(value.Url) ? '#'.ToString() : @Url.Content(value.Url))">
+                        <span>@value.Name</span>
+                    </a>
                     @if (value.Children.Count > 0)
                     {
                         <ul class="sub-nav" style="display: none">
                             @foreach (var menu in value.Children)
                             {
-                                <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
+                                if (menu.Url.Contains("newtab=true"))
+                                {
+                                    <li><a href='@Url.Content(menu.Url)' target="_blank">@menu.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
+                                }
                             }
                         </ul>
                     }
@@ -22,16 +31,20 @@
         }
         <div class="welcome ">
             <div class="welcomehead">
-                @ViewLang.Loggedinas<span style="color: #ff6300; font-weight: bold">&nbsp;
-                    @CurrentSession.Instance.UserName</span>
+                @ViewLang.Loggedinas<span style="color: #ff6300; font-weight: bold">
+                    &nbsp;
+                    @CurrentSession.Instance.UserName
+                </span>
                 <div class="arrow">
                 </div>
             </div>
             <div class="welcomebody">
                 <div class="welcomebody-sub">
-                    <a href="javascript:ChangePassword(@CurrentSession.Instance.UserId, @CurrentSession.Instance.UserId, '@CurrentSession.Instance.UserName');">@ViewLang.ChangePassword</a></div>
+                    <a href="javascript:ChangePassword(@CurrentSession.Instance.UserId, @CurrentSession.Instance.UserId, '@CurrentSession.Instance.UserName');">@ViewLang.ChangePassword</a>
+                </div>
                 <div class="welcomebody-sub">
-                    <a href="javascript:logOff()">@ViewLang.Logout</a></div>
+                    <a href="javascript:logOff()">@ViewLang.Logout</a>
+                </div>
             </div>
         </div>
     </div>

@@ -36,3 +36,4 @@ _Chutzpah*
 /Sources/Sites/node_modules
 *.orig
 /ParlayRMS/Logs/
+**/yarn.lock

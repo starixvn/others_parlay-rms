@@ -186,5 +186,28 @@
                 }
             }
         }
+
+		
+		public string AspNetCoreAuthUrl
+        {
+            get
+            {
+                switch(Environment)
+                {
+					case SiteEnvironment.UAT:
+					 return "https://newparlayrms.starixuat.com";
+                    case SiteEnvironment.PRO:
+                        return "https://newparlayrms.oneops.net";
+                    case SiteEnvironment.MNL:
+                        return "";
+                    case SiteEnvironment.SIT:
+                        return "";
+					case SiteEnvironment.LOCAL:
+                        return "https://prms-netcore-v1.nexdev.net";
+                    default:
+                        return "";
+                }
+            }
+        } 
     }
 #>
