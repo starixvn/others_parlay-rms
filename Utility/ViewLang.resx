@@ -945,4 +945,7 @@
   <data name="TotalWinningAmountDownline" xml:space="preserve">
     <value>Total Winning Amount Downline</value>
   </data>
+  <data name="TotalStakeDownline" xml:space="preserve">
+    <value>Total Stake Downline</value>
+  </data>
 </root>

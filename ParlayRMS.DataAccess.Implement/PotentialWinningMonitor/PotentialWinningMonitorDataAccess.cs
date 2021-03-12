@@ -36,7 +36,7 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
 
                 using (var reader = db.ExecuteReader())
                 {
-                    if (filterBy > 0 && agentId == null)
+                    if (filterBy > 0)
                     {
                         while (reader.Read())
                         {

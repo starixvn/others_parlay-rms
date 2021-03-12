@@ -390,14 +390,14 @@ $(document).ready(function () {
 function FillData(filterBy, data) {
     var table = "";
     $(breadcrumbSelector).show();
-    if (IsDisplayForMember(filterBy))
+    if (filterBy == 0)
     {
         table = memberResultSelector + " #result";
         $(memberResultSelector).show();
         $(agentResultSelector).hide();
         if (cachedAgent)
         {
-            $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null);">Agent</span> >> ' + cachedAgent + ')</b>');
+            $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null, 1);">Agent</span> >> ' + cachedAgent + ')</b>');
         } else {
             $(breadcrumbSelector).hide();
         }
@@ -435,7 +435,7 @@ function FillData(filterBy, data) {
             if (isHighLight) {
                 isSound = true;
             }
-            r[++j] = IsDisplayForMember(filterBy) ? CreateRowForMember(i + 1, item, (isHighLight && !isPressSubmit)) : CreateRowForAgent(i + 1, item);
+            r[++j] = filterBy == 0 ? CreateRowForMember(i + 1, item, (isHighLight && !isPressSubmit)) : CreateRowForAgent(i + 1, item);
         }
 
         if (isSound) {
@@ -491,8 +491,9 @@ function CreateRowForAgent(order, item) {
     r[++j] = '<tr id="tr_' + item.Recommend + '">';
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.AgentName + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.TotalStake)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
-    r[++j] = '<td class="right"><a href="#" onclick="ViewData(' + item.Recommend + ',\'' + item.AgentName + '\'' + ');" >' + item.TotalMember + '</a></td>';
+    r[++j] = '<td class="right"><a href="#" onclick="ViewData(' + item.Recommend + ',\'' + item.AgentName + '\'' + ', 0);" >' + item.TotalMember + '</a></td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -674,17 +675,13 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
     };
 }
 
-function ViewData(agentId, agent)
+function ViewData(agentId, agent, filterBy)
 {
     cachedAgentId = agentId;
-    cachedAgent = agent
+    cachedAgent = agent;
+    cachedFilter.filterBy = filterBy;
     settingsController.set(cachedFilter);
     GetData();
-}
-
-function IsDisplayForMember(filterBy)
-{
-    return filterBy == 0 || cachedAgent;
 }
 
 function GetData()

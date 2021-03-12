@@ -2311,6 +2311,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Stake Downline.
+        /// </summary>
+        public static string TotalStakeDownline {
+            get {
+                return ResourceManager.GetString("TotalStakeDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Tickets.
         /// </summary>
         public static string TotalTickets {
