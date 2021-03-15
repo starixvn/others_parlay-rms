@@ -89,6 +89,8 @@
                     return numChecked + ' options';
                 }
             }
+        }).multiselectfilter({
+            autoReset: true
         });
 
         $("#sportsType").multiselect({
@@ -216,7 +218,8 @@
                 return;
             }
 
-            if ((houseLoseAmountFrom < 1000 || houseLoseAmountTo < 1000) && validator.validateDateInOneWeek("#fromDate", "#toDate")) {
+            houseLoseAmountFrom = isNaN(houseLoseAmountFrom) ? 0 : houseLoseAmountFrom;
+            if (houseLoseAmountFrom < 1000 && validator.validateDateInOneWeek("#fromDate", "#toDate")) {
                 return;
             }
 

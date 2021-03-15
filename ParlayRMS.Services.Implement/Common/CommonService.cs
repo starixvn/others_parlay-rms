@@ -99,20 +99,7 @@ namespace ParlayRMS.Services.Implement.Common
         /// </returns>
         public IEnumerable<Currency> GetCurrencies()
         {
-            if (!AppSetting.IsCache)
-            {
-                return this._commonDataAccess.GetCurrencies();
-            }
-
-            string key = "Currencies";
-            var result = CacheServiceInstance.Get<IEnumerable<Currency>>(key);
-            if (result == null)
-            {
-                result = this._commonDataAccess.GetCurrencies();
-                CacheServiceInstance.Set<IEnumerable<Currency>>(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromDays(1) });
-            }
-
-            return result;
+            return this._commonDataAccess.GetCurrencies();
         }
     }
 }

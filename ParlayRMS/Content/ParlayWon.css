@@ -76,3 +76,18 @@
     padding: 2px;
     border-radius: 4px;
 }
+
+.ui-multiselect-filter input {
+    border-radius: 4px;
+    border: 1px solid #999999;
+}
+
+.ui-multiselect-filter input:focus {
+    outline: none;
+}
+
+.ui-multiselect-filter input::-webkit-search-cancel-button,
+.ui-multiselect-filter input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
