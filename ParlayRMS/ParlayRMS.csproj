@@ -327,6 +327,7 @@
     <Content Include="App_Data\Fanex.Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\google-abel-font.css" />
     <Content Include="Content\images\Content\1F.gif" />
     <Content Include="Content\images\Content\1L.gif" />
     <Content Include="Content\images\Content\ajax-loader-line-2.gif" />
@@ -619,6 +620,7 @@
     <Content Include="wwwroot\win-loss-risk-control\spinner.39d0d6bd1fbec2b1c53f.gif" />
     <Content Include="wwwroot\win-loss-risk-control\styles.css" />
     <Content Include="ExcelTemplates\SpecialMembers.xls" />
+    <Content Include="Content\font\MwQ5bhbm2POE2V9BPQ.woff2" />
     <Content Include="App_Configurations\Web.PROAWS.config">
       <DependentUpon>Web.config.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
