@@ -151,6 +151,9 @@ var timerController = function () {
             dataType: 'html',
             cache: false,
             beforeSend: function (xhr) {
+                $(memberResultSelector).hide();
+                $(agentResultSelector).hide();
+                $(breadcrumbSelector).hide();
                 loading.show();
             },
             success: function (result) {
@@ -389,23 +392,20 @@ $(document).ready(function () {
 
 function FillData(filterBy, data) {
     var table = "";
-    $(breadcrumbSelector).show();
     if (filterBy == 0)
     {
         table = memberResultSelector + " #result";
         $(memberResultSelector).show();
-        $(agentResultSelector).hide();
         if (cachedAgent)
         {
             $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null, 1);">Agent</span> >> ' + cachedAgent + ')</b>');
-        } else {
-            $(breadcrumbSelector).hide();
+            $(breadcrumbSelector).show();
         }
     } else
     {
         table = agentResultSelector + " #result";
-        $(memberResultSelector).hide();
         $(agentResultSelector).show();
+        $(breadcrumbSelector).show();
         $(breadcrumbSelector).html('<b>(Agent)</b>');
     }
 
@@ -491,7 +491,7 @@ function CreateRowForAgent(order, item) {
     r[++j] = '<tr id="tr_' + item.Recommend + '">';
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.AgentName + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.TotalStake)).format('0,0') + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.Stake)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="right"><a href="#" onclick="ViewData(' + item.Recommend + ',\'' + item.AgentName + '\'' + ', 0);" >' + item.TotalMember + '</a></td>';
     r[++j] = '</tr>';

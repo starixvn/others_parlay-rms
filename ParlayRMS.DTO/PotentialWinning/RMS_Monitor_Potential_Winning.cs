@@ -31,7 +31,5 @@
         public string AgentName { get; set; }
 
         public int TotalMember { get; set; }
-
-        public decimal TotalStake { get; set; }
     }
 }

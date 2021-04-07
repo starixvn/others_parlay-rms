@@ -45,7 +45,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                                 AgentName = reader.ToString("agentname"),
                                 WinningAmount = reader.ToDecimal("winningamount"),
                                 TotalMember = reader.ToInt32("totalmember"),
-                                Recommend = reader.ToInt32("recommend")
+                                Recommend = reader.ToInt32("recommend"),
+                                Stake = reader.ToDecimal("TotalStake")
                             });
                         }
                     }
