@@ -351,8 +351,9 @@
     },
 
     ReloadLeagues: function (leagueGroups) {
+        var leagueGroupsList = leagueGroups.split(',');
         var data = LeagueBetTypeAnalysis.LeagueList.filter(function (obj) {
-            return leagueGroups.search(obj.GroupId.toString()) > -1
+            return leagueGroupsList.indexOf(obj.GroupId.toString()) > -1
         });
         LeagueBetTypeAnalysis.totalLeague = data.length;
         var html = '';

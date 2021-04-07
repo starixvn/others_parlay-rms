@@ -98,6 +98,8 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = "M4 (b)", Value = "6" },
                 new SelectListItem { Text = "M4 (x)", Value = "7" },
                 new SelectListItem { Text = "Virtual", Value = "9" },
+                new SelectListItem { Text = "CUP", Value = "10" },
+                new SelectListItem { Text = "CORNER", Value = "11" },
                 new SelectListItem { Text = "Blacklist", Value = "8" },
 
             };
