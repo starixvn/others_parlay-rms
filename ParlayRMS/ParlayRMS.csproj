@@ -24,6 +24,7 @@
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -311,6 +312,11 @@
     <Content Include="App_Configurations\Web.ConnectionString.PRO.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </Content>
+    <Content Include="App_Configurations\Web.ConnectionString.PROAWS.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Configurations\Web.ConnectionString.SIT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
@@ -613,6 +619,10 @@
     <Content Include="wwwroot\win-loss-risk-control\spinner.39d0d6bd1fbec2b1c53f.gif" />
     <Content Include="wwwroot\win-loss-risk-control\styles.css" />
     <Content Include="ExcelTemplates\SpecialMembers.xls" />
+    <Content Include="App_Configurations\Web.PROAWS.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Content\under-maintenance.css" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />
@@ -1020,7 +1030,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57420</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57420</IISUrl>
+          <IISUrl>http://localhost:57421</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -24,6 +24,10 @@
         new SiteInfo
         {
             Environment = SiteEnvironment.PRO
+        },
+        new SiteInfo
+        {
+            Environment = SiteEnvironment.PROAWS
         }
     };
 #>
@@ -35,7 +39,8 @@
         SIT,
         UAT,
         MNL,
-        PRO
+        PRO,
+        PROAWS,
     }
     class SiteInfo
     {
@@ -50,6 +55,8 @@
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
                         return @"tcp:10.40.40.22\private$\entlib";
+                    case SiteEnvironment.PROAWS:
+                        return @"tcp:10.2.27.19\private$\entlib";
 
                     case SiteEnvironment.MNL:
                         return @"tcp:10.2.98.3\private$\entlib";
@@ -73,6 +80,7 @@
 					case SiteEnvironment.LOCAL:
                         return "http://ha.nexdev.net:8889/api";
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                         return "http://10.99.99.51:8889/api";
                     case SiteEnvironment.UAT:
                         return "http://10.40.40.248:8889/api";
@@ -93,6 +101,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                     case SiteEnvironment.MNL:
                         return "true";
                     default:
@@ -108,6 +117,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                     case SiteEnvironment.MNL:
                         return "True";
                     default:
@@ -125,6 +135,7 @@
 					case SiteEnvironment.UAT:
                         return "http://10.40.40.248:7207/Main/";
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                         return "http://10.99.99.51:7258/";
                     case SiteEnvironment.MNL:
                         return "http://10.40.40.202:7258/";
@@ -143,6 +154,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                              return "On";
 
                     default:
@@ -158,6 +170,7 @@
                 switch(Environment)
                 {
                     case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
                         return "false";
 
                     default:
@@ -176,6 +189,8 @@
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.99.99.51:42424\" />";
+                    case SiteEnvironment.PROAWS:
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.27.19:42424\" />";
                     case SiteEnvironment.MNL:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.12.10:42424\" />";
                     case SiteEnvironment.SIT:
@@ -198,6 +213,8 @@
 					 return "https://newparlayrms.starixuat.com";
                     case SiteEnvironment.PRO:
                         return "https://newparlayrms.oneops.net";
+                    case SiteEnvironment.PROAWS:
+                        return "https://parlayrms-new.sportsfun.app/v1";
                     case SiteEnvironment.MNL:
                         return "";
                     case SiteEnvironment.SIT:
