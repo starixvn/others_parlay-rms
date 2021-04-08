@@ -21,10 +21,10 @@
                     @ViewLang.Odds
                 </th>
                 <th style="width: 120px">
-                    @ViewLang.AverageStakeAfterPT
+                    @(Model.StatusID == 0 ? ViewLang.AverageStakeAfterPT : ViewLang.StakeAfterPT)
                 </th>
                 <th style="width: 120px">
-                    @ViewLang.NetWinAfterPT
+                    @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
                 </th>
                 <th style="width: 90px">
                     Total Combo Bets
@@ -150,7 +150,7 @@
                         @ViewLang.Username
                     </th>
                     <th class="sortable">
-                        @ViewLang.NetWinAfterPT
+                        @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
                     </th>
                     <th>
                         @ViewLang.SimilarSelectionFound

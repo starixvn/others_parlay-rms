@@ -1,7 +1,7 @@
 ﻿using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
@@ -20,6 +20,7 @@ namespace ParlayRMS.Controllers
     public class ParlayWonController : BaseController
     {
         private readonly ParlayWonService _service = new ParlayWonService();
+        private readonly CommonService commonService = new CommonService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
@@ -34,6 +35,15 @@ namespace ParlayRMS.Controllers
             }
 
             ViewBag.Levels = levels;
+
+            // Currency
+            var currenciesList = commonService.GetCurrencies();
+            var currencies = new List<SelectListItem>();
+            foreach(var currency in currenciesList)
+            {
+                currencies.Add(new SelectListItem { Text = currency.CurrencyCode, Value = currency.Id.ToString() });
+            }
+            ViewBag.Currencies = currencies;
 
             ViewBag.HouseLoseAmountFrom = Formatter.FormatNumber3(AppSetting.HouseLoseAmountFrom);
             ViewBag.HouseLoseAmountTo = Formatter.FormatNumber3(AppSetting.HouseLoseAmountTo);
@@ -143,6 +153,7 @@ namespace ParlayRMS.Controllers
                 ViewLang.TransTime,
                 ViewLang.BetID,
                 ViewLang.Username,
+                ViewLang.Currency,
                 ViewLang.Odds,
                 ViewLang.Stake,
                 ViewLang.StakeAfterPT,
@@ -164,6 +175,7 @@ namespace ParlayRMS.Controllers
                 TransTime = Formatter.FormatDate(x.TransDate),
                 TransId = x.TransId,
                 Username = x.Username,
+                Currency = x.Currency,
                 Odds = Formatter.FormatOdds(x.Odds),
                 Stake = Formatter.FormatNumber3(x.Stake),
                 StakeAfterPT = Formatter.FormatNumber3(x.StakeAfterPT),

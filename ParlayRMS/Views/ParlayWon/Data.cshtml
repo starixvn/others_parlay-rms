@@ -5,31 +5,34 @@
 @{
     var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
     var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
+    var start = index;
 }
 <input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
-<div style="width: 1560px;" class="maintitle">
+<div style="width: 1720px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
-    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo')" title="Export Excel">
+    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies')" title="Export Excel">
     </div>
 </div>
-<div style="width: 1560px">
+<div style="width: 1720px">
     <table class="main" id="header">
         <colgroup>
-            <col width='70px' />
-            <col width='120px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='80px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='150px' />
+            <col width='70' />
+            <col width='120' />
+            <col width='150' />
+            <col width='150' />
+            <col width='80' />
+            <col width='80' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='150' />
+            <col width='80' />
         </colgroup>
         <thead>
             <tr>
@@ -44,6 +47,9 @@
                 </th>
                 <th class="sortable" data-col-index="2">
                     @ViewLang.Username
+                </th>
+                <th>
+                    @ViewLang.Currency
                 </th>
                 <th class="sortable" data-col-index="7">
                     @ViewLang.Odds
@@ -72,26 +78,31 @@
                 <th>
                     @ViewLang.IP
                 </th>
+                <th>
+                    @ViewLang.BetDetails
+                </th>
             </tr>
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1580px">
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1740px">
     <table class="main" id="result">
         <colgroup>
-            <col width='70px' />
-            <col width='120px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='80px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='150px' />
+            <col width='70' />
+            <col width='120' />
+            <col width='150' />
+            <col width='150' />
+            <col width='80' />
+            <col width='80' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='150' />
+            <col width='80' />
         </colgroup>
         <tbody>
             @foreach (var item in Model)
@@ -104,10 +115,13 @@
                         @Formatter.FormatDate(item.TransDate)
                     </td>
                     <td class="center">
-                        <a href="#@item.RefNo" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', '@item.CustId', @item.BetType)">@item.TransId</a>
+                        <a href="#@item.RefNo" onclick="window.open(resolveClientUrl('SimilarBets?betid=' + @item.TransId + ''), '_blank')">@item.TransId</a>
                     </td>
                     <td class="center">
                         @item.Username
+                    </td>
+                    <td>
+                        @item.Currency
                     </td>
                     <td class="numeric">
                         @Formatter.FormatOdds(item.Odds)
@@ -136,44 +150,57 @@
                     <td class="center">
                         @item.IP
                     </td>
+                    <td class="center">
+                        <button class="button-disable-2" style="width:40px;" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', '@item.CustId', @item.BetType)">
+                            View
+                        </button>
+                    </td>
                 </tr>
                 index++;
             }
         </tbody>
     </table>
 </div>
-<div style="width: 1560px" class="mainfooter">
+<div style="width: 1720px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='70px' />
-            <col width='120px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='80px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='150px' />
+            <col width='70' />
+            <col width='120' />
+            <col width='150' />
+            <col width='150' />
+            <col width='80' />
+            <col width='80' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='150' />
+            <col width='80' />
         </colgroup>
         <tfoot>
             @if (index == 0)
             {
-                <tr><td class="noinfo" colspan="13">@ViewLang.NoInformation</td></tr>
+                <tr><td class="noinfo" colspan="15">@ViewLang.NoInformation</td></tr>
             }
         </tfoot>
 </table>
 </div>
 <br />
-@if (index != 0)
+@if (index > 0)
 {
     <div id="pagination" class="pagination">
-        <ul>
-        </ul>
-
+        <div id="pageSizeDiv">
+            @Html.Label("pageSizes", ViewLang.PageSize)
+            @Html.DropDownList("ddlPageSize", new List<SelectListItem>() {
+            new SelectListItem { Text = "100", Value = "100" },
+            new SelectListItem { Text = "200", Value = "200" },
+            new SelectListItem { Text = "300", Value = "300" },
+            new SelectListItem { Text = "500", Value = "500" },})
+        </div>
+        <ul></ul>
+        <div id="detailPagination">Displaying <b>@start</b> to <b>@index</b> of <b>@ViewBag.TotalRows</b> item(s)</div>
     </div>
 }
-

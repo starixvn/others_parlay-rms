@@ -93,5 +93,26 @@ namespace ParlayRMS.DataAccess.Implement.Common
 
             return bettypes;
         }
+
+        /// <summary>
+        /// Get currencies.
+        /// </summary>
+        /// <returns>Return currency list.</returns>
+        public IEnumerable<Currency> GetCurrencies()
+        {
+            var currencies = new List<Currency>();
+            using (var db = new ObjectDb("RMS_CurrencySel"))
+            {
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        currencies.Add(new Currency { Id = reader.ToInt32("currency"), CurrencyCode = reader.ToString("currencyName") });
+                    }
+                }
+            }
+
+            return currencies;
+        }
     }
 }

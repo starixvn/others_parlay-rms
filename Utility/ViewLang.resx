@@ -622,7 +622,7 @@
     <value>Last</value>
   </data>
   <data name="TicketIsNotExisted" xml:space="preserve">
-    <value>This ticket is settled or not existed.</value>
+    <value>This ticket is not found or not supported.</value>
   </data>
   <data name="Undefined" xml:space="preserve">
     <value>Undefined</value>
@@ -935,5 +935,8 @@
   </data>
   <data name="GodOfFortune" xml:space="preserve">
     <value>God Of Fortune</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page size</value>
   </data>
 </root>

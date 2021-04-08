@@ -149,6 +149,7 @@ namespace ParlayRMS
                 "~/Scripts/Libs/multiselect/jquery.multiselect-customized.css",
                 "~/Scripts/Libs/multiselect/jquery.multiselect.filter.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/google-abel-font.css",
                 "~/Content/BetList.css",
                 "~/Content/Components.css",
                 "~/Content/confirm.css",

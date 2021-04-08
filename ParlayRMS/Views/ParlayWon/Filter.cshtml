@@ -56,6 +56,12 @@
                     @Html.TextBox("houseLoseAmountTo", (object)ViewBag.HouseLoseAmountTo)
                 </div>
             </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Currency)
+                    @Html.DropDownList("currencies", (List<SelectListItem>)ViewBag.Currencies)
+                </div>
+            </div>
         </div>
     </div>
 </div>

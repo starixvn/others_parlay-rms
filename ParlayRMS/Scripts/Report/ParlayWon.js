@@ -69,6 +69,30 @@
             }
         });
 
+        $("#currencies").multiselect({
+            minWidth: 132,
+            height: 136,
+            create: function () {
+                $("#currencies").multiselect("checkAll");
+            },
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                if (numChecked == 0) {
+                    return "Select options";
+                }
+                else if (numChecked == 1) {
+                    return $(checkedItems).attr('title');
+                }
+                else if (numChecked == numTotal) {
+                    return "All";
+                }
+                else {
+                    return numChecked + ' options';
+                }
+            }
+        }).multiselectfilter({
+            autoReset: true
+        });
+
         $("#sportsType").multiselect({
             minWidth: 220,
             height: 300,
@@ -178,16 +202,24 @@
                 return;
             }
 
-            var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
-            if (houseLoseAmountFrom < 1000) {
-                Validators.show($("#houseLoseAmountFrom"), 'House Lose Amount From must be greater or equal than 1000');
+            var currencies = $("#currencies").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (currencies == '') {
+                Validators.show($("#currencies").multiselect("getButton").get(0), 'Please select at least one currency!');
                 return;
             }
 
+            var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
             var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));
 
             if (houseLoseAmountTo > 0 && houseLoseAmountFrom > houseLoseAmountTo) {
                 Validators.show($("#houseLoseAmountTo"), 'House Lose Amount From must be less than To');
+                return;
+            }
+
+            houseLoseAmountFrom = isNaN(houseLoseAmountFrom) ? 0 : houseLoseAmountFrom;
+            if (houseLoseAmountFrom < 1000 && validator.validateDateInOneWeek("#fromDate", "#toDate")) {
                 return;
             }
 
@@ -199,6 +231,25 @@
                 sportsTypes,
                 houseLoseAmountFrom,
                 houseLoseAmountTo,
+                currencies,
+                ParlayWon.cachedObject.sortById,
+                ParlayWon.cachedObject.isSortAsc,
+                ParlayWon.cachedObject.pageIndex,
+                ParlayWon.cachedObject.pageSize);
+        });
+
+        $(document).on('change', '#ddlPageSize', function () {
+            ParlayWon.cachedObject.pageSize = parseInt($(this).val());
+            ParlayWon.cachedObject.pageIndex = 1;
+            ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
+                ParlayWon.cachedObject.fromDate,
+                ParlayWon.cachedObject.toDate,
+                ParlayWon.cachedObject.combos,
+                ParlayWon.cachedObject.levels,
+                ParlayWon.cachedObject.sportsType,
+                ParlayWon.cachedObject.houseAmountFrom,
+                ParlayWon.cachedObject.houseAmountTo,
+                ParlayWon.cachedObject.currencies,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -237,6 +288,7 @@
                 ParlayWon.cachedObject.sportsType,
                 ParlayWon.cachedObject.houseAmountFrom,
                 ParlayWon.cachedObject.houseAmountTo,
+                ParlayWon.cachedObject.currencies,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -286,13 +338,14 @@
               ParlayWon.cachedObject.sportsType,
               ParlayWon.cachedObject.houseAmountFrom,
               ParlayWon.cachedObject.houseAmountTo,
+              ParlayWon.cachedObject.currencies,
               ParlayWon.cachedObject.sortById,
               ParlayWon.cachedObject.isSortAsc,
               ParlayWon.cachedObject.pageIndex,
               ParlayWon.cachedObject.pageSize);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, sortById, isSortAsc, pageIndex, pageSize) {
+    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, sortById, isSortAsc, pageIndex, pageSize) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -302,6 +355,7 @@
             levels: levels,
             houseAmountFrom: houseLoseAmountFrom,
             houseAmountTo: houseLoseAmountTo,
+            currencies: currencies,
             sortById: sortById,
             isSortAsc: isSortAsc,
             pageIndex: pageIndex,
@@ -334,6 +388,8 @@
                     }
                 });
 
+                $("#ddlPageSize").val(ParlayWon.cachedObject.pageSize.toString());
+
                 ParlayWon.Paging(totalRows, data.pageIndex);
             },
             error: function (xhr, status, err) {
@@ -344,7 +400,7 @@
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -354,6 +410,7 @@
             levels: levels,
             houseAmountFrom: houseLoseAmountFrom,
             houseAmountTo: houseLoseAmountTo,
+            currencies: currencies,
             sortById: null,
             isSortAsc: null,
             pageIndex: 0,
@@ -466,10 +523,11 @@
         ParlayWon.cachedObject.sportsType =  null;
         ParlayWon.cachedObject.houseAmountFrom =  0;
         ParlayWon.cachedObject.houseAmountTo = 0;
+        ParlayWon.cachedObject.currencies = null;
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;
-        ParlayWon.cachedObject.pageSize = 1000;
+        ParlayWon.cachedObject.pageSize = 100;
     }
 }
 

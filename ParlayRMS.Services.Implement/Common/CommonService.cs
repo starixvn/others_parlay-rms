@@ -90,5 +90,16 @@ namespace ParlayRMS.Services.Implement.Common
 
             return result;
         }
+
+        /// <summary>
+        /// Get currencies.
+        /// </summary>
+        /// <returns>
+        /// Return currency list.
+        /// </returns>
+        public IEnumerable<Currency> GetCurrencies()
+        {
+            return this._commonDataAccess.GetCurrencies();
+        }
     }
 }

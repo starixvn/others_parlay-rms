@@ -24,7 +24,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                                                        bool isSortAsc,
                                                        int pageIndex,
                                                        int pageSize,
-                                                       ref Hashtable outputParam)
+                                                       ref Hashtable outputParam,
+                                                       string currency)
         {
             var result = new List<RMS_Rpt_Parlay_ParlayWon>();
 
@@ -44,6 +45,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                 db.AddInParameter("PageIndex", DbType.Int32, pageIndex);
                 db.AddInParameter("PageSize", DbType.Int32, pageSize);
                 db.AddOutParameter("totalrows", DbType.Int32, Int32.MaxValue);
+                db.AddInParameter("Currency", DbType.String, currency);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -65,7 +67,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                             TotalBet = reader.ToInt32("TotalBet"),
                             TotalSelection = reader.ToInt32("TotalSelection"),
                             SportType = reader.ToInt32("SportType"),
-                            IP = reader.ToString("IP")
+                            IP = reader.ToString("IP"),
+                            Currency = reader.ToString("currencyName")
                         });
                     }
                 }

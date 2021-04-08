@@ -14,6 +14,8 @@ namespace ParlayRMS.DTO.ParlayWon
 
         public string Username { get; set; }
 
+        public string Currency { get; set; }
+
         public int BetType { get; set; }
 
         public decimal Odds { get; set; }
