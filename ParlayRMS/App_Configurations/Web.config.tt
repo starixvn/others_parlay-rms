@@ -47,7 +47,6 @@
               UMTo="23:00"
               SiteId="2000000" UMPageUrl="~/Account/Offline">
     </ONEbook.UM>
-  <Fanex.Logging msmqPath="FormatName:DIRECT=<#= site.MSMQPath #>" defaultCategory="PARLAY_RMS" />
   <connectionStrings configSource="<#= connectionStringFileName #>"/>
   <appSettings>
     <add key="IsDebug" value="True" />
@@ -73,6 +72,9 @@
 	<add key="HouseLoseAmountFrom" value="1000" />
     <add key="HouseLoseAmountTo" value="10000" />
 	<add key="AspNetCoreAuth" value="<#= site.AspNetCoreAuthUrl #>" />
+	<add key="SiteCategory" value="<#= site.FanexLogCategory #>" />
+	<add key="SentryToken" value="<#= site.FanexSentryToken #>" />
+	<add key="FrontEndSentryToken" value="<#= site.FanexSentryToken #>" />
   </appSettings>
   <system.web>
     <customErrors mode="<#=site.ErrorMode#>" />
