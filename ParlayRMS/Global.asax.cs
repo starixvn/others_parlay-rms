@@ -32,11 +32,11 @@ namespace ParlayRMS
                 .FromApplication("NAP-ParlayRMS")
                 .RegisterSupportedLanguages("en-US");
             BetListManager.RegisterRemotingRef(new CacheRef());
+            FanexLogging.Register();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles();
-            FanexLogging.Register();
             DbSettingProviderManager.Current.Start();
         }
 

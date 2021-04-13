@@ -225,6 +225,54 @@
                         return "";
                 }
             }
-        } 
+        }
+
+		public string FanexLogCategory
+        {
+            get
+            {
+                switch(Environment)
+                {
+					case SiteEnvironment.LOCAL:
+					case SiteEnvironment.DEV:
+					case SiteEnvironment.SIT:
+                        return "NAP-PRMS-LOCAL";
+
+					case SiteEnvironment.UAT:
+                        return "NAP-PRMS-UAT";
+
+                    case SiteEnvironment.MNL:
+					case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
+						return "NAP-PRMS";
+
+					default:
+                        return string.Empty;
+                }
+            }
+        }
+
+		public string FanexSentryToken
+        {
+            get
+            {
+                switch(Environment)
+                {
+					case SiteEnvironment.DEV:
+					case SiteEnvironment.LOCAL:
+					case SiteEnvironment.SIT:
+                        return "http://08f559d1c5584860986fc0bb87fab18e@sentry.nexdev.net/94";
+
+					case SiteEnvironment.UAT:
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
+					case SiteEnvironment.MNL:
+						return "http://3e032e61e03e42c69dc27792ec2df25e@10.99.99.51:801/99";
+
+					default:
+                        return string.Empty;
+                }
+            }
+        }
     }
 #>
