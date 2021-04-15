@@ -2,6 +2,7 @@
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
 using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
@@ -24,6 +25,7 @@ namespace ParlayRMS.Controllers
         private readonly BetListService _betlistService = new BetListService();
         private readonly UsersService _userService = new UsersService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
+        private readonly CommonService commonService = new CommonService();
 
         [HttpGet]
         public ActionResult Index()
@@ -44,10 +46,11 @@ namespace ParlayRMS.Controllers
             ViewBag.SelectTops = selectTop;
 
             // Currency
+            var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();
-            for (int i = 1; i <= 10; i++)
+            foreach (var currency in currenciesList)
             {
-                currencies.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                currencies.Add(new SelectListItem { Text = currency.CurrencyCode, Value = currency.Id.ToString() });
             }
             ViewBag.Currencies = currencies;
 

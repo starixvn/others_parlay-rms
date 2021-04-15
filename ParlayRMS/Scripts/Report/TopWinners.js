@@ -137,6 +137,8 @@ $(function () {
                 return numChecked + ' options';
             }
         }
+    }).multiselectfilter({
+        autoReset: true
     });
 
     $("#dateRange").change(function () {

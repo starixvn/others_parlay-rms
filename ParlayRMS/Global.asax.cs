@@ -170,6 +170,9 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/LeagueBetTypeAnalysis").Include(
               "~/Content/LeagueBetTypeAnalysis.css"));
 
+            bundles.Add(new StyleBundle("~/Content/TopWinners").Include(
+              "~/Content/TopWinners.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
