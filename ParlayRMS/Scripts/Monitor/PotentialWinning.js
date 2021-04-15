@@ -1,5 +1,11 @@
 ﻿var refreshTime = 60000;
 var isPressSubmit = false;
+var agentResultSelector = '#divAgentResult';
+var memberResultSelector = '#divMemberResult';
+var breadcrumbSelector = '#divBreadcrumb';
+var cachedAgentId = null;
+var cachedAgent = null;
+var cachedFilter = {};
 function Alert() {
     soundManager.play('aSound');
 }
@@ -12,6 +18,7 @@ function UserSettings() {
     this.selectTop = 200000;
     this.winningAmount = 0;
     this.isCornerParlay = false;
+    this.filterBy = 0;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlaysTypes == settings.parlaysTypes
@@ -20,7 +27,8 @@ function UserSettings() {
             && this.selectTop == settings.selectTop
             && this.winningAmount == settings.winningAmount
             && this.reportType == settings.reportType
-            && this.isCornerParlay == setting.isCornerParlay) {
+            && this.isCornerParlay == setting.isCornerParlay
+            && this.filterBy == settings.filterBy) {
             return false;
         }
 
@@ -93,6 +101,8 @@ var settingsController = function () {
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
 
+            var filterBy = $('input[name=radFilterBy]:checked').val();
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlaysTypes = parlaysTypes;
@@ -101,6 +111,7 @@ var settingsController = function () {
             userSettings.winningAmount = winningAmount;
             userSettings.selectTop = selectTop;
             userSettings.isCornerParlay = isCornerParlay;
+            userSettings.filterBy = filterBy;
 
             return userSettings;
         }
@@ -128,7 +139,9 @@ var timerController = function () {
             levels: settings.levels,
             winningAmount: settings.winningAmount,
             selectTop: settings.selectTop,
-            isCornerParlay: settings.isCornerParlay
+            isCornerParlay: settings.isCornerParlay,
+            filterBy: settings.filterBy,
+            agentId: cachedAgentId
         };
 
         $.ajax({
@@ -138,6 +151,9 @@ var timerController = function () {
             dataType: 'html',
             cache: false,
             beforeSend: function (xhr) {
+                $(memberResultSelector).hide();
+                $(agentResultSelector).hide();
+                $(breadcrumbSelector).hide();
                 loading.show();
             },
             success: function (result) {
@@ -147,8 +163,7 @@ var timerController = function () {
                     return;
                 }
 
-                var table = $('#result');
-                FillData(table, json);
+                FillData(settings.filterBy, json);
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -338,16 +353,8 @@ $(document).ready(function () {
         var userSettings = settingsController.validate();
         if (userSettings != null) {
             settingsController.set(userSettings);
-            $('#result').children('tbody').html('');
-            $("#refreshNow").button('enable');
-            $("#pause").prop('disabled', false);
-            $("#header").find(".sortable").each(function () {
-                $(this).removeClass("headerSortDown").removeClass("headerSortUp");
-                this.sortDirection = "";
-            });
-            tableSorter.currentOrderCol = null;
-            isPressSubmit = true;
-            timerController.start();
+            GetData();
+            cachedFilter = userSettings;
         }
     });
 
@@ -360,20 +367,8 @@ $(document).ready(function () {
         }
     });
 
-    var table = $('#result');
-    var header = $('#header');
-    tableSorter.bind2(header, table, {
-        type: 'text',
-        onStart: function () {
-            table.find('tr[custid]').remove();
-        },
-        onFinish: function () {
-            var trs = table.children('tbody').children("tr");
-            trs.each(function (index, tr) {
-                $(tr).children('td:first').text(index + 1);
-            });
-        }
-    });
+    InitTableSorter($(memberResultSelector + ' #result'), $(memberResultSelector + ' #header'));
+    InitTableSorter($(agentResultSelector + ' #result'), $(agentResultSelector + ' #header'));
 
     soundManager.setup({
         url: resolveClientUrl('Scripts/Libs/soundManager/swf/'),
@@ -395,7 +390,25 @@ $(document).ready(function () {
     });
 });
 
-function FillData(table, data) {
+function FillData(filterBy, data) {
+    var table = "";
+    if (filterBy == 0)
+    {
+        table = memberResultSelector + " #result";
+        $(memberResultSelector).show();
+        if (cachedAgent)
+        {
+            $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null, 1);">Agent</span> >> ' + cachedAgent + ')</b>');
+            $(breadcrumbSelector).show();
+        }
+    } else
+    {
+        table = agentResultSelector + " #result";
+        $(agentResultSelector).show();
+        $(breadcrumbSelector).show();
+        $(breadcrumbSelector).html('<b>(Agent)</b>');
+    }
+
     var records = data.Records;
     var isSound = false;
     var length = records.length;
@@ -422,7 +435,7 @@ function FillData(table, data) {
             if (isHighLight) {
                 isSound = true;
             }
-            r[++j] = CreateRow(i + 1, item, (isHighLight && !isPressSubmit));
+            r[++j] = filterBy == 0 ? CreateRowForMember(i + 1, item, (isHighLight && !isPressSubmit)) : CreateRowForAgent(i + 1, item);
         }
 
         if (isSound) {
@@ -436,8 +449,6 @@ function FillData(table, data) {
             var type = $(orderCol).attr("data-col-type");
             tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
         }
-
-        ViewTotalBetDetails(viewTotalBetId);
     } else {
         if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
             var noinfo = CreateNoInfoRow(10);
@@ -446,10 +457,12 @@ function FillData(table, data) {
     }
 
     isPressSubmit = false;
+    cachedAgent = null;
+    cachedAgentId = null;
     $('#divResult').show();
 }
 
-function CreateRow(order, item, isHighLight) {
+function CreateRowForMember(order, item, isHighLight) {
     var r = new Array();
     var j = -1;
     if (isHighLight) {
@@ -468,6 +481,19 @@ function CreateRow(order, item, isHighLight) {
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.CompanyLoseAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\'' + ');">' + item.TotalTicket + '</td>';
+    r[++j] = '</tr>';
+    return r.join('');
+}
+
+function CreateRowForAgent(order, item) {
+    var r = new Array();
+    var j = -1;
+    r[++j] = '<tr id="tr_' + item.Recommend + '">';
+    r[++j] = '<td class="center">' + order + '</td>';
+    r[++j] = '<td>' + item.AgentName + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.Stake)).format('0,0') + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
+    r[++j] = '<td class="right"><a href="#" onclick="ViewData(' + item.Recommend + ',\'' + item.AgentName + '\'' + ', 0);" >' + item.TotalMember + '</a></td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -647,4 +673,42 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
             }
         });
     };
+}
+
+function ViewData(agentId, agent, filterBy)
+{
+    cachedAgentId = agentId;
+    cachedAgent = agent;
+    cachedFilter.filterBy = filterBy;
+    settingsController.set(cachedFilter);
+    GetData();
+}
+
+function GetData()
+{
+    $('#result').children('tbody').html('');
+    $("#refreshNow").button('enable');
+    $("#pause").prop('disabled', false);
+    $("#header").find(".sortable").each(function () {
+        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+        this.sortDirection = "";
+    });
+    tableSorter.currentOrderCol = null;
+    isPressSubmit = true;
+    timerController.start();
+}
+
+function InitTableSorter(table, header) {
+    tableSorter.bind2(header, table, {
+        type: 'text',
+        onStart: function () {
+            table.find('tr[custid]').remove();
+        },
+        onFinish: function () {
+            var trs = table.children('tbody').children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(index + 1);
+            });
+        }
+    });
 }

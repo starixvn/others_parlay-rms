@@ -939,4 +939,13 @@
   <data name="PageSize" xml:space="preserve">
     <value>Page size</value>
   </data>
+  <data name="TotalMember" xml:space="preserve">
+    <value>Total Member</value>
+  </data>
+  <data name="TotalWinningAmountDownline" xml:space="preserve">
+    <value>Total Winning Amount Downline</value>
+  </data>
+  <data name="TotalStakeDownline" xml:space="preserve">
+    <value>Total Stake Downline</value>
+  </data>
 </root>

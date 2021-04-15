@@ -35,12 +35,21 @@
                                 @RazorHelper.SportTypesDropDown()
                             </td>
                             <td>
-                                @Html.Label("winningAmount", ViewLang.WinningAmount + " (RM)", new { @class = "lable" })
+                                @Html.Label("winningAmount", ViewLang.WinningAmount + " Filter by", new { @class = "lable" })
+                            </td>
+                            <td style="width: 85px">
+                                <input type="radio" id="radMember" checked="checked" name="radFilterBy"
+                                       value="0">
+                                @Html.Label("radMember", ViewLang.Member, new { @class = "lable" })
+                            </td>
+                            <td style="width: 85px">
+                                <input type="radio" id="radAgent" name="radFilterBy" value="1">
+                                @Html.Label("radAgent", ViewLang.Agent, new { @class = "lable" })
                             </td>
                             <td>
                                 @Html.TextBox("winningAmount", Formatter.FormatNumber3(200000), new { @maxlength = 12 })
                             </td>
-                            <td></td>
+                            <td><label>(RM)</label></td>
                             <td>
                                 <button id="submit" class="button">
                                     <span class="text">@ViewLang.Submit</span>

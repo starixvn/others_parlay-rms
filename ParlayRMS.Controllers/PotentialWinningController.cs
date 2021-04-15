@@ -57,7 +57,7 @@ namespace ParlayRMS.Controllers
             var selectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
-                selectTops.Add(new SelectListItem { Text = item, Value = item, Selected = item == "100" ? true : false });
+                selectTops.Add(new SelectListItem { Text = item, Value = item, Selected = item == "100"});
             }
 
             ViewBag.SelectTops = selectTops;
@@ -68,7 +68,7 @@ namespace ParlayRMS.Controllers
             var refreshTimes = new List<SelectListItem>();
             foreach (var item in refreshTime)
             {
-                refreshTimes.Add(new SelectListItem { Text = item.ToString(), Value = (item * 1000).ToString(), Selected = item == 60 ? true : false });
+                refreshTimes.Add(new SelectListItem { Text = item.ToString(), Value = (item * 1000).ToString(), Selected = item == 60 });
             }
 
             ViewBag.RefreshTimes = refreshTimes;
@@ -89,7 +89,7 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay);
+            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay, model.FilterBy, model.AgentId);
 
             return Json(new
             {

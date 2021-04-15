@@ -1,0 +1,49 @@
+﻿<div id="divAgentResult">
+    <div style="width: 790px">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='50' />
+                <col width='150' />
+                <col width='200' />
+                <col width='250' />
+                <col width='140' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.No
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-index="1">
+                        @ViewLang.Agent
+                    </th>
+                    <th colspan="3" class="header2rows">
+                        @ViewLang.BaseCurrency
+                    </th>
+                </tr>
+                <tr>
+                    <th data-col-type="float" class="sortable" data-col-index="2">
+                        @ViewLang.TotalStakeDownline
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="3">
+                        @ViewLang.TotalWinningAmountDownline
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="4">
+                        @ViewLang.TotalMember
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 630px; width: 807px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='50' />
+                <col width='150' />
+                <col width='200' />
+                <col width='250' />
+                <col width='140' />
+            </colgroup>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

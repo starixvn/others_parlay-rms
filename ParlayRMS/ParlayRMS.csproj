@@ -674,6 +674,8 @@
     <Content Include="Views\LeagueBetTypeAnalysis\Data.cshtml" />
     <Content Include="Views\LeagueBetTypeAnalysis\_LeagueData.cshtml" />
     <Content Include="Views\LeagueBetTypeAnalysis\_BetTypeData.cshtml" />
+	<Content Include="Views\PotentialWinning\_MemberData.cshtml" />
+    <Content Include="Views\PotentialWinning\_AgentData.cshtml" />
     <Content Include="Views\Shared\_LayoutAngular.cshtml" />
     <Content Include="wwwroot\Web.config">
       <SubType>Designer</SubType>
