@@ -88,6 +88,8 @@
                     return numChecked + ' options';
                 }
             }
+        }).multiselectfilter({
+            autoReset: true
         });
 
         $("#ddlSite").multiselect({

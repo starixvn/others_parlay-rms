@@ -2,6 +2,7 @@
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
 using ParlayRMS.Services.Implement.BetList;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
@@ -24,13 +25,14 @@ namespace ParlayRMS.Controllers
         private readonly BetListService _betlistService = new BetListService();
         private readonly UsersService _userService = new UsersService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
+        private readonly CommonService commonService = new CommonService();
 
         [HttpGet]
         public ActionResult Index()
         {
             SelectListItem[] tempSelectTop = new SelectListItem[4];
             List<SelectListItem> selectTop = new List<SelectListItem>();
-            List<int> moreSelection = new List<int> { 200, 500, 1000 };
+            List<int> moreSelection = new List<int> { 200, 500, 1000, 2000, 3000 };
             Config.SelectTops.CopyTo(tempSelectTop);
             selectTop.AddRange(tempSelectTop);
             foreach (int option in moreSelection)
@@ -41,8 +43,17 @@ namespace ParlayRMS.Controllers
                     Value = option.ToString()
                 });
             }
-
             ViewBag.SelectTops = selectTop;
+
+            // Currency
+            var currenciesList = commonService.GetCurrencies();
+            var currencies = new List<SelectListItem>();
+            foreach (var currency in currenciesList)
+            {
+                currencies.Add(new SelectListItem { Text = currency.CurrencyCode, Value = currency.Id.ToString() });
+            }
+            ViewBag.Currencies = currencies;
+
             ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
 
             return View();
@@ -178,7 +189,7 @@ namespace ParlayRMS.Controllers
                 Winlost_BaseRM = x.Winlost_BaseRM,
                 Company_Winlost_BaseRM = x.Company_Winlost_BaseRM,
                 TotalBets = x.BetCount,
-                Avg_Odds = Math.Floor(x.Avg_Odds)
+                Avg_Odds = Formatter.FormatOdds(x.Avg_Odds)
             });
 
             writer.WriteRows(3, select);

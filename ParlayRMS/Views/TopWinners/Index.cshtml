@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TopWinners;
 }
+@Styles.Render("~/Content/TopWinners")
 <div class="filter">
     <div class="filter-control" style="width: 840px">
         <div class="minimizetitle">
@@ -48,6 +49,12 @@
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
                     @RazorHelper.SportTypesDropDown()
+                </div>
+            </div>
+            <div class="row">
+                <div class="group">
+                    @Html.Label(ViewLang.Currency)
+                    @Html.DropDownList("currencies", (List<SelectListItem>)ViewBag.Currency)
                 </div>
             </div>
         </div>
@@ -109,7 +116,7 @@
                     <th>
                         @ViewLang.CompanyLoseAmount
                     </th>
-                    <th>
+                    <th class="sortable" data-col-type="float" data-col-index="6">
                         @ViewLang.Stake
                     </th>
                     <th class="sortable" data-col-type="float" data-col-index="7">

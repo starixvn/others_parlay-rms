@@ -612,6 +612,7 @@
     <Content Include="Content\LeagueBetTypeAnalysis.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\ParlayWon.css" />
+    <Content Include="Content\TopWinners.css" />
     <Content Include="packages.config" />
     <Content Include="ExcelTemplates\SpecialLeague.xls" />
     <Content Include="ExcelTemplates\ParlayWon.xls" />
@@ -674,7 +675,7 @@
     <Content Include="Views\LeagueBetTypeAnalysis\Data.cshtml" />
     <Content Include="Views\LeagueBetTypeAnalysis\_LeagueData.cshtml" />
     <Content Include="Views\LeagueBetTypeAnalysis\_BetTypeData.cshtml" />
-	<Content Include="Views\PotentialWinning\_MemberData.cshtml" />
+    <Content Include="Views\PotentialWinning\_MemberData.cshtml" />
     <Content Include="Views\PotentialWinning\_AgentData.cshtml" />
     <Content Include="Views\Shared\_LayoutAngular.cshtml" />
     <Content Include="wwwroot\Web.config">

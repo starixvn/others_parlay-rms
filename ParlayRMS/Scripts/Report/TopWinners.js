@@ -5,13 +5,15 @@
     SelectTop: 100,
     Combos: '2,3,4,5,6,7,8,9,10',
     ParlayTypes: '1,2',
-    Save: function (fromDate, toDate, sportsType, selectTop, combos, parlayTypes) {
+    Currencies: '',
+    Save: function (fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies) {
         this.FromDate = fromDate;
         this.ToDate = toDate;
         this.SportsType = sportsType;
         this.SelectTop = selectTop;
         this.Combos = combos;
         this.ParlayTypes = parlayTypes;
+        this.Currencies = currencies;
     }
 };
 
@@ -113,6 +115,30 @@ $(function () {
                 return numChecked + ' options';
             }
         }
+    });
+
+    $("#currencies").multiselect({
+        minWidth: 132,
+        height: 136,
+        create: function () {
+            $("#currencies").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    }).multiselectfilter({
+        autoReset: true
     });
 
     $("#dateRange").change(function () {
@@ -243,12 +269,20 @@ $(function () {
             return;
         }
 
+        var currencies = $("#currencies").multiselect("getChecked").map(function () {
+            return this.value;
+        }).get().join(',');
+        if (currencies == '') {
+            Validators.show($("#currencies").multiselect("getButton").get(0), 'Please select at least one currency!');
+            return;
+        }
+
         header.find(".sortable").each(function () {
             $(this).removeClass("headerSortDown").removeClass("headerSortUp");
             this.sortDirection = "";
         });
 
-        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, parlayTypes);
+        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, parlayTypes, currencies);
     });
 
     tableSorter.bind2(header, table, {
@@ -267,8 +301,8 @@ $(function () {
     });
 });
 
-function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayTypes) {
-    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, parlayTypes);
+function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies) {
+    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies);
 
     var data = {
         FromDate: fromDate,
@@ -276,7 +310,8 @@ function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayT
         SportsType: sportsType,
         SelectTop: selectTop,
         Combos: combos,
-        ParlayTypes: parlayTypes
+        ParlayTypes: parlayTypes,
+        Currencies: currencies
     }
     $.ajax({
         url: resolveClientUrl('TopWinners/Data'),
@@ -395,7 +430,8 @@ function ViewDetails(custId) {
             SportsType: userOptions.SportsType,
             SelectTop: userOptions.SelectTop,
             Combos: userOptions.Combos,
-            ParlayTypes: userOptions.ParlayTypes
+            ParlayTypes: userOptions.ParlayTypes,
+            Currencies: userOptions.Currencies
         }
 
         $.ajax({
@@ -446,7 +482,8 @@ function ExportExcel() {
         SportsType: userOptions.SportsType,
         SelectTop: userOptions.SelectTop,
         Combos: userOptions.Combos,
-        ParlayTypes: userOptions.ParlayTypes
+        ParlayTypes: userOptions.ParlayTypes,
+        Currencies: userOptions.Currencies
     }
 
     var url = 'TopWinners/Excel?' + $.param(data);

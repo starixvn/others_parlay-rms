@@ -18,7 +18,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                          string sportsType,
                                                          int selectTop,
                                                          string combos,
-                                                         string parlayTypes)
+                                                         string parlayTypes,
+                                                         string currencies)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 
@@ -32,6 +33,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("currency", DbType.String, currencies);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -66,7 +68,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                                 DateTime moveBetsDay,
                                                                 string sportsType,
                                                                 string combos,
-                                                                string parlayTypes)
+                                                                string parlayTypes,
+                                                                string currencies)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 
@@ -79,6 +82,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("currency", DbType.String, currencies);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -159,7 +163,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                                 DateTime toDate,
                                                                 string sportsType,
                                                                 string combos,
-                                                                string parlayTypes)
+                                                                string parlayTypes,
+                                                                string currencies)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
 
@@ -171,6 +176,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("currency", DbType.String, currencies);
 
                 using (var reader = db.ExecuteReader())
                 {
