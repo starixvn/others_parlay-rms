@@ -260,5 +260,10 @@ namespace ParlayRMS.Common.Models
                 return string.Format("{0} options", list.Length);
             }
         }
+
+        public static string GetCustomerClassTitle(int? customerClass)
+        {
+            return customerClass == null ? "All" : customerClass.ToString();
+        }
     }
 }

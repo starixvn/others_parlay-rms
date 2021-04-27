@@ -16,6 +16,7 @@ import { AgentGridService } from '../agent-grid/agent-grid.service';
 export class SiteGridComponent implements Grid {
 
     public siteWinLoss: WinLossModel;
+    public sortData: WinLossModel[][] = [];
 
     constructor(
         private gridService: GridService,
@@ -28,6 +29,7 @@ export class SiteGridComponent implements Grid {
         return new Observable(observer => {
             this.siteGridService.query().subscribe(data => {
                 this.siteWinLoss = data;
+                this.getSortData(data);
                 observer.complete();
             });
         });
@@ -61,5 +63,13 @@ export class SiteGridComponent implements Grid {
 
     public onCollapsed(site: WinLossModel) {
       site.isCollapsed = !site.isCollapsed;
+    }
+
+    public getSortData(site: WinLossModel) {
+        if (site.rows.length > 0) {
+            _.forEach(site.rows, item => {
+                this.sortData.push(item.rows);
+            })
+        }
     }
 }

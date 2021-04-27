@@ -475,6 +475,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Class.
+        /// </summary>
+        public static string CustomerClass {
+            get {
+                return ResourceManager.GetString("CustomerClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Win Loss.
         /// </summary>
         public static string CustomerWinLoss {
@@ -2109,6 +2118,15 @@ namespace ParlayRMS.Utility {
         public static string Tickets {
             get {
                 return ResourceManager.GetString("Tickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string TicketSelection {
+            get {
+                return ResourceManager.GetString("TicketSelection", resourceCulture);
             }
         }
         

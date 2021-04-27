@@ -20,6 +20,7 @@ namespace ParlayRMS.ViewModel
         private static List<SelectListItem> _sites;
         private static List<SelectListItem> _reportBy;
         private static List<SelectListItem> _simpleParlayTypes;
+        private static List<SelectListItem> _ticketSelections;
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         static Config()
@@ -116,6 +117,14 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = "Deposit", Value = "1" },
 
             };
+
+            _ticketSelections = new List<SelectListItem> {
+                new SelectListItem { Text = "All", Value = "All" },
+                new SelectListItem { Text = "Live", Value = "Live" },
+                new SelectListItem { Text = "Non Live", Value = "Non Live" },
+                new SelectListItem { Text = "Mix", Value = "Mix" }
+
+            };
         }
 
         public static List<SelectListItem> Combos
@@ -210,6 +219,14 @@ namespace ParlayRMS.ViewModel
             get
             {
                 return _reportBy;
+            }
+        }
+
+        public static List<SelectListItem> TicketSelections
+        {
+            get
+            {
+                return _ticketSelections;
             }
         }
     }

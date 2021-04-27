@@ -31,6 +31,10 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Currencies { get; set; }
 
+        public byte Site { get; set; }
+
+        public string TicketSelection { get; set; }
+
         public int SortById { get; set; }
 
         public bool IsSortAsc { get; set; }

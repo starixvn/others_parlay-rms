@@ -43,44 +43,53 @@
                     @Html.DropDownList("combo", Config.Combos)
                 </div>
                 <div class="group">
+                    @Html.Label("", ViewLang.Site)
+                    @Html.DropDownList("ddlSite", Config.Sites)
+                </div>
+                <div class="group">
                     @Html.Label(ViewLang.ParlayType)
                     @Html.DropDownList("parlayType", Config.ParlayTypes)
                 </div>
+            </div>
+            <div class="row">
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
                     @RazorHelper.SportTypesDropDown()
                 </div>
-            </div>
-            <div class="row">
                 <div class="group">
                     @Html.Label(ViewLang.Currency)
                     @Html.DropDownList("currencies", (List<SelectListItem>)ViewBag.Currency)
+                </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.CustomerClass)
+                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", onkeypress = "return IsNumber(event)" })
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1230px" class="maintitle">
+    <div style="width: 1450px" class="maintitle">
         <div id="title" class="information">
         </div>
         <div class="excel" onclick="ExportExcel();" title="Export Excel">
         </div>
     </div>
-    <div style="width: 1230px">
+    <div style="width: 1450px">
         <table class="main" id="header">
             <colgroup>
-                <col width='40px' />
-                <col width='140px' />
-                <col width='80px' />
-                <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
-                <col width='90px' />
-                <col width='135px' />
-                <col width='170px' />
-                <col width='80px' />
-                <col width='134px' />
+                <col width='40' />
+                <col width='140' />
+                <col width='120' />
+                <col width='80' />
+                <col width='140' />
+                <col width='120' />
+                <col width='150' />
+                <col width='140' />
+                <col width='135' />
+                <col width='170' />
+                <col width='80' />
+                <col width='134' />
             </colgroup>
             <thead>
                 <tr>
@@ -89,6 +98,9 @@
                     </th>
                     <th rowspan="2" class="header2rows">
                         @ViewLang.Username
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.CustomerClass
                     </th>
                     <th rowspan="2" class="header2rows">
                         @ViewLang.Currency
@@ -129,42 +141,44 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1250px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1470px">
         <table class="main" id="result">
             <colgroup>
-                <col width='40px' />
-                <col width='140px' />
-                <col width='80px' />
-                <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
-                <col width='90px' />
-                <col width='135px' />
-                <col width='170px' />
-                <col width='80px' />
-                <col width='134px' />
+                <col width='40' />
+                <col width='140' />
+                <col width='120' />
+                <col width='80' />
+                <col width='140' />
+                <col width='120' />
+                <col width='150' />
+                <col width='140' />
+                <col width='135' />
+                <col width='170' />
+                <col width='80' />
+                <col width='134' />
             </colgroup>
             <tbody></tbody>
         </table>
     </div>
-    <div style="width: 1230px" class="mainfooter">
+    <div style="width: 1450px" class="mainfooter">
         <table class="main" id="footer" style="width: 100%">
             <colgroup>
-                <col width='40px' />
-                <col width='140px' />
-                <col width='80px' />
-                <col width='90px' />
-                <col width='120px' />
-                <col width='150px' />
-                <col width='90px' />
-                <col width='135px' />
-                <col width='170px' />
-                <col width='80px' />
-                <col width='134px' />
+                <col width='40' />
+                <col width='140' />
+                <col width='120' />
+                <col width='80' />
+                <col width='140' />
+                <col width='120' />
+                <col width='150' />
+                <col width='140' />
+                <col width='135' />
+                <col width='170' />
+                <col width='80' />
+                <col width='134' />
             </colgroup>
             <tfoot>
                 <tr id="totalRow">
-                    <td colspan="6" class="right">
+                    <td colspan="7" class="right">
                         @ViewLang.Total
                     </td>
                     <td class="numeric" id="totalStake"></td>

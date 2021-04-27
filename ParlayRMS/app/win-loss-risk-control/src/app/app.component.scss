@@ -1,0 +1,15 @@
+::ng-deep .sort-icon {
+    position: relative;
+    top: 3px;
+}
+
+::ng-deep thead.sort tr th {
+    cursor: pointer;
+    span {
+      display: inline-grid;
+      margin-left: 0.25rem;
+      em {
+          height: 2px;
+      }
+    }
+  }

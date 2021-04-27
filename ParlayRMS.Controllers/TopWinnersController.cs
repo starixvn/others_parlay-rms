@@ -1,7 +1,6 @@
 ﻿using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
@@ -22,7 +21,6 @@ namespace ParlayRMS.Controllers
     public class TopWinnersController : BaseController
     {
         private readonly TopWinnersService _topwinnersService = new TopWinnersService();
-        private readonly BetListService _betlistService = new BetListService();
         private readonly UsersService _userService = new UsersService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
         private readonly CommonService commonService = new CommonService();

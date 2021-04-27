@@ -4,16 +4,20 @@
     SportsType: '',
     SelectTop: 100,
     Combos: '2,3,4,5,6,7,8,9,10',
+    Site: "2",
     ParlayTypes: '1,2',
     Currencies: '',
-    Save: function (fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies) {
+    CustomerClass: '',
+    Save: function (fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass) {
         this.FromDate = fromDate;
         this.ToDate = toDate;
         this.SportsType = sportsType;
         this.SelectTop = selectTop;
         this.Combos = combos;
+        this.Site = site;
         this.ParlayTypes = parlayTypes;
         this.Currencies = currencies;
+        this.CustomerClass = customerClass;
     }
 };
 
@@ -93,6 +97,14 @@ $(function () {
                 return numChecked + ' options';
             }
         }
+    });
+
+    $("#ddlSite").multiselect({
+        minWidth: 80,
+        height: 80,
+        header: false,
+        multiple: false,
+        selectedList: 1
     });
 
     $("#sportsType").multiselect({
@@ -253,6 +265,8 @@ $(function () {
             return;
         }
 
+        var site = parseInt($("#ddlSite").val());
+
         var parlayTypes = $("#parlayType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -277,12 +291,14 @@ $(function () {
             return;
         }
 
+        var customerClass = parseInt($("#txtCustomerClass").val());
+
         header.find(".sortable").each(function () {
             $(this).removeClass("headerSortDown").removeClass("headerSortUp");
             this.sortDirection = "";
         });
 
-        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, parlayTypes, currencies);
+        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, site, parlayTypes, currencies, customerClass);
     });
 
     tableSorter.bind2(header, table, {
@@ -301,8 +317,8 @@ $(function () {
     });
 });
 
-function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies) {
-    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, parlayTypes, currencies);
+function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass) {
+    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass);
 
     var data = {
         FromDate: fromDate,
@@ -310,8 +326,10 @@ function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, parlayT
         SportsType: sportsType,
         SelectTop: selectTop,
         Combos: combos,
+        Site: site,
         ParlayTypes: parlayTypes,
-        Currencies: currencies
+        Currencies: currencies,
+        CustomerClass: customerClass
     }
     $.ajax({
         url: resolveClientUrl('TopWinners/Data'),
@@ -368,6 +386,7 @@ function FillData(table, data) {
                 disabled = '';
             }
             r[++j] = '<td class="' + className + '"><span>' + item.Username + '</span> <span class="arrowDown_table ' + disabled + '" title="Click to change level" username="' + item.Username + '" custid="' + item.CustId + '"></span></td>';
+            r[++j] = '<td class="center">11111</td>';
             r[++j] = '<td>' + item.Currency + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0') + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Winlost).format('0,0.00') + '</td>';
@@ -482,10 +501,21 @@ function ExportExcel() {
         SportsType: userOptions.SportsType,
         SelectTop: userOptions.SelectTop,
         Combos: userOptions.Combos,
+        Site: userOptions.Site,
         ParlayTypes: userOptions.ParlayTypes,
-        Currencies: userOptions.Currencies
+        Currencies: userOptions.Currencies,
+        CustomerClass: userOptions.CustomerClass
     }
 
     var url = 'TopWinners/Excel?' + $.param(data);
     window.location.href = resolveClientUrl(url);
+}
+
+function IsNumber(event) {
+    var code = event.keyCode;
+    if (code >= 48 && code <= 57) {
+        return true;
+    }
+
+    return false;
 }
