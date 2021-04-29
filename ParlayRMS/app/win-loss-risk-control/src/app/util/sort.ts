@@ -1,9 +1,5 @@
 export class Sort {
     private sortOrder = 1;
-    private collator = new Intl.Collator(undefined, {
-        numeric: true,
-        sensitivity: "base"
-    });
     
     constructor(){}
 
@@ -13,6 +9,6 @@ export class Sort {
         {
             this.sortOrder = -1;
         }
-        return (a: any, b: any) => this.collator.compare(a[property], b[property]) * this.sortOrder;
+        return (a: any, b: any) => (a[property] - b[property]) * this.sortOrder;
     }
 }
