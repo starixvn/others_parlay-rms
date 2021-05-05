@@ -19,7 +19,7 @@ namespace ParlayRMS.Utility {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewLang {
@@ -1141,6 +1141,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string LiveType {
+            get {
+                return ResourceManager.GetString("LiveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logged in as.
         /// </summary>
         public static string Loggedinas {
@@ -2118,15 +2127,6 @@ namespace ParlayRMS.Utility {
         public static string Tickets {
             get {
                 return ResourceManager.GetString("Tickets", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Selection.
-        /// </summary>
-        public static string TicketSelection {
-            get {
-                return ResourceManager.GetString("TicketSelection", resourceCulture);
             }
         }
         

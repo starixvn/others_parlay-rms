@@ -25,7 +25,9 @@ namespace ParlayRMS.Services.Implement.TopWinners
                 options.SelectTop,
                 options.Combos,
                 options.ParlayTypes,
-                options.Currencies);
+                options.Currencies,
+                options.Site,
+                options.CustomerClass);
         }
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]

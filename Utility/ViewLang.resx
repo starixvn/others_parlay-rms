@@ -951,7 +951,7 @@
   <data name="CustomerClass" xml:space="preserve">
     <value>Customer Class</value>
   </data>
-  <data name="TicketSelection" xml:space="preserve">
+  <data name="LiveType" xml:space="preserve">
     <value>Selection</value>
   </data>
 </root>

@@ -17,7 +17,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Combos { get; set; }
 
-        public int Site { get; set; }
+        public byte Site { get; set; }
 
         public string ParlayTypes { get; set; }
 

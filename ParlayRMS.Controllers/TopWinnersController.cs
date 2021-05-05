@@ -133,6 +133,7 @@ namespace ParlayRMS.Controllers
             {
                 "#",
                 ViewLang.Username,
+                ViewLang.CustomerClass,
                 ViewLang.Currency,
                 ViewLang.OriginalCurrency,
                 string.Empty,
@@ -146,6 +147,7 @@ namespace ParlayRMS.Controllers
 
             var header2 = new object[]
             {
+                string.Empty,
                 string.Empty,
                 string.Empty,
                 string.Empty,
@@ -165,6 +167,7 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 string.Empty,
                 string.Empty,
+                string.Empty,
                 totalStake,
                 totalWinlost,
                 totalCompanyWinlost,
@@ -179,6 +182,7 @@ namespace ParlayRMS.Controllers
             {
                 No = ++id,
                 Username = x.Username,
+                CustomerClass = x.CustomerClass,
                 Currency = x.Currency,
                 Stake = x.Stake,
                 Winlost = x.Winlost,

@@ -386,7 +386,7 @@ function FillData(table, data) {
                 disabled = '';
             }
             r[++j] = '<td class="' + className + '"><span>' + item.Username + '</span> <span class="arrowDown_table ' + disabled + '" title="Click to change level" username="' + item.Username + '" custid="' + item.CustId + '"></span></td>';
-            r[++j] = '<td class="center">11111</td>';
+            r[++j] = '<td class="center">' + item.CustomerClass + '</td>';
             r[++j] = '<td>' + item.Currency + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Stake).format('0,0') + '</td>';
             r[++j] = '<td class="numeric">' + numeral(item.Winlost).format('0,0.00') + '</td>';
@@ -433,7 +433,7 @@ function ViewDetails(custId) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="11" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="12" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
