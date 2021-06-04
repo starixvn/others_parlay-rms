@@ -1,4 +1,5 @@
-﻿using ParlayRMS.ExcelService.Writers;
+﻿using ParlayRMS.DTO.TopWinners;
+using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
 using ParlayRMS.Services.Implement.Common;
@@ -62,7 +63,12 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var records = _topwinnersService.GetTopWinners(options);
+                bool isValidCustomerClass = true;
+                if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
+                {
+                    isValidCustomerClass = false;
+                }    
+                var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);

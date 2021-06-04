@@ -261,7 +261,7 @@ namespace ParlayRMS.Common.Models
             }
         }
 
-        public static string GetCustomerClassTitle(int? customerClass)
+        public static string GetCustomerClassTitle(Int64? customerClass)
         {
             return customerClass == null ? "All" : customerClass.ToString();
         }

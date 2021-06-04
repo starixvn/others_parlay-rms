@@ -23,7 +23,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Currencies { get; set; }
 
-        public int? CustomerClass { get; set; }
+        public Int64? CustomerClass { get; set; }
 
         public string GetTile()
         {

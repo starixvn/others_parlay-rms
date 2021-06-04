@@ -21,7 +21,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                          string parlayTypes,
                                                          string currencies,
                                                          byte site,
-                                                         int? customerClass)
+                                                         Int64? customerClass)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 
