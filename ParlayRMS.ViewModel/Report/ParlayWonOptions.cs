@@ -31,6 +31,10 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Currencies { get; set; }
 
+        public byte Site { get; set; }
+
+        public byte LiveType { get; set; }
+
         public int SortById { get; set; }
 
         public bool IsSortAsc { get; set; }
@@ -63,7 +67,7 @@ namespace ParlayRMS.ViewModel.Report
             levelTitle = levelTitle.Replace("0,", "None,");
 
             var title = string.Format(
-                                "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} [{7}] - {8} - [{9}] {10}",
+                                "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} [{7}] - {8} - [{9}] {10} - [{11}] {12} - [{13}] {14}",
                                 ViewLang.ParlayWon,
                                 FromDate.ToString("MMMM dd, yyyy"),
                                 ToDate.ToString("MMMM dd, yyyy"),
@@ -74,7 +78,11 @@ namespace ParlayRMS.ViewModel.Report
                                 ViewLang.SportsType,
                                 ModelsHelper.GetSportType(SportsType),
                                 ViewLang.Level,
-                                levelTitle);
+                                levelTitle,
+                                ViewLang.Site,
+                                ModelsHelper.GetSiteTitle(Site),
+                                ViewLang.LiveType,
+                                ModelsHelper.GetLiveTypeTitle(LiveType));
             return title;
         }
     }

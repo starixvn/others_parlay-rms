@@ -47,6 +47,22 @@
             }
         });
 
+        $("#ddlSite").multiselect({
+            minWidth: 80,
+            height: 80,
+            header: false,
+            multiple: false,
+            selectedList: 1
+        });
+
+        $("#ddlLiveType").multiselect({
+            minWidth: 100,
+            height: 110,
+            header: false,
+            multiple: false,
+            selectedList: 1
+        });
+
         $("#level").multiselect({
             minWidth: 132,
             height: 136,
@@ -210,6 +226,10 @@
                 return;
             }
 
+            var site = parseInt($("#ddlSite").val());
+
+            var liveType = parseInt($("#ddlLiveType").val());
+
             var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
             var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));
 
@@ -232,6 +252,8 @@
                 houseLoseAmountFrom,
                 houseLoseAmountTo,
                 currencies,
+                site,
+                liveType,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -250,6 +272,8 @@
                 ParlayWon.cachedObject.houseAmountFrom,
                 ParlayWon.cachedObject.houseAmountTo,
                 ParlayWon.cachedObject.currencies,
+                ParlayWon.cachedObject.site,
+                ParlayWon.cachedObject.liveType,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -289,6 +313,8 @@
                 ParlayWon.cachedObject.houseAmountFrom,
                 ParlayWon.cachedObject.houseAmountTo,
                 ParlayWon.cachedObject.currencies,
+                ParlayWon.cachedObject.site,
+                ParlayWon.cachedObject.liveType,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -339,13 +365,15 @@
               ParlayWon.cachedObject.houseAmountFrom,
               ParlayWon.cachedObject.houseAmountTo,
               ParlayWon.cachedObject.currencies,
+              ParlayWon.cachedObject.site,
+              ParlayWon.cachedObject.liveType,
               ParlayWon.cachedObject.sortById,
               ParlayWon.cachedObject.isSortAsc,
               ParlayWon.cachedObject.pageIndex,
               ParlayWon.cachedObject.pageSize);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, sortById, isSortAsc, pageIndex, pageSize) {
+    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, sortById, isSortAsc, pageIndex, pageSize) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -356,6 +384,8 @@
             houseAmountFrom: houseLoseAmountFrom,
             houseAmountTo: houseLoseAmountTo,
             currencies: currencies,
+            site: site,
+            liveType: liveType,
             sortById: sortById,
             isSortAsc: isSortAsc,
             pageIndex: pageIndex,
@@ -400,7 +430,7 @@
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -411,6 +441,8 @@
             houseAmountFrom: houseLoseAmountFrom,
             houseAmountTo: houseLoseAmountTo,
             currencies: currencies,
+            site: site,
+            liveType: liveType,
             sortById: null,
             isSortAsc: null,
             pageIndex: 0,
@@ -524,6 +556,8 @@
         ParlayWon.cachedObject.houseAmountFrom =  0;
         ParlayWon.cachedObject.houseAmountTo = 0;
         ParlayWon.cachedObject.currencies = null;
+        ParlayWon.cachedObject.site = '2';
+        ParlayWon.cachedObject.liveType = '3';
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;

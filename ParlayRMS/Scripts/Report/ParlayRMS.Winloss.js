@@ -50,6 +50,14 @@ ParlayRMS.Winloss = {
             }
         });
 
+        $("#ddlSite").multiselect({
+            minWidth: 80,
+            height: 80,
+            header: false,
+            multiple: false,
+            selectedList: 1
+        });
+
         $("#sportsType").multiselect({
             minWidth: 220,
             height: 300,
@@ -142,6 +150,8 @@ ParlayRMS.Winloss = {
                 return;
             }
 
+            var site = parseInt($("#ddlSite").val());
+
             var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
@@ -152,16 +162,17 @@ ParlayRMS.Winloss = {
 
             var reportType = $('input[name=ReportTypes]:checked').val();
 
-            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, reportType);
+            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, site, reportType);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, site, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             ParlayTypes: parlayTypes,
             SportsType: sportsType,
             Combos: combos,
+            Site: site,
             ReportType: reportType
         }
 
@@ -185,13 +196,14 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, reportType) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, site, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             ParlayTypes: parlayTypes,
             SportsType: sportsType,
             Combos: combos,
+            Site: site,
             ReportType: reportType
         }
 

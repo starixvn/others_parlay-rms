@@ -12,7 +12,9 @@
     <div class="information">
         @ViewBag.Title
     </div>
-    <div class="excel" onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies')" title="Export Excel">
+    <div class="excel"
+         onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies', '@filterOption.Site', '@filterOption.LiveType')"
+         title="Export Excel">
     </div>
 </div>
 <div style="width: 1720px">

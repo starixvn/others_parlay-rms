@@ -25,5 +25,7 @@
         public decimal Avg_Odds { get; set; }
 
         public int Level { get; set; }
+
+        public string CustomerClass { get; set; }
     }
 }

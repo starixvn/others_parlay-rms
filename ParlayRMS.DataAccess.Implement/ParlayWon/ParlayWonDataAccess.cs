@@ -25,7 +25,9 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                                                        int pageIndex,
                                                        int pageSize,
                                                        ref Hashtable outputParam,
-                                                       string currency)
+                                                       string currency,
+                                                       byte site,
+                                                       byte liveType)
         {
             var result = new List<RMS_Rpt_Parlay_ParlayWon>();
 
@@ -46,6 +48,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                 db.AddInParameter("PageSize", DbType.Int32, pageSize);
                 db.AddOutParameter("totalrows", DbType.Int32, Int32.MaxValue);
                 db.AddInParameter("Currency", DbType.String, currency);
+                db.AddInParameter("Site", DbType.Int16, site);
+                db.AddInParameter("LiveStatus", DbType.Int16, liveType);
 
                 using (var reader = db.ExecuteReader())
                 {

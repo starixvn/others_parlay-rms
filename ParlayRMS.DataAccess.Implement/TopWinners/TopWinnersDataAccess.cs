@@ -19,7 +19,9 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                          int selectTop,
                                                          string combos,
                                                          string parlayTypes,
-                                                         string currencies)
+                                                         string currencies,
+                                                         byte site,
+                                                         Int64? customerClass)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 
@@ -34,6 +36,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("currency", DbType.String, currencies);
+                db.AddInParameter("Site", DbType.Byte, site);
+                db.AddInParameter("CustomerClass", DbType.Int32, customerClass);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -52,7 +56,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
                             BetCount = reader.ToInt32("betcount"),
                             Avg_Odds = reader.ToDecimal("avg_odds"),
-                            Level = reader.ToInt32("level")
+                            Level = reader.ToInt32("level"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
                         });
                     }
                 }

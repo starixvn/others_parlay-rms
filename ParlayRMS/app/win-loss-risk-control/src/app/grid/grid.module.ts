@@ -16,6 +16,7 @@ import { MasterGridComponent } from './master-grid/master-grid.component';
 import { AgentGridComponent } from './agent-grid/agent-grid.component';
 import { MasterGridService } from './master-grid/master-grid.service';
 import { AgentGridService } from './agent-grid/agent-grid.service';
+import { SortDirective } from '../directive/sort.directive';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { AgentGridService } from './agent-grid/agent-grid.service';
         SuperGridComponent,
         MasterGridComponent,
         AgentGridComponent,
-        MemberGridComponent
+        MemberGridComponent,
+        SortDirective
     ],
     exports: [
         GridComponent

@@ -19,7 +19,7 @@ namespace ParlayRMS.Utility {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewLang {
@@ -471,6 +471,15 @@ namespace ParlayRMS.Utility {
         public static string CurrentWeek {
             get {
                 return ResourceManager.GetString("CurrentWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Class.
+        /// </summary>
+        public static string CustomerClass {
+            get {
+                return ResourceManager.GetString("CustomerClass", resourceCulture);
             }
         }
         
@@ -1128,6 +1137,15 @@ namespace ParlayRMS.Utility {
         public static string LG {
             get {
                 return ResourceManager.GetString("LG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string LiveType {
+            get {
+                return ResourceManager.GetString("LiveType", resourceCulture);
             }
         }
         

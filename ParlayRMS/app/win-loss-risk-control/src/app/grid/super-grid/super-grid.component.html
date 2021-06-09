@@ -13,18 +13,39 @@
   </colgroup>
 </ng-template>
 <ng-template #thead>
-  <thead>
+  <thead class="sort">
       <tr>
-          <th>Super</th>
-          <th>No. Member</th>
-          <th>Bet Count</th>
-          <th>Member Win Loss</th>
-          <th>SMA Win Loss</th>
-          <th>Extra PT</th>
-          <th>Commission</th>
-          <th>Real Income</th>
-          <th>Real Turnover</th>
-          <th>Margin</th>
+          <th scope="col">Super</th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="noMember">
+            No. Member
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="betCount">
+            Bet Count
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="memberWinLoss">
+            Member Win Loss
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="smaWinLoss">
+            SMA Win Loss
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col">Extra PT</th>
+          <th scope="col">Commission</th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="realIncome">
+            Real Income
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="realTurnover">
+            Real Turnover
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
+          <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="margin">
+            Margin
+            <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+          </th>
       </tr>
   </thead>
 </ng-template>

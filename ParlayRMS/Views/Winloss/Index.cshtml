@@ -38,6 +38,12 @@
                     @Html.DropDownList("combo", Config.Combos)
                 </div>
                 <div class="group">
+                    @Html.Label("", ViewLang.Site)
+                    @Html.DropDownList("ddlSite", Config.Sites)
+                </div>
+            </div>
+            <div class="row">
+                <div class="group">
                     @Html.Label(ViewLang.SportsType)
                     @RazorHelper.SportTypesDropDown()
                 </div>

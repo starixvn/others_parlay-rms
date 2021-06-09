@@ -31,7 +31,9 @@ namespace ParlayRMS.Services.Implement.ParlayWon
                 options.PageIndex,
                 options.PageSize,
                 ref outputParams,
-                options.Currencies);
+                options.Currencies,
+                options.Site,
+                options.LiveType);
         }
     }
 }

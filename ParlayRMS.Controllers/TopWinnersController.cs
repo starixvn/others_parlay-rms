@@ -1,7 +1,7 @@
-﻿using ParlayRMS.ExcelService.Writers;
+﻿using ParlayRMS.DTO.TopWinners;
+using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.BetList;
 using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.TopWinners;
 using ParlayRMS.Services.Implement.Users;
@@ -22,7 +22,6 @@ namespace ParlayRMS.Controllers
     public class TopWinnersController : BaseController
     {
         private readonly TopWinnersService _topwinnersService = new TopWinnersService();
-        private readonly BetListService _betlistService = new BetListService();
         private readonly UsersService _userService = new UsersService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
         private readonly CommonService commonService = new CommonService();
@@ -64,7 +63,12 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var records = _topwinnersService.GetTopWinners(options);
+                bool isValidCustomerClass = true;
+                if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
+                {
+                    isValidCustomerClass = false;
+                }    
+                var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
@@ -135,6 +139,7 @@ namespace ParlayRMS.Controllers
             {
                 "#",
                 ViewLang.Username,
+                ViewLang.CustomerClass,
                 ViewLang.Currency,
                 ViewLang.OriginalCurrency,
                 string.Empty,
@@ -148,6 +153,7 @@ namespace ParlayRMS.Controllers
 
             var header2 = new object[]
             {
+                string.Empty,
                 string.Empty,
                 string.Empty,
                 string.Empty,
@@ -167,6 +173,7 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 string.Empty,
                 string.Empty,
+                string.Empty,
                 totalStake,
                 totalWinlost,
                 totalCompanyWinlost,
@@ -181,6 +188,7 @@ namespace ParlayRMS.Controllers
             {
                 No = ++id,
                 Username = x.Username,
+                CustomerClass = x.CustomerClass,
                 Currency = x.Currency,
                 Stake = x.Stake,
                 Winlost = x.Winlost,

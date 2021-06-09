@@ -948,4 +948,10 @@
   <data name="TotalStakeDownline" xml:space="preserve">
     <value>Total Stake Downline</value>
   </data>
+  <data name="CustomerClass" xml:space="preserve">
+    <value>Customer Class</value>
+  </data>
+  <data name="LiveType" xml:space="preserve">
+    <value>Selection</value>
+  </data>
 </root>
