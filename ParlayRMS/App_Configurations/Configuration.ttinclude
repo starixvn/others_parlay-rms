@@ -212,17 +212,17 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
-					 return "https://newparlayrms.starixuat.com";
+					 return "https://prmscore.starixuat.com";
                     case SiteEnvironment.PRO:
-                        return "https://newparlayrms.oneops.net";
+                        return "https://prmscore.oneops.net";
                     case SiteEnvironment.PROAWS:
-                        return "https://parlayrms-new.sportsfun.app/v1";
+                        return "https://prmscore.sportsfun.app";
                     case SiteEnvironment.MNL:
                         return "";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
-                        return "https://prms-netcore-v1.nexdev.net";
+                        return "https://prms-core.nexdev.net";
                     default:
                         return "";
                 }
@@ -267,9 +267,11 @@
 
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                    case SiteEnvironment.PROAWS:
 					case SiteEnvironment.MNL:
 						return "http://3e032e61e03e42c69dc27792ec2df25e@10.99.99.51:801/99";
+
+                    case SiteEnvironment.PROAWS:
+                        return "https://3e032e61e03e42c69dc27792ec2df25e@vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:9003/99";
 
 					default:
                         return string.Empty;
