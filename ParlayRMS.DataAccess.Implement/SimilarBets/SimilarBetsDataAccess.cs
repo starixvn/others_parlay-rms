@@ -35,6 +35,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 Username = DbConverter.ToString(info["username"]),
                                 Odds = DbConverter.ToDecimal(info["odds"]),
                                 Stake = DbConverter.ToDecimal(info["stake"]),
+                                PotentialWinningAmount = 100,
                                 Max_payout = DbConverter.ToDecimal(info["net_win"]),
                                 TotalBet = DbConverter.ToInt32(info["totalbet"]),
                                 TotalSelection = Convert.ToInt32(DbConverter.ToDecimal(info["totalselection"])),
@@ -52,7 +53,9 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Username = DbConverter.ToString(row["username"]),
                                     CustId = DbConverter.ToInt32(row["custid"]),
                                     Level = DbConverter.ToInt32(row["level"]),
+                                    Stake = 100,
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
+                                    PotentialWinningAmount = 100,
                                     Similar_Selection = DbConverter.ToInt32(row["similar_selection"])
                                 })
                             };

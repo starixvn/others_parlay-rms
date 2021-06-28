@@ -12,7 +12,11 @@
 
         public int Level { get; set; }
 
+        public decimal Stake { get; set; }
+
         public decimal Max_Payout { get; set; }
+
+        public decimal PotentialWinningAmount { get; set; }
 
         public int Similar_Selection { get; set; }
     }

@@ -18,6 +18,8 @@ namespace ParlayRMS.DTO.ParlayMonitor
 
         public decimal Stake { get; set; }
 
+        public decimal PotentialWinningAmount { get; set; }
+
         public decimal NetWinAfterPT { get; set; }
 
         public int TotalSelection { get; set; }

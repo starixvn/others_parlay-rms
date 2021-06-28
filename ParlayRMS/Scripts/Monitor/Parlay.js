@@ -457,9 +457,9 @@ $(document).ready(function () {
         },
         ontimeout: function () {
             closeBox.render($('#noflash'),
-            {
-                title: 'Alert Sound is disabled'
-            });
+                {
+                    title: 'Alert Sound is disabled'
+                });
         }
     });
 });
@@ -548,8 +548,7 @@ function CreateRow(order, item) {
         betSuffix = ' (P)';
     }
 
-    if (item.IsGOF == true)
-    {
+    if (item.IsGOF == true) {
         betSuffix = ' (G)';
     }
 
@@ -568,6 +567,7 @@ function CreateRow(order, item) {
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
+    r[++j] = '<td class="numeric">' + formatOdds(item.PotentialWinningAmount) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + betSuffix + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
@@ -645,7 +645,6 @@ function ViewSystemParlayDetails(username, transId, refNo) {
         }
     });
 }
-
 
 function ViewSingleMatchParlayDetails(transId, custId, username) {
     var data = {
