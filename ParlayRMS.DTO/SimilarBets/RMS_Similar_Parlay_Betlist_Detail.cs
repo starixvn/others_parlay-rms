@@ -18,6 +18,8 @@
 
         public decimal PotentialWinningAmount { get; set; }
 
+        public decimal HouseLoseAmount { get; set; }
+
         public int Similar_Selection { get; set; }
     }
 }

@@ -43,6 +43,8 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public decimal PotentialWinningAmount { get; set; }
 
+        public decimal HouseLoseAmount { get; set; }
+
         public IEnumerable<RMS_Similar_Parlay_Betlist_Detail> Details { get; set; }
     }
 }

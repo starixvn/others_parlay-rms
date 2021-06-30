@@ -51,7 +51,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             Username = reader.ToString("username"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
-                            PotentialWinningAmount = 100,
+                            PotentialWinningAmount = reader.ToDecimal("potentialWinningAmt"),
                             NetWinAfterPT = reader.ToDecimal("maxpayout"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
                             TotalBet = reader.ToInt32("totalbet"),

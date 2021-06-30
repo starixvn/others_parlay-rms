@@ -527,7 +527,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == 0) {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(12);
+                var noinfo = CreateNoInfoRow(13);
                 tbody.append(noinfo);
             }
         }
@@ -567,7 +567,7 @@ function CreateRow(order, item) {
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
-    r[++j] = '<td class="numeric">' + formatOdds(item.PotentialWinningAmount) + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.PotentialWinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + betSuffix + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';

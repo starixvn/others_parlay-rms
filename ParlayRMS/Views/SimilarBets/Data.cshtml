@@ -24,7 +24,7 @@
                     @(Model.StatusID == 0 ? ViewLang.AverageStakeAfterPT : ViewLang.StakeAfterPT)
                 </th>
                 <th style="width: 120px">
-                    @ViewLang.PotentialWinningAmount
+                    @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)
                 </th>
                 <th style="width: 120px">
                     @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
@@ -64,7 +64,7 @@
                     @Formatter.FormatNumber2(Model.Stake)
                 </td>
                 <td class="numeric">
-                    @Formatter.FormatNumber2(Model.PotentialWinningAmount)
+                    @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(Model.PotentialWinningAmount) : @Formatter.FormatNumber3(Model.HouseLoseAmount))
                 </td>
                 <td class="numeric">
                     @Formatter.FormatWithoutRounding(Model.Max_payout)
@@ -161,7 +161,7 @@
                         @ViewLang.AverageStakeAfterPT
                     </th>
                     <th class="sortable">
-                        @ViewLang.PotentialWinningAmount
+                        @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)
                     </th>
                     <th class="sortable">
                         @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
@@ -206,7 +206,7 @@
                             @Formatter.FormatWithoutRounding(item.Stake)
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatWithoutRounding(item.PotentialWinningAmount)
+                            @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(item.PotentialWinningAmount) : @Formatter.FormatNumber3(item.HouseLoseAmount))
                         </td>
                         <td class="numeric">
                             @Formatter.FormatWithoutRounding(item.Max_Payout)

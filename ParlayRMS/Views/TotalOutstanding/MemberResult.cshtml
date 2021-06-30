@@ -3,19 +3,20 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<div style="width: 1075px">
+<div style="width: 1195px">
     <table class="main" id="header">
         <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='130px' />
-            <col width='75px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='90px' />
-            <col width='90px' />
-            <col width='130px' />
-            <col width='100px' />
+            <col width='30' />
+            <col width='170' />
+            <col width='130' />
+            <col width='75' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='90' />
+            <col width='90' />
+            <col width='130' />
+            <col width='100' />
         </colgroup>
         <thead>
             <tr>
@@ -33,6 +34,9 @@
                 </th>
                 <th>
                     @ViewLang.AverageStakeAfterPT
+                </th>
+                <th>
+                    @ViewLang.PotentialWinningAmount
                 </th>
                 <th>
                     @ViewLang.NetWinAfterPT
@@ -53,19 +57,20 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1075px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1195px">
     <table class="main" id="result">
         <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='130px' />
-            <col width='75px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='90px' />
-            <col width='90px' />
-            <col width='130px' />
-            <col width='100px' />
+            <col width='30' />
+            <col width='170' />
+            <col width='130' />
+            <col width='75' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='90' />
+            <col width='90' />
+            <col width='130' />
+            <col width='100' />
         </colgroup>
         <tbody>
             @foreach (var item in Model)
@@ -87,6 +92,8 @@
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(item.StakePt)
+                    <td class="numeric">
+                        @Formatter.FormatWithoutRounding(item.PotentialWinningAmount)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatWithoutRounding(item.MaxPayoutPt)
@@ -125,7 +132,6 @@
                         {
                             @Html.Raw(string.Format("{0}/{1}", item.NumberWon, item.TotalSelection))
                         }
-                        
                     </td>
                     <td class="center">
                         @item.SportTypeName
@@ -140,29 +146,33 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1056px" class="mainfooter">
+<div style="width: 1176px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='130px' />
-            <col width='75px' />
-            <col width='120px' />
-            <col width='120px' />
-            <col width='90px' />
-            <col width='90px' />
-            <col width='130px' />
-            <col width='100px' />
+            <col width='30' />
+            <col width='170' />
+            <col width='130' />
+            <col width='75' />
+            <col width='120' />
+            <col width='120' />
+            <col width='120' />
+            <col width='90' />
+            <col width='90' />
+            <col width='130' />
+            <col width='100' />
         </colgroup>
         <tfoot>
             @if (totalData != null)
-            { 
+            {
                 <tr>
                     <td colspan="4" class="center">
                         @ViewLang.Total
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(totalData.StakePt)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatWithoutRounding(totalData.PotentialWinningAmount)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
@@ -172,7 +182,7 @@
                 </tr>
             }
             else
-            { 
+            {
                 <tr>
                     <td colspan="11" style="text-align: center">
                         @ViewLang.NoInformation
