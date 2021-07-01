@@ -241,6 +241,8 @@ namespace ParlayRMS
                 "~/Scripts/Libs/simplepagination/jquery.simplePagination.js",
                 "~/Scripts/Report/LeagueBetTypeAnalysis.js"
                  ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/LeagueWinning/js").Include("~/Scripts/Monitor/LeagueWinning.js"));
         }
     }
 }
