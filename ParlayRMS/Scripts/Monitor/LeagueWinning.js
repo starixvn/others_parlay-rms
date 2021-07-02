@@ -1,12 +1,7 @@
 ﻿var refreshTime = 60000;
 var isPressSubmit = false;
-var agentResultSelector = '#divAgentResult';
-var memberResultSelector = '#divMemberResult';
-var breadcrumbSelector = '#divBreadcrumb';
-var cachedAgentId = null;
-var cachedAgent = null;
 var cachedFilter = {};
-var fixedMaxPayoutGroup = '12'
+var fixedMaxPayoutGroup = '99'
 function Alert() {
     soundManager.play('aSound');
 }
@@ -14,7 +9,7 @@ function Alert() {
 function UserSettings() {
     this.combos = '2,3,4,5,6,7,8,9,10';
     this.parlayTypes = '1,2';
-    this.sportTypes = '1,-4,-3,2,-5,3,4,5,6,7,8,9,11,43,44,-2,-1';
+    this.sportTypes = '1,-3,2';
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 200;
     this.winningAmount = 30000;
@@ -71,14 +66,6 @@ var settingsController = function () {
                 return null;
             }
 
-            var sportTypes = $("#sportsType").multiselect("getChecked").map(function () {
-                return this.value;
-            }).get().join(',');
-            if (sportTypes == '') {
-                Validators.show($('#sportsType').multiselect("getButton").get(0), 'Please select your options');
-                return null;
-            }
-
             var levels = $("#ddlLevel").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
@@ -100,6 +87,15 @@ var settingsController = function () {
             var selectTop = parseInt($("#ddlSelectTop").val());
 
             var group = parseInt($("#ddlGroup").val());
+
+            var sportTypesElement = group == fixedMaxPayoutGroup ? $("#someSportDiv #sportsType") : $("#fullSportDiv #sportsType")
+            var sportTypes = sportTypesElement.multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (sportTypes == '') {
+                Validators.show(sportTypesElement.multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
 
             var reportBy = $('input[name=radReportBy]:checked').val();
 
@@ -143,25 +139,17 @@ var timerController = function () {
         };
 
         $.ajax({
-            url: resolveClientUrl('LeagueWinning/GetData'),
+            url: resolveClientUrl('LeagueWinningMonitor/Data'),
             type: 'POST',
             data: data,
             dataType: 'html',
             cache: false,
             beforeSend: function (xhr) {
-                $(memberResultSelector).hide();
-                $(agentResultSelector).hide();
-                $(breadcrumbSelector).hide();
                 loading.show();
             },
             success: function (result) {
-                var json = $.parseJSON(result);
-                if (json.Code != 0) {
-                    alertBox.showErrorMessage(json.message);
-                    return;
-                }
-
-                FillData(settings.filterBy, json);
+                $("#divResult").html(result);
+                tableSorter.bind2($('#header'), $('#result'), {});
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -209,6 +197,9 @@ var timerController = function () {
 }();
 
 $(document).ready(function () {
+    $("#fullSportDiv").hide();
+    $("#someSportDiv").show();
+
     $("#txtWinningAmount").autoNumeric({
         aSep: ',',
         aDec: '.',
@@ -262,9 +253,31 @@ $(document).ready(function () {
         }
     });
 
-    $("#sportsType").multiselect({
+    $("#fullSportDiv #sportsType").multiselect({
         minWidth: 190,
         height: 300,
+        create: function () {
+            $("#sportsType").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+    $("#someSportDiv #sportsType").multiselect({
+        minWidth: 190,
+        height: 88,
         create: function () {
             $("#sportsType").multiselect("checkAll");
         },
@@ -342,7 +355,15 @@ $(document).ready(function () {
     $("#chkPause").prop('disabled', true);
 
     $("#ddlGroup").change(function () {
-        $("#txtWinningAmount").prop('disabled', $(this).val() != fixedMaxPayoutGroup)
+        $("#fullSportDiv").hide();
+        $("#someSportDiv").hide();
+        var isFixedMaxPayoutGroup = $(this).val() == fixedMaxPayoutGroup;
+        $("#txtWinningAmount").prop('disabled', !isFixedMaxPayoutGroup);
+        if (isFixedMaxPayoutGroup) {
+            $("#someSportDiv").show();
+        } else {
+            $("#fullSportDiv").show();
+        }
     });
 
     $("#refreshNow").click(function () {
@@ -371,9 +392,6 @@ $(document).ready(function () {
         }
     });
 
-    InitTableSorter($(memberResultSelector + ' #result'), $(memberResultSelector + ' #header'));
-    InitTableSorter($(agentResultSelector + ' #result'), $(agentResultSelector + ' #header'));
-
     soundManager.setup({
         url: resolveClientUrl('Scripts/Libs/soundManager/swf/'),
         flashVersion: 9, // optional: shiny features (default = 8)// optional: ignore Flash where possible, use 100% HTML5 mode
@@ -394,297 +412,10 @@ $(document).ready(function () {
     });
 });
 
-function FillData(filterBy, data) {
-    var table = "";
-    if (filterBy == 0) {
-        table = memberResultSelector + " #result";
-        $(memberResultSelector).show();
-        if (cachedAgent) {
-            $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null, 1);">Agent</span> >> ' + cachedAgent + ')</b>');
-            $(breadcrumbSelector).show();
-        }
-    } else {
-        table = agentResultSelector + " #result";
-        $(agentResultSelector).show();
-        $(breadcrumbSelector).show();
-        $(breadcrumbSelector).html('<b>(Agent)</b>');
-    }
-
-    var records = data.Records;
-    var isSound = false;
-    var length = records.length;
-    var oldUserName = $(table).children('tbody').children('tr');
-    var tbody = $(table).children('tbody');
-
-    $(table).children('tbody').html('');
-
-    if (length > 0) {
-        var r = new Array();
-        var j = -1;
-        for (var i = 0; i < length; i++) {
-            var item = records[i];
-            var isHighLight = true;
-
-            oldUserName.each(function () {
-                if ($(this).children('td').eq(2).text() == item.UserName) {
-                    isHighLight = false;
-                    $(this).remove();
-                }
-            });
-
-            if (isHighLight) {
-                isSound = true;
-            }
-            r[++j] = filterBy == 0 ? CreateRowForMember(i + 1, item, (isHighLight && !isPressSubmit)) : CreateRowForAgent(i + 1, item);
-        }
-
-        if (isSound) {
-            Alert();
-        }
-        tbody.html(r.join(''));
-
-        //Order by current ordered column
-        var orderCol = tableSorter.currentOrderCol;
-        if (orderCol) {
-            var type = $(orderCol).attr("data-col-type");
-            tableSorter.sortColumn(table, $(orderCol).index(), orderCol.sortDirection, type);
-        }
-    } else {
-        if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-            var noinfo = CreateNoInfoRow(10);
-            tbody.append(noinfo);
-        }
-    }
-
-    isPressSubmit = false;
-    cachedAgent = null;
-    cachedAgentId = null;
-    $('#divResult').show();
-}
-
-function CreateRowForMember(order, item, isHighLight) {
-    var r = new Array();
-    var j = -1;
-    if (isHighLight) {
-        r[++j] = '<tr class="highlight" id="tr_' + item.CustId + '">';
-    }
-    else {
-        r[++j] = '<tr id="tr_' + item.CustId + '">';
-    }
-
-    r[++j] = '<td class="center">' + order + '</td>';
-    r[++j] = '<td>' + item.TransDateString + '</td>';
-    r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
-    r[++j] = '<td>' + item.Currency + '</td>';
-    r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
-    r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.CompanyLoseAmount)).format('0,0') + '</td>';
-    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\'' + ');">' + item.TotalTicket + '</td>';
-    r[++j] = '</tr>';
-    return r.join('');
-}
-
-function CreateRowForAgent(order, item) {
-    var r = new Array();
-    var j = -1;
-    r[++j] = '<tr id="tr_' + item.Recommend + '">';
-    r[++j] = '<td class="center">' + order + '</td>';
-    r[++j] = '<td>' + item.AgentName + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.Stake)).format('0,0') + '</td>';
-    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
-    r[++j] = '<td class="right"><a href="#" onclick="ViewData(' + item.Recommend + ',\'' + item.AgentName + '\'' + ', 0);" >' + item.TotalMember + '</a></td>';
-    r[++j] = '</tr>';
-    return r.join('');
-}
-
-function ViewTotalOutstanding(username) {
-    var combos = $("#combo").multiselect("getChecked").map(function () {
-        return this.value;
-    }).get().join(',');
-    var parlaysTypes = $("#parlaysType").multiselect("getChecked").map(function () {
-        return this.value;
-    }).get().join(',');
-    var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
-        return this.value;
-    }).get().join(',');
-    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlaysType=' + parlaysTypes;
-    window.open(url, '_blank');
-}
-
-function OpenViewIpInfo(url) {
-    if (hasIpPermission) {
-        window.open(url, "_blank");
-    }
-    else {
-        alertBox.show("Report Access Denied", "You need Admin permission to view this report");
-    }
-}
-
-function ViewTotalBetDetails(custId) {
-    var table = $('#result');
-    var found = table.find("tr[custid='" + custId + "']");
-    if (found.length != 0) {
-        table.find("tr[custid='" + custId + "']").remove();
-    }
-    else {
-        table.find('tr[custid]').remove();
-
-        var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="9" class="center"></td></tr>');
-        var newRow = row.next();
-        var td = newRow.find('td');
-        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
-        var waitingImg = $('<img src="' + imgURL + '" />');
-        td.html(waitingImg);
-
-        var userSettings = settingsController.get();
-        var username = row.children('td').eq(2).text();
-        var data = {
-            Combos: userSettings.combos,
-            parlayTypes: userSettings.parlaysTypes,
-            SportsTypes: userSettings.sportsTypes,
-            CustId: custId,
-            UserName: username,
-            IsCornerParlay: userSettings.isCornerParlay
-        }
-
-        $.ajax({
-            url: resolveClientUrl('PotentialWinning/ViewDetailList'),
-            type: 'POST',
-            data: data,
-            dataType: 'html',
-            cache: false,
-            beforeSend: function (xhr) {
-            },
-            success: function (result) {
-                result = result.replace(/\s+/g, ' ');
-                td.html(result);
-            },
-            error: function (xhr, status, err) {
-                alertBox.showError(xhr);
-            },
-            complete: function () {
-                loading.hide();
-            }
-        });
-    }
-
-    return false;
-}
-
-function ViewBetDetails(username, transId, refNo, betType, custId) {
-    if (betType === 38) {
-        ViewSingleMatchParlayDetails(transId, custId, username);
-    } else if (betType === 376) {
-        ViewPenaltyShootoutParlayDetails(transId, username);
-    }
-    else {
-        ViewSystemParlayDetails(username, transId, refNo);
-    }
-
-    function ViewSystemParlayDetails(username, transId, refNo) {
-        var data = {
-            TransId: transId,
-            RefNo: refNo,
-            Username: username
-        }
-
-        $.ajax({
-            url: resolveClientUrl('BetList/BetDetails'),
-            type: 'POST',
-            data: data,
-            dataType: 'html',
-            cache: false,
-            beforeSend: function () {
-                loading.show();
-            },
-            success: function (result) {
-                modalPopup(result);
-                $(".betdetails").css('overflow-y', 'auto');
-                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
-            },
-            error: function (xhr, status, err) {
-                alertBox.showError(xhr.responseText);
-            },
-            complete: function () {
-                loading.hide();
-            }
-        });
-    };
-
-    function ViewSingleMatchParlayDetails(transId, custId, username) {
-        var data = {
-            TransId: transId,
-            CustId: custId,
-            Username: username
-        }
-
-        $.ajax({
-            url: resolveClientUrl('BetList/SingleMatchParlayDetailPopup'),
-            type: 'POST',
-            data: data,
-            dataType: 'html',
-            cache: false,
-            beforeSend: function () {
-                loading.show();
-            },
-            success: function (result) {
-                modalPopup(result);
-                $(".betdetails").css('overflow-y', 'auto');
-                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
-            },
-            error: function (xhr, status, err) {
-                alertBox.showError(xhr.responseText);
-            },
-            complete: function () {
-                loading.hide();
-            }
-        });
-    };
-
-    function ViewPenaltyShootoutParlayDetails(transId, username) {
-        var data = {
-            TransId: transId,
-            Username: username
-        }
-
-        $.ajax({
-            url: resolveClientUrl('BetList/PenaltyShootoutParlayDetailPopup'),
-            type: 'POST',
-            data: data,
-            dataType: 'html',
-            cache: false,
-            beforeSend: function () {
-                loading.show();
-            },
-            success: function (result) {
-                modalPopup(result);
-                $(".betdetails").css('overflow-y', 'auto');
-                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
-            },
-            error: function (xhr, status, err) {
-                alertBox.showError(xhr.responseText);
-            },
-            complete: function () {
-                loading.hide();
-            }
-        });
-    };
-}
-
-function ViewData(agentId, agent, filterBy) {
-    cachedAgentId = agentId;
-    cachedAgent = agent;
-    cachedFilter.filterBy = filterBy;
-    settingsController.set(cachedFilter);
-    GetData();
-}
-
 function GetData() {
     $('#result').children('tbody').html('');
     $("#refreshNow").button('enable');
-    $("#chkPause").prop('disabled', false);
+    $("#pause").prop('disabled', false);
     $("#header").find(".sortable").each(function () {
         $(this).removeClass("headerSortDown").removeClass("headerSortUp");
         this.sortDirection = "";
@@ -692,19 +423,4 @@ function GetData() {
     tableSorter.currentOrderCol = null;
     isPressSubmit = true;
     timerController.start();
-}
-
-function InitTableSorter(table, header) {
-    tableSorter.bind2(header, table, {
-        type: 'text',
-        onStart: function () {
-            table.find('tr[custid]').remove();
-        },
-        onFinish: function () {
-            var trs = table.children('tbody').children("tr");
-            trs.each(function (index, tr) {
-                $(tr).children('td:first').text(index + 1);
-            });
-        }
-    });
 }

@@ -28,8 +28,15 @@
                             <td>
                                 @Html.Label("", ViewLang.SportsType, new { @class = "lable" })
                             </td>
-                            <td>
+                            <td id="fullSportDiv">
                                 @RazorHelper.SportTypesDropDown()
+                            </td>
+                            <td id="someSportDiv">
+                                <select id="sportsType" multiple="multiple" name="sportsType">
+                                    <option value="1" selected="selected">Soccer only</option>
+                                    <option value="-3" selected="selected">Combined sports</option>
+                                    <option value="2" selected="selected">Basketball</option>
+                                </select>
                             </td>
                             <td style="width: 30px">
                                 @Html.Label("", ViewLang.Group, new { @class = "lable" })
@@ -47,11 +54,11 @@
                             </td>
                             <td style="width: 85px">
                                 <input type="radio" id="radLeague" checked="checked" name="radReportBy"
-                                       value="0">
+                                       value="1">
                                 @Html.Label("radLeague", "League", new { @class = "lable" })
                             </td>
                             <td style="width: 100px">
-                                <input type="radio" id="radUsername" name="radReportBy" value="1">
+                                <input type="radio" id="radUsername" name="radReportBy" value="2">
                                 @Html.Label("radUsername", "Username", new { @class = "lable" })
                             </td>
                         </tr>

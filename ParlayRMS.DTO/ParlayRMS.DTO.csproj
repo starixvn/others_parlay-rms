@@ -63,6 +63,7 @@
     <Compile Include="Groups\RMS_GroupPolicySel.cs" />
     <Compile Include="LeagueBetTypeAnalysis\RMS_Rpt_LeagueBettype_Analysis.cs" />
     <Compile Include="Leagues\RMS_LeagueSel.cs" />
+    <Compile Include="LeagueWinningMonitor\RmsRptLeagueWinningMonitor.cs" />
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss.cs" />
     <Compile Include="Menus\RMS_MenuSel.cs" />
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />

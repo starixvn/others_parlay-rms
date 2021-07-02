@@ -1,7 +1,9 @@
 ﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.LeagueWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
+using ParlayRMS.ViewModel.LeagueWinningMonitor;
 using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -11,6 +13,8 @@ namespace ParlayRMS.Controllers
     [Authorization(Function = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = UserPolicy.Read)]
     public class LeagueWinningMonitorController : BaseController
     {
+        private readonly LeagueWinningMonitorService leagueWinningMonitor = new LeagueWinningMonitorService();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -45,7 +49,7 @@ namespace ParlayRMS.Controllers
             // Group
             var groups = new List<SelectListItem>();
             groups.AddRange(Config.LeagueGroups);
-            groups.Add(new SelectListItem { Text = "Fixed Max Payout", Value = "12", Selected = true });
+            groups.Add(new SelectListItem { Text = "Fixed Max Payout", Value = "99", Selected = true });
             ViewBag.Groups = groups;
 
             // Level
@@ -82,6 +86,14 @@ namespace ParlayRMS.Controllers
 
             ViewBag.RefreshTimes = refreshTimes;
             return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult Data(LeagueWinningMonitorModel model)
+        {
+            var data = leagueWinningMonitor.GetLeagueWinningMonitorList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.Group, model.ReportBy);
+
+            return PartialView(data);
         }
     }
 }

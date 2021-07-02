@@ -618,6 +618,7 @@
     <Content Include="ExcelTemplates\ParlayWon.xls" />
     <Content Include="ExcelTemplates\BetTypeDataAnalysis.xls" />
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
+    <Content Include="Scripts\Monitor\LeagueWinning.js" />
     <Content Include="wwwroot\win-loss-risk-control\3rdpartylicenses.txt" />
     <Content Include="wwwroot\win-loss-risk-control\assets\header.png" />
     <Content Include="wwwroot\win-loss-risk-control\assets\logo.png" />
@@ -686,6 +687,9 @@
     <Content Include="wwwroot\win-loss-risk-control\fontawesome-webfont.8b43027f47b20503057d.eot" />
     <Content Include="wwwroot\win-loss-risk-control\fontawesome-webfont.f691f37e57f04c152e23.woff" />
     <Content Include="wwwroot\win-loss-risk-control\index.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Filter.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Index.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />
