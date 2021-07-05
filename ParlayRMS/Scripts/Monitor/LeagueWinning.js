@@ -13,7 +13,7 @@ function UserSettings() {
     this.levels = '0,1,2,3,4,5,6,7,8,9,10';
     this.selectTop = 200;
     this.winningAmount = 30000;
-    this.reportBy = 0;
+    this.reportBy = '1';
     this.group = 12;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
@@ -415,7 +415,7 @@ $(document).ready(function () {
 function GetData() {
     $('#result').children('tbody').html('');
     $("#refreshNow").button('enable');
-    $("#pause").prop('disabled', false);
+    $("#chkPause").prop('disabled', false);
     $("#header").find(".sortable").each(function () {
         $(this).removeClass("headerSortDown").removeClass("headerSortUp");
         this.sortDirection = "";
@@ -423,4 +423,160 @@ function GetData() {
     tableSorter.currentOrderCol = null;
     isPressSubmit = true;
     timerController.start();
+}
+
+function ViewTotalBetDetails(dataId) {
+    var table = $('#result');
+    var found = table.find("tr[dataId='" + dataId + "']");
+    if (found.length != 0) {
+        table.find("tr[dataId='" + dataId + "']").remove();
+    }
+    else {
+        table.find('tr[dataId]').remove();
+
+        var row = $("#tr_" + dataId);
+        row.after('<tr class="details" dataId="' + dataId + '"><td colspan="9" class="center"></td></tr>');
+        var newRow = row.next();
+        var td = newRow.find('td');
+        var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
+        var waitingImg = $('<img src="' + imgURL + '" />');
+        td.html(waitingImg);
+
+        var settings = settingsController.get();
+        var data = {
+            combos: settings.combos,
+            parlayTypes: settings.parlayTypes,
+            sportsTypes: settings.sportTypes,
+            levels: settings.levels,
+            winningAmount: $("#txtWinningAmount").prop("disabled") ? "" : settings.winningAmount,
+            selectTop: settings.selectTop,
+            group: settings.group,
+            reportBy: settings.reportBy,
+            custId: settings.reportBy == '2' ? dataId : '0',
+            leagueId: settings.reportBy == '1' ? dataId : '0',
+        };
+
+        $.ajax({
+            url: resolveClientUrl('LeagueWinningMonitor/ViewDetailList'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function (xhr) {
+                loading.show();
+            },
+            success: function (result) {
+                result = result.replace(/\s+/g, ' ');
+                td.html(result);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    }
+
+    return false;
+}
+
+function ViewBetDetails(username, transId, refNo, betType, custId) {
+    if (betType === 38) {
+        ViewSingleMatchParlayDetails(transId, custId, username);
+    } else if (betType === 376) {
+        ViewPenaltyShootoutParlayDetails(transId, username);
+    }
+    else {
+        ViewSystemParlayDetails(username, transId, refNo);
+    }
+
+    function ViewSystemParlayDetails(username, transId, refNo) {
+        var data = {
+            TransId: transId,
+            RefNo: refNo,
+            Username: username
+        }
+
+        $.ajax({
+            url: resolveClientUrl('BetList/BetDetails'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                loading.show();
+            },
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr.responseText);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    };
+
+    function ViewSingleMatchParlayDetails(transId, custId, username) {
+        var data = {
+            TransId: transId,
+            CustId: custId,
+            Username: username
+        }
+
+        $.ajax({
+            url: resolveClientUrl('BetList/SingleMatchParlayDetailPopup'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                loading.show();
+            },
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr.responseText);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    };
+
+    function ViewPenaltyShootoutParlayDetails(transId, username) {
+        var data = {
+            TransId: transId,
+            Username: username
+        }
+
+        $.ajax({
+            url: resolveClientUrl('BetList/PenaltyShootoutParlayDetailPopup'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                loading.show();
+            },
+            success: function (result) {
+                modalPopup(result);
+                $(".betdetails").css('overflow-y', 'auto');
+                $("#simplemodal-container").width($("#simplemodal-container").width() + 20);
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr.responseText);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    };
 }

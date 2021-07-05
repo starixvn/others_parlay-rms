@@ -17,5 +17,9 @@
         public byte Group { get; set; }
 
         public byte ReportBy { get; set; }
+
+        public int CustId { get; set; }
+
+        public int LeagueId { get; set; }
     }
 }

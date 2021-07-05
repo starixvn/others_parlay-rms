@@ -610,6 +610,7 @@
     <Content Include="Content\images\Login\red_bt_bg.png" />
     <Content Include="Content\images\UnderMaintenance.gif" />
     <Content Include="Content\LeagueBetTypeAnalysis.css" />
+    <Content Include="Content\LeagueWinningMonitor.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\ParlayWon.css" />
     <Content Include="Content\TopWinners.css" />
@@ -690,6 +691,7 @@
     <Content Include="Views\LeagueWinningMonitor\Filter.cshtml" />
     <Content Include="Views\LeagueWinningMonitor\Index.cshtml" />
     <Content Include="Views\LeagueWinningMonitor\Data.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\ViewDetailList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

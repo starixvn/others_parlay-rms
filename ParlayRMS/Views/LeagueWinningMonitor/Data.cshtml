@@ -3,18 +3,19 @@
 @model IEnumerable<RmsRptLeagueWinningMonitor>
 
 @{
+    var isLeague = (byte)ViewBag.ReportBy == 1;
     var index = 0;
 }
 
-<div style="width: 770px">
+<div style="width: 1330px">
     <table class="main" id="header">
         <colgroup>
-            <col width='50' />
-            <col width='120' />
-            <col width='150' />
-            <col width='150' />
-            <col width='150' />
-            <col width='150' />
+            <col width='90' />
+            <col width='200' />
+            <col width='260' />
+            <col width='260' />
+            <col width='260' />
+            <col width='260' />
         </colgroup>
         <thead>
             <tr>
@@ -22,7 +23,7 @@
                     No
                 </th>
                 <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
-                    League
+                    @(isLeague ? "League" : "Username")
                 </th>
                 <th colspan="4" class="header2rows">
                     Base Currency
@@ -45,26 +46,26 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 630px; width: 770px">
+<div class="scrollGridContent" style="max-height: 630px; width: 1330px">
     <table class="main" id="result">
         <colgroup>
-            <col width='50' />
-            <col width='120' />
-            <col width='150' />
-            <col width='150' />
-            <col width='150' />
-            <col width='150' />
+            <col width='90' />
+            <col width='200' />
+            <col width='260' />
+            <col width='260' />
+            <col width='260' />
+            <col width='260' />
         </colgroup>
         <tbody>
             @foreach (var item in Model)
             {
                 index++;
-                <tr>
+                <tr id="tr_@(isLeague ? item.LeagueId : item.CustId)">
                     <td class="center">
                         @index
                     </td>
                     <td class="center">
-                        @item.LeagueName
+                        @(isLeague ? item.LeagueName : item.Username)
                     </td>
                     <td class="numeric">
                         @Formatter.FormatWithoutRounding(item.TotalStake)
@@ -76,7 +77,9 @@
                         @Formatter.FormatWithoutRounding(item.CompanyLoseAmount)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.TotalTickets)
+                        <span id="idTotalBet" onclick="ViewTotalBetDetails('@(isLeague ? item.LeagueId : item.CustId)')">
+                            @Formatter.FormatWithoutRounding(item.TotalTickets)
+                        </span>
                     </td>
                 </tr>
             }
