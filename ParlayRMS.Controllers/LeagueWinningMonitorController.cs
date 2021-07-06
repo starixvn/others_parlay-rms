@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = UserPolicy.Read)]
+    [Authorization(Function = FunctionKeys.LeagueWinningMonitor, Policy = UserPolicy.Read)]
     public class LeagueWinningMonitorController : BaseController
     {
         private readonly LeagueWinningMonitorService leagueWinningMonitor = new LeagueWinningMonitorService();
@@ -100,7 +100,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult ViewDetailList(LeagueWinningMonitorModel model)
         {
-            ViewBag.ReportBy = model.ReportBy;
+            ViewBag.Filter = model;
             var data = leagueWinningMonitor.GetLeagueWinningMonitorListDetail(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.Group, model.ReportBy, model.LeagueId, model.CustId);
 
             return PartialView(data);

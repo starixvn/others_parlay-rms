@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using ParlayRMS.DTO.LeagueWinningMonitor;
+using ParlayRMS.Utility;
 using ParlayRMS.Utility.Data;
 using System;
 using System.Collections.Generic;
@@ -81,18 +82,19 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                     {
                         result.Add(new RmsRptLeagueWinningMonitorDetail
                         {
-                            TransDate = reader.ToDateTime("transdate"),
+                            TransDate = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
                             TransId = reader.ToInt64("transid"),
                             Username = reader.ToString("Username"),
-                            Level = reader.ToByte("level"),
+                            Level = reader["level"] == DBNull.Value ? "None" : reader.ToByte("level").ToString(),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             WinningAmount = reader.ToDecimal("winningAmt"),
                             NetWinAfterPT = reader.ToDecimal("netWinAfterPT"),
                             CompanyLoseAmount = reader.ToDecimal("companyLoseAmt"),
                             Combo = reader.ToInt32("combo"),
-                            TotalSelection = reader.ToDecimal("totalSelection"),
-                            SportType = reader.ToInt64("Sporttype"),
+                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalSelection")),
+                            SportType = reader.ToInt32("Sporttype"),
+                            SportTypeName = CacheRef.GetSportNameDropDown(reader.ToInt32("Sporttype")),
                             IP = reader.ToString("IP"),
                             CustId = reader.ToInt32("custid"),
                             BetType = reader.ToInt32("bettype"),
@@ -101,8 +103,6 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                     }
                 }
             }
-            //test
-            CreateTestDataDetail(result);
 
             return result;
         }
@@ -115,14 +115,12 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                 {
                     LeagueId = reader.ToInt32("leagueid"),
                     LeagueName = reader.ToString("leagueName"),
-                    TotalStake = reader.ToInt32("totalStake"),
-                    TotalWinningAmount = reader.ToInt32("totalWinningAmt"),
-                    CompanyLoseAmount = reader.ToInt32("companyLoseAmt"),
+                    TotalStake = reader.ToDecimal("totalStake"),
+                    TotalWinningAmount = reader.ToDecimal("totalWinningAmt"),
+                    CompanyLoseAmount = reader.ToDecimal("companyLoseAmt"),
                     TotalTickets = reader.ToInt32("totalTicket")
                 });
             }
-            // data test
-            CreateTestData(result);
         }
 
         public void GetUsernameList(IDataReader reader, List<RmsRptLeagueWinningMonitor> result)
@@ -133,82 +131,12 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                 {
                     CustId = reader.ToInt32("custid"),
                     Username = reader.ToString("username"),
-                    TotalStake = reader.ToInt32("totalStake"),
-                    TotalWinningAmount = reader.ToInt32("totalWinningAmt"),
-                    CompanyLoseAmount = reader.ToInt32("companyLoseAmt"),
+                    TotalStake = reader.ToDecimal("totalStake"),
+                    TotalWinningAmount = reader.ToDecimal("totalWinningAmt"),
+                    CompanyLoseAmount = reader.ToDecimal("companyLoseAmt"),
                     TotalTickets = reader.ToInt32("totalTicket")
                 });
             }
-            // data test
-            CreateTestData(result);
-        }
-
-        public void CreateTestData(List<RmsRptLeagueWinningMonitor> result)
-        {
-            result.Add(new RmsRptLeagueWinningMonitor
-            {
-                LeagueId = 1,
-                LeagueName = "league name",
-                CustId = 22,
-                Username = "username",
-                TotalStake = 10,
-                TotalWinningAmount = 20,
-                CompanyLoseAmount = 30,
-                TotalTickets = 1
-            });
-
-            result.Add(new RmsRptLeagueWinningMonitor
-            {
-                LeagueId = 2,
-                LeagueName = "league name 2",
-                CustId = 222,
-                Username = "username 2",
-                TotalStake = 102,
-                TotalWinningAmount = 202,
-                CompanyLoseAmount = 302,
-                TotalTickets = 2
-            });
-        }
-
-        public void CreateTestDataDetail(List<RmsRptLeagueWinningMonitorDetail> result)
-        {
-            result.Add(new RmsRptLeagueWinningMonitorDetail
-            {
-                TransDate = DateTime.Now,
-                TransId = 123456,
-                Username = "username",
-                Level = 10,
-                Odds = 12345,
-                Stake = 123456,
-                WinningAmount = 654321,
-                NetWinAfterPT = 22222,
-                CompanyLoseAmount = 30,
-                Combo = 1,
-                TotalSelection = 11,
-                SportType = 1,
-                IP = "12.0.0",
-                RefNo = 100845221503,
-                CustId = 26722481
-            });
-
-            result.Add(new RmsRptLeagueWinningMonitorDetail
-            {
-                TransDate = DateTime.Now,
-                TransId = 111880908238,
-                Username = "12BETAFF1780CashOut",
-                Level = 10,
-                Odds = 12345,
-                Stake = 123456,
-                WinningAmount = 654321,
-                NetWinAfterPT = 22222,
-                CompanyLoseAmount = 30,
-                Combo = 1,
-                TotalSelection = 11,
-                SportType = 1,
-                IP = "12.0.0..7",
-                RefNo = 100845221503,
-                CustId = 26722481
-            });
         }
     }
 }

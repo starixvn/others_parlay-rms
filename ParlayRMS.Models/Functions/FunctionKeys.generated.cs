@@ -18,6 +18,7 @@
 		public const string ManageCustomer = "ManageCustomer";
 		public const string ManageAgent = "ManageAgent";
 		public const string ManageLeague = "ManageLeague";
+		public const string WinLossRiskControl = "WinLossRiskControl";
 		public const string ParlayWon = "ParlayWon";
 		public const string TopWinners = "TopWinners";
 		public const string Winloss = "Winloss";
@@ -32,5 +33,6 @@
 		public const string TotalOutstanding = "TotalOutstanding";
 		public const string DangerMonitor = "DangerMonitor";
 		public const string ViewIP = "ViewIP";
+		public const string LeagueWinningMonitor = "LeagueWinningMonitor";
 			}
 }

@@ -4,13 +4,13 @@ namespace ParlayRMS.DTO.LeagueWinningMonitor
 {
     public class RmsRptLeagueWinningMonitorDetail
     {
-        public DateTime TransDate { get; set; }
+        public string TransDate { get; set; }
 
         public long TransId { get; set; }
 
         public string Username { get; set; }
 
-        public byte Level { get; set; }
+        public string Level { get; set; }
 
         public decimal Odds { get; set; }
 
@@ -24,9 +24,11 @@ namespace ParlayRMS.DTO.LeagueWinningMonitor
 
         public int Combo { get; set; }
 
-        public decimal TotalSelection { get; set; }
+        public int TotalSelection { get; set; }
 
-        public long SportType { get; set; }
+        public int SportType { get; set; }
+
+        public string SportTypeName { get; set; }
 
         public string IP { get; set; }
 

@@ -10,11 +10,11 @@
 
         public string Username { get; set; }
 
-        public int TotalStake { get; set; }
+        public decimal TotalStake { get; set; }
 
-        public int TotalWinningAmount { get; set; }
+        public decimal TotalWinningAmount { get; set; }
 
-        public int CompanyLoseAmount { get; set; }
+        public decimal CompanyLoseAmount { get; set; }
 
         public int TotalTickets { get; set; }
     }

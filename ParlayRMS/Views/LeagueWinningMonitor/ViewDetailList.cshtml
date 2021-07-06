@@ -1,12 +1,16 @@
 ﻿@using ParlayRMS.DTO.LeagueWinningMonitor
+@using ParlayRMS.ViewModel.LeagueWinningMonitor
 @model IEnumerable<RmsRptLeagueWinningMonitorDetail>
+@{
+    var filter = (LeagueWinningMonitorModel)ViewBag.Filter;
+}
 <div class="details">
-    <table class="sub" style="width: 100%">
+    <table class="sub" style="width: 100%" id="detailHeader">
         <colgroup>
             <col style="width: 50px" />
             <col style="width: 150px" />
             <col style="width: 100px" />
-            <col style="width: 100px" />
+            <col style="width: 130px" />
             <col style="width: 50px" />
             <col style="width: 70px" />
             <col style="width: 100px" />
@@ -22,15 +26,15 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Trans. Time</th>
+                <th class="sortable" data-col-type="date">Trans. Time</th>
                 <th>BetID</th>
-                <th>User Name</th>
-                <th>Level</th>
-                <th>Odds</th>
-                <th>Member Stake</th>
-                <th>Winning Amount</th>
-                <th>Net Win After PT</th>
-                <th>Company Lose Amount</th>
+                <th class="sortable" data-col-type="ignorecase">User Name</th>
+                <th class="sortable" data-col-type="ignorecase">Level</th>
+                <th class="sortable" data-col-type="float">Odds</th>
+                <th class="sortable" data-col-type="float">Member Stake</th>
+                <th class="sortable" data-col-type="float">Winning Amount</th>
+                <th class="sortable" data-col-type="float">Net Win After PT</th>
+                <th class="sortable" data-col-type="float">Company Lose Amount</th>
                 <th>Total Combo Bets</th>
                 <th>Total Selection</th>
                 <th>Sport Type</th>
@@ -38,6 +42,25 @@
                 <th>Bet Details</th>
             </tr>
         </thead>
+    </table>
+    <table class="sub" style="width: 100%" id="detailResult">
+        <colgroup>
+            <col style="width: 50px" />
+            <col style="width: 150px" />
+            <col style="width: 100px" />
+            <col style="width: 130px" />
+            <col style="width: 50px" />
+            <col style="width: 70px" />
+            <col style="width: 100px" />
+            <col style="width: 100px" />
+            <col style="width: 100px" />
+            <col style="width: 100px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 100px" />
+            <col style="width: 80px" />
+        </colgroup>
         <tbody>
             @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
             {
@@ -52,7 +75,7 @@
                         <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
                     </td>
                     <td class="left">
-                        @item.Val.Username
+                        <a href="#" onclick="window.open(resolveClientUrl('TotalOutstanding?username=@item.Val.Username&combo=@filter.Combos&sportsType=@filter.SportsTypes&parlayTypes=@filter.ParlayTypes'), '_blank');">@item.Val.Username</a>
                     </td>
                     <td>
                         @item.Val.Level
@@ -79,7 +102,7 @@
                         @item.Val.TotalSelection
                     </td>
                     <td class="center">
-                        @item.Val.SportType
+                        @item.Val.SportTypeName
                     </td>
                     <td class="numeric">
                         @if (item.Val.IP == null || item.Val.IP == "" || item.Val.IP == "null")

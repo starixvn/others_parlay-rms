@@ -149,7 +149,20 @@ var timerController = function () {
             },
             success: function (result) {
                 $("#divResult").html(result);
-                tableSorter.bind2($('#header'), $('#result'), {});
+                if (result.search('No information is available') < 0) {
+                    Alert();
+                }
+                tableSorter.bind2($('#header'), $('#result'), {
+                    onStart: function () {
+                        $('#result').find('tr[dataid]').remove();
+                    },
+                    onFinish: function () {
+                        var trs = $('#result').children('tbody').children("tr");
+                        trs.each(function (index, tr) {
+                            $(tr).children('td:first').text(index + 1);
+                        });
+                    }
+                });
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -468,6 +481,7 @@ function ViewTotalBetDetails(dataId) {
             success: function (result) {
                 result = result.replace(/\s+/g, ' ');
                 td.html(result);
+                tableSorter.bind2($('#detailHeader'), $('#detailResult'), {});
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -549,7 +563,7 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
                 loading.hide();
             }
         });
-    };
+    }
 
     function ViewPenaltyShootoutParlayDetails(transId, username) {
         var data = {
@@ -578,5 +592,5 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
                 loading.hide();
             }
         });
-    };
+    }
 }

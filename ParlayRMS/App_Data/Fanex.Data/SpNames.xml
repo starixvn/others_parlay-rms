@@ -112,6 +112,6 @@
     <Setting Key="RMS_BetList_PenaltyShootout_MatchDetail" SpName="RMS_BetList_PenaltyShootout_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="LeagueWinningMonitor">
-    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
 </Functions>
