@@ -27,7 +27,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                                                        ref Hashtable outputParam,
                                                        string currency,
                                                        byte site,
-                                                       byte liveType)
+                                                       byte liveType,
+                                                       Int64? customerClass)
         {
             var result = new List<RMS_Rpt_Parlay_ParlayWon>();
 
@@ -50,6 +51,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                 db.AddInParameter("Currency", DbType.String, currency);
                 db.AddInParameter("Site", DbType.Int16, site);
                 db.AddInParameter("LiveStatus", DbType.Int16, liveType);
+                db.AddInParameter("CustomerClass", DbType.Int16, customerClass);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -62,6 +64,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                             RefNo = reader.ToString("refno"),
                             CustId = reader.ToInt32("custid"),
                             Username = reader.ToString("username"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
                             BetType = reader.ToInt32("bettype"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("Stake"),

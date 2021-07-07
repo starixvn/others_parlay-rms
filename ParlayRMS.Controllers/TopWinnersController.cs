@@ -67,7 +67,7 @@ namespace ParlayRMS.Controllers
                 if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
                 {
                     isValidCustomerClass = false;
-                }    
+                }
                 var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
@@ -121,7 +121,12 @@ namespace ParlayRMS.Controllers
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(TopWinnersOptions options)
         {
-            var records = _topwinnersService.GetTopWinners(options);
+            bool isValidCustomerClass = true;
+            if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
+            {
+                isValidCustomerClass = false;
+            }
+            var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
             var totalStake = records.Sum(x => x.Stake_BaseRM);
             var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
             var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
@@ -213,7 +218,6 @@ namespace ParlayRMS.Controllers
             Response.BinaryWrite(ms.ToArray());
             Response.End();
         }
-
 
         [HttpGet]
         public ActionResult SingleMatchParlayBetDetails(int custId, long transId, string username)

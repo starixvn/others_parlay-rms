@@ -1,4 +1,5 @@
-﻿using ParlayRMS.ExcelService.Writers;
+﻿using ParlayRMS.DTO.ParlayWon;
+using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetDetails;
 using ParlayRMS.Services.Implement.Common;
@@ -39,7 +40,7 @@ namespace ParlayRMS.Controllers
             // Currency
             var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();
-            foreach(var currency in currenciesList)
+            foreach (var currency in currenciesList)
             {
                 currencies.Add(new SelectListItem { Text = currency.CurrencyCode, Value = currency.Id.ToString() });
             }
@@ -63,6 +64,7 @@ namespace ParlayRMS.Controllers
             try
             {
                 Hashtable outputParams = null;
+                ModelState.Remove("CustomerClass");
                 ModelState.Remove("HouseAmountFrom");
                 ModelState.Remove("HouseAmountTo");
                 ModelState.Remove("SortById");
@@ -85,7 +87,12 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    var model = _service.GetParlayWonList(options, ref outputParams);
+                    bool isValidCustomerClass = true;
+                    if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
+                    {
+                        isValidCustomerClass = false;
+                    }
+                    var model = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
                     ViewBag.FilterOption = options;
                     ViewBag.Title = options.GetTitle();
                     ViewBag.TotalRows = outputParams == null ? 0 : Convert.ToInt32(outputParams["totalrows"]);
@@ -137,7 +144,12 @@ namespace ParlayRMS.Controllers
         public void Excel(ParlayWonOptions options)
         {
             Hashtable outputParams = null;
-            var records = _service.GetParlayWonList(options, ref outputParams);
+            bool isValidCustomerClass = true;
+            if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
+            {
+                isValidCustomerClass = false;
+            }
+            var records = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\ParlayWon.xls";
             var writer = new TemplateWriter(templatePath);
@@ -153,6 +165,7 @@ namespace ParlayRMS.Controllers
                 ViewLang.TransTime,
                 ViewLang.BetID,
                 ViewLang.Username,
+                ViewLang.CustomerClass,
                 ViewLang.Currency,
                 ViewLang.Odds,
                 ViewLang.Stake,
@@ -175,6 +188,7 @@ namespace ParlayRMS.Controllers
                 TransTime = Formatter.FormatDate(x.TransDate),
                 TransId = x.TransId,
                 Username = x.Username,
+                CustomerClass = x.CustomerClass,
                 Currency = x.Currency,
                 Odds = Formatter.FormatOdds(x.Odds),
                 Stake = Formatter.FormatNumber3(x.Stake),
@@ -189,7 +203,7 @@ namespace ParlayRMS.Controllers
 
             writer.WriteRows(2, select);
 
-            writer.SyncColumnWidths(13);
+            writer.SyncColumnWidths(14);
 
             MemoryStream ms = writer.Render("ParlayWon");
             Response.AddHeader("content-disposition", "attachment; filename=" + "ParlayWon.xls");
