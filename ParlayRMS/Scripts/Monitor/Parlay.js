@@ -19,6 +19,7 @@ function UserSettings() {
     this.netWinAfterPT = 0;
     this.reportType = 1;
     this.isCornerParlay = false;
+    this.odds = null;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -29,7 +30,8 @@ function UserSettings() {
             && this.stakeAfterPT == settings.stakeAfterPT
             && this.netWinAfterPT == settings.netWinAfterPT
             && this.reportType == settings.reportType
-            && this.isCornerParlay == setting.isCornerParlay) {
+            && this.isCornerParlay == setting.isCornerParlay
+            && this.odds == setting.odds) {
             return false;
         }
 
@@ -112,6 +114,8 @@ var settingsController = function () {
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
 
+            var odds = $.trim($('#txtOdds').val().replace(/,/g, ''));
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlayTypes = parlayTypes;
@@ -129,6 +133,7 @@ var settingsController = function () {
             userSettings.selectTop = selectTop;
             userSettings.markets = markets;
             userSettings.isCornerParlay = isCornerParlay;
+            userSettings.odds = odds;
             return userSettings;
         }
     }
@@ -159,7 +164,8 @@ var timerController = function () {
             selectTop: settings.selectTop,
             maxTransId: maxTransId,
             markets: settings.markets,
-            isCornerParlay: settings.isCornerParlay
+            isCornerParlay: settings.isCornerParlay,
+            odds: settings.odds
         }
 
         $.ajax({
@@ -232,6 +238,15 @@ $(document).ready(function () {
         aDec: '.',
         vMin: '0.00',
         vMax: '999999999999',
+        aPad: false,
+        aForm: false
+    });
+
+    $("#txtOdds").autoNumeric({
+        aSep: ',',
+        aDec: '.',
+        vMin: '0.00',
+        vMax: '999999',
         aPad: false,
         aForm: false
     });
