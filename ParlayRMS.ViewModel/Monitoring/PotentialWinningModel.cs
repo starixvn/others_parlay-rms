@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParlayRMS.ViewModel.Monitoring
 {
@@ -23,5 +24,7 @@ namespace ParlayRMS.ViewModel.Monitoring
         public byte FilterBy { get; set; }
 
         public int? AgentId { get; set; }
+
+        public Int64? CustomerClass { get; set; }
     }
 }

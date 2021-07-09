@@ -18,7 +18,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
             int selectTop,
             bool isCornerParlay,
             byte filterBy,
-            int? agentId)
+            int? agentId,
+            Int64? customerClass)
         {
             var result = new List<RMS_Monitor_Potential_Winning>();
 
@@ -33,6 +34,7 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                 db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
                 db.AddInParameter("IsAgentView", DbType.Boolean, filterBy > 0);
                 db.AddInParameter("Recommend", DbType.Int32, agentId);
+                db.AddInParameter("CustomerClass", DbType.Int16, customerClass);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -66,7 +68,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                                 WinningAmount = reader.ToDecimal("winningamount"),
                                 CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
                                 Level = reader.ToInt32("level"),
-                                TotalTicket = reader.ToInt32("totalbets")
+                                TotalTicket = reader.ToInt32("totalbets"),
+                                CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
                             });
                         }
                     }

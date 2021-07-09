@@ -6,7 +6,9 @@
         fromDate: null,
         toDate: null,
         btnSearch: null,
-        divResult: null
+        divResult: null,
+        lbCustomerClass: null,
+        filterControl: null
     },
     GetCachedDOM: function () {
         MemberWinLoss.CachedDOM.username = $("#username");
@@ -174,7 +176,7 @@
             },
             success: function (result) {
                 MemberWinLoss.CachedDOM.divResult.html(result);
-                MemberWinLoss.DisplayCustomerClass(123);
+                MemberWinLoss.DisplayCustomerClass()
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -235,8 +237,8 @@
 
         MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, username, pageIndex, isCached);
     },
-    DisplayCustomerClass: function (value) {
-        var html = '(CC: <b>' + value + '</b>)';
+    DisplayCustomerClass: function () {
+        var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
         MemberWinLoss.CachedDOM.lbCustomerClass.html(html);
         var filterWidth = MemberWinLoss.CachedDOM.filterControl.width();
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbCustomerClass.width();

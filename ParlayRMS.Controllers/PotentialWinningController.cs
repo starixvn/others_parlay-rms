@@ -57,7 +57,7 @@ namespace ParlayRMS.Controllers
             var selectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
-                selectTops.Add(new SelectListItem { Text = item, Value = item, Selected = item == "100"});
+                selectTops.Add(new SelectListItem { Text = item, Value = item, Selected = item == "100" });
             }
 
             ViewBag.SelectTops = selectTops;
@@ -84,12 +84,13 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult GetData(PotentialWinningModel model)
         {
+            ModelState.Remove("CustomerClass");
             if (!ModelState.IsValid)
             {
                 return InvalidModelJson();
             }
 
-            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay, model.FilterBy, model.AgentId);
+            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay, model.FilterBy, model.AgentId, model.CustomerClass);
 
             return Json(new
             {

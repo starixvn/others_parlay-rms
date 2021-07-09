@@ -31,5 +31,7 @@
         public string AgentName { get; set; }
 
         public int TotalMember { get; set; }
+
+        public string CustomerClass { get; set; }
     }
 }

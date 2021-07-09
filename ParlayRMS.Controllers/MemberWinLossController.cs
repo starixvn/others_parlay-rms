@@ -63,12 +63,13 @@ namespace ParlayRMS.Controllers
                                                               options.Username,
                                                               options.IsCached,
                                                               out roleId);
-
+                    var isAgent = roleId > (int)RoleId.Member;
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;
                     ViewBag.GrandTotal = model.Total;
+                    ViewBag.CustomerClass = isAgent ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
 
-                    if (roleId > (int)RoleId.Member)
+                    if (isAgent)
                     {
                         int page = options.PageIndex ?? 1;
                         ViewBag.Pager = Pager.Items(model.Records.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
@@ -211,6 +212,7 @@ namespace ParlayRMS.Controllers
             {
                 ViewLang.Month,
                 ViewLang.Username,
+                ViewLang.CustomerClass,
                 ViewLang.Ticket,
                 string.Empty,
                 ViewLang.StakeAfterPT,
@@ -222,6 +224,7 @@ namespace ParlayRMS.Controllers
 
             var header2 = new object[]
             {
+                string.Empty,
                 string.Empty,
                 string.Empty,
                 ViewLang.Won,
@@ -239,6 +242,7 @@ namespace ParlayRMS.Controllers
             var footer = new object[]
             {
                 ViewLang.Total,
+                string.Empty,
                 string.Empty,
                 model.Total.Tickets_Won,
                 model.Total.Tickets_Lose,
@@ -262,6 +266,7 @@ namespace ParlayRMS.Controllers
                     {
                         ViewLang.Subtotal,
                         string.Empty,
+                        string.Empty,
                         item.Tickets_Won,
                         item.Tickets_Lose,
                         item.Stake_Won,
@@ -280,6 +285,7 @@ namespace ParlayRMS.Controllers
                     {
                         item.Month,
                         item.Username,
+                        item.CustomerClass,
                         item.Tickets_Won,
                         item.Tickets_Lose,
                         item.Stake_Won,
@@ -297,7 +303,7 @@ namespace ParlayRMS.Controllers
             // footer
             writer.WriteRow(5, footer);
 
-            writer.SyncColumnWidths(11);
+            writer.SyncColumnWidths(12);
 
             return writer.Render("AgentWinLoss");
         }

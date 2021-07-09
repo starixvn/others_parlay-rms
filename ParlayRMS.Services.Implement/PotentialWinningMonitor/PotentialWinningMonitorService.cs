@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ParlayRMS.DataAccess.Implement.PotentialWinningMonitor;
 using ParlayRMS.DTO.PotentialWinning;
 using ParlayRMS.Utility;
@@ -18,9 +19,10 @@ namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
             int selectTop,
             bool isCornerParlay,
             byte filterBy,
-            int? agentId)
+            int? agentId,
+            Int64? customerClass)
         {
-            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop, isCornerParlay, filterBy, agentId);
+            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop, isCornerParlay, filterBy, agentId, customerClass);
         }
 
         public IEnumerable<RMS_Monitor_Potential_Winning_Detail> GetPotentialWinningDetailList(
