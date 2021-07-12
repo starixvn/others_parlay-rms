@@ -89,7 +89,6 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             WinningAmount = reader.ToDecimal("winningAmt"),
-                            NetWinAfterPT = reader.ToDecimal("netWinAfterPT"),
                             CompanyLoseAmount = reader.ToDecimal("companyLoseAmt"),
                             Combo = reader.ToInt32("combo"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("totalSelection")),

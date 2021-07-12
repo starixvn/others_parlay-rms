@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ParlayRMS.DTO.LeagueWinningMonitor
+﻿namespace ParlayRMS.DTO.LeagueWinningMonitor
 {
     public class RmsRptLeagueWinningMonitorDetail
     {
@@ -17,8 +15,6 @@ namespace ParlayRMS.DTO.LeagueWinningMonitor
         public decimal Stake { get; set; }
 
         public decimal WinningAmount { get; set; }
-
-        public decimal NetWinAfterPT { get; set; }
 
         public decimal CompanyLoseAmount { get; set; }
 
