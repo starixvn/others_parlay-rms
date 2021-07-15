@@ -1,6 +1,7 @@
 <ng-template #colgroup>
   <colgroup>
       <col style="width: 140px" />
+      <col style="width: 140px" />
       <col style="width: 90px" />
       <col style="width: 130px" />
       <col style="width: 130px" />
@@ -15,6 +16,7 @@
   <thead class="sort">
       <tr>
           <th scope="col">Member</th>
+          <th scope="col">Customer Class</th>
           <th scope="col" [appSort]="[winLoss.rows]" data-order="desc" data-prop="betCount">
             Bet Count
             <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
@@ -46,6 +48,7 @@
 </ng-template>
 <ng-template #rowItem let-item="item">
   <td>{{ item.username }}</td>
+  <td class="text-right">{{item.customerClass}}</td>
   <td class="text-right">{{item.betCount}}</td>
   <td [ngClass]="{'red': item.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.memberWinLoss"></td>
   <td [ngClass]="{'red': item.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="item.smaWinLoss"></td>
@@ -59,7 +62,7 @@
 </ng-template>
 <div *ngIf="winLoss" [ngSwitch]="winLoss.rows.length > 0">
   <div class="nap-grid">
-      <div style="width: 1160px;">
+      <div style="width: 1300px;">
           <div class="header">
               <table>
                   <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
@@ -81,7 +84,7 @@
               <table>
                   <tbody>
                       <tr>
-                          <th class="no-data" colspan="9">
+                          <th class="no-data" colspan="10">
                               There is no data
                           </th>
                       </tr>
@@ -93,7 +96,7 @@
                   <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                   <tfoot>
                       <tr class="font-weight-bold">
-                          <td class="text-right">{{winLoss.username}}</td>
+                          <td class="text-right" colspan="2">{{winLoss.username}}</td>
                           <td class="text-right">{{winLoss.betCount}}</td>
                           <td [ngClass]="{'red': winLoss.memberWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.memberWinLoss"></td>
                           <td [ngClass]="{'red': winLoss.smaWinLoss > 0, 'text-right' : 1}" [napDecimalFormat]="winLoss.smaWinLoss"></td>
@@ -106,7 +109,7 @@
                           </td>
                       </tr>
                       <tr>
-                        <td class="paging" colspan="9">
+                        <td class="paging" colspan="10">
                           <nap-pagination [config]="paginationInstance" (pageChange)="onPageChange()"></nap-pagination>
                         </td>
                       </tr>
