@@ -57,7 +57,7 @@
     <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_ComboParlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_ComboParlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />    
+    <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -74,7 +74,6 @@
     <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    
   </Function>
   <Function Name="League">
     <Setting Key="RMS_LeagueIns" SpName="RMS_LeagueIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
@@ -111,5 +110,8 @@
   </Function>
   <Function Name="PenaltyShootout">
     <Setting Key="RMS_BetList_PenaltyShootout_MatchDetail" SpName="RMS_BetList_PenaltyShootout_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+  </Function>
+  <Function Name="LeagueWinningMonitor">
+    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
 </Functions>

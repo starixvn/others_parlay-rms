@@ -24,6 +24,9 @@
                     @(Model.StatusID == 0 ? ViewLang.AverageStakeAfterPT : ViewLang.StakeAfterPT)
                 </th>
                 <th style="width: 120px">
+                    @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)
+                </th>
+                <th style="width: 120px">
                     @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
                 </th>
                 <th style="width: 90px">
@@ -61,10 +64,13 @@
                     @Formatter.FormatNumber2(Model.Stake)
                 </td>
                 <td class="numeric">
+                    @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(Model.PotentialWinningAmount) : @Formatter.FormatNumber3(Model.HouseLoseAmount))
+                </td>
+                <td class="numeric">
                     @Formatter.FormatWithoutRounding(Model.Max_payout)
                 </td>
                 <td class="center">
-                    @{ 
+                    @{
                         var totalBetText = string.Empty;
 
                         if (Model.BetType == 38)
@@ -95,7 +101,7 @@
                     else
                     {
                         @Html.Raw(string.Format("{0}/{1}", Model.NumberWon, Model.TotalSelection))
-                    }                    
+                    }
                 </td>
                 <td class="center">
                     @Model.SportTypeName
@@ -123,17 +129,19 @@
         </tbody>
     </table>
 </div>
-<div id="similarbetlist" class="details" style="display: none; width: 750px">
+<div id="similarbetlist" class="details" style="display: none; width: 1070px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
         <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
-    <div style="width: 754px">
+    <div style="width: 1074px">
         <table class="sub thead">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
                 <col width="150px" />
+                <col width="160px" />
+                <col width="160px" />
                 <col width="160px" />
                 <col width="150px" />
                 <col width="100px" />
@@ -150,6 +158,12 @@
                         @ViewLang.Username
                     </th>
                     <th class="sortable">
+                        @ViewLang.AverageStakeAfterPT
+                    </th>
+                    <th class="sortable">
+                        @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)
+                    </th>
+                    <th class="sortable">
                         @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
                     </th>
                     <th>
@@ -162,12 +176,14 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 768px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1088px">
         <table class="sub tbody">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
                 <col width="150px" />
+                <col width="160px" />
+                <col width="160px" />
                 <col width="160px" />
                 <col width="150px" />
                 <col width="100px" />
@@ -185,6 +201,12 @@
                         </td>
                         <td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
                             @item.Username
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Stake)
+                        </td>
+                        <td class="numeric">
+                            @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(item.PotentialWinningAmount) : @Formatter.FormatNumber3(item.HouseLoseAmount))
                         </td>
                         <td class="numeric">
                             @Formatter.FormatWithoutRounding(item.Max_Payout)

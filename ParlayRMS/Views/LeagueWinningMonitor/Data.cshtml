@@ -1,0 +1,107 @@
+﻿@using ParlayRMS.DTO.LeagueWinningMonitor;
+@using System;
+@model IEnumerable<RmsRptLeagueWinningMonitor>
+
+@{
+    var isLeague = (byte)ViewBag.ReportBy == 1;
+    var index = 0;
+}
+
+<div style="width: 1389px">
+    <table class="main" id="header">
+        <colgroup>
+            <col width='90' />
+            <col width='250' />
+            <col width='263' />
+            <col width='263' />
+            <col width='263' />
+            <col width='260' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th rowspan="2" class="header2rows">
+                    No
+                </th>
+                <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
+                    @(isLeague ? "League" : "Username")
+                </th>
+                <th colspan="4" class="header2rows">
+                    Base Currency
+                </th>
+            </tr>
+            <tr>
+                <th data-col-type="float" class="sortable" data-col-index="2">
+                    Total Stake
+                </th>
+                <th data-col-type="float" class="sortable" data-col-index="3">
+                    Total Winning Amount
+                </th>
+                <th data-col-type="float" class="sortable" data-col-index="4">
+                    Company Lose Amount
+                </th>
+                <th data-col-type="float" class="sortable" data-col-index="5">
+                    Total Tickets
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" style="max-height: 630px; width: 1406px">
+    <table class="main" id="result">
+        <colgroup>
+            <col width='90' />
+            <col width='250' />
+            <col width='263' />
+            <col width='263' />
+            <col width='263' />
+            <col width='260' />
+        </colgroup>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr id="tr_@(isLeague ? item.LeagueId : item.CustId)">
+                    <td class="center">
+                        @index
+                    </td>
+                    <td class="center">
+                        @(isLeague ? item.LeagueName : item.Username)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatWithoutRounding(item.TotalStake)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatWithoutRounding(item.TotalWinningAmount)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatWithoutRounding(item.CompanyLoseAmount)
+                    </td>
+                    <td class="numeric">
+                        <span id="idTotalBet" onclick="ViewTotalBetDetails('@(isLeague ? item.LeagueId : item.CustId)')">
+                            @Formatter.FormatWithoutRounding(item.TotalTickets)
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="width: 1389px" class="mainfooter">
+    <table class="main" id="footer">
+        <colgroup>
+            <col width='90' />
+            <col width='250' />
+            <col width='263' />
+            <col width='263' />
+            <col width='263' />
+            <col width='260' />
+        </colgroup>
+        <tfoot>
+            @if (Model.Count() == 0)
+            {
+                <tr><td class="noinfo" colspan="6">@ViewLang.NoInformation</td></tr>
+            }
+        </tfoot>
+    </table>
+</div>

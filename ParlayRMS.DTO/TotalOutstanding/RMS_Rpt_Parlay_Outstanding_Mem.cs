@@ -16,6 +16,8 @@ namespace ParlayRMS.DTO.TotalOutstanding
 
         public decimal StakePt { get; set; }
 
+        public decimal PotentialWinningAmount { get; set; }
+
         public decimal MaxPayoutPt { get; set; }
 
         public int TotalBet { get; set; }

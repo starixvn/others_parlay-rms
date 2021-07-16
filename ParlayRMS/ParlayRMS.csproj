@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DA01FEC1-EE29-44A1-BA13-DFBE3FDCFB57}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ParlayRMS</RootNamespace>
@@ -610,6 +610,7 @@
     <Content Include="Content\images\Login\red_bt_bg.png" />
     <Content Include="Content\images\UnderMaintenance.gif" />
     <Content Include="Content\LeagueBetTypeAnalysis.css" />
+    <Content Include="Content\LeagueWinningMonitor.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\ParlayWon.css" />
     <Content Include="Content\TopWinners.css" />
@@ -618,6 +619,7 @@
     <Content Include="ExcelTemplates\ParlayWon.xls" />
     <Content Include="ExcelTemplates\BetTypeDataAnalysis.xls" />
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
+    <Content Include="Scripts\Monitor\LeagueWinning.js" />
     <Content Include="wwwroot\win-loss-risk-control\3rdpartylicenses.txt" />
     <Content Include="wwwroot\win-loss-risk-control\assets\header.png" />
     <Content Include="wwwroot\win-loss-risk-control\assets\logo.png" />
@@ -686,6 +688,10 @@
     <Content Include="wwwroot\win-loss-risk-control\fontawesome-webfont.8b43027f47b20503057d.eot" />
     <Content Include="wwwroot\win-loss-risk-control\fontawesome-webfont.f691f37e57f04c152e23.woff" />
     <Content Include="wwwroot\win-loss-risk-control\index.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Filter.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Index.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\Data.cshtml" />
+    <Content Include="Views\LeagueWinningMonitor\ViewDetailList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

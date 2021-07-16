@@ -173,6 +173,9 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/TopWinners").Include(
               "~/Content/TopWinners.css"));
 
+            bundles.Add(new StyleBundle("~/Content/LeagueWinningMonitor").Include(
+              "~/Content/LeagueWinningMonitor.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
@@ -241,6 +244,8 @@ namespace ParlayRMS
                 "~/Scripts/Libs/simplepagination/jquery.simplePagination.js",
                 "~/Scripts/Report/LeagueBetTypeAnalysis.js"
                  ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/LeagueWinning/js").Include("~/Scripts/Monitor/LeagueWinning.js"));
         }
     }
 }

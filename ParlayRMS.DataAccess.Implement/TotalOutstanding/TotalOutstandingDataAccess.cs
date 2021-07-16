@@ -33,6 +33,7 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
                             StakePt = reader.ToDecimal("stakept"),
+                            PotentialWinningAmount = reader.ToDecimal("potentialWinningAmt"),
                             MaxPayoutPt = reader.ToDecimal("net_win"),
                             TotalBet = reader.ToInt32("TotalBet"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("TotalSelection")),

@@ -30,5 +30,7 @@ namespace ParlayRMS.ViewModel.PalayMonitor
         public long MaxTransId { get; set; }
 
         public bool IsCornerParlay { get; set; }
+
+        public decimal? Odds { get; set; }
     }
 }

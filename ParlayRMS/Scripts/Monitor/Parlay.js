@@ -19,6 +19,7 @@ function UserSettings() {
     this.netWinAfterPT = 0;
     this.reportType = 1;
     this.isCornerParlay = false;
+    this.odds = null;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -29,7 +30,8 @@ function UserSettings() {
             && this.stakeAfterPT == settings.stakeAfterPT
             && this.netWinAfterPT == settings.netWinAfterPT
             && this.reportType == settings.reportType
-            && this.isCornerParlay == setting.isCornerParlay) {
+            && this.isCornerParlay == setting.isCornerParlay
+            && this.odds == setting.odds) {
             return false;
         }
 
@@ -112,6 +114,8 @@ var settingsController = function () {
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
 
+            var odds = $.trim($('#txtOdds').val().replace(/,/g, ''));
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlayTypes = parlayTypes;
@@ -129,6 +133,7 @@ var settingsController = function () {
             userSettings.selectTop = selectTop;
             userSettings.markets = markets;
             userSettings.isCornerParlay = isCornerParlay;
+            userSettings.odds = odds;
             return userSettings;
         }
     }
@@ -159,7 +164,8 @@ var timerController = function () {
             selectTop: settings.selectTop,
             maxTransId: maxTransId,
             markets: settings.markets,
-            isCornerParlay: settings.isCornerParlay
+            isCornerParlay: settings.isCornerParlay,
+            odds: settings.odds
         }
 
         $.ajax({
@@ -232,6 +238,15 @@ $(document).ready(function () {
         aDec: '.',
         vMin: '0.00',
         vMax: '999999999999',
+        aPad: false,
+        aForm: false
+    });
+
+    $("#txtOdds").autoNumeric({
+        aSep: ',',
+        aDec: '.',
+        vMin: '0.00',
+        vMax: '999999',
         aPad: false,
         aForm: false
     });
@@ -457,9 +472,9 @@ $(document).ready(function () {
         },
         ontimeout: function () {
             closeBox.render($('#noflash'),
-            {
-                title: 'Alert Sound is disabled'
-            });
+                {
+                    title: 'Alert Sound is disabled'
+                });
         }
     });
 });
@@ -527,7 +542,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == 0) {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(12);
+                var noinfo = CreateNoInfoRow(13);
                 tbody.append(noinfo);
             }
         }
@@ -548,8 +563,7 @@ function CreateRow(order, item) {
         betSuffix = ' (P)';
     }
 
-    if (item.IsGOF == true)
-    {
+    if (item.IsGOF == true) {
         betSuffix = ' (G)';
     }
 
@@ -568,6 +582,7 @@ function CreateRow(order, item) {
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
+    r[++j] = '<td class="numeric">' + numeral(Math.floor(item.PotentialWinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.NetWinAfterPT)).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(item.TotalBet).format('0,0') + ' ' + (item.TotalBet === 1 ? 'bet' : 'bets') + betSuffix + '</td>';
     r[++j] = '<td class="center">' + (item.NumberWon === 0 || item.BetType === 38 ? item.TotalSelection : item.NumberWon + '/' + item.TotalSelection) + '</td>';
@@ -645,7 +660,6 @@ function ViewSystemParlayDetails(username, transId, refNo) {
         }
     });
 }
-
 
 function ViewSingleMatchParlayDetails(transId, custId, username) {
     var data = {

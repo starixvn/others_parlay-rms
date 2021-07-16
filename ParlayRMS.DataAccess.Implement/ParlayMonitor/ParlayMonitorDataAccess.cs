@@ -20,7 +20,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
             int selectTop,
             long maxTransId,
             string markets,
-            bool isCornerParlay)
+            bool isCornerParlay,
+            decimal? odds)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
@@ -37,6 +38,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                 db.AddInParameter("limitrowcount", DbType.Int32, selectTop);
                 db.AddInParameter("market", DbType.String, markets);
                 db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
+                db.AddInParameter("odds", DbType.Decimal, odds);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -51,6 +53,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             Username = reader.ToString("username"),
                             Odds = reader.ToDecimal("odds"),
                             Stake = reader.ToDecimal("stake"),
+                            PotentialWinningAmount = reader.ToDecimal("potentialWinningAmt"),
                             NetWinAfterPT = reader.ToDecimal("maxpayout"),
                             TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
                             TotalBet = reader.ToInt32("totalbet"),

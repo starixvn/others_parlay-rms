@@ -79,6 +79,7 @@
     <Compile Include="Common\CommonDataAccess.cs" />
     <Compile Include="LeagueBetTypeAnalysis\LeagueBetTypeAnalysisDataAccess.cs" />
     <Compile Include="Leagues\LeaguesDataAccess.cs" />
+    <Compile Include="LeagueWinningMonitor\LeagueWinningMonitorDataAccess.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
     <Compile Include="ParlayMonitor\ParlayMonitorDataAccess.cs" />
     <Compile Include="Members\MembersDataAccess.cs" />

@@ -62,13 +62,15 @@
                             </td>
                             <td>
                                 @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
+                                <label class="label" style="float:right;">@ViewLang.SportsType</label>
                             </td>
-                            <td></td>
-                            <td>
-                                @Html.Label("sportsType", ViewLang.SportsType, new { @class = "lable" })
-                            </td>
-                            <td colspan="2">
+                            <td colspan="3">
+
                                 @RazorHelper.SportTypesDropDown()
+                            </td>
+                            <td>
+                                @Html.Label("odds", "Odds=<", new { @class = "lable" })
+                                <input type="text" id="txtOdds" style="width: 65px">
                             </td>
                             <td colspan="3">
                                 @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })

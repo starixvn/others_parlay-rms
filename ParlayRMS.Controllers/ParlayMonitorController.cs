@@ -99,6 +99,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
+            ModelState.Remove("Odds");
             if (!ModelState.IsValid)
             {
                 return InvalidModelJson();
@@ -115,7 +116,8 @@ namespace ParlayRMS.Controllers
                                 model.SelectTop,
                                 model.MaxTransId,
                                 model.Markets,
-                                model.IsCornerParlay);
+                                model.IsCornerParlay,
+                                model.Odds);
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {

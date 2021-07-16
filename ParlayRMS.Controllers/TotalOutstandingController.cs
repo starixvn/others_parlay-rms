@@ -93,15 +93,18 @@ namespace ParlayRMS.Controllers
                 {
                     decimal totalStackPt = 0;
                     decimal totalMaxPayoutPt = 0;
+                    decimal totalPotentialWinningAmount = 0;
                     foreach (var item in data)
                     {
                         totalStackPt += item.StakePt;
                         totalMaxPayoutPt += item.MaxPayoutPt;
+                        totalPotentialWinningAmount += item.PotentialWinningAmount;
                     }
 
                     ViewBag.TotalData = new TotalDataModel
                     {
                         StakePt = totalStackPt,
+                        PotentialWinningAmount = totalPotentialWinningAmount,
                         MaxPayoutPt = totalMaxPayoutPt
                     };
                 }

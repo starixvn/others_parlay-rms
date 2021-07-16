@@ -10,6 +10,8 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
     public class SimilarBetsDataAccess : BaseDataAccess
     {
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        private const byte runningStatus = 0;
+
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
         {
             using (var db = new ObjectDb("RMS_Similar_Parlay_Betlist"))
@@ -25,6 +27,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                         {
                             DataRow info = list.Rows[0];
                             DataTable details = dataset.Tables[1];
+                            var isRunningStatus = DbConverter.ToByte(info["statusID"]) == runningStatus;
 
                             return new RMS_Similar_Parlay_Betlist
                             {
@@ -45,6 +48,8 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 BetType = DbConverter.ToInt32(info["bettype"]),
                                 IsGOF = DbConverter.ToBoolean(info["IsGOF"]),
                                 StatusID = DbConverter.ToByte(info["statusID"]),
+                                PotentialWinningAmount = isRunningStatus ? DbConverter.ToDecimal(info["potentialWinningAmt"]) : 0,
+                                HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(info["houseLoseAmt"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),
@@ -52,7 +57,10 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Username = DbConverter.ToString(row["username"]),
                                     CustId = DbConverter.ToInt32(row["custid"]),
                                     Level = DbConverter.ToInt32(row["level"]),
+                                    Stake = DbConverter.ToDecimal(row["stake"]),
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
+                                    PotentialWinningAmount = isRunningStatus ? DbConverter.ToDecimal(row["potentialWinningAmt"]) : 0,
+                                    HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(row["houseLoseAmt"]),
                                     Similar_Selection = DbConverter.ToInt32(row["similar_selection"])
                                 })
                             };
