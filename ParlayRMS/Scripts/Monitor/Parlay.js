@@ -20,6 +20,8 @@ function UserSettings() {
     this.reportType = 1;
     this.isCornerParlay = false;
     this.odds = null;
+    this.leagueGroups = null;
+    this.customerClass = null;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -31,7 +33,9 @@ function UserSettings() {
             && this.netWinAfterPT == settings.netWinAfterPT
             && this.reportType == settings.reportType
             && this.isCornerParlay == setting.isCornerParlay
-            && this.odds == setting.odds) {
+            && this.odds == setting.odds
+            && this.leagueGroups == settings.leagueGroups
+            && this.customerClass == settings.customerClass) {
             return false;
         }
 
@@ -110,9 +114,19 @@ var settingsController = function () {
 
             var selectTop = parseInt($("#selectTop").val());
 
+            var leagueGroups = $("#ddlGroup").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (leagueGroups == '') {
+                Validators.show($("#ddlGroup").multiselect("getButton").get(0), 'Please select your options');
+                return;
+            }
+
             var reportType = $('input[name=radFilterAfterPT]:checked').val() * 1;
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
+
+            var customerClass = parseInt($("#txtCustomerClass").val());
 
             var odds = $.trim($('#txtOdds').val().replace(/,/g, ''));
 
@@ -134,6 +148,8 @@ var settingsController = function () {
             userSettings.markets = markets;
             userSettings.isCornerParlay = isCornerParlay;
             userSettings.odds = odds;
+            userSettings.leagueGroups = leagueGroups;
+            userSettings.customerClass = customerClass;
             return userSettings;
         }
     }
@@ -165,7 +181,9 @@ var timerController = function () {
             maxTransId: maxTransId,
             markets: settings.markets,
             isCornerParlay: settings.isCornerParlay,
-            odds: settings.odds
+            odds: settings.odds,
+            leagueGroups: settings.leagueGroups,
+            customerClass: settings.customerClass
         }
 
         $.ajax({
@@ -375,6 +393,28 @@ $(document).ready(function () {
         }
     });
 
+    $("#ddlGroup").multiselect({
+        minWidth: 132,
+        height: 136,
+        create: function () {
+            $("#ddlGroup").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
     $("#refreshTime").multiselect({
         minWidth: 60,
         height: 60,
@@ -542,7 +582,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == 0) {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(13);
+                var noinfo = CreateNoInfoRow(14);
                 tbody.append(noinfo);
             }
         }
@@ -580,6 +620,7 @@ function CreateRow(order, item) {
     }
 
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
+    r[++j] = '<td class="numeric">' + item.CustomerClass + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.PotentialWinningAmount)).format('0,0') + '</td>';
@@ -718,4 +759,13 @@ function ViewPenaltyShootoutParlayDetails(transId, username) {
             loading.hide();
         }
     });
+}
+
+function isNumber(event) {
+    var code = event.keyCode;
+    if (code >= 48 && code <= 57) {
+        return true;
+    }
+
+    return false;
 }

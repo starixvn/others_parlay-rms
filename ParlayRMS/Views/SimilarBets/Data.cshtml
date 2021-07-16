@@ -17,6 +17,9 @@
                 <th style="width: 120px">
                     @ViewLang.Username
                 </th>
+                <th style="width: 100px">
+                    @ViewLang.CustomerClass
+                </th>
                 <th style="width: 75px">
                     @ViewLang.Odds
                 </th>
@@ -56,6 +59,9 @@
                 </td>
                 <td class="@ModelsHelper.GetClassByMemberLevel(@Model.Level)">
                     @Model.Username
+                </td>
+                <td class="numeric">
+                    @Model.CustomerClass
                 </td>
                 <td class="numeric">
                     @Formatter.FormatOdds(Model.Odds)
@@ -129,17 +135,18 @@
         </tbody>
     </table>
 </div>
-<div id="similarbetlist" class="details" style="display: none; width: 1070px">
+<div id="similarbetlist" class="details" style="display: none; width: 1170px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
         <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
-    <div style="width: 1074px">
+    <div style="width: 1174px">
         <table class="sub thead">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
                 <col width="150px" />
+                <col width="100px" />
                 <col width="160px" />
                 <col width="160px" />
                 <col width="160px" />
@@ -156,6 +163,9 @@
                     </th>
                     <th>
                         @ViewLang.Username
+                    </th>
+                    <th>
+                        @ViewLang.CustomerClass
                     </th>
                     <th class="sortable">
                         @ViewLang.AverageStakeAfterPT
@@ -176,12 +186,13 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1088px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1188px">
         <table class="sub tbody">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
                 <col width="150px" />
+                <col width="100px" />
                 <col width="160px" />
                 <col width="160px" />
                 <col width="160px" />
@@ -201,6 +212,9 @@
                         </td>
                         <td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
                             @item.Username
+                        </td>
+                        <td class="numeric">
+                            @item.CustomerClass
                         </td>
                         <td class="numeric">
                             @Formatter.FormatWithoutRounding(item.Stake)

@@ -3,11 +3,13 @@
     int id = 0;
     var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
 }
-<div style="width: 581px">
+<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+<div style="width: 731px">
     <table class="main">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
+            <col width='150px' />
             <col width='140px' />
             <col width='140px' />
             <col width='100px' />
@@ -19,6 +21,9 @@
                 </th>
                 <th>
                     @ViewLang.MemberUsername
+                </th>
+                <th>
+                    @ViewLang.CustomerClass
                 </th>
                 <th>
                     @ViewLang.StakeAfterPT
@@ -33,18 +38,19 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 600px">
+<div class="scrollGridContent" style="max-height: 500px; width: 750px">
     <table class="main" id="result">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
+            <col width='150px' />
             <col width='140px' />
             <col width='140px' />
             <col width='100px' />
         </colgroup>
         <tbody>
             @foreach (var item in Model)
-            { 
+            {
                 <tr>
                     <td class="numeric">
                         @(++id)
@@ -53,6 +59,9 @@
                         <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewMember('@item.Username');">
                             @item.Username
                         </a>
+                    </td>
+                    <td class="numeric">
+                        @item.CustomerClass
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber2(item.StakePt)
@@ -68,20 +77,21 @@
         </tbody>
     </table>
 </div>
-<div style="width: 581px" class="mainfooter">
+<div style="width: 731px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='30px' />
             <col width='170px' />
+            <col width='150px' />
             <col width='140px' />
             <col width='140px' />
             <col width='100px' />
         </colgroup>
         <tfoot>
             @if (totalData != null)
-            { 
+            {
                 <tr>
-                    <td colspan="2" class="center">
+                    <td colspan="3" class="center">
                         @ViewLang.Total
                     </td>
                     <td class="numeric">
@@ -96,9 +106,9 @@
                 </tr>
             }
             else
-            { 
+            {
                 <tr>
-                    <td colspan="5" style="text-align: center; width: 571px">
+                    <td colspan="6" style="text-align: center; width: 721px">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

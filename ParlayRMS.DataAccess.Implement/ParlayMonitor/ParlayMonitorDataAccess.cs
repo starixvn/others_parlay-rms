@@ -21,7 +21,9 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
             long maxTransId,
             string markets,
             bool isCornerParlay,
-            decimal? odds)
+            decimal? odds,
+            string leagueGroups,
+            long? customerClass)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
@@ -39,6 +41,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                 db.AddInParameter("market", DbType.String, markets);
                 db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
                 db.AddInParameter("odds", DbType.Decimal, odds);
+                db.AddInParameter("customerClass", DbType.Int16, customerClass);
+                db.AddInParameter("leagueGroupId", DbType.String, leagueGroups);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -66,7 +70,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             CustId = reader.ToInt32("custid"),
                             IsLive = reader.ToBoolean("islive"),
                             IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1,
-                            IsGOF = reader.ToBoolean("IsGOF")
+                            IsGOF = reader.ToBoolean("IsGOF"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
                         });
                     }
                 }

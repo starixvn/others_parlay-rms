@@ -32,5 +32,9 @@ namespace ParlayRMS.ViewModel.PalayMonitor
         public bool IsCornerParlay { get; set; }
 
         public decimal? Odds { get; set; }
+
+        public string LeagueGroups { get; set; }
+
+        public long? CustomerClass { get; set; }
     }
 }

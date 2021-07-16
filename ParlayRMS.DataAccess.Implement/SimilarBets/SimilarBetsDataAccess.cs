@@ -50,6 +50,7 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                 StatusID = DbConverter.ToByte(info["statusID"]),
                                 PotentialWinningAmount = isRunningStatus ? DbConverter.ToDecimal(info["potentialWinningAmt"]) : 0,
                                 HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(info["houseLoseAmt"]),
+                                CustomerClass = info["CustomerClass"] == DBNull.Value ? "None" : DbConverter.ToString(info["CustomerClass"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),
@@ -61,7 +62,8 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
                                     Max_Payout = DbConverter.ToDecimal(row["net_win"]),
                                     PotentialWinningAmount = isRunningStatus ? DbConverter.ToDecimal(row["potentialWinningAmt"]) : 0,
                                     HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(row["houseLoseAmt"]),
-                                    Similar_Selection = DbConverter.ToInt32(row["similar_selection"])
+                                    Similar_Selection = DbConverter.ToInt32(row["similar_selection"]),
+                                    CustomerClass = row["CustomerClass"] == DBNull.Value ? "None" : DbConverter.ToString(row["CustomerClass"])
                                 })
                             };
                         }

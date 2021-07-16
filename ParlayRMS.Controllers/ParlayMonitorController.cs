@@ -1,4 +1,5 @@
-﻿using ParlayRMS.Models;
+﻿using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
@@ -100,12 +101,19 @@ namespace ParlayRMS.Controllers
         public ActionResult Data(DataModel model)
         {
             ModelState.Remove("Odds");
+            ModelState.Remove("CustomerClass");
             if (!ModelState.IsValid)
             {
                 return InvalidModelJson();
             }
 
-            var data = _parlayMonitorCacheService.GetParlayMonitorTickets(
+            bool isValidCustomerClass = true;
+            if (model.CustomerClass.HasValue && model.CustomerClass.Value > Int16.MaxValue)
+            {
+                isValidCustomerClass = false;
+            }
+
+            var data = isValidCustomerClass ? _parlayMonitorCacheService.GetParlayMonitorTickets(
                                 model.Combos,
                                 model.ParlayTypes,
                                 model.SportsTypes,
@@ -117,7 +125,9 @@ namespace ParlayRMS.Controllers
                                 model.MaxTransId,
                                 model.Markets,
                                 model.IsCornerParlay,
-                                model.Odds);
+                                model.Odds,
+                                model.LeagueGroups,
+                                model.CustomerClass) : new List<RMS_Monitor_Parlay_Betlist>();
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {

@@ -22,5 +22,7 @@ namespace ParlayRMS.DTO.TotalOutstanding
         public decimal MaxPayoutPt { get; set; }
 
         public int BetCount { get; set; }
+
+        public string CustomerClass { get; set; }
     }
 }
