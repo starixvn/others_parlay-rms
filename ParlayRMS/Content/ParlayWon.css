@@ -1,76 +1,77 @@
 ﻿.pagination {
-    width: 1720px;
+    width: 1820px;
     line-height: 27px;
     height: 27px;
     margin-top: -5px;
     border: 1px solid #666;
     padding: 3px 0px;
 }
-.pagination ul li {
-    list-style-type: none;
-    float: left;
-}
 
-.pagination ul li a {
-    float: left;
-    color: #666;
-    font-size: 11px;
-    line-height: 24px;
-    font-weight: normal;
-    text-align: center;
-    border: 1px solid #BBB;
-    min-width: 14px;
-    padding: 0 7px;
-    margin: 0 5px 0 0;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    background: #efefef; /* Old browsers */
-    background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%); /* IE10+ */
-    background: linear-gradient(top, #ffffff 0%,#efefef 100%); /* W3C */
-}
+    .pagination ul li {
+        list-style-type: none;
+        float: left;
+    }
 
-.pagination ul li a:hover {
-    text-decoration: none;
-    background: #FCFCFC;
-}
+        .pagination ul li a {
+            float: left;
+            color: #666;
+            font-size: 11px;
+            line-height: 24px;
+            font-weight: normal;
+            text-align: center;
+            border: 1px solid #BBB;
+            min-width: 14px;
+            padding: 0 7px;
+            margin: 0 5px 0 0;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            background: #efefef; /* Old browsers */
+            background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Opera11.10+ */
+            background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%); /* IE10+ */
+            background: linear-gradient(top, #ffffff 0%,#efefef 100%); /* W3C */
+        }
 
-.pagination ul li a.active {
-    background: #666;
-    color: #FFF;
-    border-color: #444;
-    box-shadow: 0 1px 0 rgba(255,255,255,1), 0 0 2px rgba(0, 0, 0, 0.3) inset;
-    cursor: default;
-}
+            .pagination ul li a:hover {
+                text-decoration: none;
+                background: #FCFCFC;
+            }
 
-.pagination ul li.disabled a, .paginationul li.disabled a:focus, .paginationul li.disabled a:hover, .paginationul li.disabled span, .pagination ul li.disabled span:focus, .pagination ul li.disabled span:hover {
-    color: #777;
-    cursor: not-allowed;
-    background-color: #fff;
-    border-color: #ddd;
-}
+            .pagination ul li a.active {
+                background: #666;
+                color: #FFF;
+                border-color: #444;
+                box-shadow: 0 1px 0 rgba(255,255,255,1), 0 0 2px rgba(0, 0, 0, 0.3) inset;
+                cursor: default;
+            }
+
+        .pagination ul li.disabled a, .paginationul li.disabled a:focus, .paginationul li.disabled a:hover, .paginationul li.disabled span, .pagination ul li.disabled span:focus, .pagination ul li.disabled span:hover {
+            color: #777;
+            cursor: not-allowed;
+            background-color: #fff;
+            border-color: #ddd;
+        }
 
 #pageSizeDiv {
     width: 150px;
     float: left;
 }
-#pageSizeDiv label {
-    color: #2E64FE;
-    font-weight: 700;
-    padding-left: 5px;
-    padding-right: 5px;
-}
+
+    #pageSizeDiv label {
+        color: #2E64FE;
+        font-weight: 700;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
 #detailPagination {
-    float:right;
+    float: right;
     padding-right: 5px;
 }
 
-#pageSizeDiv select#ddlPageSize
-{
+#pageSizeDiv select#ddlPageSize {
     background-color: #eee;
     background-image: linear-gradient(to top, #ddd, #eee 33%);
     padding: 2px;
@@ -82,12 +83,12 @@
     border: 1px solid #999999;
 }
 
-.ui-multiselect-filter input:focus {
-    outline: none;
-}
+    .ui-multiselect-filter input:focus {
+        outline: none;
+    }
 
-.ui-multiselect-filter input::-webkit-search-cancel-button,
-.ui-multiselect-filter input::-webkit-search-decoration {
-  -webkit-appearance: none;
-  appearance: none;
-}
+    .ui-multiselect-filter input::-webkit-search-cancel-button,
+    .ui-multiselect-filter input::-webkit-search-decoration {
+        -webkit-appearance: none;
+        appearance: none;
+    }

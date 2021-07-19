@@ -67,7 +67,7 @@ namespace ParlayRMS.Controllers
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;
                     ViewBag.GrandTotal = model.Total;
-                    ViewBag.CustomerClass = isAgent ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
+                    ViewBag.CustomerClass = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().CustomerClass ?? "None";
 
                     if (isAgent)
                     {

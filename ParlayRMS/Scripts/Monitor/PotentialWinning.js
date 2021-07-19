@@ -548,7 +548,7 @@ function ViewTotalBetDetails(custId) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="9" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="10" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');

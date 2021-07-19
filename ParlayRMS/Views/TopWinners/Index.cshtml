@@ -62,7 +62,7 @@
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.CustomerClass)
-                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", onkeypress = "return IsNumber(event)" })
+                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return IsNumber(event)" })
                 </div>
             </div>
         </div>

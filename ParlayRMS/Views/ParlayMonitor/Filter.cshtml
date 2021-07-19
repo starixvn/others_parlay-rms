@@ -58,7 +58,7 @@
                 </div>
                 <div class="group">
                     @Html.Label("customerClass", @ViewLang.CustomerClass, new { @class = "lable" })
-                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", onkeypress = "return isNumber(event)" })
+                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return isNumber(event)" })
                 </div>
                 <div class="group">
                     @Html.Label("odds", "Odds=<", new { @class = "lable" })
