@@ -74,7 +74,7 @@
                                 @Html.Label("selectTop", @ViewLang.CustomerClass, new { @class = "lable" })
                             </td>
                             <td colspan="2">
-                                @Html.TextBox("customerClass", "", new { style = "width: 100px;" })
+                                @Html.TextBox("customerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return isNumber(event)" })
                             </td>
                             <td>
                                 @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })

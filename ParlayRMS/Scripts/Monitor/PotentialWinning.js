@@ -226,15 +226,6 @@ $(document).ready(function () {
         aForm: false
     });
 
-    $("#customerClass").autoNumeric({
-        aSep: ',',
-        aDec: '.',
-        vMin: '0.00',
-        vMax: '999999',
-        aPad: false,
-        aForm: false
-    });
-
     $("#winningAmount").bind('keyup', function (event) {
         if (event.keyCode == 13) {
             $("#submit").click();
@@ -724,4 +715,13 @@ function InitTableSorter(table, header) {
             });
         }
     });
+}
+
+function isNumber(event) {
+    var code = event.keyCode;
+    if (code >= 48 && code <= 57) {
+        return true;
+    }
+
+    return false;
 }
