@@ -89,7 +89,7 @@ namespace ParlayRMS.Controllers
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
                 var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
-                ViewBag.CustomerClass = data.FirstOrDefault().CustomerClass;
+                ViewBag.CustomerClass = string.Empty;
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -102,7 +102,7 @@ namespace ParlayRMS.Controllers
                         totalMaxPayoutPt += item.MaxPayoutPt;
                         totalPotentialWinningAmount += item.PotentialWinningAmount;
                     }
-
+                    ViewBag.CustomerClass = data.FirstOrDefault().CustomerClass;
                     ViewBag.TotalData = new TotalDataModel
                     {
                         StakePt = totalStackPt,
