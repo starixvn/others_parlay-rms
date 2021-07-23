@@ -21,5 +21,7 @@
         public decimal HouseLoseAmount { get; set; }
 
         public int Similar_Selection { get; set; }
+
+        public string CustomerClass { get; set; }
     }
 }

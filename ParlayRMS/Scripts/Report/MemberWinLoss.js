@@ -6,7 +6,9 @@
         fromDate: null,
         toDate: null,
         btnSearch: null,
-        divResult: null
+        divResult: null,
+        lbCustomerClass: null,
+        filterControl: null
     },
     GetCachedDOM: function () {
         MemberWinLoss.CachedDOM.username = $("#username");
@@ -17,6 +19,8 @@
         MemberWinLoss.CachedDOM.toDate = $("#toDate");
         MemberWinLoss.CachedDOM.btnSearch = $("#btnSearch");
         MemberWinLoss.CachedDOM.divResult = $("#divResult");
+        MemberWinLoss.CachedDOM.lbCustomerClass = $("#lbCustomerClass");
+        MemberWinLoss.CachedDOM.filterControl = $(".filter-control");
     },
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
@@ -172,6 +176,7 @@
             },
             success: function (result) {
                 MemberWinLoss.CachedDOM.divResult.html(result);
+                MemberWinLoss.DisplayCustomerClass()
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -231,6 +236,13 @@
         }
 
         MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, username, pageIndex, isCached);
+    },
+    DisplayCustomerClass: function () {
+        var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
+        MemberWinLoss.CachedDOM.lbCustomerClass.html(html);
+        var filterWidth = MemberWinLoss.CachedDOM.filterControl.width();
+        var filterCustomerClass = MemberWinLoss.CachedDOM.lbCustomerClass.width();
+        MemberWinLoss.CachedDOM.filterControl.width(filterWidth + filterCustomerClass);
     }
 }
 function MovePage(pageIndex) {

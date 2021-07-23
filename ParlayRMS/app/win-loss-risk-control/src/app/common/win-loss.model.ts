@@ -13,4 +13,5 @@ export interface WinLossModel {
   rows: WinLossModel[];
   isCollapsed: boolean;
   site: string;
+  customerClass: string;
 }

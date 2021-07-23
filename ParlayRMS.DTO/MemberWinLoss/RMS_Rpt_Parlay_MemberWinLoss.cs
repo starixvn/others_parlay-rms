@@ -42,6 +42,8 @@ namespace ParlayRMS.DTO.MemberWinLoss
 
         public int NumOfSubrows { get; set; }
 
+        public string CustomerClass { get; set; }
+
         /// <summary>
         /// Add other member win loss data to current object.
         /// </summary>

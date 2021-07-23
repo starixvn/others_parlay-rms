@@ -3,10 +3,11 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.AgentMemberWinLoss;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 965px">
+    <div class="filter-control" style="width: 1015px">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -18,9 +19,12 @@
                     @Html.TextBox("username")
                 </div>
                 <div class="group">
+                    <p id="lbCustomerClass" style="padding: 10px 0px;">(CC:)</p>
+                </div>
+                <div class="group">
                     @Html.Label("parlayType", ViewLang.ParlayType, new { Style = "text-align: right; width: 75px;" })
                     @Html.DropDownList("parlayType", Config.ParlayTypes)
-                </div>                
+                </div>
                 <div class="group">
                     @Html.Label("fromDate", ViewLang.From)
                     @Html.TextBox("fromDate")
@@ -28,13 +32,13 @@
                 <div class="group">
                     @Html.Label("toDate", ViewLang.To, new { Style = "text-align: right; width: 32px;" })
                     @Html.TextBox("toDate")
-                </div>                
+                </div>
             </div>
-            <div class="row">   
+            <div class="row">
                 <div class="group">
                     @Html.Label(ViewLang.Combo, new { Style = "text-align: right; width: 95px;" })
                     @Html.DropDownList("combo", Config.Combos)
-                </div>             
+                </div>
                 <div id="divSportsTypes" class="group">
                     @Html.Label(ViewLang.SportsType)
                     @RazorHelper.SportTypesDropDown()

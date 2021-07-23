@@ -45,6 +45,8 @@ namespace ParlayRMS.DTO.SimilarBets
 
         public decimal HouseLoseAmount { get; set; }
 
+        public string CustomerClass { get; set; }
+
         public IEnumerable<RMS_Similar_Parlay_Betlist_Detail> Details { get; set; }
     }
 }

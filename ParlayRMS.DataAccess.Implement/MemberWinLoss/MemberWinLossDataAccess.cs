@@ -46,7 +46,8 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                             Member_Won = reader.ToDecimal("member_won"),
                             Member_Lose = reader.ToDecimal("member_lose"),
                             OurPT_Won = reader.ToDecimal("ourpt_won"),
-                            OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                            OurPT_Lose = reader.ToDecimal("ourpt_lose"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
                         });
                     }
                 }
@@ -93,7 +94,8 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                             Member_Won = reader.ToDecimal("member_won"),
                             Member_Lose = reader.ToDecimal("member_lose"),
                             OurPT_Won = reader.ToDecimal("ourpt_won"),
-                            OurPT_Lose = reader.ToDecimal("ourpt_lose")
+                            OurPT_Lose = reader.ToDecimal("ourpt_lose"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
                         });
                     }
                 }

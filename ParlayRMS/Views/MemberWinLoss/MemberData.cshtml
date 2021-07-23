@@ -2,6 +2,7 @@
 @{
     var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
 }
+<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <div style="width: 1381px" class="maintitle">
     <div class="information">
         @ViewBag.Title
@@ -170,7 +171,7 @@
                         @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
                     </td>
                     <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)                        
+                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
                     </td>
                 </tr>
             }

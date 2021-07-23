@@ -4,18 +4,20 @@
 @{
     var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
 }
-<div style="width: 1431px" class="maintitle">
+<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+<div style="width: 1531px" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
     </div>
 </div>
-<div style="width: 1431px">
+<div style="width: 1531px">
     <table class="main">
         <colgroup>
             <col width='110px' />
             <col width='140px' />
+            <col width='100px' />
             <col width='100px' />
             <col width='100px' />
             <col width='140px' />
@@ -33,6 +35,9 @@
                 </th>
                 <th rowspan="2" class="header2rows">
                     @ViewLang.Username
+                </th>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.CustomerClass
                 </th>
                 <th colspan="2">
                     @ViewLang.Ticket
@@ -79,11 +84,12 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 530px; width: 1431px">
+<div class="scrollGridContent" style="max-height: 530px; width: 1531px">
     <table class="main" id="result">
         <colgroup>
             <col width='110px' />
             <col width='140px' />
+            <col width='100px' />
             <col width='100px' />
             <col width='100px' />
             <col width='140px' />
@@ -124,10 +130,13 @@
                             <td class="center">
                                 @record.Username
                             </td>
+                            <td class="center">
+                                @record.CustomerClass
+                            </td>
                         }
                         else
                         {
-                            <td class="center" colspan="2">
+                            <td class="center" colspan="3">
                                 @ViewLang.Subtotal
                             </td>
                         }
@@ -162,11 +171,12 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1431px" class="mainfooter">
+<div style="width: 1531px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='110px' />
             <col width='140px' />
+            <col width='100px' />
             <col width='100px' />
             <col width='100px' />
             <col width='140px' />
@@ -181,7 +191,7 @@
             @if (Model.Count() > 0)
             {
                 <tr>
-                    <td class="center" colspan="2">
+                    <td class="center" colspan="3">
                         @ViewLang.Total
                     </td>
                     <td class="numeric">

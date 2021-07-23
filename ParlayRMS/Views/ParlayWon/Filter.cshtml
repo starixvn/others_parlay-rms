@@ -69,6 +69,10 @@
                     @Html.Label("", ViewLang.LiveType)
                     @Html.DropDownList("ddlLiveType", Config.LiveTypes)
                 </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.CustomerClass)
+                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return ParlayWon.IsNumber(event)" })
+                </div>
             </div>
         </div>
     </div>

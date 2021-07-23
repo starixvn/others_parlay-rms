@@ -35,5 +35,7 @@ namespace ParlayRMS.DTO.TotalOutstanding
         public int BetType { get; set; }
 
         public bool IsGOF { get; set; }
+
+        public string CustomerClass { get; set; }
     }
 }

@@ -19,6 +19,7 @@ function UserSettings() {
     this.winningAmount = 0;
     this.isCornerParlay = false;
     this.filterBy = 0;
+    this.customerClass = null;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlaysTypes == settings.parlaysTypes
@@ -28,7 +29,8 @@ function UserSettings() {
             && this.winningAmount == settings.winningAmount
             && this.reportType == settings.reportType
             && this.isCornerParlay == setting.isCornerParlay
-            && this.filterBy == settings.filterBy) {
+            && this.filterBy == settings.filterBy
+            && this.customerClass == settings.customerClass) {
             return false;
         }
 
@@ -103,6 +105,8 @@ var settingsController = function () {
 
             var filterBy = $('input[name=radFilterBy]:checked').val();
 
+            var customerClass = filterBy == '0' ? parseInt($("#customerClass").val()) : null;
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlaysTypes = parlaysTypes;
@@ -112,6 +116,7 @@ var settingsController = function () {
             userSettings.selectTop = selectTop;
             userSettings.isCornerParlay = isCornerParlay;
             userSettings.filterBy = filterBy;
+            userSettings.customerClass = customerClass;
 
             return userSettings;
         }
@@ -141,6 +146,7 @@ var timerController = function () {
             selectTop: settings.selectTop,
             isCornerParlay: settings.isCornerParlay,
             filterBy: settings.filterBy,
+            customerClass: settings.customerClass,
             agentId: cachedAgentId
         };
 
@@ -367,6 +373,10 @@ $(document).ready(function () {
         }
     });
 
+    $('input[name=radFilterBy]').change(function () {
+        $("#customerClass").prop('disabled', $(this).val() == '1');
+    });
+
     InitTableSorter($(memberResultSelector + ' #result'), $(memberResultSelector + ' #header'));
     InitTableSorter($(agentResultSelector + ' #result'), $(agentResultSelector + ' #header'));
 
@@ -383,26 +393,23 @@ $(document).ready(function () {
         },
         ontimeout: function () {
             closeBox.render($('#noflash'),
-            {
-                title: 'Alert Sound is disabled'
-            });
+                {
+                    title: 'Alert Sound is disabled'
+                });
         }
     });
 });
 
 function FillData(filterBy, data) {
     var table = "";
-    if (filterBy == 0)
-    {
+    if (filterBy == 0) {
         table = memberResultSelector + " #result";
         $(memberResultSelector).show();
-        if (cachedAgent)
-        {
+        if (cachedAgent) {
             $(breadcrumbSelector).html('<b>(<span style="color: #489ab2; cursor: pointer;" onclick="ViewData(null, null, 1);">Agent</span> >> ' + cachedAgent + ')</b>');
             $(breadcrumbSelector).show();
         }
-    } else
-    {
+    } else {
         table = agentResultSelector + " #result";
         $(agentResultSelector).show();
         $(breadcrumbSelector).show();
@@ -475,6 +482,7 @@ function CreateRowForMember(order, item, isHighLight) {
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
+    r[++j] = '<td>' + item.CustomerClass + '</td>';
     r[++j] = '<td>' + item.Currency + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
@@ -531,7 +539,7 @@ function ViewTotalBetDetails(custId) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="9" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="10" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
@@ -583,9 +591,7 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
         ViewSystemParlayDetails(username, transId, refNo);
     }
 
-
     function ViewSystemParlayDetails(username, transId, refNo) {
-
         var data = {
             TransId: transId,
             RefNo: refNo,
@@ -675,8 +681,7 @@ function ViewBetDetails(username, transId, refNo, betType, custId) {
     };
 }
 
-function ViewData(agentId, agent, filterBy)
-{
+function ViewData(agentId, agent, filterBy) {
     cachedAgentId = agentId;
     cachedAgent = agent;
     cachedFilter.filterBy = filterBy;
@@ -684,8 +689,7 @@ function ViewData(agentId, agent, filterBy)
     GetData();
 }
 
-function GetData()
-{
+function GetData() {
     $('#result').children('tbody').html('');
     $("#refreshNow").button('enable');
     $("#pause").prop('disabled', false);
@@ -711,4 +715,13 @@ function InitTableSorter(table, header) {
             });
         }
     });
+}
+
+function isNumber(event) {
+    var code = event.keyCode;
+    if (code >= 48 && code <= 57) {
+        return true;
+    }
+
+    return false;
 }

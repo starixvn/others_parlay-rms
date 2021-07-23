@@ -1,29 +1,30 @@
 ﻿@using ParlayRMS.ViewModel.Report
 @using ParlayRMS.DTO.ParlayWon;
 @using System;
-@model IEnumerable<RMS_Rpt_Parlay_ParlayWon> 
+@model IEnumerable<RMS_Rpt_Parlay_ParlayWon>
 @{
     var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
     var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
     var start = index;
 }
 <input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
-<div style="width: 1720px;" class="maintitle">
+<div style="width: 1820px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel"
-         onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies', '@filterOption.Site', '@filterOption.LiveType')"
+         onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies', '@filterOption.Site', '@filterOption.LiveType', '@filterOption.CustomerClass')"
          title="Export Excel">
     </div>
 </div>
-<div style="width: 1720px">
+<div style="width: 1820px">
     <table class="main" id="header">
         <colgroup>
             <col width='70' />
             <col width='120' />
             <col width='150' />
             <col width='150' />
+            <col width='100' />
             <col width='80' />
             <col width='80' />
             <col width='120' />
@@ -51,6 +52,9 @@
                     @ViewLang.Username
                 </th>
                 <th>
+                    @ViewLang.CustomerClass
+                </th>
+                <th>
                     @ViewLang.Currency
                 </th>
                 <th class="sortable" data-col-index="7">
@@ -59,13 +63,13 @@
                 <th class="sortable" data-col-index="3">
                     @ViewLang.Stake
                 </th>
-                <th  class="sortable" data-col-index="4">
+                <th class="sortable" data-col-index="4">
                     @ViewLang.StakeAfterPT
                 </th>
-                <th  class="sortable" data-col-index="5">
+                <th class="sortable" data-col-index="5">
                     @ViewLang.WinningAmount
                 </th>
-                <th  class="sortable" data-col-index="6">
+                <th class="sortable" data-col-index="6">
                     @ViewLang.HouseLoseAmount
                 </th>
                 <th>
@@ -87,13 +91,14 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1740px">
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1840px">
     <table class="main" id="result">
         <colgroup>
             <col width='70' />
             <col width='120' />
             <col width='150' />
             <col width='150' />
+            <col width='100' />
             <col width='80' />
             <col width='80' />
             <col width='120' />
@@ -121,6 +126,9 @@
                     </td>
                     <td class="center">
                         @item.Username
+                    </td>
+                    <td>
+                        @item.CustomerClass
                     </td>
                     <td>
                         @item.Currency
@@ -163,13 +171,14 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1720px" class="mainfooter">
+<div style="width: 1820px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='70' />
             <col width='120' />
             <col width='150' />
             <col width='150' />
+            <col width='100' />
             <col width='80' />
             <col width='80' />
             <col width='120' />
@@ -185,10 +194,10 @@
         <tfoot>
             @if (index == 0)
             {
-                <tr><td class="noinfo" colspan="15">@ViewLang.NoInformation</td></tr>
+                <tr><td class="noinfo" colspan="16">@ViewLang.NoInformation</td></tr>
             }
         </tfoot>
-</table>
+    </table>
 </div>
 <br />
 @if (index > 0)

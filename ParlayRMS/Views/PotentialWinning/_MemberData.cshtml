@@ -1,10 +1,11 @@
 ﻿<div id="divMemberResult">
-    <div style="width: 1390px">
+    <div style="width: 1480px">
         <table class="main" id="header">
             <colgroup>
                 <col width='50' />
                 <col width='160' />
                 <col width='150' />
+                <col width='90' />
                 <col width='90' />
                 <col width='150' />
                 <col width='150' />
@@ -23,7 +24,10 @@
                     <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="2">
                         @ViewLang.Username
                     </th>
-                    <th rowspan="2" class="header2rows sortable" data-col-index="3">
+                    <th rowspan="2" class="header2rows sortable" data-col-type="int-string" data-col-index="3">
+                        @ViewLang.CustomerClass
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-index="4">
                         @ViewLang.Currency
                     </th>
                     <th colspan="4" class="header2rows">
@@ -34,28 +38,29 @@
                     </th>
                 </tr>
                 <tr>
-                    <th data-col-type="float" class="sortable" data-col-index="4">
+                    <th data-col-type="float" class="sortable" data-col-index="5">
                         @ViewLang.Odds
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="5">
+                    <th data-col-type="float" class="sortable" data-col-index="6">
                         @ViewLang.Stake
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="6">
+                    <th data-col-type="float" class="sortable" data-col-index="7">
                         @ViewLang.WinningAmount
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="7">
+                    <th data-col-type="float" class="sortable" data-col-index="8">
                         @ViewLang.CompanyLoseAmount
                     </th>
                 </tr>
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 630px; width: 1200px">
+    <div class="scrollGridContent" style="max-height: 630px; width: 1290px">
         <table class="main" id="result">
             <colgroup>
                 <col width='50' />
                 <col width='160' />
                 <col width='150' />
+                <col width='90' />
                 <col width='90' />
                 <col width='150' />
                 <col width='150' />

@@ -76,6 +76,13 @@ ParlayRMS.TotalOutstanding = {
         if (username != '') {
             this.LoadData();
         }
+
+        $('#username').bind("keyup", function (event) {
+            if (event.keyCode == 13) {
+                $('#username').blur();
+                $('#submit').click();
+            }
+        });
     },
     LoadData: function () {
         var combos = $("#combo").multiselect("getChecked").map(function () {
@@ -130,6 +137,7 @@ ParlayRMS.TotalOutstanding = {
                 $('#divResult').show();
                 $('#divResult').html(result);
                 $('#result>tbody>tr:even').addClass("even");
+                ParlayRMS.TotalOutstanding.DisplayCustomerClass();
 
                 var table = $('#result');
                 var header = $('#header');
@@ -251,8 +259,6 @@ ParlayRMS.TotalOutstanding = {
         };
     },
 
-
-
     ViewSimilarBets: function (transId) {
         var url = resolveClientUrl('SimilarBets?betid=') + transId;
         window.open(url, '_blank');
@@ -269,6 +275,10 @@ ParlayRMS.TotalOutstanding = {
         }).get().join(',');
         var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlayTypes=' + parlayTypes;
         window.open(url, '_blank');
+    },
+    DisplayCustomerClass: function () {
+        var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
+        $("#lbCustomerClass").html(html);
     }
 };
 

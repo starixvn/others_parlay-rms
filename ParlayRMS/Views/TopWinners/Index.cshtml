@@ -62,7 +62,7 @@
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.CustomerClass)
-                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", onkeypress = "return IsNumber(event)" })
+                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return IsNumber(event)" })
                 </div>
             </div>
         </div>
@@ -128,13 +128,13 @@
                     <th>
                         @ViewLang.CompanyLoseAmount
                     </th>
-                    <th class="sortable" data-col-type="float" data-col-index="6">
+                    <th class="sortable" data-col-type="float" data-col-index="7">
                         @ViewLang.Stake
                     </th>
-                    <th class="sortable" data-col-type="float" data-col-index="7">
+                    <th class="sortable" data-col-type="float" data-col-index="8">
                         @ViewLang.WinningAmount
                     </th>
-                    <th class="sortable" data-col-type="float" data-col-index="8">
+                    <th class="sortable" data-col-type="float" data-col-index="9">
                         @ViewLang.CompanyLoseAmount
                     </th>
                 </tr>

@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.TotalOutstanding;
 }
 <div class="filter">
-    <div class="filter-control" style="border: 1px solid black; width: 1230px;">
+    <div class="filter-control" style="border: 1px solid black; width: 100%;">
         <div class="minimizetitle">
             <div class="minimizecontent">
                 @ViewLang.FilterControl
@@ -23,6 +23,9 @@
                             </td>
                             <td>
                                 @Html.TextBox("username", Model.Username)
+                            </td>
+                            <td>
+                                <p id="lbCustomerClass" style="padding: 10px 0px;">(CC:)</p>
                             </td>
                             <td style="width: 30px">
                                 @Html.Label("combo", ViewLang.Combo, new { @class = "lable" })

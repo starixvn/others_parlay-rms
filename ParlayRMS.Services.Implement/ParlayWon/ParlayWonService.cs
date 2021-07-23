@@ -33,7 +33,8 @@ namespace ParlayRMS.Services.Implement.ParlayWon
                 ref outputParams,
                 options.Currencies,
                 options.Site,
-                options.LiveType);
+                options.LiveType,
+                options.CustomerClass);
         }
     }
 }

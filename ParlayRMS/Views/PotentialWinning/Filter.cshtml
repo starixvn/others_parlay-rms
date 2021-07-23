@@ -2,7 +2,8 @@
     <div class="filter-control" style="border: 1px solid black; width: 100%;">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -69,18 +70,25 @@
                             <td>
                                 @Html.DropDownList("selectTop", (List<SelectListItem>)ViewBag.SelectTops)
                             </td>
-
                             <td>
-                                @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
+                                @Html.Label("selectTop", @ViewLang.CustomerClass, new { @class = "lable" })
                             </td>
                             <td colspan="2">
-                                @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
+                                @Html.TextBox("customerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return isNumber(event)" })
+                            </td>
+                            <td>
+                                @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
+                                @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes)
+                            </td>
+                            <td colspan="2">
+                                @ViewLang.Seconds
                             </td>
                             <td>
                                 <div id="refreshNow" style="width: 140px">
                                     @ViewLang.RefreshNow
                                     <div id="timer" style="float: right; width: 30px; padding-left: 2px;">
-                                        [60]</div>
+                                        [60]
+                                    </div>
                                 </div>
                             </td>
                             <td>

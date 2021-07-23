@@ -242,6 +242,11 @@ var tableSorter = function () {
                 } else if (type == 'ignorecase') {
                     x = x.toLowerCase();
                     y = y.toLowerCase();
+                } else if (type == 'int-string') {
+                    x = parseInt(x.replace(/,/g, ''));
+                    y = parseInt(y.replace(/,/g, ''));
+                    x = Number.isNaN(x) ? 32767 : x;
+                    y = Number.isNaN(y) ? 32767 : y;
                 }
 
                 if (sortDirection == 'asc') {

@@ -45,9 +45,11 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             long maxTransId,
             string markets,
             bool isCornerParlay,
-            decimal? odds)
+            decimal? odds,
+            string leagueGroups,
+            long? customerClass)
         {
-            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds);
+            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass);
             foreach (var item in data)
             {
                 item.Stake = Math.Round(item.Stake, 2);

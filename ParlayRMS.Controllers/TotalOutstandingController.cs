@@ -7,6 +7,7 @@ using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
@@ -88,6 +89,7 @@ namespace ParlayRMS.Controllers
             if (customerInfo.RoleId == (int)RoleId.Member)
             {
                 var data = _service.GetTotalOutstandingForMember(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
+                ViewBag.CustomerClass = string.Empty;
                 ViewBag.TotalData = null;
                 if (data.Count > 0)
                 {
@@ -100,7 +102,7 @@ namespace ParlayRMS.Controllers
                         totalMaxPayoutPt += item.MaxPayoutPt;
                         totalPotentialWinningAmount += item.PotentialWinningAmount;
                     }
-
+                    ViewBag.CustomerClass = data.FirstOrDefault().CustomerClass;
                     ViewBag.TotalData = new TotalDataModel
                     {
                         StakePt = totalStackPt,
@@ -115,6 +117,7 @@ namespace ParlayRMS.Controllers
             {
                 var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
                 ViewBag.TotalData = null;
+                ViewBag.CustomerClass = string.Empty;
                 if (data.Count > 0)
                 {
                     decimal totalStackPt = 0;

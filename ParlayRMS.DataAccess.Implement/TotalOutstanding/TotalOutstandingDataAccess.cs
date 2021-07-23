@@ -40,7 +40,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             NumberWon = reader.ToInt32("numberwon"),
                             SportType = reader.ToInt32("sporttype"),
                             BetType = reader.ToInt32("bettype"),
-                            IsGOF = reader.ToBoolean("IsGOF")
+                            IsGOF = reader.ToBoolean("IsGOF"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToString("CustomerClass")
                         });
                     }
                 }
@@ -71,7 +72,8 @@ namespace ParlayRMS.DataAccess.Implement.TotalOutstanding
                             Username = reader.ToString("username"),
                             StakePt = reader.ToDecimal("stakept"),
                             MaxPayoutPt = reader.ToDecimal("net_win"),
-                            BetCount = reader.ToInt32("betcount")
+                            BetCount = reader.ToInt32("betcount"),
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToString("CustomerClass")
                         });
                     }
                 }

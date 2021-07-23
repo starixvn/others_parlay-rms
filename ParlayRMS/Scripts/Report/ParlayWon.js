@@ -194,9 +194,9 @@
                 return;
             }
 
-            var combos = $("#combo").multiselect("getChecked").map(function() {
+            var combos = $("#combo").multiselect("getChecked").map(function () {
                 return this.value;
-             }).get().join(',');
+            }).get().join(',');
             if (combos == '') {
                 Validators.show($("#combo").multiselect("getButton").get(0), 'Please select your options');
                 return;
@@ -230,6 +230,8 @@
 
             var liveType = parseInt($("#ddlLiveType").val());
 
+            var customerClass = parseInt($("#txtCustomerClass").val());
+
             var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
             var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));
 
@@ -254,6 +256,7 @@
                 currencies,
                 site,
                 liveType,
+                customerClass,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -274,6 +277,7 @@
                 ParlayWon.cachedObject.currencies,
                 ParlayWon.cachedObject.site,
                 ParlayWon.cachedObject.liveType,
+                ParlayWon.cachedObject.customerClass,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -315,6 +319,7 @@
                 ParlayWon.cachedObject.currencies,
                 ParlayWon.cachedObject.site,
                 ParlayWon.cachedObject.liveType,
+                ParlayWon.cachedObject.customerClass,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -349,7 +354,6 @@
                     }
                 });
             }
-           
 
             if (!currentColIndex) {
                 currentColIndex = $(currentObject).index();
@@ -357,23 +361,24 @@
 
             ParlayWon.cachedObject.sortById = parseInt(currentColIndex);
             ParlayWon.Data(ParlayWon.cachedObject.parlayTypes,
-              ParlayWon.cachedObject.fromDate,
-              ParlayWon.cachedObject.toDate,
-              ParlayWon.cachedObject.combos,
-              ParlayWon.cachedObject.levels,
-              ParlayWon.cachedObject.sportsType,
-              ParlayWon.cachedObject.houseAmountFrom,
-              ParlayWon.cachedObject.houseAmountTo,
-              ParlayWon.cachedObject.currencies,
-              ParlayWon.cachedObject.site,
-              ParlayWon.cachedObject.liveType,
-              ParlayWon.cachedObject.sortById,
-              ParlayWon.cachedObject.isSortAsc,
-              ParlayWon.cachedObject.pageIndex,
-              ParlayWon.cachedObject.pageSize);
+                ParlayWon.cachedObject.fromDate,
+                ParlayWon.cachedObject.toDate,
+                ParlayWon.cachedObject.combos,
+                ParlayWon.cachedObject.levels,
+                ParlayWon.cachedObject.sportsType,
+                ParlayWon.cachedObject.houseAmountFrom,
+                ParlayWon.cachedObject.houseAmountTo,
+                ParlayWon.cachedObject.currencies,
+                ParlayWon.cachedObject.site,
+                ParlayWon.cachedObject.liveType,
+                ParlayWon.cachedObject.customerClass,
+                ParlayWon.cachedObject.sortById,
+                ParlayWon.cachedObject.isSortAsc,
+                ParlayWon.cachedObject.pageIndex,
+                ParlayWon.cachedObject.pageSize);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, sortById, isSortAsc, pageIndex, pageSize) {
+    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass, sortById, isSortAsc, pageIndex, pageSize) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -386,6 +391,7 @@
             currencies: currencies,
             site: site,
             liveType: liveType,
+            customerClass: customerClass,
             sortById: sortById,
             isSortAsc: isSortAsc,
             pageIndex: pageIndex,
@@ -393,7 +399,7 @@
         }
 
         ParlayWon.cachedObject = data;
- 
+
         $.ajax({
             url: resolveClientUrl('ParlayWon/Data'),
             type: 'POST',
@@ -406,12 +412,11 @@
             success: function (result) {
                 $("#divResult").html(result);
                 var totalRows = parseInt($("#totalRows").val());
-               
+
                 $('#header').find(".sortable").each(function () {
                     if ($(this).attr("data-col-index") == ParlayWon.cachedObject.sortById) {
                         if (ParlayWon.cachedObject.isSortAsc) {
                             $(this).removeClass("headerSortUp").addClass("headerSortDown");
-                          
                         } else {
                             $(this).removeClass("headerSortDown").addClass("headerSortUp");
                         }
@@ -430,7 +435,7 @@
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -443,6 +448,7 @@
             currencies: currencies,
             site: site,
             liveType: liveType,
+            customerClass: customerClass,
             sortById: null,
             isSortAsc: null,
             pageIndex: 0,
@@ -452,7 +458,7 @@
         var url = 'ParlayWon/Excel?' + $.param(data);
         window.location.href = resolveClientUrl(url);
     },
-    ViewBetDetail: function(refNo, transId, username, custId, bettype) {
+    ViewBetDetail: function (refNo, transId, username, custId, bettype) {
         if (bettype == 38) {
             ParlayRMS.Core.OpenWindow(resolveClientUrl('ParlayWon/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
         } else if (bettype == 376) {
@@ -477,16 +483,16 @@
         function showPage(whichPage) {
             if (whichPage < 1 || whichPage > totalPages) return false;
             currentPage = whichPage;
-            // Replace the navigation items (not prev/next):            
+            // Replace the navigation items (not prev/next):
             $(".pagination li").slice(1, -1).remove();
             ParlayWon.GetPageList(totalPages, currentPage, paginationSize).forEach(item => {
                 $("<li>").addClass("page-item")
-                         .addClass(item ? "current-page" : "disabled")
-                         .append(
-                    $("<a>").addClass(item === currentPage ? "page-link active" : "page-link").attr({
-                        href: "javascript:void(0)"
-                    }).text(item || "...")
-                ).insertBefore("#next-page");
+                    .addClass(item ? "current-page" : "disabled")
+                    .append(
+                        $("<a>").addClass(item === currentPage ? "page-link active" : "page-link").attr({
+                            href: "javascript:void(0)"
+                        }).text(item || "...")
+                    ).insertBefore("#next-page");
             });
             // Disable prev/next when at first/last page:
             $("#previous-page").toggleClass("disabled", currentPage === 1);
@@ -517,16 +523,16 @@
     //   totalPages:     total number of pages
     //   page:           current page
     //   maxLength:      maximum size of returned array
-    GetPageList: function(totalPages, page, maxLength) {
+    GetPageList: function (totalPages, page, maxLength) {
         if (maxLength < 5) throw "maxLength must be at least 5";
 
         function range(start, end) {
-            return Array.from(Array(end - start + 1), (_, i) => i + start); 
+            return Array.from(Array(end - start + 1), (_, i) => i + start);
         }
 
         var sideWidth = maxLength < 9 ? 1 : 2;
-        var leftWidth = (maxLength - sideWidth*2 - 3) >> 1;
-        var rightWidth = (maxLength - sideWidth*2 - 2) >> 1;
+        var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth * 2 - 2) >> 1;
         if (totalPages <= maxLength) {
             // no breaks in list
             return range(1, totalPages);
@@ -544,30 +550,37 @@
         // Breaks on both sides
         return range(1, sideWidth)
             .concat(0, range(page - leftWidth, page + rightWidth),
-                    0, range(totalPages - sideWidth + 1, totalPages));
+                0, range(totalPages - sideWidth + 1, totalPages));
     },
 
-    ResetCachedObject: function() {
+    ResetCachedObject: function () {
         ParlayWon.cachedObject.fromDate = null;
         ParlayWon.cachedObject.toDate = null;
         ParlayWon.cachedObject.combos = null;
         ParlayWon.cachedObject.levels = null;
-        ParlayWon.cachedObject.sportsType =  null;
-        ParlayWon.cachedObject.houseAmountFrom =  0;
+        ParlayWon.cachedObject.sportsType = null;
+        ParlayWon.cachedObject.houseAmountFrom = 0;
         ParlayWon.cachedObject.houseAmountTo = 0;
         ParlayWon.cachedObject.currencies = null;
         ParlayWon.cachedObject.site = '2';
         ParlayWon.cachedObject.liveType = '3';
+        ParlayWon.cachedObject.customerClass = null;
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;
         ParlayWon.cachedObject.pageSize = 100;
+    },
+
+    IsNumber: function (event) {
+        var code = event.keyCode;
+        if (code >= 48 && code <= 57) {
+            return true;
+        }
+
+        return false;
     }
 }
 
 $(document).ready(function () {
     ParlayWon.Init();
 });
-
-
-
