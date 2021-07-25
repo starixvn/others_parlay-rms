@@ -39,10 +39,10 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                 db.AddInParameter("max_transid", DbType.Int64, maxTransId);
                 db.AddInParameter("limitrowcount", DbType.Int32, selectTop);
                 db.AddInParameter("market", DbType.String, markets);
-                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
+                db.AddInParameter("iscornerparlay", DbType.Boolean, isCornerParlay);
                 db.AddInParameter("odds", DbType.Decimal, odds);
-                db.AddInParameter("customerClass", DbType.Int16, customerClass);
-                db.AddInParameter("leagueGroupId", DbType.String, leagueGroups);
+                db.AddInParameter("customerclass", DbType.Int16, customerClass);
+                db.AddInParameter("leaguegroupid", DbType.String, leagueGroups);
 
                 using (var reader = db.ExecuteReader())
                 {
