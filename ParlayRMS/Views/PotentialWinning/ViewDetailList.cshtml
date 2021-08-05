@@ -1,21 +1,23 @@
 ﻿@using ParlayRMS.DTO.PotentialWinning
+@using ParlayRMS.Web.Session
 @model IEnumerable<RMS_Monitor_Potential_Winning_Detail>
 <div class="details">
     <table class="sub" style="width: 100%">
         <colgroup>
             <col style="width: 50px" />
-            <col style="width: 220px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
             <col style="width: 180px" />
             <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 120px" />
+            <col style="width: 100px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 100px" />
+            <col style="width: 80px" />
+            <col style="width: 140px" />
         </colgroup>
         <thead>
             <tr>
@@ -57,6 +59,13 @@
                 </th>
                 <th>
                     @ViewLang.BetDetails
+                </th>
+                <th>
+                    <div style="display: inline-block;">
+                        <input type="checkbox" id="cbTrackingUser" style="vertical-align: middle;"
+                               onclick="updateCheckedUser('', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '', true)" />
+                        <label for="cbTrackingUser" style="vertical-align: middle;"> Checked By</label>
+                    </div>
                 </th>
             </tr>
         </thead>
@@ -102,7 +111,7 @@
                         @{
                             var betText = string.Empty;
 
-                            if(item.Val.BetType == 38)
+                            if (item.Val.BetType == 38)
                             {
                                 betText = " bet(S)";
                             }
@@ -124,7 +133,7 @@
                         @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
                     </td>
                     <td class="center">
-                        @if (item.Val.NumberWon == 0 || item.Val.BetType ==(int)BetType.SingleMatchParlay)
+                        @if (item.Val.NumberWon == 0 || item.Val.BetType == (int)BetType.SingleMatchParlay)
                         {
                             @Html.Raw(item.Val.TotalSelection)
                         }
@@ -142,8 +151,16 @@
                             View
                         </button>
                     </td>
+                    <td>
+
+                        <div style="display: inline-block;">
+                            <input type="checkbox" id="cbTrackingUser-@item.Ind" onclick="updateCheckedUser('#cbTrackingUser-@item.Ind', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '@item.Val.TransId', false)"
+                                   data-transid="@item.Val.TransId" class="cbTrackingUser-item" style="vertical-align: middle;" @(item.Val.IsTrackedUser ? "checked disabled" : "") />
+                            <label for="cbTrackingUser-@item.Ind" id="cbTrackingUser-@item.Ind-text" style="vertical-align: middle;"> @item.Val.TrackingUser</label>
+                        </div>
+                    </td>
                 </tr>
-                            }
+            }
         </tbody>
     </table>
 </div>

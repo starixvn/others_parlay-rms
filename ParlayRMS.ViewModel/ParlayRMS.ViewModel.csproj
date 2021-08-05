@@ -112,6 +112,7 @@
     <Compile Include="ManageMenu\EditMenuModel.cs" />
     <Compile Include="ManageMenu\EditMenuStatusModel.cs" />
     <Compile Include="ManageUser\UpdateStatusModel.cs" />
+    <Compile Include="Monitoring\UserTrackingCriteria.cs" />
     <Compile Include="PalayMonitor\DataModel.cs" />
     <Compile Include="Monitoring\PotentialWinningDetailModel.cs" />
     <Compile Include="Monitoring\PotentialWinningModel.cs" />

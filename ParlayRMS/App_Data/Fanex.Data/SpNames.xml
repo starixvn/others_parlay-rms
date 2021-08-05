@@ -63,8 +63,9 @@
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_ComboParlay_PotentialWinning_UserTracking" SpName="RMS_ComboParlay_PotentialWinning_UserTracking_xtest" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_ParlayWon" SpName="RMS_Rpt_ParlayWon" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_LeagueBettype_Analysis" SpName="RMS_Rpt_LeagueBettype_Analysis" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>

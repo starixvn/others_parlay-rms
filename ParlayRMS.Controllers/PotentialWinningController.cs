@@ -1,4 +1,5 @@
-﻿using ParlayRMS.Models;
+﻿using ParlayRMS.DTO.PotentialWinning;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.PotentialWinningMonitor;
 using ParlayRMS.Utility;
@@ -106,6 +107,14 @@ namespace ParlayRMS.Controllers
             ViewBag.UserName = detailModel.UserName;
             ViewBag.CustId = detailModel.CustId;
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult CheckBy(UserTrackingCriteria criteria)
+        {
+            //var data = _potentialWinning.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
+            var data = new UserTracking { Message = "abc", StatusId = 1 };
+            return Json(data);
         }
     }
 }

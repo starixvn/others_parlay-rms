@@ -37,5 +37,9 @@ namespace ParlayRMS.DTO.PotentialWinning
         public int NumberWon { get; set; }
 
         public string SportTypeName { get; set; }
+
+        public string TrackingUser { get; set; }
+
+        public bool IsTrackedUser { get; set; }
     }
 }
