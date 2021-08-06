@@ -488,7 +488,11 @@ function CreateRowForMember(order, item, isHighLight) {
     r[++j] = '<td class="numeric">' + formatOdds(item.Stake) + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.WinningAmount)).format('0,0') + '</td>';
     r[++j] = '<td class="numeric">' + numeral(Math.floor(item.CompanyLoseAmount)).format('0,0') + '</td>';
-    r[++j] = '<td class="center"><button class="button-disable-2" onclick="ViewTotalBetDetails(\'' + item.CustId + '\'' + ');">' + item.TotalTrackingBets + '/' + item.TotalTicket + '</td>';
+    if (cachedAgentId == null) {
+        r[++j] = '<td class="center"><button class="button-disable-2" style="min-width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\',' + cachedAgentId + ');">' + item.TotalTrackingBets + '/' + item.TotalTicket + '</td>';
+    } else {
+        r[++j] = '<td class="center"><button class="button-disable-2" style="min-width:40px;" onclick="ViewTotalBetDetails(\'' + item.CustId + '\',' + cachedAgentId + ');">' + item.TotalTicket + '</td>';
+    }
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -529,7 +533,7 @@ function OpenViewIpInfo(url) {
     }
 }
 
-function ViewTotalBetDetails(custId) {
+function ViewTotalBetDetails(custId, agentid) {
     var table = $('#result');
     var found = table.find("tr[custid='" + custId + "']");
     if (found.length != 0) {
@@ -554,7 +558,8 @@ function ViewTotalBetDetails(custId) {
             SportsTypes: userSettings.sportsTypes,
             CustId: custId,
             UserName: username,
-            IsCornerParlay: userSettings.isCornerParlay
+            IsCornerParlay: userSettings.isCornerParlay,
+            AgentId: agentid
         }
 
         $.ajax({
@@ -568,6 +573,7 @@ function ViewTotalBetDetails(custId) {
             success: function (result) {
                 result = result.replace(/\s+/g, ' ');
                 td.html(result);
+                checkAll();
             },
             error: function (xhr, status, err) {
                 alertBox.showError(xhr);
@@ -749,10 +755,11 @@ function updateCheckedUser(element, userid, username, transid, isAll) {
                     switch (json.StatusId) {
                         case 0:
                             disabledandCheckedCheckBox("#cbTrackingUser");
-                            reUpdateCheckedUser(username);
+                            reUpdateCheckedUser(username, false);
                             break;
                         case 1:
-                            // code block
+                            disabledandCheckedCheckBox("#cbTrackingUser");
+                            reUpdateCheckedUser(json.Message, true);
                             break;
                         case 2:
                             $("#cbTrackingUser").prop("checked", false);
@@ -796,7 +803,9 @@ function updateCheckedUser(element, userid, username, transid, isAll) {
                         break;
                     case 1:
                         disabledandCheckedCheckBox(element);
-                        $(element + "-text").text(json.Message);
+                        var object = json.Message.split(',')[0];
+                        $(element + "-text").text(object.split(':')[1]);
+                        checkAll();
                         break;
                     case 2:
                         $(element).prop("checked", false);
@@ -839,15 +848,33 @@ function getTransIds() {
     return transids;
 }
 
-function reUpdateCheckedUser(username) {
-    $(".cbTrackingUser-item").each(function (inx, element) {
-        if (!element.disabled) {
-            element.disabled = true;
-            element.checked = true;
-            var labelId = "#" + element.getAttribute("id") + "-text";
-            $(labelId).text(username);
-        }
-    });
+function reUpdateCheckedUser(object, isUserList) {
+    if (isUserList) {
+        var list = object.split(',');
+        $.each(list, function (inx, val) {
+            var userInfo = val.split(':');
+            $(".cbTrackingUser-item").each(function (inx, element) {
+                if (!element.disabled) {
+                    var transid = element.getAttribute("data-transid");
+                    if (transid === userInfo[0]) {
+                        element.disabled = true;
+                        element.checked = true;
+                        var labelId = "#" + element.getAttribute("id") + "-text";
+                        $(labelId).text(userInfo[1]);
+                    }
+                }
+            });
+        });
+    } else {
+        $(".cbTrackingUser-item").each(function (inx, element) {
+            if (!element.disabled) {
+                element.disabled = true;
+                element.checked = true;
+                var labelId = "#" + element.getAttribute("id") + "-text";
+                $(labelId).text(object);
+            }
+        });
+    }
 }
 
 function disabledandCheckedCheckBox(element) {

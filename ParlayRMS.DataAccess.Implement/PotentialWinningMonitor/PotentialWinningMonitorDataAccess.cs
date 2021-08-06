@@ -138,13 +138,13 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
             param.Add("userid", userid);
             param.Add("username", username);
             param.Add("transid", transid);
-            param.Add("statusID", 0);
+            param.Add("statusid", 0);
             param.Add("message", string.Empty);
 
             var r = ExecSp("RMS_ComboParlay_PotentialWinning_UserTracking", param);
             if (r.IsValid())
             {
-                userTracking.StatusId = DbConverter.ToByte(r.Outputs["statusID"]);
+                userTracking.StatusId = DbConverter.ToByte(r.Outputs["statusid"]);
                 userTracking.Message = DbConverter.ToString(r.Outputs["message"]);
             }
 
