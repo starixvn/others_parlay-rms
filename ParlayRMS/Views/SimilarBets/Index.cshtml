@@ -2,10 +2,11 @@
     ViewBag.Title = ViewBag.HeaderText = ViewLang.SimilarBets;
 }
 <div class="filter">
-    <div class="filter-control" style="width: 310px">
+    <div class="filter-control" style="width: 400px">
         <div class="minimizetitle">
             <div class="minimizecontent">
-                @ViewLang.FilterControl</div>
+                @ViewLang.FilterControl
+            </div>
             <div id="filterminimize" class="minimize" onclick="Minimize('filtercontent','filterminimize');">
                 -
             </div>
@@ -14,6 +15,10 @@
             <div class="group">
                 @Html.Label("betId", "BetID")
                 @Html.TextBox("betId", (string)ViewBag.betid)
+            </div>
+            <div class="group">
+                @Html.CheckBox("similar", new { style = "float:left; margin-top: 7px;" })
+                @Html.Label("similar", "Similar 100%", new { @class = "lable" })
             </div>
             <div class="group">
                 <button id="btnSearch">

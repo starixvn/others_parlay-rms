@@ -9,9 +9,9 @@ namespace ParlayRMS.Services.Implement.SimilarBets
     {
         private readonly SimilarBetsDataAccess _similarbetsDataAccess = new SimilarBetsDataAccess();
 
-        public RMS_Similar_Parlay_Betlist GetSimilarBets(long transId)
+        public RMS_Similar_Parlay_Betlist GetSimilarBets(long transId, bool isSimilar)
         {
-            var data = _similarbetsDataAccess.RMS_Similar_Parlay_Betlist(transId);
+            var data = _similarbetsDataAccess.RMS_Similar_Parlay_Betlist(transId, isSimilar);
             if (data != null)
             {
                 data.Stake = Math.Round(data.Stake, 2);

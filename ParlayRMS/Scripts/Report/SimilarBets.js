@@ -21,8 +21,11 @@
             return;
         }
 
+        var isSimilar = $("#similar").is(":checked");
+
         var data = {
-            TransId: transId
+            TransId: transId,
+            IsSimilar: isSimilar
         }
         var container = $('#divResult');
 
@@ -83,7 +86,6 @@ function CloseSimilarBets() {
 }
 
 function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo, custId, originalCustId, betType) {
-
     if (betType === 38) {
         ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username);
     } else if (betType === 376) {
@@ -92,9 +94,7 @@ function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo
     else {
         ViewSystemParlayDetails(username, transId, originalTransId, refNo, originalRefNo);
     }
-
 }
-
 
 function ViewSystemParlayDetails(username, transId, originalTransId, refNo, originalRefNo) {
     var data = {
@@ -127,7 +127,6 @@ function ViewSystemParlayDetails(username, transId, originalTransId, refNo, orig
         }
     });
 }
-
 
 function ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username) {
     var data = {
