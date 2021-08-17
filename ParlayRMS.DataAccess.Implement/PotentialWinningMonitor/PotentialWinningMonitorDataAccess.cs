@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
+using ParlayRMS.Common.Models;
 using ParlayRMS.DTO.PotentialWinning;
+using ParlayRMS.Utility;
 using ParlayRMS.Utility.Data;
 
 namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
@@ -31,10 +34,10 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                 db.AddInParameter("level", DbType.String, levels);
                 db.AddInParameter("winningamount", DbType.Decimal, winningAmount);
                 db.AddInParameter("limitRowCount", DbType.Int32, selectTop);
-                db.AddInParameter("IsCornerParlay", DbType.Boolean, isCornerParlay);
-                db.AddInParameter("IsAgentView", DbType.Boolean, filterBy > 0);
-                db.AddInParameter("Recommend", DbType.Int32, agentId);
-                db.AddInParameter("CustomerClass", DbType.Int16, customerClass);
+                db.AddInParameter("iscornerparlay", DbType.Boolean, isCornerParlay);
+                db.AddInParameter("isagentview", DbType.Boolean, filterBy > 0);
+                db.AddInParameter("recommend", DbType.Int32, agentId);
+                db.AddInParameter("customerclass", DbType.Int16, customerClass);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -69,7 +72,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                                 CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
                                 Level = reader.ToInt32("level"),
                                 TotalTicket = reader.ToInt32("totalbets"),
-                                CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
+                                CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
+                                TotalTrackingBets = reader.ToInt32("TotalTrackingBets")
                             });
                         }
                     }
@@ -117,13 +121,34 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                             NumberWon = Convert.ToInt32(reader.ToDecimal("numberwon")),
                             SportType = reader.ToInt32("sporttype"),
                             BetType = reader.ToInt32("bettype"),
-                            IsGOF = reader.ToBoolean("IsGOF")
+                            IsGOF = reader.ToBoolean("IsGOF"),
+                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser")
                         });
                     }
                 }
             }
 
             return result;
+        }
+
+        public UserTracking RMS_ComboParlay_PotentialWinning_UserTracking(int userid, string username, string transid)
+        {
+            var userTracking = new UserTracking();
+            Hashtable param = new Hashtable();
+            param.Add("userid", userid);
+            param.Add("username", username);
+            param.Add("transid", transid);
+            param.Add("statusid", 0);
+            param.Add("message", string.Empty);
+
+            var r = ExecSp("RMS_ComboParlay_PotentialWinning_UserTracking", param);
+            if (r.IsValid())
+            {
+                userTracking.StatusId = DbConverter.ToByte(r.Outputs["statusid"]);
+                userTracking.Message = DbConverter.ToString(r.Outputs["message"]);
+            }
+
+            return userTracking;
         }
     }
 }

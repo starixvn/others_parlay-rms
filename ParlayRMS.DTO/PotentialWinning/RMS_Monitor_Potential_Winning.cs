@@ -33,5 +33,7 @@
         public int TotalMember { get; set; }
 
         public string CustomerClass { get; set; }
+
+        public int TotalTrackingBets { get; set; }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="ParlayWon\RMS_Rpt_Parlay_ParlayWon.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
+    <Compile Include="PotentialWinning\UserTracking.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SimilarBets\SingleMatchParlaySimilarDetailOption.cs" />

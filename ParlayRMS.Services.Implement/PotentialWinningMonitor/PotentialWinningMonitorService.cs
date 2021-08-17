@@ -36,9 +36,15 @@ namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
             foreach (var item in result)
             {
                 item.SportTypeName = CacheRef.GetSportNameDropDown(item.SportType);
+                item.IsTrackedUser = item.TrackingUser != "None";
             }
 
             return result;
+        }
+
+        public UserTracking UpdateCheckedUser(int userid, string username, string transid)
+        {
+            return _potentialWinningDataAccess.RMS_ComboParlay_PotentialWinning_UserTracking(userid, username, transid);
         }
     }
 }
