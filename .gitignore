@@ -37,3 +37,5 @@ _Chutzpah*
 *.orig
 /ParlayRMS/Logs/
 **/yarn.lock
+**/node_modules/**
+/package-lock.json
