@@ -32,10 +32,10 @@ namespace ParlayRMS.Controllers
 
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
-        public ActionResult Data(long transId)
+        public ActionResult Data(long transId, bool isSimilar)
         {
             ViewBag.TransId = transId;
-            var model = _similarbetsService.GetSimilarBets(transId);
+            var model = _similarbetsService.GetSimilarBets(transId, isSimilar);
             if (model == null)
             {
                 return PartialView("NotFound");

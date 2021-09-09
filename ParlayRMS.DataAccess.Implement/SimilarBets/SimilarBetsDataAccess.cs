@@ -12,11 +12,12 @@ namespace ParlayRMS.DataAccess.Implement.SimilarBets
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private const byte runningStatus = 0;
 
-        public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId)
+        public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId, bool isSimilar)
         {
             using (var db = new ObjectDb("RMS_Similar_Parlay_Betlist"))
             {
                 db.AddInParameter("transid", DbType.Int64, transId);
+                db.AddInParameter("issimilar", DbType.Boolean, isSimilar);
 
                 using (var dataset = db.ExecuteDataSet())
                 {
