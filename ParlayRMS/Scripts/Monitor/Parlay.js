@@ -633,7 +633,7 @@ function CreateRow(order, item) {
         r[++j] = '<td class="right">----</td>';
     }
     else {
-        r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + item.IP + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + displayMax15Character(item.IP.trim()) + '</a></td>';
     }
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + +item.RefNo + ', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
     r[++j] = '</tr>';
@@ -768,4 +768,11 @@ function isNumber(event) {
     }
 
     return false;
+}
+
+function displayMax15Character(ip) {
+    if (ip.length > 15) {
+        return '...' + ip.slice(ip.length - 15);
+    }
+    return ip;
 }

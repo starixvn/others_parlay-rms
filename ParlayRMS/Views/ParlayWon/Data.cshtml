@@ -158,7 +158,7 @@
                         @CacheRef.GetSportNameDropDown(item.SportType)
                     </td>
                     <td class="center">
-                        @item.IP
+                        @Utils.DisplayMax15Character(item.IP.Trim())
                     </td>
                     <td class="center">
                         <button class="button-disable-2" style="width:40px;" onclick="ParlayWon.ViewBetDetail('@item.RefNo', @item.TransId, '@item.Username', '@item.CustId', @item.BetType)">

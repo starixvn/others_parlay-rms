@@ -1,14 +1,16 @@
-﻿<div id="tabs">
+﻿@Styles.Render("~/Content/ViewIPInfo")
+<div id="tabs">
     <ul>
-        <li><a href="#tabs-ip-statistics" style ="font-weight: bold" >@ViewLang.IPStatistics</a></li>
-        <li><a href="#tabs-view-ip-info" style ="font-weight: bold" >@ViewLang.IPInfo</a></li>
+        <li><a href="#tabs-ip-statistics" style="font-weight: bold">@ViewLang.IPStatistics</a></li>
+        <li><a href="#tabs-view-ip-info" style="font-weight: bold">@ViewLang.IPInfo</a></li>
     </ul>
     <div id="tabs-ip-statistics" style="display: inline-block">
         <div class="filter">
             <div class="filter-control" style="width: 400px">
                 <div class="minimizetitle">
                     <div class="minimizecontent">
-                        @ViewLang.FilterControl</div>
+                        @ViewLang.FilterControl
+                    </div>
                     <div id="filterminimize-ip-stats" class="minimize" onclick="Minimize('filtercontent-ip-stats','filterminimize-ip-stats');">
                         -
                     </div>
@@ -28,22 +30,23 @@
                 </div>
             </div>
         </div>
-    <div style="clear: both; display: none" id="divResultIpStats">
-    </div>
+        <div style="clear: both; display: none" id="divResultIpStats">
+        </div>
     </div>
     <div id="tabs-view-ip-info" style="display: inline-block">
         <div class="filter">
-            <div class="filter-control" style="width: 550px">
+            <div class="filter-control" style="width: 680px">
                 <div class="minimizetitle">
                     <div class="minimizecontent">
-                        @ViewLang.FilterControl</div>
+                        @ViewLang.FilterControl
+                    </div>
                     <div id="filterminimize-ip-info" class="minimize" onclick="Minimize('filtercontent-ip-info','filterminimize-ip-info');">
                         -
                     </div>
                 </div>
                 <div id="filtercontent-ip-info" class="container">
                     <div class="row">
-                        <div class="group">
+                        <div class="group ipInput">
                             @Html.Label("ip", ViewLang.IP + ":")
                             @Html.TextBox("ip")
                         </div>

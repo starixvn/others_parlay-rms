@@ -130,5 +130,14 @@ namespace ParlayRMS.Utility
                 Round(item);
             }
         }
+
+        public static string DisplayMax15Character(string data)
+        {
+            if (data.Length > 15)
+            {
+                return "..." + data.Substring(data.Length - 15);
+            }
+            return data;
+        }
     }
 }

@@ -614,6 +614,7 @@
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\ParlayWon.css" />
     <Content Include="Content\TopWinners.css" />
+    <Content Include="Content\ViewIpInfo.css" />
     <Content Include="packages.config" />
     <Content Include="ExcelTemplates\SpecialLeague.xls" />
     <Content Include="ExcelTemplates\ParlayWon.xls" />
