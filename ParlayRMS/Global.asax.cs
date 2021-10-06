@@ -176,6 +176,9 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/LeagueWinningMonitor").Include(
               "~/Content/LeagueWinningMonitor.css"));
 
+            bundles.Add(new StyleBundle("~/Content/ViewIPInfo").Include(
+              "~/Content/ViewIpInfo.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",

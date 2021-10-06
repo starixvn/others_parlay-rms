@@ -105,7 +105,7 @@
                         }
                         else
                         {
-                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.IP&date=@item.Val.TransDate'), '_blank');">@item.Val.IP</a>
+                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.IP&date=@item.Val.TransDate'), '_blank');">@Utils.DisplayMax15Character(item.Val.IP.Trim())</a>
                         }
                     </td>
                     <td>

@@ -34,32 +34,32 @@
             <col width='120px' />
         </colgroup>
         <tbody>
-        @if (Model.IPStats.Count() > 0)
-        {
-            foreach (var row in Model.IPStats)
+            @if (Model.IPStats.Count() > 0)
             {
-                counter = counter + 1;
-                <tr style="height: 22px;">
-                    <td class="center">
-                        @counter
-                    </td>
-                    <td class="center">
-                        <a href="#" class ="link-ip-stats" data-ip = "@row.IP">@row.IP</a>
-                    </td>
-                    <td class="center">
-                        @row.CntUsers
+                foreach (var row in Model.IPStats)
+                {
+                    counter = counter + 1;
+                    <tr style="height: 22px;">
+                        <td class="center">
+                            @counter
+                        </td>
+                        <td class="center">
+                            <a href="#" class="link-ip-stats" data-ip="@row.IP">@Utils.DisplayMax15Character(row.IP.Trim())</a>
+                        </td>
+                        <td class="center">
+                            @row.CntUsers
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="noinfo" style="text-align: center">
+                        @ViewLang.NoInformation
                     </td>
                 </tr>
             }
-        }
-        else
-        {
-            <tr>
-                <td colspan="3" class="noinfo" style="text-align: center">
-                    @ViewLang.NoInformation
-                </td>
-            </tr>
-        }
         </tbody>
     </table>
 </div>
