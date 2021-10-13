@@ -636,6 +636,7 @@ function CreateRow(order, item) {
         r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + displayMax15Character(item.IP.trim()) + '</a></td>';
     }
     r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + +item.RefNo + ', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
+    r[++j] = '<td>' + renderCheckedBy(order, userId, userName, item.TrackingUser, item.IsTrackedUser, item.TransId) + '</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -775,4 +776,60 @@ function displayMax15Character(ip) {
         return '...' + ip.slice(ip.length - 15);
     }
     return ip;
+}
+
+function renderCheckedBy(index, userId, userName, trackingUser, isTracked, transid) {
+    var checkedDisabled = isTracked ? "checked disabled" : "";
+    var input = '<input type="checkbox" id="cbTrackingUser-' + index + '" onclick="updateCheckedUser(\'#cbTrackingUser-' + index + '\', ' + userId + ', \'' + userName + '\', ' + transid + ')" data-transid="' + transid + '" class="cbTrackingUser-item" style="vertical-align: middle;"' + checkedDisabled + ' />';
+    var label = '<label for="cbTrackingUser-' + index + '" id="cbTrackingUser-' + index + '-text" style="vertical-align: middle;">' + trackingUser + '</label>';
+    return '<div style="display: inline - block;">' + input + label + '</div>';
+}
+
+function updateCheckedUser(element, userid, username, transid) {
+    var data = {
+        TransId: transid,
+        Username: username,
+        UserId: userid
+    }
+
+    $.ajax({
+        url: resolveClientUrl('ParlayMonitor/CheckBy'),
+        type: 'POST',
+        data: data,
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            var json = $.parseJSON(result);
+            switch (json.StatusId) {
+                case 0:
+                    disabledandCheckedCheckBox(element);
+                    $(element + "-text").text(username);
+                    break;
+                case 1:
+                    alertBox.show("Information", "This ticket has been already checked by another user");
+                    disabledandCheckedCheckBox(element);
+                    var object = json.Message.split(',')[0];
+                    $(element + "-text").text(object.split(':')[1]);
+                    break;
+                case 2:
+                    $(element).prop("checked", false);
+                    alertBox.showErrorMessage(json.Message);
+                    break;
+            }
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+function disabledandCheckedCheckBox(element) {
+    $(element).prop("checked", true);
+    $(element).prop("disabled", true);
 }

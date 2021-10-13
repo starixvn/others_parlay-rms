@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.DTO.PotentialWinning;
 
 namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
@@ -24,6 +25,11 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             long? customerClass)
         {
             return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass);
+        }
+
+        public UserTracking UpdateCheckedUser(int userid, string username, string transid)
+        {
+            return ParlayService.UpdateCheckedUser(userid, username, transid);
         }
     }
 }
