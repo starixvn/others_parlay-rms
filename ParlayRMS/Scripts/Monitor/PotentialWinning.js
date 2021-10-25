@@ -802,6 +802,7 @@ function updateCheckedUser(element, userid, username, transid, isAll) {
                         checkAll();
                         break;
                     case 1:
+                        alertBox.show("Information", "This ticket has been already checked by another user");
                         disabledandCheckedCheckBox(element);
                         var object = json.Message.split(',')[0];
                         $(element + "-text").text(object.split(':')[1]);

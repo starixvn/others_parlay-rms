@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ParlayRMS.Web.Session
+@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.ParlayMonitor;
 }
 @Html.Action("Filter")
@@ -23,7 +24,7 @@
     </ul>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1565px">
+    <div style="width: 1705px">
         <table class="main" id="header">
             <colgroup>
                 <col width="50" />
@@ -40,6 +41,7 @@
                 <col width="130" />
                 <col width="100" />
                 <col width="100" />
+                <col width="140" />
             </colgroup>
             <thead>
                 <tr>
@@ -85,11 +87,14 @@
                     <th>
                         @ViewLang.BetDetails
                     </th>
+                    <th>
+                        Checked By
+                    </th>
                 </tr>
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 645px; width: 1555px">
+    <div class="scrollGridContent" style="max-height: 645px; width: 1695px">
         <table class="main" id="result">
             <colgroup>
                 <col width="50" />
@@ -106,6 +111,7 @@
                 <col width="130" />
                 <col width="100" />
                 <col width="100" />
+                <col width="140" />
             </colgroup>
             <tbody></tbody>
         </table>
@@ -121,4 +127,6 @@
         'otherSports': '@ViewLang.Othersports'
     };
     var hasIpPermission = @JavascriptHelper.GetString(ViewBag.HasReadPermission);
+    var userId = @CurrentSession.Instance.UserId;
+    var userName = '@CurrentSession.Instance.UserName';
 </script>

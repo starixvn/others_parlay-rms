@@ -4,6 +4,7 @@ using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
+using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.PalayMonitor;
 using ParlayRMS.Web.Authorization;
 using System;
@@ -141,6 +142,13 @@ namespace ParlayRMS.Controllers
                 Title = string.Empty,
                 MaxTransId = maxTransId
             });
+        }
+
+        [HttpPost]
+        public ActionResult CheckBy(UserTrackingCriteria criteria)
+        {
+            var data = _parlayMonitorCacheService.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
+            return Json(data);
         }
     }
 }

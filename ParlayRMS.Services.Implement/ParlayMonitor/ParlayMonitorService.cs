@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using ParlayRMS.DataAccess.Implement.ParlayMonitor;
+﻿using ParlayRMS.DataAccess.Implement.ParlayMonitor;
 using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.DTO.PotentialWinning;
 using ParlayRMS.Utility;
 using SignalR;
 using SignalR.Hubs;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 
 namespace ParlayRMS.Services.Implement.ParlayMonitor
 {
@@ -55,9 +56,15 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
                 item.Stake = Math.Round(item.Stake, 2);
                 item.NetWinAfterPT = Math.Floor(item.NetWinAfterPT);
                 item.SportTypeName = CacheRef.GetSportNameDropDown(item.SportType);
+                item.IsTrackedUser = item.TrackingUser != "None";
             }
 
             return data;
+        }
+
+        public UserTracking UpdateCheckedUser(int userid, string username, string transid)
+        {
+            return _parlayDataAccess.RMS_Monitor_Parlay_UserTracking(userid, username, transid);
         }
     }
 }

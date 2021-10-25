@@ -49,5 +49,9 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public bool IsGOF { get; set; }
 
         public string CustomerClass { get; set; }
+
+        public string TrackingUser { get; set; }
+
+        public bool IsTrackedUser { get; set; }
     }
 }

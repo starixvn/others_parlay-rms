@@ -1,7 +1,11 @@
 ﻿using Fanex.Data;
+using ParlayRMS.Common.Models;
 using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.DTO.PotentialWinning;
+using ParlayRMS.Utility;
 using ParlayRMS.Utility.Data;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -71,13 +75,34 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             IsLive = reader.ToBoolean("islive"),
                             IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1,
                             IsGOF = reader.ToBoolean("IsGOF"),
-                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
+                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser")
                         });
                     }
                 }
             }
 
             return result;
+        }
+
+        public UserTracking RMS_Monitor_Parlay_UserTracking(int userid, string username, string transid)
+        {
+            var userTracking = new UserTracking();
+            Hashtable param = new Hashtable();
+            param.Add("userid", userid);
+            param.Add("username", username);
+            param.Add("transid", transid);
+            param.Add("statusid", 0);
+            param.Add("message", string.Empty);
+
+            var r = ExecSp("RMS_ComboParlay_PotentialWinning_UserTracking", param);
+            if (r.IsValid())
+            {
+                userTracking.StatusId = DbConverter.ToByte(r.Outputs["statusid"]);
+                userTracking.Message = DbConverter.ToString(r.Outputs["message"]);
+            }
+
+            return userTracking;
         }
     }
 }
