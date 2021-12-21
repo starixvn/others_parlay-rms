@@ -158,6 +158,7 @@ namespace ParlayRMS
                 "~/Content/Paging.css",
                 "~/Content/Site.css",
                 "~/Content/Validators.css"));
+            bundles.Add(new StyleBundle("~/Content/Menu").Include("~/Content/Menu.css"));
             bundles.Add(new StyleBundle("~/Content/Login").Include(
                 "~/Content/Login.css"));
             bundles.Add(new StyleBundle("~/Content/Validators").Include(
@@ -203,6 +204,7 @@ namespace ParlayRMS
                 "~/Scripts/Menu.js",
                 "~/Scripts/Validators.js",
                 "~/Scripts/UpdateLevel.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Menu.LayoutAngular/js").Include("~/Scripts/jquery-1.9.0.js", "~/Scripts/Menu.LayoutAngular.js"));
 
             // group all scripts written in namespace
             bundles.Add(new ScriptBundle("~/Scripts/TotalOutstanding/js").Include(
