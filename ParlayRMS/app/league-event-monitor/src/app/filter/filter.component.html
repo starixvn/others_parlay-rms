@@ -1,0 +1,121 @@
+<div class="nap-filter">
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Combo</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="comboItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedComboes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Parlay type</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="parlayTypeItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedParlayTypes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class>Report type</label>
+          <div class="nap-control width-200 margin-5">
+            <div class="form-check form-check-inline" *ngFor="let option of reportTypeOptions">
+              <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="searchBy" [(ngModel)]="reportType" [value]="option.value" /> {{option.text}}
+              </label>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">League</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="parlayType | parlayTreeview"
+            [config]="parlayTypeConfig" (selectedChange)="selectedParlayType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Select top</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Level</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Customer Class</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Refresh</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Seconds</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Pause</label>
+          <div class="nap-control">
+            <!-- <ngx-dropdown-treeview [items]="sportsType | sportTreeview"
+            [config]="sportsTypeConfig" (selectedChange)="selectedSportsType = $event">
+          </ngx-dropdown-treeview> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col col-buttons">
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+  
