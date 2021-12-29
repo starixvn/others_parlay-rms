@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'league-event-monitor';
+  netcoreApiUrl: string;
+  constructor(
+    private readonly elementRef: ElementRef<HTMLElement>
+  ) {
+    this.netcoreApiUrl = this.elementRef.nativeElement.getAttribute('netcore-api-url')??'';
+  }
 }

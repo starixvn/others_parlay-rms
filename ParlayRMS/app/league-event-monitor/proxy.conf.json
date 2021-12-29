@@ -1,0 +1,10 @@
+{
+    "/api": {
+      "target": "http://localhost:61034",
+      "secure": false
+    },
+    "/PropagationAuth": {
+      "target": "http://localhost:61034",
+      "secure": false
+    }
+  }

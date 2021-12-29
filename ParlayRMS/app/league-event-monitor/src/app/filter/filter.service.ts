@@ -3,15 +3,15 @@ import { SelectItem } from 'nap-components/dropdown-select';
 import { HttpService } from 'nap-components/http';
 import { Observable } from 'rxjs';
 import { ReportTypeConsts } from '../common/constants';
-import { ItemModel } from './filter.model';
+import { ItemModel, LeagueModel } from './filter.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
-  private api = 'api/league-event-monitor/filter/';
-  // constructor(private httpService: HttpService)
-  // { }
+  private api = 'api/league-event-control/filter/';
+  constructor(private readonly httpService: HttpService)
+  { }
 
   public getComboes(): ItemModel[] {
     let result: ItemModel[] = [];
@@ -33,6 +33,42 @@ export class FilterService {
     return [
       { text: 'League', value: ReportTypeConsts.LEAGUE },
       { text: 'Event', value: ReportTypeConsts.EVENT }
+    ]
+  }
+
+  public getLeagues(netcoreApiUrl: string): Observable<LeagueModel[]> {
+    return this.httpService.get(`${netcoreApiUrl}${this.api}league`);
+  }
+
+  public getTops(): ItemModel[]
+  {
+    return [
+      { id: '0', name: 'All', checked: false },
+      { id: '10', name: '10', checked: false },
+      { id: '20', name: '20', checked: false },
+      { id: '50', name: '50', checked: false },
+      { id: '100', name: '100', checked: false },
+      { id: '200', name: '200', checked: true },
+      { id: '1000', name: '1000', checked: false },
+      { id: '2000', name: '2000', checked: false },
+      { id: '3000', name: '3000', checked: false }
+    ]
+  }
+
+  public getLevels(): ItemModel[] {
+    let result: ItemModel[] = [];
+    result.push({ name: 'None', id: '0', checked: true });
+    for (let i = 1; i <= 10; i++) {
+      result.push({ name: i.toString(), id: i.toString(), checked: true });
+    }
+    return result;
+  }
+
+  public getRefreshs(): ItemModel[]
+  {
+    return [
+      { id: '60', name: '60', checked: true },
+      { id: '120', name: '120', checked: false }
     ]
   }
 }
