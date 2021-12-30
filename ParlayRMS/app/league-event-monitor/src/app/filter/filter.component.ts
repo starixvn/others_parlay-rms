@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TreeviewConfig } from 'ngx-treeview';
-import { ItemModel, LeagueModel } from './filter.model';
+import { FilterModel, ItemModel, LeagueModel } from './filter.model';
 import { FilterService } from './filter.service';
 import { SelectItem } from 'nap-components/dropdown-select';
 import { ReportTypeConsts } from '../common/constants';
+import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
 
 @Component({
   selector: 'app-filter',
@@ -12,6 +13,8 @@ import { ReportTypeConsts } from '../common/constants';
 })
 export class FilterComponent implements OnInit {
   @Input() netcoreApiUrl: string = '';
+  @Output() generated = new EventEmitter<FilterModel>();
+  @ViewChild('countdown', { static: false }) countdown!: CountdownComponent;
 
   public comboItems: ItemModel[] = [];
   public selectedComboes:string[] = [];
@@ -35,6 +38,11 @@ export class FilterComponent implements OnInit {
     maxHeight: 500
   });
 
+  public countdownConfig: CountdownConfig = {
+    leftTime: 60,
+    formatDate: ({ date }) => `${date / 1000}`,
+  };
+
   public reportTypeOptions: SelectItem[] = [];
   public reportType = ReportTypeConsts.LEAGUE;
   
@@ -52,4 +60,33 @@ export class FilterComponent implements OnInit {
     this.refreshItems = this.filterService.getRefreshs();
   }
 
+  public changeRefreshnow(): void {
+    this.countdownConfig = {
+      leftTime: Number(this.selectedRefresh),
+      formatDate: ({ date }) => `${date / 1000}`,
+    };
+    this.countdown.restart();
+    this.checkedRefresh = false;
+  }
+
+  public pauseCountdown(): void {
+    this.checkedRefresh ? this.countdown.pause() : this.countdown.resume();
+  }
+
+  public getData(): void {
+    const model = this.createModel();
+    this.generated.emit(model);
+  }
+
+  private createModel(): FilterModel {
+    return {
+      selection: this.selectedComboes.join(','),
+      parlayType: this.selectedParlayTypes.join(','),
+      isViewDetail: this.reportType === ReportTypeConsts.EVENT,
+      leagueIds: this.selectedLeagues.join(','),
+      limitRowCount: Number(this.selectedTop),
+      level: this.selectedLevels.join(','),
+      customerClass: Number(this.customerClass)
+    };
+  }
 }

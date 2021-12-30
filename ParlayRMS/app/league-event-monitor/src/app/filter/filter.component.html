@@ -84,7 +84,7 @@
         <div class="nap-group">
           <label>Refresh every</label>
           <div class="nap-control">
-            <select class="nap-textbox" [(ngModel)]="selectedRefresh">
+            <select class="nap-textbox" (change)="changeRefreshnow()" [(ngModel)]="selectedRefresh">
               <option *ngFor="let refresh of refreshItems" [attr.checked]="refresh.checked" [value]="refresh.id">
                    {{refresh.name}}
                </option>
@@ -96,16 +96,14 @@
         <label>Seconds</label>
       </div>
       <div class="nap-col">
-        <button class="btn btn-light">Refresh now</button>
+        <button class="btn btn-light">Refresh now [<countdown #countdown [config]="countdownConfig"></countdown>]</button>
       </div>
       <div class="nap-col">
-        <input type="checkbox" [(ngModel)]="checkedRefresh">
+        <input type="checkbox" (change)="pauseCountdown()" [(ngModel)]="checkedRefresh"> Pause
       </div>
-      <div class="nap-col">
-        <label>Pause</label>
-      </div>
+      
       <div class="nap-col col-buttons">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" (click)="getData()">Submit</button>
       </div>
     </div>
   </div>
