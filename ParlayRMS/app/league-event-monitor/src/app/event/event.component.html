@@ -30,3 +30,70 @@
         </tr>
     </thead>
   </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows">
+    <td *ngIf="isNormalColumn(item) && index == 1" [attr.rowspan]="numberRow" class="font-weight-bold">
+        {{ item.homeName }}
+    </td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold">{{ item.homeName }}</td>
+    <td>{{ item.market }}</td>
+    <td [napIntegerFormat]="item.homeAvgOdds"></td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold" [napIntegerFormat]="item.homeTotalStake"></td>
+    <td *ngIf="isNormalColumn(item)" [napIntegerFormat]="item.homeTotalStake"></td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold" [napIntegerFormat]="item.homeTotalTicket"></td>
+    <td *ngIf="isNormalColumn(item)" [napIntegerFormat]="item.homeTotalTicket"></td>
+    <td *ngIf="isNormalColumn(item) && index == 1" [attr.rowspan]="numberRow" class="font-weight-bold">
+        {{ item.awayName }}
+    </td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold">{{ item.awayName }}</td>
+    <ng-container *ngIf="item.awayTotalTicket === 0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </ng-container>
+    <ng-container *ngIf="item.awayTotalTicket > 0">
+        <td>{{ item.market }}</td>
+        <td [napIntegerFormat]="item.awayAvgOdds"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold" [napIntegerFormat]="item.awayTotalStake"></td>
+        <td *ngIf="isNormalColumn(item)" [napIntegerFormat]="item.awayTotalStake"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold" [napIntegerFormat]="item.awayTotalTicket"></td>
+        <td *ngIf="isNormalColumn(item)" [napIntegerFormat]="item.awayTotalTicket"></td>
+    </ng-container>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1220px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <ng-container *ngFor="let item of data">
+                      <tr *ngFor="let event of item.eventList; let i = index;">
+                        <ng-template [ngTemplateOutlet]="rowItem"
+                            [ngTemplateOutletContext]="{ item: event, index: i, rows: item.fixedBettypes }">
+                        </ng-template>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="10">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

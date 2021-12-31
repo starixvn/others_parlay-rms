@@ -8,7 +8,7 @@
   <app-league *ngIf="filterModel && isShowLeague" [data]="this.leagueData"
     (clickedOnLeague)="showEvent()">
   </app-league>
-  <app-event *ngIf="filterModel && !isShowLeague"
+  <app-event *ngIf="filterModel && !isShowLeague" [data]="this.eventData"
     (showBackLeague)="showBackLeague()">
   </app-event>
   <!-- <nap-toast></nap-toast> -->

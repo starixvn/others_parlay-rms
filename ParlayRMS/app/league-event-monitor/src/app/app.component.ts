@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { AppService } from './app.service';
+import { EventGroupModel } from './event/event.model';
 import { FilterModel } from './filter/filter.model';
 import { LeagueDataModel } from './league/league.model';
 
@@ -13,6 +14,7 @@ export class AppComponent {
   netcoreApiUrl: string;
   filterModel!: FilterModel;
   leagueData: LeagueDataModel[] = [];
+  eventData: EventGroupModel[] = [];
   isShowLeague: boolean = true;
   constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
@@ -25,6 +27,7 @@ export class AppComponent {
     this.filterModel = filterModel;
     if (this.filterModel.isViewDetail) {
       this.isShowLeague = false;
+      this.appService.getEvents(this.netcoreApiUrl, this.filterModel).subscribe((data: EventGroupModel[]) => this.eventData = data);
     } else {
       this.isShowLeague = true;
       this.appService.getLeaguesData(this.netcoreApiUrl, this.filterModel).subscribe((data: LeagueDataModel[]) => this.leagueData = data);

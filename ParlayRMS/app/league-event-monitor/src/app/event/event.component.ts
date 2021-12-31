@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EventGroupModel, EventModel } from './event.model';
 
 @Component({
   selector: 'app-event',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-
+  @Input() data: EventGroupModel[] = [];
   @Output() showBackLeague = new EventEmitter();
   constructor() { }
 
@@ -15,5 +16,9 @@ export class EventComponent implements OnInit {
 
   public backToLeague(): void {
     this.showBackLeague.emit();
+  }
+
+  public isNormalColumn(model: EventModel): boolean {
+    return model.homeName !== null && model.homeName !== 'Others' && model.homeName !== 'Total';
   }
 }
