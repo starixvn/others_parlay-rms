@@ -23,13 +23,13 @@
     </thead>
   </ng-template>
   <ng-template #rowItem let-item="item">
-    <td><a href="javascript:;" (click)="showEvent()">{{ item.leagueName }}</a></td>
-    <td [napIntegerFormat]="item.homeTotalStake"></td>
-    <td [napIntegerFormat]="item.homeTotalTicket"></td>
-    <td [napIntegerFormat]="item.awayTotalStake"></td>
-    <td [napIntegerFormat]="item.awayTotalTicket"></td>
-    <td [napIntegerFormat]="item.otherTotalStake"></td>
-    <td [napIntegerFormat]="item.otherTotalTicket"></td>
+    <td><a href="javascript:;" (click)="showEvent(item.leagueId)">{{ item.leagueName }}</a></td>
+    <td [napDecimalFormat]="item.homeTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.homeTotalTicket" class="text-right"></td>
+    <td [napDecimalFormat]="item.awayTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.awayTotalTicket" class="text-right"></td>
+    <td [napDecimalFormat]="item.otherTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.otherTotalTicket" class="text-right"></td>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">

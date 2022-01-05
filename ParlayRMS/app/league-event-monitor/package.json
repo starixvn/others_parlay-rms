@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --ssl",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "postbuild": "gulp --path \"../../wwwroot/league-event-monitor\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

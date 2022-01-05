@@ -620,6 +620,20 @@
     <Content Include="ExcelTemplates\BetTypeDataAnalysis.xls" />
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
     <Content Include="Scripts\Monitor\LeagueWinning.js" />
+    <Content Include="wwwroot\league-event-monitor\3rdpartylicenses.txt" />
+    <Content Include="wwwroot\league-event-monitor\assets\header.png" />
+    <Content Include="wwwroot\league-event-monitor\assets\logo.png" />
+    <Content Include="wwwroot\league-event-monitor\assets\spinner.gif" />
+    <Content Include="wwwroot\league-event-monitor\favicon.ico" />
+    <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg" />
+    <Content Include="wwwroot\league-event-monitor\header.cefc375370fad0e7e2b4.png" />
+    <Content Include="wwwroot\league-event-monitor\index.html" />
+    <Content Include="wwwroot\league-event-monitor\logo.3f10b7fa3d49100ceff3.png" />
+    <Content Include="wwwroot\league-event-monitor\main.js" />
+    <Content Include="wwwroot\league-event-monitor\polyfills.js" />
+    <Content Include="wwwroot\league-event-monitor\runtime.js" />
+    <Content Include="wwwroot\league-event-monitor\spinner.39d0d6bd1fbec2b1c53f.gif" />
+    <Content Include="wwwroot\league-event-monitor\styles.css" />
     <Content Include="wwwroot\win-loss-risk-control\3rdpartylicenses.txt" />
     <Content Include="wwwroot\win-loss-risk-control\assets\header.png" />
     <Content Include="wwwroot\win-loss-risk-control\assets\logo.png" />
@@ -693,6 +707,11 @@
     <Content Include="Views\LeagueWinningMonitor\Data.cshtml" />
     <Content Include="Views\LeagueWinningMonitor\ViewDetailList.cshtml" />
     <Content Include="Scripts\Menu.LayoutAngular.js" />
+    <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.1e59d2330b4c6deb84b3.ttf" />
+    <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.20fd1704ea223900efa9.woff2" />
+    <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.8b43027f47b20503057d.eot" />
+    <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.f691f37e57f04c152e23.woff" />
+    <Content Include="wwwroot\league-event-monitor\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

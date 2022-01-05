@@ -8,14 +8,14 @@ import { LeagueDataModel } from './league.model';
 })
 export class LeagueComponent implements OnInit {
   @Input() data: LeagueDataModel[] = [];
-  @Output() clickedOnLeague = new EventEmitter();
+  @Output() clickedOnLeague = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public showEvent(): void {
-    this.clickedOnLeague.emit();
+  public showEvent(leagueId: number): void {
+    this.clickedOnLeague.emit(leagueId);
   }
 }

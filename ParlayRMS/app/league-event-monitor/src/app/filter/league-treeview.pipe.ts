@@ -16,10 +16,9 @@ export class LeagueTreeviewPipe implements PipeTransform {
     }
 
     items.forEach(item => {
-      const value = new TreeviewItem({ text: item.leagueName, value: item.leagueId, checked: true });
+      const value = new TreeviewItem({ text: item.leagueName, value: item.leagueId, checked: item.checked });
       treeItems.push(value);
     });
-
     return treeItems;
   }
 

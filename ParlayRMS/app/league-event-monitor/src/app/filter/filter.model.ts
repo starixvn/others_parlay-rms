@@ -7,6 +7,7 @@ export interface ItemModel {
 export interface LeagueModel {
     leagueId: number;
     leagueName: string;
+    checked: boolean;
 }
 
 export interface FilterModel {
@@ -16,5 +17,5 @@ export interface FilterModel {
     leagueIds: string;
     limitRowCount: number;
     level: string;
-    customerClass: number;
+    customerClass?: number;
   }

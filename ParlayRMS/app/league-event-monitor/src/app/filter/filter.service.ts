@@ -37,7 +37,7 @@ export class FilterService {
   }
 
   public getLeagues(netcoreApiUrl: string): Observable<LeagueModel[]> {
-    return this.httpService.get(`${netcoreApiUrl}${this.api}league`);
+    return this.httpService.post(`${netcoreApiUrl}${this.api}league`);
   }
 
   public getTops(): ItemModel[]

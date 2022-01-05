@@ -4,7 +4,9 @@ import { FilterModel, ItemModel, LeagueModel } from './filter.model';
 import { FilterService } from './filter.service';
 import { SelectItem } from 'nap-components/dropdown-select';
 import { ReportTypeConsts } from '../common/constants';
-import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
+import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { ToastService } from 'nap-components/toast';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-filter',
@@ -30,6 +32,7 @@ export class FilterComponent implements OnInit {
   public refreshItems: ItemModel[] = [];
   public selectedRefresh: string = '60';
   public checkedRefresh: boolean = false;
+  public isClickedSubmit: boolean = false;
 
   public itemConfig = TreeviewConfig.create({
     hasFilter: true,
@@ -41,13 +44,15 @@ export class FilterComponent implements OnInit {
   public countdownConfig: CountdownConfig = {
     leftTime: 60,
     formatDate: ({ date }) => `${date / 1000}`,
+    demand: true,
   };
 
   public reportTypeOptions: SelectItem[] = [];
   public reportType = ReportTypeConsts.LEAGUE;
   
   constructor(
-    private readonly filterService: FilterService
+    private readonly filterService: FilterService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -61,10 +66,7 @@ export class FilterComponent implements OnInit {
   }
 
   public changeRefreshnow(): void {
-    this.countdownConfig = {
-      leftTime: Number(this.selectedRefresh),
-      formatDate: ({ date }) => `${date / 1000}`,
-    };
+    this.createModelCountdown(Number(this.selectedRefresh), false);
     this.countdown.restart();
     this.checkedRefresh = false;
   }
@@ -74,19 +76,65 @@ export class FilterComponent implements OnInit {
   }
 
   public getData(): void {
+    this.createModelCountdown(60, false);
+    this.isClickedSubmit = true;
+    this.checkedRefresh = false;
     const model = this.createModel();
+    if (!this.isValid) {
+      return;
+    }
     this.generated.emit(model);
   }
 
   private createModel(): FilterModel {
+    console.log(this.customerClass);
     return {
       selection: this.selectedComboes.join(','),
       parlayType: this.selectedParlayTypes.join(','),
-      isViewDetail: this.reportType === ReportTypeConsts.EVENT,
+      isViewDetail: this.reportType === ReportTypeConsts.EVENT || this.selectedLeagues.length === 1,
       leagueIds: this.selectedLeagues.join(','),
       limitRowCount: Number(this.selectedTop),
       level: this.selectedLevels.join(','),
-      customerClass: Number(this.customerClass)
+      customerClass: this.customerClass === '' || this.customerClass === null ? undefined : Number(this.customerClass)
+    };
+  }
+
+  public handleCountdown(e: CountdownEvent) {
+    if (e.left === 0) {
+      this.getData();
+      this.countdown.restart()
+    }
+  }
+
+  private get isValid(): boolean {
+    if (this.selectedComboes.length === 0) {
+      this.toastService.activate(`Please select at least one Combo!`);
+      return false;
+    }
+
+    if (this.selectedParlayTypes.length === 0) {
+      this.toastService.activate(`Please select at least one parlay!`);
+      return false;
+    }
+
+    if (this.selectedLeagues.length === 0) {
+      this.toastService.activate(`Please select at least one league!`);
+      return false;
+    }
+
+    if (this.selectedLevels.length === 0) {
+      this.toastService.activate(`Please select at least one level!`);
+      return false;
+    }
+
+    return true;
+  }
+
+  private createModelCountdown(time: number, demand: boolean): void {
+    this.countdownConfig = {
+      leftTime: time,
+      formatDate: ({ date }) => `${date / 1000}`,
+      demand: demand
     };
   }
 }

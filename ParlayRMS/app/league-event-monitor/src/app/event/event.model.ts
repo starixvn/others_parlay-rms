@@ -9,6 +9,7 @@ export interface EventModel {
     awayAvgOdds: number;
     awayTotalStake: number;
     awayTotalTicket: number;
+    awayMarket: string;
 }
 
 export interface EventGroupModel {

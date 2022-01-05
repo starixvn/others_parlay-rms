@@ -4,13 +4,13 @@
       League & Event Monitor
     </div>
   </div>
-  <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <app-filter #filterComponent (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <nap-toast></nap-toast>
   <app-league *ngIf="filterModel && isShowLeague" [data]="this.leagueData"
-    (clickedOnLeague)="showEvent()">
+    (clickedOnLeague)="showEvent($event)">
   </app-league>
   <app-event *ngIf="filterModel && !isShowLeague" [data]="this.eventData"
-    (showBackLeague)="showBackLeague()">
+    (showBackLeague)="showBackLeague()" [isClickedOnleague]="isClickedOnleague">
   </app-event>
-  <!-- <nap-toast></nap-toast> -->
 </div>
 <nap-spinner></nap-spinner>

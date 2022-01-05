@@ -1,4 +1,5 @@
 export interface LeagueDataModel {
+    leagueId: number;
     leagueName: string;
     homeTotalStake: number;
     homeTotalTickets: number;

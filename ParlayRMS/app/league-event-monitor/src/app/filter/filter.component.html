@@ -75,7 +75,7 @@
         <div class="nap-group">
           <label class="width-130">Customer Class</label>
           <div class="nap-control">
-            <input class="nap-textbox" [(ngModel)]="customerClass">
+            <input class="nap-textbox" type="number" [(ngModel)]="customerClass">
           </div>
         </div>
       </div>
@@ -96,10 +96,12 @@
         <label>Seconds</label>
       </div>
       <div class="nap-col">
-        <button class="btn btn-light">Refresh now [<countdown #countdown [config]="countdownConfig"></countdown>]</button>
+        <button class="btn btn-light" [disabled]="!isClickedSubmit" (click)="getData()">
+          Refresh now [<countdown #countdown [config]="countdownConfig" (event)="handleCountdown($event)"></countdown>]
+        </button>
       </div>
       <div class="nap-col">
-        <input type="checkbox" (change)="pauseCountdown()" [(ngModel)]="checkedRefresh"> Pause
+        <input type="checkbox" [disabled]="!isClickedSubmit" (change)="pauseCountdown()" [(ngModel)]="checkedRefresh"> Pause
       </div>
       
       <div class="nap-col col-buttons">

@@ -8,6 +8,7 @@ import { EventGroupModel, EventModel } from './event.model';
 })
 export class EventComponent implements OnInit {
   @Input() data: EventGroupModel[] = [];
+  @Input() isClickedOnleague: boolean = false;
   @Output() showBackLeague = new EventEmitter();
   constructor() { }
 

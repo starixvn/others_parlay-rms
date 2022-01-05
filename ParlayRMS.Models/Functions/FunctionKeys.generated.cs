@@ -34,5 +34,6 @@
 		public const string DangerMonitor = "DangerMonitor";
 		public const string ViewIP = "ViewIP";
 		public const string LeagueWinningMonitor = "LeagueWinningMonitor";
+		public const string LeagueEventMonitor = "LeagueEventMonitor";
 			}
 }

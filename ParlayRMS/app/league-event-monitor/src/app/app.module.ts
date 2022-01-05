@@ -13,6 +13,10 @@ import { LeagueComponent } from './league/league.component';
 import { EventComponent } from './event/event.component';
 import { NumberFormatModule } from 'nap-components/number-format';
 import { SpinnerModule } from 'nap-components/spinner';
+import { ToastModule, ToastService } from 'nap-components/toast';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,16 @@ import { SpinnerModule } from 'nap-components/spinner';
     FormsModule,
     CountdownModule,
     NumberFormatModule,
-    SpinnerModule
+    SpinnerModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [
+    [
+        { provide: HTTP_INTERCEPTORS, useClass: CustomHttpRequestInterceptor, multi: true }
+    ],
+    ToastService,
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
