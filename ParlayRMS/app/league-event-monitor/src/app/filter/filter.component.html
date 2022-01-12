@@ -1,0 +1,112 @@
+<div class="nap-filter">
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Combo</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="comboItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedComboes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Parlay type</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="parlayTypeItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedParlayTypes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class>Report type</label>
+          <div class="nap-control width-200 margin-5">
+            <div class="form-check form-check-inline" *ngFor="let option of reportTypeOptions">
+              <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="searchBy" [(ngModel)]="reportType" [value]="option.value" /> {{option.text}}
+              </label>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">League</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="leagueItems | leagueTreeview"
+              [config]="itemConfig" (selectedChange)="selectedLeagues = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Select top</label>
+          <div class="nap-control">
+            <select class="nap-textbox" [(ngModel)]="selectedTop">
+              <option *ngFor="let top of topItems" [attr.checked]="top.checked" [value]="top.id">
+                   {{top.name}}
+               </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Level</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="levelItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedLevels = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-130">Customer Class</label>
+          <div class="nap-control">
+            <input class="nap-textbox" type="number" [(ngModel)]="customerClass">
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Refresh every</label>
+          <div class="nap-control">
+            <select class="nap-textbox" (change)="changeRefreshnow()" [(ngModel)]="selectedRefresh">
+              <option *ngFor="let refresh of refreshItems" [attr.checked]="refresh.checked" [value]="refresh.id">
+                   {{refresh.name}}
+               </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="nap-col">
+        <label>Seconds</label>
+      </div>
+      <div class="nap-col">
+        <button class="btn btn-light" [disabled]="!isClickedSubmit" (click)="getData()">
+          Refresh now [<countdown #countdown [config]="countdownConfig" (event)="handleCountdown($event)"></countdown>]
+        </button>
+      </div>
+      <div class="nap-col">
+        <input type="checkbox" [disabled]="!isClickedSubmit" (change)="pauseCountdown()" [(ngModel)]="checkedRefresh"> Pause
+      </div>
+      
+      <div class="nap-col col-buttons">
+        <button class="btn btn-primary" (click)="getData()">Submit</button>
+      </div>
+    </div>
+  </div>
+  

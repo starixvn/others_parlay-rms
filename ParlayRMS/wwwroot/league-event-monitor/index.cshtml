@@ -1,0 +1,17 @@
+@{
+    Layout = "~/Views/Shared/_LayoutAngular.cshtml";
+    ViewBag.Title = "LeagueEventMonitor";
+}
+@section Head {
+    
+    <link href='@Url.Content("~/wwwroot/league-event-monitor/favicon?ico")' rel="stylesheet"/>
+    <link href='@Url.Content("~/wwwroot/league-event-monitor/styles.css?af5609e7dc2537762929")' rel="stylesheet"/>
+}
+<app-root netcore-api-url="@ViewBag.AspNetCoreApiUrl"></app-root>
+
+<script src='@Url.Content("~/wwwroot/league-event-monitor/runtime.js?43f336a2166cf78a8447")'></script>
+
+<script src='@Url.Content("~/wwwroot/league-event-monitor/polyfills.js?23f217e3411dc436d390")'></script>
+
+<script src='@Url.Content("~/wwwroot/league-event-monitor/main.js?d8c2ccd123da34b92c1b")'></script>
+

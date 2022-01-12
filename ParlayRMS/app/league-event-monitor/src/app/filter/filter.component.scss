@@ -1,0 +1,87 @@
+@import '~nap-theme/scss/_mixins';
+.nap-filter {
+    width: 1100px;
+    padding: .3rem;
+    margin-bottom: .5rem;
+    border: solid 1px #cecccd;
+    border-radius: .3rem;
+    background-color: #eceeef;
+    @include box-shadow(0 0 4px 1px rgba(0, 0, 0, .1));
+    .row {
+        margin-top: 3px;
+    }
+    .nap-col {
+        padding-left: $grid-gutter-width / 4;
+        padding-right: $grid-gutter-width / 4;
+    }
+    .nap-group {
+        label {
+            margin-right: .5em;
+            text-align: right;
+        }
+        .nap-control {
+            display: inline-block;
+        }
+    }
+    .nap-form-checkbox {
+        display: inline-block;
+        margin-top: .3rem;
+    }
+}
+
+:host ::v-deep .show {
+    .dropdown-menu {
+        display: block;
+        .form-check-input {
+            margin-left: 0;
+        }
+    }
+}
+
+.nap-col {
+  .nap-group {
+    &>label {
+      float: left;
+      width: 100px;
+      line-height: 25px;
+      font-weight: bold;
+    }
+    &>.nap-control {
+      float: left;
+      width: 150px;
+    }
+    &>.width-180 {
+      width: 180px !important;
+    }
+  }
+}
+
+.col-buttons {
+  margin-left: 20px;
+}
+
+.width-200 {
+  width: 200px !important;
+}
+
+.margin-5 {
+  margin: 5px;
+}
+
+.nap-textbox {
+  width: 100%;
+  width: 150px;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25em;
+  height: 26px;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.nap-textbox:focus-visible{
+  outline: none;
+}
+
+.width-130 {
+  width: 130px !important;
+}

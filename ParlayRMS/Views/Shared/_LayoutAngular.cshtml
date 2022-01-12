@@ -4,9 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Menu")
+    @Scripts.Render("~/Scripts/Menu.LayoutAngular/js")
+    <script type="text/javascript">
+        function resolveClientUrl(relativeUrl) {
+            return '@Url.Content("~/")' + relativeUrl;
+        }
+    </script>
     @RenderSection("Head", false)
 </head>
 <body>
-    @RenderBody()
+    <div id="header-tab">
+        <div class="top-bar">
+            @Html.Action("_Menu", "Shared", new { area = string.Empty })
+        </div>
+        @if (ViewBag.HeaderText != null)
+        {
+            <div class="header showcase">
+                <div class="content posrel">
+                    <h1>@ViewBag.HeaderText</h1>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clear-both">
+        @RenderBody()
+    </div>
+    <div id="loading" class="loading">
+        <img alt="" src="@Url.Content("~/Content/Images/Content/loading12.gif")" />
+    </div>
 </body>
 </html>

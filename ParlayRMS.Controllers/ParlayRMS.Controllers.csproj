@@ -226,6 +226,7 @@
     <Compile Include="AccountController.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="LeagueBetTypeAnalysisController.cs" />
+    <Compile Include="LeagueEventMonitorController.cs" />
     <Compile Include="LeagueWinningMonitorController.cs" />
     <Compile Include="ManageLeagueController.cs" />
     <Compile Include="ParlayWonController.cs" />

@@ -1,0 +1,67 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 250px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+    </colgroup>
+  </ng-template>
+  <ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col" style="background-color: #0070c0">League</th>
+            <th scope="col" style="background-color: #c49500">Home (O) Total Stake</th>
+            <th scope="col" style="background-color: #c49500">Home (O) Total Tickets</th>
+            <th scope="col" style="background-color: #672c94">Away (O) Total Stake</th>
+            <th scope="col" style="background-color: #672c94">Away (O) Total Tickets</th>
+            <th scope="col" style="background-color: #0086ea">Others Total Stake</th>
+            <th scope="col" style="background-color: #0086ea">Others Total Tickets</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item">
+    <td><a href="javascript:;" (click)="showEvent(item.leagueId)">{{ item.leagueName }}</a></td>
+    <td [napDecimalFormat]="item.homeTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.homeTotalTicket" class="text-right"></td>
+    <td [napDecimalFormat]="item.awayTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.awayTotalTicket" class="text-right"></td>
+    <td [napDecimalFormat]="item.otherTotalStake" class="text-right"></td>
+    <td [napIntegerFormat]="item.otherTotalTicket" class="text-right"></td>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1170px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <tr *ngFor="let item of data">
+                    <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                    </ng-template>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="7">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,117 @@
+<div *ngIf="isClickedOnleague" style="margin: 0.3rem">
+    <button class="btn btn-danger" (click)="backToLeague()">Back to List Leagues</button>
+</div>
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 200px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 200px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+    </colgroup>
+  </ng-template>
+
+  <ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col">Home (O)</th>
+            <th scope="col">Market</th>
+            <th scope="col">Average Odds</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Home Ticket</th>
+            <th scope="col">Away (U)</th>
+            <th scope="col">Market</th>
+            <th scope="col">Average Odds</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Away Ticket</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows">
+    <td *ngIf="isNormalColumn(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+        {{ item.homeName }}
+    </td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
+    <ng-container *ngIf="item.homeTotalTicket === 0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </ng-container>
+    <ng-container *ngIf="item.homeTotalTicket > 0">
+        <td>{{ item.market }}</td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index == 0"></td>
+        <td *ngIf="!isNormalColumn(item)"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.homeTotalStake" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index == 0" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.homeTotalTicket"></td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napIntegerFormat]="item.homeTotalTicket" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index === 0" [napIntegerFormat]="item.homeTotalTicket" class="font-weight-bold text-center"></td>
+    </ng-container>
+    <td *ngIf="isNormalColumn(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+        {{ item.awayName }}
+    </td>
+    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
+    <ng-container *ngIf="item.awayTotalTicket === 0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </ng-container>
+    <ng-container *ngIf="item.awayTotalTicket > 0">
+        <td>{{ item.awayMarket }}</td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.awayAvgOdds" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index == 0"></td>
+        <td *ngIf="!isNormalColumn(item)"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.awayTotalStake"></td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.awayTotalStake" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.awayTotalTicket"></td>
+        <td *ngIf="isNormalColumn(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
+        <td *ngIf="isNormalColumn(item) && index === 0" [napIntegerFormat]="item.awayTotalTicket" class="font-weight-bold text-center"></td>
+    </ng-container>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1220px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <ng-container *ngFor="let item of data; let j = index;">
+                      <tr [ngClass]="{'even-color': j % 2 > 0, 'odd-color': j % 2 === 0}" *ngFor="let event of item.eventList; let i = index;">
+                        <ng-template [ngTemplateOutlet]="rowItem"
+                            [ngTemplateOutletContext]="{ item: event, index: i, rows: item.fixedBettypes }">
+                        </ng-template>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="10">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

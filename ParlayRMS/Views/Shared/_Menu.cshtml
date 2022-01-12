@@ -15,14 +15,7 @@
                         <ul class="sub-nav" style="display: none">
                             @foreach (var menu in value.Children)
                             {
-                                if (menu.Url.Contains("newtab=true"))
-                                {
-                                    <li><a href='@Url.Content(menu.Url)' target="_blank">@menu.Name</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
-                                }
+                                <li><a href='@(menu.Url != "" ? @Url.Content(menu.Url) : "")'>@menu.Name</a></li>
                             }
                         </ul>
                     }

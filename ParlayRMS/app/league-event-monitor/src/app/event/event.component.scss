@@ -1,0 +1,16 @@
+@import '~nap-theme/scss/grid';
+.nap-grid {
+    padding: 0.3rem;
+}
+thead tr th{
+    background-color: #00b0f0;
+    color:black;
+}
+
+.odd-color {
+    background-color:#deeaf6;
+}
+
+.even-color {
+    background-color:#fbe4d5;
+}

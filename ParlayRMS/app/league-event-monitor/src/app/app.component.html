@@ -1,0 +1,16 @@
+<div>
+  <div class="nap-header">
+    <div class="title">
+      League & Event Monitor
+    </div>
+  </div>
+  <app-filter #filterComponent (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <nap-toast></nap-toast>
+  <app-league *ngIf="filterModel && isShowLeague" [data]="this.leagueData"
+    (clickedOnLeague)="showEvent($event)">
+  </app-league>
+  <app-event *ngIf="filterModel && !isShowLeague" [data]="this.eventData"
+    (showBackLeague)="showBackLeague()" [isClickedOnleague]="isClickedOnleague">
+  </app-event>
+</div>
+<nap-spinner></nap-spinner>
