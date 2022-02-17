@@ -18,4 +18,5 @@ export interface FilterModel {
     limitRowCount: number;
     level: string;
     customerClass?: number;
+    sportType: number;
   }

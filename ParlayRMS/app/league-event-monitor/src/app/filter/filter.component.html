@@ -21,6 +21,19 @@
           </div>
         </div>
       </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Sport</label>
+          <div class="nap-control">
+            <select class="nap-textbox" [(ngModel)]="selectedSport" (change)="getLeagueBySport()">
+              <option *ngFor="let sport of sportItems" [attr.checked]="sport.checked" [value]="sport.id">
+                   {{sport.name}}
+               </option>
+            </select>
+          </div>
+        </div>
+      </div>
   
       <div class="nap-col">
         <div class="nap-group">
