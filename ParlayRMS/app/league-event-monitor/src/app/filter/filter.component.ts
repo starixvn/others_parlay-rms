@@ -3,7 +3,7 @@ import { TreeviewConfig } from 'ngx-treeview';
 import { FilterModel, ItemModel, LeagueModel } from './filter.model';
 import { FilterService } from './filter.service';
 import { SelectItem } from 'nap-components/dropdown-select';
-import { ReportTypeConsts } from '../common/constants';
+import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
 import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { ToastService } from 'nap-components/toast';
 import * as _ from 'lodash';
@@ -33,6 +33,8 @@ export class FilterComponent implements OnInit {
   public selectedRefresh: string = '60';
   public checkedRefresh: boolean = false;
   public isClickedSubmit: boolean = false;
+  public sportItems: ItemModel[] = [];
+  public selectedSport: string = SportTypeConsts.ESPORT; 
 
   public itemConfig = TreeviewConfig.create({
     hasFilter: true,
@@ -59,10 +61,11 @@ export class FilterComponent implements OnInit {
     this.comboItems = this.filterService.getComboes();
     this.parlayTypeItems = this.filterService.getParlayTypes();
     this.reportTypeOptions = this.filterService.getReportTypeOptions();
-    this.filterService.getLeagues(this.netcoreApiUrl).subscribe((leagues: LeagueModel[]) => this.leagueItems = leagues);
+    this.filterService.getLeagues(this.netcoreApiUrl, Number(SportTypeConsts.ESPORT)).subscribe((leagues: LeagueModel[]) => this.leagueItems = leagues);
     this.topItems = this.filterService.getTops();
     this.levelItems = this.filterService.getLevels();
     this.refreshItems = this.filterService.getRefreshs();
+    this.sportItems = this.filterService.getSports();
   }
 
   public changeRefreshnow(): void {
@@ -95,7 +98,8 @@ export class FilterComponent implements OnInit {
       leagueIds: this.selectedLeagues.join(','),
       limitRowCount: Number(this.selectedTop),
       level: this.selectedLevels.join(','),
-      customerClass: this.customerClass === '' || this.customerClass === null ? undefined : Number(this.customerClass)
+      customerClass: this.customerClass === '' || this.customerClass === null ? undefined : Number(this.customerClass),
+      sportType: Number(this.selectedSport)
     };
   }
 
@@ -136,5 +140,10 @@ export class FilterComponent implements OnInit {
       formatDate: ({ date }) => `${date / 1000}`,
       demand: demand
     };
+  }
+
+  public getLeagueBySport(): void {
+    this.filterService.getLeagues(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
+      (leagues: LeagueModel[]) => this.leagueItems = leagues);
   }
 }

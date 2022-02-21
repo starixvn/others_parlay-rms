@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SelectItem } from 'nap-components/dropdown-select';
 import { HttpService } from 'nap-components/http';
 import { Observable } from 'rxjs';
-import { ReportTypeConsts } from '../common/constants';
+import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
 import { ItemModel, LeagueModel } from './filter.model';
 
 @Injectable({
@@ -36,8 +36,8 @@ export class FilterService {
     ]
   }
 
-  public getLeagues(netcoreApiUrl: string): Observable<LeagueModel[]> {
-    return this.httpService.post(`${netcoreApiUrl}${this.api}league`);
+  public getLeagues(netcoreApiUrl: string, sportId: number): Observable<LeagueModel[]> {
+    return this.httpService.post(`${netcoreApiUrl}${this.api}league`, { sportType: sportId });
   }
 
   public getTops(): ItemModel[]
@@ -69,6 +69,14 @@ export class FilterService {
     return [
       { id: '60', name: '60', checked: true },
       { id: '120', name: '120', checked: false }
+    ]
+  }
+
+  public getSports(): ItemModel[]
+  {
+    return [
+      { id: SportTypeConsts.ESPORT, name: 'E-Sports', checked: true },
+      { id: SportTypeConsts.BASKETBALL, name: 'Basketball ', checked: false },
     ]
   }
 }
