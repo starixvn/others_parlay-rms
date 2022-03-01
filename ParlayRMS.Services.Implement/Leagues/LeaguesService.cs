@@ -9,9 +9,9 @@
     {
         private readonly LeaguesDataAccess _leagueDataAccess = new LeaguesDataAccess();
 
-        public List<RMS_LeagueSel> GetListLeague(string leagueName, int groupid)
+        public List<RMS_LeagueSel> GetListLeague(string leagueName, int groupid, int sportType)
         {
-            return this._leagueDataAccess.RMS_LeagueSel(leagueName, groupid);
+            return this._leagueDataAccess.RMS_LeagueSel(leagueName, groupid, sportType);
         }
 
         public Result AddLeague(string leagueName, int groupId, int adminId, string ip)

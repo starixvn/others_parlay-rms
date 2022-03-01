@@ -18,7 +18,8 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                                                        string leagues,
                                                        int site,
                                                        double ratio,
-                                                       int reportBy)
+                                                       int reportBy,
+                                                       int sportType)
         {
             var result = new List<RMS_Rpt_LeagueBettype_Analysis>();
 
@@ -32,6 +33,7 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                 db.AddInParameter("Site", DbType.Int32, site);
                 db.AddInParameter("Ratio", DbType.Decimal, ratio);
                 db.AddInParameter("ReportBy", DbType.Int32, reportBy);
+                db.AddInParameter("SportType", DbType.Int32, sportType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -68,6 +70,30 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
             }
             double ratio = ((double)wonTickets / totalTickets) * 100;
             return Math.Round(ratio).ToString() + "%";
+        }
+
+        public IEnumerable<LeagueGroup> GetLeagueGroups(int sportType)
+        {
+            var result = new List<LeagueGroup>();
+
+            using (var db = new ObjectDb("RMS_LeagueGroupSel"))
+            {
+                db.AddInParameter("SportType", DbType.Int32, sportType);
+
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new LeagueGroup
+                        {
+                            Name = reader.ToString("LeagueGroupName"),
+                            Id = reader.ToInt32("LeagueGroupID")
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

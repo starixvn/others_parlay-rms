@@ -22,6 +22,8 @@
 
         public int ReportBy { get; set; }
 
+        public int SportType { get; set; }
+
         public int Page { get; set; }
 
         public string GetTitle()

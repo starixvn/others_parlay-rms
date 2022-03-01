@@ -1,20 +1,18 @@
 ﻿
 namespace ParlayRMS.Controllers
 {
+    using ExcelService.Writers;
     using Models.Functions;
+    using PagedList;
     using Services.Implement.LeagueBetTypeAnalysis;
     using Services.Implement.Leagues;
     using System;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using System.Web.Mvc;
+    using Utility;
     using ViewModel.Report;
     using Web.Authorization;
-    using Utility;
-    using PagedList;
-    using ExcelService.Writers;
-    using System.Linq;
-    using System.IO;
-    using Newtonsoft.Json;
 
     [Authorization(Function = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = UserPolicy.Read)]
     public class LeagueBetTypeAnalysisController : BaseController
@@ -31,16 +29,19 @@ namespace ParlayRMS.Controllers
 
         public ActionResult Filter()
         {
-            var leagueList = this.leagueService.GetListLeague("", 0);
-            ViewBag.LeagueList = JsonConvert.SerializeObject(leagueList);
-            var leaguesListItem = new List<SelectListItem>();
-            foreach (var item in leagueList)
-            {
-                leaguesListItem.Add(new SelectListItem { Text = item.LeagueName, Value = item.LeagueId.ToString() });
-            }
-            ViewBag.Leagues = leaguesListItem;
-
             return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult GroupsAndLeagues(int sportType)
+        {
+            var leagueGroups = service.GetLeagueGroups(sportType);
+            var leagueList = leagueService.GetListLeague("", 0, sportType);
+            return Json(new
+            {
+                Groups = leagueGroups,
+                Leagues = leagueList
+            });
         }
 
         [HttpPost]

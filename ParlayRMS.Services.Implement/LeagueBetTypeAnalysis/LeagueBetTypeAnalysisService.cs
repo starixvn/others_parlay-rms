@@ -21,7 +21,13 @@ namespace ParlayRMS.Services.Implement.LeagueBetTypeAnalysis
                 options.Leagues,
                 options.Site,
                 options.Ratio,
-                options.ReportBy);
+                options.ReportBy,
+                options.SportType);
+        }
+
+        public IEnumerable<LeagueGroup> GetLeagueGroups(int sportType)
+        {
+            return _dataAccess.GetLeagueGroups(sportType);
         }
     }
 }

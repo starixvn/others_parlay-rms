@@ -20,12 +20,13 @@
         private readonly UsersService _userService = new UsersService();
         private readonly LeaguesService leagueService = new LeaguesService();
         private readonly int _pageSize = AppSetting.PageSize;
+        private const int SOCCER = 1;
 
 
         [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
         public ActionResult LeagueList(LeagueListModel model)
         {
-            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group);
+            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group, SOCCER);
             int page = model.Page <= 0 ? 1 : model.Page;
             ViewBag.Pager = Pager.Items(specialLeagueList.Count).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
             return this.View(specialLeagueList.ToPagedList(page, _pageSize));
@@ -76,7 +77,7 @@
         [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
         public ActionResult ExportExcel(ExportExcelModel model)
         {
-            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group);
+            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group, SOCCER);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\SpecialLeague.xls";
             var writer = new TemplateWriter(templatePath);
 

@@ -19,7 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.Leagues
 
     public class LeaguesDataAccess : BaseDataAccess
     {
-        public List<RMS_LeagueSel> RMS_LeagueSel(string leagueName, int groupId)
+        public List<RMS_LeagueSel> RMS_LeagueSel(string leagueName, int groupId, int sportType)
         {
             var result = new List<RMS_LeagueSel>();
 
@@ -27,6 +27,7 @@ namespace ParlayRMS.DataAccess.Implement.Leagues
             {
                 db.AddInParameter("leaguename", DbType.String, leagueName ?? string.Empty);
                 db.AddInParameter("groupid", DbType.Int32, groupId);
+                db.AddInParameter("SportType", DbType.Int32, sportType);
                 using (var reader = db.ExecuteReader())
                 {
                     int index = 1;
