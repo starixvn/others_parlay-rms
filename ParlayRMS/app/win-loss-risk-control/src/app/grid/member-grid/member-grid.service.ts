@@ -32,6 +32,7 @@ export class MemberGridService {
             site: this.model.site,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
+            selection: filterModel.selection,
             pageSize: filterModel.pageSize,
             pageIndex: filterModel.pageIndex
         };

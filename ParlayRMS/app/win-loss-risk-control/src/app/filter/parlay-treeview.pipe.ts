@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
-import { ParlayType } from './filter.model';
+import { SelectItem } from './filter.model';
 import { TreeviewItem } from 'ngx-treeview';
 
 @Pipe({
@@ -8,7 +8,7 @@ import { TreeviewItem } from 'ngx-treeview';
 })
 
 export class ParlayTreeviewPipe implements PipeTransform {
-  transform(parlays: ParlayType[]): TreeviewItem[] {
+  transform(parlays: SelectItem[]): TreeviewItem[] {
     const treeItems: TreeviewItem[] = [];
 
     if (_.isNil(parlays)) {

@@ -37,6 +37,7 @@ export class AgentGridService {
             roleId: Role.master,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
+            selection: filterModel.selection
         };
     }
 

@@ -18,6 +18,7 @@ import * as moment from 'moment';
 import { AppService } from './app.service';
 import { CONFIG, DateConfig } from './common/config';
 import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
+import { ComboTreeviewPipe } from './filter/combo-treeview.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
     FilterComponent,
     CompanyTreeviewPipe,
     SportTreeviewPipe,
-    ParlayTreeviewPipe
+    ParlayTreeviewPipe,
+    ComboTreeviewPipe
   ],
   imports: [
     BrowserModule,
