@@ -17,6 +17,7 @@ import { ToastModule, ToastService } from 'nap-components/toast';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 import { AppService } from './app.service';
+import { BettypeTreeviewPipe } from './filter/bettype-treeview.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppService } from './app.service';
     ItemTreeviewPipe,
     LeagueTreeviewPipe,
     LeagueComponent,
-    EventComponent
+    EventComponent,
+    BettypeTreeviewPipe
   ],
   imports: [
     BrowserModule,

@@ -19,4 +19,12 @@ export interface FilterModel {
     level: string;
     customerClass?: number;
     sportType: number;
+    betTypes: string;
+    userName: string;
+  }
+
+  export interface BettypeModel {
+    bettype: number;
+    typeNamee: string;
+    groupId: number;
   }

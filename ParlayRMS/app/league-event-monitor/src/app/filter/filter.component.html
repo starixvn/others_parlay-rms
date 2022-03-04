@@ -26,7 +26,7 @@
         <div class="nap-group">
           <label class="width-50">Sport</label>
           <div class="nap-control">
-            <select class="nap-textbox" [(ngModel)]="selectedSport" (change)="getLeagueBySport()">
+            <select class="nap-textbox" [(ngModel)]="selectedSport" (change)="getLeagueAndBettypeBySport()">
               <option *ngFor="let sport of sportItems" [attr.checked]="sport.checked" [value]="sport.id">
                    {{sport.name}}
                </option>
@@ -89,6 +89,27 @@
           <label class="width-130">Customer Class</label>
           <div class="nap-control">
             <input class="nap-textbox" type="number" [(ngModel)]="customerClass">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Bettype</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="bettypeItems | bettypeTreeview"
+              [config]="itemConfig" (selectedChange)="selectedBettypes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">SMA/Member</label>
+          <div class="nap-control">
+            <input class="nap-textbox" [(ngModel)]="smaMember">
           </div>
         </div>
       </div>
