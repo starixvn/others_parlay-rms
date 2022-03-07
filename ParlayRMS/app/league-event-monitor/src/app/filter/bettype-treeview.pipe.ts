@@ -24,20 +24,15 @@ export class BettypeTreeviewPipe implements PipeTransform {
       switch (bettype.groupId) {
         case 1:
           groupTreeviewItem = majorGroup;
-          if (_.isNil(groupTreeviewItem.children)) {
-            groupTreeviewItem.children = [item];
-          } else {
-            groupTreeviewItem.children.push(item);
-          }
           break;
         default:
           groupTreeviewItem = minorGroup;
-          if (_.isNil(groupTreeviewItem.children)) {
-            groupTreeviewItem.children = [item];
-          } else {
-            groupTreeviewItem.children.push(item);
-          }
           break;
+      }
+      if (_.isNil(groupTreeviewItem.children)) {
+        groupTreeviewItem.children = [item];
+      } else {
+        groupTreeviewItem.children.push(item);
       }
     });
 

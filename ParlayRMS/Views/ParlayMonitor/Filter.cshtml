@@ -67,6 +67,10 @@
             </div>
             <div class="row">
                 <div class="group">
+                    @Html.Label("company", "Company", new { @class = "lable" })
+                    @Html.DropDownList("ddlCompany", new List<SelectListItem>())
+                </div>
+                <div class="group">
                     @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
                     @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
                 </div>

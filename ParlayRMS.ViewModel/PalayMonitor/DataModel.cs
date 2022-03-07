@@ -36,5 +36,7 @@ namespace ParlayRMS.ViewModel.PalayMonitor
         public string LeagueGroups { get; set; }
 
         public long? CustomerClass { get; set; }
+
+        public string Company { get; set; }
     }
 }

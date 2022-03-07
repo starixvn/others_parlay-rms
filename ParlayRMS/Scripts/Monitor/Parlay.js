@@ -22,6 +22,7 @@ function UserSettings() {
     this.odds = null;
     this.leagueGroups = null;
     this.customerClass = null;
+    this.company = '';
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -35,7 +36,8 @@ function UserSettings() {
             && this.isCornerParlay == setting.isCornerParlay
             && this.odds == setting.odds
             && this.leagueGroups == settings.leagueGroups
-            && this.customerClass == settings.customerClass) {
+            && this.customerClass == settings.customerClass
+            && this.company == settings.company) {
             return false;
         }
 
@@ -83,6 +85,14 @@ var settingsController = function () {
             }).get().join(',');
             if (sportsTypes == '') {
                 Validators.show($('#sportsType').multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
+            var company = $("#ddlCompany").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (company == '') {
+                Validators.show($('#ddlCompany').multiselect("getButton").get(0), 'Please select your options');
                 return null;
             }
 
@@ -150,6 +160,7 @@ var settingsController = function () {
             userSettings.odds = odds;
             userSettings.leagueGroups = leagueGroups;
             userSettings.customerClass = customerClass;
+            userSettings.company = company;
             return userSettings;
         }
     }
@@ -183,7 +194,8 @@ var timerController = function () {
             isCornerParlay: settings.isCornerParlay,
             odds: settings.odds,
             leagueGroups: settings.leagueGroups,
-            customerClass: settings.customerClass
+            customerClass: settings.customerClass,
+            company: settings.company
         }
 
         $.ajax({
@@ -339,6 +351,32 @@ $(document).ready(function () {
                 return numChecked + ' options';
             }
         }
+    });
+
+    $("#ddlCompany").multiselect({
+        height: 300,
+        minWidth: 140,
+        enableCollapsibleOptGroups: true,
+        collapseOptGroupsByDefault: true,
+        create: function () {
+            $("#ddlCompany").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return $(checkedItems).attr('title');
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    }).multiselectfilter({
+        autoReset: true
     });
 
     $("#level").multiselect({
@@ -517,6 +555,8 @@ $(document).ready(function () {
                 });
         }
     });
+
+    getCompanies();
 });
 
 function FillData(table, data) {
@@ -827,6 +867,49 @@ function updateCheckedUser(element, userid, username, transid) {
             loading.hide();
         }
     });
+}
+
+function getCompanies() {
+
+    $.ajax({
+        url: resolveClientUrl('ParlayMonitor/Company'),
+        type: 'POST',
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            var json = $.parseJSON(result);
+            loadCompanyControl(json);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+function loadCompanyControl(data) {
+    var html = '';
+    $.each(data, function (key, obj) {
+        if (obj.GroupId == 0) {
+            html += '<optgroup label="MBC Group" selected="selected">';
+        }
+        else {
+            html += '<optgroup label="Licensee Group" selected="selected">';
+        }
+        $.each(obj.Items, function (inx, site) {
+            html += '<option value="' + site + '" aria-selected="true">' + site + '</option>';
+        })
+        html += '</optgroup>';
+    });
+    
+    $('#ddlCompany').html(html);
+    $('#ddlCompany').multiselect('refresh');
+    $("#ddlCompany").multiselect("checkAll");
 }
 
 function disabledandCheckedCheckBox(element) {

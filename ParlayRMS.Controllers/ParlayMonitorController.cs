@@ -128,7 +128,8 @@ namespace ParlayRMS.Controllers
                                 model.IsCornerParlay,
                                 model.Odds,
                                 model.LeagueGroups,
-                                model.CustomerClass) : new List<RMS_Monitor_Parlay_Betlist>();
+                                model.CustomerClass,
+                                model.Company) : new List<RMS_Monitor_Parlay_Betlist>();
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {
@@ -149,6 +150,13 @@ namespace ParlayRMS.Controllers
         {
             var data = _parlayMonitorCacheService.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
             return Json(data);
+        }
+
+        [HttpPost]
+        public ActionResult Company()
+        {
+            var data = _parlayMonitorCacheService.GetCompanies();
+            return Json(data.GroupBy(x => x.IsDeposit).Select(y => new { GroupId = y.Key, Items = y.Select(z => z.Site) }).ToList());
         }
     }
 }
