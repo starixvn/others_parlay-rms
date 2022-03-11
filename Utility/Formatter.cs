@@ -76,6 +76,11 @@ namespace ParlayRMS.Utility
             return date.ToString("MM/dd/yyyy");
         }
 
+        public static string FormatDateTime(DateTime date)
+        {
+            return date.ToString("MM/dd/yyyy h:mm:ss tt");
+        }
+
         public static string FormatWithoutRounding(decimal value)
         {
             return FormatNumber3(Math.Floor(value));

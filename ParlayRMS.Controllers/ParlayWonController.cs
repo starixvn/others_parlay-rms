@@ -185,7 +185,7 @@ namespace ParlayRMS.Controllers
             var select = records.Select(x => new
             {
                 No = Formatter.FormatNumber3(++id),
-                TransTime = Formatter.FormatDate(x.TransDate),
+                TransTime = Formatter.FormatDateTime(x.TransDate),
                 TransId = x.TransId,
                 Username = x.Username,
                 CustomerClass = x.CustomerClass,

@@ -15,8 +15,8 @@
             <th scope="col" style="background-color: #0070c0">League</th>
             <th scope="col" style="background-color: #c49500">Home (O) Total Stake</th>
             <th scope="col" style="background-color: #c49500">Home (O) Total Tickets</th>
-            <th scope="col" style="background-color: #672c94">Away (O) Total Stake</th>
-            <th scope="col" style="background-color: #672c94">Away (O) Total Tickets</th>
+            <th scope="col" style="background-color: #672c94">Away (U) Total Stake</th>
+            <th scope="col" style="background-color: #672c94">Away (U) Total Tickets</th>
             <th scope="col" style="background-color: #0086ea">Others Total Stake</th>
             <th scope="col" style="background-color: #0086ea">Others Total Tickets</th>
         </tr>
@@ -40,7 +40,7 @@
                     <ng-template [ngTemplateOutlet]="thead"></ng-template>
                 </table>
             </div>
-            <div *ngSwitchCase="true" class="body">
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>

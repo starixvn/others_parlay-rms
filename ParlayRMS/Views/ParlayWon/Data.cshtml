@@ -8,7 +8,7 @@
     var start = index;
 }
 <input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
-<div style="width: 1820px;" class="maintitle">
+<div style="width: 1850px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
@@ -17,11 +17,11 @@
          title="Export Excel">
     </div>
 </div>
-<div style="width: 1820px">
+<div style="width: 1850px">
     <table class="main" id="header">
         <colgroup>
             <col width='70' />
-            <col width='120' />
+            <col width='150' />
             <col width='150' />
             <col width='150' />
             <col width='100' />
@@ -91,11 +91,11 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1840px">
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1870px">
     <table class="main" id="result">
         <colgroup>
             <col width='70' />
-            <col width='120' />
+            <col width='150' />
             <col width='150' />
             <col width='150' />
             <col width='100' />
@@ -119,7 +119,7 @@
                         @Formatter.FormatNumber3(index + 1)
                     </td>
                     <td class="center">
-                        @Formatter.FormatDate(item.TransDate)
+                        @Formatter.FormatDateTime(item.TransDate)
                     </td>
                     <td class="center">
                         <a href="#@item.RefNo" onclick="window.open(resolveClientUrl('SimilarBets?betid=' + @item.TransId + ''), '_blank')">@item.TransId</a>
@@ -171,11 +171,11 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1820px" class="mainfooter">
+<div style="width: 1850px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='70' />
-            <col width='120' />
+            <col width='150' />
             <col width='150' />
             <col width='150' />
             <col width='100' />

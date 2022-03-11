@@ -37,7 +37,7 @@
         {{ item.homeName }}
     </td>
     <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
-    <ng-container *ngIf="item.homeTotalTicket === 0">
+    <ng-container *ngIf="item.homeTotalTicket === 0 && item.awayTotalTicket > 0">
         <td></td>
         <td></td>
         <td></td>
@@ -59,7 +59,7 @@
         {{ item.awayName }}
     </td>
     <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
-    <ng-container *ngIf="item.awayTotalTicket === 0">
+    <ng-container *ngIf="item.awayTotalTicket === 0 && item.homeTotalTicket > 0">
         <td></td>
         <td></td>
         <td></td>
@@ -87,7 +87,7 @@
                     <ng-template [ngTemplateOutlet]="thead"></ng-template>
                 </table>
             </div>
-            <div *ngSwitchCase="true" class="body">
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
