@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using ParlayRMS.DTO.LeagueBetTypeAnalysis;
+using ParlayRMS.DTO.Leagues;
 using ParlayRMS.Utility;
 using ParlayRMS.Utility.Data;
 using System;
@@ -88,6 +89,37 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                         {
                             Name = reader.ToString("LeagueGroupName"),
                             Id = reader.ToInt32("LeagueGroupID")
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<RMS_LeagueSel> RMS_LeagueSel(string leagueName, int groupId, int sportType, DateTime fromDate, DateTime toDate)
+        {
+            var result = new List<RMS_LeagueSel>();
+
+            using (var db = new ObjectDb("RMS_LeagueSel"))
+            {
+                db.AddInParameter("leaguename", DbType.String, leagueName ?? string.Empty);
+                db.AddInParameter("groupid", DbType.Int32, groupId);
+                db.AddInParameter("SportType", DbType.Int32, sportType);
+                db.AddInParameter("FromDate", DbType.DateTime, fromDate);
+                db.AddInParameter("ToDate", DbType.DateTime, toDate);
+                using (var reader = db.ExecuteReader())
+                {
+                    int index = 1;
+                    while (reader.Read())
+                    {
+                        result.Add(new RMS_LeagueSel
+                        {
+                            No = index++,
+                            LeagueId = reader.ToInt32("leagueid"),
+                            LeagueName = reader.ToString("leaguename"),
+                            GroupId = reader.ToInt32("GroupId"),
+                            GroupName = reader.ToString("GroupName"),
                         });
                     }
                 }

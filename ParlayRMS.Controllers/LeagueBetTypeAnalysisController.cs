@@ -4,9 +4,11 @@ namespace ParlayRMS.Controllers
     using ExcelService.Writers;
     using Models.Functions;
     using PagedList;
+    using ParlayRMS.DTO.Leagues;
     using Services.Implement.LeagueBetTypeAnalysis;
     using Services.Implement.Leagues;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -20,6 +22,7 @@ namespace ParlayRMS.Controllers
         private readonly LeaguesService leagueService = new LeaguesService();
         private readonly LeagueBetTypeAnalysisService service = new LeagueBetTypeAnalysisService();
         private readonly int pageSize = AppSetting.PageSize;
+        private const int SOCCER = 1;
 
         [HttpGet]
         public ActionResult Index()
@@ -33,10 +36,18 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult GroupsAndLeagues(int sportType)
+        public ActionResult GroupsAndLeagues(int sportType, DateTime fromDate, DateTime toDate)
         {
             var leagueGroups = service.GetLeagueGroups(sportType);
-            var leagueList = leagueService.GetListLeague("", 0, sportType);
+            List<RMS_LeagueSel> leagueList;
+            if (sportType == SOCCER)
+            {
+                leagueList = leagueService.GetListLeague("", 0, sportType);
+            }
+            else
+            {
+                leagueList = service.GetListLeague("", 0, sportType, fromDate, toDate);
+            }    
             return Json(new
             {
                 Groups = leagueGroups,

@@ -269,16 +269,18 @@
             }
         });
 
-        LeagueBetTypeAnalysis.GroupsAndLeagues(1);
+        LeagueBetTypeAnalysis.GroupsAndLeagues(1, $("#fromDate").val(), $("#toDate").val());
 
         $('#ddlSport').on('change', function () {
-            LeagueBetTypeAnalysis.GroupsAndLeagues(parseInt($(this).val()));
+            LeagueBetTypeAnalysis.GroupsAndLeagues(parseInt($(this).val()), $("#fromDate").val(), $("#toDate").val());
         });
     },
 
-    GroupsAndLeagues: function (sportType) {
+    GroupsAndLeagues: function (sportType, fromDate, toDate) {
         var data = {
-            sportType: sportType
+            sportType: sportType,
+            fromDate: fromDate,
+            toDate: toDate
         }
 
         $.ajax({
