@@ -134,7 +134,7 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
-                        return "http://10.40.40.248:7207/Main/";
+                        return "http://10.99.99.101:7207/Main/";
                     case SiteEnvironment.PRO:
                         return "http://10.99.99.51:7258/";
                     case SiteEnvironment.PROAWS:
