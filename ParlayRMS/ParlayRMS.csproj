@@ -657,7 +657,6 @@
     <Content Include="Content\font\MwQ5bhbm2POE2V9BPQ.woff2" />
     <Content Include="App_Configurations\Web.PROAWS.config">
       <DependentUpon>Web.config.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Content\under-maintenance.css" />

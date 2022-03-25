@@ -82,7 +82,7 @@
                     case SiteEnvironment.PRO:
                         return "http://10.99.99.51:8889/api";
                     case SiteEnvironment.PROAWS:
-                        return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:8889";
+                        return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:8889/api";
                     case SiteEnvironment.UAT:
                         return "http://10.40.40.248:8889/api";
                     case SiteEnvironment.SIT:
@@ -138,7 +138,7 @@
                     case SiteEnvironment.PRO:
                         return "http://10.99.99.51:7258/";
                     case SiteEnvironment.PROAWS:
-                        return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:7258";
+                        return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:7258/";
                     case SiteEnvironment.MNL:
                         return "http://10.40.40.202:7258/";
                     case SiteEnvironment.SIT:
