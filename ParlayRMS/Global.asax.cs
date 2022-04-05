@@ -180,6 +180,11 @@ namespace ParlayRMS
             bundles.Add(new StyleBundle("~/Content/ViewIPInfo").Include(
               "~/Content/ViewIpInfo.css"));
 
+            bundles.Add(new StyleBundle("~/Content/ParlayMonitor").Include(
+                "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.css",
+                "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.css",
+                "~/Content/ParlayMonitor.css"));
+
             // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
@@ -231,7 +236,9 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/ManageMenu/js").Include("~/Scripts/ManageMenu.js"));
             bundles.Add(new ScriptBundle("~/Scripts/ManageFunction/js").Include("~/Scripts/ManageFunction.js"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/Monitor/Parlay/js").Include("~/Scripts/Monitor/Parlay.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Monitor/Parlay/js").Include("~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.js",
+                     "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.js",
+                     "~/Scripts/Monitor/Parlay.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/PotentialWinning/js").Include("~/Scripts/Monitor/PotentialWinning.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/DangerMonitor/js").Include("~/Scripts/Monitor/DangerMonitor.js"));
 

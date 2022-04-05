@@ -288,8 +288,9 @@ $(document).ready(function () {
     });
 
     $("#combo").multiselect({
-        minWidth: 132,
+        buttonWidth: 132,
         height: 136,
+        selectedList: 1,
         create: function () {
             $("#combo").multiselect();
         },
@@ -298,7 +299,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -310,8 +311,9 @@ $(document).ready(function () {
     });
 
     $("#parlayType").multiselect({
-        minWidth: 210,
+        buttonWidth: 210,
         height: 138,
+        selectedList: 1,
         create: function () {
             $("#parlayType").multiselect();
         },
@@ -320,7 +322,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -332,8 +334,10 @@ $(document).ready(function () {
     });
 
     $("#sportsType").multiselect({
-        minWidth: 193,
+        buttonWidth: 205,
         height: 300,
+        selectedList: 1,
+        groupsCollapsable: true,
         create: function () {
             $("#sportsType").multiselect("checkAll");
         },
@@ -342,7 +346,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -354,10 +358,10 @@ $(document).ready(function () {
     });
 
     $("#ddlCompany").multiselect({
-        height: 300,
-        minWidth: 140,
-        enableCollapsibleOptGroups: true,
-        collapseOptGroupsByDefault: true,
+        menuHeight: 300,
+        buttonWidth: 180,
+        groupsCollapsable: true,
+        selectedList: 1,
         create: function () {
             $("#ddlCompany").multiselect("checkAll");
         },
@@ -366,7 +370,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -380,7 +384,8 @@ $(document).ready(function () {
     });
 
     $("#level").multiselect({
-        minWidth: 132,
+        buttonWidth: 132,
+        selectedList: 1,
         create: function () {
             $("#level").multiselect("checkAll");
         },
@@ -389,7 +394,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -401,7 +406,7 @@ $(document).ready(function () {
     });
 
     $("#selectTop").multiselect({
-        minWidth: 80,
+        buttonWidth: 80,
         height: 105,
         header: false,
         multiple: false,
@@ -409,9 +414,10 @@ $(document).ready(function () {
     });
 
     $("#market").multiselect({
-        minWidth: 132,
+        buttonWidth: 132,
         height: 100,
         noneSelectedText: "Select options",
+        selectedList: 1,
         create: function () {
             $("#market").multiselect();
         },
@@ -420,7 +426,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -432,8 +438,9 @@ $(document).ready(function () {
     });
 
     $("#ddlGroup").multiselect({
-        minWidth: 132,
+        buttonWidth: 132,
         height: 136,
+        selectedList: 1,
         create: function () {
             $("#ddlGroup").multiselect("checkAll");
         },
@@ -442,7 +449,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -454,7 +461,7 @@ $(document).ready(function () {
     });
 
     $("#refreshTime").multiselect({
-        minWidth: 60,
+        buttonWidth: 60,
         height: 60,
         header: false,
         multiple: false,
@@ -557,6 +564,11 @@ $(document).ready(function () {
     });
 
     getCompanies();
+
+    $("li.ui-multiselect-optgroup-label").click(function () {
+        var id = $(this).attr("data-id");
+        $(".ui-multiselect-collapsed-group-"+ id).toggle();
+    })
 });
 
 function FillData(table, data) {

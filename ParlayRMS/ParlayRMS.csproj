@@ -611,6 +611,7 @@
     <Content Include="Content\LeagueWinningMonitor.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
     <Content Include="Content\Menu.css" />
+    <Content Include="Content\ParlayMonitor.css" />
     <Content Include="Content\ParlayWon.css" />
     <Content Include="Content\TopWinners.css" />
     <Content Include="Content\ViewIpInfo.css" />
@@ -619,6 +620,10 @@
     <Content Include="ExcelTemplates\ParlayWon.xls" />
     <Content Include="ExcelTemplates\BetTypeDataAnalysis.xls" />
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
+    <Content Include="Scripts\Libs\multiselect\jquery-ui-multiselect-widget-3.0.0\jquery.multiselect.css" />
+    <Content Include="Scripts\Libs\multiselect\jquery-ui-multiselect-widget-3.0.0\jquery.multiselect.filter.css" />
+    <Content Include="Scripts\Libs\multiselect\jquery-ui-multiselect-widget-3.0.0\jquery.multiselect.filter.js" />
+    <Content Include="Scripts\Libs\multiselect\jquery-ui-multiselect-widget-3.0.0\jquery.multiselect.js" />
     <Content Include="Scripts\Monitor\LeagueWinning.js" />
     <Content Include="wwwroot\league-event-monitor\3rdpartylicenses.txt" />
     <Content Include="wwwroot\league-event-monitor\assets\header.png" />
