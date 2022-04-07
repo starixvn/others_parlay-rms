@@ -3,7 +3,7 @@ import { SelectItem } from 'nap-components/dropdown-select';
 import { HttpService } from 'nap-components/http';
 import { Observable } from 'rxjs';
 import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
-import { ItemModel, LeagueModel } from './filter.model';
+import { BettypeModel, ItemModel, LeagueModel } from './filter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +78,9 @@ export class FilterService {
       { id: SportTypeConsts.ESPORT, name: 'E-Sports', checked: true },
       { id: SportTypeConsts.BASKETBALL, name: 'Basketball ', checked: false },
     ]
+  }
+
+  public getBettypes(netcoreApiUrl: string, sportType: number): Observable<BettypeModel[]> {
+    return this.httpService.post(`${netcoreApiUrl}${this.api}bettype`, { sportType: sportType });
   }
 }

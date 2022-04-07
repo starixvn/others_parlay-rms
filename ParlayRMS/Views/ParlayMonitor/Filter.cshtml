@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="group">
                     @Html.Label("level", @ViewLang.Level, new { @class = "lable" })
-                    @Html.DropDownList("level", (List<SelectListItem>)ViewBag.Levels)
+                    @Html.DropDownList("level", (List<SelectListItem>)ViewBag.Levels, new { multiple = "multiple" })
                 </div>
                 <div class="group">
                     @Html.Label("selectTop", @ViewLang.SelectTop, new { @class = "lable" })
@@ -50,7 +50,7 @@
                 </div>
                 <div class="group">
                     @Html.Label("group", @ViewLang.Group, new { @class = "lable" })
-                    @Html.DropDownList("ddlGroup", Config.LeagueGroups)
+                    @Html.DropDownList("ddlGroup", Config.LeagueGroups, new { multiple = "multiple" })
                 </div>
                 <div class="group">
                     @Html.Label("sportType", @ViewLang.SportsType, new { @class = "lable" })
@@ -66,6 +66,10 @@
                 </div>
             </div>
             <div class="row">
+                <div class="group">
+                    @Html.Label("company", "Company", new { @class = "lable" })
+                    @Html.DropDownList("ddlCompany", new List<SelectListItem>(), new { multiple = "multiple" })
+                </div>
                 <div class="group">
                     @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
                     @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds

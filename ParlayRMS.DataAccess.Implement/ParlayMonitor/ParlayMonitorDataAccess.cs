@@ -27,7 +27,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
             bool isCornerParlay,
             decimal? odds,
             string leagueGroups,
-            long? customerClass)
+            long? customerClass,
+            string company)
         {
             var result = new List<RMS_Monitor_Parlay_Betlist>();
 
@@ -47,6 +48,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                 db.AddInParameter("odds", DbType.Decimal, odds);
                 db.AddInParameter("customerclass", DbType.Int16, customerClass);
                 db.AddInParameter("leaguegroupid", DbType.String, leagueGroups);
+                db.AddInParameter("company", DbType.String, company);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -103,6 +105,28 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
             }
 
             return userTracking;
+        }
+
+        public IEnumerable<Company> RMS_SiteByGroupSel()
+        {
+            var result = new List<Company>();
+
+            using (var db = new ObjectDb("RMS_SiteByGroupSel"))
+            {
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new Company
+                        {
+                            Site = reader.ToString("Site"),
+                            IsDeposit = reader.ToInt16("isDeposit"),
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

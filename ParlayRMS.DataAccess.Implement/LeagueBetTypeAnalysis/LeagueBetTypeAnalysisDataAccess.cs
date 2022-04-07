@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using ParlayRMS.DTO.LeagueBetTypeAnalysis;
+using ParlayRMS.DTO.Leagues;
 using ParlayRMS.Utility;
 using ParlayRMS.Utility.Data;
 using System;
@@ -18,7 +19,8 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                                                        string leagues,
                                                        int site,
                                                        double ratio,
-                                                       int reportBy)
+                                                       int reportBy,
+                                                       int sportType)
         {
             var result = new List<RMS_Rpt_LeagueBettype_Analysis>();
 
@@ -32,6 +34,7 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
                 db.AddInParameter("Site", DbType.Int32, site);
                 db.AddInParameter("Ratio", DbType.Decimal, ratio);
                 db.AddInParameter("ReportBy", DbType.Int32, reportBy);
+                db.AddInParameter("SportType", DbType.Int32, sportType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -68,6 +71,61 @@ namespace ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis
             }
             double ratio = ((double)wonTickets / totalTickets) * 100;
             return Math.Round(ratio).ToString() + "%";
+        }
+
+        public IEnumerable<LeagueGroup> GetLeagueGroups(int sportType)
+        {
+            var result = new List<LeagueGroup>();
+
+            using (var db = new ObjectDb("RMS_LeagueGroupSel"))
+            {
+                db.AddInParameter("SportType", DbType.Int32, sportType);
+
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new LeagueGroup
+                        {
+                            Name = reader.ToString("LeagueGroupName"),
+                            Id = reader.ToInt32("LeagueGroupID")
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<RMS_LeagueSel> RMS_LeagueSel(string leagueName, int groupId, int sportType, DateTime fromDate, DateTime toDate)
+        {
+            var result = new List<RMS_LeagueSel>();
+
+            using (var db = new ObjectDb("RMS_LeagueSel"))
+            {
+                db.AddInParameter("leaguename", DbType.String, leagueName ?? string.Empty);
+                db.AddInParameter("groupid", DbType.Int32, groupId);
+                db.AddInParameter("SportType", DbType.Int32, sportType);
+                db.AddInParameter("FromDate", DbType.DateTime, fromDate);
+                db.AddInParameter("ToDate", DbType.DateTime, toDate);
+                using (var reader = db.ExecuteReader())
+                {
+                    int index = 1;
+                    while (reader.Read())
+                    {
+                        result.Add(new RMS_LeagueSel
+                        {
+                            No = index++,
+                            LeagueId = reader.ToInt32("leagueid"),
+                            LeagueName = reader.ToString("leaguename"),
+                            GroupId = reader.ToInt32("GroupId"),
+                            GroupName = reader.ToString("GroupName"),
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

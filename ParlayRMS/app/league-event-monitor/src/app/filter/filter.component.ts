@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TreeviewConfig } from 'ngx-treeview';
-import { FilterModel, ItemModel, LeagueModel } from './filter.model';
+import { BettypeModel, FilterModel, ItemModel, LeagueModel } from './filter.model';
 import { FilterService } from './filter.service';
 import { SelectItem } from 'nap-components/dropdown-select';
 import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
@@ -29,6 +29,9 @@ export class FilterComponent implements OnInit {
   public levelItems: ItemModel[] = [];
   public selectedLevels:string[] = [];
   public customerClass: string = '';
+  public bettypeItems: BettypeModel[] = [];
+  public selectedBettypes:string[] = [];
+  public smaMember: string = '';
   public refreshItems: ItemModel[] = [];
   public selectedRefresh: string = '60';
   public checkedRefresh: boolean = false;
@@ -61,11 +64,14 @@ export class FilterComponent implements OnInit {
     this.comboItems = this.filterService.getComboes();
     this.parlayTypeItems = this.filterService.getParlayTypes();
     this.reportTypeOptions = this.filterService.getReportTypeOptions();
-    this.filterService.getLeagues(this.netcoreApiUrl, Number(SportTypeConsts.ESPORT)).subscribe((leagues: LeagueModel[]) => this.leagueItems = leagues);
+    this.filterService.getLeagues(this.netcoreApiUrl, Number(SportTypeConsts.ESPORT)).subscribe(
+      (leagues: LeagueModel[]) => this.leagueItems = leagues);
     this.topItems = this.filterService.getTops();
     this.levelItems = this.filterService.getLevels();
     this.refreshItems = this.filterService.getRefreshs();
     this.sportItems = this.filterService.getSports();
+    this.filterService.getBettypes(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
+      (bettypes: BettypeModel[]) => this.bettypeItems = bettypes);
   }
 
   public changeRefreshnow(): void {
@@ -90,7 +96,6 @@ export class FilterComponent implements OnInit {
   }
 
   private createModel(): FilterModel {
-    console.log(this.customerClass);
     return {
       selection: this.selectedComboes.join(','),
       parlayType: this.selectedParlayTypes.join(','),
@@ -99,7 +104,9 @@ export class FilterComponent implements OnInit {
       limitRowCount: Number(this.selectedTop),
       level: this.selectedLevels.join(','),
       customerClass: this.customerClass === '' || this.customerClass === null ? undefined : Number(this.customerClass),
-      sportType: Number(this.selectedSport)
+      sportType: Number(this.selectedSport),
+      betTypes: this.selectedBettypes.join(','),
+      userName: this.smaMember
     };
   }
 
@@ -131,6 +138,11 @@ export class FilterComponent implements OnInit {
       return false;
     }
 
+    if (this.selectedBettypes.length === 0) {
+      this.toastService.activate(`Please select at least one bettype!`);
+      return false;
+    }
+
     return true;
   }
 
@@ -142,8 +154,10 @@ export class FilterComponent implements OnInit {
     };
   }
 
-  public getLeagueBySport(): void {
+  public getLeagueAndBettypeBySport(): void {
     this.filterService.getLeagues(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
       (leagues: LeagueModel[]) => this.leagueItems = leagues);
+    this.filterService.getBettypes(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
+      (bettypes: BettypeModel[]) => this.bettypeItems = bettypes);
   }
 }

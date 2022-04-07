@@ -1,6 +1,8 @@
 ﻿using ParlayRMS.DataAccess.Implement.LeagueBetTypeAnalysis;
 using ParlayRMS.DTO.LeagueBetTypeAnalysis;
+using ParlayRMS.DTO.Leagues;
 using ParlayRMS.ViewModel.Report;
+using System;
 using System.Collections.Generic;
 
 namespace ParlayRMS.Services.Implement.LeagueBetTypeAnalysis
@@ -21,7 +23,18 @@ namespace ParlayRMS.Services.Implement.LeagueBetTypeAnalysis
                 options.Leagues,
                 options.Site,
                 options.Ratio,
-                options.ReportBy);
+                options.ReportBy,
+                options.SportType);
+        }
+
+        public IEnumerable<LeagueGroup> GetLeagueGroups(int sportType)
+        {
+            return _dataAccess.GetLeagueGroups(sportType);
+        }
+
+        public List<RMS_LeagueSel> GetListLeague(string leagueName, int groupId, int sportType, DateTime fromDate, DateTime toDate)
+        {
+            return _dataAccess.RMS_LeagueSel(leagueName, groupId, sportType, fromDate, toDate);
         }
     }
 }

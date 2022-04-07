@@ -5,6 +5,7 @@ export interface FilterModel {
   roleId: number;
   company: string;
   parlayType: string;
+  selection: string;
   sportType: string;
   pageSize?: number;
   pageIndex?: number;
@@ -22,7 +23,7 @@ export interface Company {
   isDeposit: boolean;
 }
 
-export interface ParlayType {
+export interface SelectItem {
   name: string;
   id: number;
 }

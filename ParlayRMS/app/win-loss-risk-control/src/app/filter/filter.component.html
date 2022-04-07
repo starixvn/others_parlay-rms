@@ -55,5 +55,16 @@
         </div>
       </div>
     </div>
+
+    <div class="nap-col">
+      <div class="nap-group">
+        <label class="width-50">Combo</label>
+        <div class="nap-control">
+          <ngx-dropdown-treeview [items]="comboType | comboTreeview"
+          [config]="comboTypeConfig" (selectedChange)="selectedcomboType = $event">
+        </ngx-dropdown-treeview>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

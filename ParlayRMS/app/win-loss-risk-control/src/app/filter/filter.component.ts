@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as moment from 'moment';
 import { CONFIG } from '../common/config';
-import { FilterModel } from './filter.model';
+import { FilterModel, SelectItem } from './filter.model';
 import { FilterService } from './filter.service';
 import { NapDateStruct, DateHelper, DateFormat } from 'nap-components/date';
 import { ToastService } from 'nap-components/toast';
-import { Company, ParlayType, Sport } from './filter.model';
+import { Company, Sport } from './filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
 @Component({
   selector: 'app-filter',
@@ -27,7 +27,7 @@ export class FilterComponent implements OnInit {
   });
   public selectedCompany: string[] = [];
 
-  public parlayType: ParlayType[];
+  public parlayType: SelectItem[];
   public parlayTypeConfig = TreeviewConfig.create({
     hasFilter: false,
     hasAllCheckBox: true,
@@ -45,6 +45,15 @@ export class FilterComponent implements OnInit {
   });
   public selectedSportsType: string[] = [];
 
+  public comboType: SelectItem[];
+  public comboTypeConfig = TreeviewConfig.create({
+    hasFilter: false,
+    hasAllCheckBox: true,
+    hasCollapseExpand: false,
+    maxHeight: 250
+  });
+  public selectedcomboType: string[] = [];
+
   fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
   toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
@@ -59,6 +68,7 @@ export class FilterComponent implements OnInit {
     this.getCompany();
     this.getSports();
     this.getParlay();
+    this.getCombo();
   }
 
   private getCompany() {
@@ -70,7 +80,11 @@ export class FilterComponent implements OnInit {
   }
 
   private getParlay() {
-    this.filterService.getParlay(this.netcoreApiUrl).subscribe((parlay: ParlayType[]) => this.parlayType = parlay);
+    this.filterService.getParlay(this.netcoreApiUrl).subscribe((parlay: SelectItem[]) => this.parlayType = parlay);
+  }
+
+  private getCombo() {
+    this.filterService.getCombo(this.netcoreApiUrl).subscribe((combo: SelectItem[]) => this.comboType = combo);
   }
 
   public onFromDateChange() {
@@ -115,6 +129,7 @@ export class FilterComponent implements OnInit {
       company: this.selectedCompany.join(','),
       sportType: this.selectedSportsType.join(','),
       parlayType: this.selectedParlayType.join(','),
+      selection: this.selectedcomboType.join(',')
     };
 
     return model;
@@ -133,6 +148,11 @@ export class FilterComponent implements OnInit {
 
     if (this.selectedSportsType.length === 0) {
       this.toastService.activate(`Please select at least one sport!`);
+      return false;
+    }
+
+    if (this.selectedcomboType.length === 0) {
+      this.toastService.activate(`Please select at least one combo!`);
       return false;
     }
 
