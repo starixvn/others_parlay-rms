@@ -24,9 +24,11 @@ export class BettypeTreeviewPipe implements PipeTransform {
       switch (bettype.groupId) {
         case 1:
           groupTreeviewItem = majorGroup;
+          item.checked = true;
           break;
         default:
           groupTreeviewItem = minorGroup;
+          item.checked = false;
           break;
       }
       if (_.isNil(groupTreeviewItem.children)) {

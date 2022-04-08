@@ -19,7 +19,7 @@ export class EventComponent implements OnInit {
     this.showBackLeague.emit();
   }
 
-  public isNormalColumn(model: EventModel): boolean {
+  public isNormalRow(model: EventModel): boolean {
     return model.homeName !== null && model.homeName !== 'Others' && model.homeName !== 'Total';
   }
 }

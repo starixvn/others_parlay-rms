@@ -138,11 +138,6 @@ export class FilterComponent implements OnInit {
       return false;
     }
 
-    if (this.selectedBettypes.length === 0) {
-      this.toastService.activate(`Please select at least one bettype!`);
-      return false;
-    }
-
     return true;
   }
 
