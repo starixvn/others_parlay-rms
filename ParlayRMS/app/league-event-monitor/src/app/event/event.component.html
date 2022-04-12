@@ -38,7 +38,9 @@
     </td>
     <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.homeName }}</td>
     <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
-    <ng-container *ngIf="(item.homeTotalTicket === 0 && item.awayTotalTicket > 0) || (index === 0 && numberRow === 1)">
+    <ng-container *ngIf="(item.homeTotalTicket === 0 && item.awayTotalTicket > 0)
+        || (index === 0 && numberRow === 1)
+        || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
         <td></td>
@@ -65,7 +67,9 @@
     </td>
     <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.awayName }}</td>
     <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
-    <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0) || (index === 0 && numberRow === 1)">
+    <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0)
+        || (index === 0 && numberRow === 1)
+        || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
         <td></td>
@@ -75,10 +79,13 @@
         <td>{{ item.awayMarket }}</td>
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayAvgOdds" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index == 0"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayTotalStake" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="isNormalRow(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0" [napIntegerFormat]="item.awayTotalTicket" class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
     </ng-container>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
