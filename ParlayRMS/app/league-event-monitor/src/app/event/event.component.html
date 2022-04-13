@@ -33,11 +33,14 @@
     </thead>
   </ng-template>
   <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows">
-    <td *ngIf="isNormalColumn(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+    <td *ngIf="isNormalRow(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
         {{ item.homeName }}
     </td>
-    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
-    <ng-container *ngIf="(item.homeTotalTicket === 0 && item.awayTotalTicket > 0) || (index === 0 && numberRow === 1)">
+    <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.homeName }}</td>
+    <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
+    <ng-container *ngIf="(item.homeTotalTicket === 0 && item.awayTotalTicket > 0)
+        || (index === 0 && numberRow === 1)
+        || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
         <td></td>
@@ -45,21 +48,28 @@
     </ng-container>
     <ng-container *ngIf="item.homeTotalTicket > 0">
         <td>{{ item.market }}</td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index == 0"></td>
-        <td *ngIf="!isNormalColumn(item)"></td>
-        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.homeTotalStake" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index == 0" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
-        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.homeTotalTicket"></td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napIntegerFormat]="item.homeTotalTicket" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index === 0" [napIntegerFormat]="item.homeTotalTicket" class="font-weight-bold text-center"></td>
+        <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index === 0"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
+        <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" [napDecimalFormat]="item.homeTotalStake" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" [napDecimalFormat]="item.homeTotalStake"
+            class="font-weight-bold text-center"></td>
+        <td *ngIf="isNormalRow(item) && index === 0" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.homeTotalTicket"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" [napIntegerFormat]="item.homeTotalTicket" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" [napIntegerFormat]="item.homeTotalTicket"
+            class="font-weight-bold text-center"></td>
+        <td *ngIf="isNormalRow(item) && index === 0" [napIntegerFormat]="item.homeTotalTicket" class="font-weight-bold text-center"></td>
     </ng-container>
-    <td *ngIf="isNormalColumn(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+    <td *ngIf="isNormalRow(item) && index === 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
         {{ item.awayName }}
     </td>
-    <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
-    <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0) || (index === 0 && numberRow === 1)">
+    <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.awayName }}</td>
+    <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
+    <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0)
+        || (index === 0 && numberRow === 1)
+        || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
         <td></td>
@@ -67,15 +77,15 @@
     </ng-container>
     <ng-container *ngIf="item.awayTotalTicket > 0">
         <td>{{ item.awayMarket }}</td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.awayAvgOdds" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index == 0"></td>
-        <td *ngIf="!isNormalColumn(item)"></td>
-        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.awayTotalStake"></td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napDecimalFormat]="item.awayTotalStake" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
-        <td *ngIf="!isNormalColumn(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.awayTotalTicket"></td>
-        <td *ngIf="isNormalColumn(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
-        <td *ngIf="isNormalColumn(item) && index === 0" [napIntegerFormat]="item.awayTotalTicket" class="font-weight-bold text-center"></td>
+        <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayAvgOdds" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index == 0"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
+        <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayTotalStake" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
+        <td *ngIf="isNormalRow(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index === 0" [napIntegerFormat]="item.awayTotalTicket" class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalRow(item)"></td>
     </ng-container>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
