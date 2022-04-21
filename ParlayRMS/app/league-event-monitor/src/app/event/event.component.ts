@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EventGroupModel, EventModel } from './event.model';
+import { EventGroupModel, EventModel, MatchBettypeModel } from './event.model';
 
 @Component({
   selector: 'app-event',
@@ -10,6 +10,8 @@ export class EventComponent implements OnInit {
   @Input() data: EventGroupModel[] = [];
   @Input() isClickedOnleague: boolean = false;
   @Output() showBackLeague = new EventEmitter();
+  @Output() clickedOnEvent = new EventEmitter<MatchBettypeModel>();
+  @Output() clickedExportExcel = new EventEmitter<MatchBettypeModel>();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,5 +23,27 @@ export class EventComponent implements OnInit {
 
   public isNormalRow(model: EventModel): boolean {
     return model.homeName !== null && model.homeName !== 'Others' && model.homeName !== 'Total';
+  }
+
+  public showEventDetail(event: string, matchId: number, betChoice: number): void {
+    const matchBettype: MatchBettypeModel = {
+      matchId: matchId,
+      event: event,
+      bettype: 0,
+      betChoice: betChoice,
+      bettypeName: ''
+    };
+    this.clickedOnEvent.emit(matchBettype);
+  }
+
+  public exportExcel(model: EventModel, matchId: number, betChoice: number, bettypeName: string): void {
+    const matchBettype: MatchBettypeModel = {
+      matchId: matchId,
+      event: `${model.homeName} - vs - ${model.awayName}`,
+      bettype: model.bettype,
+      betChoice: betChoice,
+      bettypeName: bettypeName
+    };
+    this.clickedExportExcel.emit(matchBettype);
   }
 }

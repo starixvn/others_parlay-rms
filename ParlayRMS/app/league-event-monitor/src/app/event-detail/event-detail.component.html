@@ -1,0 +1,73 @@
+<div *ngIf="isClickedOnEvent" style="margin: 0.3rem">
+    <button class="btn btn-danger" (click)="backToEvent()">Back to List Matches</button>
+</div>
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 350px" />
+        <col style="width: 200px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+    </colgroup>
+  </ng-template>
+
+  <ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col">Match</th>
+            <th scope="col">Market</th>
+            <th scope="col">Average Odds</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Ticket</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows" let-match="match" let-matchId="matchId">
+    <td *ngIf="index === 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">{{match}}</td>
+    <ng-container *ngIf="item.ticket > 0">
+        <td *ngIf="index > 0">{{ item.market }}</td>
+        <td *ngIf="index === 0"></td>
+        <td *ngIf="index > 0" [napDecimalFormat]="item.avgOdds" class="text-center"></td>
+        <td *ngIf="index === 0"></td>
+        <td *ngIf="index > 0" [napDecimalFormat]="item.stake" class="text-center link"
+            (click)="exportExcel(match, matchId, 2, item.market, item.bettype)"></td>
+        <td *ngIf="index === 0" [napDecimalFormat]="item.stake" class="font-weight-bold text-center"></td>
+        <td *ngIf="index > 0" [napIntegerFormat]="item.ticket" class="text-center"></td>
+        <td *ngIf="index === 0" [napIntegerFormat]="item.ticket" class="font-weight-bold text-center"></td>
+    </ng-container>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.eventList.length > 0">
+    <div class="nap-grid">
+        <div style="width: 870px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                    <tr class="odd-color" *ngFor="let event of data.eventList; let i = index;">
+                        <ng-template [ngTemplateOutlet]="rowItem"
+                            [ngTemplateOutletContext]="{ item: event, index: i, rows: data.fixedBettypes, match: data.match, matchId: data.matchId }">
+                        </ng-template>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="5">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

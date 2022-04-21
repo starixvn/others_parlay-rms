@@ -11,10 +11,19 @@ export interface EventModel {
     awayTotalTicket: number;
     isOther: boolean;
     awayMarket: string;
+    bettype: number;
 }
 
 export interface EventGroupModel {
     matchId: number;
     eventList: EventModel[],
     fixedBettypes: number;
+}
+
+export interface MatchBettypeModel {
+    matchId: number;
+    event: string;
+    bettype: number;
+    betChoice: number;
+    bettypeName: string;
 }

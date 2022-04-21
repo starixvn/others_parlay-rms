@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'nap-components/http';
+import { Helper } from 'nap-components/helper';
 import { Observable } from 'rxjs';
+import { EventDetailModel } from './event-detail/event-detail.model';
 import { EventGroupModel } from './event/event.model';
-import { FilterModel } from './filter/filter.model';
+import { ExportExcelModel, FilterDetailModel, FilterModel } from './filter/filter.model';
 import { LeagueDataModel } from './league/league.model';
 
 @Injectable({
@@ -20,5 +22,17 @@ export class AppService {
 
   public getEvents(netcoreApiUrl: string, query: FilterModel): Observable<EventGroupModel[]> {
     return this.httpService.post(`${netcoreApiUrl}${this.api}event`, query);
+  }
+
+  public getEventDetail(netcoreApiUrl: string, query: FilterDetailModel): Observable<EventDetailModel[]> {
+    return this.httpService.post(`${netcoreApiUrl}${this.api}event-detail`, query);
+  }
+
+  public exportExcel(netcoreApiUrl: string, query: ExportExcelModel): void {
+    const api = `${netcoreApiUrl}${this.api}export-excel`;
+    this.httpService.download(api, query).subscribe(response => {
+        const fileName = `League_EventMonitor.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
   }
 }

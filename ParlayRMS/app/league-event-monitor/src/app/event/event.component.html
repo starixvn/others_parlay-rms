@@ -32,7 +32,7 @@
         </tr>
     </thead>
   </ng-template>
-  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows">
+  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows" let-matchId="matchId">
     <td *ngIf="isNormalRow(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
         {{ item.homeName }}
     </td>
@@ -51,10 +51,13 @@
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
-        <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
-        <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" [napDecimalFormat]="item.homeTotalStake" class="text-center"></td>
-        <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" [napDecimalFormat]="item.homeTotalStake"
-            class="font-weight-bold text-center"></td>
+        <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.awayName, matchId, 1)"
+            class="font-weight-bold text-center link" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="!isNormalRow(item) && !item.isOther" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" (click)="exportExcel(item, matchId, 1, item.market)"
+            [napDecimalFormat]="item.homeTotalStake" class="text-center link"></td>
+        <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" (click)="exportExcel(item, matchId, 1, item.homeName)"
+            [napDecimalFormat]="item.homeTotalStake" class="font-weight-bold text-center link"></td>
         <td *ngIf="isNormalRow(item) && index === 0" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
         <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.homeTotalTicket"></td>
         <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" [napIntegerFormat]="item.homeTotalTicket" class="text-center"></td>
@@ -66,7 +69,7 @@
         {{ item.awayName }}
     </td>
     <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.awayName }}</td>
-    <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.awayName }}</td>
+    <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center"></td>
     <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0)
         || (index === 0 && numberRow === 1)
         || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
@@ -80,7 +83,8 @@
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayAvgOdds" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index == 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
-        <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.awayTotalStake" class="text-center"></td>
+        <td *ngIf="isNormalRow(item) && index > 0" (click)="exportExcel(item, matchId, 0, item.awayMarket)"
+            [napDecimalFormat]="item.awayTotalStake" class="text-center link"></td>
         <td *ngIf="isNormalRow(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
         <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="isNormalRow(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
@@ -104,7 +108,7 @@
                   <ng-container *ngFor="let item of data; let j = index;">
                       <tr [ngClass]="{'even-color': j % 2 > 0, 'odd-color': j % 2 === 0}" *ngFor="let event of item.eventList; let i = index;">
                         <ng-template [ngTemplateOutlet]="rowItem"
-                            [ngTemplateOutletContext]="{ item: event, index: i, rows: item.fixedBettypes }">
+                            [ngTemplateOutletContext]="{ item: event, index: i, rows: item.fixedBettypes, matchId: item.matchId }">
                         </ng-template>
                     </tr>
                   </ng-container>
