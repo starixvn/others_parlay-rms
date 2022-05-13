@@ -6,7 +6,7 @@
     <% files.css.forEach(function(css){ %>
     <link href='@Url.Content("~/<%= css%>")' rel="stylesheet"/><% }) %>
 }
-<app-root netcore-api-url="@ViewBag.AspNetCoreApiUrl"></app-root>
+<app-root netcore-api-url="@ViewBag.AspNetCoreApiUrl" user-id="@ViewBag.UserId"></app-root>
 <% files.js.forEach(function(js){ %>
 <script src='@Url.Content("~/<%= js %>")'></script>
 <%})%>

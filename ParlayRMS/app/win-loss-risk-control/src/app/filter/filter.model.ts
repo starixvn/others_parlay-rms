@@ -21,6 +21,7 @@ export interface Sport {
 export interface Company {
   site: string;
   isDeposit: boolean;
+  checked: boolean;
 }
 
 export interface SelectItem {

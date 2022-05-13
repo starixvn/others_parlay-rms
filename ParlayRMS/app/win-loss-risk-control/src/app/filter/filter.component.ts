@@ -3,10 +3,11 @@ import * as moment from 'moment';
 import { CONFIG } from '../common/config';
 import { FilterModel, SelectItem } from './filter.model';
 import { FilterService } from './filter.service';
-import { NapDateStruct, DateHelper, DateFormat } from 'nap-components/date';
-import { ToastService } from 'nap-components/toast';
+import { DateHelper, DateFormat } from 'nap-components/date';
+import { MessageType, ToastService } from 'nap-components/toast';
 import { Company, Sport } from './filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -17,7 +18,9 @@ import { TreeviewConfig } from 'ngx-treeview';
 })
 export class FilterComponent implements OnInit {
   @Input() netcoreApiUrl: string;
+  @Input() userId: string = '-1';
   @Output() generated = new EventEmitter<FilterModel>();
+  public readonly favoriteCompany: string = 'favoriteCompany';
   public company: Company[];
   public companyConfig = TreeviewConfig.create({
     hasFilter: true,
@@ -72,7 +75,7 @@ export class FilterComponent implements OnInit {
   }
 
   private getCompany() {
-    this.filterService.getCompany(this.netcoreApiUrl).subscribe((company: Company[]) => this.company = company);
+    this.filterService.getCompany(this.netcoreApiUrl).subscribe((company: Company[]) => this.initCompany(company));
   }
 
   private getSports() {
@@ -157,5 +160,32 @@ export class FilterComponent implements OnInit {
     }
 
     return true;
+  }
+
+  private initCompany(company: Company[]): void {
+    const cachedCompanyString = localStorage.getItem(`${this.favoriteCompany}-${this.userId}`);
+    let cachedCompany: string[] = [];
+    if (cachedCompanyString !== null) {
+      cachedCompany = cachedCompanyString.split(',');
+      _.forEach(company, x => {
+        if (_.indexOf(cachedCompany, x.site) > -1) {
+          x.checked = true;
+        } else {
+          x.checked = false;
+        }
+      })
+    }
+    this.company = company;
+  }
+
+  public addFavorite(): void {
+    const companyList = this.selectedCompany.join(',');
+    if (companyList === '' || companyList === null)
+    {
+      localStorage.removeItem(`${this.favoriteCompany}-${this.userId}`);
+    } else {
+      localStorage.setItem(`${this.favoriteCompany}-${this.userId}`, companyList);
+    }
+    this.toastService.activate('Added', MessageType.Success, 3);
   }
 }
