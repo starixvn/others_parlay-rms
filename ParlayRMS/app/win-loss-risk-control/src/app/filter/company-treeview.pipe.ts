@@ -17,7 +17,7 @@ export class CompanyTreeviewPipe implements PipeTransform {
     }
 
     company.forEach(item => {
-      const itemCompany = new TreeviewItem({ text: item.site, value: item.site });
+      const itemCompany = new TreeviewItem({ text: item.site, value: item.site, checked: item.checked });
       let groupTreeviewItem: TreeviewItem;
 
       switch (item.isDeposit) {
@@ -35,6 +35,9 @@ export class CompanyTreeviewPipe implements PipeTransform {
         groupTreeviewItem.children.push(itemCompany);
       }
     });
+
+    mbcGroup.correctChecked();
+    licenseeGroup.correctChecked();
 
     const siteTreeItems = [
       mbcGroup,

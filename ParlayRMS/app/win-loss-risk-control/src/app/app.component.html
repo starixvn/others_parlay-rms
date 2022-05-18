@@ -4,7 +4,7 @@
       Win Loss Risk Control
     </div>
   </div>
-  <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl" [userId]="userId"></app-filter>
   <nap-toast></nap-toast>
   <app-grid *ngIf="filterModel" [filterModel]="filterModel" [netcoreApiUrl]="netcoreApiUrl"></app-grid>
 </div>

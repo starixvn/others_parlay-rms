@@ -13,6 +13,7 @@ namespace ParlayRMS.Controllers
         {
             var aspNetCoreAuth = ConfigurationManager.AppSettings["AspNetCoreAuth"];
             ViewBag.AspNetCoreApiUrl = !string.IsNullOrEmpty(aspNetCoreAuth) ? $"{aspNetCoreAuth}/" : string.Empty;
+            ViewBag.UserId = CurrentSession.UserId;
             return View("~/wwwroot/win-loss-risk-control/index.cshtml");
         }
     }
