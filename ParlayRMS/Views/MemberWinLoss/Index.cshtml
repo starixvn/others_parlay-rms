@@ -44,6 +44,10 @@
                     @RazorHelper.SportTypesDropDown()
                 </div>
                 <div class="group">
+                    @Html.Label("", ViewLang.LiveType)
+                    @Html.DropDownList("ddlLiveType", Config.LiveTypes)
+                </div>
+                <div class="group">
                     <button id="btnSearch" class="button">
                         <span class="text">@ViewLang.Submit</span>
                     </button>

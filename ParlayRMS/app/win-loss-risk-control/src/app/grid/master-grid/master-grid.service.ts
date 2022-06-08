@@ -35,7 +35,8 @@ export class MasterGridService {
             roleId: Role.super,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
-            selection: filterModel.selection
+            selection: filterModel.selection,
+            liveStatus: filterModel.liveStatus
         };
     }
 

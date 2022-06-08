@@ -58,6 +58,14 @@ ParlayRMS.Winloss = {
             selectedList: 1
         });
 
+        $("#ddlLiveType").multiselect({
+            minWidth: 100,
+            height: 110,
+            header: false,
+            multiple: false,
+            selectedList: 1
+        });
+
         $("#sportsType").multiselect({
             minWidth: 220,
             height: 300,
@@ -152,6 +160,8 @@ ParlayRMS.Winloss = {
 
             var site = parseInt($("#ddlSite").val());
 
+            var liveType = parseInt($("#ddlLiveType").val());
+
             var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
@@ -162,10 +172,10 @@ ParlayRMS.Winloss = {
 
             var reportType = $('input[name=ReportTypes]:checked').val();
 
-            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, site, reportType);
+            ParlayRMS.Winloss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, site, liveType, reportType);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, site, reportType) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, site, liveType, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
@@ -173,6 +183,7 @@ ParlayRMS.Winloss = {
             SportsType: sportsType,
             Combos: combos,
             Site: site,
+            LiveType: liveType,
             ReportType: reportType
         }
 
@@ -196,7 +207,7 @@ ParlayRMS.Winloss = {
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, site, reportType) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, sportsType, combos, site, liveType, reportType) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
@@ -204,6 +215,7 @@ ParlayRMS.Winloss = {
             SportsType: sportsType,
             Combos: combos,
             Site: site,
+            LiveType: liveType,
             ReportType: reportType
         }
 

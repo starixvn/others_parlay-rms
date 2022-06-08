@@ -6,9 +6,10 @@
     Combos: '2,3,4,5,6,7,8,9,10',
     Site: "2",
     ParlayTypes: '1,2',
+    LiveType: 3,
     Currencies: '',
     CustomerClass: '',
-    Save: function (fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass) {
+    Save: function (fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, liveType, currencies, customerClass) {
         this.FromDate = fromDate;
         this.ToDate = toDate;
         this.SportsType = sportsType;
@@ -16,6 +17,7 @@
         this.Combos = combos;
         this.Site = site;
         this.ParlayTypes = parlayTypes;
+        this.LiveType = liveType;
         this.Currencies = currencies;
         this.CustomerClass = customerClass;
     }
@@ -241,6 +243,14 @@ $(function () {
         }
     });
 
+    $("#ddlLiveType").multiselect({
+        minWidth: 100,
+        height: 110,
+        header: false,
+        multiple: false,
+        selectedList: 1
+    });
+
     $("#dateRange").change();
 
     $('#btnSearch').click(function () {
@@ -275,6 +285,8 @@ $(function () {
             return;
         }
 
+        var liveType = parseInt($("#ddlLiveType").val());
+
         var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
@@ -298,7 +310,7 @@ $(function () {
             this.sortDirection = "";
         });
 
-        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, site, parlayTypes, currencies, customerClass);
+        ViewTopWinners(fromDate, toDate, sportsTypes, selectTop, combos, site, parlayTypes, liveType, currencies, customerClass);
     });
 
     tableSorter.bind2(header, table, {
@@ -317,8 +329,8 @@ $(function () {
     });
 });
 
-function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass) {
-    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, currencies, customerClass);
+function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, liveType, currencies, customerClass) {
+    userOptions.Save(fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, liveType, currencies, customerClass);
 
     var data = {
         FromDate: fromDate,
@@ -328,6 +340,7 @@ function ViewTopWinners(fromDate, toDate, sportsType, selectTop, combos, site, p
         Combos: combos,
         Site: site,
         ParlayTypes: parlayTypes,
+        LiveType: liveType,
         Currencies: currencies,
         CustomerClass: customerClass
     }
@@ -450,6 +463,7 @@ function ViewDetails(custId) {
             SelectTop: userOptions.SelectTop,
             Combos: userOptions.Combos,
             ParlayTypes: userOptions.ParlayTypes,
+            LiveType: userOptions.LiveType,
             Currencies: userOptions.Currencies
         }
 
@@ -503,6 +517,7 @@ function ExportExcel() {
         Combos: userOptions.Combos,
         Site: userOptions.Site,
         ParlayTypes: userOptions.ParlayTypes,
+        LiveType: userOptions.LiveType,
         Currencies: userOptions.Currencies,
         CustomerClass: userOptions.CustomerClass
     }

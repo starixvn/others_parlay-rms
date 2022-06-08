@@ -37,8 +37,17 @@
       </div>
     </div>
 
-    <div class="nap-col col-buttons">
-      <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <div class="nap-col">
+      <div class="nap-group">
+        <label class="width-50">Selection</label>
+        <div class="nap-control">
+          <select class="nap-textbox" [(ngModel)]="selectedLiveType">
+            <option *ngFor="let liveType of liveTypeItems" [value]="liveType.id">
+                 {{liveType.name}}
+             </option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -78,6 +87,10 @@
         </ngx-dropdown-treeview>
         </div>
       </div>
+    </div>
+
+    <div class="nap-col col-buttons">
+      <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
     </div>
   </div>
 </div>

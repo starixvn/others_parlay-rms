@@ -67,3 +67,17 @@
 .btn-favorite {
   background-color: #CDC7C7;
 }
+
+.nap-textbox {
+  width: 100%;
+  width: 150px;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25em;
+  height: 26px;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.nap-textbox:focus-visible{
+  outline: none;
+}

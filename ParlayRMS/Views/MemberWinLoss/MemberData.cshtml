@@ -3,26 +3,26 @@
     var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
-<div style="width: 1381px" class="maintitle">
+<div style="width: 1471px" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
     </div>
 </div>
-<div style="width: 1381px">
+<div style="width: 1471px">
     <table class="main">
         <colgroup>
-            <col width='140px' />
+            <col width='160px' />
             <col width='140px' />
             <col width='120px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='190px' />
         </colgroup>
         <thead>
             <tr>
@@ -74,19 +74,19 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 600px; width: 1382px">
+<div class="scrollGridContent" style="max-height: 600px; width: 1472px">
     <table class="main" id="result">
         <colgroup>
-            <col width='140px' />
+            <col width='160px' />
             <col width='140px' />
             <col width='120px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='190px' />
         </colgroup>
         <tbody>
             @foreach (var record in Model.Records)
@@ -125,19 +125,19 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1381px" class="mainfooter">
+<div style="width: 1471px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='140px' />
+            <col width='160px' />
             <col width='140px' />
             <col width='120px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
             <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='190px' />
         </colgroup>
         <tfoot>
             @if (Model.Records.Any())
@@ -178,7 +178,7 @@
             else
             {
                 <tr>
-                    <td colspan="10" style="text-align: center; width: 1381px">
+                    <td colspan="10" style="text-align: center; width: 1471px">
                         @ViewLang.NoInformation
                     </td>
                 </tr>
@@ -193,6 +193,7 @@
         ParlayTypes: '@filterOption.ParlayTypes',
         SportsType: '@filterOption.SportsType',
         Combos: '@filterOption.Combos',
+        LiveType: '@filterOption.LiveType',
         Username: '@filterOption.Username',
         IsCached: true
     }

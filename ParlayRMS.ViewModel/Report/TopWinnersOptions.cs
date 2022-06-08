@@ -21,6 +21,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public string ParlayTypes { get; set; }
 
+        public byte LiveType { get; set; }
+
         public string Currencies { get; set; }
 
         public Int64? CustomerClass { get; set; }
@@ -35,7 +37,7 @@ namespace ParlayRMS.ViewModel.Report
             }
 
             string title = string.Format(
-                                      "Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}] - {9} [{10}] - {11} [{12}]",
+                                      "Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}] - {9} [{10}] - {11} [{12} - {13} [{14}]",
                                       SelectTop,
                                       FromDate.ToString("MMMM dd, yyyy"),
                                       ToDate.ToString("MMMM dd, yyyy"),
@@ -48,7 +50,9 @@ namespace ParlayRMS.ViewModel.Report
                                       ViewLang.Site,
                                       ModelsHelper.GetSiteTitle(Site),
                                       ViewLang.CustomerClass,
-                                      ModelsHelper.GetCustomerClassTitle(CustomerClass));
+                                      ModelsHelper.GetCustomerClassTitle(CustomerClass),
+                                      ViewLang.LiveType,
+                                      ModelsHelper.GetLiveTypeTitle(LiveType));
             return title;
         }
     }

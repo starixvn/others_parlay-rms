@@ -16,6 +16,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              DateTime balanceUpDay,
                                                              string parlayTypes,
                                                              string sportsType,
+                                                             byte liveType,
                                                              string combos,
                                                              long custId)
         {
@@ -31,6 +32,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
                 db.AddInParameter("custid", DbType.Int32, custId);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("LiveStatus", DbType.Int16, liveType);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -63,6 +65,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                                                              DateTime balanceUpDay,
                                                              string parlayTypes,
                                                              string sportsType,
+                                                             byte liveType,
                                                              string combos,
                                                              List<int> custIds)
         {
@@ -78,6 +81,7 @@ namespace ParlayRMS.DataAccess.Implement.MemberWinLoss
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("recommends", DbType.String, string.Join(",", custIds));
                 db.AddInParameter("sporttype", DbType.String, sportsType);
+                db.AddInParameter("LiveStatus", DbType.Int16, liveType);
 
                 using (var reader = db.ExecuteReader())
                 {

@@ -33,6 +33,7 @@ export class MemberGridService {
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
             selection: filterModel.selection,
+            liveStatus: filterModel.liveStatus,
             pageSize: filterModel.pageSize,
             pageIndex: filterModel.pageIndex
         };
