@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 import { AppService } from './app.service';
 import { BettypeTreeviewPipe } from './filter/bettype-treeview.pipe';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BettypeTreeviewPipe } from './filter/bettype-treeview.pipe';
     LeagueTreeviewPipe,
     LeagueComponent,
     EventComponent,
-    BettypeTreeviewPipe
+    BettypeTreeviewPipe,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,

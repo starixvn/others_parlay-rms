@@ -23,6 +23,16 @@ export interface FilterModel {
     userName: string;
   }
 
+  export interface FilterDetailModel extends FilterModel {
+    matchId: number;
+    betChoice: number;
+    detailBettype: number;
+  }
+
+  export interface ExportExcelModel extends FilterDetailModel {
+    title: string
+  }
+
   export interface BettypeModel {
     bettype: number;
     typeNamee: string;

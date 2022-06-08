@@ -9,8 +9,13 @@
   <app-league *ngIf="filterModel && isShowLeague" [data]="this.leagueData"
     (clickedOnLeague)="showEvent($event)">
   </app-league>
-  <app-event *ngIf="filterModel && !isShowLeague" [data]="this.eventData"
-    (showBackLeague)="showBackLeague()" [isClickedOnleague]="isClickedOnleague">
+  <app-event *ngIf="filterModel && !isShowLeague && !isShowDetail" [data]="this.eventData"
+    (showBackLeague)="showBackLeague()" (clickedOnEvent)="showEventDetail($event)"
+    (clickedExportExcel)="exportExcel($event)" [isClickedOnleague]="isClickedOnleague">
   </app-event>
+  <app-event-detail *ngIf="filterModel && !isShowLeague && isShowDetail"
+    [isClickedOnEvent]="isClickedOnEvent" [data]="this.eventDetailData"
+    (clickedExportExcel)="exportExcel($event)" (showBackEvent)="showBackEvent()">
+  </app-event-detail>
 </div>
 <nap-spinner></nap-spinner>
