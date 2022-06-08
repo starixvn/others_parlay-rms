@@ -12,6 +12,7 @@ export interface EventModel {
     isOther: boolean;
     awayMarket: string;
     bettype: number;
+    awayBettype: number;
 }
 
 export interface EventGroupModel {

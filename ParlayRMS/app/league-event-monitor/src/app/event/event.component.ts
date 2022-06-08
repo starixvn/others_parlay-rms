@@ -40,7 +40,7 @@ export class EventComponent implements OnInit {
     const matchBettype: MatchBettypeModel = {
       matchId: matchId,
       event: `${model.homeName} - vs - ${model.awayName}`,
-      bettype: model.bettype,
+      bettype: betChoice === 0 ? model.awayBettype : model.bettype,
       betChoice: betChoice,
       bettypeName: bettypeName
     };
