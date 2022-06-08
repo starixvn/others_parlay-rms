@@ -144,7 +144,7 @@
                     case SiteEnvironment.SIT:
                         return "http://172.16.4.105:6207/Main/";
                     default:
-                        return "http://ha.nexdev.net:7258/Main/";
+                        return "http://remotingref-api.nexdev.net/main/";
                 }
             }
         }
