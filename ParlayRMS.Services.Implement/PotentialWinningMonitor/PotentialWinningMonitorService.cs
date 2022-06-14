@@ -20,9 +20,11 @@ namespace ParlayRMS.Services.Implement.PotentialWinningMonitor
             bool isCornerParlay,
             byte filterBy,
             int? agentId,
-            Int64? customerClass)
+            Int64? customerClass,
+            string company,
+            string username)
         {
-            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop, isCornerParlay, filterBy, agentId, customerClass);
+            return _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinning(combos, parlayTypes, sportTypes, levels, winningAmount, selectTop, isCornerParlay, filterBy, agentId, customerClass, company, username);
         }
 
         public IEnumerable<RMS_Monitor_Potential_Winning_Detail> GetPotentialWinningDetailList(

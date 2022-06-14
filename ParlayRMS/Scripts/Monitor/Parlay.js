@@ -23,6 +23,7 @@ function UserSettings() {
     this.leagueGroups = null;
     this.customerClass = null;
     this.company = '';
+    this.username = '';
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -37,7 +38,8 @@ function UserSettings() {
             && this.odds == setting.odds
             && this.leagueGroups == settings.leagueGroups
             && this.customerClass == settings.customerClass
-            && this.company == settings.company) {
+            && this.company == settings.company
+            && this.username == settings.username) {
             return false;
         }
 
@@ -140,6 +142,8 @@ var settingsController = function () {
 
             var odds = $.trim($('#txtOdds').val().replace(/,/g, ''));
 
+            var username = $.trim($("#smaMember").val());
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlayTypes = parlayTypes;
@@ -161,6 +165,7 @@ var settingsController = function () {
             userSettings.leagueGroups = leagueGroups;
             userSettings.customerClass = customerClass;
             userSettings.company = company;
+            userSettings.username = username;
             return userSettings;
         }
     }
@@ -195,7 +200,8 @@ var timerController = function () {
             odds: settings.odds,
             leagueGroups: settings.leagueGroups,
             customerClass: settings.customerClass,
-            company: settings.company
+            company: settings.company,
+            username: settings.username
         }
 
         $.ajax({

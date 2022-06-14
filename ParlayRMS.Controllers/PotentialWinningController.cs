@@ -1,12 +1,14 @@
 ﻿using ParlayRMS.DTO.PotentialWinning;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
@@ -15,6 +17,7 @@ namespace ParlayRMS.Controllers
     public class PotentialWinningController : BaseController
     {
         private readonly PotentialWinningMonitorService _potentialWinning = new PotentialWinningMonitorService();
+        private readonly CommonService _commonService = new CommonService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
@@ -91,7 +94,7 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay, model.FilterBy, model.AgentId, model.CustomerClass);
+            var data = _potentialWinning.GetPotentialWinningList(model.Combos, model.ParlayTypes, model.SportsTypes, model.Levels, model.WinningAmount, model.SelectTop, model.IsCornerParlay, model.FilterBy, model.AgentId, model.CustomerClass, model.Company, model.UserName);
 
             return Json(new
             {
@@ -115,6 +118,13 @@ namespace ParlayRMS.Controllers
         {
             var data = _potentialWinning.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
             return Json(data);
+        }
+
+        [HttpPost]
+        public ActionResult Company()
+        {
+            var data = _commonService.GetCompanies();
+            return Json(data.GroupBy(x => x.IsDeposit).Select(y => new { GroupId = y.Key, Items = y.Select(z => z.Site) }).ToList());
         }
     }
 }

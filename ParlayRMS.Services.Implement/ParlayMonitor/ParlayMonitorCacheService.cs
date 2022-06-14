@@ -23,19 +23,15 @@ namespace ParlayRMS.Services.Implement.ParlayMonitor
             decimal? odds,
             string leagueGroups,
             long? customerClass,
-            string company)
+            string company,
+            string username)
         {
-            return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass, company);
+            return ParlayService.GetParlayMonitorTickets(combos, parlayTypes, sportsTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass, company, username);
         }
 
         public UserTracking UpdateCheckedUser(int userid, string username, string transid)
         {
             return ParlayService.UpdateCheckedUser(userid, username, transid);
-        }
-
-        public IEnumerable<Company> GetCompanies()
-        {
-            return ParlayService.GetCompanies();
         }
     }
 }

@@ -71,6 +71,10 @@
                     @Html.DropDownList("ddlCompany", new List<SelectListItem>(), new { multiple = "multiple" })
                 </div>
                 <div class="group">
+                    @Html.Label("username", "SMA/Member", new { @class = "lable" })
+                    @Html.TextBox("smaMember", "", new { @class = "inputtext w100" })
+                </div>
+                <div class="group">
                     @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
                     @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds
                 </div>

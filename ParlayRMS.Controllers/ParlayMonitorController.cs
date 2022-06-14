@@ -1,6 +1,7 @@
 ﻿using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
+using ParlayRMS.Services.Implement.Common;
 using ParlayRMS.Services.Implement.ParlayMonitor;
 using ParlayRMS.Services.Implement.Users;
 using ParlayRMS.Utility;
@@ -20,6 +21,7 @@ namespace ParlayRMS.Controllers
     {
         private readonly ParlayMonitorCacheService _parlayMonitorCacheService = new ParlayMonitorCacheService();
         private readonly UsersService _userService = new UsersService();
+        private readonly CommonService _commonService = new CommonService();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
@@ -129,7 +131,8 @@ namespace ParlayRMS.Controllers
                                 model.Odds,
                                 model.LeagueGroups,
                                 model.CustomerClass,
-                                model.Company) : new List<RMS_Monitor_Parlay_Betlist>();
+                                model.Company,
+                                model.UserName) : new List<RMS_Monitor_Parlay_Betlist>();
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {
@@ -155,7 +158,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult Company()
         {
-            var data = _parlayMonitorCacheService.GetCompanies();
+            var data = _commonService.GetCompanies();
             return Json(data.GroupBy(x => x.IsDeposit).Select(y => new { GroupId = y.Key, Items = y.Select(z => z.Site) }).ToList());
         }
     }

@@ -613,6 +613,7 @@
     <Content Include="Content\Menu.css" />
     <Content Include="Content\ParlayMonitor.css" />
     <Content Include="Content\ParlayWon.css" />
+    <Content Include="Content\PotentialWinning.css" />
     <Content Include="Content\TopWinners.css" />
     <Content Include="Content\ViewIpInfo.css" />
     <Content Include="packages.config" />

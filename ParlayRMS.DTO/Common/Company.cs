@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.ParlayMonitor
+﻿namespace ParlayRMS.DTO.Common
 {
     public class Company
     {
