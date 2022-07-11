@@ -38,5 +38,7 @@ namespace ParlayRMS.ViewModel.PalayMonitor
         public long? CustomerClass { get; set; }
 
         public string Company { get; set; }
+
+        public string UserName { get; set; }
     }
 }

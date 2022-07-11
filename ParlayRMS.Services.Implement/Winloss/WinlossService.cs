@@ -27,7 +27,8 @@ namespace ParlayRMS.Services.Implement.Winloss
                                 options.SportsType,
                                 options.Combos,
                                 (int)options.ReportType,
-                                options.Site);
+                                options.Site,
+                                options.LiveType);
 
             Utils.Round(data);
             data.ToList().ForEach(x =>

@@ -57,6 +57,9 @@ export class FilterComponent implements OnInit {
   });
   public selectedcomboType: string[] = [];
 
+  public selectedLiveType: number = 3;
+  public liveTypeItems: SelectItem[] = [];
+
   fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
   toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
@@ -72,6 +75,7 @@ export class FilterComponent implements OnInit {
     this.getSports();
     this.getParlay();
     this.getCombo();
+    this.liveTypeItems = this.filterService.getLiveTypes();
   }
 
   private getCompany() {
@@ -132,7 +136,8 @@ export class FilterComponent implements OnInit {
       company: this.selectedCompany.join(','),
       sportType: this.selectedSportsType.join(','),
       parlayType: this.selectedParlayType.join(','),
-      selection: this.selectedcomboType.join(',')
+      selection: this.selectedcomboType.join(','),
+      liveStatus: this.selectedLiveType
     };
 
     return model;

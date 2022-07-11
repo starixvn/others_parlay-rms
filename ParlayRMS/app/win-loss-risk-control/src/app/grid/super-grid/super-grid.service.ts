@@ -33,7 +33,8 @@ export class SuperGridService {
             isDeposit: false,
             parlayType: filterModel.parlayType,
             sportType: filterModel.sportType,
-            selection: filterModel.selection
+            selection: filterModel.selection,
+            liveStatus: filterModel.liveStatus
         };
     }
 

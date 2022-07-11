@@ -101,5 +101,10 @@ namespace ParlayRMS.Services.Implement.Common
         {
             return this._commonDataAccess.GetCurrencies();
         }
+
+        public IEnumerable<Company> GetCompanies()
+        {
+            return _commonDataAccess.RMS_SiteByGroupSel();
+        }
     }
 }

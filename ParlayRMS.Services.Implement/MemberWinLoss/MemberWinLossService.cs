@@ -26,6 +26,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                      DateTime toDate,
                                      string parlayTypes,
                                      string sportsType,
+                                     byte liveType,
                                      string combos,
                                      string username,
                                      bool isCached,
@@ -53,6 +54,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  info.BalanceUpDay,
                                  parlayTypes,
                                  sportsType,
+                                 liveType,
                                  combos,
                                  user.CustId);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
@@ -70,6 +72,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                  info.BalanceUpDay,
                                  parlayTypes,
                                  sportsType,
+                                 liveType,
                                  combos,
                                  agentIds);
                     _cacheService.Set(MemberWinLossReportSessionKey, result);
@@ -87,6 +90,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                       DateTime balanceUpDay,
                                       string parlayTypes,
                                       string sportsType,
+                                      byte liveType,
                                       string combos,
                                       long custId)
         {
@@ -100,6 +104,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                        balanceUpDay,
                                                        parlayTypes,
                                                        sportsType,
+                                                       liveType,
                                                        combos,
                                                        custId).ToList();
 
@@ -125,6 +130,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                       DateTime balanceUpDay,
                                       string parlayTypes,
                                       string sportsType,
+                                      byte liveType,
                                       string combos,
                                       List<int> custIds)
         {
@@ -137,6 +143,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
                                                        balanceUpDay,
                                                        parlayTypes,
                                                        sportsType,
+                                                       liveType,
                                                        combos,
                                                        custIds).ToList();
 

@@ -7,6 +7,7 @@ export interface FilterModel {
   parlayType: string;
   selection: string;
   sportType: string;
+  liveStatus: number;
   pageSize?: number;
   pageIndex?: number;
   isPageChanged?: boolean;

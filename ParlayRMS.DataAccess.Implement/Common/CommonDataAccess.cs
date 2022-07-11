@@ -114,5 +114,27 @@ namespace ParlayRMS.DataAccess.Implement.Common
 
             return currencies;
         }
+
+        public IEnumerable<Company> RMS_SiteByGroupSel()
+        {
+            var result = new List<Company>();
+
+            using (var db = new ObjectDb("RMS_SiteByGroupSel"))
+            {
+                using (var reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new Company
+                        {
+                            Site = reader.ToString("Site"),
+                            IsDeposit = reader.ToInt16("isDeposit"),
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }

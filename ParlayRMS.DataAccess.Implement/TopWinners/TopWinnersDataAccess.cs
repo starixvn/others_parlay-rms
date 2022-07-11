@@ -19,6 +19,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                          int selectTop,
                                                          string combos,
                                                          string parlayTypes,
+                                                         byte liveType,
                                                          string currencies,
                                                          byte site,
                                                          Int64? customerClass)
@@ -34,6 +35,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("limitedRow", DbType.Int32, selectTop);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+                db.AddInParameter("LiveStatus", DbType.Int16, liveType);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("currency", DbType.String, currencies);
                 db.AddInParameter("Site", DbType.Byte, site);
@@ -74,6 +76,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                                                                 string sportsType,
                                                                 string combos,
                                                                 string parlayTypes,
+                                                                byte liveType,
                                                                 string currencies)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner_Detail>();
@@ -86,6 +89,7 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                 db.AddInParameter("movebetsday", DbType.DateTime, moveBetsDay);
                 db.AddInParameter("selection", DbType.String, combos);
                 db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+                db.AddInParameter("LiveStatus", DbType.Int16, liveType);
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("currency", DbType.String, currencies);
 

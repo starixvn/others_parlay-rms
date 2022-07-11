@@ -50,6 +50,10 @@
                     @Html.Label(ViewLang.ParlayType)
                     @Html.DropDownList("parlayType", Config.ParlayTypes)
                 </div>
+                <div class="group">
+                    @Html.Label("", ViewLang.LiveType)
+                    @Html.DropDownList("ddlLiveType", Config.LiveTypes)
+                </div>
             </div>
             <div class="row">
                 <div id="divSportsTypes" class="group">
@@ -69,13 +73,13 @@
     </div>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1450px" class="maintitle">
+    <div style="width: 1480px" class="maintitle">
         <div id="title" class="information">
         </div>
         <div class="excel" onclick="ExportExcel();" title="Export Excel">
         </div>
     </div>
-    <div style="width: 1450px">
+    <div style="width: 1480px">
         <table class="main" id="header">
             <colgroup>
                 <col width='40' />
@@ -88,8 +92,8 @@
                 <col width='140' />
                 <col width='135' />
                 <col width='170' />
-                <col width='80' />
-                <col width='134' />
+                <col width='100' />
+                <col width='144' />
             </colgroup>
             <thead>
                 <tr>
@@ -141,7 +145,7 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1470px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1500px">
         <table class="main" id="result">
             <colgroup>
                 <col width='40' />
@@ -154,13 +158,13 @@
                 <col width='140' />
                 <col width='135' />
                 <col width='170' />
-                <col width='80' />
-                <col width='134' />
+                <col width='100' />
+                <col width='144' />
             </colgroup>
             <tbody></tbody>
         </table>
     </div>
-    <div style="width: 1450px" class="mainfooter">
+    <div style="width: 1480px" class="mainfooter">
         <table class="main" id="footer" style="width: 100%">
             <colgroup>
                 <col width='40' />
@@ -173,8 +177,8 @@
                 <col width='140' />
                 <col width='135' />
                 <col width='170' />
-                <col width='80' />
-                <col width='134' />
+                <col width='100' />
+                <col width='144' />
             </colgroup>
             <tfoot>
                 <tr id="totalRow">

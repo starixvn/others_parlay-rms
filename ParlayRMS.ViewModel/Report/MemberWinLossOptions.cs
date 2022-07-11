@@ -23,6 +23,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public string SportsType { get; set; }
 
+        public byte LiveType { get; set; }
+
         public string Combos { get; set; }
 
         public int? PageIndex { get; set; }
@@ -51,7 +53,7 @@ namespace ParlayRMS.ViewModel.Report
             }
 
             var title = string.Format(
-                                "{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}]",
+                                "{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}] - {10}[{11}]",
                                 ViewLang.AgentMemberWinLoss,
                                 Username,
                                 FromDate.ToString("MMMM dd, yyyy"),
@@ -61,7 +63,9 @@ namespace ParlayRMS.ViewModel.Report
                                 ViewLang.Combo,
                                 combosTitle,
                                 ViewLang.SportsType,
-                                ModelsHelper.GetSportType(SportsType));
+                                ModelsHelper.GetSportType(SportsType),
+                                ViewLang.LiveType,
+                                ModelsHelper.GetLiveTypeTitle(LiveType));
             return title;
         }
     }

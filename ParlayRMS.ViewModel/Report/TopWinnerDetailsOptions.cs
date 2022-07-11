@@ -18,6 +18,8 @@
 
         public string ParlayTypes { get; set; }
 
+        public byte LiveType { get; set; }
+
         public string Currencies { get; set; }
     }
 }

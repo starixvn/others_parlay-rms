@@ -19,7 +19,8 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                                                        string sportsType,
                                                        string combos,
                                                        int reportType,
-                                                       byte site)
+                                                       byte site,
+                                                       byte liveType)
         {
             var result = new List<RMS_Rpt_Parlay_Winloss>();
 
@@ -34,6 +35,7 @@ namespace ParlayRMS.DataAccess.Implement.Winloss
                 db.AddInParameter("sporttype", DbType.String, sportsType);
                 db.AddInParameter("reporttype", DbType.Int32, reportType);
                 db.AddInParameter("Site", DbType.Byte, site);
+                db.AddInParameter("LiveStatus", DbType.Byte, liveType);
 
                 using (var reader = db.ExecuteReader())
                 {

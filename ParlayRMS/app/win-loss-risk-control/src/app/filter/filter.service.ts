@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from 'nap-components/http';
 import { Observable } from 'rxjs';
@@ -24,5 +23,14 @@ export class FilterService {
 
   public getCombo(netcoreApiUrl: string): Observable<SelectItem[]> {
     return this.httpService.post(`${netcoreApiUrl}${this.api}comboes`);
+  }
+
+  public getLiveTypes(): SelectItem[] {
+    return [
+      { id: 3, name: 'All' },
+      { id: 1, name: 'Live' },
+      { id: 0, name: 'None Live' },
+      { id: 2, name: 'Mix' }
+    ]
   }
 }

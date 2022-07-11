@@ -26,5 +26,9 @@ namespace ParlayRMS.ViewModel.Monitoring
         public int? AgentId { get; set; }
 
         public Int64? CustomerClass { get; set; }
+
+        public string Company { get; set; }
+
+        public string UserName { get; set; }
     }
 }

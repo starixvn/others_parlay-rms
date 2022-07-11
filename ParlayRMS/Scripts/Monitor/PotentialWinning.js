@@ -20,6 +20,8 @@ function UserSettings() {
     this.isCornerParlay = false;
     this.filterBy = 0;
     this.customerClass = null;
+    this.company = '';
+    this.username = '';
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlaysTypes == settings.parlaysTypes
@@ -30,7 +32,9 @@ function UserSettings() {
             && this.reportType == settings.reportType
             && this.isCornerParlay == setting.isCornerParlay
             && this.filterBy == settings.filterBy
-            && this.customerClass == settings.customerClass) {
+            && this.customerClass == settings.customerClass
+            && this.company == settings.company
+            && this.username == settings.username) {
             return false;
         }
 
@@ -99,6 +103,14 @@ var settingsController = function () {
                 return null;
             }
 
+            var company = $("#ddlCompany").multiselect("getChecked").map(function () {
+                return this.value;
+            }).get().join(',');
+            if (company == '') {
+                Validators.show($('#ddlCompany').multiselect("getButton").get(0), 'Please select your options');
+                return null;
+            }
+
             var selectTop = parseInt($("#selectTop").val());
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
@@ -106,6 +118,8 @@ var settingsController = function () {
             var filterBy = $('input[name=radFilterBy]:checked').val();
 
             var customerClass = filterBy == '0' ? parseInt($("#customerClass").val()) : null;
+
+            var username = $("#smaMember").val().trim();
 
             var userSettings = new UserSettings();
             userSettings.combos = combos;
@@ -117,6 +131,8 @@ var settingsController = function () {
             userSettings.isCornerParlay = isCornerParlay;
             userSettings.filterBy = filterBy;
             userSettings.customerClass = customerClass;
+            userSettings.company = company;
+            userSettings.username = username;
 
             return userSettings;
         }
@@ -147,7 +163,9 @@ var timerController = function () {
             isCornerParlay: settings.isCornerParlay,
             filterBy: settings.filterBy,
             customerClass: settings.customerClass,
-            agentId: cachedAgentId
+            company: settings.company,
+            agentId: cachedAgentId,
+            username: settings.username
         };
 
         $.ajax({
@@ -233,8 +251,8 @@ $(document).ready(function () {
     });
 
     $("#combo").multiselect({
-        minWidth: 132,
-        height: 136,
+        buttonWidth: 132,
+        menuHeight: 176,
         create: function () {
             $("#combo").multiselect();
         },
@@ -243,7 +261,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -255,8 +273,8 @@ $(document).ready(function () {
     });
 
     $("#parlaysType").multiselect({
-        minWidth: 210,
-        height: 138,
+        buttonWidth: 210,
+        menuHeight: 178,
         create: function () {
             $("#parlaysType").multiselect("checkAll");
         },
@@ -265,7 +283,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -277,8 +295,10 @@ $(document).ready(function () {
     });
 
     $("#sportsType").multiselect({
-        minWidth: 190,
+        buttonWidth: 205,
         height: 300,
+        selectedList: 1,
+        groupsCollapsable: true,
         create: function () {
             $("#sportsType").multiselect("checkAll");
         },
@@ -287,7 +307,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -299,7 +319,7 @@ $(document).ready(function () {
     });
 
     $("#level").multiselect({
-        minWidth: 132,
+        buttonWidth: 132,
         create: function () {
             $("#level").multiselect("checkAll");
         },
@@ -308,7 +328,7 @@ $(document).ready(function () {
                 return "Select options";
             }
             else if (numChecked == 1) {
-                return $(checkedItems).attr('title');
+                return checkedItems[0].labels[0].innerText;
             }
             else if (numChecked == numTotal) {
                 return "All";
@@ -320,16 +340,44 @@ $(document).ready(function () {
     });
 
     $("#selectTop").multiselect({
-        minWidth: 80,
-        height: 105,
+        buttonWidth: 80,
+        menuHeight: 145,
         header: false,
         multiple: false,
         selectedList: 1
     });
 
+    $("#ddlCompany").multiselect({
+        menuHeight: 300,
+        buttonWidth: 180,
+        groupsCollapsable: true,
+        selectedList: 1,
+        create: function () {
+            $("#ddlCompany").multiselect("checkAll");
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return checkedItems[0].labels[0].innerText;
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    }).multiselectfilter({
+        autoReset: true
+    });
+
+    getCompanies();
+
     $("#refreshTime").multiselect({
-        minWidth: 60,
-        height: 80,
+        buttonWidth: 60,
+        menuHeight: 120,
         header: false,
         multiple: false,
         selectedList: 1,
@@ -375,6 +423,8 @@ $(document).ready(function () {
 
     $('input[name=radFilterBy]').change(function () {
         $("#customerClass").prop('disabled', $(this).val() == '1');
+        var username = $(this).val() == '1' ? 'SMA' : 'SMA/Member';
+        $("#username").text(username);
     });
 
     InitTableSorter($(memberResultSelector + ' #result'), $(memberResultSelector + ' #header'));
@@ -881,4 +931,47 @@ function reUpdateCheckedUser(object, isUserList) {
 function disabledandCheckedCheckBox(element) {
     $(element).prop("checked", true);
     $(element).prop("disabled", true);
+}
+
+function getCompanies() {
+
+    $.ajax({
+        url: resolveClientUrl('PotentialWinning/Company'),
+        type: 'POST',
+        dataType: 'html',
+        cache: false,
+        beforeSend: function () {
+            loading.show();
+        },
+        success: function (result) {
+            var json = $.parseJSON(result);
+            loadCompanyControl(json);
+        },
+        error: function (xhr, status, err) {
+            alertBox.showError(xhr.responseText);
+        },
+        complete: function () {
+            loading.hide();
+        }
+    });
+}
+
+function loadCompanyControl(data) {
+    var html = '';
+    $.each(data, function (key, obj) {
+        if (obj.GroupId == 0) {
+            html += '<optgroup label="MBC Group" selected="selected">';
+        }
+        else {
+            html += '<optgroup label="Licensee Group" selected="selected">';
+        }
+        $.each(obj.Items, function (inx, site) {
+            html += '<option value="' + site + '" aria-selected="true">' + site + '</option>';
+        })
+        html += '</optgroup>';
+    });
+
+    $('#ddlCompany').html(html);
+    $('#ddlCompany').multiselect('refresh');
+    $("#ddlCompany").multiselect("checkAll");
 }

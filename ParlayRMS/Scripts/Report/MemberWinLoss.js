@@ -8,7 +8,8 @@
         btnSearch: null,
         divResult: null,
         lbCustomerClass: null,
-        filterControl: null
+        filterControl: null,
+        liveType: null
     },
     GetCachedDOM: function () {
         MemberWinLoss.CachedDOM.username = $("#username");
@@ -21,6 +22,7 @@
         MemberWinLoss.CachedDOM.divResult = $("#divResult");
         MemberWinLoss.CachedDOM.lbCustomerClass = $("#lbCustomerClass");
         MemberWinLoss.CachedDOM.filterControl = $(".filter-control");
+        MemberWinLoss.CachedDOM.liveType = $("#ddlLiveType");
     },
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
@@ -94,6 +96,14 @@
             }
         });
 
+        MemberWinLoss.CachedDOM.liveType.multiselect({
+            minWidth: 100,
+            height: 110,
+            header: false,
+            multiple: false,
+            selectedList: 1
+        });
+
         MemberWinLoss.CachedDOM.fromDate.datepicker({
             dateFormat: "MM dd, yy",
             showButtonPanel: true,
@@ -153,12 +163,13 @@
             MemberWinLoss.GetData(1, false);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, sportsType, combos, username, pageIndex, isCached) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, liveType, combos, username, pageIndex, isCached) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
             ParlayTypes: parlayTypes,
             SportsType: sportsType,
+            LiveType: liveType,
             Combos: combos,
             Username: username,
             PageIndex: pageIndex,
@@ -235,7 +246,9 @@
             return;
         }
 
-        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, combos, username, pageIndex, isCached);
+        var liveType = parseInt(MemberWinLoss.CachedDOM.liveType.val());
+
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached);
     },
     DisplayCustomerClass: function () {
         var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
