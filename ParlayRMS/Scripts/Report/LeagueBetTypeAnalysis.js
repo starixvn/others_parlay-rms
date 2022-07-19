@@ -76,7 +76,9 @@
                     return "Select options";
                 }
                 else if (numChecked == 1) {
-                    return $(checkedItems).attr('title');
+                    var selectedText = $(checkedItems).attr('title');
+                    var characters = parseInt($("#ddlSport").val()) === 1 ? 20 : 24;
+                    return selectedText.length > characters ? selectedText.substring(0, characters) + ' ...' : selectedText;
                 }
                 else if (numChecked == numTotal) {
                     return "All";
