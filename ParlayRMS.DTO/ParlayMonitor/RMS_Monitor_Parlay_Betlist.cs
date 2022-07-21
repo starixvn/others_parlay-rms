@@ -8,7 +8,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
 
         public string TransDateString { get; set; }
 
-        public long TransId { get; set; }
+        public string TransId { get; set; }
 
         public long RefNo { get; set; }
 

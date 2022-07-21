@@ -63,7 +63,7 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                         {
                             TransDate = reader.ToDateTime("transdate"),
                             TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-                            TransId = reader.ToInt64("transid"),
+                            TransId = reader.ToString("transid"),
                             RefNo = reader.ToInt64("refno"),
                             Username = reader.ToString("username"),
                             Odds = reader.ToDecimal("odds"),
