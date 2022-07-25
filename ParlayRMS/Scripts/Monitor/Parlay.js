@@ -1,5 +1,5 @@
 ﻿var refreshTime = 60000;
-var maxTransId = 0;
+var maxTransId = '0';
 
 function Alert() {
     var settings = settingsController.get();
@@ -519,7 +519,7 @@ $(document).ready(function () {
             $("#transTime").addClass("headerSortDown");
             $("#transTime").get(0).sortDirection = "asc";
             tableSorter.currentOrderCol = null;
-            maxTransId = 0;
+            maxTransId = '0';
             timerController.start();
         }
     });
@@ -638,7 +638,7 @@ function FillData(table, data) {
             });
         }
     } else {
-        if (maxTransId == 0) {
+        if (maxTransId == '0') {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
                 var noinfo = CreateNoInfoRow(15);
                 tbody.append(noinfo);
@@ -672,9 +672,9 @@ function CreateRow(order, item) {
     r[++j] = '<td>' + item.TransDateString + '</td>';
 
     if (item.IsBetRadar) {
-        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     } else {
-        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + +item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     }
 
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
@@ -693,7 +693,7 @@ function CreateRow(order, item) {
     else {
         r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + displayMax15Character(item.IP.trim()) + '</a></td>';
     }
-    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', ' + item.TransId + ', ' + +item.RefNo + ', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
+    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', \'' + item.TransId + '\', \'' + +item.RefNo + '\', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
     r[++j] = '<td>' + renderCheckedBy(order, userId, userName, item.TrackingUser, item.IsTrackedUser, item.TransId) + '</td>';
     r[++j] = '</tr>';
     return r.join('');
@@ -838,7 +838,7 @@ function displayMax15Character(ip) {
 
 function renderCheckedBy(index, userId, userName, trackingUser, isTracked, transid) {
     var checkedDisabled = isTracked ? "checked disabled" : "";
-    var input = '<input type="checkbox" id="cbTrackingUser-' + index + '" onclick="updateCheckedUser(\'#cbTrackingUser-' + index + '\', ' + userId + ', \'' + userName + '\', ' + transid + ')" data-transid="' + transid + '" class="cbTrackingUser-item" style="vertical-align: middle;"' + checkedDisabled + ' />';
+    var input = '<input type="checkbox" id="cbTrackingUser-' + index + '" onclick="updateCheckedUser(\'#cbTrackingUser-' + index + '\', ' + userId + ', \'' + userName + '\', \'' + transid + '\')" data-transid="' + transid + '" class="cbTrackingUser-item" style="vertical-align: middle;"' + checkedDisabled + ' />';
     var label = '<label for="cbTrackingUser-' + index + '" id="cbTrackingUser-' + index + '-text" style="vertical-align: middle;">' + trackingUser + '</label>';
     return '<div style="display: inline - block;">' + input + label + '</div>';
 }

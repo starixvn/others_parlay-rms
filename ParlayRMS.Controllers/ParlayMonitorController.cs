@@ -136,7 +136,7 @@ namespace ParlayRMS.Controllers
             long maxTransId = model.MaxTransId;
             if (data.Count() > 0)
             {
-                maxTransId = Math.Max(model.MaxTransId, data.First().TransId);
+                maxTransId = Math.Max(model.MaxTransId, long.Parse(data.First().TransId));
             }
 
             return Json(new
@@ -144,7 +144,7 @@ namespace ParlayRMS.Controllers
                 code = 0,
                 Records = data,
                 Title = string.Empty,
-                MaxTransId = maxTransId
+                MaxTransId = maxTransId.ToString()
             });
         }
 

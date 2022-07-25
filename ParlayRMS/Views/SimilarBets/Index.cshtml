@@ -14,7 +14,7 @@
         <div id="filtercontent" class="container">
             <div class="group">
                 @Html.Label("betId", "BetID")
-                @Html.TextBox("betId", (string)ViewBag.betid)
+                @Html.TextBox("betId", (string)ViewBag.betid, new { style="width: 142px" })
             </div>
             <div class="group">
                 @Html.CheckBox("similar", new { style = "float:left; margin-top: 7px;" })

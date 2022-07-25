@@ -84,7 +84,7 @@
                         @item.TransDate
                     </td>
                     <td class="numeric">
-                        <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewSimilarBets(@item.TransId);">
+                        <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewSimilarBets('@item.TransId');">
                             @item.TransId
                         </a>
                     </td>
@@ -138,7 +138,7 @@
                         @item.SportTypeName
                     </td>
                     <td class="center">
-                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', @item.TransId, @item.Refno, @item.BetType, @ViewBag.CustId);">
+                        <button class="button-disable" style="width:40px;" onclick="ParlayRMS.TotalOutstanding.ViewBetDetails('@ViewBag.Username', '@item.TransId', '@item.Refno', @item.BetType, @ViewBag.CustId);">
                             @ViewLang.View
                         </button>
                     </td>
