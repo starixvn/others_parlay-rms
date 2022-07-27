@@ -122,6 +122,10 @@ namespace ParlayRMS.Services.Implement.BetDetails
 
         private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, BetInfo betInfo)
         {
+            if (betInfo == null)
+            {
+                return new List<string>();
+            }
             var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
             var comboTypesAndStake = new List<string>();
             var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
