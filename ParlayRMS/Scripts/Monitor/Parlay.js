@@ -1,5 +1,6 @@
 ﻿var refreshTime = 60000;
 var maxTransId = '0';
+var searchedTransId = [];
 
 function Alert() {
     var settings = settingsController.get();
@@ -592,10 +593,12 @@ function FillData(table, data) {
         var rows = tbody.children('tr');
         if (rows.length == 0) {
             var r = new Array();
+            searchedTransId = [];
             var j = -1;
             for (var i = 0; i < length; i++) {
                 var item = records[i];
                 r[++j] = CreateRow(i + 1, item);
+                searchedTransId.push(item.TransId);
             }
 
             tbody.html(r.join(''));
@@ -609,19 +612,21 @@ function FillData(table, data) {
 
             for (var i = length - 1; i >= 0; i--) {
                 var item = records[i];
-                var row = CreateRow(i + 1, item);
+                if ($.inArray(item.TransId, searchedTransId) == -1) {
+                    var row = CreateRow(i + 1, item);
 
-                rows = tbody.children('tr');
-                var settings = settingsController.get();
-                if (settings.selectTop == rows.length) {
-                    var last = rows.last();
-                    last.remove();
+                    rows = tbody.children('tr');
+                    var settings = settingsController.get();
+                    if (settings.selectTop == rows.length) {
+                        var last = rows.last();
+                        last.remove();
+                    }
+
+                    row = $(row);
+                    tbody.prepend(row);
+                    row.addClass('highlight');
+                    searchedTransId.push(item.TransId);
                 }
-
-                row = $(row);
-                tbody.prepend(row);
-                //row.effect("highlight", { color: '#FFDBA8' }, 120000);
-                row.addClass('highlight');
             }
 
             //Order by current ordered column
