@@ -190,7 +190,7 @@
                 {
 					case SiteEnvironment.UAT:
                     case SiteEnvironment.PRO:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.99.99.51:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.2.27.8:42424\" />";
                     case SiteEnvironment.PROAWS:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:42424\" />";
                     case SiteEnvironment.MNL:
@@ -199,7 +199,7 @@
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=172.16.4.107:42424\" />";
 
                     default:
-                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=ha.nexdev.net:42424\" />";
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"10\" stateConnectionString=\"tcpip=10.18.200.131:42424\" />";
                 }
             }
         }
