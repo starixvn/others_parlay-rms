@@ -39,8 +39,8 @@ namespace ParlayRMS.ViewModel.Report
             string title = string.Format(
                                       "Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}] - {9} [{10}] - {11} [{12} - {13} [{14}]",
                                       SelectTop,
-                                      FromDate.ToString("MMMM dd, yyyy"),
-                                      ToDate.ToString("MMMM dd, yyyy"),
+                                      FromDate.ToString("MMM dd, yyyy"),
+                                      ToDate.ToString("MMM dd, yyyy"),
                                       ViewLang.Combo,
                                       combosTitle,
                                       ViewLang.ParlayType,

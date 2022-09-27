@@ -1864,19 +1864,22 @@ a.datepicker {
 /*Filter*/
 #divResult div.maintitle div.information {
     float: left;
-    line-height: 30px;
+    line-height: 20px;
     margin-left: 20px;
+    flex: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #divResult div.maintitle {
     clear: both; /* background-color: #454513;*/
     background-color: #454513;
-    height: 35px;
     color: #fff;
     border: soild 1px #454513;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     margin-bottom: 1px;
+    display: flex;
 }
 
 #divResult div.mainfooter {

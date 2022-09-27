@@ -71,8 +71,8 @@ namespace ParlayRMS.ViewModel.Report
             var title = string.Format(
                                 "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} [{7}] - {8} - [{9}] {10} - [{11}] {12} - [{13}] {14} - {15} [{16}]",
                                 ViewLang.ParlayWon,
-                                FromDate.ToString("MMMM dd, yyyy"),
-                                ToDate.ToString("MMMM dd, yyyy"),
+                                FromDate.ToString("MMM dd, yyyy"),
+                                ToDate.ToString("MMM dd, yyyy"),
                                 ViewLang.ParlayType,
                                 ModelsHelper.GetParlayTitle(ParlayTypes),
                                 ViewLang.Combo,
