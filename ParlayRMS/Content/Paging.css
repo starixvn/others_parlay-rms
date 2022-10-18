@@ -7,11 +7,14 @@
 }
 .Pager span.PageSize
 {
-    width: 50px;
     float: left;
     text-align: center;
     margin: 0px 5px 0px 5px;
     border-radius: 20px;
+}
+
+.Pager span.PageSize label {
+    font-weight: bold;
 }
 .Pager span.PageSize select
 {

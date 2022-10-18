@@ -4,6 +4,7 @@ namespace ParlayRMS.Controllers
     using ExcelService.Writers;
     using Models.Functions;
     using PagedList;
+    using ParlayRMS.DTO.LeagueBetTypeAnalysis;
     using ParlayRMS.DTO.Leagues;
     using Services.Implement.LeagueBetTypeAnalysis;
     using Services.Implement.Leagues;
@@ -21,7 +22,6 @@ namespace ParlayRMS.Controllers
     {
         private readonly LeaguesService leagueService = new LeaguesService();
         private readonly LeagueBetTypeAnalysisService service = new LeagueBetTypeAnalysisService();
-        private readonly int pageSize = AppSetting.PageSize;
         private const int SOCCER = 1;
 
         [HttpGet]
@@ -66,8 +66,16 @@ namespace ParlayRMS.Controllers
                 ViewBag.FilterOption = options;
                 ViewBag.Title = options.GetTitle();
                 ViewBag.TotalRows = model.Count;
-                ViewBag.Pager = Pager.Items(model.Count).PerPage(pageSize).Move(page).Segment(5).Center();
-                return PartialView(model.ToPagedList(page, pageSize));
+                ViewBag.Pager = Pager.Items(model.Count).PerPage(options.PageSize).Move(page).Segment(5).Center();
+                var pageSizesValues = new List<int> { 100, 200, 500 };
+                var pageSizes = new List<SelectListItem>();
+                foreach (var item in pageSizesValues)
+                {
+                    pageSizes.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == options.PageSize });
+                }
+
+                ViewBag.PageSizes = pageSizes;
+                return PartialView(model.ToPagedList(page, options.PageSize));
             }
             catch (Exception ex)
             {

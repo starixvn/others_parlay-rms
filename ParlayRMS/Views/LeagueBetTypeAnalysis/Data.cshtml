@@ -27,7 +27,7 @@ else
 
 }
 <br />
-@if (totalRows > AppSetting.PageSize)
+@if (totalRows > 100)
 {
     <div  style="width: @(isReportByLeague ? "1290px" : "1190px")">
         @Html.Partial("_Pager", (object)@ViewBag.Pager)

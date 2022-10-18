@@ -1,55 +1,68 @@
 ﻿@model Pager
 <div class="Pager">
+    @{ if (ViewBag.PageSizes != null)
+        {
+        <div>
+            <span class="PageSize">
+                @Html.Label("pageSize", ViewLang.PageSize, new { @class = "lable" })
+                @Html.DropDownList("pageSize", (List<SelectListItem>)ViewBag.PageSizes)
+            </span>
+        </div>
+            
+        }
+    }
     <div class="PagerItem">
         @{
+
+
             if (Model.NumberOfPages > 1)
             {
                 if (Model.HasPreviousPage)
                 {
-            <span class="First_Last" onclick="MovePage(@Model.FirstPageIndex);">
-                @ViewLang.First
-            </span>
-            <span class="Next_Previous" onclick="MovePage(@Model.PreviousPageIndex);">< </span>
+                    <span class="First_Last" onclick="MovePage(@Model.FirstPageIndex);">
+                        @ViewLang.First
+                    </span>
+                    <span class="Next_Previous" onclick="MovePage(@Model.PreviousPageIndex);">< </span>
                 }
                 else
                 {
-            <span class="First_Last_Disabled">
-                @ViewLang.First
-            </span>
-            <span class="Next_Previous_Disabled">< </span>
+                    <span class="First_Last_Disabled">
+                        @ViewLang.First
+                    </span>
+                    <span class="Next_Previous_Disabled">< </span>
                 }
                 foreach (int page in Model)
                 {
                     if (page == Model.CurrentPageIndex)
                     {
-            <span class="ActiveNumber">
-                @page
-            </span>
+                        <span class="ActiveNumber">
+                            @page
+                        </span>
                     }
                     else
                     {
-            <span class="Number" onclick="MovePage(@page);">
-                @page
-            </span>
+                        <span class="Number" onclick="MovePage(@page);">
+                            @page
+                        </span>
                     }
                 }
                 if (Model.HasNextPage)
                 {
-            <span class="Next_Previous" onclick="MovePage(@Model.NextPageIndex);">> </span>
-            <span class="First_Last" onclick="MovePage(@Model.LastPageIndex);">
-                @ViewLang.Last
-            </span>
+                    <span class="Next_Previous" onclick="MovePage(@Model.NextPageIndex);">> </span>
+                    <span class="First_Last" onclick="MovePage(@Model.LastPageIndex);">
+                        @ViewLang.Last
+                    </span>
                 }
                 else
                 {
-            <span class="Next_Previous_Disabled">> </span>
-            <span class="First_Last_Disabled">
-                @ViewLang.Last
-            </span>
+                    <span class="Next_Previous_Disabled">> </span>
+                    <span class="First_Last_Disabled">
+                        @ViewLang.Last
+                    </span>
                 }
             }
-
         }
+
     </div>
 </div>
 @Scripts.Render("~/Scripts/Pager/js")
