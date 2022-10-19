@@ -13,6 +13,8 @@
             ratio: null,
             reportBy: null,
             sportType: null,
+            sortById: null,
+            isSortAsc: null,
             page: 1,
             pageSize: 100
         };
@@ -232,6 +234,8 @@
                 ratio,
                 reportBy,
                 sportType,
+                LeagueBetTypeAnalysis.cachedObject.sortById,
+                LeagueBetTypeAnalysis.cachedObject.isSortAsc,
                 LeagueBetTypeAnalysis.cachedObject.page,
                 LeagueBetTypeAnalysis.cachedObject.pageSize);
         });
@@ -278,6 +282,55 @@
         $('#ddlSport').on('change', function () {
             LeagueBetTypeAnalysis.GroupsAndLeagues(parseInt($(this).val()), $("#fromDate").val(), $("#toDate").val());
         });
+
+        $(document).on("click", '#header .sortable', function () {
+            var currentObject = this;
+            var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
+
+            if (currentColIndex == LeagueBetTypeAnalysis.cachedObject.sortById) {
+                if (LeagueBetTypeAnalysis.cachedObject.isSortAsc) {
+                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                } else {
+                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                }
+            } else {
+                if (currentObject.sortDirection == 'asc') {
+                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                } else {
+                    LeagueBetTypeAnalysis.cachedObject.isSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                }
+
+                $('#header').find(".sortable").each(function () {
+                    if ($(currentObject).index() != $(this).index()) {
+                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                        this.sortDirection = "";
+                    }
+                });
+            }
+
+            if (!currentColIndex) {
+                currentColIndex = $(currentObject).index();
+            }
+
+            LeagueBetTypeAnalysis.cachedObject.sortById = parseInt(currentColIndex);
+            LeagueBetTypeAnalysis.Data(LeagueBetTypeAnalysis.cachedObject.parlayType,
+                LeagueBetTypeAnalysis.cachedObject.fromDate,
+                LeagueBetTypeAnalysis.cachedObject.toDate,
+                LeagueBetTypeAnalysis.cachedObject.leagueGroups,
+                LeagueBetTypeAnalysis.cachedObject.leagues,
+                LeagueBetTypeAnalysis.cachedObject.site,
+                LeagueBetTypeAnalysis.cachedObject.ratio,
+                LeagueBetTypeAnalysis.cachedObject.reportBy,
+                LeagueBetTypeAnalysis.cachedObject.sportType,
+                LeagueBetTypeAnalysis.cachedObject.sortById,
+                LeagueBetTypeAnalysis.cachedObject.isSortAsc,
+                LeagueBetTypeAnalysis.cachedObject.page,
+                LeagueBetTypeAnalysis.cachedObject.pageSize);
+        });
     },
 
     GroupsAndLeagues: function (sportType, fromDate, toDate) {
@@ -315,7 +368,7 @@
         });
     },
 
-    Data: function (parlayType, fromDate, toDate, leagueGroups, leagues, site, ratio, reportBy, sportType, page, pageSize) {
+    Data: function (parlayType, fromDate, toDate, leagueGroups, leagues, site, ratio, reportBy, sportType, sortById, isSortAsc, page, pageSize) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -327,6 +380,8 @@
             reportBy: reportBy,
             sportType: sportType,
             page: page,
+            sortById: sortById,
+            isSortAsc: isSortAsc,
             pageSize: pageSize
         }
 
@@ -343,7 +398,15 @@
             },
             success: function (result) {
                 $("#divResult").html(result);
-                tableSorter.bind2($('#header'), $('#result'), {});
+                $('#header').find(".sortable").each(function () {
+                    if ($(this).attr("data-col-index") == LeagueBetTypeAnalysis.cachedObject.sortById) {
+                        if (LeagueBetTypeAnalysis.cachedObject.isSortAsc) {
+                            $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                        } else {
+                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                        }
+                    }
+                });
                 $('#pageSize').on('change', function () {
                     LeagueBetTypeAnalysis.cachedObject.pageSize = parseInt($(this).val());
                     LeagueBetTypeAnalysis.cachedObject.page = 1;
@@ -356,6 +419,8 @@
                         LeagueBetTypeAnalysis.cachedObject.ratio,
                         LeagueBetTypeAnalysis.cachedObject.reportBy,
                         LeagueBetTypeAnalysis.cachedObject.sportType,
+                        LeagueBetTypeAnalysis.cachedObject.sortById,
+                        LeagueBetTypeAnalysis.cachedObject.isSortAsc,
                         LeagueBetTypeAnalysis.cachedObject.page,
                         LeagueBetTypeAnalysis.cachedObject.pageSize);
                 });
@@ -412,6 +477,8 @@
         LeagueBetTypeAnalysis.cachedObject.ratio = null;
         LeagueBetTypeAnalysis.cachedObject.reportBy = 0;
         LeagueBetTypeAnalysis.cachedObject.sportType = 1;
+        LeagueBetTypeAnalysis.cachedObject.sortById = null;
+        LeagueBetTypeAnalysis.cachedObject.isSortAsc = null;
         LeagueBetTypeAnalysis.cachedObject.page = 1;
         LeagueBetTypeAnalysis.cachedObject.pageSize = 100;
     },
@@ -486,6 +553,8 @@ function MovePage(pageNumber) {
                 LeagueBetTypeAnalysis.cachedObject.ratio,
                 LeagueBetTypeAnalysis.cachedObject.reportBy,
                 LeagueBetTypeAnalysis.cachedObject.sportType,
+                LeagueBetTypeAnalysis.cachedObject.sortById,
+                LeagueBetTypeAnalysis.cachedObject.isSortAsc,
                 pageNumber,
                 LeagueBetTypeAnalysis.cachedObject.pageSize);
 }
