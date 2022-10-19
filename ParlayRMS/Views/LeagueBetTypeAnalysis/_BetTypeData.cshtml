@@ -1,6 +1,11 @@
 ﻿@using ParlayRMS.DTO.LeagueBetTypeAnalysis;
 @using System;
+@using ParlayRMS.ViewModel.Report;
 @model IEnumerable<RMS_Rpt_LeagueBettype_Analysis>
+@{
+    var filterOption = (LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
+    var index = (filterOption.Page - 1) * filterOption.PageSize;
+}
 
 <div style="width: 1190px">
     <table class="main" id="header">
@@ -24,7 +29,7 @@
                 <th>
                     @ViewLang.Bettype
                 </th>
-                <th class="sortable" data-col-type="float" data-col-index="2">
+                <th class="sortable" data-col-index="1">
                     @ViewLang.TotalTickets
                 </th>
                 <th>
@@ -33,7 +38,7 @@
                 <th>
                     @ViewLang.DrawTickets
                 </th>
-                <th class="sortable" data-col-type="int-string" data-col-index="5">
+                <th class="sortable" data-col-index="2">
                     @ViewLang.Ratio
                 </th>
                 <th>
@@ -45,7 +50,7 @@
                 <th>
                     @ViewLang.MemberWinLoss
                 </th>
-                <th class="sortable" data-col-type="float" data-col-index="9">
+                <th class="sortable" data-col-index="3">
                     @ViewLang.HouseWinLoss
                 </th>
             </tr>
@@ -71,7 +76,7 @@
             {
                 <tr>
                     <td class="center">
-                        @item.No
+                        @(index + 1)
                     </td>
                     <td class="left">
                         @item.Bettype
@@ -101,6 +106,7 @@
                         @((Math.Floor(item.MainHouseWinloss * 100) / 100).ToString("#,##0.00"))
                     </td>
                 </tr>
+                index++;
             }
         </tbody>
     </table>

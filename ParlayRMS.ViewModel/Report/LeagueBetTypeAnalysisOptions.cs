@@ -24,6 +24,10 @@
 
         public int SportType { get; set; }
 
+        public byte? SortById { get; set; }
+
+        public bool IsSortAsc { get; set; }
+
         public int Page { get; set; }
 
         public int PageSize { get; set; }
