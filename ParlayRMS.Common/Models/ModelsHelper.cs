@@ -49,6 +49,7 @@ namespace ParlayRMS.Common.Models
             { 9, "#2244bf"},
             { 10, "#fbbcc7"},
             { 11, "#772677"},
+            { 12, "#1d8191" },
             { 8, "#ff0000" },
         };
         public static string GetColorByLeagueGroup(int groupId)
@@ -69,6 +70,7 @@ namespace ParlayRMS.Common.Models
             { 9, "Virtual"},
             { 10, "CUP"},
             { 11, "CORNER"},
+            { 12, "WORLD CUP" },
             { 8, "Blacklisted" },
         };
         public static string GetNameByLeagueGroup(int groupId)
@@ -236,6 +238,8 @@ namespace ParlayRMS.Common.Models
                     return "CUP";
                 case 11:
                     return "CORNER";
+                case 12:
+                    return "WORLD CUP";
                 case 8:
                     return "Blacklist";
                 default:
