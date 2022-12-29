@@ -80,7 +80,7 @@
 					case SiteEnvironment.LOCAL:
                         return "https://onebookum-dev.nexdev.net/api";
                     case SiteEnvironment.PRO:
-                        return "http://10.2.27.8:7446/api";
+                        return http://10.99.99.51:8889/api";
                     case SiteEnvironment.PROAWS:
                         return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:8889/api";
                     case SiteEnvironment.UAT:
