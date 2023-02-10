@@ -1,6 +1,9 @@
 @import '~nap-theme/scss/grid';
 .nap-grid {
     padding: 0.3rem;
+    .body {
+        max-height: none;
+    }
 }
 thead tr th{
     background-color: #00b0f0;
