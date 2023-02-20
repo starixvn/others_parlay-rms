@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LeagueDataModel } from './league.model';
 
 @Component({
@@ -6,14 +6,11 @@ import { LeagueDataModel } from './league.model';
   templateUrl: './league.component.html',
   styleUrls: ['./league.component.scss']
 })
-export class LeagueComponent implements OnInit {
+export class LeagueComponent {
   @Input() data: LeagueDataModel[] = [];
   @Output() clickedOnLeague = new EventEmitter<number>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public showEvent(leagueId: number): void {
     this.clickedOnLeague.emit(leagueId);
