@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import * as _ from 'lodash';
 import { AppService } from './app.service';
 import { ReportTypeConsts } from './common/constants';
@@ -15,6 +15,8 @@ import { LeagueDataModel } from './league/league.model';
 })
 export class AppComponent {
   @ViewChild('filterComponent', { static: false }) filterComponent!: FilterComponent;
+  @ViewChild("containerRef", { read: ViewContainerRef }) containerRef: ViewContainerRef | undefined;
+  @ViewChild("contentRef", {read: TemplateRef}) contentRef: TemplateRef<any> | undefined;
   title = 'league-event-monitor';
   netcoreApiUrl: string;
   filterModel!: FilterModel;
@@ -36,6 +38,8 @@ export class AppComponent {
   }
 
   public generate(filterModel: FilterModel): void {
+    this.containerRef?.clear();
+    this.containerRef?.createEmbeddedView(this.contentRef!);
     this.filterModel = filterModel;
     this.isClickedOnleague = false;
     this.isClickedOnEvent = false;

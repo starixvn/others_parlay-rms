@@ -1,12 +1,5 @@
-<div>
-  <div class="nap-header">
-    <div class="title">
-      League & Event Monitor
-    </div>
-  </div>
-  <app-filter #filterComponent (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
-  <nap-toast></nap-toast>
-  <app-league *ngIf="filterModel && isShowLeague" [data]="this.leagueData"
+<ng-template #contentRef>
+  <app-league #league [hidden]="!(filterModel && isShowLeague)" [data]="this.leagueData"
     (clickedOnLeague)="showEvent($event)">
   </app-league>
   <app-event *ngIf="filterModel && !isShowLeague && !isShowDetail" [data]="this.eventData"
@@ -17,5 +10,16 @@
     [isClickedOnEvent]="isClickedOnEvent" [data]="this.eventDetailData"
     (clickedExportExcel)="exportExcel($event)" (showBackEvent)="showBackEvent()">
   </app-event-detail>
+</ng-template>
+<div>
+  <div class="nap-header">
+    <div class="title">
+      League & Event Monitor
+    </div>
+  </div>
+  <app-filter #filterComponent (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+  <nap-toast></nap-toast>
+  <ng-container #containerRef>  
+  </ng-container>
 </div>
 <nap-spinner></nap-spinner>
