@@ -24,7 +24,7 @@
             <col width='150px' />
             <col width='190px' />
         </colgroup>
-        <thead>
+        <thead id="header">
             <tr>
                 <th rowspan="2" class="header2rows">
                     @ViewLang.Month
@@ -61,13 +61,13 @@
                 <th>
                     @ViewLang.Lose
                 </th>
-                <th>
+                <th class="sortable" data-col-index="1">
                     @ViewLang.Won
                 </th>
-                <th>
+                <th class="sortable" data-col-index="2">
                     @ViewLang.Lose
                 </th>
-                <th>
+                <th class="sortable" data-col-index="3">
                     @ViewLang.NetWinloss
                 </th>
             </tr>

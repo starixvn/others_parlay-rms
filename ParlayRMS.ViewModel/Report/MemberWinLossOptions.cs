@@ -31,6 +31,10 @@ namespace ParlayRMS.ViewModel.Report
 
         public bool IsCached { get; set; }
 
+        public byte? SortById { get; set; }
+
+        public bool IsSortAsc { get; set; }
+
         [AllowHtml]
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }

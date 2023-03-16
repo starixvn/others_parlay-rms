@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
+using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
@@ -37,6 +38,8 @@ namespace ParlayRMS.Controllers
                 DateTime limitDate = MemberWinLossOptions.GetLimitDate();
                 int roleId = 0;
 
+                ModelState.Remove("IsSortAsc");
+
                 if (options.FromDate > options.ToDate)
                 {
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
@@ -64,6 +67,12 @@ namespace ParlayRMS.Controllers
                                                               options.Username,
                                                               options.IsCached,
                                                               out roleId);
+
+
+                    if (options.SortById.HasValue)
+                    {
+                        model.Records = _memberWinLossService.SortData(model.Records, options.SortById.Value, options.IsSortAsc);
+                    }
                     var isAgent = roleId > (int)RoleId.Member;
                     ViewBag.Title = options.GetTitle();
                     ViewBag.FilterOption = options;

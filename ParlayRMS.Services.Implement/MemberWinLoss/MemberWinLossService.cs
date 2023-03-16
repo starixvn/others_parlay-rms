@@ -21,6 +21,10 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         private readonly CommonService _commonService = new CommonService();
         private readonly UsersService _usersService = new UsersService();
 
+        private const byte SORT_BY_WON = 1;
+        private const byte SORT_BY_LOSE = 2;
+        private const byte SORT_BY_NET_WIN_LOSS = 3;
+
         public MemberWinLossData GetMemberWinLoss(
                                      DateTime fromDate,
                                      DateTime toDate,
@@ -215,6 +219,23 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
             string month = date.Substring(separatorIndex + 1, 2);
 
             return string.Format("{0}-{1}", month, year);
+        }
+
+        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> SortData(IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> list, byte sortId, bool isSortAsc)
+        {
+            if (sortId == SORT_BY_WON)
+            {
+                return isSortAsc ? list.OrderBy(m => m.OurPT_Won) : list.OrderByDescending(m => m.OurPT_Won);
+            }
+            if (sortId == SORT_BY_LOSE)
+            {
+                return isSortAsc ? list.OrderBy(m => m.OurPT_Lose) : list.OrderByDescending(m => m.OurPT_Lose);
+            }
+            if (sortId == SORT_BY_NET_WIN_LOSS)
+            {
+                return isSortAsc ? list.OrderBy(m => m.OurPT_NetWinloss) : list.OrderByDescending(m => m.OurPT_NetWinloss);
+            }
+            return list;
         }
     }
 }

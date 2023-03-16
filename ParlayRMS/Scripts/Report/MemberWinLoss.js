@@ -1,4 +1,18 @@
 ﻿MemberWinLoss = {
+    CachedObject: {
+        FromDate: null,
+        ToDate: null,
+        ParlayTypes: null,
+        SportsType: null,
+        LiveType: null,
+        Combos: null,
+        Username: null,
+        PageIndex: null,
+        IsCached: null,
+        SortById: null,
+        IsSortAsc: null
+    },
+
     CachedDOM: {
         username: null,
         parlayType: null,
@@ -24,6 +38,9 @@
         MemberWinLoss.CachedDOM.filterControl = $(".filter-control");
         MemberWinLoss.CachedDOM.liveType = $("#ddlLiveType");
     },
+
+    filterWidth: 0,
+
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
         var minDate = moment(dateRanges.LimitDataFromDate).format('MMMM DD, YYYY');
@@ -162,8 +179,57 @@
             MemberWinLoss.CachedDOM.divResult.html('');
             MemberWinLoss.GetData(1, false);
         });
+
+        $(document).on("click", '#header .sortable', function () {
+            var currentObject = this;
+            var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
+
+            if (currentColIndex == MemberWinLoss.CachedObject.SortById) {
+                if (MemberWinLoss.CachedObject.IsSortAsc) {
+                    MemberWinLoss.CachedObject.IsSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                } else {
+                    MemberWinLoss.CachedObject.IsSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                }
+            } else {
+                if (currentObject.sortDirection == 'asc') {
+                    MemberWinLoss.CachedObject.IsSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                } else {
+                    MemberWinLoss.CachedObject.IsSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                }
+
+                $('#header').find(".sortable").each(function () {
+                    if ($(currentObject).index() != $(this).index()) {
+                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                        this.sortDirection = "";
+                    }
+                });
+            }
+
+            if (!currentColIndex) {
+                currentColIndex = $(currentObject).index();
+            }
+
+            MemberWinLoss.CachedObject.SortById = parseInt(currentColIndex);
+            MemberWinLoss.Data(MemberWinLoss.CachedObject.ParlayTypes,
+                MemberWinLoss.CachedObject.FromDate,
+                MemberWinLoss.CachedObject.ToDate,
+                MemberWinLoss.CachedObject.SportsType,
+                MemberWinLoss.CachedObject.LiveType,
+                MemberWinLoss.CachedObject.Combos,
+                MemberWinLoss.CachedObject.Username,
+                1,
+                true,
+                MemberWinLoss.CachedObject.SortById,
+                MemberWinLoss.CachedObject.IsSortAsc);
+        });
+
+        MemberWinLoss.filterWidth = MemberWinLoss.CachedDOM.filterControl.width();
     },
-    Data: function (parlayTypes, fromDate, toDate, sportsType, liveType, combos, username, pageIndex, isCached) {
+    Data: function (parlayTypes, fromDate, toDate, sportsType, liveType, combos, username, pageIndex, isCached, sortById, isSortAsc) {
         var data = {
             FromDate: fromDate,
             ToDate: toDate,
@@ -173,8 +239,12 @@
             Combos: combos,
             Username: username,
             PageIndex: pageIndex,
-            IsCached: isCached
+            IsCached: isCached,
+            SortById: sortById,
+            IsSortAsc: isSortAsc
         }
+
+        MemberWinLoss.CachedObject = data;
 
         $.ajax({
             url: resolveClientUrl('MemberWinLoss/Data'),
@@ -187,6 +257,15 @@
             },
             success: function (result) {
                 MemberWinLoss.CachedDOM.divResult.html(result);
+                $('#header').find(".sortable").each(function () {
+                    if ($(this).attr("data-col-index") == MemberWinLoss.CachedObject.SortById) {
+                        if (MemberWinLoss.CachedObject.IsSortAsc) {
+                            $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                        } else {
+                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                        }
+                    }
+                });
                 MemberWinLoss.DisplayCustomerClass()
             },
             error: function (xhr, status, err) {
@@ -248,14 +327,13 @@
 
         var liveType = parseInt(MemberWinLoss.CachedDOM.liveType.val());
 
-        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached);
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedDOM.sortById, MemberWinLoss.CachedDOM.isSortAsc);
     },
     DisplayCustomerClass: function () {
         var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
         MemberWinLoss.CachedDOM.lbCustomerClass.html(html);
-        var filterWidth = MemberWinLoss.CachedDOM.filterControl.width();
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbCustomerClass.width();
-        MemberWinLoss.CachedDOM.filterControl.width(filterWidth + filterCustomerClass);
+        MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
     }
 }
 function MovePage(pageIndex) {
