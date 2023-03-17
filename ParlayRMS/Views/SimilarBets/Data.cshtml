@@ -24,7 +24,7 @@
                     @ViewLang.Odds
                 </th>
                 <th style="width: 120px">
-                    @(Model.StatusID == 0 ? ViewLang.AverageStakeAfterPT : ViewLang.StakeAfterPT)
+                    @(Model.StatusID == 0 ? ViewLang.Stake : ViewLang.StakeAfterPT)
                 </th>
                 <th style="width: 120px">
                     @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)
@@ -168,7 +168,7 @@
                         @ViewLang.CustomerClass
                     </th>
                     <th class="sortable">
-                        @ViewLang.AverageStakeAfterPT
+                        @ViewLang.Stake
                     </th>
                     <th class="sortable">
                         @(Model.StatusID == 0 ? ViewLang.PotentialWinningAmount : ViewLang.HouseLoseAmount)

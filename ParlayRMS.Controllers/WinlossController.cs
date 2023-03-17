@@ -80,7 +80,10 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 ViewLang.WinLoss,
                 string.Empty,
-                ViewLang.OurPT
+                ViewLang.OurPT,
+                string.Empty,
+                string.Empty,
+                ViewLang.Margin
             };
 
             var header2 = new object[]
@@ -110,7 +113,8 @@ namespace ParlayRMS.Controllers
                 model.Total.Member_Lose,
                 model.Total.OurPT_Won,
                 model.Total.OurPT_Lose,
-                model.Total.OurPT_NetWinloss
+                model.Total.OurPT_NetWinloss,
+                $"{Formatter.FormatNumber2(model.Total.Margin)} %"
             };
 
             writer.WriteRows(1, new List<object[]>() { header1, header2 });
@@ -131,7 +135,8 @@ namespace ParlayRMS.Controllers
                     record.Total.Member_Lose,
                     record.Total.OurPT_Won,
                     record.Total.OurPT_Lose,
-                    record.Total.OurPT_NetWinloss
+                    record.Total.OurPT_NetWinloss,
+                    $"{Formatter.FormatNumber2(record.Total.Margin)} %"
                 };
 
                 foreach (var item in record.Records)
@@ -148,7 +153,8 @@ namespace ParlayRMS.Controllers
                         item.Member_Lose,
                         item.OurPT_Won,
                         item.OurPT_Lose,
-                        item.OurPT_NetWinloss
+                        item.OurPT_NetWinloss,
+                        $"{Formatter.FormatNumber2(item.Margin)} %"
                     };
                     writer.WriteRow(3, values);
                 }
@@ -160,7 +166,7 @@ namespace ParlayRMS.Controllers
             // footer
             writer.WriteRow(5, footer);
 
-            writer.SyncColumnWidths(11);
+            writer.SyncColumnWidths(12);
 
             var ms = writer.Render("Winloss");
             Response.AddHeader("content-disposition", "attachment; filename=" + "Winloss.xls");

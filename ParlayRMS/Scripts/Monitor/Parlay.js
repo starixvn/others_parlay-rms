@@ -135,7 +135,7 @@ var settingsController = function () {
                 return;
             }
 
-            var reportType = $('input[name=radFilterAfterPT]:checked').val() * 1;
+            var reportType = $('input[name=radFilterStake]:checked').val() * 1;
 
             var isCornerParlay = $("#cornerParlay").is(":checked");
 

@@ -35,6 +35,7 @@ namespace ParlayRMS.Services.Implement.Winloss
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
                 x.Combo = (x.Combo == "10") ? string.Format("{0} UP", x.Combo) : x.Combo;
+                x.Margin = x.OurPT_NetWinloss / (x.Stake_Won + x.Stake_Lose) * 100;
             });
 
             return GroupData(data);
