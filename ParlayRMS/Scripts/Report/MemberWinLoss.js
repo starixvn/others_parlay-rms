@@ -177,6 +177,7 @@
 
         MemberWinLoss.CachedDOM.btnSearch.click(function () {
             MemberWinLoss.CachedDOM.divResult.html('');
+            MemberWinLoss.CachedObject = {};
             MemberWinLoss.GetData(1, false);
         });
 
@@ -327,7 +328,7 @@
 
         var liveType = parseInt(MemberWinLoss.CachedDOM.liveType.val());
 
-        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedDOM.sortById, MemberWinLoss.CachedDOM.isSortAsc);
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedObject.SortById, MemberWinLoss.CachedObject.IsSortAsc);
     },
     DisplayCustomerClass: function () {
         var html = '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
