@@ -21,9 +21,18 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
         private readonly CommonService _commonService = new CommonService();
         private readonly UsersService _usersService = new UsersService();
 
-        private const byte SORT_BY_WON = 1;
-        private const byte SORT_BY_LOSE = 2;
-        private const byte SORT_BY_NET_WIN_LOSS = 3;
+        private const byte SORT_BY_USERNAME = 1;
+        private const byte SORT_BY_CUSTOMERCLASS = 2;
+        private const byte SORT_BY_TICKET_WON = 3;
+        private const byte SORT_BY_TICKET_LOSE = 4;
+        private const byte SORT_BY_STAKE_WON = 5;
+        private const byte SORT_BY_STAKE_LOSE = 6;
+        private const byte SORT_BY_WINLOSS_WON = 7;
+        private const byte SORT_BY_WINLOSS_LOSE = 8;
+        private const byte SORT_BY_HOUSEWL_WON = 9;
+        private const byte SORT_BY_HOUSEWL_LOSE = 10;
+        private const byte SORT_BY_HOUSEWL_NETWL = 11;
+
 
         public MemberWinLossData GetMemberWinLoss(
                                      DateTime fromDate,
@@ -161,7 +170,7 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
 
             return new MemberWinLossData
             {
-                Records = GroupAgentDataByMonth(rawData),
+                Records = fromDate.Month == toDate.Month ? rawData : GroupAgentDataByMonth(rawData),
                 Total = total
             };
         }
@@ -223,15 +232,47 @@ namespace ParlayRMS.Services.Implement.MemberWinLoss
 
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> SortData(IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> list, byte sortId, bool isSortAsc)
         {
-            if (sortId == SORT_BY_WON)
+            if (sortId == SORT_BY_USERNAME)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Username) : list.OrderByDescending(m => m.Username);
+            }
+            if (sortId == SORT_BY_CUSTOMERCLASS)
+            {
+                return isSortAsc ? list.OrderBy(m => m.CustomerClass) : list.OrderByDescending(m => m.CustomerClass);
+            }
+            if (sortId == SORT_BY_TICKET_WON)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Tickets_Won) : list.OrderByDescending(m => m.Tickets_Won);
+            }
+            if (sortId == SORT_BY_TICKET_LOSE)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Tickets_Lose) : list.OrderByDescending(m => m.Tickets_Lose);
+            }
+            if (sortId == SORT_BY_STAKE_WON)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Stake_Won) : list.OrderByDescending(m => m.Stake_Won);
+            }
+            if (sortId == SORT_BY_STAKE_LOSE)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Stake_Lose) : list.OrderByDescending(m => m.Stake_Lose);
+            }
+            if (sortId == SORT_BY_WINLOSS_WON)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Member_Won) : list.OrderByDescending(m => m.Member_Won);
+            }
+            if (sortId == SORT_BY_WINLOSS_LOSE)
+            {
+                return isSortAsc ? list.OrderBy(m => m.Member_Lose) : list.OrderByDescending(m => m.Member_Lose);
+            }
+            if (sortId == SORT_BY_HOUSEWL_WON)
             {
                 return isSortAsc ? list.OrderBy(m => m.OurPT_Won) : list.OrderByDescending(m => m.OurPT_Won);
             }
-            if (sortId == SORT_BY_LOSE)
+            if (sortId == SORT_BY_HOUSEWL_LOSE)
             {
                 return isSortAsc ? list.OrderBy(m => m.OurPT_Lose) : list.OrderByDescending(m => m.OurPT_Lose);
             }
-            if (sortId == SORT_BY_NET_WIN_LOSS)
+            if (sortId == SORT_BY_HOUSEWL_NETWL)
             {
                 return isSortAsc ? list.OrderBy(m => m.OurPT_NetWinloss) : list.OrderByDescending(m => m.OurPT_NetWinloss);
             }

@@ -338,7 +338,16 @@
     }
 }
 function MovePage(pageIndex) {
-    MemberWinLoss.GetData(pageIndex, true);
+    MemberWinLoss.Data(MemberWinLoss.CachedObject.ParlayTypes,
+        MemberWinLoss.CachedObject.FromDate,
+        MemberWinLoss.CachedObject.ToDate,
+        MemberWinLoss.CachedObject.SportsType,
+        MemberWinLoss.CachedObject.LiveType,
+        MemberWinLoss.CachedObject.Combos,
+        MemberWinLoss.CachedObject.Username,
+        pageIndex, true,
+        MemberWinLoss.CachedObject.SortById,
+        MemberWinLoss.CachedObject.IsSortAsc);
 };
 
 String.prototype.trim = function () {

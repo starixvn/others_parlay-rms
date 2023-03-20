@@ -3,6 +3,7 @@
 @using ParlayRMS.DTO.MemberWinLoss;
 @{
     var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
+    var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <div style="width: 1531px" class="maintitle">
@@ -33,12 +34,25 @@
                 <th rowspan="2" class="header2rows">
                     @ViewLang.Month
                 </th>
-                <th rowspan="2" class="header2rows">
-                    @ViewLang.Username
-                </th>
-                <th rowspan="2" class="header2rows">
-                    @ViewLang.CustomerClass
-                </th>
+                @if (isShowSort)
+                {
+                    <th rowspan="2" class="header2rows sortable" data-col-index="1">
+                        @ViewLang.Username
+                    </th>
+                    <th rowspan="2" class="header2rows sortable" data-col-index="2">
+                        @ViewLang.CustomerClass
+                    </th>
+                }
+                else
+                {
+
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.Username
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.CustomerClass
+                    </th>
+                }
                 <th colspan="2">
                     @ViewLang.Ticket
                 </th>
@@ -53,33 +67,66 @@
                 </th>
             </tr>
             <tr>
-                <th>
-                    @ViewLang.Won
-                </th>
-                <th>
-                    @ViewLang.Lose
-                </th>
-                <th>
-                    @ViewLang.Won
-                </th>
-                <th>
-                    @ViewLang.Lose
-                </th>
-                <th>
-                    @ViewLang.Won
-                </th>
-                <th>
-                    @ViewLang.Lose
-                </th>
-                <th class="sortable" data-col-index="1">
-                    @ViewLang.Won
-                </th>
-                <th class="sortable" data-col-index="2">
-                    @ViewLang.Lose
-                </th>
-                <th class="sortable" data-col-index="3">
-                    @ViewLang.NetWinloss
-                </th>
+                @if (isShowSort)
+                {
+                    <th class="sortable" data-col-index="3">
+                        @ViewLang.Won
+                    </th>
+                    <th class="sortable" data-col-index="4">
+                        @ViewLang.Lose
+                    </th>
+                    <th class="sortable" data-col-index="5">
+                        @ViewLang.Won
+                    </th>
+                    <th class="sortable" data-col-index="6">
+                        @ViewLang.Lose
+                    </th>
+                    <th class="sortable" data-col-index="7">
+                        @ViewLang.Won
+                    </th>
+                    <th class="sortable" data-col-index="8">
+                        @ViewLang.Lose
+                    </th>
+                    <th class="sortable" data-col-index="9">
+                        @ViewLang.Won
+                    </th>
+                    <th class="sortable" data-col-index="10">
+                        @ViewLang.Lose
+                    </th>
+                    <th class="sortable" data-col-index="11">
+                        @ViewLang.NetWinloss
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        @ViewLang.Won
+                    </th>
+                    <th>
+                        @ViewLang.Lose
+                    </th>
+                    <th>
+                        @ViewLang.Won
+                    </th>
+                    <th>
+                        @ViewLang.Lose
+                    </th>
+                    <th>
+                        @ViewLang.Won
+                    </th>
+                    <th>
+                        @ViewLang.Lose
+                    </th>
+                    <th>
+                        @ViewLang.Won
+                    </th>
+                    <th>
+                        @ViewLang.Lose
+                    </th>
+                    <th>
+                        @ViewLang.NetWinloss
+                    </th>
+                }
             </tr>
         </thead>
     </table>
