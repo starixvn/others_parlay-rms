@@ -153,9 +153,7 @@
                             @Formatter.FormatNumber2(record.OurPT_Lose)
                         </td>
                         @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
-                        <td class="center">
-                            @Formatter.FormatNumber2(record.Margin) %
-                        </td>
+                        @RazorHelper.RenderPercentCell(record.Margin * 100)
                     </tr>
                 }
 
@@ -188,9 +186,7 @@
                         @Formatter.FormatNumber2(group.Total.OurPT_Lose)
                     </td>
                     @RazorHelper.RenderNumberCell(group.Total.OurPT_NetWinloss)
-                    <td class="center">
-                        @Formatter.FormatNumber2(group.Total.Margin) %
-                    </td>
+                    @RazorHelper.RenderPercentCell(group.Total.Margin * 100)
                 </tr>
             }
         </tbody>
@@ -248,7 +244,7 @@
                     </td>
                     @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
                     <td class="center">
-                        @Formatter.FormatNumber2(Model.Total.Margin) %
+                        @Formatter.FormatNumber2(Model.Total.Margin * 100) %
                     </td>
                 </tr>
             }

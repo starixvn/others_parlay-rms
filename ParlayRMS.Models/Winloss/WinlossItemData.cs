@@ -31,7 +31,7 @@ namespace ParlayRMS.Models.Winloss
                 Total.OurPT_Won += item.OurPT_Won;
                 Total.OurPT_Lose += item.OurPT_Lose;
                 Total.OurPT_NetWinloss += item.OurPT_NetWinloss;
-                Total.Margin = Total.OurPT_NetWinloss / (Total.Stake_Won + Total.Stake_Lose) * 100;
+                Total.Margin = Total.OurPT_NetWinloss / (Total.Stake_Won + Total.Stake_Lose);
             }
         }
     }

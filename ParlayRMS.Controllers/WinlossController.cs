@@ -114,7 +114,7 @@ namespace ParlayRMS.Controllers
                 model.Total.OurPT_Won,
                 model.Total.OurPT_Lose,
                 model.Total.OurPT_NetWinloss,
-                $"{Formatter.FormatNumber2(model.Total.Margin)} %"
+                model.Total.Margin
             };
 
             writer.WriteRows(1, new List<object[]>() { header1, header2 });
@@ -136,7 +136,7 @@ namespace ParlayRMS.Controllers
                     record.Total.OurPT_Won,
                     record.Total.OurPT_Lose,
                     record.Total.OurPT_NetWinloss,
-                    $"{Formatter.FormatNumber2(record.Total.Margin)} %"
+                    record.Total.Margin
                 };
 
                 foreach (var item in record.Records)
@@ -154,7 +154,7 @@ namespace ParlayRMS.Controllers
                         item.OurPT_Won,
                         item.OurPT_Lose,
                         item.OurPT_NetWinloss,
-                        $"{Formatter.FormatNumber2(item.Margin)} %"
+                        item.Margin
                     };
                     writer.WriteRow(3, values);
                 }
