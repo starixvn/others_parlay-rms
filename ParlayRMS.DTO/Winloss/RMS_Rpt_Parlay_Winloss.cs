@@ -27,5 +27,7 @@ namespace ParlayRMS.DTO.Winloss
         public decimal OurPT_Lose { get; set; }
 
         public decimal OurPT_NetWinloss { get; set; }
+
+        public decimal Margin { get; set; }
     }
 }

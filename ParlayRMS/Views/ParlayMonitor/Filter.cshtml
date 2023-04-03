@@ -27,12 +27,12 @@
                     @Html.DropDownList("market", (List<SelectListItem>)ViewBag.Markets, new { multiple = "multiple" })
                 </div>
                 <div class="group">
-                    <input type="radio" id="radStakeAfterPT" name="radFilterAfterPT"
+                    <input type="radio" id="radStake" name="radFilterStake"
                            value="1">
-                    @Html.Label("radStakeAfterPT", ViewLang.AverageStakeAfterPT, new { @class = "lable" })
+                    @Html.Label("radStake", ViewLang.Stake, new { @class = "lable" })
                 </div>
                 <div class="group">
-                    <input type="radio" id="radNetWinAfterPT" checked="checked" name="radFilterAfterPT" value="2">
+                    <input type="radio" id="radNetWinAfterPT" checked="checked" name="radFilterStake" value="2">
                     @Html.Label("radNetWinAfterPT", ViewLang.NetWinAfterPT, new { @class = "lable" })
                 </div>
                 <div class="group">

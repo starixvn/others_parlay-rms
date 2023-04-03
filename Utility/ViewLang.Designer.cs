@@ -1213,6 +1213,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Margin %.
+        /// </summary>
+        public static string Margin {
+            get {
+                return ResourceManager.GetString("Margin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Market.
         /// </summary>
         public static string Market {

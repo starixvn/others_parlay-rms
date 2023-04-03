@@ -954,4 +954,7 @@
   <data name="LiveType" xml:space="preserve">
     <value>Selection</value>
   </data>
+  <data name="Margin" xml:space="preserve">
+    <value>Margin %</value>
+  </data>
 </root>
