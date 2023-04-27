@@ -17,5 +17,7 @@
         public decimal CompanyLoseAmount { get; set; }
 
         public int TotalTickets { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

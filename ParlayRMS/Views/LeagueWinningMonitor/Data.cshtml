@@ -5,12 +5,17 @@
 @{
     var isLeague = (byte)ViewBag.ReportBy == 1;
     var index = 0;
+    var width = isLeague ? "1415px" : "1490px";
 }
 
-<div style="width: 1415px">
+<div style="width: @width">
     <table class="main" id="header">
         <colgroup>
             <col width='95' />
+            @if (!isLeague)
+            {
+                <col width='75' />
+            }
             <col width='260' />
             <col width='265' />
             <col width='265' />
@@ -22,6 +27,12 @@
                 <th rowspan="2" class="header2rows">
                     No
                 </th>
+                @if (!isLeague)
+                {
+                    <th rowspan="2" class="header2rows">
+                        Site
+                    </th>
+                }
                 <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
                     @(isLeague ? "League" : "Username")
                 </th>
@@ -46,10 +57,14 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 630px; width: 1432px">
+<div class="scrollGridContent" style="max-height: 630px; width: @(isLeague ? "1432px" : "1507px")">
     <table class="main" id="result">
         <colgroup>
             <col width='95' />
+            @if (!isLeague)
+            {
+                <col width='75' />
+            }
             <col width='260' />
             <col width='265' />
             <col width='265' />
@@ -64,6 +79,12 @@
                     <td class="center">
                         @index
                     </td>
+                    @if (!isLeague)
+                    {
+                        <td class="center">
+                            @item.SiteGroup
+                        </td>
+                    }
                     <td class="center">
                         @(isLeague ? item.LeagueName : item.Username)
                     </td>
@@ -87,10 +108,14 @@
     </table>
 </div>
 
-<div style="width: 1415px" class="mainfooter">
+<div style="width: @width" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='95' />
+            @if (!isLeague)
+            {
+                <col width='75' />
+            }
             <col width='260' />
             <col width='265' />
             <col width='265' />

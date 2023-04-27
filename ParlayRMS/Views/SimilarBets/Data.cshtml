@@ -14,6 +14,9 @@
                 <th style="width: 130px">
                     @ViewLang.BetID
                 </th>
+                <th style="width: 75px">
+                    @ViewLang.Site
+                </th>
                 <th style="width: 120px">
                     @ViewLang.Username
                 </th>
@@ -56,6 +59,9 @@
                 </td>
                 <td class="numeric">
                     @Model.Transid
+                </td>
+                <td class="center">
+                    @Model.SiteGroup
                 </td>
                 <td class="@ModelsHelper.GetClassByMemberLevel(@Model.Level)">
                     @Model.Username
@@ -135,16 +141,17 @@
         </tbody>
     </table>
 </div>
-<div id="similarbetlist" class="details" style="display: none; width: 1170px">
+<div id="similarbetlist" class="details" style="display: none; width: 1245px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
         <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
-    <div style="width: 1174px">
+    <div style="width: 1249px">
         <table class="sub thead">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
+                <col width="75px" />
                 <col width="150px" />
                 <col width="100px" />
                 <col width="160px" />
@@ -160,6 +167,9 @@
                     </th>
                     <th>
                         @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Site
                     </th>
                     <th>
                         @ViewLang.Username
@@ -186,11 +196,12 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1188px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1263px">
         <table class="sub tbody">
             <colgroup>
                 <col width="50px" />
                 <col width="140px" />
+                <col width="75px" />
                 <col width="150px" />
                 <col width="100px" />
                 <col width="160px" />
@@ -209,6 +220,9 @@
                         </td>
                         <td class="numeric">
                             @item.TransId
+                        </td>
+                        <td class="center">
+                            @item.SiteGroup
                         </td>
                         <td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
                             @item.Username

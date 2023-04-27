@@ -531,6 +531,7 @@ function CreateRowForMember(order, item, isHighLight) {
 
     r[++j] = '<td class="center">' + order + '</td>';
     r[++j] = '<td>' + item.TransDateString + '</td>';
+    r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
     r[++j] = CreateLinkLevelCell(item.UserName, item.Level, "ViewTotalOutstanding('" + item.UserName + "')");
     r[++j] = '<td>' + item.CustomerClass + '</td>';
     r[++j] = '<td>' + item.Currency + '</td>';

@@ -75,7 +75,8 @@ namespace ParlayRMS.DataAccess.Implement.ParlayWon
                             TotalSelection = reader.ToInt32("TotalSelection"),
                             SportType = reader.ToInt32("SportType"),
                             IP = reader.ToString("IP"),
-                            Currency = reader.ToString("currencyName")
+                            Currency = reader.ToString("currencyName"),
+                            SiteGroup = reader.ToString("SiteGroup")
                         });
                     }
                 }

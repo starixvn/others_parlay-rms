@@ -8,7 +8,7 @@
     var start = index;
 }
 <input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
-<div style="width: 1850px;" class="maintitle">
+<div style="width: 1925px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
@@ -17,12 +17,13 @@
          title="Export Excel">
     </div>
 </div>
-<div style="width: 1850px">
+<div style="width: 1925px">
     <table class="main" id="header">
         <colgroup>
             <col width='70' />
             <col width='150' />
             <col width='150' />
+            <col width='75' />
             <col width='150' />
             <col width='100' />
             <col width='80' />
@@ -47,6 +48,9 @@
                 </th>
                 <th>
                     @ViewLang.BetID
+                </th>
+                <th>
+                    @ViewLang.Site
                 </th>
                 <th class="sortable" data-col-index="2">
                     @ViewLang.Username
@@ -91,12 +95,13 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1870px">
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1945px">
     <table class="main" id="result">
         <colgroup>
             <col width='70' />
             <col width='150' />
             <col width='150' />
+            <col width='75' />
             <col width='150' />
             <col width='100' />
             <col width='80' />
@@ -123,6 +128,9 @@
                     </td>
                     <td class="center">
                         <a href="#@item.RefNo" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.TransId'), '_blank')">@item.TransId</a>
+                    </td>
+                    <td class="center">
+                        @item.SiteGroup
                     </td>
                     <td class="center">
                         @item.Username
@@ -171,12 +179,13 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1850px" class="mainfooter">
+<div style="width: 1925px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
             <col width='70' />
             <col width='150' />
             <col width='150' />
+            <col width='75' />
             <col width='150' />
             <col width='100' />
             <col width='80' />
@@ -194,7 +203,7 @@
         <tfoot>
             @if (index == 0)
             {
-                <tr><td class="noinfo" colspan="16">@ViewLang.NoInformation</td></tr>
+                <tr><td class="noinfo" colspan="17">@ViewLang.NoInformation</td></tr>
             }
         </tfoot>
     </table>

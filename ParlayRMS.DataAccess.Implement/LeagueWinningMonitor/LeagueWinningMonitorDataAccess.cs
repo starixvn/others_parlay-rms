@@ -97,7 +97,8 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                             IP = reader.ToString("IP"),
                             CustId = reader.ToInt32("custid"),
                             BetType = reader.ToInt32("bettype"),
-                            RefNo = reader.ToInt64("refno")
+                            RefNo = reader.ToInt64("refno"),
+                            SiteGroup = reader.ToString("SiteGroup")
                         });
                     }
                 }
@@ -133,7 +134,8 @@ namespace ParlayRMS.DataAccess.Implement.LeagueWinningMonitor
                     TotalStake = reader.ToDecimal("totalStake"),
                     TotalWinningAmount = reader.ToDecimal("totalWinningAmt"),
                     CompanyLoseAmount = reader.ToDecimal("companyLoseAmt"),
-                    TotalTickets = reader.ToInt32("totalTicket")
+                    TotalTickets = reader.ToInt32("totalTicket"),
+                    SiteGroup = reader.ToString("SiteGroup")
                 });
             }
         }

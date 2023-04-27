@@ -59,7 +59,8 @@ namespace ParlayRMS.DataAccess.Implement.TopWinners
                             BetCount = reader.ToInt32("betcount"),
                             Avg_Odds = reader.ToDecimal("avg_odds"),
                             Level = reader.ToInt32("level"),
-                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString()
+                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
+                            SiteGroup = reader.ToString("SiteGroup")
                         });
                     }
                 }

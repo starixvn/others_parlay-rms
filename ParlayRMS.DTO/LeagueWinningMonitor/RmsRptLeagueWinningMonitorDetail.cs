@@ -33,5 +33,7 @@
         public long RefNo { get; set; }
 
         public int CustId { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

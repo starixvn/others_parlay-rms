@@ -83,12 +83,12 @@ namespace ParlayRMS.DataAccess.Implement.ParlayMonitor
                             IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1,
                             IsGOF = reader.ToBoolean("IsGOF"),
                             CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
-                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser")
+                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser"),
+                            SiteGroup = reader.ToString("SiteGroup")
                         });
                     }
                 }
             }
-
             return result;
         }
 

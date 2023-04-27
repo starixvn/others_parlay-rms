@@ -49,6 +49,7 @@ namespace ParlayRMS.DataAccess.Implement.ViewIPInfo
                             Username = reader.ToString("username"),
                             Soccer = reader.ToInt32("cnt_soccer"),
                             Others = reader.ToInt32("cnt_others"),
+                            SiteGroup = reader.ToString("SiteGroup")
                         });
                     }
                 }

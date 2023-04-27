@@ -73,16 +73,17 @@
     </div>
 </div>
 <div style="clear: both; display: none" id="divResult">
-    <div style="width: 1480px" class="maintitle">
+    <div style="width: 1555px" class="maintitle">
         <div id="title" class="information">
         </div>
         <div class="excel" onclick="ExportExcel();" title="Export Excel">
         </div>
     </div>
-    <div style="width: 1480px">
+    <div style="width: 1555px ">
         <table class="main" id="header">
             <colgroup>
                 <col width='40' />
+                <col width='75' />
                 <col width='140' />
                 <col width='120' />
                 <col width='80' />
@@ -99,6 +100,9 @@
                 <tr>
                     <th rowspan="2" class="header2rows">
                         #
+                    </th>
+                    <th rowspan="2" class="header2rows">
+                        @ViewLang.Site
                     </th>
                     <th rowspan="2" class="header2rows">
                         @ViewLang.Username
@@ -145,10 +149,11 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1500px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1575px">
         <table class="main" id="result">
             <colgroup>
                 <col width='40' />
+                <col width='75' />
                 <col width='140' />
                 <col width='120' />
                 <col width='80' />
@@ -164,10 +169,11 @@
             <tbody></tbody>
         </table>
     </div>
-    <div style="width: 1480px" class="mainfooter">
+    <div style="width: 1555px" class="mainfooter">
         <table class="main" id="footer" style="width: 100%">
             <colgroup>
                 <col width='40' />
+                <col width='75' />
                 <col width='140' />
                 <col width='120' />
                 <col width='80' />
@@ -182,7 +188,7 @@
             </colgroup>
             <tfoot>
                 <tr id="totalRow">
-                    <td colspan="7" class="right">
+                    <td colspan="8" class="right">
                         @ViewLang.Total
                     </td>
                     <td class="numeric" id="totalStake"></td>
@@ -194,7 +200,7 @@
                     </td>
                 </tr>
                 <tr id="noinfoRow">
-                    <td colspan="12" style="text-align: center">
+                    <td colspan="13" style="text-align: center">
                         @ViewLang.NoInformation
                     </td>
                 </tr>
