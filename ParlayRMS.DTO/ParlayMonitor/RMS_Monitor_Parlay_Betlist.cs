@@ -53,5 +53,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public string TrackingUser { get; set; }
 
         public bool IsTrackedUser { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

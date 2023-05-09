@@ -27,5 +27,7 @@
         public int Level { get; set; }
 
         public string CustomerClass { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

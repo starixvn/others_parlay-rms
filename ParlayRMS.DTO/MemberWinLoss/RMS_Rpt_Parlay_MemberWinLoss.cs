@@ -44,6 +44,8 @@ namespace ParlayRMS.DTO.MemberWinLoss
 
         public string CustomerClass { get; set; }
 
+        public string SiteGroup { get; set; }
+
         /// <summary>
         /// Add other member win loss data to current object.
         /// </summary>

@@ -6,33 +6,37 @@
     var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
-<div style="width: 1531px" class="maintitle">
+<div style="width: 1606px" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
     </div>
 </div>
-<div style="width: 1531px">
+<div style="width: 1606px">
     <table class="main">
         <colgroup>
-            <col width='110px' />
-            <col width='140px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='110' />
+            <col width='75' />
+            <col width='140' />
+            <col width='100' />
+            <col width='100' />
+            <col width='100' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
         </colgroup>
         <thead id="header">
             <tr>
                 <th rowspan="2" class="header2rows">
                     @ViewLang.Month
+                </th>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.Site
                 </th>
                 @if (isShowSort)
                 {
@@ -131,21 +135,22 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 530px; width: 1550px">
+<div class="scrollGridContent" style="max-height: 530px; width: 1625px">
     <table class="main" id="result">
         <colgroup>
-            <col width='110px' />
-            <col width='140px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='110' />
+            <col width='75' />
+            <col width='140' />
+            <col width='100' />
+            <col width='100' />
+            <col width='100' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
         </colgroup>
         <tbody>
             @{
@@ -173,7 +178,9 @@
                             <td class="center">
                                 @record.Month
                             </td>
-
+                             <td class="center">
+                                @record.SiteGroup
+                            </td>
                             <td class="center">
                                 @record.Username
                             </td>
@@ -183,7 +190,7 @@
                         }
                         else
                         {
-                            <td class="center" colspan="3">
+                            <td class="center" colspan="4">
                                 @ViewLang.Subtotal
                             </td>
                         }
@@ -218,27 +225,28 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1531px" class="mainfooter">
+<div style="width: 1606px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='110px' />
-            <col width='140px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='100px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
+            <col width='110' />
+            <col width='75' />
+            <col width='140' />
+            <col width='100' />
+            <col width='100' />
+            <col width='100' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
+            <col width='140' />
         </colgroup>
         <tfoot>
             @if (Model.Count() > 0)
             {
                 <tr>
-                    <td class="center" colspan="3">
+                    <td class="center" colspan="4">
                         @ViewLang.Total
                     </td>
                     <td class="numeric">
@@ -274,7 +282,7 @@
             else
             {
                 <tr>
-                    <td colspan="12" style="text-align: center; width: 1531px">
+                    <td colspan="13" style="text-align: center; width: 1606px">
                         @ViewLang.NoInformation
                     </td>
                 </tr>

@@ -35,5 +35,7 @@
         public string CustomerClass { get; set; }
 
         public int TotalTrackingBets { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

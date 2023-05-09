@@ -80,7 +80,8 @@ namespace ParlayRMS.DataAccess.Implement.PotentialWinningMonitor
                                 Level = reader.ToInt32("level"),
                                 TotalTicket = reader.ToInt32("totalbets"),
                                 CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
-                                TotalTrackingBets = reader.ToInt32("TotalTrackingBets")
+                                TotalTrackingBets = reader.ToInt32("TotalTrackingBets"),
+                                SiteGroup = reader.ToString("SiteGroup")
                             });
                         }
                     }

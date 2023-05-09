@@ -326,6 +326,7 @@ function CreateRow(order, item) {
     var j = -1;
     r[++j] = '<tr style="height: 22px;">';
     r[++j] = '<td class="center">' + order + '</td>';
+    r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
     r[++j] = '<td class="center">' + item.Username + '</td>';
     if (item.Soccer == 0) {
         r[++j] = '<td class="center">-</td>';
@@ -360,7 +361,7 @@ function CreateTotalRow(totalSoccer, totalOthers, total) {
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 29px;">';
-    r[++j] = '<td class="center" colspan="2">Total</td>';
+    r[++j] = '<td class="center" colspan="3">Total</td>';
     r[++j] = '<td class="center">' + numeral(totalSoccer).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(totalOthers).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(total).format('0,0') + '</td>';

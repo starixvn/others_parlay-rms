@@ -143,6 +143,7 @@ namespace ParlayRMS.Controllers
             var header1 = new object[]
             {
                 "#",
+                ViewLang.Site,
                 ViewLang.Username,
                 ViewLang.CustomerClass,
                 ViewLang.Currency,
@@ -158,6 +159,7 @@ namespace ParlayRMS.Controllers
 
             var header2 = new object[]
             {
+                string.Empty,
                 string.Empty,
                 string.Empty,
                 string.Empty,
@@ -179,6 +181,7 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 string.Empty,
                 string.Empty,
+                string.Empty,
                 totalStake,
                 totalWinlost,
                 totalCompanyWinlost,
@@ -192,6 +195,7 @@ namespace ParlayRMS.Controllers
             var select = records.Select(x => new
             {
                 No = ++id,
+                Site = x.SiteGroup,
                 Username = x.Username,
                 CustomerClass = x.CustomerClass,
                 Currency = x.Currency,

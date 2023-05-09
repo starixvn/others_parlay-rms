@@ -645,7 +645,7 @@ function FillData(table, data) {
     } else {
         if (maxTransId == '0') {
             if (tbody.children('tr:first-child').children('td.noinfo').length == 0) {
-                var noinfo = CreateNoInfoRow(15);
+                var noinfo = CreateNoInfoRow(16);
                 tbody.append(noinfo);
             }
         }
@@ -682,6 +682,7 @@ function CreateRow(order, item) {
         r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     }
 
+    r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + item.CustomerClass + '</td>';
     r[++j] = '<td class="numeric">' + formatOdds(item.Odds) + '</td>';

@@ -394,6 +394,7 @@ function FillData(table, data) {
 
             r[++j] = '<tr id="tr_' + item.CustId + '">';
             r[++j] = '<td class="center">' + (i + 1) + '</td>';
+            r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
             var disabled = 'disabled';
             if (hasWritePermission) {
                 disabled = '';
@@ -446,7 +447,7 @@ function ViewDetails(custId) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="12" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="13" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');

@@ -37,5 +37,7 @@ namespace ParlayRMS.DTO.ParlayWon
         public int SportType { get; set; }
 
         public string IP { get; set; }
+
+        public string SiteGroup { get; set; }
     }
 }

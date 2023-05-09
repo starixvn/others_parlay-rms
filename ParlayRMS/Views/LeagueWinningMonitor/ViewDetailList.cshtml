@@ -10,6 +10,7 @@
             <col style="width: 50px" />
             <col style="width: 150px" />
             <col style="width: 126px" />
+            <col style="width: 75px" />
             <col style="width: 130px" />
             <col style="width: 50px" />
             <col style="width: 70px" />
@@ -27,6 +28,7 @@
                 <th>No</th>
                 <th class="sortable" data-col-type="date">Trans. Time</th>
                 <th>BetID</th>
+                <th class="sortable" data-col-type="ignorecase">Site</th>
                 <th class="sortable" data-col-type="ignorecase">User Name</th>
                 <th class="sortable" data-col-type="ignorecase">Level</th>
                 <th class="sortable" data-col-type="float">Odds</th>
@@ -46,6 +48,7 @@
             <col style="width: 50px" />
             <col style="width: 150px" />
             <col style="width: 126px" />
+            <col style="width: 75px" />
             <col style="width: 130px" />
             <col style="width: 50px" />
             <col style="width: 70px" />
@@ -70,6 +73,9 @@
                     </td>
                     <td class="numeric">
                         <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
+                    </td>
+                    <td class="center">
+                        @item.Val.SiteGroup
                     </td>
                     <td class="left">
                         <a href="#" onclick="window.open(resolveClientUrl('TotalOutstanding?username=@item.Val.Username&combo=@filter.Combos&sportsType=@filter.SportsTypes&parlayTypes=@filter.ParlayTypes'), '_blank');">@item.Val.Username</a>

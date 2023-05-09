@@ -126,6 +126,7 @@ namespace ParlayRMS.Controllers
             var header = new string[]
             {
                 "No",
+                ViewLang.Site,
                 ViewLang.Username,
                 ViewLang.Level
             };
@@ -134,11 +135,12 @@ namespace ParlayRMS.Controllers
             var select = specialMemberList.Select(x => new
             {
                 No = x.No,
+                site = x.Site,
                 userName = x.Username,
                 level = x.Level == 0 ? ViewLang.None : ViewLang.Level + " " + x.Level,
             });
             writer.WriteRows(2, select);
-            writer.SyncColumnWidths(3);
+            writer.SyncColumnWidths(4);
 
             MemoryStream ms = writer.Render("SpecialMember");
             ms.Seek(0, 0);

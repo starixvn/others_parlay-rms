@@ -53,6 +53,7 @@ namespace ParlayRMS.DataAccess.Implement.Members
                         result.Add(new RMS_CustomerSel
                         {
                             No = counter++,
+                            Site = reader.ToString("SiteGroup"),
                             Custid = reader.ToInt32("CustId"),
                             Username = reader.ToString("UserName"),
                             Level = reader.ToInt32("Level")
