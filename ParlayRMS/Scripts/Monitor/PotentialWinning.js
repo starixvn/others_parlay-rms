@@ -483,7 +483,7 @@ function FillData(filterBy, data) {
             var isHighLight = true;
 
             oldUserName.each(function () {
-                if ($(this).children('td').eq(2).text() == item.UserName) {
+                if ($(this).children('td').eq(3).text() == item.UserName) {
                     isHighLight = false;
                     $(this).remove();
                 }

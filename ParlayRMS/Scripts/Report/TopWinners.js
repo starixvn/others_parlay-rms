@@ -454,7 +454,7 @@ function ViewDetails(custId) {
         var waitingImg = $('<img src="' + imgURL + '" />');
         td.html(waitingImg);
 
-        var username = row.children('td').eq(1).text();
+        var username = row.children('td').eq(2).text();
         var data = {
             CustId: custId,
             Username: username,
