@@ -1,0 +1,11 @@
+<div>
+    <div class="nap-header">
+        <div class="title">
+            Alert Letstalk
+        </div>
+    </div>
+    <app-filter (generated)="generate($event)" [netcoreApiUrl]="netcoreApiUrl"></app-filter>
+    <app-grid *ngIf="filterModel" [data]="gridModel"></app-grid>
+    <nap-toast></nap-toast>
+</div>
+<nap-spinner></nap-spinner>
