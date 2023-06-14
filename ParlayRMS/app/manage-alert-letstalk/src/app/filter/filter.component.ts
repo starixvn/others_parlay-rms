@@ -13,7 +13,7 @@ import { FilterService } from './filter.service';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  @Input() netcoreApiUrl: string = '';
+  @Input() apiUrl: string = '';
   @Output() generated = new EventEmitter<FilterModel>();
   @ViewChild('countdown', { static: false }) countdown!: CountdownComponent;
 
@@ -83,6 +83,9 @@ export class FilterComponent implements OnInit {
   }
 
   getData(): void {
+    this.createModelCountdown(Number(this.selectedRefresh), false);
+    this.isClickedSubmit = true;
+    this.checkedRefresh = false;
     const model = this.createQueryModel();
     this.generated.emit(model);
   }

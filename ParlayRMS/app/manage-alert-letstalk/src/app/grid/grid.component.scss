@@ -6,5 +6,12 @@
     }
     .body {
         max-height: none;
+        td {
+            text-align: center;
+            &.to-open-new-tab {
+                cursor: pointer !important;
+                color: #1155cc;
+            }
+        }
     }
 }
