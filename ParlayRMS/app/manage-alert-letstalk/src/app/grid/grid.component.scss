@@ -13,5 +13,9 @@
                 color: #1155cc;
             }
         }
-    }
+    } 
+}
+::ng-deep app-similar-ticket {
+    width: 1200px;
+    display: block;
 }

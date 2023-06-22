@@ -23,8 +23,7 @@ export class FilterService {
     return [
       { id: '0', name: 'Send S&V', checked: true },
       { id: '1', name: 'Send OS', checked: true },
-      { id: '2', name: 'Take Note', checked: true },
-      { id: '3', name: 'No Action', checked: true }
+      { id: '2', name: 'Take Note', checked: true }
     ]
   }
 

@@ -56,7 +56,7 @@
     <td [napDecimalFormat]="item.totalMemberStake"></td>
     <td [napDecimalFormat]="item.totalPotentialWinningAmount"></td>
     <td [napDecimalFormat]="item.potentialCompanyLoseAmount"></td>
-    <td><button type="button" class="btn btn-outline-secondary">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary" (click)="viewDetailData(item.no)">View</button></td>
     <td>Checked By</td>
     <td>Action</td>
     <td>Log</td>
@@ -74,10 +74,12 @@
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
-                  <tr *ngFor="let item of data">
-                    <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
-                    </ng-template>
-                  </tr>
+                  <ng-container *ngFor="let item of data">
+                    <tr id="detail-data-{{item.no}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                      </ng-template>
+                    </tr>
+                  </ng-container>
                 </tbody>
               </table>
             </div>

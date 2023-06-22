@@ -18,13 +18,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 import { GridComponent } from './grid/grid.component';
 import { NumberFormatModule } from 'nap-components/number-format';
+import { SimilarTicketComponent } from './grid/similar-ticket/similar-ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterComponent,
     ItemTreeviewPipe,
-    GridComponent
+    GridComponent,
+    SimilarTicketComponent
   ],
   imports: [
     BrowserModule,

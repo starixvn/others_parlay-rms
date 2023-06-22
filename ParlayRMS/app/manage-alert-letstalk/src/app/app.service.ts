@@ -57,6 +57,21 @@ export class AppService {
       totalSelection: 7,
       totalSimilarTickets: 4,
       userName: 'HAIFATB011706'
+    },
+    {
+      no: 4,
+      alertTime: '4/21/2023 16:07:00 PM',
+      alertType: 'Potential Winning',
+      betId: '124414563931127808',
+      odds: 3.7,
+      potentialCompanyLoseAmount: 4.7,
+      sportType: 'Basketball',
+      totalBets: 4,
+      totalMemberStake: 4.7,
+      totalPotentialWinningAmount: 4.7,
+      totalSelection: 7,
+      totalSimilarTickets: 4,
+      userName: 'HAIFATB011706'
     }
   ];
 
