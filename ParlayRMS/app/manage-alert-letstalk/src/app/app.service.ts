@@ -10,7 +10,7 @@ import { DataModel } from './grid/grid.model';
 })
 export class AppService {
   
-  constructor(private httpService: HttpService) { }
+  constructor(private readonly httpService: HttpService) { }
 
   testDataModelList: DataModel[] = [
     {
@@ -26,7 +26,9 @@ export class AppService {
       totalPotentialWinningAmount: 4.7,
       totalSelection: 7,
       totalSimilarTickets: 4,
-      userName: 'HAIFATB011706'
+      userName: 'HAIFATB011706',
+      checkedBy: 'sa',
+      action: '1'
     },
     {
       no: 2,
@@ -41,7 +43,9 @@ export class AppService {
       totalPotentialWinningAmount: 4.7,
       totalSelection: 7,
       totalSimilarTickets: 4,
-      userName: 'M999RM00F31'
+      userName: 'M999RM00F31',
+      checkedBy: 'sa',
+      action: '1'
     },
     {
       no: 3,
@@ -56,7 +60,9 @@ export class AppService {
       totalPotentialWinningAmount: 4.7,
       totalSelection: 7,
       totalSimilarTickets: 4,
-      userName: 'HAIFATB011706'
+      userName: 'HAIFATB011706',
+      checkedBy: 'sa',
+      action: '1'
     },
     {
       no: 4,
@@ -71,7 +77,9 @@ export class AppService {
       totalPotentialWinningAmount: 4.7,
       totalSelection: 7,
       totalSimilarTickets: 4,
-      userName: 'HAIFATB011706'
+      userName: 'HAIFATB011706',
+      checkedBy: '',
+      action: '0'
     }
   ];
 

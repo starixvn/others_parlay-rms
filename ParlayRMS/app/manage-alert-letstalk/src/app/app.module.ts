@@ -19,6 +19,9 @@ import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 import { GridComponent } from './grid/grid.component';
 import { NumberFormatModule } from 'nap-components/number-format';
 import { SimilarTicketComponent } from './grid/similar-ticket/similar-ticket.component';
+import { PotentialWinningComponent } from './grid/potential-winning/potential-winning.component';
+import { LogComponent } from './grid/log/log.component';
+import { BetDetailsComponent } from './grid/bet-details/bet-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { SimilarTicketComponent } from './grid/similar-ticket/similar-ticket.com
     FilterComponent,
     ItemTreeviewPipe,
     GridComponent,
-    SimilarTicketComponent
+    SimilarTicketComponent,
+    PotentialWinningComponent,
+    LogComponent,
+    BetDetailsComponent
   ],
   imports: [
     BrowserModule,

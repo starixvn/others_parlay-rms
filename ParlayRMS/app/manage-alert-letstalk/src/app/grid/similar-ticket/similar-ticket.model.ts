@@ -1,6 +1,6 @@
 export interface SimilarTicketModel {
     no: number;
-    betId: string,
+    betId: string;
     site: string;
     userName: string;
     customerClass: string;

@@ -16,6 +16,11 @@
     } 
 }
 ::ng-deep app-similar-ticket {
-    width: 1200px;
+    width: 1140px;
+    display: block;
+}
+
+::ng-deep app-potential-winning {
+    width: 1400px;
     display: block;
 }

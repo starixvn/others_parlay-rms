@@ -1,0 +1,41 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 350px" />
+        <col style="width: 150px" />
+    </colgroup>
+</ng-template>
+<div class="modal-header">
+    <table>
+        <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+        <thead>
+            <tr class="title2">
+                <th>
+                    Ticket Details - {{userName}} - {{transId}}
+                </th>
+                <th class="combo-type">
+                    ComboType
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <table>
+        <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="betdetails">
+                        {{data.ticketDetail}}
+                    </div>
+                </td>
+                <td class="combo-type">
+                    {{data.comboTypes}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

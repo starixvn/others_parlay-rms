@@ -9,7 +9,7 @@
         <col style="width: 150px" />
         <col style="width: 150px" />
         <col style="width: 100px" />
-        <col style="width: 50px" />
+        <col style="width: 100px" />
     </colgroup>
   </ng-template>
   <ng-template #thead>
@@ -42,7 +42,7 @@
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
-        <div style="width: 1100px;">
+        <div style="width: 1120px;">
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
@@ -66,7 +66,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th class="no-data" colspan="17">
+                            <th class="no-data" colspan="10">
                                 There is no data
                             </th>
                         </tr>

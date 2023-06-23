@@ -12,4 +12,15 @@ export interface DataModel {
     totalMemberStake: number;
     totalPotentialWinningAmount: number;
     potentialCompanyLoseAmount: number;
+    checkedBy: string;
+    action: string;
+}
+
+export interface DetailDataComponent {
+    data: any;
+}
+
+export interface BetDetails {
+    ticketDetail: string;
+    comboTypes: string[];
 }
