@@ -1,11 +1,10 @@
 export interface SimilarTicketModel {
-    no: number;
-    betId: string;
-    site: string;
+    transId: string;
+    siteGroup: string;
     userName: string;
     customerClass: string;
     stake: number;
-    winningAmount: number;
-    houseAmount: number;
+    winningAmt: number;
+    houseAmt: number;
     status: string;
 }

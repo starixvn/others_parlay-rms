@@ -11,27 +11,28 @@ export class FilterService {
 
   public getAlertTypes(): ItemModel[] {
     return [
-      { id: '0', name: 'Similar Bet', checked: true },
-      { id: '1', name: 'Small Odds', checked: true },
-      { id: '2', name: 'Potential Winning', checked: true },
-      { id: '3', name: 'Last Pending Tickets', checked: true },
-      { id: '4', name: 'Small League & Odds', checked: true }
+      { id: '1', name: 'Similar Bet', checked: true },
+      { id: '2', name: 'Small Odds', checked: true },
+      { id: '3', name: 'Potential Winning', checked: true },
+      { id: '4', name: 'Last Pending Tickets', checked: true },
+      { id: '5', name: 'Small League & Odds', checked: true }
     ]
   }
 
   public getActions(): ItemModel[] {
     return [
-      { id: '0', name: 'Send S&V', checked: true },
-      { id: '1', name: 'Send OS', checked: true },
-      { id: '2', name: 'Take Note', checked: true }
+      { id: '0', name: 'No Action', checked: true },
+      { id: '1', name: 'Send S&V', checked: true },
+      { id: '2', name: 'Send OS', checked: true },
+      { id: '3', name: 'Take Note', checked: true }
     ]
   }
 
   public getTicketStatuses(): ItemModel[] {
     return [
-      { id: '0', name: 'Won', checked: true },
-      { id: '1', name: 'Lose', checked: true },
-      { id: '2', name: 'Running', checked: true }
+      { id: '112', name: 'Won', checked: true },
+      { id: '113', name: 'Lose', checked: true },
+      { id: '0', name: 'Running', checked: true }
     ]
   }
 

@@ -6,6 +6,7 @@ import { DateHelper, DateFormat } from 'nap-components/date';
 import { CONFIG } from '../common/config';
 import * as moment from 'moment';
 import { FilterService } from './filter.service';
+import { ToastService } from 'nap-components/toast';
 
 @Component({
   selector: 'app-filter',
@@ -42,13 +43,13 @@ export class FilterComponent implements OnInit {
     demand: true,
   };
 
-  fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
+  fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday);
   toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
   minStartDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today.add(-1, 'month'));
   maxEndDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
-  constructor(private filterService: FilterService) { }
+  constructor(private filterService: FilterService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.alertTypeItems = this.filterService.getAlertTypes();
@@ -83,6 +84,9 @@ export class FilterComponent implements OnInit {
   }
 
   getData(): void {
+    if (!this.isValid()) {
+      return;
+    }
     this.createModelCountdown(Number(this.selectedRefresh), false);
     this.isClickedSubmit = true;
     this.checkedRefresh = false;
@@ -111,15 +115,32 @@ export class FilterComponent implements OnInit {
   }
 
   private createQueryModel(): FilterModel {
+    const fromDate = DateHelper.convertDateStructToMoment(this.fromDate);
+    const toDate = DateHelper.convertDateStructToMoment(this.toDate);
+
     return {
-      fromDate: '',
-      toDate: '',
-      action: '',
-      alertTypes: '',
-      checkedBy: '',
-      isNone: false,
-      member: '',
-      ticketStatus: ''
+      fromDate: DateHelper.formatMomentDate(fromDate, DateFormat.Date),
+      toDate: DateHelper.formatMomentDate(toDate, DateFormat.Date),
+      actionType: this.selectedActions.length === this.actionItems.length ? '-1' : this.selectedActions.join(','),
+      alertType: this.selectedAlertTypes.length === this.alertTypeItems.length ? '-1' : this.selectedAlertTypes.join(','),
+      checkBy: this.checkedBy,
+      isNoChecked: this.chkNone,
+      member: this.member,
+      ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(',')
     };
+  }
+
+  private isValid(): boolean {
+    if (this.selectedActions.length === 0) {
+      this.toastService.activate(`Please select at least one Action!`);
+      return false;
+    }
+
+    if (this.selectedTicketStatuses.length === 0) {
+      this.toastService.activate(`Please select at least one Ticket Status!`);
+      return false;
+    }
+
+    return true;
   }
 }

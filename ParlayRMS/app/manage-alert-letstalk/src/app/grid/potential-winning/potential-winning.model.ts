@@ -1,15 +1,14 @@
 export interface PotentialWinningModel {
-    no: number;
-    transTime: string;
-    betId: string;
+    transDate: string;
+    transId: string;
     odds: number;
     stake: number;
     winningAmount: number;
     houseAmount: number;
     ip: string;
     housePt: number;
-    totalComboBets: string;
-    totalSelections: number;
+    totalBet: string;
+    totalSelection: number;
     sportType: string;
     status: string;
 }

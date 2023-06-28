@@ -36,18 +36,18 @@
         </tr>
     </thead>
   </ng-template>
-  <ng-template #rowItem let-item="item">
-    <td>{{ item.no }}</td>
-    <td>{{ item.transTime }}</td>
-    <td>{{ item.betId }}</td>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.transDate | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
+    <td>{{ item.transId }}</td>
     <td [napDecimalFormat]="item.odds"></td>
     <td [napDecimalFormat]="item.stake"></td>
     <td [napDecimalFormat]="item.winningAmount"></td>
     <td [napDecimalFormat]="item.houseAmount"></td>
     <td> {{ item.ip }}</td>
     <td [napDecimalFormat]="item.housePt"></td>
-    <td>{{ item.totalComboBets }}</td>
-    <td>{{ item.totalSelections }}</td>
+    <td>{{ item.totalBet }}</td>
+    <td>{{ item.totalSelection }}</td>
     <td>{{ item.sportType }}</td>
     <td>{{ item.status }}</td>
     <td><button type="button" class="btn btn-outline-secondary">View</button></td>
@@ -65,9 +65,9 @@
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
-                  <ng-container *ngFor="let item of data">
-                    <tr id="detail-data-{{item.no}}">
-                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                  <ng-container *ngFor="let item of data; index as i">
+                    <tr id="detail-data-{{i + 1}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
                       </ng-template>
                     </tr>
                   </ng-container>

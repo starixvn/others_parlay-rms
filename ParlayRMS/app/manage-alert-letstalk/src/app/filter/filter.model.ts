@@ -7,10 +7,10 @@ export interface ItemModel {
 export interface FilterModel {
     fromDate: string;
     toDate: string;
-    alertTypes: string;
+    alertType: string;
     member: string;
-    checkedBy: string;
-    isNone: boolean;
-    action: string;
+    checkBy: string;
+    isNoChecked: boolean;
+    actionType: string;
     ticketStatus: string;
   }

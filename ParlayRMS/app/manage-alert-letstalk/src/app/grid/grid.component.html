@@ -42,32 +42,32 @@
         </tr>
     </thead>
   </ng-template>
-  <ng-template #rowItem let-item="item">
-    <td>{{ item.no }}</td>
-    <td>{{ item.alertTime }}</td>
-    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId }}</td>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.alertTime | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
+    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId??'-' }}</td>
     <td [ngStyle]="{'background-color': getColorViaAlertType(item.alertType)}">{{ item.alertType }}</td>
     <td>{{ item.sportType }}</td>
     <td class="to-open-new-tab" (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</td>
-    <td>{{ item.totalSimilarTickets }}</td>
-    <td>{{ item.totalSelection }}</td>
+    <td>{{ item.similarTickets??'-' }}</td>
+    <td>{{ item.selection }}</td>
     <td [napDecimalFormat]="item.odds"></td>
-    <td>{{ item.totalBets }}</td>
-    <td [napDecimalFormat]="item.totalMemberStake"></td>
-    <td [napDecimalFormat]="item.totalPotentialWinningAmount"></td>
-    <td [napDecimalFormat]="item.potentialCompanyLoseAmount"></td>
-    <td><button type="button" class="btn btn-outline-secondary" (click)="showData(item.no, item.alertType)">View</button></td>
+    <td>{{ item.totalBets??'-' }}</td>
+    <td [napDecimalFormat]="item.memberStake"></td>
+    <td [napDecimalFormat]="item.potentialWinning"></td>
+    <td [napDecimalFormat]="item.companyLose"></td>
+    <td><button type="button" class="btn btn-outline-secondary" (click)="showData(index, item.alertId, item.alertType)">View</button></td>
     <td>
-      <input type="checkbox" [disabled]="item.checkedBy !== ''" [(ngModel)]="item.checkedBy"> {{getCheckedBy(item.checkedBy)}}
+      <input type="checkbox" [disabled]="item.checkedBy !== null" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser()"> {{getCheckedBy(item.checkedBy)}}
     </td>
     <td>
       <select class="nap-textbox" [(ngModel)]="item.action">
-        <option *ngFor="let action of actionItems" [attr.checked]="action.checked" [value]="action.id">
+        <option *ngFor="let action of actionItems" [attr.checked]="action.checked" [value]="action.name">
              {{action.name}}
          </option>
       </select>
     </td>
-    <td><button type="button" class="btn btn-outline-secondary" (click)="showLog()">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary" (click)="showLog(item.alertId, item.userName, item.betId)">View</button></td>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
@@ -82,9 +82,9 @@
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
-                  <ng-container *ngFor="let item of data">
-                    <tr id="detail-data-{{item.no}}">
-                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                  <ng-container *ngFor="let item of data; index as i">
+                    <tr id="detail-data-{{i+1}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
                       </ng-template>
                     </tr>
                   </ng-container>

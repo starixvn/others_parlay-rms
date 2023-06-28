@@ -4,8 +4,8 @@
             Alert Letstalk
         </div>
     </div>
-    <app-filter (generated)="generate($event)" [apiUrl]="apiUrl"></app-filter>
-    <app-grid *ngIf="filterModel" [data]="gridModel" [webUrl]="webUrl"></app-grid>
+    <app-filter (generated)="generate($event)" [apiUrl]="webInfoModel.apiUrl"></app-filter>
     <nap-toast></nap-toast>
+    <app-grid *ngIf="filterModel" [data]="gridModel" [webInfoModel]="webInfoModel"></app-grid>
 </div>
 <nap-spinner></nap-spinner>

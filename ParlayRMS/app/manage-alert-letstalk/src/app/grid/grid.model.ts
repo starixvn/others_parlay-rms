@@ -1,17 +1,17 @@
 export interface DataModel {
-    no: number;
     alertTime: string;
+    alertId: string;
     betId: string,
     alertType: string;
     sportType: string;
     userName: string;
-    totalSimilarTickets: number;
-    totalSelection: number;
+    similarTickets: string;
+    selection: number;
     odds: number;
-    totalBets: number;
-    totalMemberStake: number;
-    totalPotentialWinningAmount: number;
-    potentialCompanyLoseAmount: number;
+    totalBets: string;
+    memberStake: number;
+    potentialWinning: number;
+    companyLose: number;
     checkedBy: string;
     action: string;
 }

@@ -28,15 +28,15 @@
         </tr>
     </thead>
   </ng-template>
-  <ng-template #rowItem let-item="item">
-    <td>{{ item.no }}</td>
-    <td>{{ item.betId }}</td>
-    <td>{{ item.site }}</td>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.transId }}</td>
+    <td>{{ item.siteGroup }}</td>
     <td>{{ item.userName }}</td>
     <td>{{ item.customerClass }}</td>
     <td [napDecimalFormat]="item.stake"></td>
-    <td [napDecimalFormat]="item.winningAmount"></td>
-    <td [napDecimalFormat]="item.houseAmount"></td>
+    <td [napDecimalFormat]="item.winningAmt"></td>
+    <td [napDecimalFormat]="item.houseAmt"></td>
     <td>{{ item.status }}</td>
     <td><button type="button" class="btn btn-outline-secondary">View</button></td>
   </ng-template>
@@ -53,9 +53,9 @@
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
-                  <ng-container *ngFor="let item of data">
-                    <tr id="detail-data-{{item.no}}">
-                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                  <ng-container *ngFor="let item of data; index as i">
+                    <tr id="detail-data-{{i + 1}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
                       </ng-template>
                     </tr>
                   </ng-container>
