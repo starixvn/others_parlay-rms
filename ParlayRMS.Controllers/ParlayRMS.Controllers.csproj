@@ -227,6 +227,7 @@
     <Compile Include="LeagueBetTypeAnalysisController.cs" />
     <Compile Include="LeagueEventMonitorController.cs" />
     <Compile Include="LeagueWinningMonitorController.cs" />
+    <Compile Include="ManageAlertController.cs" />
     <Compile Include="ManageLeagueController.cs" />
     <Compile Include="ParlayWonController.cs" />
     <Compile Include="PotentialWinningController.cs" />

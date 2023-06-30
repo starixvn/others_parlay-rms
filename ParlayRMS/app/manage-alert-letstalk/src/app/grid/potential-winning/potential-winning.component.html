@@ -38,19 +38,19 @@
   </ng-template>
   <ng-template #rowItem let-item="item" let-index="index">
     <td>{{ index }}</td>
-    <td>{{ item.transDate | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
-    <td>{{ item.transId }}</td>
+    <td>{{ item.transDateString }}</td>
+    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</td>
     <td [napDecimalFormat]="item.odds"></td>
     <td [napDecimalFormat]="item.stake"></td>
     <td [napDecimalFormat]="item.winningAmount"></td>
     <td [napDecimalFormat]="item.houseAmount"></td>
-    <td> {{ item.ip }}</td>
+    <td class="to-open-new-tab" (click)="openNewTabOfIpInfo(item.ip, item.transDateString)"> {{ item.ip }}</td>
     <td [napDecimalFormat]="item.housePt"></td>
     <td>{{ item.totalBet }}</td>
     <td>{{ item.totalSelection }}</td>
     <td>{{ item.sportType }}</td>
     <td>{{ item.status }}</td>
-    <td><button type="button" class="btn btn-outline-secondary">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary" (click)="showBetDetails(item)">View</button></td>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">

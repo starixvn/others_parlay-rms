@@ -1,5 +1,5 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injector, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
-import { DataModel, DetailDataComponent } from './grid.model';
+import { BetDetails, DataModel, DetailDataComponent, TakeActionModel } from './grid.model';
 import { AlertTypeConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
 import { GridService } from './grid.service';
@@ -11,6 +11,7 @@ import { TreeviewConfig } from 'ngx-treeview';
 import * as _ from 'lodash';
 import { BetDetailsComponent } from './bet-details/bet-details.component';
 import { WebInfoModel } from '../app.model';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-grid',
@@ -21,6 +22,7 @@ export class GridComponent implements OnChanges {
   @Input() data: DataModel[] = [];
   @Input() webInfoModel!: WebInfoModel;
 
+  body!: SafeHtml;
   componentsRef: ComponentRef<DetailDataComponent>[] = [];
   actionItems: ItemModel[] = [];
   itemConfig = TreeviewConfig.create({
@@ -37,7 +39,8 @@ export class GridComponent implements OnChanges {
     private readonly injector: Injector,
     private readonly applicationRef: ApplicationRef,
     private readonly gridService: GridService,
-    private readonly modalService: NgbModal
+    private readonly modalService: NgbModal,
+    private readonly sanitized: DomSanitizer
     ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,14 +80,6 @@ export class GridComponent implements OnChanges {
     return false;
   }
 
-  showData(index: number, id: string, type: string): void{
-    if (this.isDisplayDetailData(type)) {
-      this.showDetailData(index, id, type);
-    } else {
-      this.showBetDetails();
-    }
-  }
-
   showLog(id: string, userName: string, betId: string): void {
     const modalRef = this.modalService.open(LogComponent, { backdrop: 'static', windowClass: 'modal-auto-size' });
     const componentInstance: LogComponent = modalRef.componentInstance;
@@ -93,19 +88,48 @@ export class GridComponent implements OnChanges {
     componentInstance.betId = betId;
   }
 
-  updateCheckedUser(): void {
-    console.log('abc');
+  updateCheckedUser(data: DataModel): void {
+    const model: TakeActionModel = {
+      actionId: Number(_.find(this.actionItems, { name: data.action })?.id),
+      alertId: data.alertId,
+      userId: Number(this.webInfoModel.userId),
+      isChecked: true
+    };
+    this.gridService.takeAction(this.webInfoModel.apiUrl, model).subscribe(() => data.checkedBy = this.webInfoModel.userName);
   }
 
-  private showBetDetails(): void {
-    const modalRef = this.modalService.open(BetDetailsComponent, { backdrop: 'static', windowClass: 'modal-auto-size' });
+  writeActionLog(data: DataModel): void {
+    if (data.action !== _.first(this.actionItems)?.name) {
+      const model: TakeActionModel = {
+        actionId: Number(_.find(this.actionItems, { name: data.action })?.id),
+        alertId: data.alertId,
+        userId: Number(this.webInfoModel.userId),
+        isChecked: false
+      };
+      this.gridService.takeAction(this.webInfoModel.apiUrl, model).subscribe();
+    }
+  }
+
+  public showBetDetails(data: DataModel): void {
+    const modalRef = this.modalService.open(BetDetailsComponent, {
+      backdrop: 'static',
+      windowClass: 'modal-bet-detail'
+     });
     const componentInstance: BetDetailsComponent = modalRef.componentInstance;
-    this.gridService.getBetDetail().subscribe(data => componentInstance.data = data);
-    componentInstance.userName = 'HAIFATB011706';
-    componentInstance.transId = '123456789';
+    const model: BetDetails = {
+      transId: data.betId,
+      refNo: data.refNo,
+      userName: data.userName,
+      custId: data.custId,
+      betType: data.betType
+    }
+    this.gridService.getBetDetail(model).subscribe((body) => {
+      this.body = this.sanitized.bypassSecurityTrustHtml(body);
+      componentInstance.body = this.body;
+    });
   }
 
-  private showDetailData(index: number, id: string, type: string): void {
+  public showDetailData(index: number, id: string, type: string): void {
     this.destroyComponents();
     let newEle!: HTMLElement;
     if (type === AlertTypeConstants.SIMILAR_BET) {
@@ -139,6 +163,7 @@ export class GridComponent implements OnChanges {
     const factory = this.componentFactoryResolver.resolveComponentFactory(PotentialWinningComponent);
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
+    component.instance.webInfoModel = this.webInfoModel;
     this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, id).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;

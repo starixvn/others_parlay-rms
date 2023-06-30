@@ -1,5 +1,5 @@
 export interface LogModel {
-    dateTime: string;
-    action: string;
-    user: string;
+    logTime: string;
+    actionName: string;
+    userName: string;
 }

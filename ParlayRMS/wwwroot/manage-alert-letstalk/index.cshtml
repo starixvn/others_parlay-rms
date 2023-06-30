@@ -1,0 +1,15 @@
+@{
+    Layout = "~/Views/Shared/_LayoutAngular.cshtml";
+    ViewBag.Title = "ManageAlertLetstalk";
+}
+@section Head {
+	<link href='@Url.Content("~/wwwroot/manage-alert-letstalk/styles.css?fc7f9a9144fd674484cc")' rel="stylesheet"/>
+}
+<app-root api-url="@ViewBag.AspNetCoreApiUrl" web-url="@ViewBag.WebUrl" userid="@ViewBag.UserId" username="@ViewBag.UserName"></app-root>
+
+<script src='@Url.Content("~/wwwroot/manage-alert-letstalk/runtime.js?876b8ba7b71ac85cb588")'></script>
+
+<script src='@Url.Content("~/wwwroot/manage-alert-letstalk/polyfills.js?f266cecd098dd0c6e8ae")'></script>
+
+<script src='@Url.Content("~/wwwroot/manage-alert-letstalk/main.js?1aa8f55161162f761f72")'></script>
+

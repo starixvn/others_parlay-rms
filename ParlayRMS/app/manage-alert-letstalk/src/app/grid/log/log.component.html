@@ -15,9 +15,9 @@
     </thead>
 </ng-template>
 <ng-template #rowItem let-item="item">
-    <td>{{ item.dateTime }}</td>
-    <td>{{ item.action }}</td>
-    <td>{{ item.user }}</td>
+    <td>{{ item.logTime | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
+    <td>{{ item.actionName }}</td>
+    <td>{{ item.userName }}</td>
 </ng-template>
 <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="modal-header">

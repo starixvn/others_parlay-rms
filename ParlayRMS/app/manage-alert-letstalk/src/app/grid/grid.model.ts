@@ -2,6 +2,9 @@ export interface DataModel {
     alertTime: string;
     alertId: string;
     betId: string,
+    refNo: string,
+    custId: number,
+    betType: number,
     alertType: string;
     sportType: string;
     userName: string;
@@ -21,6 +24,16 @@ export interface DetailDataComponent {
 }
 
 export interface BetDetails {
-    ticketDetail: string;
-    comboTypes: string[];
+    transId: string;
+    userName: string;
+    refNo: string;
+    betType: number;
+    custId: number;
+}
+
+export interface TakeActionModel {
+    alertId: string;
+    userId: number;
+    isChecked: boolean;
+    actionId: number;
 }

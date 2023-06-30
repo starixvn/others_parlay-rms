@@ -639,6 +639,20 @@
     <Content Include="wwwroot\league-event-monitor\runtime.js" />
     <Content Include="wwwroot\league-event-monitor\spinner.39d0d6bd1fbec2b1c53f.gif" />
     <Content Include="wwwroot\league-event-monitor\styles.css" />
+    <Content Include="wwwroot\manage-alert-letstalk\3rdpartylicenses.txt" />
+    <Content Include="wwwroot\manage-alert-letstalk\assets\header.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\assets\logo.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\assets\spinner.gif" />
+    <Content Include="wwwroot\manage-alert-letstalk\favicon.ico" />
+    <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg" />
+    <Content Include="wwwroot\manage-alert-letstalk\header.cefc375370fad0e7e2b4.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\index.html" />
+    <Content Include="wwwroot\manage-alert-letstalk\logo.3f10b7fa3d49100ceff3.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\main.js" />
+    <Content Include="wwwroot\manage-alert-letstalk\polyfills.js" />
+    <Content Include="wwwroot\manage-alert-letstalk\runtime.js" />
+    <Content Include="wwwroot\manage-alert-letstalk\spinner.39d0d6bd1fbec2b1c53f.gif" />
+    <Content Include="wwwroot\manage-alert-letstalk\styles.css" />
     <Content Include="wwwroot\win-loss-risk-control\3rdpartylicenses.txt" />
     <Content Include="wwwroot\win-loss-risk-control\assets\header.png" />
     <Content Include="wwwroot\win-loss-risk-control\assets\logo.png" />
@@ -716,6 +730,11 @@
     <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.8b43027f47b20503057d.eot" />
     <Content Include="wwwroot\league-event-monitor\fontawesome-webfont.f691f37e57f04c152e23.woff" />
     <Content Include="wwwroot\league-event-monitor\index.cshtml" />
+    <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.1e59d2330b4c6deb84b3.ttf" />
+    <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.20fd1704ea223900efa9.woff2" />
+    <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.8b43027f47b20503057d.eot" />
+    <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.f691f37e57f04c152e23.woff" />
+    <Content Include="wwwroot\manage-alert-letstalk\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

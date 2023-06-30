@@ -7,4 +7,7 @@ export interface SimilarTicketModel {
     winningAmt: number;
     houseAmt: number;
     status: string;
+    refNo: string,
+    custId: number,
+    betType: number,
 }

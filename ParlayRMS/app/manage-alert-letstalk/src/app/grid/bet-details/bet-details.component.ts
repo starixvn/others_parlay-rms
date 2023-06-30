@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { BetDetails } from '../grid.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bet-details',
   templateUrl: './bet-details.component.html',
-  styleUrls: ['./bet-details.component.scss']
+  styleUrls: ['./bet-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BetDetailsComponent {
-  @Input() data!: BetDetails;
-  userName: string = '';
-  transId: string = '';
+  @Input() body!: SafeHtml;
   
   constructor(public readonly activeModal: NgbActiveModal) {}
 }

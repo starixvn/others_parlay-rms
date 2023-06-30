@@ -1,5 +1,6 @@
 export interface PotentialWinningModel {
-    transDate: string;
+    transDateString: string;
+    userName: string;
     transId: string;
     odds: number;
     stake: number;
@@ -11,4 +12,7 @@ export interface PotentialWinningModel {
     totalSelection: number;
     sportType: string;
     status: string;
+    refNo: string,
+    custId: number,
+    betType: number,
 }

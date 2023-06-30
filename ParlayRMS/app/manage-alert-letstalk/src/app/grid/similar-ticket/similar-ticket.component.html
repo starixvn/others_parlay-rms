@@ -38,7 +38,7 @@
     <td [napDecimalFormat]="item.winningAmt"></td>
     <td [napDecimalFormat]="item.houseAmt"></td>
     <td>{{ item.status }}</td>
-    <td><button type="button" class="btn btn-outline-secondary">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary" (click)="showBetDetails(item)">View</button></td>
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
