@@ -30,7 +30,6 @@ export class GridComponent implements OnChanges {
     hasCollapseExpand: false,
     maxHeight: 500
   });
-  selectedAction: string = '0';
   checkedBy: boolean = true;
 
   constructor(
@@ -174,5 +173,9 @@ export class GridComponent implements OnChanges {
     this.componentsRef.forEach(component => {
       component.destroy();
     });
+  }
+
+  public isNoAction(action: string): boolean {
+    return action === 'No Action';
   }
 }

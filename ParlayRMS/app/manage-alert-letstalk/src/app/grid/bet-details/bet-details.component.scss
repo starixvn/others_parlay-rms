@@ -3,6 +3,16 @@
         display: contents;
     }
 }
+.modal-custom-header {
+    width: 590px;
+    height: 10px;
+    position: relative;
+    button {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+    }
+}
 .boxMain {
     border-radius: 5px;
     display: block;

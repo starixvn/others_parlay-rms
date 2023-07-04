@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from 'nap-components/http';
 import { ItemModel } from './filter.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
-  private api = 'api/win-loss-risk-control/filter/';
-  constructor(private httpService: HttpService) { }
+  constructor() { }
 
   public getAlertTypes(): ItemModel[] {
     return [

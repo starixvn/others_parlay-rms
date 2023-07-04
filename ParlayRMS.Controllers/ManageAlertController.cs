@@ -13,7 +13,7 @@ namespace ParlayRMS.Controllers
         {
             var aspNetCoreAuth = ConfigurationManager.AppSettings["AspNetCoreAuth"];
             ViewBag.AspNetCoreApiUrl = !string.IsNullOrEmpty(aspNetCoreAuth) ? $"{aspNetCoreAuth}/" : string.Empty;
-            ViewBag.WebUrl = $"{Request.Url.Scheme}://{Request.Url.Host}";
+            ViewBag.WebUrl = Request.RawUrl.Replace("ManageAlert", "");
             ViewBag.UserId = CurrentSession.UserId;
             ViewBag.UserName = CurrentSession.UserName;
             return View("~/wwwroot/manage-alert-letstalk/index.cshtml");

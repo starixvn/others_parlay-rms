@@ -11,8 +11,6 @@ import { DataModel } from './grid/grid.model';
 export class AppService {
   
   constructor(private readonly httpService: HttpService) { }
-
-  // testDataModelList: DataModel[] = [
   //   {
   //     no: 1,
   //     alertTime: '4/21/2023 16:07:00 PM',

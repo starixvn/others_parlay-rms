@@ -63,7 +63,8 @@
     <td>
       <input type="checkbox" [disabled]="item.checkedBy !== null" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser(item)"> {{getCheckedBy(item.checkedBy)}}
     </td>
-    <td>
+    <td *ngIf="isNoAction(item.action)">{{item.action}}</td>
+    <td *ngIf="!isNoAction(item.action)">
       <select class="nap-textbox" [disabled]="item.checkedBy === null" [(ngModel)]="item.action" (change)="writeActionLog(item)">
         <option *ngFor="let action of actionItems" [attr.checked]="action.checked" [value]="action.name">
              {{action.name}}
