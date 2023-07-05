@@ -22,7 +22,7 @@ export class FilterComponent implements OnInit {
   selectedAlertTypes:string[] = [];
   member: string = '';
   checkedBy: string = '';
-  chkNone: boolean = false;
+  chkNone: boolean = true;
   actionItems: ItemModel[] = [];
   selectedActions: string[] = [];
   ticketStatusItems: ItemModel[] = [];
