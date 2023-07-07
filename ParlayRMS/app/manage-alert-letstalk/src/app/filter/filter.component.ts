@@ -126,7 +126,9 @@ export class FilterComponent implements OnInit {
       checkBy: this.checkedBy,
       isNoChecked: this.chkNone,
       member: this.member,
-      ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(',')
+      ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(','),
+      pageIndex: 1,
+      pageSize: 100
     };
   }
 

@@ -85,9 +85,4 @@ export class AppService {
     const api = `ServerTime/today`;
     return this.httpService.post<moment.Moment>(api);
   }
-
-  getData(netcoreApiUrl: string, filterModel: FilterModel): Observable<DataModel[]> {
-    const api = 'api/manage-alert/alerts';
-    return this.httpService.post(`${netcoreApiUrl}${api}`, filterModel);
-  }
 }

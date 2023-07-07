@@ -5,8 +5,8 @@ import { tap } from 'rxjs/operators';
 import { SimilarTicketModel } from './similar-ticket/similar-ticket.model';
 import { PotentialWinningModel } from './potential-winning/potential-winning.model';
 import { LogModel } from './log/log.model';
-import { ItemModel } from '../filter/filter.model';
-import { BetDetails, TakeActionModel } from './grid.model';
+import { FilterModel, ItemModel } from '../filter/filter.model';
+import { BetDetails, DataModel, TakeActionModel } from './grid.model';
 import { HttpClient } from '@angular/common/http';
 import { SpinnerService } from 'nap-components/spinner';
 
@@ -22,6 +22,10 @@ export class GridService {
     private readonly spinnerService: SpinnerService
     ) { }
 
+  getAlerts(apiUrl: string, filterModel: FilterModel): Observable<DataModel> {
+    return this.httpService.post(`${apiUrl}${this.api}alerts`, filterModel);
+  }
+  
   getSimilarTickets(apiUrl: string, id: string): Observable<SimilarTicketModel[]> {
     return this.httpService.post(`${apiUrl}${this.api}similar-detail`, { alertId : id });
   }

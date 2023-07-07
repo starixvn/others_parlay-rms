@@ -147,6 +147,9 @@ ISC
 ngx-countdown
 MIT
 
+ngx-pagination
+MIT
+
 ngx-treeview
 MIT
 

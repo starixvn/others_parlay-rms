@@ -8,7 +8,7 @@
         <col style="width: 150px" />
         <col style="width: 100px" />
         <col style="width: 100px" />
-        <col style="width: 50px" />
+        <col style="width: 70px" />
         <col style="width: 150px" />
         <col style="width: 150px" />
         <col style="width: 150px" />
@@ -20,21 +20,36 @@
     </colgroup>
   </ng-template>
   <ng-template #thead>
-    <thead>
+    <thead class="sort">
         <tr>
             <th scope="col">No</th>
             <th scope="col">Alert Time</th>
             <th scope="col">BETID</th>
             <th scope="col">Alert Type</th>
             <th scope="col">Sports Type</th>
-            <th scope="col">User Name</th>
+            <th scope="col" [appSort]="[displayedData]"(clickedSort)="removeDetailComponent()" data-order="desc" data-prop="userName" data-type="string">
+              User Name
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Total Similar Tickets</th>
             <th scope="col">Total Selection</th>
-            <th scope="col">Odds</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="odds" data-type="number">
+              Odds
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Total Bets</th>
-            <th scope="col">Total Member Stake (RM)</th>
-            <th scope="col">Total P.Winning Amount (RM)</th>
-            <th scope="col">Potential Company Lose Amount (RM)</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="memberStake" data-type="number">
+              Total Member Stake (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="potentialWinning" data-type="number">
+              Total P.Winning Amount (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="companyLose" data-type="number">
+              Potential Company Lose Amount (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Details</th>
             <th scope="col">Checked By</th>
             <th scope="col">Action</th>
@@ -73,9 +88,9 @@
     </td>
     <td><button type="button" class="btn btn-outline-secondary" (click)="showLog(item.alertId, item.userName, item.betId)">View</button></td>
   </ng-template>
-  <div *ngIf="data" [ngSwitch]="data.length > 0">
+  <div *ngIf="displayedData" [ngSwitch]="displayedData.length > 0">
     <div class="nap-grid">
-        <div style="width: 1923px;">
+        <div style="width: 1943px;">
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
@@ -86,7 +101,7 @@
               <table>
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
-                  <ng-container *ngFor="let item of data; index as i">
+                  <ng-container *ngFor="let item of displayedData; index as i">
                     <tr id="detail-data-{{i+1}}">
                       <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
                       </ng-template>
@@ -105,6 +120,18 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div *ngSwitchCase="true" class="footer">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tfoot>
+                  <tr>
+                    <td class="paging" colspan="17">
+                      <nap-pagination [config]="paginationInstance" (pageChange)="onPageChange()"></nap-pagination>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
         </div>
     </div>

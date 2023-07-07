@@ -13,7 +13,7 @@ import { ItemTreeviewPipe } from './filter/item-treeview.pipe';
 import { DateModule } from 'nap-components/date';
 import * as moment from 'moment';
 import { AppService } from './app.service';
-import { CONFIG, DateConfig } from './common/config';
+import { CONFIG, CustomPaginationConfig, DateConfig } from './common/config';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpRequestInterceptor } from './custom-httprequest-interceptor';
 import { GridComponent } from './grid/grid.component';
@@ -22,6 +22,9 @@ import { SimilarTicketComponent } from './grid/similar-ticket/similar-ticket.com
 import { PotentialWinningComponent } from './grid/potential-winning/potential-winning.component';
 import { LogComponent } from './grid/log/log.component';
 import { BetDetailsComponent } from './grid/bet-details/bet-details.component';
+import { PaginationConfig, PaginationModule } from 'nap-components/pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SortDirective } from './common/sort.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { BetDetailsComponent } from './grid/bet-details/bet-details.component';
     SimilarTicketComponent,
     PotentialWinningComponent,
     LogComponent,
-    BetDetailsComponent
+    BetDetailsComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,
@@ -43,13 +47,16 @@ import { BetDetailsComponent } from './grid/bet-details/bet-details.component';
     CountdownModule,
     NumberFormatModule,
     SpinnerModule,
-    ToastModule
+    ToastModule,
+    NgxPaginationModule,
+    PaginationModule.forRoot()
   ],
   providers: [
     [
-      { provide: HTTP_INTERCEPTORS, useClass: CustomHttpRequestInterceptor, multi: true }
+      { provide: HTTP_INTERCEPTORS, useClass: CustomHttpRequestInterceptor, multi: true },
     ],
     ToastService,
+    { provide: PaginationConfig, useClass: CustomPaginationConfig },
     AppService,
     {
       provide: APP_INITIALIZER,

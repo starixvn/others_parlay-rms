@@ -1,17 +1,19 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injector, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
-import { BetDetails, DataModel, DetailDataComponent, TakeActionModel } from './grid.model';
+import { BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
 import { AlertTypeConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
 import { GridService } from './grid.service';
 import { PotentialWinningComponent } from './potential-winning/potential-winning.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogComponent } from './log/log.component';
-import { ItemModel } from '../filter/filter.model';
+import { FilterModel, ItemModel } from '../filter/filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
 import * as _ from 'lodash';
 import { BetDetailsComponent } from './bet-details/bet-details.component';
 import { WebInfoModel } from '../app.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { PaginationService as NgxPaginationService, PaginatePipe } from 'ngx-pagination';
+import { PaginationInstance, PaginationService } from 'nap-components/pagination';
 
 @Component({
   selector: 'app-grid',
@@ -19,9 +21,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnChanges {
-  @Input() data: DataModel[] = [];
+  @Input() filterModel!: FilterModel;
   @Input() webInfoModel!: WebInfoModel;
 
+  data!: DataModel;
+  displayedData: DataModelItem[] = [];
+  isPageChanged = false;
+  originalPageSize = 100;
   body!: SafeHtml;
   componentsRef: ComponentRef<DetailDataComponent>[] = [];
   actionItems: ItemModel[] = [];
@@ -31,6 +37,8 @@ export class GridComponent implements OnChanges {
     maxHeight: 500
   });
   checkedBy: boolean = true;
+  paginationInstance!: PaginationInstance;
+  private paginatePipe: PaginatePipe;
 
   constructor(
     private readonly renderer: Renderer2,
@@ -39,12 +47,23 @@ export class GridComponent implements OnChanges {
     private readonly applicationRef: ApplicationRef,
     private readonly gridService: GridService,
     private readonly modalService: NgbModal,
-    private readonly sanitized: DomSanitizer
-    ) { }
+    private readonly sanitized: DomSanitizer,
+    private readonly paginationService: PaginationService,
+    private ngxPaginationService: NgxPaginationService
+    ) {
+      this.paginatePipe = new PaginatePipe(this.ngxPaginationService);
+    }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.destroyComponents();
     this.actionItems = this.gridService.getActions();
+    if (this.filterModel != null) {
+      this.gridService.getAlerts(this.webInfoModel.apiUrl, this.filterModel).subscribe(data => {
+        this.data = data;
+        this.paginationInstance = this.paginationService.createPaginationInstance(this.data.totalItems);
+        this.onPageChange();
+      })
+    }
   }
 
   getColorViaAlertType(type: string): string {
@@ -87,7 +106,7 @@ export class GridComponent implements OnChanges {
     componentInstance.betId = betId;
   }
 
-  updateCheckedUser(data: DataModel): void {
+  updateCheckedUser(data: DataModelItem): void {
     const model: TakeActionModel = {
       actionId: Number(_.find(this.actionItems, { name: data.action })?.id),
       alertId: data.alertId,
@@ -97,7 +116,7 @@ export class GridComponent implements OnChanges {
     this.gridService.takeAction(this.webInfoModel.apiUrl, model).subscribe(() => data.checkedBy = this.webInfoModel.userName);
   }
 
-  writeActionLog(data: DataModel): void {
+  writeActionLog(data: DataModelItem): void {
     if (data.action !== _.first(this.actionItems)?.name) {
       const model: TakeActionModel = {
         actionId: Number(_.find(this.actionItems, { name: data.action })?.id),
@@ -109,7 +128,7 @@ export class GridComponent implements OnChanges {
     }
   }
 
-  public showBetDetails(data: DataModel): void {
+  public showBetDetails(data: DataModelItem): void {
     const modalRef = this.modalService.open(BetDetailsComponent, {
       backdrop: 'static',
       windowClass: 'modal-bet-detail'
@@ -177,5 +196,37 @@ export class GridComponent implements OnChanges {
 
   public isNoAction(action: string): boolean {
     return action === 'No Action';
+  }
+
+  onPageChange() {
+    this.createPaging();
+    
+  }
+
+  private createPaging() {
+    if (this.isPageChanged) {
+        this.paginationInstance.currentPage = this.paginationInstance.itemsPerPage === this.originalPageSize ?
+         this.paginationInstance.currentPage : 1;
+        this.filterModel.pageIndex = this.paginationInstance.currentPage;
+        this.filterModel.pageSize = this.paginationInstance.itemsPerPage;
+
+        this.gridService.getAlerts(this.webInfoModel.apiUrl, this.filterModel).subscribe(data => {
+        this.data = data;
+        this.createPagingTransform();
+        });
+    }
+
+    this.createPagingTransform();
+  }
+
+  private createPagingTransform() {
+    const paginateData = this.paginatePipe.transform(this.data.items, this.paginationInstance);
+    this.displayedData = _.cloneDeep(paginateData);
+    this.isPageChanged = true;
+    this.originalPageSize = this.filterModel.pageSize;
+  }
+
+  removeDetailComponent(): void {
+    this.destroyComponents();
   }
 }

@@ -1,4 +1,4 @@
-export interface DataModel {
+export interface DataModelItem {
     alertTime: string;
     alertId: string;
     betId: string,
@@ -17,6 +17,11 @@ export interface DataModel {
     companyLose: number;
     checkedBy: string;
     action: string;
+}
+
+export interface DataModel {
+    items: DataModelItem[];
+    totalItems: number;
 }
 
 export interface DetailDataComponent {

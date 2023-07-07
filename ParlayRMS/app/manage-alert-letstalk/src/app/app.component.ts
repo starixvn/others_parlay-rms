@@ -11,7 +11,7 @@ import { WebInfoModel } from './app.model';
 })
 export class AppComponent {
   title = 'manage-alert-letstalk';
-  gridModel: DataModel[] = [];
+  gridModel!: DataModel;
   webInfoModel: WebInfoModel;
   filterModel!: FilterModel;
 
@@ -27,6 +27,5 @@ export class AppComponent {
 
   generate(filterModel: FilterModel): void {
     this.filterModel = filterModel;
-    this.appService.getData(this.webInfoModel.apiUrl, filterModel).subscribe(data => this.gridModel = data);
   }
 }

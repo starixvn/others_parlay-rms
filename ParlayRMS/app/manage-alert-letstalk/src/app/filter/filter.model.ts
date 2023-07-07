@@ -13,4 +13,6 @@ export interface FilterModel {
     isNoChecked: boolean;
     actionType: string;
     ticketStatus: string;
+    pageSize: number;
+    pageIndex: number;
   }
