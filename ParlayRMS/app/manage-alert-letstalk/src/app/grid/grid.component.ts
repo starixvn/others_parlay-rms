@@ -61,6 +61,7 @@ export class GridComponent implements OnChanges {
       this.gridService.getAlerts(this.webInfoModel.apiUrl, this.filterModel).subscribe(data => {
         this.data = data;
         this.paginationInstance = this.paginationService.createPaginationInstance(this.data.totalItems);
+        this.isPageChanged = false;
         this.onPageChange();
       })
     }

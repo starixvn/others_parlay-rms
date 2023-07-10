@@ -123,7 +123,7 @@ export class FilterComponent implements OnInit {
       toDate: DateHelper.formatMomentDate(toDate, DateFormat.Date),
       actionType: this.selectedActions.length === this.actionItems.length ? '-1' : this.selectedActions.join(','),
       alertType: this.selectedAlertTypes.length === this.alertTypeItems.length ? '-1' : this.selectedAlertTypes.join(','),
-      checkBy: this.checkedBy,
+      checkBy: this.chkNone ? '' : this.checkedBy,
       isNoChecked: this.chkNone,
       member: this.member,
       ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(','),

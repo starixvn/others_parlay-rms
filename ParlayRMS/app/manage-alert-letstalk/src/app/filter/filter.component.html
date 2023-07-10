@@ -43,7 +43,7 @@
         <div class="nap-group">
           <label class="width-50">Checked by</label>
           <div class="nap-control">
-            <input class="nap-textbox" [(ngModel)]="checkedBy">
+            <input class="form-control" [disabled]="chkNone" [readOnly]="chkNone" [(ngModel)]="checkedBy">
           </div>
         </div>
       </div>
