@@ -72,11 +72,11 @@
     <td [napDecimalFormat]="item.potentialWinning"></td>
     <td [napDecimalFormat]="item.companyLose"></td>
     <td>
-      <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary" (click)="showDetailData(index, item.alertId, item.alertType)">View</button>
+      <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary" (click)="showDetailData(index, item)">View</button>
       <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary" (click)="showBetDetails(item)">View</button>
     </td>
     <td>
-      <input type="checkbox" [disabled]="item.checkedBy !== null" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser(item)"> {{getCheckedBy(item.checkedBy)}}
+      <input type="checkbox" [disabled]="item.checkedBy !== null || isNoAction(item.action)" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser(item)"> {{getCheckedBy(item.checkedBy)}}
     </td>
     <td *ngIf="isNoAction(item.action)">{{item.action}}</td>
     <td *ngIf="!isNoAction(item.action)">

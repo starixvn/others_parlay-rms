@@ -87,11 +87,14 @@ export class FilterComponent implements OnInit {
     if (!this.isValid()) {
       return;
     }
+    const model = this.createQueryModel();
+    this.generated.emit(model);
+  }
+
+  startCountdown(): void {
     this.createModelCountdown(Number(this.selectedRefresh), false);
     this.isClickedSubmit = true;
     this.checkedRefresh = false;
-    const model = this.createQueryModel();
-    this.generated.emit(model);
   }
 
   onFromDateChange() {

@@ -17,6 +17,7 @@ export interface DataModelItem {
     companyLose: number;
     checkedBy: string;
     action: string;
+    isViewedDetail: boolean;
 }
 
 export interface DataModel {

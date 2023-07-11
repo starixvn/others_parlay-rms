@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injector, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnChanges, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
 import { AlertTypeConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
@@ -23,6 +23,7 @@ import { PaginationInstance, PaginationService } from 'nap-components/pagination
 export class GridComponent implements OnChanges {
   @Input() filterModel!: FilterModel;
   @Input() webInfoModel!: WebInfoModel;
+  @Output() onGetData = new EventEmitter();
 
   data!: DataModel;
   displayedData: DataModelItem[] = [];
@@ -39,6 +40,7 @@ export class GridComponent implements OnChanges {
   checkedBy: boolean = true;
   paginationInstance!: PaginationInstance;
   private paginatePipe: PaginatePipe;
+  cachedAlertId = '';
 
   constructor(
     private readonly renderer: Renderer2,
@@ -63,6 +65,7 @@ export class GridComponent implements OnChanges {
         this.paginationInstance = this.paginationService.createPaginationInstance(this.data.totalItems);
         this.isPageChanged = false;
         this.onPageChange();
+        this.onGetData.emit();
       })
     }
   }
@@ -148,17 +151,23 @@ export class GridComponent implements OnChanges {
     });
   }
 
-  public showDetailData(index: number, id: string, type: string): void {
+  public showDetailData(index: number, item: DataModelItem): void {
     this.destroyComponents();
-    let newEle!: HTMLElement;
-    if (type === AlertTypeConstants.SIMILAR_BET) {
-      newEle = this.renderHtmlForSimilarTickets(id);
+    if (item.isViewedDetail && item.alertId === this.cachedAlertId) {
+      item.isViewedDetail = false;
+      return;
     }
-    if (type === AlertTypeConstants.POTENTIAL_WINNING) {
-      newEle = this.renderHtmlForPotentialWinning(id);
+    let newEle!: HTMLElement;
+    if (item.alertType === AlertTypeConstants.SIMILAR_BET) {
+      newEle = this.renderHtmlForSimilarTickets(item.alertId);
+    }
+    if (item.alertType === AlertTypeConstants.POTENTIAL_WINNING) {
+      newEle = this.renderHtmlForPotentialWinning(item.alertId);
     }
     const element = this.renderer.selectRootElement(`tr#detail-data-${index}`, true) as HTMLElement;
     this.renderer.insertBefore(element.parentNode, newEle, element.nextSibling);
+    item.isViewedDetail = true;
+    this.cachedAlertId = item.alertId;
   }
 
   getCheckedBy(checkedBy: string): string {
