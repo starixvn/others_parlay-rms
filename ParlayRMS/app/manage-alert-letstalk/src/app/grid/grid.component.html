@@ -72,8 +72,8 @@
     <td [napDecimalFormat]="item.potentialWinning"></td>
     <td [napDecimalFormat]="item.companyLose"></td>
     <td>
-      <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary" (click)="showDetailData(index, item)">View</button>
-      <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary" (click)="showBetDetails(item)">View</button>
+      <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showDetailData(index, item)">View</button>
+      <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button>
     </td>
     <td>
       <input type="checkbox" [disabled]="item.checkedBy !== null || isNoAction(item.action)" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser(item)"> {{getCheckedBy(item.checkedBy)}}
@@ -86,7 +86,7 @@
          </option>
       </select>
     </td>
-    <td><button type="button" class="btn btn-outline-secondary" (click)="showLog(item.alertId, item.userName, item.betId)">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showLog(item.alertId, item.userName, item.betId)">View</button></td>
   </ng-template>
   <div *ngIf="displayedData" [ngSwitch]="displayedData.length > 0">
     <div class="nap-grid">
@@ -102,8 +102,8 @@
                 <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
                 <tbody>
                   <ng-container *ngFor="let item of displayedData; index as i">
-                    <tr id="detail-data-{{i+1}}">
-                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
+                    <tr id="detail-data-{{getIndex(i+1)}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: getIndex(i + 1) }">
                       </ng-template>
                     </tr>
                   </ng-container>

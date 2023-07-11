@@ -210,11 +210,11 @@ export class GridComponent implements OnChanges {
 
   onPageChange() {
     this.createPaging();
-    
   }
 
   private createPaging() {
     if (this.isPageChanged) {
+        this.destroyComponents();
         this.paginationInstance.currentPage = this.paginationInstance.itemsPerPage === this.originalPageSize ?
          this.paginationInstance.currentPage : 1;
         this.filterModel.pageIndex = this.paginationInstance.currentPage;
@@ -238,5 +238,9 @@ export class GridComponent implements OnChanges {
 
   removeDetailComponent(): void {
     this.destroyComponents();
+  }
+
+  getIndex(index: number): number {
+    return index + (this.paginationInstance.currentPage - 1) * this.paginationInstance.itemsPerPage;
   }
 }
