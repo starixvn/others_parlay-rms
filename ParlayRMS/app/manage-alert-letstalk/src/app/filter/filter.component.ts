@@ -99,9 +99,6 @@ export class FilterComponent implements OnInit {
     fromDate = DateHelper.convertDateStructToMoment(this.fromDate);
     fromDate = moment.utc(fromDate);
     this.fromDate = DateHelper.convertMomentToDateStruct(fromDate);
-
-    const maxEndDate = fromDate.add(1, 'month');
-    this.maxEndDate = DateHelper.convertMomentToDateStruct(maxEndDate);
   }
 
   onToDateChange() {
@@ -109,9 +106,6 @@ export class FilterComponent implements OnInit {
     toDate = DateHelper.convertDateStructToMoment(this.toDate);
     toDate = moment.utc(toDate);
     this.toDate = DateHelper.convertMomentToDateStruct(toDate);
-
-    const minStartDate = toDate.subtract(1, 'month');
-    this.minStartDate = DateHelper.convertMomentToDateStruct(minStartDate);
   }
 
   private createQueryModel(): FilterModel {
