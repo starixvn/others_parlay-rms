@@ -645,6 +645,7 @@
     <Content Include="wwwroot\manage-alert-letstalk\assets\1F.gif" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\1L.gif" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\checkbox.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\assets\Closeicon.png" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\firstGoal.gif" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\header.png" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\lastGoal.gif" />
@@ -654,6 +655,7 @@
     <Content Include="wwwroot\manage-alert-letstalk\assets\table_tltle_bg.gif" />
     <Content Include="wwwroot\manage-alert-letstalk\assets\warning_1_20x20.png" />
     <Content Include="wwwroot\manage-alert-letstalk\checkbox.3fd9fe2c8d877a41adaa.png" />
+    <Content Include="wwwroot\manage-alert-letstalk\Closeicon.f110402d0bff7a2ad122.png" />
     <Content Include="wwwroot\manage-alert-letstalk\favicon.ico" />
     <Content Include="wwwroot\manage-alert-letstalk\firstGoal.f7294b2a3ee24f0f41e3.gif" />
     <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg" />

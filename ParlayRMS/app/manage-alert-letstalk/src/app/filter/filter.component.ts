@@ -130,6 +130,11 @@ export class FilterComponent implements OnInit {
   }
 
   private isValid(): boolean {
+    if (this.selectedAlertTypes.length === 0) {
+      this.toastService.activate(`Please select at least one Alert type!`);
+      return false;
+    }
+
     if (this.selectedActions.length === 0) {
       this.toastService.activate(`Please select at least one Action!`);
       return false;
