@@ -4,8 +4,8 @@ export interface PotentialWinningModel {
     transId: string;
     odds: number;
     stake: number;
-    winningAmount: number;
-    houseAmount: number;
+    winningAmt: number;
+    houseAmt: number;
     ip: string;
     housePt: number;
     totalBet: string;

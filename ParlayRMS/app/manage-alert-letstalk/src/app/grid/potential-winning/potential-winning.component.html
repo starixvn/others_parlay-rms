@@ -4,7 +4,7 @@
         <col style="width: 150px" />
         <col style="width: 150px" />
         <col style="width: 50px" />
-        <col style="width: 50px" />
+        <col style="width: 150px" />
         <col style="width: 100px" />
         <col style="width: 100px" />
         <col style="width: 100px" />
@@ -42,8 +42,8 @@
     <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</td>
     <td [napDecimalFormat]="item.odds"></td>
     <td [napDecimalFormat]="item.stake"></td>
-    <td [napDecimalFormat]="item.winningAmount"></td>
-    <td [napDecimalFormat]="item.houseAmount"></td>
+    <td [napDecimalFormat]="item.winningAmt"></td>
+    <td [napDecimalFormat]="item.houseAmt"></td>
     <td class="to-open-new-tab" (click)="openNewTabOfIpInfo(item.ip, item.transDateString)"> {{ item.ip }}</td>
     <td [napDecimalFormat]="item.housePt"></td>
     <td>{{ item.totalBet }}</td>
@@ -54,7 +54,7 @@
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
-        <div style="width: 1370px;">
+        <div style="width: 1470px;">
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
