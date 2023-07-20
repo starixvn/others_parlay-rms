@@ -86,7 +86,7 @@
          </option>
       </select>
     </td>
-    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showLog(item.alertId, item.userName, item.betId)">View</button></td>
+    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showLog(item.alertId, item.alertType, item.userName, item.betId)">View</button></td>
   </ng-template>
   <div *ngIf="displayedData" [ngSwitch]="displayedData.length > 0">
     <div class="nap-grid">

@@ -102,12 +102,13 @@ export class GridComponent implements OnChanges {
     return false;
   }
 
-  showLog(id: string, userName: string, betId: string): void {
+  showLog(id: string, alertType: string, userName: string, betId: string): void {
     const modalRef = this.modalService.open(LogComponent, { backdrop: 'static', windowClass: 'modal-auto-size' });
     const componentInstance: LogComponent = modalRef.componentInstance;
     this.gridService.getLogs(this.webInfoModel.apiUrl, id).subscribe(data => componentInstance.data = data);
+    componentInstance.alertType = alertType;
     componentInstance.user = userName;
-    componentInstance.betId = betId;
+    componentInstance.betId = betId === null ? '' : ` - ${betId}`;
   }
 
   updateCheckedUser(data: DataModelItem): void {

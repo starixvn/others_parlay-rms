@@ -21,7 +21,7 @@
 </ng-template>
 <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="modal-header">
-        <p class="modal-title">Log Details - Similar Bet - {{user}} - {{betId}}</p>
+        <p class="modal-title">Log Details - {{alertType}} - {{user}}{{betId}}</p>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>

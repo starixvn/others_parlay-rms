@@ -11,6 +11,7 @@ export class LogComponent {
   @Input() data: LogModel[] = [];
   user: string = '';
   betId: string = '';
+  alertType: string = '';
 
   constructor(public readonly activeModal: NgbActiveModal) { }
 
