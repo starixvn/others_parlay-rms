@@ -10,7 +10,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
 
         public string TransId { get; set; }
 
-        public long RefNo { get; set; }
+        public string RefNo { get; set; }
 
         public string Username { get; set; }
 
