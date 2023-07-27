@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.ManageAgent, Policy = UserPolicy.Read)]
+    [Authorization(Function = FunctionKeys.ManageAlert, Policy = UserPolicy.Read)]
     public class ManageAlertController : BaseController
     {
         [HttpGet]

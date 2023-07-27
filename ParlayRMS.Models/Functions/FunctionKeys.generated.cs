@@ -17,7 +17,8 @@
 		public const string LeagueManagement = "LeagueManagement";
 		public const string ManageCustomer = "ManageCustomer";
 		public const string ManageAgent = "ManageAgent";
-		public const string ManageLeague = "ManageLeague";
+        public const string ManageAlert = "ManageAlert";
+        public const string ManageLeague = "ManageLeague";
 		public const string WinLossRiskControl = "WinLossRiskControl";
 		public const string ParlayWon = "ParlayWon";
 		public const string TopWinners = "TopWinners";
