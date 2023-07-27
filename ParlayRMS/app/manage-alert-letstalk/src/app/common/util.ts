@@ -23,6 +23,13 @@ export class Sort {
                     return (a[property].trim().localeCompare(b[property].trim())) * this.sortOrder;
                 };
             }
+            case "datetime": {
+                return (a: any, b: any) => {
+                    const dateA = new Date(a[property]);
+                    const dateB = new Date(b[property]);
+                    return (dateA.getTime() - dateB.getTime()) * this.sortOrder;
+                };
+            }
             default:
                 return 0;
         }

@@ -23,11 +23,14 @@
     <thead class="sort">
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Alert Time</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="alertTime" data-type="datetime">
+              Alert Time
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">BETID</th>
             <th scope="col">Alert Type</th>
             <th scope="col">Sports Type</th>
-            <th scope="col" [appSort]="[displayedData]"(clickedSort)="removeDetailComponent()" data-order="desc" data-prop="userName" data-type="string">
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="userName" data-type="string">
               User Name
               <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
             </th>
