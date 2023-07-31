@@ -66,14 +66,14 @@
     <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId??'-' }}</td>
     <td [ngStyle]="{'background-color': getColorViaAlertType(item.alertType)}">{{ item.alertType }}</td>
     <td>{{ item.sportType }}</td>
-    <td class="to-open-new-tab" (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</td>
+    <td class="to-open-new-tab text-left" (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</td>
     <td>{{ item.similarTickets??'-' }}</td>
     <td>{{ item.selection }}</td>
-    <td [napDecimalFormat]="item.odds"></td>
-    <td>{{ item.totalBets??'-' }}</td>
-    <td [napDecimalFormat]="item.memberStake"></td>
-    <td [napDecimalFormat]="item.potentialWinning"></td>
-    <td [napDecimalFormat]="item.companyLose"></td>
+    <td class="text-right" [napDecimalFormat]="item.odds"></td>
+    <td class="text-right">{{ item.totalBets??'-' }}</td>
+    <td class="text-right" [napDecimalFormat]="item.memberStake"></td>
+    <td class="text-right" [napDecimalFormat]="item.potentialWinning"></td>
+    <td class="text-right" [napDecimalFormat]="item.companyLose"></td>
     <td>
       <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showDetailData(index, item)">View</button>
       <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button>

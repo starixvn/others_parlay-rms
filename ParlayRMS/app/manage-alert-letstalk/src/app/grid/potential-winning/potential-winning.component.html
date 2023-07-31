@@ -40,10 +40,10 @@
     <td>{{ index }}</td>
     <td>{{ item.transDateString }}</td>
     <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</td>
-    <td [napDecimalFormat]="item.odds"></td>
-    <td [napDecimalFormat]="item.stake"></td>
-    <td [napDecimalFormat]="item.winningAmt"></td>
-    <td [napDecimalFormat]="item.houseAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.odds"></td>
+    <td class="text-right" [napDecimalFormat]="item.stake"></td>
+    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
     <td class="to-open-new-tab" (click)="openNewTabOfIpInfo(item.ip, item.transDateString)"> {{ item.ip }}</td>
     <td [napDecimalFormat]="item.housePt"></td>
     <td>{{ item.totalBet }}</td>

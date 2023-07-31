@@ -32,11 +32,11 @@
     <td>{{ index }}</td>
     <td>{{ item.transId }}</td>
     <td>{{ item.siteGroup }}</td>
-    <td>{{ item.userName }}</td>
+    <td class="text-left">{{ item.userName }}</td>
     <td>{{ item.customerClass }}</td>
-    <td [napDecimalFormat]="item.stake"></td>
-    <td [napDecimalFormat]="item.winningAmt"></td>
-    <td [napDecimalFormat]="item.houseAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.stake"></td>
+    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
     <td>{{ item.status }}</td>
     <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button></td>
   </ng-template>
