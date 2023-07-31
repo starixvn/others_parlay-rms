@@ -6,7 +6,6 @@ import { FilterComponent } from './filter/filter.component';
 import { TreeviewModule } from 'ngx-treeview';
 import { HttpModule } from 'nap-components/http';
 import { FormsModule } from '@angular/forms';
-import { CountdownModule } from 'ngx-countdown';
 import { SpinnerModule } from 'nap-components/spinner';
 import { ToastModule, ToastService } from 'nap-components/toast';
 import { ItemTreeviewPipe } from './filter/item-treeview.pipe';
@@ -44,7 +43,6 @@ import { SortDirective } from './common/sort.directive';
     HttpModule.forRoot(),
     DateModule,
     FormsModule,
-    CountdownModule,
     NumberFormatModule,
     SpinnerModule,
     ToastModule,

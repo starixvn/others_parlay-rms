@@ -29,7 +29,7 @@ export class AppComponent {
     this.filterModel = filterModel;
   }
 
-  startCountdown(): void {
+  startTimer(): void {
     this.appFilter.startCountdown();
   }
 }

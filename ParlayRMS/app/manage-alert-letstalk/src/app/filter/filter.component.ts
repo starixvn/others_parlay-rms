@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FilterModel, ItemModel } from './filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
-import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { DateHelper, DateFormat } from 'nap-components/date';
 import { CONFIG } from '../common/config';
 import * as moment from 'moment';
@@ -16,7 +15,6 @@ import { ToastService } from 'nap-components/toast';
 export class FilterComponent implements OnInit {
   @Input() apiUrl: string = '';
   @Output() generated = new EventEmitter<FilterModel>();
-  @ViewChild('countdown', { static: false }) countdown!: CountdownComponent;
 
   alertTypeItems: ItemModel[] = [];
   selectedAlertTypes:string[] = [];
@@ -37,17 +35,17 @@ export class FilterComponent implements OnInit {
   selectedRefresh: string = '60';
   checkedRefresh: boolean = false;
   isClickedSubmit: boolean = false;
-  countdownConfig: CountdownConfig = {
-    leftTime: 60,
-    formatDate: ({ date }) => `${date / 1000}`,
-    demand: true,
-  };
 
   fromDate = DateHelper.convertMomentToDateStruct(CONFIG.date.yesterday);
   toDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
 
   minStartDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today.add(-1, 'month'));
   maxEndDate = DateHelper.convertMomentToDateStruct(CONFIG.date.today);
+
+  timer = '60'
+  seconds = 60;
+  selectedSeconds = 60;
+  intervalId = -1;
 
   constructor(private filterService: FilterService, private toastService: ToastService) { }
 
@@ -56,31 +54,6 @@ export class FilterComponent implements OnInit {
     this.actionItems = this.filterService.getActions();
     this.ticketStatusItems = this.filterService.getTicketStatuses();
     this.refreshItems = this.filterService.getRefreshs();
-  }
-
-  private createModelCountdown(time: number, demand: boolean): void {
-    this.countdownConfig = {
-      leftTime: time,
-      formatDate: ({ date }) => `${date / 1000}`,
-      demand: demand
-    };
-  }
-
-  changeRefreshnow(): void {
-    this.createModelCountdown(Number(this.selectedRefresh), false);
-    this.countdown.restart();
-    this.checkedRefresh = false;
-  }
-
-  pauseCountdown(): void {
-    this.checkedRefresh ? this.countdown.pause() : this.countdown.resume();
-  }
-
-  handleCountdown(e: CountdownEvent) {
-    if (e.left === 0) {
-      this.getData();
-      this.countdown.restart()
-    }
   }
 
   getData(): void {
@@ -92,9 +65,31 @@ export class FilterComponent implements OnInit {
   }
 
   startCountdown(): void {
-    this.createModelCountdown(Number(this.selectedRefresh), false);
+    this.clearTimer();
+    this.startTimer();
     this.isClickedSubmit = true;
     this.checkedRefresh = false;
+  }
+
+  pauseTimer(): void {
+    if (this.checkedRefresh) {
+      this.selectedSeconds = Number(this.timer);
+      this.clearTimer();
+    } else {
+      this.startTimer();
+    }
+  }
+
+  changeRefreshnow(): void {
+    this.seconds = Number(this.selectedRefresh);
+    this.selectedSeconds = Number(this.selectedRefresh);
+    this.checkedRefresh = false;
+    this.clearTimer();
+    if (this.isClickedSubmit) {
+      this.startTimer();
+    } else {
+      this.timer = this.selectedRefresh;
+    }
   }
 
   onFromDateChange() {
@@ -146,5 +141,21 @@ export class FilterComponent implements OnInit {
     }
 
     return true;
+  }
+
+  private startTimer(): void {
+    this.timer = this.selectedSeconds.toString();
+    this.intervalId = window.setInterval(() => {
+      this.selectedSeconds--;
+      if (this.selectedSeconds === 0) {
+        this.getData();
+        this.selectedSeconds = Number(this.selectedRefresh);
+      }
+      this.timer = this.selectedSeconds.toString();
+    }, 1000)
+  }
+
+  private clearTimer(): void {
+    window.clearInterval(this.intervalId);
   }
 }

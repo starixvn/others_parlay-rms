@@ -144,9 +144,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 nap-components
 ISC
 
-ngx-countdown
-MIT
-
 ngx-pagination
 MIT
 
