@@ -1,0 +1,17 @@
+@import '~nap-theme/scss/grid';
+.nap-grid {
+    padding: 0.3rem;
+    .header {
+        background-color: #1f4e78 !important;
+    }
+    .body {
+        max-height: none;
+        td {
+            text-align: center;
+            &.to-open-new-tab {
+                cursor: pointer !important;
+                color: #1155cc;
+            }
+        }
+    }
+}

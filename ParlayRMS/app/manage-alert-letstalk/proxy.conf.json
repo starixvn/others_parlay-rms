@@ -1,0 +1,21 @@
+{
+    "/api": {
+      "target": "http://localhost:61034",
+      "secure": false
+    },
+    "/BetList": {
+      "target": "http://localhost:57421",
+      "secure": false
+    },
+    "/ServerTime": {
+      "target": "http://localhost:61034",
+      "secure": false,
+      "pathRewrite": {
+        "^/ServerTime/today": "api/application/today"
+      }
+    },
+    "/PropagationAuth": {
+      "target": "http://localhost:61034",
+      "secure": false
+    }
+  }

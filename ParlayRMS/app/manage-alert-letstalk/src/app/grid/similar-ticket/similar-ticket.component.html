@@ -1,0 +1,78 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 50px" />
+        <col style="width: 150px" />
+        <col style="width: 50px" />
+        <col style="width: 150px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+    </colgroup>
+  </ng-template>
+  <ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">BETID</th>
+            <th scope="col">Site</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Customer Class</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Winning Amount</th>
+            <th scope="col">House Amount</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bet Details</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.transId }}</td>
+    <td>{{ item.siteGroup }}</td>
+    <td class="text-left">{{ item.userName }}</td>
+    <td>{{ item.customerClass }}</td>
+    <td class="text-right" [napDecimalFormat]="item.stake"></td>
+    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
+    <td>{{ item.status }}</td>
+    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button></td>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1120px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <ng-container *ngFor="let item of data; index as i">
+                    <tr id="detail-data-{{i + 1}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
+                      </ng-template>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="10">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,65 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 230px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+    </colgroup>
+</ng-template>
+<ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col">Date time</th>
+            <th scope="col">Action</th>
+            <th scope="col">User</th>
+        </tr>
+    </thead>
+</ng-template>
+<ng-template #rowItem let-item="item">
+    <td>{{ item.logTime | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
+    <td>{{ item.actionName }}</td>
+    <td>{{ item.userName }}</td>
+</ng-template>
+<div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="modal-header">
+        <p class="modal-title">Log Details - {{alertType}} - {{user}}{{betId}}</p>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="nap-grid">
+            <div style="width: 450px;">
+                <div class="header">
+                    <table>
+                        <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                        <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                    </table>
+                </div>
+                <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
+                    <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <tbody>
+                        <ng-container *ngFor="let item of data">
+                            <tr>
+                                <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item }">
+                                </ng-template>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                    </table>
+                </div>
+                <div *ngSwitchCase="false" class="body stretch">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="no-data" colspan="3">
+                                    There is no data
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

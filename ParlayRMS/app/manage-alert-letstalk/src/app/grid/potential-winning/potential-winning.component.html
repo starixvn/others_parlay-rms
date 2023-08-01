@@ -1,0 +1,90 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 50px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 100px" />
+        <col style="width: 150px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+    </colgroup>
+  </ng-template>
+  <ng-template #thead>
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Trans.Time</th>
+            <th scope="col">BetId</th>
+            <th scope="col">Odds</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Winning Amount</th>
+            <th scope="col">House Amount</th>
+            <th scope="col">IP</th>
+            <th scope="col">House PT</th>
+            <th scope="col">Total Combo Bets</th>
+            <th scope="col">Total Selections</th>
+            <th scope="col">Sport Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bet Details</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.transDateString }}</td>
+    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</td>
+    <td class="text-right" [napDecimalFormat]="item.odds"></td>
+    <td class="text-right" [napDecimalFormat]="item.stake"></td>
+    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
+    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
+    <td class="to-open-new-tab" (click)="openNewTabOfIpInfo(item.ip, item.transDateString)"> {{ item.ip }}</td>
+    <td [napDecimalFormat]="item.housePt"></td>
+    <td>{{ item.totalBet }}</td>
+    <td>{{ item.totalSelection }}</td>
+    <td>{{ item.sportType }}</td>
+    <td>{{ item.status }}</td>
+    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button></td>
+  </ng-template>
+  <div *ngIf="data" [ngSwitch]="data.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1520px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <ng-container *ngFor="let item of data; index as i">
+                    <tr id="detail-data-{{i + 1}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: i + 1 }">
+                      </ng-template>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="14">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

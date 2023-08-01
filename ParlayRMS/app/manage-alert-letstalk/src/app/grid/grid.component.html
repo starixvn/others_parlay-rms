@@ -1,0 +1,141 @@
+<ng-template #colgroup>
+    <colgroup>
+        <col style="width: 50px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 130px" />
+        <col style="width: 100px" />
+        <col style="width: 150px" />
+        <col style="width: 100px" />
+        <col style="width: 100px" />
+        <col style="width: 70px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 150px" />
+        <col style="width: 50px" />
+        <col style="width: 100px" />
+        <col style="width: 130px" />
+        <col style="width: 50px" />
+    </colgroup>
+  </ng-template>
+  <ng-template #thead>
+    <thead class="sort">
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="alertTime" data-type="datetime">
+              Alert Time
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col">BETID</th>
+            <th scope="col">Alert Type</th>
+            <th scope="col">Sports Type</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="userName" data-type="string">
+              User Name
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col">Total Similar Tickets</th>
+            <th scope="col">Total Selection</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="odds" data-type="number">
+              Odds
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col">Total Bets</th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="memberStake" data-type="number">
+              Total Member Stake (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="potentialWinning" data-type="number">
+              Total P.Winning Amount (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="companyLose" data-type="number">
+              Potential Company Lose Amount (RM)
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col">Details</th>
+            <th scope="col">Checked By</th>
+            <th scope="col">Action</th>
+            <th scope="col">Log</th>
+        </tr>
+    </thead>
+  </ng-template>
+  <ng-template #rowItem let-item="item" let-index="index">
+    <td>{{ index }}</td>
+    <td>{{ item.alertTime | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
+    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId??'-' }}</td>
+    <td [ngStyle]="{'background-color': getColorViaAlertType(item.alertType)}">{{ item.alertType }}</td>
+    <td>{{ item.sportType }}</td>
+    <td class="to-open-new-tab text-left" (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</td>
+    <td>{{ item.similarTickets??'-' }}</td>
+    <td>{{ item.selection }}</td>
+    <td class="text-right" [napDecimalFormat]="item.odds"></td>
+    <td class="text-right">{{ item.totalBets??'-' }}</td>
+    <td class="text-right" [napDecimalFormat]="item.memberStake"></td>
+    <td class="text-right" [napDecimalFormat]="item.potentialWinning"></td>
+    <td class="text-right" [napDecimalFormat]="item.companyLose"></td>
+    <td>
+      <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showDetailData(index, item)">View</button>
+      <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button>
+    </td>
+    <td>
+      <input type="checkbox" [disabled]="item.checkedBy !== null || isNoAction(item.action)" [(ngModel)]="item.checkedBy" (change)="updateCheckedUser(item)"> {{getCheckedBy(item.checkedBy)}}
+    </td>
+    <td *ngIf="isNoAction(item.action)">{{item.action}}</td>
+    <td *ngIf="!isNoAction(item.action)">
+      <select class="nap-textbox" [disabled]="item.checkedBy === null" [(ngModel)]="item.action" (change)="writeActionLog(item)">
+        <option *ngFor="let action of actionItems" [attr.checked]="action.checked" [value]="action.name">
+             {{action.name}}
+         </option>
+      </select>
+    </td>
+    <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showLog(item.alertId, item.alertType, item.userName, item.betId)">View</button></td>
+  </ng-template>
+  <div *ngIf="displayedData" [ngSwitch]="displayedData.length > 0">
+    <div class="nap-grid">
+        <div style="width: 1943px;">
+            <div class="header">
+                <table>
+                    <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                    <ng-template [ngTemplateOutlet]="thead"></ng-template>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="body" style="overflow-x: hidden;">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tbody>
+                  <ng-container *ngFor="let item of displayedData; index as i">
+                    <tr id="detail-data-{{getIndex(i+1)}}">
+                      <ng-template [ngTemplateOutlet]="rowItem" [ngTemplateOutletContext]="{ item: item, index: getIndex(i + 1) }">
+                      </ng-template>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div *ngSwitchCase="false" class="body stretch">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="no-data" colspan="17">
+                                There is no data
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngSwitchCase="true" class="footer">
+              <table>
+                <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
+                <tfoot>
+                  <tr>
+                    <td class="paging" colspan="17">
+                      <nap-pagination [config]="paginationInstance" (pageChange)="onPageChange()"></nap-pagination>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+        </div>
+    </div>
+  </div>

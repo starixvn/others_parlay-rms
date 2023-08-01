@@ -1,0 +1,30 @@
+@import '~nap-theme/scss/grid';
+.nap-grid {
+    padding: 0.3rem;
+    .header {
+        background-color: #1f4e78 !important;
+    }
+    .body {
+        max-height: none;
+        td {
+            text-align: center;
+            &.to-open-new-tab {
+                cursor: pointer !important;
+                color: #1155cc;
+            }
+        }
+    } 
+}
+::ng-deep app-similar-ticket {
+    width: 1140px;
+    display: block;
+}
+
+::ng-deep app-potential-winning {
+    width: 1550px;
+    display: block;
+}
+
+.text-black {
+    color: black;
+}

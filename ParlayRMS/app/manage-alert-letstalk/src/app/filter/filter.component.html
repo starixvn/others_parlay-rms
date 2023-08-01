@@ -1,0 +1,109 @@
+<div class="nap-filter">
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Alert type</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="alertTypeItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedAlertTypes = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>From</label>
+          <div class="nap-control">
+            <nap-date-picker [(date)]="fromDate" [minDate]="minStartDate" [maxDate]="maxEndDate" (dateChange)="onFromDateChange()"></nap-date-picker>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">To</label>
+          <div class="nap-control">
+            <nap-date-picker [(date)]="toDate" [minDate]="fromDate" [maxDate]="maxEndDate" (dateChange)="onToDateChange()"></nap-date-picker>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+            <label class="width-50">Member</label>
+            <div class="nap-control">
+              <input class="nap-textbox" [(ngModel)]="member">
+            </div>
+          </div>
+      </div>
+  
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Checked by</label>
+          <div class="nap-control">
+            <input class="form-control" [disabled]="chkNone" [readOnly]="chkNone" [(ngModel)]="checkedBy">
+          </div>
+        </div>
+      </div>
+      <div class="nap-col">
+        <div class="nap-group">
+          <div class="nap-control">
+            <input type="checkbox" [(ngModel)]="chkNone"> None
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Action</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="actionItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedActions = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Tickets status</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="ticketStatusItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedTicketStatuses = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Refresh every</label>
+          <div class="nap-control">
+            <select class="nap-textbox" (change)="changeRefreshnow()" [(ngModel)]="selectedRefresh">
+              <option *ngFor="let refresh of refreshItems" [attr.checked]="refresh.checked" [value]="refresh.id">
+                   {{refresh.name}}
+               </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="nap-col">
+        <label>Seconds</label>
+      </div>
+      <div class="nap-col">
+        <button class="btn btn-light" [disabled]="!isClickedSubmit" (click)="getData()">
+          Refresh now [{{timer}}]
+        </button>
+      </div>
+      <div class="nap-col">
+        <input type="checkbox" [disabled]="!isClickedSubmit" (change)="pauseTimer()" [(ngModel)]="checkedRefresh"> Pause
+      </div>
+      
+      <div class="nap-col col-buttons">
+        <button class="btn btn-primary" (click)="getData()">Submit</button>
+      </div>
+    </div>
+  </div>

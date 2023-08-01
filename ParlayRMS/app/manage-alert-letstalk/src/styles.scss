@@ -1,0 +1,673 @@
+@import '~nap-theme/css/theme.css';
+@import '~nap-theme/scss/fanex-grid.scss';
+@import '~font-awesome/css/font-awesome.min.css';
+
+.navbar {
+  background: #10243c !important;
+  color: white;
+
+  .navbar-brand {
+    .logo {
+      background: url("assets/logo.png") no-repeat left transparent;
+      margin: 0 10px 0 0;
+      padding-top: 10px;
+      padding-right: 20px;
+      height: 30px;
+      width: 111px;
+    }
+    border-right: 1px solid #4a5e75 !important;
+  }
+}
+
+.nap-header {
+  margin-bottom: 2px;
+  padding-top: 0;
+  background: url("assets/header.png") repeat-x center center transparent;
+  height: 31px;
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    width: 70%;
+    color: #242323;
+    margin: 10px 0 0 10px;
+  }
+}
+
+.spinner-loading {
+    background-image: url("assets/spinner.gif");
+}
+
+.nap-grid {
+  .header {
+    background: #3f536b !important;
+  }
+}
+
+.nap-icon-breadcrumb-excel {
+  margin: 5px 5px 0 0;
+}
+
+.form-control+.input-group-addon:not(:first-child) {
+    border-left: 0;
+}
+.input-group-addon {
+    padding: .15rem .3rem;
+    margin-bottom: 0;
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #464a4c;
+    text-align: center;
+    background-color: #eceeef;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .2rem;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.form-control:focus {
+    color: #464a4c;
+    background-color: #fff;
+    border-color: #5cb3fd;
+    outline: 0;
+    box-shadow: 0 0 0 2px hsla(0,0%,80%,.5);
+  }
+
+  .btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+     &:hover {
+      color: #6c757d;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+     }
+     &.disabled, &:disabled {
+      color: #6c757d;
+      background-color: transparent;
+     }
+     &.focus, &:focus {
+      box-shadow: 0 0 0 2px hsla(0,0%,80%,.5);
+     }
+  }
+
+ .style-box {
+	color: #292b2c;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+ }
+
+.btn-outline-secondary:not(:disabled):not(.disabled) {
+    &:active, &.active {
+        @extend .style-box;
+    }
+    &.focus, &:focus {
+        box-shadow: 0 0 0 2px hsla(0,0%,80%,.5);
+    }
+}
+
+.show > .btn-outline-secondary.dropdown-toggle {
+    @extend .style-box;
+    &:focus {
+        box-shadow: 0 0 0 2px hsla(0,0%,80%,.5);
+    }
+}
+
+// bet detail
+
+.modal-bet-detail {
+  div.modal-content {
+      display: contents;
+  }
+}
+.modal-custom-header {
+  width: 640px;
+  height: 10px;
+  position: relative;
+  z-index: 9999;
+  button {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      opacity: 1;
+      span {
+        background: url('assets/Closeicon.png') no-repeat;
+        width: 25px;
+        height: 29px;
+        display: inline;
+        position: absolute;
+      }
+  }
+}
+.boxMain {
+  border-radius: 5px;
+  display: block;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  width: auto;
+  min-width: 642px;
+  min-height: 100px;
+  height: auto;
+  font-family: Arial,Verdana, Sans-Serif, Tahoma;
+  .content {
+      background-color: #eaedef;
+      border: 2px solid #43576D;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      font-size: 12px;
+      .title {
+          clear: both;
+          color: #293e56;
+          display: block;
+          margin: 0 0 20px !important;
+          padding: 5px !important;
+          position: relative;
+          text-align: left;
+          font-size: 20px;
+          font-weight: 600;
+          height: 10px;
+      }
+      .title2 {
+          color: white;
+          height: 24px;
+          line-height: 24px;
+          font-weight: 600;
+          border-radius: 5px;
+          padding: 2px 0px 2px 10px !important;
+          background: url("assets/table_tltle_bg.gif") repeat-x scroll center center #3F536B;
+      }
+      
+      .lineTop {
+          height: 1px;
+          background-color: #dce4e8;
+          position: relative;
+      }
+      
+      .lineBottom {
+          height: 1px;
+          background-color: #fff;
+          position: relative;
+          margin-bottom: 20px;
+      }
+  }
+  .actionbar {
+      clear: both;
+      color: #5A5655;
+      display: block;
+      left: 0;
+      margin: 5px 0 0;
+      min-height: 35px;
+      overflow: auto;
+      padding: 0;
+      position: relative;
+      text-align: left;
+      .actionbar-line {
+          clear: both;
+          display: block;
+          left: 0;
+          min-height: 33px;
+          overflow: auto;
+          padding: 0;
+          position: relative;
+          text-align: left;
+          margin-top: 10px;
+      }
+  
+      .button-action {
+          clear: both;
+          float: right;
+          line-height: 32px;
+          padding-right: 5px;
+      }
+      .line-loading {
+          float: left;
+          position: absolute;
+          z-index: 100000;
+          line-height: 30px;
+          opacity: 0.7;
+          filter: alpha(opacity=70);
+          background: transparent;
+          min-height: 20px;
+          padding-top: 3px;
+          padding-left: 10px;
+          display: none;
+      }
+      
+      .warningmsg {
+          line-height: 30px;
+          min-height: 20px;
+          float: left;
+          position: absolute;
+          padding-left: 30px;
+          color: #974050;
+          font-weight: bold;
+          display: none;
+          background: url('assets/warning_1_20x20.png') no-repeat left transparent;
+          margin-left: 5px;
+      }
+  }
+  .black {
+      color: #000000;
+  }
+  .labelNoneBorder {
+      clear: left;
+      float: left;
+      min-width: 120px;
+      text-align: left;
+      line-height: 34px;
+      margin: 0px 0px 10px 0px;
+      height: 34px;
+      padding-left: 3px;
+      color: #3B5998;
+  }
+  
+  .label {
+      clear: left;
+      float: left;
+      min-width: 116px;
+      text-align: left;
+      line-height: 34px;
+      border-left: 1px solid #D3D3D3;
+      border-top: 1px solid #D3D3D3;
+      border-bottom: 1px solid #D3D3D3;
+      background-color: #eaedef;
+      margin: 0px 0px 20px 0px;
+      height: 34px;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+      padding-left: 3px;
+      color: #3B5998;
+  }   
+  .fieldNoneBorder {
+      clear: right;
+      float: left;
+      text-align: left;
+      line-height: 34px;
+      margin: 0px 0px 10px 0px;
+      select {
+          width: auto;
+          border-radius: 2px;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          min-width: 100px;
+          border: 1px solid #D3D3D3;
+          padding: 5px;
+      }
+  }   
+  .field {
+      clear: right;
+      float: left;
+      text-align: left;
+      border-right: 1px solid #D3D3D3;
+      border-top: 1px solid #D3D3D3;
+      border-bottom: 1px solid #D3D3D3;
+      background-color: #fff;
+      padding-left: 5px;
+      margin: 0px 0px 20px 0px;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      height: auto;
+      .inputtext {
+          border: 1px solid transparent;
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
+          padding-left: 5px;
+          height: 30px;
+          line-height: 30px;
+          min-width: 100px;
+      }
+      select:focus {
+          border: 1px solid #999999;
+      }
+  }
+  
+  .fieldbar {
+      clear: both;
+      color: #5A5655;
+      display: block;
+      left: 0;
+      margin: 3px 0 0;
+      min-height: 30px;
+      overflow: auto;
+      padding: 0;
+      position: relative;
+      text-align: left;
+      table {
+          width: 100%;
+          border: solid 1px #D3D3D3;
+          border-radius: 5px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          height: auto;
+          border-collapse: collapse;
+          tr:hover {
+              background-color: #CED8E2;
+          }
+          tr {
+              span.function {
+                  margin-left: 5px;
+              }
+  
+              span.subfunction {
+                  margin-left: 15px;
+              }
+              height: 25px;
+              th {
+                  vertical-align: middle;
+                  text-align: center;
+                  font-weight: bold;
+                  color: #fff;
+                  background-color: #10243C;
+                  border: solid 1px #D3D3D3;
+              }
+              td {
+                  div.inactive {
+                      background-image: url("assets/checkbox.png");
+                      background-position: 0 19px;
+                      width: 19px;
+                      height: 19px;
+                      margin: auto;
+                      cursor: pointer;
+                  }
+      
+                  div.active {
+                      background-image: url("assets/checkbox.png");
+                      background-position: 0 0;
+                      width: 19px;
+                      height: 19px;
+                      margin: auto;
+                      cursor: pointer;
+                  }
+              }
+          }
+      }
+  }
+  .field_areatext {
+      clear: right;
+      float: left;
+      text-align: left;
+      margin: 0px 0px 20px 0px;
+      height: 120px;
+      width: auto;
+      min-width: 330px;
+      .areatext {
+          border: solid 1px #D3D3D3;
+          min-width: 330px;
+          width: auto;
+          resize: none;
+          height: 120px;
+          padding: 10px 0px 0px 10px;
+      }
+  }
+  .label_areatext {
+      clear: left;
+      float: left;
+      min-width: 120px;
+      text-align: left;
+      line-height: 34px;
+      background-color: #eaedef;
+      margin: 0px 0px 20px 0px;
+      height: 120px;
+      color: #3B5998;
+  }
+}  
+
+.allField2 {
+  float: left;
+  height: auto;
+  padding: 2px;
+  border-right: 2px solid #43576D;
+}
+
+.allField3 {
+  float: left;
+  width: 120px;
+  height: auto;
+  padding: 2px;
+}
+
+table.bet-detail {
+  width: 100%;
+  border-collapse: collapse;
+  th {
+      padding-left: 5px;
+  }
+  td {
+      text-align: center;
+  }
+  .combo-type {
+      border-left: 2px solid #43576D;
+  }
+}
+
+a
+{
+  text-decoration: none;
+}
+.line
+{
+  border-bottom: 1px solid #A0A0A0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+.underdog
+{
+  color: #01122B;
+  font-weight: bold !important;
+}
+.favorite
+{
+  color: #B50000;
+  font-weight: bold !important;
+}
+.odds
+{
+  color: #003399;
+}
+
+.excluding-choices {
+  color: #484848;
+  font-weight: normal;
+}
+
+div.match + div.league
+{
+  color: #666666;
+  line-height: 15px;
+  margin-top: 1px;
+}
+div.match + div.league
+{
+  background: none repeat scroll 0 0 transparent;
+  font-weight: normal;
+  text-transform: none;
+}
+.bettype
+{
+  color: #003399;
+  font-weight: 600;
+}
+.firstGoal
+{
+  background: url("assets/firstGoal.gif") no-repeat scroll center center transparent;
+  display: inline;
+  height: 10px;
+  padding: 0 4px;
+  width: 14px;
+}
+.lastGoal
+{
+  background: url("assets/lastGoal.gif") no-repeat scroll center center transparent;
+  display: inline;
+  height: 10px;
+  padding: 0 4px;
+  width: 14px;
+}
+.fhFirstGoal
+{
+  background: url("assets/1F.gif") no-repeat scroll center center transparent;
+  display: inline;
+  height: 10px;
+  padding: 0 4px;
+  width: 14px;
+}
+.fhLastGoal
+{
+  background: url("assets/1L.gif") no-repeat scroll center center transparent;
+  display: inline;
+  height: 10px;
+  padding: 0 4px;
+  width: 14px;
+}
+.match
+{
+  color: #000000;
+  font-weight: normal;
+  line-height: 15px;
+}
+.oddstype
+{
+  color: #586985;
+}
+.colorHandicap, .handicap
+{
+  color: #606060;
+}
+.handicap.custom
+{
+  font-weight: bold;
+}
+.sport
+{
+  color: #0066CC;
+}
+.iplink
+{
+  color: #1E1EEB;
+  cursor: pointer;
+  font-size: 11px;
+}
+.detail
+{
+  //background: url("assets/q_Icon2_1.png") no-repeat scroll center center transparent;
+  color: #755200;
+  display: inline;
+  font-weight: bold;
+  height: 10px;
+  line-height: 20px;
+  padding: 0 1px 0 65px;
+  width: 14px;
+}
+.detail:hover
+{
+  //background: url("assets/q_Icon_2.png") no-repeat scroll center center transparent;
+  color: #755200;
+  cursor: pointer;
+  display: inline;
+  font-weight: bold;
+  height: 10px;
+  padding: 0 1px 0 65px;
+  width: 14px;
+}
+.combinationLink
+{
+  line-height: 20px;
+}
+.scoremap
+{
+  float: left;
+}
+.scoremapIcon
+{
+  //background: url("assets/ScoreMapWL.png") no-repeat scroll 0 0 transparent;
+  height: 18px;
+  margin: 3px;
+  width: 18px;
+}
+/* Trans */
+.iplink, .betsliplink
+{
+  cursor: pointer;
+  color: #1E1EEB;
+  font-size: 11px;
+}
+.time
+{
+  color: #434343;
+  font-size: 7pt;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Status */
+
+.status
+{
+  color: #606060;
+  font-size: 11px;
+  font-weight: bold;
+}
+.result
+{
+  cursor: pointer;
+  color: rgb(27, 164, 237);
+}
+.ip
+{
+  color: #434343;
+  font-size: 7pt;
+  font-weight: normal;
+  text-align: center;
+}
+.blue
+{
+  color: #2673CE;
+}
+
+.markDiv
+{
+  background: url("assets/number-sign-icon.png") no-repeat scroll center center transparent;
+  clear: both;
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  margin: 0 10px 0 auto;
+  width: 16px;
+}
+.ticketDetail
+{
+  float: left;
+  max-width: 600px;
+  width: 352px;
+}
+.ticketStatus
+{
+  float: left;
+}
+.ticketStatus div.divstatus
+{
+  margin: 20px 10px 0px 10px;
+  text-transform: uppercase;
+}
+div.void
+{
+  text-decoration: line-through;
+}
+
+.light-blue {
+  color: #0017CD;
+}
+.bettype-description {
+  color: #003399;
+  font-weight: normal;
+}
+.blackListMargin {
+  margin: 15px 0 0 2px;
+}
