@@ -28,7 +28,6 @@
     "gulp": "^4.0.2",
     "nap-components": "^12.2.14",
     "nap-theme": "^12.2.11",
-    "ngx-countdown": "^13.0.0",
     "ngx-treeview": "^10.0.2",
     "node-sass": "^7.0.0",
     "numeral": "^2.0.6",

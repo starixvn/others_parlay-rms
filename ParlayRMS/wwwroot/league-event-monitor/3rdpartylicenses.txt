@@ -64,9 +64,6 @@ terms above.
 nap-components
 ISC
 
-ngx-countdown
-MIT
-
 ngx-treeview
 MIT
 

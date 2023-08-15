@@ -4,7 +4,6 @@ import { BettypeModel, FilterModel, ItemModel, LeagueModel } from './filter.mode
 import { FilterService } from './filter.service';
 import { SelectItem } from 'nap-components/dropdown-select';
 import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
-import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { ToastService } from 'nap-components/toast';
 import * as _ from 'lodash';
 
@@ -16,7 +15,6 @@ import * as _ from 'lodash';
 export class FilterComponent implements OnInit {
   @Input() netcoreApiUrl: string = '';
   @Output() generated = new EventEmitter<FilterModel>();
-  @ViewChild('countdown', { static: false }) countdown!: CountdownComponent;
 
   public comboItems: ItemModel[] = [];
   public selectedComboes:string[] = [];
@@ -46,11 +44,10 @@ export class FilterComponent implements OnInit {
     maxHeight: 500
   });
 
-  public countdownConfig: CountdownConfig = {
-    leftTime: 60,
-    formatDate: ({ date }) => `${date / 1000}`,
-    demand: true,
-  };
+  timer = '60'
+  seconds = 60;
+  selectedSeconds = 60;
+  intervalId = -1;
 
   public reportTypeOptions: SelectItem[] = [];
   public reportType = ReportTypeConsts.LEAGUE;
@@ -75,17 +72,18 @@ export class FilterComponent implements OnInit {
   }
 
   public changeRefreshnow(): void {
-    this.createModelCountdown(Number(this.selectedRefresh), false);
-    this.countdown.restart();
+    this.seconds = Number(this.selectedRefresh);
+    this.selectedSeconds = Number(this.selectedRefresh);
     this.checkedRefresh = false;
-  }
-
-  public pauseCountdown(): void {
-    this.checkedRefresh ? this.countdown.pause() : this.countdown.resume();
+    this.clearTimer();
+    if (this.isClickedSubmit) {
+      this.startTimer();
+    } else {
+      this.timer = this.selectedRefresh;
+    }
   }
 
   public getData(): void {
-    this.createModelCountdown(60, false);
     this.isClickedSubmit = true;
     this.checkedRefresh = false;
     const model = this.createModel();
@@ -93,6 +91,7 @@ export class FilterComponent implements OnInit {
       return;
     }
     this.generated.emit(model);
+    this.startCountdown();
   }
 
   private createModel(): FilterModel {
@@ -108,13 +107,6 @@ export class FilterComponent implements OnInit {
       betTypes: this.selectedBettypes.join(','),
       userName: this.smaMember
     };
-  }
-
-  public handleCountdown(e: CountdownEvent) {
-    if (e.left === 0) {
-      this.getData();
-      this.countdown.restart()
-    }
   }
 
   private get isValid(): boolean {
@@ -141,18 +133,42 @@ export class FilterComponent implements OnInit {
     return true;
   }
 
-  private createModelCountdown(time: number, demand: boolean): void {
-    this.countdownConfig = {
-      leftTime: time,
-      formatDate: ({ date }) => `${date / 1000}`,
-      demand: demand
-    };
-  }
-
   public getLeagueAndBettypeBySport(): void {
     this.filterService.getLeagues(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
       (leagues: LeagueModel[]) => this.leagueItems = leagues);
     this.filterService.getBettypes(this.netcoreApiUrl, Number(this.selectedSport)).subscribe(
       (bettypes: BettypeModel[]) => this.bettypeItems = bettypes);
+  }
+
+  private startTimer(): void {
+    this.timer = this.selectedSeconds.toString();
+    this.intervalId = window.setInterval(() => {
+      this.selectedSeconds--;
+      if (this.selectedSeconds === 0) {
+        this.getData();
+        this.selectedSeconds = Number(this.selectedRefresh);
+      }
+      this.timer = this.selectedSeconds.toString();
+    }, 1000)
+  }
+
+  private clearTimer(): void {
+    window.clearInterval(this.intervalId);
+  }
+
+  startCountdown(): void {
+    this.clearTimer();
+    this.startTimer();
+    this.isClickedSubmit = true;
+    this.checkedRefresh = false;
+  }
+
+  pauseTimer(): void {
+    if (this.checkedRefresh) {
+      this.selectedSeconds = Number(this.timer);
+      this.clearTimer();
+    } else {
+      this.startTimer();
+    }
   }
 }

@@ -22,3 +22,8 @@ thead tr th{
     color: #00b0f0;
     cursor: pointer;
 }
+
+::ng-deep .sort-icon {
+    position: relative;
+    top: 3px;
+}
