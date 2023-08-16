@@ -657,6 +657,7 @@ function FillData(table, data) {
 function CreateRow(order, item) {
     var liveClass = item.IsLive ? 'live' : '';
     var blackListClass = item.IsBlacklistLeague ? 'blackListClass' : '';
+    var boostBonusClass = item.IsBoostBonus ? 'boostBonus' : '';
     var betSuffix = '';
     if (item.BetType === 38) {
         betSuffix = ' (S)';
@@ -677,9 +678,9 @@ function CreateRow(order, item) {
     r[++j] = '<td>' + item.TransDateString + '</td>';
 
     if (item.IsBetRadar) {
-        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a href="#" class="' + boostBonusClass + '"' + ' title="boost bonus"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     } else {
-        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a href="#" class="' + boostBonusClass + '"' + ' title="boost bonus"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     }
 
     r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
