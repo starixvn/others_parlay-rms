@@ -13,17 +13,38 @@
     </colgroup>
   </ng-template>
   <ng-template #thead>
-    <thead>
+    <thead class="sort">
         <tr>
             <th scope="col">No</th>
             <th scope="col">BETID</th>
-            <th scope="col">Site</th>
-            <th scope="col">User Name</th>
-            <th scope="col">Customer Class</th>
-            <th scope="col">Stake</th>
-            <th scope="col">Winning Amount</th>
-            <th scope="col">House Amount</th>
-            <th scope="col">Status</th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="siteGroup" data-type="string">
+              Site
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="userName" data-type="string">
+              User Name
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="customerClass" data-type="string">
+              Customer Class
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="stake" data-type="number">
+              Stake
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="winningAmt" data-type="number">
+              Winning Amount
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="houseAmt" data-type="number">
+              House Amount
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="status" data-type="string">
+              Status
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Bet Details</th>
         </tr>
     </thead>

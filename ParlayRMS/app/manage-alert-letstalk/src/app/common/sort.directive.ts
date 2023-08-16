@@ -5,7 +5,7 @@ import { Sort } from './util';
   selector: '[appSort]'
 })
 export class SortDirective {
-  @Input() appSort = Array<any>();
+  @Input() appSort = new Array<any>();
   @Output() clickedSort = new EventEmitter();
   public sortedColClass = "sorted-col";
   public sortIconUpHtml = '<em class="fa fa-sort-up"></em>';

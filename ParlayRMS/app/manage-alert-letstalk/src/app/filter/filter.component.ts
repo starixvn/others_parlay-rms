@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FilterModel, ItemModel } from './filter.model';
+import { FilterModel, ItemModel, SportModel } from './filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
 import { DateHelper, DateFormat } from 'nap-components/date';
 import { CONFIG } from '../common/config';
@@ -20,11 +20,16 @@ export class FilterComponent implements OnInit {
   selectedAlertTypes:string[] = [];
   member: string = '';
   checkedBy: string = '';
-  chkNone: boolean = true;
+  chkNone: boolean = false;
   actionItems: ItemModel[] = [];
   selectedActions: string[] = [];
   ticketStatusItems: ItemModel[] = [];
   selectedTicketStatuses: string[] = [];
+  comboItems: ItemModel[] = [];
+  selectedCombos: string[] = [];
+  odds: string = '';
+  sportItems: SportModel[] = [];
+  selectedSport: string[] = [];
   itemConfig = TreeviewConfig.create({
     hasAllCheckBox: true,
     hasCollapseExpand: false,
@@ -54,6 +59,8 @@ export class FilterComponent implements OnInit {
     this.actionItems = this.filterService.getActions();
     this.ticketStatusItems = this.filterService.getTicketStatuses();
     this.refreshItems = this.filterService.getRefreshs();
+    this.comboItems = this.filterService.getCombos();
+    this.filterService.getSports(this.apiUrl).subscribe(data => this.sportItems = data);
   }
 
   getData(): void {

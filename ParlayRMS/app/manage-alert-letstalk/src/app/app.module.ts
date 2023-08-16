@@ -24,6 +24,7 @@ import { BetDetailsComponent } from './grid/bet-details/bet-details.component';
 import { PaginationConfig, PaginationModule } from 'nap-components/pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortDirective } from './common/sort.directive';
+import { SportTreeviewPipe } from './filter/sport-treeview.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SortDirective } from './common/sort.directive';
     PotentialWinningComponent,
     LogComponent,
     BetDetailsComponent,
-    SortDirective
+    SortDirective,
+    SportTreeviewPipe
   ],
   imports: [
     BrowserModule,

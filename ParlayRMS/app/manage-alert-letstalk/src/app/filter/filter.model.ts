@@ -15,4 +15,10 @@ export interface FilterModel {
     ticketStatus: string;
     pageSize: number;
     pageIndex: number;
-  }
+}
+
+export interface SportModel {
+    sportId: number;
+    sportName: string;
+    sportGroup: number;
+}

@@ -10,7 +10,6 @@
           </div>
         </div>
       </div>
-  
       <div class="nap-col">
         <div class="nap-group">
           <label>From</label>
@@ -19,12 +18,21 @@
           </div>
         </div>
       </div>
-
       <div class="nap-col">
         <div class="nap-group">
           <label class="width-50">To</label>
           <div class="nap-control">
             <nap-date-picker [(date)]="toDate" [minDate]="fromDate" [maxDate]="maxEndDate" (dateChange)="onToDateChange()"></nap-date-picker>
+          </div>
+        </div>
+      </div>
+      <div class="nap-col">
+        <div class="nap-group">
+          <label>Sport type</label>
+          <div class="nap-control">
+            <ngx-dropdown-treeview [items]="sportItems | sportTreeview"
+              [config]="itemConfig" (selectedChange)="selectedSport = $event">
+            </ngx-dropdown-treeview>
           </div>
         </div>
       </div>
@@ -43,14 +51,28 @@
         <div class="nap-group">
           <label class="width-50">Checked by</label>
           <div class="nap-control">
-            <input class="form-control" [disabled]="chkNone" [readOnly]="chkNone" [(ngModel)]="checkedBy">
+            <input class="form-control float-left width-60percent" [disabled]="chkNone" [readOnly]="chkNone" [(ngModel)]="checkedBy">
+            <div class="float-right">
+              <input type="checkbox" [(ngModel)]="chkNone"> None
+            </div>
           </div>
         </div>
       </div>
       <div class="nap-col">
         <div class="nap-group">
+          <label>Combo</label>
           <div class="nap-control">
-            <input type="checkbox" [(ngModel)]="chkNone"> None
+            <ngx-dropdown-treeview [items]="comboItems | itemTreeview"
+              [config]="itemConfig" (selectedChange)="selectedCombos = $event">
+            </ngx-dropdown-treeview>
+          </div>
+        </div>
+      </div>
+      <div class="nap-col">
+        <div class="nap-group">
+          <label class="width-50">Odds=&lt;</label>
+          <div class="nap-control">
+            <input class="form-control" type="number" [(ngModel)]="odds">
           </div>
         </div>
       </div>

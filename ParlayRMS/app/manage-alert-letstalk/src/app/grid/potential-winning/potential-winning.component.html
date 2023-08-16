@@ -17,21 +17,54 @@
     </colgroup>
   </ng-template>
   <ng-template #thead>
-    <thead>
+    <thead class="sort">
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Trans.Time</th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="transDateString" data-type="datetime">
+              Trans.Time
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">BetId</th>
-            <th scope="col">Odds</th>
-            <th scope="col">Stake</th>
-            <th scope="col">Winning Amount</th>
-            <th scope="col">House Amount</th>
-            <th scope="col">IP</th>
-            <th scope="col">House PT</th>
-            <th scope="col">Total Combo Bets</th>
-            <th scope="col">Total Selections</th>
-            <th scope="col">Sport Type</th>
-            <th scope="col">Status</th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="odds" data-type="number">
+              Odds
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="stake" data-type="number">
+              Stake
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="winningAmt" data-type="number">
+              Winning Amount
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="houseAmt" data-type="number">
+              House Amount
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="ip" data-type="string">
+              IP
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="housePt" data-type="number">
+              House PT
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="totalBet" data-type="number">
+              Total Combo Bets
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="totalSelection" data-type="number">
+              Total Selections
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="sportType" data-type="string">
+              Sport Type
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="status" data-type="string">
+              Status
+              <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Bet Details</th>
         </tr>
     </thead>
@@ -39,12 +72,12 @@
   <ng-template #rowItem let-item="item" let-index="index">
     <td>{{ index }}</td>
     <td>{{ item.transDateString }}</td>
-    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</td>
+    <td><span (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</span></td>
     <td class="text-right" [napDecimalFormat]="item.odds"></td>
     <td class="text-right" [napDecimalFormat]="item.stake"></td>
     <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
     <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
-    <td class="to-open-new-tab" (click)="openNewTabOfIpInfo(item.ip, item.transDateString)"> {{ item.ip }}</td>
+    <td><span (click)="openNewTabOfIpInfo(item.ip, item.transDateString)">{{ item.ip }}</span></td>
     <td [napDecimalFormat]="item.housePt"></td>
     <td>{{ item.totalBet }}</td>
     <td>{{ item.totalSelection }}</td>
