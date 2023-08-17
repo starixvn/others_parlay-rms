@@ -50,4 +50,6 @@ export class PotentialWinningComponent implements DetailDataComponent {
   openNewTabOfIpInfo(ip: string, date: string) {
     window.open(`${this.webInfoModel.webUrl}ViewIPInfo?ip=${ip}&date=${date}`, '_blank');
   }
+
+  exportExcel(): void{}
 }

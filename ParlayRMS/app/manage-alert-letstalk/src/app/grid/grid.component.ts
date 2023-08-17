@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnChanges, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
-import { AlertTypeConstants } from '../common/constants';
+import { AlertTypeConstants, PotentialWinningLevelConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
 import { GridService } from './grid.service';
 import { PotentialWinningComponent } from './potential-winning/potential-winning.component';
@@ -84,6 +84,21 @@ export class GridComponent implements OnChanges {
       return AlertTypeConstants.SMALL_LEAGUE_ODDS_COLOR;
     }
     return AlertTypeConstants.POTENTIAL_WINNING_COLOR;
+  }
+
+  getColorViaSportType(sportType: string, alertType: string): string {
+    if (alertType === AlertTypeConstants.POTENTIAL_WINNING) {
+      if (sportType.toLowerCase().includes('red')) {
+        return PotentialWinningLevelConstants.RED;
+      }
+      if (sportType.toLowerCase().includes('orange')) {
+        return PotentialWinningLevelConstants.ORANGE;
+      }
+      if (sportType.toLowerCase().includes('yellow')) {
+        return PotentialWinningLevelConstants.YELLOW;
+      }
+    }
+    return PotentialWinningLevelConstants.WHITE;
   }
 
   openNewTabOfSimilarBet(betId: number) {
@@ -243,5 +258,9 @@ export class GridComponent implements OnChanges {
 
   getIndex(index: number): number {
     return index + (this.paginationInstance.currentPage - 1) * this.paginationInstance.itemsPerPage;
+  }
+
+  exportExcel(): void {
+    this.gridService.exportExcel(this.webInfoModel.apiUrl, this.filterModel);
   }
 }

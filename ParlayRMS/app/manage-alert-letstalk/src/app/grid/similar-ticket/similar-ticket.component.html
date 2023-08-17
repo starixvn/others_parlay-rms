@@ -64,6 +64,9 @@
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
         <div style="width: 1120px;">
+          <div *ngIf="data.length > 0" class="toolbar">
+            <i class="nap-icon-breadcrumb-excel float-right mb-1 btn" aria-hidden="true" title="Export excel" (click)="exportExcel()"></i>
+          </div>
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>

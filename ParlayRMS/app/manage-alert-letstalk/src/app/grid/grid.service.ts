@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'nap-components/http';
-import { Observable, of } from 'rxjs';
+import { Helper } from 'nap-components/helper';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SimilarTicketModel } from './similar-ticket/similar-ticket.model';
 import { PotentialWinningModel } from './potential-winning/potential-winning.model';
@@ -85,5 +86,13 @@ export class GridService {
     this.spinnerService.show();
     return this.httpClient.post(url, model, { responseType: 'text' })
             .pipe(tap(() => this.spinnerService.hide()));
+  }
+
+  public exportExcel(apiUrl: string, filterModel: FilterModel): void {
+    const api = `${apiUrl}${this.api}export-excel-alerts`;
+    this.httpService.download(api, filterModel).subscribe(response => {
+        const fileName = `Manage-Alerts.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
   }
 }

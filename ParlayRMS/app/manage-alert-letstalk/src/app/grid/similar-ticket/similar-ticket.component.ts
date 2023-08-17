@@ -40,4 +40,6 @@ export class SimilarTicketComponent implements DetailDataComponent {
       componentInstance.body = this.body;
     });
   }
+  
+  exportExcel(): void {}
 }
