@@ -95,4 +95,20 @@ export class GridService {
         Helper.downloadFile(response, fileName);
     });
   }
+
+  public exportExcelForSimilarBet(apiUrl: string, id: string): void {
+    const api = `${apiUrl}${this.api}export-excel-similar-bet`;
+    this.httpService.download(api, { alertId : id }).subscribe(response => {
+        const fileName = `Similar-Bet.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
+  }
+
+  public exportExcelForPotentialWinning(apiUrl: string, id: string): void {
+    const api = `${apiUrl}${this.api}export-excel-potential-winning`;
+    this.httpService.download(api, { alertId : id }).subscribe(response => {
+        const fileName = `Potential-Winning.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
+  }
 }

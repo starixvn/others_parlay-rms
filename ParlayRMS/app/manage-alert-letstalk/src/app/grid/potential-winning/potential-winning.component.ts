@@ -15,6 +15,7 @@ import { WebInfoModel } from 'src/app/app.model';
 export class PotentialWinningComponent implements DetailDataComponent {
   @Input() data: PotentialWinningModel[] = [];
   @Input() webInfoModel!: WebInfoModel;
+  @Input() alertId: string = '0';
 
   body!: SafeHtml;
 
@@ -51,5 +52,7 @@ export class PotentialWinningComponent implements DetailDataComponent {
     window.open(`${this.webInfoModel.webUrl}ViewIPInfo?ip=${ip}&date=${date}`, '_blank');
   }
 
-  exportExcel(): void{}
+  exportExcel(): void{
+    this.gridService.exportExcelForPotentialWinning(this.webInfoModel.apiUrl, this.alertId);
+  }
 }
