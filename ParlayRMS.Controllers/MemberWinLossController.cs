@@ -302,5 +302,32 @@ namespace ParlayRMS.Controllers
 
             return writer.Render("AgentWinLoss");
         }
-    }
+
+        [HttpPost]
+        public ActionResult DataDetails(string month)
+        {
+	        var records = new List<RMS_Rpt_Parlay_MemberWinLoss_Detail>
+	        {
+		        new RMS_Rpt_Parlay_MemberWinLoss_Detail
+		        {
+			        Stake = 1,
+			        BetType = 12,
+			        Company_Winlost = 1,
+			        Company_Winlost_BaseRM = 1,
+			        IsGOF = false,
+			        IsSingleMatchParlay = false,
+			        ParlayType = 1,
+			        RefNo = 123456789,
+			        Selection = 2,
+			        SportType = 1,
+			        Stake_BaseRM = 1,
+			        TotalCombo = 1,
+			        TransId = 123455,
+			        Winlost = 1,
+			        Winlost_BaseRM = 1
+		        }
+	        };
+	        return PartialView(records);
+        }
+	}
 }

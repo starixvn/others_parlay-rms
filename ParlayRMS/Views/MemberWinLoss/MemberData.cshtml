@@ -12,19 +12,20 @@
     <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
     </div>
 </div>
-<div style="width: 1471px">
+<div style="width: 1571px">
     <table class="main">
         <colgroup>
-            <col width='160px' />
-            <col width='140px' />
-            <col width='120px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='190px' />
+            <col width="160px" />
+            <col width="140px" />
+            <col width="120px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="150px" />
+            <col width="150px" />
+            <col width="190px" />
+            <col width="100px" />
         </colgroup>
         <thead id="header">
             <tr>
@@ -40,9 +41,12 @@
                 <th colspan="2">
                     @ViewLang.WinLoss
                 </th>
-                <th colspan="3">
-                    @ViewLang.OurPT
-                </th>
+	            <th colspan="3">
+		            @ViewLang.OurPT
+	            </th>
+	            <th rowspan="2" class="header2rows">
+		            @ViewLang.TotalBets
+	            </th>
             </tr>
             <tr>
                 <th class="sortable" data-col-index="3">
@@ -76,24 +80,25 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 600px; width: 1491px">
+<div class="scrollGridContent" style="max-height: 600px; width: 1591px">
     <table class="main" id="result">
         <colgroup>
-            <col width='160px' />
-            <col width='140px' />
-            <col width='120px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='190px' />
+            <col width="160px" />
+            <col width="140px" />
+            <col width="120px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="150px" />
+            <col width="150px" />
+            <col width="190px" />
+            <col width="100px" />
         </colgroup>
         <tbody>
             @foreach (var record in Model.Records)
             {
-                <tr>
+                <tr id="tr_@record.Month">
                     <td class="center">
                         @record.Month
                     </td>
@@ -122,24 +127,28 @@
                         @Formatter.FormatNumber2(record.OurPT_Lose)
                     </td>
                     @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                    <td class="center">
+	                    <button id="btnViewDetails" data-month="@record.Month" title="Click to view detail" class="button-disable" style="width:40px;">11</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div style="width: 1471px" class="mainfooter">
+<div style="width: 1571px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='160px' />
-            <col width='140px' />
-            <col width='120px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='150px' />
-            <col width='150px' />
-            <col width='190px' />
+            <col width="160px" />
+            <col width="140px" />
+            <col width="120px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="140px" />
+            <col width="150px" />
+            <col width="150px" />
+            <col width="190px" />
+            <col width="100px" />
         </colgroup>
         <tfoot>
             @if (Model.Records.Any())
@@ -180,7 +189,7 @@
             else
             {
                 <tr>
-                    <td colspan="10" style="text-align: center; width: 1471px">
+                    <td colspan="11" style="text-align: center; width: 1571px">
                         @ViewLang.NoInformation
                     </td>
                 </tr>
@@ -202,6 +211,9 @@
     $(document).ready(function () {
         $("#exportMemberWinLoss").on("click", function () {
             MemberWinLoss.ExportExcel(data);
+        });
+        $("#btnViewDetails").on("click", function () {
+            MemberWinLoss.ViewDetails($(this).data("month"));
         });
     });
 </script>

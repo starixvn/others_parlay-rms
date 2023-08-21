@@ -1,0 +1,121 @@
+﻿
+@using ParlayRMS.DTO.MemberWinLoss
+@{
+    int id = 0;
+}
+@model IEnumerable<RMS_Rpt_Parlay_MemberWinLoss_Detail>
+    <div class="details">
+        <table class="sub" style="width: 100%">
+            <colgroup>
+                <col style="width: 30px" />
+                <col style="width: 221px" />
+                <col style="width: 90px" />
+                <col style="width: 120px" />
+                <col style="width: 150px" />
+                <col style="width: 90px" />
+                <col style="width: 120px" />
+                <col style="width: 150px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 150px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.CustomerWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.CompanyWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.CustomerWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.CompanyWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.TotalComboBets
+                    </th>
+                    <th>
+                        @ViewLang.TotalSelections
+                    </th>
+                    <th>
+                        Sport Type
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @(++id)
+                        </td>
+                        <td class="numeric">
+
+                            <a href="#@item.RefNo" onclick="ViewBetDetail('@item.RefNo','@item.TransId','@ViewBag.Username', @ViewBag.CustId, @item.BetType);">@item.TransId</a>
+                        </td>
+                        <td class="numeric columneven">
+                            @item.Stake.ToString("#,##0")
+                        </td>
+                        <td class="numeric columneven">
+                            @item.Winlost.ToString("#,##0.00")
+                        </td>
+                        <td class="numeric columneven">
+                            @item.Company_Winlost.ToString("#,##0.00")
+                        </td>
+                        <td class="numeric columnodd">
+                            @item.Stake_BaseRM.ToString("#,##0.00")
+                        </td>
+                        <td class="numeric columnodd">
+                            @item.Winlost_BaseRM.ToString("#,##0.00")
+                        </td>
+                        <td class="numeric columnodd">
+                            @item.Company_Winlost_BaseRM.ToString("#,##0.00")
+                        </td>
+                        <td>
+                            @{
+                                var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
+                                var parlayText = string.Empty;
+                                if (item.IsGOF)
+                                {
+                                    parlayText = "(G)";
+                                }
+
+                                if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
+                                {
+                                    parlayText = "(S)";
+                                }
+
+                                if (item.ParlayType == (int)ParlayType.PenaltyShootoutCombo)
+                                {
+                                    parlayText = "(P)";
+                                }
+
+                            }
+
+                            @Formatter.FormatNumber3(@item.TotalCombo) @betText @parlayText
+                        </td>
+                        <td>
+                            @item.Selection.ToString("#,##0")
+                        </td>
+                        <td>
+                            @CacheRef.GetSportNameDropDown(item.SportType)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
