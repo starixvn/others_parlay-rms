@@ -68,7 +68,7 @@
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
-        <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.awayName, matchId, 1)"
+        <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.event, matchId, 1)"
             class="font-weight-bold text-center link" [napDecimalFormat]="item.homeTotalStake"></td>
         <td *ngIf="!isNormalRow(item) && !item.isOther" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
         <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" (click)="exportExcel(item, matchId, 1, item.market)"

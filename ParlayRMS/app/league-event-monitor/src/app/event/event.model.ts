@@ -14,6 +14,7 @@ export interface EventModel {
     bettype: number;
     awayBettype: number;
     leagueName: string;
+    event: string;
 }
 
 export interface EventGroupModel {
