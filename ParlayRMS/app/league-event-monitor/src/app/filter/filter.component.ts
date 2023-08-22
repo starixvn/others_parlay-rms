@@ -47,7 +47,7 @@ export class FilterComponent implements OnInit {
   timer = '60'
   seconds = 60;
   selectedSeconds = 60;
-  intervalId = -1;
+  interval!: any;
 
   public reportTypeOptions: SelectItem[] = [];
   public reportType = ReportTypeConsts.LEAGUE;
@@ -92,6 +92,11 @@ export class FilterComponent implements OnInit {
     }
     this.generated.emit(model);
     this.startCountdown();
+  }
+
+  private emitData(): void {
+    const model = this.createModel();
+    this.generated.emit(model);
   }
 
   private createModel(): FilterModel {
@@ -142,25 +147,23 @@ export class FilterComponent implements OnInit {
 
   private startTimer(): void {
     this.timer = this.selectedSeconds.toString();
-    this.intervalId = window.setInterval(() => {
+    this.interval = setInterval(() => {
       this.selectedSeconds--;
       if (this.selectedSeconds === 0) {
-        this.getData();
+        this.emitData();
         this.selectedSeconds = Number(this.selectedRefresh);
       }
       this.timer = this.selectedSeconds.toString();
-    }, 1000)
+    }, 1000);
   }
 
   private clearTimer(): void {
-    window.clearInterval(this.intervalId);
+    clearInterval(this.interval)
   }
 
   startCountdown(): void {
     this.clearTimer();
     this.startTimer();
-    this.isClickedSubmit = true;
-    this.checkedRefresh = false;
   }
 
   pauseTimer(): void {
