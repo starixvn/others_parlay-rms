@@ -6,6 +6,7 @@ import { SelectItem } from 'nap-components/dropdown-select';
 import { ReportTypeConsts, SportTypeConsts } from '../common/constants';
 import { ToastService } from 'nap-components/toast';
 import * as _ from 'lodash';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-filter',
@@ -47,7 +48,7 @@ export class FilterComponent implements OnInit {
   timer = '60'
   seconds = 60;
   selectedSeconds = 60;
-  interval!: any;
+  countDownSubcription!: Subscription;
 
   public reportTypeOptions: SelectItem[] = [];
   public reportType = ReportTypeConsts.LEAGUE;
@@ -84,18 +85,17 @@ export class FilterComponent implements OnInit {
   }
 
   public getData(): void {
+    this.emitData();
+    this.startCountdown();
+  }
+
+  private emitData(): void {
     this.isClickedSubmit = true;
     this.checkedRefresh = false;
     const model = this.createModel();
     if (!this.isValid) {
       return;
     }
-    this.generated.emit(model);
-    this.startCountdown();
-  }
-
-  private emitData(): void {
-    const model = this.createModel();
     this.generated.emit(model);
   }
 
@@ -147,18 +147,20 @@ export class FilterComponent implements OnInit {
 
   private startTimer(): void {
     this.timer = this.selectedSeconds.toString();
-    this.interval = setInterval(() => {
+    this.countDownSubcription = interval(1000).subscribe(() => {
       this.selectedSeconds--;
       if (this.selectedSeconds === 0) {
         this.emitData();
         this.selectedSeconds = Number(this.selectedRefresh);
       }
       this.timer = this.selectedSeconds.toString();
-    }, 1000);
+    })
   }
 
   private clearTimer(): void {
-    clearInterval(this.interval)
+    if (this.countDownSubcription !== undefined) {
+      this.countDownSubcription.unsubscribe();
+    }
   }
 
   startCountdown(): void {
