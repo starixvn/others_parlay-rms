@@ -131,11 +131,11 @@
       </div>
       <div class="nap-col">
         <button class="btn btn-light" [disabled]="!isClickedSubmit" (click)="getData()">
-          Refresh now [<countdown #countdown [config]="countdownConfig" (event)="handleCountdown($event)"></countdown>]
+          Refresh now [{{timer}}]
         </button>
       </div>
       <div class="nap-col">
-        <input type="checkbox" [disabled]="!isClickedSubmit" (change)="pauseCountdown()" [(ngModel)]="checkedRefresh"> Pause
+        <input type="checkbox" [disabled]="!isClickedSubmit" (change)="pauseTimer()" [(ngModel)]="checkedRefresh"> Pause
       </div>
       
       <div class="nap-col col-buttons">

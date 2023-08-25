@@ -13,12 +13,16 @@ export interface EventModel {
     awayMarket: string;
     bettype: number;
     awayBettype: number;
+    leagueName: string;
+    event: string;
 }
 
 export interface EventGroupModel {
     matchId: number;
-    eventList: EventModel[],
+    eventList: EventModel[];
     fixedBettypes: number;
+    rowsTotal: number;
+    totalStake: number;
 }
 
 export interface MatchBettypeModel {

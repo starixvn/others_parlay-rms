@@ -5,6 +5,8 @@
     <colgroup>
         <col style="width: 200px" />
         <col style="width: 100px" />
+        <col style="width: 200px" />
+        <col style="width: 100px" />
         <col style="width: 100px" />
         <col style="width: 100px" />
         <col style="width: 100px" />
@@ -19,6 +21,11 @@
   <ng-template #thead>
     <thead>
         <tr>
+            <th scope="col">League</th>
+            <th scope="col" [appSort]="data" data-type="desc" data-prop="totalStake">
+                Total Stake
+                <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
+            </th>
             <th scope="col">Home (O)</th>
             <th scope="col">Market</th>
             <th scope="col">Average Odds</th>
@@ -32,14 +39,24 @@
         </tr>
     </thead>
   </ng-template>
-  <ng-template #rowItem let-item="item" let-index="index" let-numberRow="rows" let-matchId="matchId">
-    <td *ngIf="isNormalRow(item) && index == 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+  <ng-template #rowItem
+    let-item="item"
+    let-index="index"
+    let-rowsTotal="rowsTotal"
+    let-fixedBettypes="fixedBettypes"
+    let-totalStake="totalStake"
+    let-matchId="matchId">
+    <td *ngIf="index == 0" [attr.rowspan]="rowsTotal" class="font-weight-bold text-center">
+        {{ item.leagueName }}
+    </td>
+    <td *ngIf="index == 0" [attr.rowspan]="rowsTotal" class="font-weight-bold text-center" [napDecimalFormat]="totalStake"></td>
+    <td *ngIf="isNormalRow(item) && index == 0" [attr.rowspan]="fixedBettypes" class="font-weight-bold text-center">
         {{ item.homeName }}
     </td>
     <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.homeName }}</td>
     <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center">{{ item.homeName }}</td>
     <ng-container *ngIf="(item.homeTotalTicket === 0 && item.awayTotalTicket > 0)
-        || (index === 0 && numberRow === 1)
+        || (index === 0 && fixedBettypes === 1)
         || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
@@ -51,7 +68,7 @@
         <td *ngIf="isNormalRow(item) && index > 0" [napDecimalFormat]="item.homeAvgOdds" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
-        <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.awayName, matchId, 1)"
+        <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.event, matchId, 1)"
             class="font-weight-bold text-center link" [napDecimalFormat]="item.homeTotalStake"></td>
         <td *ngIf="!isNormalRow(item) && !item.isOther" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
         <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" (click)="exportExcel(item, matchId, 1, item.market)"
@@ -65,13 +82,13 @@
             class="font-weight-bold text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0" [napIntegerFormat]="item.homeTotalTicket" class="font-weight-bold text-center"></td>
     </ng-container>
-    <td *ngIf="isNormalRow(item) && index === 0" [attr.rowspan]="numberRow" class="font-weight-bold text-center">
+    <td *ngIf="isNormalRow(item) && index === 0" [attr.rowspan]="fixedBettypes" class="font-weight-bold text-center">
         {{ item.awayName }}
     </td>
     <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" class="font-weight-bold text-center">{{ item.awayName }}</td>
     <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center"></td>
     <ng-container *ngIf="(item.awayTotalTicket === 0 && item.homeTotalTicket > 0)
-        || (index === 0 && numberRow === 1)
+        || (index === 0 && fixedBettypes === 1)
         || (!isNormalRow(item) && item.homeTotalStake === 0 && item.homeTotalTicket === 0)">
         <td></td>
         <td></td>
@@ -94,7 +111,7 @@
   </ng-template>
   <div *ngIf="data" [ngSwitch]="data.length > 0">
     <div class="nap-grid">
-        <div style="width: 1220px;">
+        <div style="width: 1520px;">
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>
@@ -108,7 +125,14 @@
                   <ng-container *ngFor="let item of data; let j = index;">
                       <tr [ngClass]="{'even-color': j % 2 > 0, 'odd-color': j % 2 === 0}" *ngFor="let event of item.eventList; let i = index;">
                         <ng-template [ngTemplateOutlet]="rowItem"
-                            [ngTemplateOutletContext]="{ item: event, index: i, rows: item.fixedBettypes, matchId: item.matchId }">
+                            [ngTemplateOutletContext]="{
+                                item: event,
+                                index: i,
+                                rowsTotal: item.rowsTotal,
+                                fixedBettypes: item.fixedBettypes,
+                                matchId: item.matchId,
+                                totalStake: item.totalStake
+                            }">
                         </ng-template>
                     </tr>
                   </ng-container>
@@ -119,7 +143,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th class="no-data" colspan="10">
+                            <th class="no-data" colspan="12">
                                 There is no data
                             </th>
                         </tr>

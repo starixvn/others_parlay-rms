@@ -39,7 +39,7 @@ export class EventComponent implements OnInit {
   public exportExcel(model: EventModel, matchId: number, betChoice: number, bettypeName: string): void {
     const matchBettype: MatchBettypeModel = {
       matchId: matchId,
-      event: `${model.homeName} - vs - ${model.awayName}`,
+      event: model.isOther ? model.event : `${model.homeName} - vs - ${model.awayName}`,
       bettype: betChoice === 0 ? model.awayBettype : model.bettype,
       betChoice: betChoice,
       bettypeName: bettypeName
