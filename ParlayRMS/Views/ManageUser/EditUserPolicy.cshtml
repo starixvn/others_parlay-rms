@@ -35,12 +35,12 @@
     </tr>
     @foreach (var fn in ViewBag.UserFunc)
     {
-        string activeR = "inactive";
-        string activeW = "inactive";
-        string val = "0";
+        var activeR = "inactive";
+        var activeW = "inactive";
+        var val = "0";
 
-        string activeGroupR = "inactive";
-        string activeGroupW = "inactive";
+        var activeGroupR = "inactive";
+        var activeGroupW = "inactive";
 
         if (fn.UserPolicy != null)
         {
@@ -103,12 +103,12 @@
         {
             if (fn.Id == subfn.Parent.Id)
             {
-                string SubactiveR = "inactive";
-                string SubactiveW = "inactive";
-                string Subval = "0";
+                var SubactiveR = "inactive";
+                var SubactiveW = "inactive";
+                var Subval = "0";
 
-                string SubactiveGroupR = "inactive";
-                string SubactiveGroupW = "inactive";
+                var SubactiveGroupR = "inactive";
+                var SubactiveGroupW = "inactive";
 
                 if (subfn.UserPolicy != null)
                 {

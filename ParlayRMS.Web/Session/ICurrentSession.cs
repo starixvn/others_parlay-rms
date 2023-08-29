@@ -1,6 +1,6 @@
-﻿namespace ParlayRMS.Web.Session
+namespace ParlayRMS.Web.Session
 {
-    using ParlayRMS.Models.Users;
+    using Models.Users;
 
     public interface ICurrentSession
     {

@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.BetList
+namespace ParlayRMS.ViewModel.BetList
 {
     public class BetDetailsOptions
     {

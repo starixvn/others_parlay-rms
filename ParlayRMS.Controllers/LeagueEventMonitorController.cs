@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Models.Functions;
+using ParlayRMS.Models.Functions;
 using ParlayRMS.Web.Authorization;
 using System.Configuration;
 using System.Web.Mvc;

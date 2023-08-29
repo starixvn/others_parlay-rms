@@ -56,7 +56,6 @@
     <Compile Include="Groups\Group.cs" />
     <Compile Include="Members\MemberLevel.cs" />
     <Compile Include="MemberWinLoss\MemberWinLossData.cs" />
-    <Compile Include="ParlayWon\ParlayWonModel.cs" />
     <Compile Include="Systems\MaintenanceInfo.cs" />
     <Compile Include="Menus\Menu.cs" />
     <Compile Include="Functions\Policy.cs" />

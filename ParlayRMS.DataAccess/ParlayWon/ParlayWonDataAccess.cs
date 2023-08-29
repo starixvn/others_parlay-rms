@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DataAccess.ParlayWon
+namespace ParlayRMS.DataAccess.ParlayWon
 {
     using System;
     using System.Collections;
@@ -6,7 +6,7 @@
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.ParlayWon;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class ParlayWonDataAccess : BaseDataAccess
     {
@@ -28,7 +28,7 @@
                                                        string currency,
                                                        byte site,
                                                        byte liveType,
-                                                       Int64? customerClass)
+                                                       long? customerClass)
         {
             var result = new List<RMS_Rpt_Parlay_ParlayWon>();
 
@@ -47,7 +47,7 @@
                 db.AddInParameter("IsSortAsc", DbType.Boolean, isSortAsc);
                 db.AddInParameter("PageIndex", DbType.Int32, pageIndex);
                 db.AddInParameter("PageSize", DbType.Int32, pageSize);
-                db.AddOutParameter("totalrows", DbType.Int32, Int32.MaxValue);
+                db.AddOutParameter("totalrows", DbType.Int32, int.MaxValue);
                 db.AddInParameter("Currency", DbType.String, currency);
                 db.AddInParameter("Site", DbType.Int16, site);
                 db.AddInParameter("LiveStatus", DbType.Int16, liveType);

@@ -1,22 +1,11 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Result.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO
 {
-    /// <summary>
-    /// Result model.
-    /// </summary>
     public class Result
     {
         public Result(int code, string message)
         {
-            this.Code = code;
-            this.Message = message;
+            Code = code;
+            Message = message;
         }
 
         public Result()
@@ -24,24 +13,12 @@ namespace ParlayRMS.DTO
         {
         }
 
-        public static Result Empty
-        {
-            get
-            {
-                return new Result();
-            }
-        }
+        public static Result Empty => new Result();
 
         public int Code { get; set; }
 
         public string Message { get; set; }
 
-        public bool IsSuccessful
-        {
-            get
-            {
-                return this.Code == 0;
-            }
-        }
+        public bool IsSuccessful => Code == 0;
     }
 }

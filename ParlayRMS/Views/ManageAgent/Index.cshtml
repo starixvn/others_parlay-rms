@@ -1,9 +1,7 @@
-﻿@using ParlayRMS.DTO.Agents;
-@using ParlayRMS.Utility;
-@model IEnumerable<RMS_DangerousAgentSel>
+﻿@model IEnumerable<RMS_DangerousAgentSel>
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.AgentManagement;
-    string levelName = string.Empty;
+    var levelName = string.Empty;
 }
 <div id="barDangerousAgent" class="bar new-cmd title" style="width: 345px;">
     @if (ViewBag.HasWritePermission)

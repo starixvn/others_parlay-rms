@@ -1,25 +1,21 @@
-﻿namespace ParlayRMS.Services.ParlayMonitor
+namespace ParlayRMS.Services.ParlayMonitor
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using DataAccess.ParlayMonitor;
     using ParlayRMS.DTO.ParlayMonitor;
-    using ParlayRMS.DTO.PotentialWinning;
-    using ParlayRMS.Utility;
+    using DTO.PotentialWinning;
+    using Utility;
     using SignalR;
     using SignalR.Hubs;
 
     public class ParlayMonitorService : BaseService
     {
-        private static IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<ParlayMonitorHub>();
+        private static readonly IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<ParlayMonitorHub>();
 
         private readonly ParlayMonitorDataAccess _parlayDataAccess = new ParlayMonitorDataAccess();
 
-        /// <summary>
-        /// Starts this instance.
-        /// </summary>
         public static void Start()
         {
             ThreadPool.QueueUserWorkItem(_ =>
@@ -33,7 +29,6 @@
             });
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,
             string parlayTypes,

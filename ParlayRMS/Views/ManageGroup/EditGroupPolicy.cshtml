@@ -26,9 +26,9 @@
     </tr>
     @foreach (var fn in ViewBag.Functions)
     {
-        string activeR = "inactive";
-        string activeW = "inactive";
-        string val = "0";
+        var activeR = "inactive";
+        var activeW = "inactive";
+        var val = "0";
         if (fn.GroupPolicy != null)
         {
             if (fn.GroupPolicy.Writable)
@@ -64,9 +64,9 @@
         {
             if (fn.Id == subfn.Parent.Id)
             {
-                string SubactiveR = "inactive";
-                string SubactiveW = "inactive";
-                string Subval = "0";
+                var SubactiveR = "inactive";
+                var SubactiveW = "inactive";
+                var Subval = "0";
                 if (subfn.GroupPolicy != null)
                 {
                     if (subfn.GroupPolicy.Writable)

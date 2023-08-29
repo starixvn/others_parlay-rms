@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
+namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
 {
     public class LeagueGroup
     {

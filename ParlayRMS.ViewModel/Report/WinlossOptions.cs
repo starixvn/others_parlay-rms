@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Models;
+using ParlayRMS.Models;
 using ParlayRMS.Utility;
 using ParlayRMS.Web.Mvc.DataAnnotations;
 using System;

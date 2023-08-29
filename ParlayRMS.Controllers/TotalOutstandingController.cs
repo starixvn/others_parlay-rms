@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Models;
+using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.TotalOutstanding;
 using ParlayRMS.Services.Users;
@@ -6,7 +6,6 @@ using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -21,9 +20,8 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
-            // Combo
             var combos = new List<SelectListItem>();
-            for (int i = 2; i <= 9; i++)
+            for (var i = 2; i <= 9; i++)
             {
                 combos.Add(new SelectListItem
                 {
@@ -36,45 +34,45 @@ namespace ParlayRMS.Controllers
             combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10", Selected = string.IsNullOrEmpty(model.Combo) || model.Combo.Contains("10") });
             ViewBag.Combos = combos;
 
-            // Parlay type
-            var parlayTypes = new List<SelectListItem>();
-            parlayTypes.Add(new SelectListItem
+            var parlayTypes = new List<SelectListItem>
             {
-                Text = ViewLang.MixparLay,
-                Value = ((int)ParlayType.MixParlay).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.MixParlay).ToString())
-            });
-            parlayTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.GodOfFortune,
-                Value = ((int)ParlayType.GodOfFortune).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.GodOfFortune).ToString())
-            });
-            parlayTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.ComboParlay,
-                Value = ((int)ParlayType.ComboParlay).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
-            });
-            parlayTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.PenaltyShootoutCombo,
-                Value = ((int)ParlayType.PenaltyShootoutCombo).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.PenaltyShootoutCombo).ToString())
-            });
-            parlayTypes.Add(new SelectListItem
-            {
-                Text = ViewLang.SingleMatchParlay,
-                Value = ((int)ParlayType.SingleMatchParlay).ToString(),
-                Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.SingleMatchParlay).ToString())
-            });
+                new SelectListItem
+                {
+                    Text = ViewLang.MixparLay,
+                    Value = ((int)ParlayType.MixParlay).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.MixParlay).ToString())
+                },
+                new SelectListItem
+                {
+                    Text = ViewLang.GodOfFortune,
+                    Value = ((int)ParlayType.GodOfFortune).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.GodOfFortune).ToString())
+                },
+                new SelectListItem
+                {
+                    Text = ViewLang.ComboParlay,
+                    Value = ((int)ParlayType.ComboParlay).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
+                },
+                new SelectListItem
+                {
+                    Text = ViewLang.PenaltyShootoutCombo,
+                    Value = ((int)ParlayType.PenaltyShootoutCombo).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.PenaltyShootoutCombo).ToString())
+                },
+                new SelectListItem
+                {
+                    Text = ViewLang.SingleMatchParlay,
+                    Value = ((int)ParlayType.SingleMatchParlay).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.SingleMatchParlay).ToString())
+                }
+            };
 
             ViewBag.ParlayTypes = parlayTypes;
 
             return View("Index", model);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
@@ -122,7 +120,7 @@ namespace ParlayRMS.Controllers
                 {
                     decimal totalStackPt = 0;
                     decimal totalMaxPayoutPt = 0;
-                    int totalTotalBets = 0;
+                    var totalTotalBets = 0;
                     foreach (var item in data)
                     {
                         totalStackPt += item.StakePt;
@@ -142,7 +140,7 @@ namespace ParlayRMS.Controllers
             }
             else
             {
-                string roleName = string.Empty;
+                var roleName = string.Empty;
                 if (customerInfo.RoleId == (int)RoleId.Master)
                 {
                     roleName = "master";

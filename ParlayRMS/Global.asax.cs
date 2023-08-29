@@ -1,4 +1,4 @@
-﻿using Fanex.BetList.Core;
+using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data.Configuration;
 using Fanex.RemotingRef;
@@ -6,7 +6,6 @@ using ONEbook.UM.Filters;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -16,14 +15,8 @@ using System.Web.Security;
 
 namespace ParlayRMS
 {
-    /// <summary>
-    /// MVC Application.
-    /// </summary>
     public class MvcApplication : HttpApplication
     {
-        /// <summary>
-        /// Runs when the application is starting.
-        /// </summary>
         protected void Application_Start()
         {
             RefDataTypeContainer
@@ -39,11 +32,6 @@ namespace ParlayRMS
             DbSettingProviderManager.Current.Start();
         }
 
-        /// <summary>
-        /// Handles authentication request event.
-        /// </summary>
-        /// <param name="sender">Object which causes the event.</param>
-        /// <param name="e">Event argument.</param>
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             if (HttpContext.Current.User != null)
@@ -78,30 +66,17 @@ namespace ParlayRMS
             }
         }
 
-        /// <summary>
-        /// Handles the Error event of the Application control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
             FanexLogging.HandleApplicationError(Server);
         }
 
-        /// <summary>
-        /// Registers the global filters.
-        /// </summary>
-        /// <param name="filters">The global filter collection.</param>
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new CheckUMFilter());
         }
 
-        /// <summary>
-        /// Registers the routes.
-        /// </summary>
-        /// <param name="routes">The route collection.</param>
         private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -115,13 +90,9 @@ namespace ParlayRMS
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "ParlayRMS.Controllers" });
+                namespaces: new[] { "ParlayRMS.Controllers" });
         }
 
-        /// <summary>
-        /// Registers the bundles.
-        /// </summary>
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private static void RegisterBundles()
         {
             var bundles = BundleTable.Bundles;
@@ -189,7 +160,6 @@ namespace ParlayRMS
                 "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.css",
                 "~/Content/PotentialWinning.css"));
 
-            // JS
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
                      "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",
@@ -215,7 +185,6 @@ namespace ParlayRMS
                 "~/Scripts/UpdateLevel.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Menu.LayoutAngular/js").Include("~/Scripts/jquery-1.9.0.js", "~/Scripts/Menu.LayoutAngular.js"));
 
-            // group all scripts written in namespace
             bundles.Add(new ScriptBundle("~/Scripts/TotalOutstanding/js").Include(
                 "~/Scripts/ParlayRMS.TotalOutstanding.js"));
 
@@ -225,8 +194,6 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/Report/MemberWinLoss/js").Include("~/Scripts/Report/MemberWinLoss.js"));
 
-            // chart
-            // report
             bundles.Add(new ScriptBundle("~/Scripts/Member/Core/js").Include("~/Scripts/Member/Core.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/SimilarBets/js").Include("~/Scripts/Report/SimilarBets.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/ViewIPInfo/js").Include("~/Scripts/Report/ViewIPInfo.js"));

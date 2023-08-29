@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_UserInfoSelByUserID.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Users
 {
-    /// <summary>
-    /// Model for selecting user information by user ID.
-    /// </summary>
     public class RMS_UserInfoSelByUserID
     {
         public int CustId { get; set; }

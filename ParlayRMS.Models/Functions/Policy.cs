@@ -1,30 +1,19 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Policy.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Functions
 {
-    /// <summary>
-    /// Policy Model.
-    /// </summary>
     public class Policy
     {
-        private int _permission = 0;
+        private readonly int _permission;
 
         public Policy(int p)
         {
-            this._permission = p;
+            _permission = p;
         }
 
         public bool Writable
         {
             get
             {
-                if (this._permission == 2)
+                if (_permission == 2)
                 {
                     return true;
                 }
@@ -37,7 +26,7 @@ namespace ParlayRMS.Models.Functions
         {
             get
             {
-                if (this._permission == 1 || this._permission == 2)
+                if (_permission == 1 || _permission == 2)
                 {
                     return true;
                 }

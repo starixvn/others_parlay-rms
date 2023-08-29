@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DataAccess.ParlayMonitor
+namespace ParlayRMS.DataAccess.ParlayMonitor
 {
     using System;
     using System.Collections;
@@ -6,9 +6,9 @@
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.ParlayMonitor;
-    using ParlayRMS.DTO.PotentialWinning;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
+    using DTO.PotentialWinning;
+    using Utility;
+    using Utility.Data;
 
     public class ParlayMonitorDataAccess : BaseDataAccess
     {
@@ -94,12 +94,14 @@
         public UserTracking RMS_Monitor_Parlay_UserTracking(int userid, string username, string transid)
         {
             var userTracking = new UserTracking();
-            Hashtable param = new Hashtable();
-            param.Add("userid", userid);
-            param.Add("username", username);
-            param.Add("transid", transid);
-            param.Add("statusid", 0);
-            param.Add("message", string.Empty);
+            var param = new Hashtable
+            {
+                { "userid", userid },
+                { "username", username },
+                { "transid", transid },
+                { "statusid", 0 },
+                { "message", string.Empty }
+            };
 
             var r = ExecSp("RMS_ComboParlay_PotentialWinning_UserTracking", param);
             if (r.IsValid())

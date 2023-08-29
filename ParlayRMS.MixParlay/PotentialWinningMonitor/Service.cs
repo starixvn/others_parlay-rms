@@ -1,4 +1,4 @@
-﻿using Fanex.Data.Repository;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 
 namespace ParlayRMS.MixParlay.PotentialWinningMonitor

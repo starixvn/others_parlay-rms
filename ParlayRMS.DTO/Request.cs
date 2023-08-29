@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Request.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO
 {
-    /// <summary>
-    /// Request model.
-    /// </summary>
     public class Request
     {
         public string Ip { get; set; }
@@ -23,12 +12,6 @@ namespace ParlayRMS.DTO
 
         public string CountryCode { get; set; }
 
-        public string Language
-        {
-            get
-            {
-                return "en-US";
-            }
-        }
+        public string Language => "en-US";
     }
 }

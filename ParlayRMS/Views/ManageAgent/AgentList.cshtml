@@ -1,11 +1,8 @@
-﻿@using ParlayRMS.DTO.Agents
-@using ParlayRMS.Utility
-@using ParlayRMS.Models.Members
-@model IEnumerable<RMS_DangerousAgentSel>
+﻿@model IEnumerable<RMS_DangerousAgentSel>
 <div id="groupScrollGrid" class="scrollGridContent" style="width: 355px; max-height: 630px;">
     <table id="tblDangerousAgentList" class="scrollGrid" style="width: 337px;">
         @{
-            if ((Model == null) || (Model.Count() == 0))
+            if (Model == null || Model.Count() == 0)
             {
                 <tr>
                     <td colspan="3" style="text-align: center">

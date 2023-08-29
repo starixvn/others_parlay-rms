@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.MixParlay.TotalOutstanding
+namespace ParlayRMS.MixParlay.TotalOutstanding
 {
     public class AgentTicket
     {

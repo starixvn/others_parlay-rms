@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberLevel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Members
 {
-    /// <summary>
-    /// Member Level Model.
-    /// </summary>
     public class MemberLevel
     {
         public int LevelId { get; set; }

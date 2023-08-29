@@ -1,10 +1,9 @@
-﻿namespace ParlayRMS.Services.PotentialWinningMonitor
+namespace ParlayRMS.Services.PotentialWinningMonitor
 {
-    using System;
     using System.Collections.Generic;
     using DataAccess.PotentialWinningMonitor;
-    using ParlayRMS.DTO.PotentialWinning;
-    using ParlayRMS.Utility;
+    using DTO.PotentialWinning;
+    using Utility;
 
     public class PotentialWinningMonitorService : BaseService
     {
@@ -20,7 +19,7 @@
             bool isCornerParlay,
             byte filterBy,
             int? agentId,
-            Int64? customerClass,
+            long? customerClass,
             string company,
             string username)
         {

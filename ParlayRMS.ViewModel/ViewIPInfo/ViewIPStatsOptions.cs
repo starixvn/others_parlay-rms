@@ -1,19 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ViewIPStatsOptions.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
-// </history>
-
 namespace ParlayRMS.ViewModel.ViewIPInfo
 {
     using System;
 
-    /// <summary>
-    /// View IP statistics Options Model.
-    /// </summary>
     public class ViewIPStatsOptions
     {
         public DateTime FromDate { get; set; }

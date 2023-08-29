@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EditGroupPolicyModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageGroup
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Edit Group Policy Model.
-    /// </summary>
     public class EditGroupPolicyModel
     {
         [Required]

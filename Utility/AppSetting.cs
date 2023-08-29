@@ -1,29 +1,14 @@
-﻿namespace ParlayRMS.Utility
+namespace ParlayRMS.Utility
 {
     using System;
     using System.Collections.Generic;
     using System.Configuration;
 
-    /// <summary>
-    /// Gets configuration values.
-    /// </summary>
     public static class AppSetting
     {
-        public static bool IsDebug
-        {
-            get
-            {
-                return Convert.ToBoolean(GetValue("IsDebug"));
-            }
-        }
+        public static bool IsDebug => Convert.ToBoolean(GetValue("IsDebug"));
 
-        public static bool IsReCheckIn
-        {
-            get
-            {
-                return DbConverter.ToBoolean(GetValue("RecheckIn"));
-            }
-        }
+        public static bool IsReCheckIn => DbConverter.ToBoolean(GetValue("RecheckIn"));
 
         public static string[] HiddenGroups
         {
@@ -34,38 +19,14 @@
             }
         }
 
-        public static bool IsCache
-        {
-            get
-            {
-                return DbConverter.ToBoolean(GetValue("IsCache"));
-            }
-        }
+        public static bool IsCache => DbConverter.ToBoolean(GetValue("IsCache"));
 
-        public static int PageSize
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("PageSize"));
-            }
-        }
+        public static int PageSize => Convert.ToInt32(GetValue("PageSize"));
 
-        public static string LimitDataFromDate
-        {
-            get
-            {
-                return GetValue("LimitDataFromDate");
-            }
-        }
+        public static string LimitDataFromDate => GetValue("LimitDataFromDate");
 
-        public static string MemberWinLossLimitDate
-        {
-            get
-            {
-                return GetValue("MemberWinLossLimitDate");
-            }
-        }
-        
+        public static string MemberWinLossLimitDate => GetValue("MemberWinLossLimitDate");
+
         public static Dictionary<long, string> DangerousAgents
         {
             get
@@ -82,53 +43,17 @@
             }
         }
 
-        public static int MaxPayoutAfterPT
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("MaxPayoutAfterPT"));
-            }
-        }
+        public static int MaxPayoutAfterPT => Convert.ToInt32(GetValue("MaxPayoutAfterPT"));
 
-        public static int SystemParlayStakeAfterPT
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("SystemParlayStakeAfterPT"));
-            }
-        }
+        public static int SystemParlayStakeAfterPT => Convert.ToInt32(GetValue("SystemParlayStakeAfterPT"));
 
-        public static int NetWinStakeAfterPT
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("NetWinStakeAfterPT"));
-            }
-        }
+        public static int NetWinStakeAfterPT => Convert.ToInt32(GetValue("NetWinStakeAfterPT"));
 
-        public static int MixParlayStakeAfterPT
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("MixParlayStakeAfterPT"));
-            }
-        }
+        public static int MixParlayStakeAfterPT => Convert.ToInt32(GetValue("MixParlayStakeAfterPT"));
 
-        public static int HouseLoseAmountFrom
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("HouseLoseAmountFrom"));
-            }
-        }
+        public static int HouseLoseAmountFrom => Convert.ToInt32(GetValue("HouseLoseAmountFrom"));
 
-        public static int HouseLoseAmountTo
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("HouseLoseAmountTo"));
-            }
-        }
+        public static int HouseLoseAmountTo => Convert.ToInt32(GetValue("HouseLoseAmountTo"));
 
         public static string[] SelectTop
         {
@@ -139,11 +64,6 @@
             }
         }
 
-        /// <summary>
-        /// Gets configuration value of the given key.
-        /// </summary>
-        /// <param name="key">Configuration key.</param>
-        /// <returns>The value associated with the key.</returns>
         private static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key];

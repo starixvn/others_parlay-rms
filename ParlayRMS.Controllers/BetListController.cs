@@ -1,4 +1,3 @@
-﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -12,7 +11,6 @@ using ParlayRMS.ViewModel.BetList;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -24,14 +22,8 @@ namespace ParlayRMS.Controllers
         private readonly BetListService _betlistService = new BetListService();
         private readonly CommonService _commonService = new CommonService();
 
-        /// <summary>
-        /// Gets bet details.
-        /// </summary>
-        /// <param name="options">The options that are used to query data.</param>
-        /// <returns>Redirect to BetDetails view which will show the bet details.</returns>
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
             ViewBag.TransId = options.TransId;
@@ -39,14 +31,14 @@ namespace ParlayRMS.Controllers
 
             var betTypeBelongsBetRadar = _commonService.GetBettypeBelongsBetRadar();
 
-            BetListHTMLFactory factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betlistService.CreateChoice(options.TransId, options.RefNo);
 
             var betInfo = _betlistService.GetBetInfo(options.TransId);
 
-            for (int i = 0; i < tickets.Item2.Count; i++)
+            for (var i = 0; i < tickets.Item2.Count; i++)
             {
                 var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
                 var ticket = tickets.Item2[i];
@@ -72,7 +64,7 @@ namespace ParlayRMS.Controllers
             return View(model);
         }
 
-        private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, DTO.BetList.RMS_Monitor_Parlay_BetInfo betInfo)
+        private static List<string> GetComboTypeAndStake(IEnumerable<ITicket> tickets, RMS_Monitor_Parlay_BetInfo betInfo)
         {
             if (betInfo == null)
             {
@@ -81,7 +73,7 @@ namespace ParlayRMS.Controllers
             var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
             var comboTypesAndStake = new List<string>();
             var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
-            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count());
+            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count);
             for (var i = 0; i < count; i++)
             {
                 comboTypesAndStake.Add(comboTypes[i] + " - " + FormatStake(hasStaketickets[i].Stake));
@@ -114,12 +106,11 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            var content = $"<div style=\"margin-right:10px; padding: 2px 5px; border-right: 3px solid black\">{result.ToString()}</div> ";
+            var content = $"<div style=\"margin-right:10px; padding: 2px 5px; border-right: 3px solid black\">{result}</div> ";
             return Content(content);
         }
 
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult SingleMatchParlayDetailPopup(RMS_BetList_BetBuilder_DetailCriteria criteria)
         {
@@ -150,7 +141,6 @@ namespace ParlayRMS.Controllers
             return View();
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult PenaltyShootoutParlayDetailPopup(RMS_BetList_PenaltyShootout_DetailCriteria criteria)
         {

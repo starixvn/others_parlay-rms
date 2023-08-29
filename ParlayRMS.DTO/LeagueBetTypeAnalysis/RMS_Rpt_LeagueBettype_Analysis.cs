@@ -1,4 +1,4 @@
-﻿
+
 namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
 {
     public class RMS_Rpt_LeagueBettype_Analysis

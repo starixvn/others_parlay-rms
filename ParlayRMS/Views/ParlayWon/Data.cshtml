@@ -1,7 +1,4 @@
-﻿@using ParlayRMS.ViewModel.Report
-@using ParlayRMS.DTO.ParlayWon;
-@using System;
-@model IEnumerable<RMS_Rpt_Parlay_ParlayWon>
+﻿@model IEnumerable<RMS_Rpt_Parlay_ParlayWon>
 @{
     var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
     var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
@@ -214,7 +211,8 @@
     <div id="pagination" class="pagination">
         <div id="pageSizeDiv">
             @Html.Label("pageSizes", ViewLang.PageSize)
-            @Html.DropDownList("ddlPageSize", new List<SelectListItem>() {
+            @Html.DropDownList("ddlPageSize", new List<SelectListItem>
+            {
             new SelectListItem { Text = "100", Value = "100" },
             new SelectListItem { Text = "200", Value = "200" },
             new SelectListItem { Text = "300", Value = "300" },

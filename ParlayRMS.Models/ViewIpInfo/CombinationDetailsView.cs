@@ -1,20 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CombinationDetailsView.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.22">Created</change>
-// </history>
-
 namespace ParlayRMS.Models.ViewIpInfo
 {
     using System;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Bet combination details view model.
-    /// </summary>
     public class CombinationDetailsView
     {
         public DateTime Date { get; set; }
@@ -31,15 +19,12 @@ namespace ParlayRMS.Models.ViewIpInfo
 
         public string StatusString { get; set; }
 
-        /// <summary>
-        /// Event item class.
-        /// </summary>
-        public partial class EventItem
+        public class EventItem
         {
             public EventItem(int homeId, int awayId)
             {
-                this.HomeId = homeId;
-                this.AwayId = awayId;
+                HomeId = homeId;
+                AwayId = awayId;
             }
 
             public int HomeId { get; set; }

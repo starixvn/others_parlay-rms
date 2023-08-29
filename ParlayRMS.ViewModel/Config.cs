@@ -1,31 +1,17 @@
-﻿using ParlayRMS.Models;
+using ParlayRMS.Models;
 using ParlayRMS.Utility;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 
 namespace ParlayRMS.ViewModel
 {
     public static class Config
     {
-        private static List<SelectListItem> _sportsTypes;
-        private static List<SelectListItem> _selectTops;
-        private static List<SelectListItem> _dateRanges;
-        private static List<SelectListItem> _combos;
-        private static List<SelectListItem> _parlayTypes;
-        private static List<SelectListItem> _reportTypes;
-        private static List<SelectListItem> _leagueGroups;
-        private static List<SelectListItem> _sites;
-        private static List<SelectListItem> _reportBy;
-        private static List<SelectListItem> _simpleParlayTypes;
-        private static List<SelectListItem> _liveTypes;
-
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         static Config()
         {
-            _sportsTypes = new List<SelectListItem>()
+            SportsTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = ViewLang.Allsports, Value = ((int)SportsType.AllSports).ToString(), Selected = true },
                 new SelectListItem { Text = ViewLang.Socceronly, Value = ((int)SportsType.SoccerOnly).ToString() },
@@ -34,18 +20,18 @@ namespace ParlayRMS.ViewModel
             };
 
             var values = new List<int> { 10, 20, 50, 100 };
-            _selectTops = new List<SelectListItem>();
+            SelectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
-                _selectTops.Add(new SelectListItem
+                SelectTops.Add(new SelectListItem
                 {
                     Text = item.ToString(),
                     Value = item.ToString(),
-                    Selected = item == 100 ? true : false
+                    Selected = item == 100
                 });
             }
 
-            _dateRanges = new List<SelectListItem>()
+            DateRanges = new List<SelectListItem>
             {
                 new SelectListItem { Text = ViewLang.Yesterday, Value = ((int)DateRange.Yesterday).ToString() },
                 new SelectListItem { Text = ViewLang.CurrentWeek, Value = ((int)DateRange.CurrentWeek).ToString() },
@@ -56,19 +42,19 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.SpecificDate, Value = ((int)DateRange.SpecificDate).ToString() }
             };
 
-            _combos = new List<SelectListItem>();
-            for (int i = 2; i <= 9; i++)
+            Combos = new List<SelectListItem>();
+            for (var i = 2; i <= 9; i++)
             {
-                _combos.Add(new SelectListItem
+                Combos.Add(new SelectListItem
                 {
                     Text = i.ToString(),
                     Value = i.ToString()
                 });
             }
 
-            _combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
+            Combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
 
-            _parlayTypes = new List<SelectListItem>()
+            ParlayTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
                 new SelectListItem { Text = ViewLang.GodOfFortune, Value = ((int)ParlayType.GodOfFortune).ToString() },
@@ -77,19 +63,19 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
             };
 
-            _simpleParlayTypes = new List<SelectListItem>()
+            SimpleParlayTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
                 new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
             };
 
-            _reportTypes = new List<SelectListItem>()
+            ReportTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = "Combo", Value = ((int)ReportType.Combo).ToString(), Selected = true },
                 new SelectListItem { Text = "Sport type", Value = ((int)ReportType.SportType).ToString() }
             };
 
-            _leagueGroups = new List<SelectListItem> {
+            LeagueGroups = new List<SelectListItem> {
                 new SelectListItem { Text = ViewLang.None, Value = "-1" },
                 new SelectListItem { Text = "MJ", Value = "1" },
                 new SelectListItem { Text = "M1", Value = "2" },
@@ -106,20 +92,20 @@ namespace ParlayRMS.ViewModel
 
             };
 
-            _reportBy = new List<SelectListItem> {
+            ReportBy = new List<SelectListItem> {
                 new SelectListItem { Text = "League", Value = "1", Selected = true },
                 new SelectListItem { Text = "BetType", Value = "2" },
 
             };
 
-            _sites = new List<SelectListItem> {
+            Sites = new List<SelectListItem> {
                 new SelectListItem { Text = "All", Value = "2" },
                 new SelectListItem { Text = "Credit", Value = "0" },
                 new SelectListItem { Text = "Deposit", Value = "1" },
 
             };
 
-            _liveTypes = new List<SelectListItem> {
+            LiveTypes = new List<SelectListItem> {
                 new SelectListItem { Text = "All", Value = "3" },
                 new SelectListItem { Text = "Live", Value = "1" },
                 new SelectListItem { Text = "Non Live", Value = "0" },
@@ -128,61 +114,19 @@ namespace ParlayRMS.ViewModel
             };
         }
 
-        public static List<SelectListItem> Combos
-        {
-            get
-            {
-                return _combos;
-            }
-        }
+        public static List<SelectListItem> Combos { get; }
 
-        public static List<SelectListItem> DateRanges
-        {
-            get
-            {
-                return _dateRanges;
-            }
-        }
+        public static List<SelectListItem> DateRanges { get; }
 
-        public static List<SelectListItem> SelectTops
-        {
-            get
-            {
-                return _selectTops;
-            }
-        }
+        public static List<SelectListItem> SelectTops { get; }
 
-        public static List<SelectListItem> SportsTypes
-        {
-            get
-            {
-                return _sportsTypes;
-            }
-        }
+        public static List<SelectListItem> SportsTypes { get; }
 
-        public static List<SelectListItem> ParlayTypes
-        {
-            get
-            {
-                return _parlayTypes;
-            }
-        }
+        public static List<SelectListItem> ParlayTypes { get; }
 
-        public static List<SelectListItem> SimpleParlayTypes
-        {
-            get
-            {
-                return _simpleParlayTypes;
-            }
-        }
+        public static List<SelectListItem> SimpleParlayTypes { get; }
 
-        public static List<SelectListItem> ReportTypes
-        {
-            get
-            {
-                return _reportTypes;
-            }
-        }
+        public static List<SelectListItem> ReportTypes { get; }
 
         public static DateTime WinlostDate
         {
@@ -199,36 +143,12 @@ namespace ParlayRMS.ViewModel
             }
         }
 
-        public static List<SelectListItem> LeagueGroups
-        {
-            get
-            {
-                return _leagueGroups;
-            }
-        }
+        public static List<SelectListItem> LeagueGroups { get; }
 
-        public static List<SelectListItem> Sites
-        {
-            get
-            {
-                return _sites;
-            }
-        }
+        public static List<SelectListItem> Sites { get; }
 
-        public static List<SelectListItem> ReportBy
-        {
-            get
-            {
-                return _reportBy;
-            }
-        }
+        public static List<SelectListItem> ReportBy { get; }
 
-        public static List<SelectListItem> LiveTypes
-        {
-            get
-            {
-                return _liveTypes;
-            }
-        }
+        public static List<SelectListItem> LiveTypes { get; }
     }
 }

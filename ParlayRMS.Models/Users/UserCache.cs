@@ -1,29 +1,18 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="UserCache.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Users
 {
     using System;
     using System.Collections.Generic;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.Menus;
+    using Functions;
+    using Menus;
 
-    /// <summary>
-    /// User cache.
-    /// </summary>
     public class UserCache
     {
         private const int UserPolicyCacheTime = 5;
         public UserCache(IEnumerable<Menu> menus, IEnumerable<FunctionPolicy> functions)
         {
             CreatedTime = DateTime.Now;
-            this.Menus = menus;
-            this.Functions = functions;
+            Menus = menus;
+            Functions = functions;
         }
 
         public DateTime CreatedTime { get; private set; }
@@ -32,7 +21,7 @@ namespace ParlayRMS.Models.Users
         {
             get
             {
-                if (this.CreatedTime.AddSeconds(UserPolicyCacheTime) < DateTime.Now)
+                if (CreatedTime.AddSeconds(UserPolicyCacheTime) < DateTime.Now)
                 {
                     return true;
                 }

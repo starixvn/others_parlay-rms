@@ -1,4 +1,4 @@
-﻿using System.Security.Principal;
+using System.Security.Principal;
 
 namespace ParlayRMS.Web.Authorization
 {
@@ -13,21 +13,10 @@ namespace ParlayRMS.Web.Authorization
             _authInfo = authInfo;
         }
 
-        public AuthInfo AuthInfo
-        {
-            get { return _authInfo; }
-        }
+        public AuthInfo AuthInfo => _authInfo;
 
-        public IIdentity Identity
-        {
-            get { return _identity; }
-        }
+        public IIdentity Identity => _identity;
 
-        /// <summary>
-        /// Determines whether the current principal belongs to the specified role.
-        /// </summary>
-        /// <param name="role">The name of the role for which to check membership.</param>
-        /// <returns>True if the current principal is a member of the specified role; otherwise, false.</returns>
         public bool IsInRole(string role)
         {
             return true;

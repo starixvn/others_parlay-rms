@@ -1,20 +1,9 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Menu.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Menus
 {
     using System;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Models.Users;
+    using Functions;
+    using Users;
 
-    /// <summary>
-    /// Menu Model.
-    /// </summary>
     public class Menu : BaseEntityModel
     {
         public string Description { get; set; }

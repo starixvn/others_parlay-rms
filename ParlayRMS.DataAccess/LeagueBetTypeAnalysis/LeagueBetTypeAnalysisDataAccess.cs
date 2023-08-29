@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DataAccess.LeagueBetTypeAnalysis
+namespace ParlayRMS.DataAccess.LeagueBetTypeAnalysis
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@
     using Fanex.Data;
     using ParlayRMS.DTO.LeagueBetTypeAnalysis;
     using ParlayRMS.DTO.Leagues;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
+    using Utility;
+    using Utility.Data;
 
     public class LeagueBetTypeAnalysisDataAccess : BaseDataAccess
     {
@@ -38,7 +38,7 @@
 
                 using (var reader = db.ExecuteReader())
                 {
-                    int index = 1;
+                    var index = 1;
                     while (reader.Read())
                     {
                         result.Add(new RMS_Rpt_LeagueBettype_Analysis
@@ -69,8 +69,8 @@
             {
                 return "0%";
             }
-            double ratio = ((double)wonTickets / totalTickets) * 100;
-            return Math.Round(ratio).ToString() + "%";
+            var ratio = (double)wonTickets / totalTickets * 100;
+            return Math.Round(ratio) + "%";
         }
 
         public IEnumerable<LeagueGroup> GetLeagueGroups(int sportType)
@@ -110,7 +110,7 @@
                 db.AddInParameter("ToDate", DbType.DateTime, toDate);
                 using (var reader = db.ExecuteReader())
                 {
-                    int index = 1;
+                    var index = 1;
                     while (reader.Read())
                     {
                         result.Add(new RMS_LeagueSel

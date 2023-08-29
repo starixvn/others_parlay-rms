@@ -1,11 +1,10 @@
-﻿namespace ParlayRMS.Services.TopWinners
+namespace ParlayRMS.Services.TopWinners
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Common;
     using DataAccess.TopWinners;
     using ParlayRMS.DTO.TopWinners;
-    using ParlayRMS.ViewModel.Report;
+    using ViewModel.Report;
 
     public class TopWinnersService : BaseService
     {
@@ -30,7 +29,6 @@
                 options.CustomerClass);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         public IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail> GetTopWinnerDetails(TopWinnerDetailsOptions options)
         {
             var info = _commonService.GetBalanceUpDayInfo();

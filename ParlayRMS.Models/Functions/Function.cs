@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Function.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Functions
 {
     using System;
-    using ParlayRMS.Models.Users;
+    using Users;
 
-    /// <summary>
-    /// Function Model.
-    /// </summary>
     public class Function : BaseEntityModel
     {
         public string Description { get; set; }

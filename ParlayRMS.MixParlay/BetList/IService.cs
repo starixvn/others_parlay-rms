@@ -1,4 +1,4 @@
-﻿using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.Entities;
 using System.Collections.Generic;
 
 namespace ParlayRMS.MixParlay.BetList

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -25,8 +25,8 @@ namespace ParlayRMS.Web.Mvc
             foreach (var item in selectList)
             {
                 var id = name + item.Value;
-                bool isChecked = item.Selected == true;
-                stringBuilder.Append(helper.RadioButton(name, item.Value, isChecked, new { id = id }));
+                var isChecked = item.Selected;
+                stringBuilder.Append(helper.RadioButton(name, item.Value, isChecked, new { id }));
                 stringBuilder.Append(helper.Label(id, item.Text));
             }
 

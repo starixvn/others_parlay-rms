@@ -1,11 +1,3 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ICurrentContext.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Web.Context
 {
     using System.Web;

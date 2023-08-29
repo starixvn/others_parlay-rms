@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Utility;
+using ParlayRMS.Utility;
 using ParlayRMS.Web.Mvc.DataAnnotations;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +36,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public byte LiveType { get; set; }
 
-        public Int64? CustomerClass { get; set; }
+        public long? CustomerClass { get; set; }
 
         public int SortById { get; set; }
 

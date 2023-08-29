@@ -1,4 +1,4 @@
-﻿using ParlayRMS.DTO.ParlayWon;
+using ParlayRMS.DTO.ParlayWon;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.Common;
@@ -9,8 +9,6 @@ using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,20 +23,16 @@ namespace ParlayRMS.Controllers
         private readonly CommonService commonService = new CommonService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
-            // Level
-            var levels = new List<SelectListItem>();
-            levels.Add(new SelectListItem { Text = ViewLang.None, Value = "0" });
-            for (int i = 1; i <= 10; i++)
+            var levels = new List<SelectListItem> { new SelectListItem { Text = ViewLang.None, Value = "0" } };
+            for (var i = 1; i <= 10; i++)
             {
                 levels.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
 
             ViewBag.Levels = levels;
 
-            // Currency
             var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();
             foreach (var currency in currenciesList)
@@ -76,7 +70,7 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
-                DateTime lastMonth = DateTime.Now.AddMonths(-1).Date;
+                var lastMonth = DateTime.Now.AddMonths(-1).Date;
                 if (options.FromDate.Date < lastMonth)
                 {
                     ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
@@ -88,11 +82,7 @@ namespace ParlayRMS.Controllers
                 }
                 else
                 {
-                    bool isValidCustomerClass = true;
-                    if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
-                    {
-                        isValidCustomerClass = false;
-                    }
+                    var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
                     var model = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
                     ViewBag.FilterOption = options;
                     ViewBag.Title = options.GetTitle();
@@ -141,25 +131,18 @@ namespace ParlayRMS.Controllers
 
         [HttpGet]
         [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(ParlayWonOptions options)
         {
             Hashtable outputParams = null;
-            bool isValidCustomerClass = true;
-            if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
-            {
-                isValidCustomerClass = false;
-            }
+            var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
             var records = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\ParlayWon.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
-            string title = options.GetTitle();
+            var title = options.GetTitle();
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header1 = new object[]
             {
                 ViewLang.No,
@@ -182,33 +165,32 @@ namespace ParlayRMS.Controllers
 
             writer.WriteRow(1, header1);
 
-            // records
-            int id = 0;
+            var id = 0;
             var select = records.Select(x => new
             {
                 No = Formatter.FormatNumber3(++id),
                 TransTime = Formatter.FormatDateTime(x.TransDate),
-                TransId = x.TransId,
+                x.TransId,
                 Site = x.SiteGroup,
-                Username = x.Username,
-                CustomerClass = x.CustomerClass,
-                Currency = x.Currency,
+                x.Username,
+                x.CustomerClass,
+                x.Currency,
                 Odds = Formatter.FormatOdds(x.Odds),
                 Stake = Formatter.FormatNumber3(x.Stake),
                 StakeAfterPT = Formatter.FormatNumber3(x.StakeAfterPT),
                 WinningAmount = Formatter.FormatNumber3(x.WinningAmount),
                 HouseLoseAmount = Formatter.FormatNumber3(x.HouseLoseAmount),
-                TotalBet = x.TotalBet,
-                TotalSelection = x.TotalSelection,
+                x.TotalBet,
+                x.TotalSelection,
                 TotalBets = CacheRef.GetSportNameDropDown(x.SportType),
-                IP = x.IP
+                x.IP
             });
 
             writer.WriteRows(2, select);
 
             writer.SyncColumnWidths(14);
 
-            MemoryStream ms = writer.Render("ParlayWon");
+            var ms = writer.Render("ParlayWon");
             Response.AddHeader("content-disposition", "attachment; filename=" + "ParlayWon.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());

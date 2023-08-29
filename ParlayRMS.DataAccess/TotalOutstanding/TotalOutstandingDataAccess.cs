@@ -1,11 +1,11 @@
-﻿namespace ParlayRMS.DataAccess.TotalOutstanding
+namespace ParlayRMS.DataAccess.TotalOutstanding
 {
     using System;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.TotalOutstanding;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class TotalOutstandingDataAccess : BaseDataAccess
     {

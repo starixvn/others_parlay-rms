@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EditGroupModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageGroup
 {
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Utility;
+    using Utility;
 
-    /// <summary>
-    /// Edit Group Model.
-    /// </summary>
     public class EditGroupModel
     {
         [Required]

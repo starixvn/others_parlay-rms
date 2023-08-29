@@ -1,4 +1,4 @@
-﻿using ParlayRMS.DTO.TopWinners;
+using ParlayRMS.DTO.TopWinners;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.Common;
@@ -10,8 +10,6 @@ using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -30,12 +28,12 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            SelectListItem[] tempSelectTop = new SelectListItem[4];
-            List<SelectListItem> selectTop = new List<SelectListItem>();
-            List<int> moreSelection = new List<int> { 200, 500, 1000, 2000, 3000 };
+            var tempSelectTop = new SelectListItem[4];
+            var selectTop = new List<SelectListItem>();
+            var moreSelection = new List<int> { 200, 500, 1000, 2000, 3000 };
             Config.SelectTops.CopyTo(tempSelectTop);
             selectTop.AddRange(tempSelectTop);
-            foreach (int option in moreSelection)
+            foreach (var option in moreSelection)
             {
                 selectTop.Add(new SelectListItem
                 {
@@ -45,7 +43,6 @@ namespace ParlayRMS.Controllers
             }
             ViewBag.SelectTops = selectTop;
 
-            // Currency
             var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();
             foreach (var currency in currenciesList)
@@ -64,17 +61,13 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                bool isValidCustomerClass = true;
-                if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
-                {
-                    isValidCustomerClass = false;
-                }
+                var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
                 var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
                 var totalStake = records.Sum(x => x.Stake_BaseRM);
                 var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
                 var totalCompanyWinlost = records.Sum(x => x.Company_Winlost_BaseRM);
                 var totalBets = records.Sum(x => x.BetCount);
-                string title = options.GetTile();
+                var title = options.GetTile();
                 return Json(new
                 {
                     code = 0,
@@ -119,14 +112,9 @@ namespace ParlayRMS.Controllers
 
         [HttpGet]
         [ValidateInput(false)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(TopWinnersOptions options)
         {
-            bool isValidCustomerClass = true;
-            if (options.CustomerClass.HasValue && options.CustomerClass.Value > Int16.MaxValue)
-            {
-                isValidCustomerClass = false;
-            }
+            var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
             var records = isValidCustomerClass ? _topwinnersService.GetTopWinners(options) : new List<RMS_Rpt_Parlay_TopWinner>();
             var totalStake = records.Sum(x => x.Stake_BaseRM);
             var totalWinlost = records.Sum(x => x.Winlost_BaseRM);
@@ -136,11 +124,9 @@ namespace ParlayRMS.Controllers
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\TopWinners.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
-            string title = options.GetTile();
+            var title = options.GetTile();
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header1 = new object[]
             {
                 "#",
@@ -189,35 +175,33 @@ namespace ParlayRMS.Controllers
                 totalBets
             };
 
-            writer.WriteRows(1, new List<object[]>() { header1, header2 });
+            writer.WriteRows(1, new List<object[]> { header1, header2 });
 
-            // records
-            int id = 0;
+            var id = 0;
             var select = records.Select(x => new
             {
                 No = ++id,
                 Site = x.SiteGroup,
-                Username = x.Username,
-                CustomerClass = x.CustomerClass,
-                Currency = x.Currency,
-                Stake = x.Stake,
-                Winlost = x.Winlost,
-                Company_Winlost = x.Company_Winlost,
-                Stake_BaseRM = x.Stake_BaseRM,
-                Winlost_BaseRM = x.Winlost_BaseRM,
-                Company_Winlost_BaseRM = x.Company_Winlost_BaseRM,
+                x.Username,
+                x.CustomerClass,
+                x.Currency,
+                x.Stake,
+                x.Winlost,
+                x.Company_Winlost,
+                x.Stake_BaseRM,
+                x.Winlost_BaseRM,
+                x.Company_Winlost_BaseRM,
                 TotalBets = x.BetCount,
                 Avg_Odds = Formatter.FormatOdds(x.Avg_Odds)
             });
 
             writer.WriteRows(3, select);
 
-            // footer
             writer.WriteRow(4, footer);
 
             writer.SyncColumnWidths(11);
 
-            MemoryStream ms = writer.Render("TopWinner");
+            var ms = writer.Render("TopWinner");
             Response.AddHeader("content-disposition", "attachment; filename=" + "TopWinner.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
             Response.BinaryWrite(ms.ToArray());

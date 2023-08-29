@@ -1,7 +1,4 @@
-﻿@using ParlayRMS.DTO.LeagueBetTypeAnalysis;
-@using System;
-@using ParlayRMS.ViewModel.Report;
-@model IEnumerable<RMS_Rpt_LeagueBettype_Analysis>
+﻿@model IEnumerable<RMS_Rpt_LeagueBettype_Analysis>
 @{
     var filterOption = (LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
     var index = (filterOption.Page - 1) * filterOption.PageSize;

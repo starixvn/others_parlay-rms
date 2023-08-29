@@ -1,27 +1,18 @@
-﻿namespace ParlayRMS.Utility
+namespace ParlayRMS.Utility
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Math helper extensions.
-    /// </summary>
     public static class MathHelper
     {
-        /// <summary>
-        /// Gets all possible combinations of a list of values.
-        /// </summary>
-        /// <typeparam name="T">The type of data.</typeparam>
-        /// <param name="values">The original values.</param>
-        /// <returns>List of combinations.</returns>
         public static List<List<T>> GetCombinations<T>(List<T> values)
         {
             var collections = new List<List<T>>();
 
-            for (int counter = 0; counter < (1 << values.Count); ++counter)
+            for (var counter = 0; counter < 1 << values.Count; ++counter)
             {
                 var combination = new List<T>();
 
-                for (int index = 0; index < values.Count; ++index)
+                for (var index = 0; index < values.Count; ++index)
                 {
                     if ((counter & (1 << index)) == 0)
                     {

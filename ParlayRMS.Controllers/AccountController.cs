@@ -1,4 +1,4 @@
-﻿using Fanex.Common;
+using Fanex.Common;
 using Newtonsoft.Json;
 using ONEbook.UM.Services.Impl;
 using ParlayRMS.DTO;
@@ -38,8 +38,6 @@ namespace ParlayRMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userId = 0;
-                var result = Result.Empty;
                 var request = new Request
                 {
                     Browser = Request.Browser.Browser,
@@ -48,7 +46,7 @@ namespace ParlayRMS.Controllers
                     Ip = _currentContext.Ip4Address
                 };
 
-                var user = _authorizationService.ValidateUser(model.UserName, model.Password, _currentSession.NetSessionId, request, out result, out userId);
+                var user = _authorizationService.ValidateUser(model.UserName, model.Password, _currentSession.NetSessionId, request, out var result, out var userId);
                 if (result.IsSuccessful)
                 {
                     CreateSession(user, userId);
@@ -57,7 +55,7 @@ namespace ParlayRMS.Controllers
                     var aspNetCoreAuth = GetAspNetCoreAuth();
                     if (!string.IsNullOrEmpty(aspNetCoreAuth))
                     {
-                        string aspNetCoreAuthUrl = GetAspNetCoreAuthUrl(model, request, aspNetCoreAuth);
+                        var aspNetCoreAuthUrl = GetAspNetCoreAuthUrl(model, request, aspNetCoreAuth);
                         return Redirect(aspNetCoreAuthUrl);
                     }
                     else
@@ -220,10 +218,6 @@ namespace ParlayRMS.Controllers
             {
                 _authorizationService.Logout(userId, userName);
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 ClearSessionAndCookies();
@@ -241,7 +235,7 @@ namespace ParlayRMS.Controllers
             var authInfo = new AuthInfo { UserId = user.Id, GroupId = 1, GroupName = "group name" };
 
             var authTicket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now, DateTime.Now.AddMinutes(20000), false, authInfo.ToXml());
-            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
 
             Response.Cookies.Add(authCookie);

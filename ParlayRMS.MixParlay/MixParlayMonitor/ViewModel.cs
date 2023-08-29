@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Web.Mvc.DataAnnotations;
+using ParlayRMS.Web.Mvc.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
 namespace ParlayRMS.MixParlay.MixParlayMonitor

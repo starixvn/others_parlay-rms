@@ -1,11 +1,10 @@
-﻿namespace ParlayRMS.Services.BetDetails
+namespace ParlayRMS.Services.BetDetails
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using BetList;
     using DataAccess.BetDetails;
-    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
@@ -22,15 +21,15 @@
 
         public ParlayBetDetails GetBetDetail(long transId, long refNo)
         {
-            BetListHTMLFactory factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
 
             var data = _dataAccess.RMS_Rpt_Parlay_Bet_Details(transId, refNo);
             var tickets = _betlistService.Map(refNo, data);
             var betInfo = _dataAccess.GetBetInfo(transId);
 
-            for (int i = 0; i < tickets.Item2.Count; i++)
+            for (var i = 0; i < tickets.Item2.Count; i++)
             {
                 var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
                 var ticket = tickets.Item2[i];
@@ -129,7 +128,7 @@
             var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
             var comboTypesAndStake = new List<string>();
             var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
-            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count());
+            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count);
             for (var i = 0; i < count; i++)
             {
                 comboTypesAndStake.Add(comboTypes[i] + " - " + FormatStake(hasStaketickets[i].Stake));

@@ -1,30 +1,15 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="FunctionsDataAccess.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DataAccess.Functions
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ParlayRMS.DTO;
+    using DTO;
     using ParlayRMS.DTO.Functions;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
+    using Utility;
+    using Utility.Data;
 
-    /// <summary>
-    /// Function Data Access.
-    /// </summary>
     public class FunctionsDataAccess : BaseDataAccess
     {
-        /// <summary>
-        /// Gets list of functions.
-        /// </summary>
-        /// <returns>List of functions.</returns>
         public IEnumerable<RMS_FunctionSel> RMS_FunctionSel()
         {
             var result = new List<RMS_FunctionSel>();
@@ -50,19 +35,6 @@ namespace ParlayRMS.DataAccess.Functions
             return result;
         }
 
-        /// <summary>
-        /// Inserts a new function.
-        /// </summary>
-        /// <param name="name">Function name.</param>
-        /// <param name="key">Function key.</param>
-        /// <param name="description">Function description.</param>
-        /// <param name="parentId">Parent function ID.</param>
-        /// <param name="parentName">Parent function name.</param>
-        /// <param name="displayOrder">Display order.</param>
-        /// <param name="adminId">User who creates function.</param>
-        /// <param name="ip">IP of machine which creates function.</param>
-        /// <param name="functionId">Function ID.</param>
-        /// <returns>Whether or not function is created successfully.</returns>
         public Result RMS_FunctionIns(
                          string name,
                          string key,
@@ -77,12 +49,14 @@ namespace ParlayRMS.DataAccess.Functions
             functionId = 0;
             var result = Result.Empty;
 
-            Hashtable param = new Hashtable();
-            param.Add("adminid", adminId);
-            param.Add("funcname", name);
-            param.Add("funckey", key);
-            param.Add("funcdesc", description);
-            param.Add("parentid", parentId);
+            var param = new Hashtable
+            {
+                { "adminid", adminId },
+                { "funcname", name },
+                { "funckey", key },
+                { "funcdesc", description },
+                { "parentid", parentId }
+            };
             if (string.IsNullOrEmpty(parentName))
             {
                 param.Add("parentname", DBNull.Value);
@@ -105,18 +79,6 @@ namespace ParlayRMS.DataAccess.Functions
             return result;
         }
 
-        /// <summary>
-        /// Updates a function information.
-        /// </summary>
-        /// <param name="id">Function ID.</param>
-        /// <param name="name">Function name.</param>
-        /// <param name="description">Function description.</param>
-        /// <param name="parentId">Parent function ID.</param>
-        /// <param name="parentName">Parent function name.</param>
-        /// <param name="displayOrder">Display order.</param>
-        /// <param name="adminId">User who updates function.</param>
-        /// <param name="ip">IP of machine which updates function.</param>
-        /// <returns>Whether or not function is updated successfully.</returns>
         public Result RMS_FunctionUpd(
                           int id,
                           string name,
@@ -127,12 +89,14 @@ namespace ParlayRMS.DataAccess.Functions
                           int adminId,
                           string ip)
         {
-            Hashtable param = new Hashtable();
-            param.Add("adminid", adminId);
-            param.Add("funcid", id);
-            param.Add("funcname", name);
-            param.Add("funcdesc", description);
-            param.Add("parentid", parentId);
+            var param = new Hashtable
+            {
+                { "adminid", adminId },
+                { "funcid", id },
+                { "funcname", name },
+                { "funcdesc", description },
+                { "parentid", parentId }
+            };
             if (string.IsNullOrEmpty(parentName))
             {
                 param.Add("parentname", DBNull.Value);

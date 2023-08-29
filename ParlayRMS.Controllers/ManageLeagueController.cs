@@ -1,20 +1,16 @@
-﻿namespace ParlayRMS.Controllers
+namespace ParlayRMS.Controllers
 {
     using PagedList;
-    using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Leagues;
-    using ParlayRMS.Services.Users;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Web.Authorization;
-    using System.IO;
+    using Models.Functions;
+    using Services.Leagues;
+    using Services.Users;
+    using Utility;
+    using Web.Authorization;
     using System.Linq;
     using System.Web.Mvc;
     using ExcelService.Writers;
     using ViewModel.ManageLeague;
 
-    /// <summary>
-    /// League Management Controller.
-    /// </summary>
     public class ManageLeagueController : BaseController
     {
         private readonly UsersService _userService = new UsersService();
@@ -23,68 +19,68 @@
         private const int SOCCER = 1;
 
 
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
         public ActionResult LeagueList(LeagueListModel model)
         {
-            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group, SOCCER);
-            int page = model.Page <= 0 ? 1 : model.Page;
+            var specialLeagueList = leagueService.GetListLeague(model.League, model.Group, SOCCER);
+            var page = model.Page <= 0 ? 1 : model.Page;
             ViewBag.Pager = Pager.Items(specialLeagueList.Count).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
-            return this.View(specialLeagueList.ToPagedList(page, _pageSize));
+            return View(specialLeagueList.ToPagedList(page, _pageSize));
         }
 
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
-            return this.View();
+            return View();
         }
 
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
         public ActionResult AddLeague()
         {
             var model = new AddLeagueModel();
-            return this.PartialView(model);
+            return PartialView(model);
         }
 
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
         public ActionResult AddLeague(AddLeagueModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
-            var result = this.leagueService.AddLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
-            return this.Json(result);
+            var result = leagueService.AddLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
+            return Json(result);
         }
 
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Update)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Update)]
         public ActionResult UpdateGroup(UpdateGroupModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
-            var result = this.leagueService.UpdateLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
-            return this.Json(result);
+            var result = leagueService.UpdateLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
+            return Json(result);
         }
 
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
         public ActionResult ExportExcel(ExportExcelModel model)
         {
-            var specialLeagueList = this.leagueService.GetListLeague(model.League, model.Group, SOCCER);
+            var specialLeagueList = leagueService.GetListLeague(model.League, model.Group, SOCCER);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\SpecialLeague.xls";
             var writer = new TemplateWriter(templatePath);
 
-            string title = "Special Leagues";
+            var title = "Special Leagues";
             writer.WriteRow(0, new object[] { title });
 
-            var header = new string[]
+            var header = new[]
             {
                 "No",
                 "League Name",
@@ -94,21 +90,21 @@
 
             var select = specialLeagueList.Select(x => new
             {
-                No = x.No,
-                LeagueName = x.LeagueName,
-                GroupName = x.GroupName,
+                x.No,
+                x.LeagueName,
+                x.GroupName,
             });
             writer.WriteRows(2, select);
             writer.SyncColumnWidths(3);
 
-            MemoryStream ms = writer.Render("SpecialLeague");
+            var ms = writer.Render("SpecialLeague");
             ms.Seek(0, 0);
-            return this.File(ms, "application/vnd.ms-excel", "SpecialLeague.xls");
+            return File(ms, "application/vnd.ms-excel", "SpecialLeague.xls");
         }
 
         public ActionResult SearchBar(SearchBarModel model)
         {
-            return this.PartialView(model);
+            return PartialView(model);
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

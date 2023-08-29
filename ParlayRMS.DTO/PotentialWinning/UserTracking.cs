@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.PotentialWinning
+namespace ParlayRMS.DTO.PotentialWinning
 {
     public class UserTracking
     {

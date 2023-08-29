@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Controllers;
+using ParlayRMS.Controllers;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.Users;
@@ -62,7 +62,6 @@ namespace ParlayRMS.MixParlay.TotalOutstanding
             return View(viewModel);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(ViewModel viewModel)
         {

@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_UserPolicySel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Users
 {
-    /// <summary>
-    /// User Policy model.
-    /// </summary>
     public class RMS_UserPolicySel
     {
         public int FuncId { get; set; }

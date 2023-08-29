@@ -1,4 +1,4 @@
-﻿namespace ExcelService.Writers
+namespace ExcelService.Writers
 {
     using System.Collections.Generic;
     using System.IO;
@@ -8,9 +8,8 @@
 
     public class TemplateWriter
     {
-        private ISheet _templateSheet;
-        private ISheet _sheet;
-        private int _rowId = 0;
+        private readonly ISheet _templateSheet;
+        private readonly ISheet _sheet;
 
         public TemplateWriter(string filePath)
             : this(new FileStream(filePath, FileMode.Open, FileAccess.Read))
@@ -29,13 +28,7 @@
             _sheet = template.CreateSheet("Result");
         }
 
-        public int RowId
-        {
-            get
-            {
-                return _rowId;
-            }
-        }
+        public int RowId { get; private set; }
 
         public void WriteCell(int rowId, int columnId, object value)
         {
@@ -45,15 +38,15 @@
 
         public void WriteRow(int rowId, object[] values)
         {
-            IRow row = CreateRow(rowId);
+            var row = CreateRow(rowId);
             row.WriteCells(0, values);
         }
 
         public void WriteRows(int rowId, List<object[]> arrayList)
         {
-            int total = arrayList.Count;
-            IRow row = CreateRows(rowId, total);
-            for (int i = 0; i < total; i++)
+            var total = arrayList.Count;
+            var row = CreateRows(rowId, total);
+            for (var i = 0; i < total; i++)
             {
                 row.WriteCells(0, arrayList[i]);
                 row = _sheet.GetRow(row.RowNum + 1);
@@ -62,7 +55,7 @@
 
         public void WriteRow(int rowId, object o)
         {
-            List<object> list = new List<object>();
+            var list = new List<object>();
             foreach (var propertyInfo in o.GetType().GetProperties())
             {
                 list.Add(propertyInfo.GetValue(o, null));
@@ -90,7 +83,7 @@
 
         public void AutosizeColumns(int from, int to)
         {
-            for (int i = from; i <= to; i++)
+            for (var i = from; i <= to; i++)
             {
                 _sheet.AutoSizeColumn(i, false);
             }
@@ -103,7 +96,7 @@
 
         public void SyncColumnWidths(int from, int to)
         {
-            for (int i = from; i <= to; i++)
+            for (var i = from; i <= to; i++)
             {
                 _sheet.SetColumnWidth(i, _templateSheet.GetColumnWidth(i));
             }
@@ -116,7 +109,7 @@
 
         public MemoryStream Render(string sheetName)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             _sheet.Workbook.RemoveSheetAt(0);
             _sheet.Workbook.Write(ms);
             return ms;
@@ -129,9 +122,9 @@
 
         private IRow CreateRows(int rowId, int total)
         {
-            _sheet.CopyRows(_templateSheet, rowId, _rowId, total);
-            _rowId += total;
-            return _sheet.GetRow(_rowId - total);
+            _sheet.CopyRows(_templateSheet, rowId, RowId, total);
+            RowId += total;
+            return _sheet.GetRow(RowId - total);
         }
     }
 }

@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MaintenanceInfo.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Systems
 {
     using System;
     using System.Globalization;
 
-    /// <summary>
-    /// Maintenance Information.
-    /// </summary>
     public class MaintenanceInfo
     {
         public MaintenanceInfo()
