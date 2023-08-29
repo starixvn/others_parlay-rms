@@ -6,17 +6,18 @@ using System.Linq;
 using System.Web.Mvc;
 using PagedList;
 using ParlayRMS.DTO.MemberWinLoss;
-using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Models.MemberWinLoss;
-using ParlayRMS.Services.Implement.MemberWinLoss;
+using ParlayRMS.Services.MemberWinLoss;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
+    using ExcelService.Writers;
+
     [Authorization(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
     public class MemberWinLossController : BaseController
     {

@@ -1,15 +1,15 @@
 ﻿namespace ParlayRMS.Controllers
 {
-    using ExcelService.Writers;
     using PagedList;
     using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Leagues;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Leagues;
+    using ParlayRMS.Services.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Authorization;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
+    using ExcelService.Writers;
     using ViewModel.ManageLeague;
 
     /// <summary>

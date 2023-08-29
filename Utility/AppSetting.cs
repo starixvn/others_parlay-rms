@@ -65,15 +65,7 @@
                 return GetValue("MemberWinLossLimitDate");
             }
         }
-
-        public static int UserPolicyCacheTime
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("UserPolicyCacheTime"));
-            }
-        }
-
+        
         public static Dictionary<long, string> DangerousAgents
         {
             get

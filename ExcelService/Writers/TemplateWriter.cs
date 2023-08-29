@@ -1,11 +1,11 @@
-﻿using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using ParlayRMS.ExcelService.Utility;
-using System.Collections.Generic;
-using System.IO;
-
-namespace ParlayRMS.ExcelService.Writers
+﻿namespace ExcelService.Writers
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
+    using Utility;
+
     public class TemplateWriter
     {
         private ISheet _templateSheet;

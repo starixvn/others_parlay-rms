@@ -1,7 +1,7 @@
-﻿using NPOI.SS.UserModel;
-
-namespace ParlayRMS.ExcelService.Utility
+﻿namespace ExcelService.Utility
 {
+    using NPOI.SS.UserModel;
+
     public static class RowExtensions
     {
         public static ICell CreateCell(this IRow row, int colId, ICellStyle cellStyle)

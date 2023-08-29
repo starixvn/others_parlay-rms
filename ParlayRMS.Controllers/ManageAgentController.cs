@@ -13,8 +13,8 @@ namespace ParlayRMS.Controllers
     using System.Web.Mvc;
     using PagedList;
     using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Agents;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Agents;
+    using ParlayRMS.Services.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageAgent;
     using ParlayRMS.Web.Authorization;

@@ -1,8 +1,8 @@
 ﻿using ParlayRMS.DTO.PotentialWinning;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Implement.PotentialWinningMonitor;
+using ParlayRMS.Services.Common;
+using ParlayRMS.Services.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.Web.Authorization;

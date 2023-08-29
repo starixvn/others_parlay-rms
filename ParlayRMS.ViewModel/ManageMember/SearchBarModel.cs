@@ -9,8 +9,8 @@
 namespace ParlayRMS.ViewModel.ManageMember
 {
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Common.Models;
     using ParlayRMS.Utility;
+    using Utility.Data;
 
     /// <summary>
     /// Search Bar Model.

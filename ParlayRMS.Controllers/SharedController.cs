@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using ParlayRMS.Services.Implement.Menus;
+    using ParlayRMS.Services.Menus;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.Shared;
 

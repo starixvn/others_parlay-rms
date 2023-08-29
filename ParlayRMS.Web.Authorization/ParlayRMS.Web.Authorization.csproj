@@ -90,9 +90,9 @@
       <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
       <Name>ParlayRMS.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.Services.Implement\ParlayRMS.Services.Implement.csproj">
-      <Project>{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}</Project>
-      <Name>ParlayRMS.Services.Implement</Name>
+    <ProjectReference Include="..\ParlayRMS.Services\ParlayRMS.Services.csproj">
+      <Project>{6bfc45d5-70f1-4dbb-9e16-4f6886a77f28}</Project>
+      <Name>ParlayRMS.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Web\ParlayRMS.Web.csproj">
       <Project>{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}</Project>

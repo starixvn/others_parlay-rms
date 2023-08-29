@@ -1,18 +1,18 @@
 ﻿
 namespace ParlayRMS.Controllers
 {
-    using ExcelService.Writers;
     using Models.Functions;
     using PagedList;
     using ParlayRMS.DTO.LeagueBetTypeAnalysis;
     using ParlayRMS.DTO.Leagues;
-    using Services.Implement.LeagueBetTypeAnalysis;
-    using Services.Implement.Leagues;
+    using Services.LeagueBetTypeAnalysis;
+    using Services.Leagues;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
+    using ExcelService.Writers;
     using Utility;
     using ViewModel.Report;
     using Web.Authorization;

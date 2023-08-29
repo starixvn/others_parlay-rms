@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.Monitoring
+﻿namespace ParlayRMS.ViewModel.ViewIPInfo
 {
     public class ParlayBetDetailsOptions
     {

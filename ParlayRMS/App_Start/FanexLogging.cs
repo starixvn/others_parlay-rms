@@ -1,14 +1,14 @@
-﻿using System.Web;
-using Fanex.Logging.Extensions.Database;
-using Fanex.Logging.Extensions.Web;
-using System.Configuration;
-using System.Collections.Generic;
-using Fanex.Logging;
-using Fanex.Logging.Sentry.RavenClient;
-using SharpRaven;
-
-namespace ParlayRMS.App_Start
+﻿namespace ParlayRMS
 {
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Web;
+    using Fanex.Logging;
+    using Fanex.Logging.Extensions.Database;
+    using Fanex.Logging.Extensions.Web;
+    using Fanex.Logging.Sentry.RavenClient;
+    using SharpRaven;
+
     public static class FanexLogging
     {
         public static void Register()

@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS", "ParlayRMS\ParlayRMS.csproj", "{DA01FEC1-EE29-44A1-BA13-DFBE3FDCFB57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Controllers", "ParlayRMS.Controllers\ParlayRMS.Controllers.csproj", "{4C610986-FD5A-4729-A5C7-747667A0EF9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.DataAccess.Implement", "ParlayRMS.DataAccess.Implement\ParlayRMS.DataAccess.Implement.csproj", "{B3E2DDD4-8234-4E4C-A7A0-00B98E57CD17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.DataAccess", "ParlayRMS.DataAccess\ParlayRMS.DataAccess.csproj", "{B3E2DDD4-8234-4E4C-A7A0-00B98E57CD17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.DTO", "ParlayRMS.DTO\ParlayRMS.DTO.csproj", "{B24E0E96-BC13-4217-B73D-92224E63CE03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Models", "ParlayRMS.Models\ParlayRMS.Models.csproj", "{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Services.Implement", "ParlayRMS.Services.Implement\ParlayRMS.Services.Implement.csproj", "{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Services", "ParlayRMS.Services\ParlayRMS.Services.csproj", "{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.ViewModel", "ParlayRMS.ViewModel\ParlayRMS.ViewModel.csproj", "{C8CB1E7B-E68A-4065-AE30-3F8FB371974A}"
 EndProject
@@ -23,11 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Utility", "Utility\ParlayRMS.Utility.csproj", "{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A77B552-CC46-41DB-9B89-78C6FCD527A2}"
-	ProjectSection(SolutionItems) = preProject
-		..\Dependencies\Settings.StyleCop = ..\Dependencies\Settings.StyleCop
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.ExcelService", "ExcelService\ParlayRMS.ExcelService.csproj", "{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Web", "ParlayRMS.Web\ParlayRMS.Web.csproj", "{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}"
@@ -35,8 +30,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{BCA2474E-ECFB-42A7-807B-BFE62C315D07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BEA631A8-250D-400C-8B64-B82B497F75DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Common", "ParlayRMS.Common\ParlayRMS.Common.csproj", "{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Web.Authorization", "ParlayRMS.Web.Authorization\ParlayRMS.Web.Authorization.csproj", "{46A0F82B-E451-4048-8409-031152B587A2}"
 EndProject
@@ -86,10 +79,6 @@ Global
 		{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46A0F82B-E451-4048-8409-031152B587A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46A0F82B-E451-4048-8409-031152B587A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A0F82B-E451-4048-8409-031152B587A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -109,7 +98,9 @@ Global
 		{EC4B916C-B380-4940-9CE0-9332BBDAB5E8} = {BEA631A8-250D-400C-8B64-B82B497F75DB}
 		{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E} = {C6DA3660-80DE-4B17-9CD7-6F82A4A8B795}
 		{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D} = {BCA2474E-ECFB-42A7-807B-BFE62C315D07}
-		{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E} = {BEA631A8-250D-400C-8B64-B82B497F75DB}
 		{46A0F82B-E451-4048-8409-031152B587A2} = {BCA2474E-ECFB-42A7-807B-BFE62C315D07}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9D90BD5-C0F3-4614-8E23-E7F831C10BF5}
 	EndGlobalSection
 EndGlobal

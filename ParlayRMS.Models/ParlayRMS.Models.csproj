@@ -76,10 +76,6 @@
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utility\ParlayRMS.Utility.csproj">
-      <Project>{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}</Project>
-      <Name>ParlayRMS.Utility</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Functions\FunctionKeys.tt">

@@ -1,5 +1,4 @@
-﻿using ParlayRMS.Common.Models;
-using ParlayRMS.Models;
+﻿using ParlayRMS.Models;
 using ParlayRMS.Utility;
 using ParlayRMS.Web.Mvc.DataAnnotations;
 using System;
@@ -8,6 +7,8 @@ using System.Linq;
 
 namespace ParlayRMS.ViewModel.Report
 {
+    using Utility.Data;
+
     public class WinlossOptions
     {
         [Required(ErrorMessage = "FromDate is required")]

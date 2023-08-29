@@ -1,6 +1,6 @@
 ﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.LeagueWinningMonitor;
+using ParlayRMS.Services.LeagueWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.LeagueWinningMonitor;

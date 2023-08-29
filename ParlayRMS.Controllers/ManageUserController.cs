@@ -15,8 +15,8 @@ namespace ParlayRMS.Controllers
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Groups;
     using ParlayRMS.Models.Users;
-    using ParlayRMS.Services.Implement.Groups;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Groups;
+    using ParlayRMS.Services.Users;
     using ParlayRMS.ViewModel.ManageUser;
     using ParlayRMS.Web.Authorization;
 

@@ -7,7 +7,7 @@
 //   <change who="Jason.Ly" date="2013.10.08">Separated from NPOIExtensions</change>
 // </history>
 
-namespace ParlayRMS.ExcelService.Utility
+namespace ExcelService.Utility
 {
     using NPOI.SS.Util;
 

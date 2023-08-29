@@ -6,7 +6,7 @@
 // <history>
 // </history>
 
-namespace ParlayRMS.Models
+namespace ParlayRMS.Models.Functions
 {
     /// <summary>
     /// Policy Model.

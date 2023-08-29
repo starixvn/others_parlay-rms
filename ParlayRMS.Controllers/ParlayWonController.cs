@@ -1,9 +1,8 @@
 ﻿using ParlayRMS.DTO.ParlayWon;
-using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Implement.ParlayWon;
+using ParlayRMS.Services.BetDetails;
+using ParlayRMS.Services.Common;
+using ParlayRMS.Services.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
@@ -17,6 +16,8 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    using ExcelService.Writers;
+
     [Authorization(Function = FunctionKeys.ParlayWon, Policy = UserPolicy.Read)]
     public class ParlayWonController : BaseController
     {
