@@ -1,9 +1,7 @@
-﻿@using ParlayRMS.DTO.Members;
-@using ParlayRMS.Utility;
-@model IEnumerable<RMS_CustomerSel>
+﻿@model IEnumerable<RMS_CustomerSel>
 @{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.MemberManagement;
-    string levelName = string.Empty;
+    var levelName = string.Empty;
 }
 <div id="barSpecialMember" class="bar new-cmd title" style="width: 550px;">
     @if (ViewBag.HasWritePermission)

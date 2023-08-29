@@ -1,4 +1,3 @@
-﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -11,7 +10,6 @@ using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -26,7 +24,7 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.betid = Request["betid"] ?? null;
+            ViewBag.betid = Request["betid"];
             return View("Index");
         }
 
@@ -44,7 +42,6 @@ namespace ParlayRMS.Controllers
             return PartialView("Data", model);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsOptions options)
@@ -52,14 +49,14 @@ namespace ParlayRMS.Controllers
             ViewBag.BetId = options.TransId;
             ViewBag.Username = options.Username;
 
-            BetListHTMLFactory factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var factory = new BetListHTMLFactory();
+            var builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var tickets = _betDetailService.CreateChoice(options.TransId, options.RefNo);
             var originalTickets = _betDetailService.CreateChoice(options.OriginalTransId, options.OriginalRefNo);
             var betInfo = _betDetailService.GetBetInfo(options.TransId);
             var ticketsCompare = new List<long>();
-            for (int i = 0; i < tickets.Item2.Count; i++)
+            for (var i = 0; i < tickets.Item2.Count; i++)
             {
                 var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
                 var ticket = tickets.Item2[i];
@@ -104,7 +101,7 @@ namespace ParlayRMS.Controllers
             var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(betInfo.BetTeam, betInfo.BetCheck, betInfo.Hdp1, betInfo.Hdp2);
             var comboTypesAndStake = new List<string>();
             var hasStaketickets = tickets.Where(m => m.Stake > 0).OrderBy(m => m.MatchId).ToList();
-            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count());
+            var count = Math.Min(comboTypes?.Length ?? 0, hasStaketickets.Count);
             for (var i = 0; i < count; i++)
             {
                 comboTypesAndStake.Add(comboTypes[i] + " - " + FormatStake(hasStaketickets[i].Stake));

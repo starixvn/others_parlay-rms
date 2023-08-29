@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Services.LeagueWinningMonitor
+namespace ParlayRMS.Services.LeagueWinningMonitor
 {
     using System.Collections.Generic;
     using DataAccess.LeagueWinningMonitor;

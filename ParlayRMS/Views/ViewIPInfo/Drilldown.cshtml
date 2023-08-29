@@ -1,5 +1,5 @@
 ﻿@{
-    var sportName = String.Empty;
+    var sportName = string.Empty;
     if (ViewBag.SportType == (int)SportsType.SoccerOnly)
     {
         sportName = ViewLang.Socceronly;
@@ -9,7 +9,7 @@
         sportName = ViewLang.Others;
     }
     ViewBag.Title = ViewBag.HeaderText = sportName + " bet list - " + ViewBag.UserName;
-    int counter = 0;
+    var counter = 0;
     decimal totalWinLoss = 0;
 }
 @model IEnumerable<ParlayRMS.DTO.ViewIPInfo.RMS_Rpt_Parlay_ViewIPInfoByUser>
@@ -149,7 +149,7 @@
                             }
                         </td>
                         @{
-                            var winLossNegative = (item.Winlost < 0 && item.StatusId != 0) ? "negative" : "";
+                            var winLossNegative = item.Winlost < 0 && item.StatusId != 0 ? "negative" : "";
                         }
                         <td class="numeric @winLossNegative">
                             @if (item.StatusId == 0)

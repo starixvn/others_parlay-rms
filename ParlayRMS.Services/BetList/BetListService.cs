@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Services.BetList
+namespace ParlayRMS.Services.BetList
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -19,7 +19,6 @@ namespace ParlayRMS.MixParlay.BetList
         private readonly IService _service = new Service();
         private readonly ICommonService _commonService = new CommonService();
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult BetDetails(ViewModel model)
         {

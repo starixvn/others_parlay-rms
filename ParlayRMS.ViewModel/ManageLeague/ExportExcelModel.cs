@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.ManageLeague
+namespace ParlayRMS.ViewModel.ManageLeague
 {
     public class ExportExcelModel
     {

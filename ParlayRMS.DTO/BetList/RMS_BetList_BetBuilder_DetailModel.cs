@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.BetList
+namespace ParlayRMS.DTO.BetList
 {
     public class RMS_BetList_BetBuilder_DetailModel
     {

@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Member.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Members
 {
     using System;
-    using ParlayRMS.Models.Users;
+    using Users;
 
-    /// <summary>
-    /// Member model.
-    /// </summary>
     public class Member
     {
         public int CustId { get; set; }

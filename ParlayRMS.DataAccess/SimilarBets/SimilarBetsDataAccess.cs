@@ -1,15 +1,13 @@
-﻿namespace ParlayRMS.DataAccess.SimilarBets
+namespace ParlayRMS.DataAccess.SimilarBets
 {
     using System;
     using System.Data;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.Data;
     using ParlayRMS.DTO.SimilarBets;
-    using ParlayRMS.Utility;
+    using Utility;
 
     public class SimilarBetsDataAccess : BaseDataAccess
     {
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private const byte runningStatus = 0;
 
         public RMS_Similar_Parlay_Betlist RMS_Similar_Parlay_Betlist(long transId, bool isSimilar)
@@ -23,11 +21,11 @@
                 {
                     if (dataset.Tables.Count == 2)
                     {
-                        DataTable list = dataset.Tables[0];
+                        var list = dataset.Tables[0];
                         if (list.Rows.Count > 0)
                         {
-                            DataRow info = list.Rows[0];
-                            DataTable details = dataset.Tables[1];
+                            var info = list.Rows[0];
+                            var details = dataset.Tables[1];
                             var isRunningStatus = DbConverter.ToByte(info["statusID"]) == runningStatus;
 
                             return new RMS_Similar_Parlay_Betlist

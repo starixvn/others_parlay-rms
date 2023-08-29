@@ -1,4 +1,4 @@
-﻿using ParlayRMS.DTO.Winloss;
+using ParlayRMS.DTO.Winloss;
 using System.Collections.Generic;
 
 namespace ParlayRMS.Models.Winloss
@@ -21,7 +21,6 @@ namespace ParlayRMS.Models.Winloss
             {
                 Records.Add(item);
 
-                // Sum data
                 Total.Tickets_Won += item.Total.Tickets_Won;
                 Total.Tickets_Lose += item.Total.Tickets_Lose;
                 Total.Stake_Won += item.Total.Stake_Won;

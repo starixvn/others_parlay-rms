@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CreateMenuModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageMenu
 {
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Utility;
+    using Utility;
 
-    /// <summary>
-    /// Create Menu Model.
-    /// </summary>
     public class CreateMenuModel
     {
         [Required, StringLength(50)]

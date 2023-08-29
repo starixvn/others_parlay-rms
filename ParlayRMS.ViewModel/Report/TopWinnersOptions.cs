@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Utility;
+using ParlayRMS.Utility;
 using System;
 using System.Linq;
 
@@ -26,7 +26,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public string Currencies { get; set; }
 
-        public Int64? CustomerClass { get; set; }
+        public long? CustomerClass { get; set; }
 
         public string GetTile()
         {
@@ -37,7 +37,7 @@ namespace ParlayRMS.ViewModel.Report
                 combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
             }
 
-            string title = string.Format(
+            var title = string.Format(
                                       "Top {0} winners - from {1} to {2} - {3} [{4}] - {5} [{6}] - {7} [{8}] - {9} [{10}] - {11} [{12} - {13} [{14}]",
                                       SelectTop,
                                       FromDate.ToString("MMM dd, yyyy"),

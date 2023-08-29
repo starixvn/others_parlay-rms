@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DataAccess.TopWinners
+namespace ParlayRMS.DataAccess.TopWinners
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using Fanex.Data;
     using ParlayRMS.DTO.BetList;
     using ParlayRMS.DTO.TopWinners;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class TopWinnersDataAccess : BaseDataAccess
     {
@@ -22,7 +22,7 @@
                                                          byte liveType,
                                                          string currencies,
                                                          byte site,
-                                                         Int64? customerClass)
+                                                         long? customerClass)
         {
             var result = new List<RMS_Rpt_Parlay_TopWinner>();
 

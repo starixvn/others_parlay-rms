@@ -1,20 +1,9 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AuthInfo.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Web.Authorization
 {
     using System;
     using System.IO;
     using System.Xml.Serialization;
 
-    /// <summary>
-    /// Authentication Information.
-    /// </summary>
     public class AuthInfo
     {
         #region Properties
@@ -27,10 +16,7 @@ namespace ParlayRMS.Web.Authorization
 
         public int UserId
         {
-            get 
-            { 
-                return _userId; 
-            }
+            get => _userId;
 
             set
             {
@@ -45,10 +31,7 @@ namespace ParlayRMS.Web.Authorization
 
         public int GroupId
         {
-            get 
-            { 
-                return _groupId; 
-            }
+            get => _groupId;
 
             set
             {
@@ -63,10 +46,7 @@ namespace ParlayRMS.Web.Authorization
 
         public string GroupName
         {
-            get 
-            { 
-                return _groupName; 
-            }
+            get => _groupName;
 
             set
             {
@@ -81,28 +61,19 @@ namespace ParlayRMS.Web.Authorization
 
         #endregion Properties
 
-        /// <summary>
-        /// Creates the user data.
-        /// </summary>
-        /// <param name="authInfoXml">XML string contains the authentication information.</param>
-        /// <returns>Authentication information.</returns>
         public static AuthInfo CreateUserData(string authInfoXml)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(AuthInfo));
-            AuthInfo authInfo = (AuthInfo)serializer.Deserialize(new StringReader(authInfoXml));
+            var serializer = new XmlSerializer(typeof(AuthInfo));
+            var authInfo = (AuthInfo)serializer.Deserialize(new StringReader(authInfoXml));
             return authInfo;
         }
 
-        /// <summary>
-        /// Converts the authentication information to the XML.
-        /// </summary>
-        /// <returns>XML string contains the authentication information.</returns>
         public string ToXml()
         {
-            string xml = string.Empty;
-            using (StringWriter sw = new StringWriter())
+            var xml = string.Empty;
+            using (var sw = new StringWriter())
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(AuthInfo));
+                var serializer = new XmlSerializer(typeof(AuthInfo));
                 serializer.Serialize(sw, this);
                 sw.Close();
                 xml = sw.ToString();

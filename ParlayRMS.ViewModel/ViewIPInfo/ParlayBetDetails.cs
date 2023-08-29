@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.ViewIPInfo
+namespace ParlayRMS.ViewModel.ViewIPInfo
 {
     using System;
 

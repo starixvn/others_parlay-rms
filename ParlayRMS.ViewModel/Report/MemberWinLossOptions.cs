@@ -1,4 +1,3 @@
-﻿using ParlayRMS.Models;
 using ParlayRMS.Utility;
 using ParlayRMS.Web.Mvc.DataAnnotations;
 using System;
@@ -42,9 +41,9 @@ namespace ParlayRMS.ViewModel.Report
 
         public static DateTime GetLimitDate()
         {
-            string memberWinLossLimitDate = AppSetting.MemberWinLossLimitDate;
-            DateTime limitDate = Convert.ToDateTime(memberWinLossLimitDate);
-            DateTime minDate = DateTime.Now.AddYears(-1);
+            var memberWinLossLimitDate = AppSetting.MemberWinLossLimitDate;
+            var limitDate = Convert.ToDateTime(memberWinLossLimitDate);
+            var minDate = DateTime.Now.AddYears(-1);
             return minDate > limitDate ? minDate : limitDate;
         }
 

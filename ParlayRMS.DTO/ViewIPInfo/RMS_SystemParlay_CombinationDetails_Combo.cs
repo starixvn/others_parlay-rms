@@ -1,19 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_SystemParlay_CombinationDetails_Combo.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.24">Created</change>
-// </history>
-
 namespace ParlayRMS.DTO.ViewIPInfo
 {
     using System;
 
-    /// <summary>
-    /// CombinationDetails Combo model.
-    /// </summary>
     public class RMS_SystemParlay_CombinationDetails_Combo
     {
         public DateTime WinLostDate { get; set; }

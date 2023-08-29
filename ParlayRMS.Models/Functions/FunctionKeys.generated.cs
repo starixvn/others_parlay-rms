@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Models.Functions
+namespace ParlayRMS.Models.Functions
 {
 	public class FunctionKeys
 	{

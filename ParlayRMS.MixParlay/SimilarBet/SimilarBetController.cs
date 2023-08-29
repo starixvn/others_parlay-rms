@@ -1,4 +1,4 @@
-﻿using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
@@ -38,7 +38,6 @@ namespace ParlayRMS.MixParlay.SimilarBet
             return PartialView(model);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsViewModel viewModel)
         {

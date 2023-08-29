@@ -1,4 +1,3 @@
-﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ParlayRMS.ViewModel.Monitoring
@@ -25,7 +24,7 @@ namespace ParlayRMS.ViewModel.Monitoring
 
         public int? AgentId { get; set; }
 
-        public Int64? CustomerClass { get; set; }
+        public long? CustomerClass { get; set; }
 
         public string Company { get; set; }
 

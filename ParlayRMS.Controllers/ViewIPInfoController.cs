@@ -1,24 +1,18 @@
-﻿using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
-using ParlayRMS.DTO.Common;
 using ParlayRMS.DTO.ViewIPInfo;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Models.ViewIpInfo;
 using ParlayRMS.Services.BetList;
 using ParlayRMS.Services.Common;
 using ParlayRMS.Services.ViewIPInfo;
 using ParlayRMS.Utility;
-using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.ViewIPInfo;
 using ParlayRMS.Web.Authorization;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -30,12 +24,12 @@ namespace ParlayRMS.Controllers
         private readonly ViewIPInfoService _ipinfoService = new ViewIPInfoService();
         private readonly BetListService _betlistService = new BetListService();
         private readonly CommonService _commonService = new CommonService();
-        private int _pageSize = 100;
+        private readonly int _pageSize = 100;
 
         [HttpGet]
         public ActionResult Index()
         {
-            RMS_Rpt_Parlay_SelMinTransdate info = _commonService.GetMinTransDate();
+            var info = _commonService.GetMinTransDate();
             ViewBag.ip = Request["ip"];
             ViewBag.date = Request["date"];
             ViewBag.minDate = info.MinTransdate;
@@ -47,7 +41,7 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> records = _ipinfoService.GetIPInfo(options.IP, options.Date);
+                var records = _ipinfoService.GetIPInfo(options.IP, options.Date);
 
                 return Json(new
                 {
@@ -64,13 +58,13 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult IpStatsData(ViewIPStatsOptions options)
         {
-            RMS_Rpt_Parlay_UsersStatisticsByIP data = _ipinfoService.GetIPStats(
+            var data = _ipinfoService.GetIPStats(
                                                                             options.FromDate,
                                                                             options.PageIndex,
                                                                             options.PageSize,
                                                                             options.TotalItems,
                                                                             options.MaxTransId);
-            int page = options.PageIndex;
+            var page = options.PageIndex;
 
             ViewBag.StartCounter = (page - 1) * _pageSize;
             ViewBag.Pager = Pager.Items(data.TotalItems).PerPage(_pageSize).Move(page).Segment(5).Center();
@@ -85,7 +79,7 @@ namespace ParlayRMS.Controllers
             ViewBag.SportType = model.SportType;
             ViewBag.UserName = model.UserName;
 
-            IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
+            var models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
             var singleMatchParlayTickets = models.Where(m => m.BetType == (int)BetType.SingleMatchParlay).ToArray();
             if (singleMatchParlayTickets.Any())
             {
@@ -124,7 +118,7 @@ namespace ParlayRMS.Controllers
 
         private static string BuildSingleMatchParlayChoice(ITicketHelper ticketHelper, BetListHTMLFactory factory, RMS_Rpt_Parlay_ViewIPInfoByUser model, int userId, int index)
         {
-            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var builder = factory.CreateBuilder();
             var ticket = new Ticket
             {
                 HomeId = model.HomeId,
@@ -158,7 +152,7 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                string ticketString = BuildTickets(options);
+                var ticketString = BuildTickets(options);
 
                 return Json(new
                 {
@@ -175,25 +169,24 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult ParlayBetDetails(ParlayBetDetailsOptions options)
         {
-            CombinationDetailsByDateViews model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
+            var model = _ipinfoService.GetBetCombinationDetails(options.RefNo);
             model.BetTypeName = options.BetTypeName;
             return View("BetDetails", model);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Need to review here.")]
         private string BuildTickets(ParlayBetTypeViewModel options)
         {
             var factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
+            var builder = factory.CreateBuilder();
             ITicketHelper ticketHelper = new TicketHelper { IsShowOddsWithChoice = true };
             var data = _betlistService.GetBetListData(options.TransId, options.RefNo);
             var tickets = _betlistService.Map(options.RefNo, data.Tickets);
-            int countTicket = 1;
-            string openTag = string.Empty;
-            string endTag = "<hr class = 'hr'>";
+            var countTicket = 1;
+            var openTag = string.Empty;
+            var endTag = "<hr class = 'hr'>";
             if (options.BetType == (int)BetType.SystemParlay)
             {
-                var comboTypes = Utility.CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
+                var comboTypes = CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
                 var filteredTickets = tickets.Item2.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
                 var count = comboTypes == null ? 0 : comboTypes.Length;
                 for (var i = 0; i < count && i < filteredTickets.Count; i++)
@@ -213,7 +206,7 @@ namespace ParlayRMS.Controllers
                     openTag = string.Empty;
                 }
 
-                if (countTicket == tickets.Item2.Count())
+                if (countTicket == tickets.Item2.Count)
                 {
                     endTag = string.Empty;
                 }
@@ -265,7 +258,6 @@ namespace ParlayRMS.Controllers
             var html = new HtmlDocument();
             html.LoadHtml(choice);
             var document = html.DocumentNode;
-            var bettype = document.QuerySelector(".bettype");
             var eventDateNode = document.QuerySelector(".event-date");
             if (eventDateNode != null)
             {

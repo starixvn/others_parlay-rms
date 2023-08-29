@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_MenuSelByUserID_Menu.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Users
 {
-    /// <summary>
-    /// Menu model for selecting menu item by user ID SP.
-    /// </summary>
     public class RMS_MenuSelByUserID_Menu
     {
         public int ParentId { get; set; }

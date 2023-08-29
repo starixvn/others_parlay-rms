@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Models.Users;
+using ParlayRMS.Models.Users;
 using System;
 using System.Web.UI;
 
@@ -12,90 +12,45 @@ namespace ParlayRMS.Web.Session
         public const string ParlayRmsOnUserId = "RMS.OnUserId";
         public const string ParlayRmsUserPolicy = "RMS.UserPolicy";
 
-        public static ICurrentSession Instance
-        {
-            get
-            {
-                return new CurrentSession();
-            }
-        }
+        public static ICurrentSession Instance => new CurrentSession();
 
         public UserCache UserPolicy
         {
-            get
-            {
-                return (UserCache)this.Session[ParlayRmsUserPolicy];
-            }
+            get => (UserCache)Session[ParlayRmsUserPolicy];
 
-            set
-            {
-                this.Session[ParlayRmsUserPolicy] = value;
-            }
+            set => Session[ParlayRmsUserPolicy] = value;
         }
 
         public string UserName
         {
-            get
-            {
-                return Convert.ToString(this.Session[ParlayRmsUsername]);
-            }
+            get => Convert.ToString(Session[ParlayRmsUsername]);
 
-            set
-            {
-                this.Session[ParlayRmsUsername] = value;
-            }
+            set => Session[ParlayRmsUsername] = value;
         }
 
         public int CustId
         {
-            get
-            {
-                return Convert.ToInt32(this.Session[ParlayRmsCustId]);
-            }
+            get => Convert.ToInt32(Session[ParlayRmsCustId]);
 
-            set
-            {
-                this.Session[ParlayRmsCustId] = value;
-            }
+            set => Session[ParlayRmsCustId] = value;
         }
 
         public int UserId
         {
-            get
-            {
-                return Convert.ToInt32(this.Session[ParlayRmsUserId]);
-            }
+            get => Convert.ToInt32(Session[ParlayRmsUserId]);
 
-            set
-            {
-                this.Session[ParlayRmsUserId] = value;
-            }
+            set => Session[ParlayRmsUserId] = value;
         }
 
         public int OnUserId
         {
-            get
-            {
-                return Convert.ToInt32(this.Session[ParlayRmsOnUserId]);
-            }
+            get => Convert.ToInt32(Session[ParlayRmsOnUserId]);
 
-            set
-            {
-                this.Session[ParlayRmsOnUserId] = value;
-            }
+            set => Session[ParlayRmsOnUserId] = value;
         }
 
-        public bool IsLogin
-        {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(this.UserName);
-            }
-        }
+        public bool IsLogin => !string.IsNullOrWhiteSpace(UserName);
 
-        public string NetSessionId
-        {
-            get { return this.Session.SessionID; }
-        }
+        public string NetSessionId => Session.SessionID;
     }
 }

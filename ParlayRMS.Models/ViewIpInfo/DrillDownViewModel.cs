@@ -1,4 +1,4 @@
-﻿using ParlayRMS.DTO.ViewIPInfo;
+using ParlayRMS.DTO.ViewIPInfo;
 using System;
 
 namespace ParlayRMS.Models.ViewIpInfo

@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EditUserModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageUser
 {
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Utility;
+    using Utility;
 
-    /// <summary>
-    /// Edit User Model.
-    /// </summary>
     public class EditUserModel
     {
         [Required]

@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.BetDetails
+namespace ParlayRMS.DTO.BetDetails
 {
     public class BetInfo
     {

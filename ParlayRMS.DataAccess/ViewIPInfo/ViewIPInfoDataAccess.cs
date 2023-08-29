@@ -1,12 +1,3 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ViewIPInfoDataAccess.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
-// </history>
-
 namespace ParlayRMS.DataAccess.ViewIPInfo
 {
     using System;
@@ -15,20 +6,11 @@ namespace ParlayRMS.DataAccess.ViewIPInfo
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.ViewIPInfo;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
+    using Utility;
+    using Utility.Data;
 
-    /// <summary>
-    /// Main data-access-class for view-IP-info report and other related reports.
-    /// </summary>
     public class ViewIPInfoDataAccess : BaseDataAccess
     {
-        /// <summary>
-        /// Get bets statistics by IP and WINLOST date.
-        /// </summary>
-        /// <param name="ip">Input IP value.</param>
-        /// <param name="date">Input date value.</param>
-        /// <returns>List of view IP info objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date)
         {
             var result = new List<RMS_Rpt_Parlay_ViewIPInfo>();
@@ -57,15 +39,6 @@ namespace ParlayRMS.DataAccess.ViewIPInfo
             return result;
         }
 
-        /// <summary>
-        /// Get IP statistics by date.
-        /// </summary>
-        /// <param name="fromDate">From date value.</param>
-        /// <param name="pageIndex">Page index value.</param>
-        /// <param name="pageSize">Page size value.</param>
-        /// <param name="totalItems">Total items value.</param>
-        /// <param name="maxTransId">Maximum Transaction ID value.</param>
-        /// <returns>User statistics by IP object.</returns>
         public RMS_Rpt_Parlay_UsersStatisticsByIP RMS_Rpt_Parlay_UsersStatisticsByIP(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId)
         {
             var result = new RMS_Rpt_Parlay_UsersStatisticsByIP();
@@ -73,12 +46,14 @@ namespace ParlayRMS.DataAccess.ViewIPInfo
 
             using (var db = new ObjectDb("RMS_Rpt_Parlay_UsersStatisticsByIP"))
             {
-                Hashtable param = new Hashtable();
-                param.Add("fromdate", fromDate);
-                param.Add("pageindex", pageIndex);
-                param.Add("pagesize", pageSize);
-                param.Add("totalitems", totalItems);
-                param.Add("max_transid", maxTransId);
+                var param = new Hashtable
+                {
+                    { "fromdate", fromDate },
+                    { "pageindex", pageIndex },
+                    { "pagesize", pageSize },
+                    { "totalitems", totalItems },
+                    { "max_transid", maxTransId }
+                };
 
                 using (var reader = db.ExecuteReader(param))
                 {
@@ -100,14 +75,6 @@ namespace ParlayRMS.DataAccess.ViewIPInfo
             return result;
         }
 
-        /// <summary>
-        /// Get bets statistics by IP, WINLOST date, user id and sport type.
-        /// </summary>
-        /// <param name="ip">Input IP value.</param>
-        /// <param name="date">Input date value.</param>
-        /// <param name="userId">Input user ID value.</param>
-        /// <param name="sportType">Input sport type value.</param>
-        /// <returns>List of view IP info by user objects.</returns>
         public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType)
         {
             var result = new List<RMS_Rpt_Parlay_ViewIPInfoByUser>();
@@ -156,11 +123,6 @@ namespace ParlayRMS.DataAccess.ViewIPInfo
             return result;
         }
 
-        /// <summary>
-        /// Get Parlay combination details.
-        /// </summary>
-        /// <param name="refNo">REFNO value.</param>
-        /// <returns>CombinationDetails model.</returns>
         public RMS_SystemParlay_CombinationDetails RMS_SystemParlay_CombinationDetails(long refNo)
         {
             var result = new RMS_SystemParlay_CombinationDetails();

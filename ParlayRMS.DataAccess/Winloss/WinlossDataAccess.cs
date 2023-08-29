@@ -1,12 +1,12 @@
-﻿namespace ParlayRMS.DataAccess.Winloss
+namespace ParlayRMS.DataAccess.Winloss
 {
     using System;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.Winloss;
-    using ParlayRMS.Models;
-    using ParlayRMS.Utility.Data;
+    using Models;
+    using Utility.Data;
 
     public class WinlossDataAccess : BaseDataAccess
     {

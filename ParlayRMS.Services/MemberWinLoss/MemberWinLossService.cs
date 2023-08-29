@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Services.MemberWinLoss
+namespace ParlayRMS.Services.MemberWinLoss
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,9 @@
     using DataAccess.MemberWinLoss;
     using Fanex.Caching;
     using ParlayRMS.DTO.MemberWinLoss;
-    using ParlayRMS.Models;
+    using Models;
     using ParlayRMS.Models.MemberWinLoss;
-    using ParlayRMS.Utility;
+    using Utility;
     using Users;
 
     public class MemberWinLossService
@@ -107,8 +107,8 @@
                                       string combos,
                                       long custId)
         {
-            List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
-            RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
+            var records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
+            var total = new RMS_Rpt_Parlay_MemberWinLoss();
 
             records = _memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
                                                        fromDate,
@@ -147,7 +147,7 @@
                                       string combos,
                                       List<int> custIds)
         {
-            RMS_Rpt_Parlay_MemberWinLoss total = new RMS_Rpt_Parlay_MemberWinLoss();
+            var total = new RMS_Rpt_Parlay_MemberWinLoss();
 
             var rawData = _memberWinLossDataAccess.RMS_Rpt_Parlay_AgentWinLoss(
                                                        fromDate,
@@ -177,13 +177,13 @@
 
         private List<RMS_Rpt_Parlay_MemberWinLoss> GroupAgentDataByMonth(List<RMS_Rpt_Parlay_MemberWinLoss> rawData)
         {
-            List<RMS_Rpt_Parlay_MemberWinLoss> records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
-            RMS_Rpt_Parlay_MemberWinLoss currentRecord = new RMS_Rpt_Parlay_MemberWinLoss();
-            RMS_Rpt_Parlay_MemberWinLoss subtotal = new RMS_Rpt_Parlay_MemberWinLoss();
+            var records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
+            var currentRecord = new RMS_Rpt_Parlay_MemberWinLoss();
+            var subtotal = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            int currentRecordIndex = 0;
-            int firstRecordIndex = 0;
-            int numOfRecords = rawData.Count;
+            var currentRecordIndex = 0;
+            var firstRecordIndex = 0;
+            var numOfRecords = rawData.Count;
 
             if (numOfRecords > 0)
             {
@@ -223,9 +223,9 @@
 
         private string ReFormatMonthStr(string date)
         {
-            int separatorIndex = date.IndexOf('-');
-            string year = date.Substring(0, separatorIndex);
-            string month = date.Substring(separatorIndex + 1, 2);
+            var separatorIndex = date.IndexOf('-');
+            var year = date.Substring(0, separatorIndex);
+            var month = date.Substring(separatorIndex + 1, 2);
 
             return string.Format("{0}-{1}", month, year);
         }

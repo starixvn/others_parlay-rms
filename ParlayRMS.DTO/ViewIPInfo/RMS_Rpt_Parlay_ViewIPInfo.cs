@@ -1,17 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_ViewIPInfo.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.18">Created</change>
-// </history>
-
 namespace ParlayRMS.DTO.ViewIPInfo
 {
-    /// <summary>
-    /// View IP Info model.
-    /// </summary>
     public class RMS_Rpt_Parlay_ViewIPInfo
     {
         public string Username { get; set; }

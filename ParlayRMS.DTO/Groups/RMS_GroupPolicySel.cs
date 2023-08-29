@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_GroupPolicySel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Groups
 {
-    /// <summary>
-    /// Group Policy model.
-    /// </summary>
     public class RMS_GroupPolicySel
     {
         public int FuncId { get; set; }

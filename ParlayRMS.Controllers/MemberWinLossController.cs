@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
-using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Models.MemberWinLoss;
@@ -30,14 +28,12 @@ namespace ParlayRMS.Controllers
             return View();
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(MemberWinLossOptions options)
         {
             try
             {
-                DateTime limitDate = MemberWinLossOptions.GetLimitDate();
-                int roleId = 0;
+                var limitDate = MemberWinLossOptions.GetLimitDate();
 
                 ModelState.Remove("IsSortAsc");
 
@@ -46,7 +42,6 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
-                // Minimum date that support to query data
                 if (options.FromDate.Date < limitDate)
                 {
                     ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", limitDate.ToShortDateString()));
@@ -67,7 +62,7 @@ namespace ParlayRMS.Controllers
                                                               options.Combos,
                                                               options.Username,
                                                               options.IsCached,
-                                                              out roleId);
+                                                              out var roleId);
 
 
                     if (options.SortById.HasValue)
@@ -83,7 +78,7 @@ namespace ParlayRMS.Controllers
 
                     if (isAgent)
                     {
-                        int page = options.PageIndex ?? 1;
+                        var page = options.PageIndex ?? 1;
                         ViewBag.Pager = Pager.Items(model.Records.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
                         return PartialView("AgentData", model.Records.ToPagedList(page, AppSetting.PageSize));
                     }
@@ -102,7 +97,6 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public void Excel(MemberWinLossOptions options)
         {
-            int roleId = 0;
             var model = _memberWinLossService.GetMemberWinLoss(
                                                       options.FromDate,
                                                       options.ToDate,
@@ -112,7 +106,7 @@ namespace ParlayRMS.Controllers
                                                       options.Combos,
                                                       options.Username,
                                                       options.IsCached,
-                                                      out roleId);
+                                                      out var roleId);
             var title = options.GetTitle();
             MemoryStream ms = null;
 
@@ -131,16 +125,13 @@ namespace ParlayRMS.Controllers
             Response.End();
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportMemberWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\MemberWinLoss.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header1 = new object[]
             {
                 ViewLang.Month,
@@ -167,7 +158,6 @@ namespace ParlayRMS.Controllers
                 ViewLang.NetWinloss
             };
 
-            // Footer
             var footer = new object[]
             {
                 ViewLang.Total,
@@ -182,9 +172,8 @@ namespace ParlayRMS.Controllers
                 model.Total.OurPT_NetWinloss
             };
 
-            writer.WriteRows(1, new List<object[]>() { header1, header2 });
+            writer.WriteRows(1, new List<object[]> { header1, header2 });
 
-            // records
             foreach (var item in model.Records)
             {
                 var record = new object[]
@@ -203,7 +192,6 @@ namespace ParlayRMS.Controllers
                 writer.WriteRow(3, record);
             }
 
-            // footer
             writer.WriteRow(4, footer);
 
             writer.SyncColumnWidths(10);
@@ -211,16 +199,13 @@ namespace ParlayRMS.Controllers
             return writer.Render("MemberWinLoss");
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private MemoryStream ExportAgentWinLossRpt(MemberWinLossData model, string title)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\AgentWinLoss.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header1 = new object[]
             {
                 ViewLang.Month,
@@ -251,7 +236,6 @@ namespace ParlayRMS.Controllers
                 ViewLang.NetWinloss
             };
 
-            // Footer
             var footer = new object[]
             {
                 ViewLang.Total,
@@ -268,9 +252,8 @@ namespace ParlayRMS.Controllers
                 model.Total.OurPT_NetWinloss
             };
 
-            writer.WriteRows(1, new List<object[]>() { header1, header2 });
+            writer.WriteRows(1, new List<object[]> { header1, header2 });
 
-            // records
             foreach (var item in model.Records)
             {
                 if (item.IsSutotalRow)
@@ -313,7 +296,6 @@ namespace ParlayRMS.Controllers
                 }
             }
 
-            // footer
             writer.WriteRow(5, footer);
 
             writer.SyncColumnWidths(12);

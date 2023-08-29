@@ -1,6 +1,5 @@
-﻿@using ParlayRMS.Utility
-@using ParlayRMS.ViewModel
-@using Fanex.RemotingRef;
+﻿﻿@using ParlayRMS.Utility
+
 @helper Checkboxes(List<System.Web.Mvc.SelectListItem> items, string name)
 {
     foreach (var item in items)
@@ -46,7 +45,7 @@
 
 @helper SportTypesDropDown()
 {
-    var listSportTypes = new int[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
+    var listSportTypes = new[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
     <select id="sportsType" multiple="multiple" name="sportsType">
         <option value="1" selected="selected">Soccer only</option>
         <option value="-4" selected="selected">Virtual Soccer</option>
@@ -71,7 +70,7 @@
 }
 @helper SportTypesDropDown(string sportTypes)
 {
-    var listSportsbookSportTypes = new int[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
+    var listSportsbookSportTypes = new[] { 2, -5, 3, 4, 5, 6, 7, 8, 9, 11, 43, 44 };
     var listSportTypes = sportTypes.Split(',');
     var optgroupSelected = sportTypes.Contains("2,-5,3,4,5,6,7,8,9,11,43,44,-2,-1") ? "selected=\"selected\"" : string.Empty;
     <select id="sportsType" multiple="multiple" name="sportsType">

@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.MixParlay.SimilarBet
+namespace ParlayRMS.MixParlay.SimilarBet
 {
     public class TicketDetail
     {

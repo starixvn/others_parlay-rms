@@ -1,4 +1,4 @@
-﻿using Fanex.RemotingRef;
+using Fanex.RemotingRef;
 using System.Threading;
 
 namespace ParlayRMS.Utility
@@ -14,12 +14,12 @@ namespace ParlayRMS.Utility
                 switch (Thread.CurrentThread.CurrentCulture.Name)
                 {
                     case "en-US": return "en";
-                    case "zh-TW": return "ch"; // Traditional
-                    case "zh-CN": return "cs"; // Simplified
+                    case "zh-TW": return "ch";
+                    case "zh-CN": return "cs";
                     case "ja-JP": return "jp";
-                    case "th-TH": return "th"; // Thai
-                    case "ko-KR": return "ko"; // Korean
-                    case "vi-VN": return "vi"; // Vietnamese
+                    case "th-TH": return "th";
+                    case "ko-KR": return "ko";
+                    case "vi-VN": return "vi";
                     default: return "en";
                 }
             }

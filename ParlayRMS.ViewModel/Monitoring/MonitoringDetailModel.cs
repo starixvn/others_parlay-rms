@@ -1,23 +1,12 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MonitoringDetailModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.Monitoring
 {
     using System;
 
-    /// <summary>
-    /// Monitoring Detail Model.
-    /// </summary>
     public class MonitoringDetailModel
     {
         public MonitoringDetailModel()
         {
-            this.WinlostDate = Config.WinlostDate;
+            WinlostDate = Config.WinlostDate;
         }
 
         public DateTime WinlostDate { get; set; }

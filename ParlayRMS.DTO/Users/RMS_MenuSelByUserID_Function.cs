@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_MenuSelByUserID_Function.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Users
 {
-    /// <summary>
-    /// Function model.
-    /// </summary>
     public class RMS_MenuSelByUserID_Function
     {
         public int FuncId { get; set; }

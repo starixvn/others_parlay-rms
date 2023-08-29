@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.Monitoring
+namespace ParlayRMS.ViewModel.Monitoring
 {
     public class UserTrackingCriteria
     {

@@ -1,12 +1,12 @@
-﻿namespace ParlayRMS.DataAccess.LeagueWinningMonitor
+namespace ParlayRMS.DataAccess.LeagueWinningMonitor
 {
     using System;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.LeagueWinningMonitor;
-    using ParlayRMS.Utility;
-    using ParlayRMS.Utility.Data;
+    using Utility;
+    using Utility.Data;
 
     public class LeagueWinningMonitorDataAccess
     {

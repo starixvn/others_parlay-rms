@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.SimilarBets
+namespace ParlayRMS.DTO.SimilarBets
 {
     public class RMS_Similar_Parlay_Betlist_Detail
     {

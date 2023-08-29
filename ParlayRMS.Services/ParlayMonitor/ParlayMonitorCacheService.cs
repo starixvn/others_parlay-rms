@@ -1,8 +1,8 @@
-﻿namespace ParlayRMS.Services.ParlayMonitor
+namespace ParlayRMS.Services.ParlayMonitor
 {
     using System.Collections.Generic;
     using ParlayRMS.DTO.ParlayMonitor;
-    using ParlayRMS.DTO.PotentialWinning;
+    using DTO.PotentialWinning;
 
     public class ParlayMonitorCacheService : BaseService
     {

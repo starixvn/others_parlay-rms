@@ -1,16 +1,5 @@
-// --------------------------------------------------------------------------
-// <copyright file="RMS_CustomerSel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Members
 {
-    /// <summary>
-    /// Customer model.
-    /// </summary>
     public class RMS_CustomerSel
     {
         public int No { get; set; }

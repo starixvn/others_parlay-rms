@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_UserInfoSel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Users
 {
     using System;
 
-    /// <summary>
-    /// User Information.
-    /// </summary>
     public class RMS_UserInfoSel
     {
         public int CustId { get; set; }

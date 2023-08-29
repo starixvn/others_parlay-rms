@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.TopWinners
+namespace ParlayRMS.DTO.TopWinners
 {
     public class RMS_Rpt_Parlay_TopWinner
     {

@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.MixParlay.BetList
+namespace ParlayRMS.MixParlay.BetList
 {
     public class BetDetails
     {

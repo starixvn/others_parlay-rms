@@ -1,27 +1,16 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MonitoringSummaryModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.Monitoring
 {
     using System;
 
-    /// <summary>
-    /// Monitoring Summary Model.
-    /// </summary>
     public class MonitoringSummaryModel
     {
         public MonitoringSummaryModel()
         {
-            this.All_Sports = true;
-            this.Soccer_Only = true;
-            this.Combined_Sports = true;
-            this.Other_Sports = true;
-            this.WinlostDate = Config.WinlostDate;
+            All_Sports = true;
+            Soccer_Only = true;
+            Combined_Sports = true;
+            Other_Sports = true;
+            WinlostDate = Config.WinlostDate;
         }
 
         public long MaxTransId { get; set; }
@@ -40,7 +29,7 @@ namespace ParlayRMS.ViewModel.Monitoring
         {
             get
             {
-                return new bool[] { this.All_Sports, this.Soccer_Only, this.Combined_Sports, this.Other_Sports };
+                return new[] { All_Sports, Soccer_Only, Combined_Sports, Other_Sports };
             }
         }
     }

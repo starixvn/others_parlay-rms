@@ -1,18 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_FunctionSel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DTO.Functions
 {
     using System;
 
-    /// <summary>
-    /// Function model.
-    /// </summary>
     public class RMS_FunctionSel
     {
         public int FuncId { get; set; }

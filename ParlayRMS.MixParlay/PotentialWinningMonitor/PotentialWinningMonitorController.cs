@@ -1,4 +1,4 @@
-﻿using ParlayRMS.Controllers;
+using ParlayRMS.Controllers;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Implement.BetList;
@@ -17,7 +17,6 @@ namespace ParlayRMS.MixParlay.PotentialWinningMonitor
         private readonly IService _service = new Service();
         private readonly IBetListService _betlistService = new BetListService();
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
             // Combo

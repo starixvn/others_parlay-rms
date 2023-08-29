@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
@@ -34,7 +33,7 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
-                DateTime lastMonth = DateTime.Now.AddMonths(-1).Date;
+                var lastMonth = DateTime.Now.AddMonths(-1).Date;
                 if (options.FromDate.Date < lastMonth)
                 {
                     ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
@@ -59,18 +58,15 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpGet]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public void Excel(WinlossOptions options)
         {
             var model = _winlossService.GetWinloss(options);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\Winloss.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
             var title = options.GetTitle();
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header1 = new object[]
             {
                 ViewLang.Date,
@@ -118,9 +114,8 @@ namespace ParlayRMS.Controllers
                 model.Total.Margin
             };
 
-            writer.WriteRows(1, new List<object[]>() { header1, header2 });
+            writer.WriteRows(1, new List<object[]> { header1, header2 });
 
-            // records
             foreach (var record in model.Records)
             {
                 var totalRow = record.Records.Count;
@@ -164,7 +159,6 @@ namespace ParlayRMS.Controllers
                 writer.WriteRow(4, rowData);
             }
 
-            // footer
             writer.WriteRow(5, footer);
 
             writer.SyncColumnWidths(12);

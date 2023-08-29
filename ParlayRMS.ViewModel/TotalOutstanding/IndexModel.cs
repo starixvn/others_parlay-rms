@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.TotalOutstanding
+namespace ParlayRMS.ViewModel.TotalOutstanding
 {
     public class IndexModel
     {

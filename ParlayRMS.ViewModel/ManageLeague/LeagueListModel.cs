@@ -1,10 +1,7 @@
-﻿namespace ParlayRMS.ViewModel.ManageLeague
+namespace ParlayRMS.ViewModel.ManageLeague
 {
     using System.Web.Mvc;
 
-    /// <summary>
-    /// Member List Model.
-    /// </summary>
     public class LeagueListModel
     {
         [AllowHtml]

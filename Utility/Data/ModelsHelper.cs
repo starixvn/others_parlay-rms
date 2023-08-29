@@ -1,29 +1,31 @@
-﻿namespace ParlayRMS.Utility.Data
+namespace ParlayRMS.Utility.Data
 {
     using System;
     using System.Collections.Generic;
-    using ParlayRMS.Models;
-    using ParlayRMS.Models.Members;
-    using ParlayRMS.Utility;
+    using Models;
+    using Models.Members;
+    using Utility;
 
     public static class ModelsHelper
     {
-        private static List<MemberLevel> memberLevels = new List<MemberLevel>();
+        private static readonly List<MemberLevel> memberLevels = new List<MemberLevel>();
 
         static ModelsHelper()
         {
-            var levelDict = new Dictionary<int, string>();
-            levelDict.Add(10, "level10");
-            levelDict.Add(9, "level9");
-            levelDict.Add(8, "level8");
-            levelDict.Add(7, "level7");
-            levelDict.Add(6, "level6");
-            levelDict.Add(5, "level5");
-            levelDict.Add(4, "level4");
-            levelDict.Add(3, "level3");
-            levelDict.Add(2, "level2");
-            levelDict.Add(1, "level1");
-            levelDict.Add(0, "levelNone");
+            var levelDict = new Dictionary<int, string>
+            {
+                { 10, "level10" },
+                { 9, "level9" },
+                { 8, "level8" },
+                { 7, "level7" },
+                { 6, "level6" },
+                { 5, "level5" },
+                { 4, "level4" },
+                { 3, "level3" },
+                { 2, "level2" },
+                { 1, "level1" },
+                { 0, "levelNone" }
+            };
 
             foreach (var entry in levelDict)
             {
@@ -31,7 +33,7 @@
                 {
                     LevelId = DbConverter.ToInt32(entry.Key),
                     LevelColor = entry.Value,
-                    LevelValue = DbConverter.ToInt32(entry.Key) == 0 ? "None" : ViewLang.Level + " " + entry.Key.ToString()
+                    LevelValue = DbConverter.ToInt32(entry.Key) == 0 ? "None" : ViewLang.Level + " " + entry.Key
                 });
             }
         }
@@ -54,7 +56,7 @@
         };
         public static string GetColorByLeagueGroup(int groupId)
         {
-            return LeagueGroupColors.ContainsKey(groupId) ? LeagueGroupColors[groupId] : string.Empty;
+            return LeagueGroupColors.TryGetValue(groupId, out var color) ? color : string.Empty;
         }
 
         public static Dictionary<int, string> LeagueGroupNames = new Dictionary<int, string>
@@ -75,16 +77,9 @@
         };
         public static string GetNameByLeagueGroup(int groupId)
         {
-            return LeagueGroupNames.ContainsKey(groupId) ? LeagueGroupNames[groupId] : string.Empty;
+            return LeagueGroupNames.TryGetValue(groupId, out var groupName) ? groupName : string.Empty;
         }
 
-        /// <summary>
-        /// Gets Color Code By Level.
-        /// The level list: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
-        /// The color list: #ED1C24, #669999, #CCCC99, #333399, #006600, #CC6666, #FF9900, #CC6699, #7F7F7F, #653232.
-        /// </summary>
-        /// <param name="levelId">Level ID value.</param>
-        /// <returns>Level value.</returns>
         public static string GetClassByMemberLevel(int levelId)
         {
             foreach (var level in memberLevels)
@@ -265,7 +260,7 @@
             }
         }
 
-        public static string GetCustomerClassTitle(Int64? customerClass)
+        public static string GetCustomerClassTitle(long? customerClass)
         {
             return customerClass == null ? "All" : customerClass.ToString();
         }

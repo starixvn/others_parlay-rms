@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EditFunctionModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageFunction
 {
-    /// <summary>
-    /// Edit Function Model.
-    /// </summary>
     public class EditFunctionModel
     {
         public int Id { get; set; }

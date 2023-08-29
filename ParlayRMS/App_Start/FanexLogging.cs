@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS
+namespace ParlayRMS
 {
     using System.Collections.Generic;
     using System.Configuration;

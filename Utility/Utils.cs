@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 
 namespace ParlayRMS.Utility
@@ -7,24 +7,12 @@ namespace ParlayRMS.Utility
     {
         public enum TruncateOptions
         {
-            /// <summary>
-            /// Normal truncation.
-            /// </summary>
             None = 0x0,
 
-            /// <summary>
-            /// Truncates to the last available word.
-            /// </summary>
             FinishWord = 0x1,
 
-            /// <summary>
-            /// Allows last word to go over maximum length.
-            /// </summary>
             AllowLastWordToGoOverMaxLength = 0x2,
 
-            /// <summary>
-            /// Includes '...' at the end of truncated string.
-            /// </summary>
             IncludeEllipsis = 0x4
         }
 
@@ -63,18 +51,18 @@ namespace ParlayRMS.Utility
                 return valueToTruncate;
             }
 
-            bool includeEllipsis = (options & TruncateOptions.IncludeEllipsis) == TruncateOptions.IncludeEllipsis;
-            bool finishWord = (options & TruncateOptions.FinishWord) == TruncateOptions.FinishWord;
-            bool allowLastWordOverflow = (options & TruncateOptions.AllowLastWordToGoOverMaxLength) == TruncateOptions.AllowLastWordToGoOverMaxLength;
+            var includeEllipsis = (options & TruncateOptions.IncludeEllipsis) == TruncateOptions.IncludeEllipsis;
+            var finishWord = (options & TruncateOptions.FinishWord) == TruncateOptions.FinishWord;
+            var allowLastWordOverflow = (options & TruncateOptions.AllowLastWordToGoOverMaxLength) == TruncateOptions.AllowLastWordToGoOverMaxLength;
 
-            string retValue = valueToTruncate;
+            var retValue = valueToTruncate;
 
             if (includeEllipsis)
             {
                 maxLength -= 1;
             }
 
-            int lastSpaceIndex = retValue.LastIndexOf(" ", maxLength, StringComparison.CurrentCultureIgnoreCase);
+            var lastSpaceIndex = retValue.LastIndexOf(" ", maxLength, StringComparison.CurrentCultureIgnoreCase);
 
             if (!finishWord)
             {
@@ -82,7 +70,7 @@ namespace ParlayRMS.Utility
             }
             else if (allowLastWordOverflow)
             {
-                int spaceIndex = retValue.IndexOf(" ", maxLength, StringComparison.CurrentCultureIgnoreCase);
+                var spaceIndex = retValue.IndexOf(" ", maxLength, StringComparison.CurrentCultureIgnoreCase);
                 if (spaceIndex != -1)
                 {
                     retValue = retValue.Remove(spaceIndex);
@@ -101,10 +89,6 @@ namespace ParlayRMS.Utility
             return retValue;
         }
 
-        /// <summary>
-        /// Rounds all properties of an object.
-        /// </summary>
-        /// <param name="obj">Value object.</param>
         public static void Round(object obj)
         {
             var properties = obj.GetType().GetProperties();
@@ -119,10 +103,6 @@ namespace ParlayRMS.Utility
             }
         }
 
-        /// <summary>
-        /// Rounds the values of a specified list.
-        /// </summary>
-        /// <param name="list">The list that needs to round the value.</param>
         public static void Round(IEnumerable list)
         {
             foreach (var item in list)

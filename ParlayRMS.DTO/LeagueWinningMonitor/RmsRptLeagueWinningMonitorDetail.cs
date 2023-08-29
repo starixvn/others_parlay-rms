@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DTO.LeagueWinningMonitor
+namespace ParlayRMS.DTO.LeagueWinningMonitor
 {
     public class RmsRptLeagueWinningMonitorDetail
     {

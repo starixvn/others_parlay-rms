@@ -1,20 +1,9 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="User.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.Models.Users
 {
     using System;
-    using ParlayRMS.DTO;
-    using ParlayRMS.Models.Groups;
+    using DTO;
+    using Groups;
 
-    /// <summary>
-    /// User Model.
-    /// </summary>
     public class User : BaseEntityModel
     {
         public string PassWord { get; set; }

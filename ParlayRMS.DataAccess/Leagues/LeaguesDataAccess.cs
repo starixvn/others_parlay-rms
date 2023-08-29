@@ -1,20 +1,12 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LeaguesDataAccess.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.DataAccess.Leagues
 {
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
-    using ParlayRMS.DTO;
+    using DTO;
     using ParlayRMS.DTO.Leagues;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class LeaguesDataAccess : BaseDataAccess
     {
@@ -29,7 +21,7 @@ namespace ParlayRMS.DataAccess.Leagues
                 db.AddInParameter("SportType", DbType.Int32, sportType);
                 using (var reader = db.ExecuteReader())
                 {
-                    int index = 1;
+                    var index = 1;
                     while (reader.Read())
                     {
                         result.Add(new RMS_LeagueSel
@@ -49,13 +41,15 @@ namespace ParlayRMS.DataAccess.Leagues
 
         public Result RMS_LeagueIns(string leagueName, int groupId, int adminId, string ip)
         {
-            Hashtable param = new Hashtable();
-            param.Add("adminid", adminId);
-            param.Add("leaguename", leagueName ?? string.Empty);
-            param.Add("groupid", groupId);
-            param.Add("ip", ip);
-            param.Add("errcode", 0);
-            param.Add("errmsg", string.Empty);
+            var param = new Hashtable
+            {
+                { "adminid", adminId },
+                { "leaguename", leagueName ?? string.Empty },
+                { "groupid", groupId },
+                { "ip", ip },
+                { "errcode", 0 },
+                { "errmsg", string.Empty }
+            };
 
             var r = ExecSp("RMS_LeagueIns", param);
 
@@ -64,13 +58,15 @@ namespace ParlayRMS.DataAccess.Leagues
 
         public Result RMS_LeagueUpd(int leagueId, int groupId, int adminId, string ip)
         {
-            Hashtable param = new Hashtable();
-            param.Add("adminid", adminId);
-            param.Add("leagueId", leagueId);
-            param.Add("groupId", groupId);
-            param.Add("ip", ip);
-            param.Add("errcode", 0);
-            param.Add("errmsg", string.Empty);
+            var param = new Hashtable
+            {
+                { "adminid", adminId },
+                { "leagueId", leagueId },
+                { "groupId", groupId },
+                { "ip", ip },
+                { "errcode", 0 },
+                { "errmsg", string.Empty }
+            };
 
             var r = ExecSp("RMS_LeagueUpd", param);
 

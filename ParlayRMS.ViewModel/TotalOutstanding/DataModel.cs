@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DataModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.TotalOutstanding
 {
     using System;
     using System.Web.Mvc;
 
-    /// <summary>
-    /// Data Model.
-    /// </summary>
     public class DataModel
     {
         public DateTime Date { get; set; }

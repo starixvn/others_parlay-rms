@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.Services.ParlayMonitor
+namespace ParlayRMS.Services.ParlayMonitor
 {
     using SignalR.Hubs;
 

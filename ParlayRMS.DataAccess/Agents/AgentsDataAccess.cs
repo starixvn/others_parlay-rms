@@ -1,23 +1,15 @@
-﻿namespace ParlayRMS.DataAccess.Agents
+namespace ParlayRMS.DataAccess.Agents
 {
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
-    using ParlayRMS.DTO;
+    using DTO;
     using ParlayRMS.DTO.Agents;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
-    /// <summary>
-    /// Agent data access.
-    /// </summary>
     public class AgentsDataAccess : BaseDataAccess
     {
-        /// <summary>
-        /// Gets dangerous agent list.
-        /// </summary>
-        /// <param name="username">The user name that is used to filter agent.</param>
-        /// <returns>Dangerous agent list.</returns>
         public IEnumerable<RMS_DangerousAgentSel> RMS_DangerousAgentSel(string username)
         {
             var result = new List<RMS_DangerousAgentSel>();
@@ -47,44 +39,33 @@
             return result;
         }
 
-        /// <summary>
-        /// Inserts a new dangerous agent.
-        /// </summary>
-        /// <param name="userName">The user name of the dangerous agent.</param>
-        /// <param name="adminId">The ID of administrator who adds the agent.</param>
-        /// <param name="ip">IP of machine which adds the agent.</param>
-        /// <returns>Whether or not the agent is added successfully.</returns>
         public Result RMS_DangerousAgentIns(string userName, int adminId, string ip)
         {
-            Hashtable param = new Hashtable();
-            param.Add("userid", adminId);
-            param.Add("username", userName);
-            param.Add("ip", ip);
-            param.Add("errcode", 0);
-            param.Add("errmsg", string.Empty);
+            var param = new Hashtable
+            {
+                { "userid", adminId },
+                { "username", userName },
+                { "ip", ip },
+                { "errcode", 0 },
+                { "errmsg", string.Empty }
+            };
 
             var r = ExecSp("RMS_DangerousAgentIns", param);
 
             return r.ToResult();
         }
 
-        /// <summary>
-        /// Deletes an existing dangerous agent.
-        /// </summary>
-        /// <param name="agentId">The ID of the dangerous agent.</param>
-        /// <param name="userName">The user name of the dangerous agent.</param>
-        /// <param name="adminId">The ID of administrator who deletes the agent.</param>
-        /// <param name="ip">IP of machine which deletes the agent.</param>
-        /// <returns>Whether or not the agent is deleted successfully.</returns>
         public Result RMS_DangerousAgentDel(int agentId, string userName, int adminId, string ip)
         {
-            Hashtable param = new Hashtable();
-            param.Add("userid", adminId);
-            param.Add("agentid", agentId);
-            param.Add("username", userName);
-            param.Add("ip", ip);
-            param.Add("errcode", 0);
-            param.Add("errmsg", string.Empty);
+            var param = new Hashtable
+            {
+                { "userid", adminId },
+                { "agentid", agentId },
+                { "username", userName },
+                { "ip", ip },
+                { "errcode", 0 },
+                { "errmsg", string.Empty }
+            };
 
             var r = ExecSp("RMS_DangerousAgentDel", param);
 

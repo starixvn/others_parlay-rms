@@ -1,19 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ResetPasswordModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageUser
 {
     using System.ComponentModel.DataAnnotations;
-    using ParlayRMS.Utility;
+    using Utility;
 
-    /// <summary>
-    /// Reset Password Model.
-    /// </summary>
     public class ResetPasswordModel
     {
         [Required]

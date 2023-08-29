@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.LeagueWinningMonitor
+namespace ParlayRMS.ViewModel.LeagueWinningMonitor
 {
     public class LeagueWinningMonitorModel
     {

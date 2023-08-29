@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Web.Mvc;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Functions;
@@ -19,27 +19,19 @@ namespace ParlayRMS.Controllers
             ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageFunction);
         }
 
-        /// <summary>
-        /// Redirects to the Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Read)]
+        [Authorization(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Read)]
         public ActionResult Index()
         {
-            var model = this._functionService.GetAllFunctionsInOrder();
-            return this.View(model);
+            var model = _functionService.GetAllFunctionsInOrder();
+            return View(model);
         }
 
-        /// <summary>
-        /// GET method: redirects to the Create Function view.
-        /// </summary>
-        /// <returns>Create Function view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
+        [Authorization(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
         public ActionResult CreateFunction()
         {
-            var allFunctions = this._functionService.GetAllFunctions();
+            var allFunctions = _functionService.GetAllFunctions();
             var parentFunctions = allFunctions.Where(x => x.Parent == null);
 
             var functionSelectList = parentFunctions.Select(x => new SelectListItem
@@ -51,25 +43,19 @@ namespace ParlayRMS.Controllers
             ViewBag.FunctionSelectList = functionSelectList;
 
             var model = new CreateFunctionModel();
-            return this.PartialView(model);
+            return PartialView(model);
         }
 
-        /// <summary>
-        /// POST method: creates new function.
-        /// </summary>
-        /// <param name="model">The model contains the function information.</param>
-        /// <returns>Whether the function is created successful or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
+        [Authorization(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Create)]
         public ActionResult CreateFunction(CreateFunctionModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
-            int functionId = 0;
-            var result = this._functionService.CreateFunction(
+            var result = _functionService.CreateFunction(
                                                    model.Name,
                                                    model.Key,
                                                    model.Description,
@@ -78,20 +64,15 @@ namespace ParlayRMS.Controllers
                                                    model.DisplayOrder,
                                                    CurrentSession.UserId,
                                                    CurrentContext.Ip4Address,
-                                                   out functionId);
-            return this.Json(new { code = result.Code, message = result.Message, functionId = functionId });
+                                                   out var functionId);
+            return Json(new { code = result.Code, message = result.Message, functionId });
         }
 
-        /// <summary>
-        /// GET method: redirects to the Edit Function view.
-        /// </summary>
-        /// <param name="functionId">The function identifier.</param>
-        /// <returns>Edit Function view.</returns>
         [HttpGet]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
+        [Authorization(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
         public ActionResult EditFunction(int functionId)
         {
-            var allFunctions = this._functionService.GetAllFunctions();
+            var allFunctions = _functionService.GetAllFunctions();
             var parentFunctions = allFunctions.Where(x => x.Parent == null && x.Id != functionId);
             var function = allFunctions.Where(x => x.Id == functionId).FirstOrDefault();
 
@@ -113,24 +94,19 @@ namespace ParlayRMS.Controllers
                 DisplayOrder = function.DisplayOrder
             };
 
-            return this.PartialView(model);
+            return PartialView(model);
         }
 
-        /// <summary>
-        /// POST method: edits the function.
-        /// </summary>
-        /// <param name="model">The model contains the function information.</param>
-        /// <returns>Whether the function is edit successful or not.</returns>
         [HttpPost]
-        [AuthorizationAttribute(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
+        [Authorization(Function = FunctionKeys.ManageFunction, Policy = UserPolicy.Update)]
         public ActionResult EditFunction(EditFunctionModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.InvalidModelJson();
+                return InvalidModelJson();
             }
 
-            var result = this._functionService.UpdateFunction(
+            var result = _functionService.UpdateFunction(
                                                    model.Id,
                                                    model.Name,
                                                    model.Description,
@@ -139,7 +115,7 @@ namespace ParlayRMS.Controllers
                                                    model.DisplayOrder,
                                                    CurrentSession.UserId,
                                                    CurrentContext.Ip4Address);
-            return this.Json(result);
+            return Json(result);
         }
     }
 }

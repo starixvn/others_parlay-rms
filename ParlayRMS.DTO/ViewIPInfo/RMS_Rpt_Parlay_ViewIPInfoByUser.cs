@@ -1,19 +1,7 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RMS_Rpt_Parlay_ViewIPInfoByUser.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Ken.Nguyen" date="2014.04.22">Created</change>
-// </history>
-
 namespace ParlayRMS.DTO.ViewIPInfo
 {
     using System;
 
-    /// <summary>
-    /// View IP Info by user model, use for drill down report.
-    /// </summary>
     public class RMS_Rpt_Parlay_ViewIPInfoByUser
     {
         public long TransID { get; set; }

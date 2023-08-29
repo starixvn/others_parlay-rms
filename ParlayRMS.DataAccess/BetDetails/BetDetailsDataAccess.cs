@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.DataAccess.BetDetails
+namespace ParlayRMS.DataAccess.BetDetails
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using Fanex.Data;
     using ParlayRMS.DTO.BetDetails;
     using ParlayRMS.DTO.BetList;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class BetDetailsDataAccess : BaseDataAccess
     {

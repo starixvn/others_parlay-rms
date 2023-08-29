@@ -1,15 +1,13 @@
-﻿
+
 namespace ParlayRMS.Controllers
 {
     using Models.Functions;
     using PagedList;
-    using ParlayRMS.DTO.LeagueBetTypeAnalysis;
-    using ParlayRMS.DTO.Leagues;
+    using DTO.Leagues;
     using Services.LeagueBetTypeAnalysis;
     using Services.Leagues;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
     using ExcelService.Writers;
@@ -27,7 +25,7 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return this.View();
+            return View();
         }
 
         public ActionResult Filter()
@@ -62,7 +60,7 @@ namespace ParlayRMS.Controllers
             {
                 var model = service.GetLeagueBetTypeList(options);
                 ViewBag.FilterOption = options;
-                int page = options.Page <= 0 ? 1 : options.Page;
+                var page = options.Page <= 0 ? 1 : options.Page;
                 ViewBag.FilterOption = options;
                 ViewBag.Title = options.GetTitle();
                 ViewBag.TotalRows = model.Count;
@@ -91,11 +89,9 @@ namespace ParlayRMS.Controllers
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\BetTypeDataAnalysis.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
-            string title = ViewLang.LeagueReport;
+            var title = ViewLang.LeagueReport;
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header = new object[]
             {
                 ViewLang.No,
@@ -112,15 +108,14 @@ namespace ParlayRMS.Controllers
 
             writer.WriteRow(1, header);
 
-            // records
             var select = records.Select(x => new
             {
-                No = x.No,
-                Bettype = x.Bettype,
+                x.No,
+                x.Bettype,
                 TotalTickets = Formatter.FormatNumber3(x.TotalTickets),
                 WonTickets = Formatter.FormatNumber3(x.WonTickets),
                 DrawTickets = Formatter.FormatNumber3(x.DrawTickets),
-                Ratio = x.Ratio,
+                x.Ratio,
                 ParlayWonTickets = Formatter.FormatNumber3(x.ParlayWonTickets),
                 Turnover = x.TurnOver.ToString("#,##0.00"),
                 MemberWinLoss = (Math.Floor(x.MemberWinloss * 100) / 100).ToString("#,##0.00"),
@@ -131,9 +126,9 @@ namespace ParlayRMS.Controllers
 
             writer.SyncColumnWidths(10);
 
-            MemoryStream ms = writer.Render("BetTypeDataAnalysis");
+            var ms = writer.Render("BetTypeDataAnalysis");
             ms.Seek(0, 0);
-            return this.File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
+            return File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
         }
 
         [HttpPost]
@@ -144,11 +139,9 @@ namespace ParlayRMS.Controllers
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\LeagueDataAnalysis.xls";
             var writer = new TemplateWriter(templatePath);
 
-            // title
-            string title = ViewLang.LeagueReport;
+            var title = ViewLang.LeagueReport;
             writer.WriteRow(0, new object[] { title });
 
-            // header
             var header = new object[]
             {
                 ViewLang.No,
@@ -166,16 +159,15 @@ namespace ParlayRMS.Controllers
 
             writer.WriteRow(1, header);
 
-            // records
             var select = records.Select(x => new
             {
-                No = x.No,
+                x.No,
                 Group = x.GroupName,
-                League = x.League,
+                x.League,
                 TotalTickets = Formatter.FormatNumber3(x.TotalTickets),
                 WonTickets = Formatter.FormatNumber3(x.WonTickets),
                 DrawTickets = Formatter.FormatNumber3(x.DrawTickets),
-                Ratio = x.Ratio,
+                x.Ratio,
                 ParlayWonTickets = Formatter.FormatNumber3(x.ParlayWonTickets),
                 Turnover = x.TurnOver.ToString("#,##0.00"),
                 MemberWinLoss = (Math.Floor(x.MemberWinloss * 100) / 100).ToString("#,##0.00"),
@@ -186,9 +178,9 @@ namespace ParlayRMS.Controllers
 
             writer.SyncColumnWidths(11);
 
-            MemoryStream ms = writer.Render("LeagueDataAnalysis");
+            var ms = writer.Render("LeagueDataAnalysis");
             ms.Seek(0, 0);
-            return this.File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
+            return File(ms, "application/vnd.ms-excel", "LeagueBetTypeDataAnalysis.xls");
         }
     }
 }

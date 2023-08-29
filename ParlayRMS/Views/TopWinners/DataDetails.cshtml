@@ -1,6 +1,5 @@
-﻿@using ParlayRMS.DTO.TopWinners
-@{
-    int id = 0;
+﻿@{
+    var id = 0;
 }
 @model IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail>
 <div class="details" custid="@ViewBag.CustId">
@@ -86,7 +85,7 @@
                     </td>
                     <td>
                         @{
-                            var betText = (@item.TotalCombo > 1) ? " bets" : " bet";
+                            var betText = @item.TotalCombo > 1 ? " bets" : " bet";
                             var parlayText = string.Empty;
                             if (item.IsGOF)
                             {

@@ -1,4 +1,4 @@
-﻿namespace ParlayRMS.ViewModel.Report
+namespace ParlayRMS.ViewModel.Report
 {
     using System;
     using Utility;

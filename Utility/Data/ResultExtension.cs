@@ -1,8 +1,8 @@
-﻿namespace ParlayRMS.Utility.Data
+namespace ParlayRMS.Utility.Data
 {
     using DTO;
     using Fanex.Data.DNAide;
-    using ParlayRMS.Utility;
+    using Utility;
 
     public static class ResultExtension
     {

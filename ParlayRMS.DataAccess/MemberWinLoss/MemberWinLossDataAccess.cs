@@ -1,11 +1,11 @@
-﻿namespace ParlayRMS.DataAccess.MemberWinLoss
+namespace ParlayRMS.DataAccess.MemberWinLoss
 {
     using System;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data;
     using ParlayRMS.DTO.MemberWinLoss;
-    using ParlayRMS.Utility.Data;
+    using Utility.Data;
 
     public class MemberWinLossDataAccess : BaseDataAccess
     {

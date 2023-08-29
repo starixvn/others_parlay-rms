@@ -1,4 +1,4 @@
-﻿using ParlayRMS.DTO.ParlayMonitor;
+using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Common;
@@ -10,7 +10,6 @@ using ParlayRMS.ViewModel.PalayMonitor;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -23,12 +22,10 @@ namespace ParlayRMS.Controllers
         private readonly UsersService _userService = new UsersService();
         private readonly CommonService _commonService = new CommonService();
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult Filter()
         {
-            // Combo
             var combos = new List<SelectListItem>();
-            for (int i = 2; i <= 9; i++)
+            for (var i = 2; i <= 9; i++)
             {
                 combos.Add(new SelectListItem
                 {
@@ -41,43 +38,41 @@ namespace ParlayRMS.Controllers
             combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10" });
             ViewBag.Combos = combos;
 
-            // Parlay type
-            var parlayTypes = new List<SelectListItem>();
-            parlayTypes.Add(new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString(), Selected = true });
-            parlayTypes.Add(new SelectListItem { Text = ViewLang.GodOfFortune, Value = ((int)ParlayType.GodOfFortune).ToString() });
-            parlayTypes.Add(new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() });
-            parlayTypes.Add(new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() });
-            parlayTypes.Add(new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() });
+            var parlayTypes = new List<SelectListItem>
+            {
+                new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString(), Selected = true },
+                new SelectListItem { Text = ViewLang.GodOfFortune, Value = ((int)ParlayType.GodOfFortune).ToString() },
+                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
+                new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() },
+                new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
+            };
             ViewBag.ParlayTypes = parlayTypes;
 
-            // Level
-            var levels = new List<SelectListItem>();
-            levels.Add(new SelectListItem { Text = ViewLang.None, Value = "0" });
-            for (int i = 1; i <= 10; i++)
+            var levels = new List<SelectListItem> { new SelectListItem { Text = ViewLang.None, Value = "0" } };
+            for (var i = 1; i <= 10; i++)
             {
                 levels.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
 
             ViewBag.Levels = levels;
 
-            // Select Top
             var values = new List<int> { 10, 20, 50, 100, 200, 1000, 2000, 3000 };
             var selectTops = new List<SelectListItem>();
             foreach (var item in values)
             {
-                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 200 ? true : false });
+                selectTops.Add(new SelectListItem { Text = item.ToString(), Value = item.ToString(), Selected = item == 200 });
             }
 
             ViewBag.SelectTops = selectTops;
 
-            // Markets
-            var markets = new List<SelectListItem>();
-            markets.Add(new SelectListItem { Text = ViewLang.Today_only, Value = ((int)Market.TodayOnly).ToString(), Selected = true });
-            markets.Add(new SelectListItem { Text = ViewLang.Early_only, Value = ((int)Market.EarlyOnly).ToString(), Selected = true });
-            markets.Add(new SelectListItem { Text = ViewLang.Combined, Value = ((int)Market.Combined).ToString(), Selected = true });
+            var markets = new List<SelectListItem>
+            {
+                new SelectListItem { Text = ViewLang.Today_only, Value = ((int)Market.TodayOnly).ToString(), Selected = true },
+                new SelectListItem { Text = ViewLang.Early_only, Value = ((int)Market.EarlyOnly).ToString(), Selected = true },
+                new SelectListItem { Text = ViewLang.Combined, Value = ((int)Market.Combined).ToString(), Selected = true }
+            };
             ViewBag.Markets = markets;
 
-            // Refresh Time
             values = new List<int> { 60, 120 };
             var refreshTimes = new List<SelectListItem>();
             foreach (var item in values)
@@ -99,7 +94,6 @@ namespace ParlayRMS.Controllers
             return View();
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpPost]
         public ActionResult Data(DataModel model)
         {
@@ -110,31 +104,27 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            bool isValidCustomerClass = true;
-            if (model.CustomerClass.HasValue && model.CustomerClass.Value > Int16.MaxValue)
-            {
-                isValidCustomerClass = false;
-            }
+            var isValidCustomerClass = !(model.CustomerClass.HasValue && model.CustomerClass.Value > short.MaxValue);
 
             var data = isValidCustomerClass ? _parlayMonitorCacheService.GetParlayMonitorTickets(
-                                model.Combos,
-                                model.ParlayTypes,
-                                model.SportsTypes,
-                                model.Levels,
-                                model.StakeAfterPT,
-                                model.NetWinAfterPT,
-                                model.ReportType,
-                                model.SelectTop,
-                                model.MaxTransId,
-                                model.Markets,
-                                model.IsCornerParlay,
-                                model.Odds,
-                                model.LeagueGroups,
-                                model.CustomerClass,
-                                model.Company,
-                                model.UserName) : new List<RMS_Monitor_Parlay_Betlist>();
-            long maxTransId = model.MaxTransId;
-            if (data.Count() > 0)
+                model.Combos,
+                model.ParlayTypes,
+                model.SportsTypes,
+                model.Levels,
+                model.StakeAfterPT,
+                model.NetWinAfterPT,
+                model.ReportType,
+                model.SelectTop,
+                model.MaxTransId,
+                model.Markets,
+                model.IsCornerParlay,
+                model.Odds,
+                model.LeagueGroups,
+                model.CustomerClass,
+                model.Company,
+                model.UserName) : new List<RMS_Monitor_Parlay_Betlist>();
+            var maxTransId = model.MaxTransId;
+            if (data.Any())
             {
                 maxTransId = Math.Max(model.MaxTransId, long.Parse(data.First().TransId));
             }

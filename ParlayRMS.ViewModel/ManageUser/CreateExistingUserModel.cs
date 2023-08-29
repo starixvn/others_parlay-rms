@@ -1,16 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CreateExistingUserModel.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-// </history>
-
 namespace ParlayRMS.ViewModel.ManageUser
 {
-    /// <summary>
-    /// Create Existing UserModel.
-    /// </summary>
     public class CreateExistingUserModel
     {
         public string UserName { get; set; }
