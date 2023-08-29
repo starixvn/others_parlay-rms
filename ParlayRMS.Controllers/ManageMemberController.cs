@@ -11,11 +11,11 @@ namespace ParlayRMS.Controllers
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
+    using ExcelService.Writers;
     using PagedList;
-    using ParlayRMS.ExcelService.Writers;
     using ParlayRMS.Models.Functions;
-    using ParlayRMS.Services.Implement.Members;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Members;
+    using ParlayRMS.Services.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.ViewModel.ManageMember;
     using ParlayRMS.Web.Authorization;

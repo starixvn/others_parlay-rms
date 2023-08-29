@@ -3,7 +3,6 @@ using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data.Configuration;
 using Fanex.RemotingRef;
 using ONEbook.UM.Filters;
-using ParlayRMS.App_Start;
 using ParlayRMS.Web.Authorization;
 using System;
 using System.Configuration;

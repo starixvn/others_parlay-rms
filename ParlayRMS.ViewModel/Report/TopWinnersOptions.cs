@@ -1,10 +1,11 @@
-﻿using ParlayRMS.Common.Models;
-using ParlayRMS.Utility;
+﻿using ParlayRMS.Utility;
 using System;
 using System.Linq;
 
 namespace ParlayRMS.ViewModel.Report
 {
+    using Utility.Data;
+
     public class TopWinnersOptions
     {
         public DateTime FromDate { get; set; }

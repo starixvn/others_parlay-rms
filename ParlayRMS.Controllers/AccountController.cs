@@ -5,7 +5,7 @@ using ParlayRMS.DTO;
 using ParlayRMS.DTO.Users;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Users;
-using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Users;
 using ParlayRMS.ViewModel.Account;
 using ParlayRMS.Web.Authorization;
 using ParlayRMS.Web.Context;

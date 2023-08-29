@@ -1,10 +1,9 @@
 ﻿using ParlayRMS.DTO.TopWinners;
-using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.BetDetails;
-using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Implement.TopWinners;
-using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.BetDetails;
+using ParlayRMS.Services.Common;
+using ParlayRMS.Services.TopWinners;
+using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
@@ -18,6 +17,8 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    using ExcelService.Writers;
+
     [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
     public class TopWinnersController : BaseController
     {

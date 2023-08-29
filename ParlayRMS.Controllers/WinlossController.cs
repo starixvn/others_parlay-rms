@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using ParlayRMS.ExcelService.Writers;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.Winloss;
+using ParlayRMS.Services.Winloss;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
+    using ExcelService.Writers;
+
     [Authorization(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
     public class WinlossController : BaseController
     {

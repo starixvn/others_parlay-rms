@@ -146,10 +146,6 @@
     <Compile Include="ViewIPInfo\ViewIPStatsOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
-      <Project>{43e2713a-5ac6-4af1-b1f5-aa7acc64855e}</Project>
-      <Name>ParlayRMS.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.Models\ParlayRMS.Models.csproj">
       <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
       <Name>ParlayRMS.Models</Name>

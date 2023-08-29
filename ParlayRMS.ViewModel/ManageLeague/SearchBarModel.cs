@@ -1,7 +1,7 @@
 ﻿namespace ParlayRMS.ViewModel.ManageLeague
 {
-    using ParlayRMS.Common.Models;
     using System.ComponentModel.DataAnnotations;
+    using Utility.Data;
 
     /// <summary>
     /// Search Bar Model.

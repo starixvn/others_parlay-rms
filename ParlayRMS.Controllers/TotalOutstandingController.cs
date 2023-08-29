@@ -1,7 +1,7 @@
 ﻿using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.TotalOutstanding;
-using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.TotalOutstanding;
+using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using ParlayRMS.Web.Authorization;

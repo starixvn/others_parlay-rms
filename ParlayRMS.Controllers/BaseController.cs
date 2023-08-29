@@ -2,7 +2,7 @@
 {
     using ONEbook.UM.Filters;
     using ParlayRMS.DTO;
-    using ParlayRMS.Services.Implement.Users;
+    using ParlayRMS.Services.Users;
     using ParlayRMS.Utility;
     using ParlayRMS.Web.Context;
     using ParlayRMS.Web.Session;

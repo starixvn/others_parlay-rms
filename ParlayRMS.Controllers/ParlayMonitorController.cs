@@ -1,9 +1,9 @@
 ﻿using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.Common;
-using ParlayRMS.Services.Implement.ParlayMonitor;
-using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Common;
+using ParlayRMS.Services.ParlayMonitor;
+using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.PalayMonitor;

@@ -257,10 +257,6 @@
       <Project>{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}</Project>
       <Name>ParlayRMS.ExcelService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.Common\ParlayRMS.Common.csproj">
-      <Project>{43E2713A-5AC6-4AF1-B1F5-AA7ACC64855E}</Project>
-      <Name>ParlayRMS.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>
@@ -269,9 +265,9 @@
       <Project>{6DCD1082-2C5E-4BB6-BBAE-650220763AFE}</Project>
       <Name>ParlayRMS.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParlayRMS.Services.Implement\ParlayRMS.Services.Implement.csproj">
-      <Project>{6BFC45D5-70F1-4DBB-9E16-4F6886A77F28}</Project>
-      <Name>ParlayRMS.Services.Implement</Name>
+    <ProjectReference Include="..\ParlayRMS.Services\ParlayRMS.Services.csproj">
+      <Project>{6bfc45d5-70f1-4dbb-9e16-4f6886a77f28}</Project>
+      <Name>ParlayRMS.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.ViewModel\ParlayRMS.ViewModel.csproj">
       <Project>{C8CB1E7B-E68A-4065-AE30-3F8FB371974A}</Project>

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Implement.Functions;
-using ParlayRMS.Services.Implement.Users;
+using ParlayRMS.Services.Functions;
+using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.ManageFunction;
 using ParlayRMS.Web.Authorization;

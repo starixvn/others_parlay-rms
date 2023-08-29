@@ -12,13 +12,13 @@ namespace ParlayRMS.Models.Users
     using System.Collections.Generic;
     using ParlayRMS.Models.Functions;
     using ParlayRMS.Models.Menus;
-    using ParlayRMS.Utility;
 
     /// <summary>
     /// User cache.
     /// </summary>
     public class UserCache
-    {        
+    {
+        private const int UserPolicyCacheTime = 5;
         public UserCache(IEnumerable<Menu> menus, IEnumerable<FunctionPolicy> functions)
         {
             CreatedTime = DateTime.Now;
@@ -32,7 +32,7 @@ namespace ParlayRMS.Models.Users
         {
             get
             {
-                if (this.CreatedTime.AddSeconds(AppSetting.UserPolicyCacheTime) < DateTime.Now)
+                if (this.CreatedTime.AddSeconds(UserPolicyCacheTime) < DateTime.Now)
                 {
                     return true;
                 }
