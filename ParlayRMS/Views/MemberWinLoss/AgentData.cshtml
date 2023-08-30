@@ -1,295 +1,296 @@
-﻿@model IEnumerable<ParlayRMS.DTO.MemberWinLoss.RMS_Rpt_Parlay_MemberWinLoss>
-@{
-    var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
-    var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
-}
-<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
-<div style="width: 1606px" class="maintitle">
-    <div class="information">
-        @ViewBag.Title
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model IEnumerable<ParlayRMS.DTO.MemberWinLoss.RMS_Rpt_Parlay_MemberWinLoss>
+    @{
+        var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
+        var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
+    }
+    <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+    <div style="width: 1606px" class="maintitle">
+        <div class="information">
+            @ViewBag.Title
+        </div>
+        <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
+        </div>
     </div>
-    <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
-    </div>
-</div>
-<div style="width: 1606px">
-    <table class="main">
-        <colgroup>
-            <col width='110' />
-            <col width='75' />
-            <col width='140' />
-            <col width='100' />
-            <col width='100' />
-            <col width='100' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-        </colgroup>
-        <thead id="header">
-            <tr>
-                <th rowspan="2" class="header2rows">
-                    @ViewLang.Month
-                </th>
-                <th rowspan="2" class="header2rows">
-                    @ViewLang.Site
-                </th>
-                @if (isShowSort)
-                {
-                    <th rowspan="2" class="header2rows sortable" data-col-index="1">
-                        @ViewLang.Username
-                    </th>
-                    <th rowspan="2" class="header2rows sortable" data-col-index="2">
-                        @ViewLang.CustomerClass
-                    </th>
-                }
-                else
-                {
-
+    <div style="width: 1606px">
+        <table class="main">
+            <colgroup>
+                <col width='110' />
+                <col width='75' />
+                <col width='140' />
+                <col width='100' />
+                <col width='100' />
+                <col width='100' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+            </colgroup>
+            <thead id="header">
+                <tr>
                     <th rowspan="2" class="header2rows">
-                        @ViewLang.Username
+                        @ViewLang.Month
                     </th>
                     <th rowspan="2" class="header2rows">
-                        @ViewLang.CustomerClass
+                        @ViewLang.Site
                     </th>
-                }
-                <th colspan="2">
-                    @ViewLang.Ticket
-                </th>
-                <th colspan="2">
-                    @ViewLang.StakeAfterPT
-                </th>
-                <th colspan="2">
-                    @ViewLang.WinLoss
-                </th>
-                <th colspan="3">
-                    @ViewLang.OurPT
-                </th>
-            </tr>
-            <tr>
-                @if (isShowSort)
-                {
-                    <th class="sortable" data-col-index="3">
-                        @ViewLang.Won
-                    </th>
-                    <th class="sortable" data-col-index="4">
-                        @ViewLang.Lose
-                    </th>
-                    <th class="sortable" data-col-index="5">
-                        @ViewLang.Won
-                    </th>
-                    <th class="sortable" data-col-index="6">
-                        @ViewLang.Lose
-                    </th>
-                    <th class="sortable" data-col-index="7">
-                        @ViewLang.Won
-                    </th>
-                    <th class="sortable" data-col-index="8">
-                        @ViewLang.Lose
-                    </th>
-                    <th class="sortable" data-col-index="9">
-                        @ViewLang.Won
-                    </th>
-                    <th class="sortable" data-col-index="10">
-                        @ViewLang.Lose
-                    </th>
-                    <th class="sortable" data-col-index="11">
-                        @ViewLang.NetWinloss
-                    </th>
-                }
-                else
-                {
-                    <th>
-                        @ViewLang.Won
-                    </th>
-                    <th>
-                        @ViewLang.Lose
-                    </th>
-                    <th>
-                        @ViewLang.Won
-                    </th>
-                    <th>
-                        @ViewLang.Lose
-                    </th>
-                    <th>
-                        @ViewLang.Won
-                    </th>
-                    <th>
-                        @ViewLang.Lose
-                    </th>
-                    <th>
-                        @ViewLang.Won
-                    </th>
-                    <th>
-                        @ViewLang.Lose
-                    </th>
-                    <th>
-                        @ViewLang.NetWinloss
-                    </th>
-                }
-            </tr>
-        </thead>
-    </table>
-</div>
-<div class="scrollGridContent" style="max-height: 530px; width: 1625px">
-    <table class="main" id="result">
-        <colgroup>
-            <col width='110' />
-            <col width='75' />
-            <col width='140' />
-            <col width='100' />
-            <col width='100' />
-            <col width='100' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-        </colgroup>
-        <tbody>
-            @{
-                RMS_Rpt_Parlay_MemberWinLoss subTotal = new RMS_Rpt_Parlay_MemberWinLoss();
-                var subtotalClass = string.Empty;
-
-                if (Model.Any())
-                {
-                    var firstEle = Model.ElementAt(0);
-                    if (firstEle.NumOfSubrows == 0)
+                    @if (isShowSort)
                     {
-                        firstEle.NumOfSubrows = Model.ToList().FindIndex(delegate (RMS_Rpt_Parlay_MemberWinLoss item)
+                        <th rowspan="2" class="header2rows sortable" data-col-index="1">
+                            @ViewLang.Username
+                        </th>
+                        <th rowspan="2" class="header2rows sortable" data-col-index="2">
+                            @ViewLang.CustomerClass
+                        </th>
+                    }
+                    else
+                    {
+
+                        <th rowspan="2" class="header2rows">
+                            @ViewLang.Username
+                        </th>
+                        <th rowspan="2" class="header2rows">
+                            @ViewLang.CustomerClass
+                        </th>
+                    }
+                    <th colspan="2">
+                        @ViewLang.Ticket
+                    </th>
+                    <th colspan="2">
+                        @ViewLang.StakeAfterPT
+                    </th>
+                    <th colspan="2">
+                        @ViewLang.WinLoss
+                    </th>
+                    <th colspan="3">
+                        @ViewLang.OurPT
+                    </th>
+                </tr>
+                <tr>
+                    @if (isShowSort)
+                    {
+                        <th class="sortable" data-col-index="3">
+                            @ViewLang.Won
+                        </th>
+                        <th class="sortable" data-col-index="4">
+                            @ViewLang.Lose
+                        </th>
+                        <th class="sortable" data-col-index="5">
+                            @ViewLang.Won
+                        </th>
+                        <th class="sortable" data-col-index="6">
+                            @ViewLang.Lose
+                        </th>
+                        <th class="sortable" data-col-index="7">
+                            @ViewLang.Won
+                        </th>
+                        <th class="sortable" data-col-index="8">
+                            @ViewLang.Lose
+                        </th>
+                        <th class="sortable" data-col-index="9">
+                            @ViewLang.Won
+                        </th>
+                        <th class="sortable" data-col-index="10">
+                            @ViewLang.Lose
+                        </th>
+                        <th class="sortable" data-col-index="11">
+                            @ViewLang.NetWinloss
+                        </th>
+                    }
+                    else
+                    {
+                        <th>
+                            @ViewLang.Won
+                        </th>
+                        <th>
+                            @ViewLang.Lose
+                        </th>
+                        <th>
+                            @ViewLang.Won
+                        </th>
+                        <th>
+                            @ViewLang.Lose
+                        </th>
+                        <th>
+                            @ViewLang.Won
+                        </th>
+                        <th>
+                            @ViewLang.Lose
+                        </th>
+                        <th>
+                            @ViewLang.Won
+                        </th>
+                        <th>
+                            @ViewLang.Lose
+                        </th>
+                        <th>
+                            @ViewLang.NetWinloss
+                        </th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 530px; width: 1625px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='110' />
+                <col width='75' />
+                <col width='140' />
+                <col width='100' />
+                <col width='100' />
+                <col width='100' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+            </colgroup>
+            <tbody>
+                @{
+                    RMS_Rpt_Parlay_MemberWinLoss subTotal = new RMS_Rpt_Parlay_MemberWinLoss();
+                    var subtotalClass = string.Empty;
+
+                    if (Model.Any())
+                    {
+                        var firstEle = Model.ElementAt(0);
+                        if (firstEle.NumOfSubrows == 0)
                         {
-                            return item.IsSutotalRow;
-                        });
-                        firstEle.NumOfSubrows = firstEle.NumOfSubrows <= 0 ? 1 : firstEle.NumOfSubrows;
+                            firstEle.NumOfSubrows = Model.ToList().FindIndex(delegate (RMS_Rpt_Parlay_MemberWinLoss item)
+                            {
+                                return item.IsSutotalRow;
+                            });
+                            firstEle.NumOfSubrows = firstEle.NumOfSubrows <= 0 ? 1 : firstEle.NumOfSubrows;
+                        }
+                    }
+
+                    foreach (var record in Model)
+                    {
+                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)>
+                            @if (!record.IsSutotalRow)
+                            {
+                                <td class="center">
+                                    @record.Month
+                                </td>
+                                <td class="center">
+                                    @record.SiteGroup
+                                </td>
+                                <td class="center">
+                                    @record.Username
+                                </td>
+                                <td class="center">
+                                    @record.CustomerClass
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="center" colspan="4">
+                                    @ViewLang.Subtotal
+                                </td>
+                            }
+                            <td class="numeric">
+                                @Formatter.FormatNumber3(record.Tickets_Won)
+                            </td>
+                            <td class="numeric">
+                                @Formatter.FormatNumber3(record.Tickets_Lose)
+                            </td>
+                            <td class="numeric">
+                                @Formatter.FormatNumber2(record.Stake_Won)
+                            </td>
+                            <td class="numeric">
+                                @Formatter.FormatNumber2(record.Stake_Lose)
+                            </td>
+                            <td class="numeric negative">
+                                @Formatter.FormatNumber2(record.Member_Won)
+                            </td>
+                            <td class="numeric">
+                                @Formatter.FormatNumber2(record.Member_Lose)
+                            </td>
+                            <td class="numeric negative">
+                                @Formatter.FormatNumber2(record.OurPT_Won)
+                            </td>
+                            <td class="numeric">
+                                @Formatter.FormatNumber2(record.OurPT_Lose)
+                            </td>
+                            @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                        </tr>
                     }
                 }
-
-                foreach (var record in Model)
+            </tbody>
+        </table>
+    </div>
+    <div style="width: 1606px" class="mainfooter">
+        <table class="main" id="footer">
+            <colgroup>
+                <col width='110' />
+                <col width='75' />
+                <col width='140' />
+                <col width='100' />
+                <col width='100' />
+                <col width='100' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+                <col width='140' />
+            </colgroup>
+            <tfoot>
+                @if (Model.Any())
                 {
-                    <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)>
-                        @if (!record.IsSutotalRow)
-                        {
-                            <td class="center">
-                                @record.Month
-                            </td>
-                             <td class="center">
-                                @record.SiteGroup
-                            </td>
-                            <td class="center">
-                                @record.Username
-                            </td>
-                            <td class="center">
-                                @record.CustomerClass
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="center" colspan="4">
-                                @ViewLang.Subtotal
-                            </td>
-                        }
-                        <td class="numeric">
-                            @Formatter.FormatNumber3(record.Tickets_Won)
+                    <tr>
+                        <td class="center" colspan="4">
+                            @ViewLang.Total
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber3(record.Tickets_Lose)
+                            @Formatter.FormatNumber3(ViewBag.GrandTotal.Tickets_Won)
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber2(record.Stake_Won)
+                            @Formatter.FormatNumber3(ViewBag.GrandTotal.Tickets_Lose)
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber2(record.Stake_Lose)
-                        </td>
-                        <td class="numeric negative">
-                            @Formatter.FormatNumber2(record.Member_Won)
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.Stake_Won)
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber2(record.Member_Lose)
-                        </td>
-                        <td class="numeric negative">
-                            @Formatter.FormatNumber2(record.OurPT_Won)
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.Stake_Lose)
                         </td>
                         <td class="numeric">
-                            @Formatter.FormatNumber2(record.OurPT_Lose)
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.Member_Won)
                         </td>
-                        @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.Member_Lose)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_Won)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_Lose)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_NetWinloss)
+                        </td>
+                        @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
                     </tr>
                 }
-            }
-        </tbody>
-    </table>
-</div>
-<div style="width: 1606px" class="mainfooter">
-    <table class="main" id="footer">
-        <colgroup>
-            <col width='110' />
-            <col width='75' />
-            <col width='140' />
-            <col width='100' />
-            <col width='100' />
-            <col width='100' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-            <col width='140' />
-        </colgroup>
-        <tfoot>
-            @if (Model.Any())
-            {
-                <tr>
-                    <td class="center" colspan="4">
-                        @ViewLang.Total
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(ViewBag.GrandTotal.Tickets_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(ViewBag.GrandTotal.Tickets_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.Stake_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.Stake_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.Member_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.Member_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_NetWinloss)
-                    </td>
-                    @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
-                </tr>
-            }
-            else
-            {
-                <tr>
-                    <td colspan="13" style="text-align: center; width: 1606px">
-                        @ViewLang.NoInformation
-                    </td>
-                </tr>
-            }
-        </tfoot>
-    </table>
-</div>
-@Html.Partial("_Pager", (object)@ViewBag.Pager)
-<script type="text/javascript">
+                else
+                {
+                    <tr>
+                        <td colspan="13" style="text-align: center; width: 1606px">
+                            @ViewLang.NoInformation
+                        </td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+    @Html.Partial("_Pager", (object)@ViewBag.Pager)
+    <script type="text/javascript">
     var data = {
         FromDate: '@filterOption.FromDate',
         ToDate: '@filterOption.ToDate',
@@ -305,4 +306,4 @@
             MemberWinLoss.ExportExcel(data);
         });
     });
-</script>
+    </script>

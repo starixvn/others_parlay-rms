@@ -1,107 +1,107 @@
-﻿@model IEnumerable<Function>
-@{
-    ViewBag.Title = ViewBag.HeaderText = ViewLang.FunctionManagement;
-}
-@section Script{
-    @Scripts.Render("~/Scripts/ManageFunction/js")
-}
-@if (ViewBag.HasWritePermission)
-{ 
-    <div id="barFunction" class="bar new-cmd title">
-        <div style="float: left;">
-            <button id="btnNewFunction" onclick="javascript:CreateFunction();">
-                <span class="addNewFunction"></span><span class="text">@ViewLang.NewFunction</span>
-            </button>
+﻿@model IEnumerable<ParlayRMS.Models.Functions.Function>
+    @{
+        ViewBag.Title = ViewBag.HeaderText = ViewLang.FunctionManagement;
+    }
+    @section Script{
+        @Scripts.Render("~/Scripts/ManageFunction/js")
+    }
+    @if (ViewBag.HasWritePermission)
+    {
+        <div id="barFunction" class="bar new-cmd title">
+            <div style="float: left;">
+                <button id="btnNewFunction" onclick="javascript:CreateFunction();">
+                    <span class="addNewFunction"></span><span class="text">@ViewLang.NewFunction</span>
+                </button>
+            </div>
         </div>
-    </div>
-}
-<div class="scrollGridBorder">
-    <div class="scrollGridHeader">
-        <table class="scrollGrid">
-            <colgroup>
-                <col style="width: 190px" />
-                <col style="width: 190px" />
-                <col style="width: auto" />
-                <col style="width: 190px" />
-                <col style="width: 70px" />
-                <col style="width: 170px" />
-            </colgroup>
-            <tbody>
-                <tr>
-                    <td>
-                        @ViewLang.Name
-                    </td>
-                    <td>
-                        @ViewLang.Key
-                    </td>
-                    <td>
-                        @ViewLang.Description
-                    </td>
-                    <td>
-                        @ViewLang.Parent
-                    </td>
-                    <td>
-                        @ViewLang.Order
-                    </td>
-                    <td>
-                        @ViewLang.Lastmodified
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="groupScrollGrid" class="scrollGridContent">
-        <table id="tblFunctionList" class="scrollGrid">
-            <colgroup>
-                <col style="width: 190px" />
-                <col style="width: 190px" />
-                <col style="width: auto" />
-                <col style="width: 190px" />
-                <col style="width: 70px" />
-                <col style="width: 170px" />
-            </colgroup>
-            <tbody>
-                @{ foreach (Function function in Model)
-                   {
+    }
+    <div class="scrollGridBorder">
+        <div class="scrollGridHeader">
+            <table class="scrollGrid">
+                <colgroup>
+                    <col style="width: 190px" />
+                    <col style="width: 190px" />
+                    <col style="width: auto" />
+                    <col style="width: 190px" />
+                    <col style="width: 70px" />
+                    <col style="width: 170px" />
+                </colgroup>
+                <tbody>
                     <tr>
                         <td>
-                            <a href="#" onclick="javascript:EditFunction('@function.Id');" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
-                                @if (function.Parent != null)
-                                { 
-                                    <span class="subfunction">- @function.Name</span>
-                                }
-                                else
-                                {
-                                    <span class="function">@function.Name</span>
-                                }
-                            </a>
+                            @ViewLang.Name
                         </td>
                         <td>
-                            @if (function.Parent != null)
-                            {
-                                <span class="subfunction">- @function.Key</span>
-                            }
-                            else
-                            {
-                                <span class="function">@function.Key</span>
-                            }
+                            @ViewLang.Key
                         </td>
                         <td>
-                            @function.Description
+                            @ViewLang.Description
                         </td>
                         <td>
-                            @(function.Parent != null ? function.Parent.Name : "")
+                            @ViewLang.Parent
                         </td>
-                        <td style="text-align: center">
-                            @function.DisplayOrder
+                        <td>
+                            @ViewLang.Order
                         </td>
-                        <td style="text-align: center">
-                            @function.ModifiedDate
+                        <td>
+                            @ViewLang.Lastmodified
                         </td>
                     </tr>
-                   }
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        <div id="groupScrollGrid" class="scrollGridContent">
+            <table id="tblFunctionList" class="scrollGrid">
+                <colgroup>
+                    <col style="width: 190px" />
+                    <col style="width: 190px" />
+                    <col style="width: auto" />
+                    <col style="width: 190px" />
+                    <col style="width: 70px" />
+                    <col style="width: 170px" />
+                </colgroup>
+                <tbody>
+                    @{ foreach (var function in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="#" onclick="javascript:EditFunction('@function.Id');" class="@Utils.ResolvePermission(ViewBag.HasWritePermission)">
+                                        @if (function.Parent != null)
+                                        {
+                                            <span class="subfunction">- @function.Name</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="function">@function.Name</span>
+                                        }
+                                    </a>
+                                </td>
+                                <td>
+                                    @if (function.Parent != null)
+                                    {
+                                        <span class="subfunction">- @function.Key</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="function">@function.Key</span>
+                                    }
+                                </td>
+                                <td>
+                                    @function.Description
+                                </td>
+                                <td>
+                                    @(function.Parent != null ? function.Parent.Name : "")
+                                </td>
+                                <td style="text-align: center">
+                                    @function.DisplayOrder
+                                </td>
+                                <td style="text-align: center">
+                                    @function.ModifiedDate
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>

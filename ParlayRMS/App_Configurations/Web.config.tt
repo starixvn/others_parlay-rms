@@ -93,6 +93,7 @@
     </authentication>
     <pages>
       <namespaces>
+        <add namespace="System" />
         <add namespace="System.Web.Helpers" />
         <add namespace="System.Web.Mvc" />
         <add namespace="System.Web.Mvc.Ajax" />
@@ -103,6 +104,12 @@
         <add namespace="ParlayRMS.Controllers" />
         <add namespace="ParlayRMS.ViewModel" />
         <add namespace="ParlayRMS.Models" />
+        <add namespace="ParlayRMS.Web.Context" />
+        <add namespace="ParlayRMS.ViewModel.Report" />
+        <add namespace="ParlayRMS.Utility" />
+        <add namespace="ParlayRMS.Common.Models" />
+        <add namespace="ParlayRMS.Web.Mvc" />
+        <add namespace="ParlayRMS.Web.Session" />
       </namespaces>
     </pages>
     <globalization uiCulture="en-US" culture="en-US" />

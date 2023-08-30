@@ -1,4 +1,5 @@
-﻿@model ParlayRMS.Models.Winloss.WinlossData
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model ParlayRMS.Models.Winloss.WinlossData
 @{
     var filterOption = (WinlossOptions)ViewBag.FilterOption;
 }
@@ -33,11 +34,11 @@
                 <th rowspan="2" class="header2rows">
                     @if (filterOption.ReportType == ReportType.Combo)
                     {
-                        @ViewLang.Combo
+                    @ViewLang.Combo
                     }
                     else
                     {
-                        @:Sports Type
+                    @:Sports Type
                     }
                 </th>
                 <th colspan="2">
@@ -110,83 +111,83 @@
                 for (var index = 0; index < group.Records.Count; index++)
                 {
                     var record = group.Records[index];
-                    <tr>
-                        @if (index == 0)
+            <tr>
+                @if (index == 0)
                         {
-                            <td class="center" rowspan="@group.Records.Count">
-                                @Formatter.FormatDate(record.WinlostDate)
-                            </td>
+                <td class="center" rowspan="@group.Records.Count">
+                    @Formatter.FormatDate(record.WinlostDate)
+                </td>
                         }
-                        <td class="center">
-                            @if (filterOption.ReportType == ReportType.Combo)
+                <td class="center">
+                    @if (filterOption.ReportType == ReportType.Combo)
                             {
-                                @record.Combo
+                    @record.Combo
                             }
                             else
                             {
-                                @CacheRef.GetSportNameDropDown(record.SportType)
+                    @CacheRef.GetSportNameDropDown(record.SportType)
                             }
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber3(record.Tickets_Won)
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber3(record.Tickets_Lose)
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber2(record.Stake_Won)
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber2(record.Stake_Lose)
-                        </td>
-                        <td class="numeric negative">
-                            @Formatter.FormatNumber2(record.Member_Won)
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber2(record.Member_Lose)
-                        </td>
-                        <td class="numeric negative">
-                            @Formatter.FormatNumber2(record.OurPT_Won)
-                        </td>
-                        <td class="numeric">
-                            @Formatter.FormatNumber2(record.OurPT_Lose)
-                        </td>
-                        @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
-                        @RazorHelper.RenderPercentCell(record.Margin * 100)
-                    </tr>
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(record.Tickets_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(record.Tickets_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(record.Stake_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(record.Stake_Lose)
+                </td>
+                <td class="numeric negative">
+                    @Formatter.FormatNumber2(record.Member_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(record.Member_Lose)
+                </td>
+                <td class="numeric negative">
+                    @Formatter.FormatNumber2(record.OurPT_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(record.OurPT_Lose)
+                </td>
+                @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                @RazorHelper.RenderPercentCell(record.Margin * 100)
+            </tr>
                 }
 
-                <tr class="subTotal">
-                    <td class="center" colspan="2">
-                        @ViewLang.Subtotal
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(group.Total.Tickets_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(group.Total.Tickets_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(group.Total.Stake_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(group.Total.Stake_Lose)
-                    </td>
-                    <td class="numeric negative">
-                        @Formatter.FormatNumber2(group.Total.Member_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(group.Total.Member_Lose)
-                    </td>
-                    <td class="numeric negative">
-                        @Formatter.FormatNumber2(group.Total.OurPT_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(group.Total.OurPT_Lose)
-                    </td>
-                    @RazorHelper.RenderNumberCell(group.Total.OurPT_NetWinloss)
-                    @RazorHelper.RenderPercentCell(group.Total.Margin * 100)
-                </tr>
+            <tr class="subTotal">
+                <td class="center" colspan="2">
+                    @ViewLang.Subtotal
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(group.Total.Tickets_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(group.Total.Tickets_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(group.Total.Stake_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(group.Total.Stake_Lose)
+                </td>
+                <td class="numeric negative">
+                    @Formatter.FormatNumber2(group.Total.Member_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(group.Total.Member_Lose)
+                </td>
+                <td class="numeric negative">
+                    @Formatter.FormatNumber2(group.Total.OurPT_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(group.Total.OurPT_Lose)
+                </td>
+                @RazorHelper.RenderNumberCell(group.Total.OurPT_NetWinloss)
+                @RazorHelper.RenderPercentCell(group.Total.Margin * 100)
+            </tr>
             }
         </tbody>
     </table>
@@ -210,50 +211,50 @@
         <tfoot>
             @if (Model.Records.Any())
             {
-                <tr>
-                    <td class="center" colspan="2">
-                        @ViewLang.Total
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(@Model.Total.Tickets_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(Model.Total.Tickets_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.Stake_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.Stake_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.Member_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.Member_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.OurPT_Won)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
-                    </td>
-                    @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
-                    <td class="center">
-                        @Formatter.FormatNumber2(Model.Total.Margin * 100) %
-                    </td>
-                </tr>
+            <tr>
+                <td class="center" colspan="2">
+                    @ViewLang.Total
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(@Model.Total.Tickets_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber3(Model.Total.Tickets_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.Stake_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.Stake_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.Member_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.Member_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.OurPT_Won)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
+                </td>
+                <td class="numeric">
+                    @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
+                </td>
+                @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
+                <td class="center">
+                    @Formatter.FormatNumber2(Model.Total.Margin * 100) %
+                </td>
+            </tr>
             }
             else
             {
-                <tr>
-                    <td colspan="13" style="text-align: center">
-                        @ViewLang.NoInformation
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="13" style="text-align: center">
+                    @ViewLang.NoInformation
+                </td>
+            </tr>
             }
         </tfoot>
     </table>

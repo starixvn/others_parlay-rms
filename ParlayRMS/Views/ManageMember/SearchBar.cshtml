@@ -21,22 +21,28 @@
     </div>
 </div>
 <ul id="myColor" class="contextMenu">
-    <li class="alllevel" title="Click to change level"><a href="#" level="" color="alllevel">
-        @ViewLang.AllLevel
-    </a></li>
+    <li class="alllevel" title="Click to change level">
+        <a href="#" level="" color="alllevel">
+            @ViewLang.AllLevel
+        </a>
+    </li>
     @foreach (var level in ModelsHelper.GetMemberLevels())
     {
         if (level.LevelId == 0)
         {
-        <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">
-            @ViewLang.None
-        </a></li>
+            <li class="@level.LevelColor" title="Click to change level">
+                <a href="#" level="@level.LevelId" color="@level.LevelColor">
+                    @ViewLang.None
+                </a>
+            </li>
         }
         else
         {
-        <li class="@level.LevelColor" title="Click to change level"><a href="#" level="@level.LevelId" color="@level.LevelColor">
-            @level.LevelValue
-        </a></li>
+            <li class="@level.LevelColor" title="Click to change level">
+                <a href="#" level="@level.LevelId" color="@level.LevelColor">
+                    @level.LevelValue
+                </a>
+            </li>
         }
     }
 </ul>

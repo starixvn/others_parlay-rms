@@ -1,32 +1,33 @@
-﻿@model IEnumerable<RMS_DangerousAgentSel>
-<div id="groupScrollGrid" class="scrollGridContent" style="width: 355px; max-height: 630px;">
-    <table id="tblDangerousAgentList" class="scrollGrid" style="width: 337px;">
-        @{
-            if (Model == null || Model.Count() == 0)
+﻿@using ParlayRMS.Models.Members
+@model IEnumerable<ParlayRMS.DTO.Agents.RMS_DangerousAgentSel>
+    <div id="groupScrollGrid" class="scrollGridContent" style="width: 355px; max-height: 630px;">
+        <table id="tblDangerousAgentList" class="scrollGrid" style="width: 337px;">
+            @{
+                if (Model == null || Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" style="text-align: center">
+                            @ViewLang.NoInformation
+                        </td>
+                    </tr>
+                }
+            }
+            @foreach (var agent in Model)
             {
-                <tr>
-                    <td colspan="3" style="text-align: center">
-                        @ViewLang.NoInformation
+                <tr style="height: 30px;">
+                    <td style="width: 50px; text-align: center">
+                        @agent.No
+                    </td>
+                    <td style="width: auto; padding-left: 3px;">
+                        @agent.UserName
+                        @if (ViewBag.HasWritePermission)
+                        {
+                            <div class="removeIcon" data-user-id="@agent.AgentId" data-user-name="@agent.UserName"></div>
+                        }
                     </td>
                 </tr>
-            }
-        }
-        @foreach (var agent in Model)
-        {
-            <tr style="height: 30px;">
-                <td style="width: 50px; text-align: center">
-                    @agent.No
-                </td>
-                <td style="width: auto; padding-left: 3px;">
-                    @agent.UserName
-                    @if (ViewBag.HasWritePermission)
-                    {
-                        <div class="removeIcon" data-user-id="@agent.AgentId" data-user-name="@agent.UserName"></div>
-                    }
-                </td>
-            </tr>
 
-        }
-    </table>
-</div>
-@Html.Partial("_Pager", (object)@ViewBag.Pager)
+            }
+        </table>
+    </div>
+    @Html.Partial("_Pager", (object)@ViewBag.Pager)

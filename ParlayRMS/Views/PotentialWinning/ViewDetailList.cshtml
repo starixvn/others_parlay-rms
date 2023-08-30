@@ -1,173 +1,173 @@
-﻿@using ParlayRMS.Web.Session
-@model IEnumerable<RMS_Monitor_Potential_Winning_Detail>
-<div class="details">
-    <table class="sub" style="width: 100%">
-        <colgroup>
-            <col style="width: 50px" />
-            <col style="width: 180px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 120px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-            @if ((bool)ViewBag.IsDislayCheckedBy)
-            {
-                <col style="width: 140px" />
-            }
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    @ViewLang.No
-                </th>
-                <th>
-                    @ViewLang.TransTime
-                </th>
-                <th>
-                    @ViewLang.BetID
-                </th>
-                <th>
-                    @ViewLang.Odds
-                </th>
-                <th>
-                    @ViewLang.Stake
-                </th>
-                <th>
-                    @ViewLang.PotentialWinningAmount
-                </th>
-                <th>
-                    @ViewLang.PotentialCompanyLoseAmount
-                </th>
-                <th>
-                    @ViewLang.IP
-                </th>
-                <th>
-                    @ViewLang.HousePT
-                </th>
-                <th>
-                    @ViewLang.TotalComboBets
-                </th>
-                <th>
-                    @ViewLang.TotalSelections
-                </th>
-                <th>
-                    Sport Type
-                </th>
-                <th>
-                    @ViewLang.BetDetails
-                </th>
+﻿@using Formatter = ParlayRMS.Utility.Formatter﻿
+@model IEnumerable<ParlayRMS.DTO.PotentialWinning.RMS_Monitor_Potential_Winning_Detail>
+    <div class="details">
+        <table class="sub" style="width: 100%">
+            <colgroup>
+                <col style="width: 50px" />
+                <col style="width: 180px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 120px" />
+                <col style="width: 120px" />
+                <col style="width: 120px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
                 @if ((bool)ViewBag.IsDislayCheckedBy)
                 {
-                    <th>
-                        <div style="display: inline-block;">
-                            <input type="checkbox" id="cbTrackingUser" style="vertical-align: middle;"
-                                   onclick="updateCheckedUser('', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '', true)" />
-                            <label for="cbTrackingUser" style="vertical-align: middle;"> Checked By</label>
-                        </div>
-                    </th>
+                    <col style="width: 140px" />
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
-            {
+            </colgroup>
+            <thead>
                 <tr>
-                    <td class="center">
-                        @item.Ind
-                    </td>
-                    <td class="left">
-                        @item.Val.TransDateString
-                    </td>
-                    <td class="numeric">
-                        <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatOdds(item.Val.Odds)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatOdds(item.Val.Stake)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
-                    </td>
-                    <td class="numeric">
-                        @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
-                        {
-                            <span>----</span>
-                        }
-                        else
-                        {
-                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@Utils.DisplayMax15Character(item.Val.Ip.Trim())</a>
-                        }
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(item.Val.HousePT)
-                    </td>
-                    <td class="center">
-                        @{
-                            var betText = string.Empty;
-
-                            if (item.Val.BetType == 38)
+                    <th>
+                        @ViewLang.No
+                    </th>
+                    <th>
+                        @ViewLang.TransTime
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Odds
+                    </th>
+                    <th>
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.PotentialWinningAmount
+                    </th>
+                    <th>
+                        @ViewLang.PotentialCompanyLoseAmount
+                    </th>
+                    <th>
+                        @ViewLang.IP
+                    </th>
+                    <th>
+                        @ViewLang.HousePT
+                    </th>
+                    <th>
+                        @ViewLang.TotalComboBets
+                    </th>
+                    <th>
+                        @ViewLang.TotalSelections
+                    </th>
+                    <th>
+                        Sport Type
+                    </th>
+                    <th>
+                        @ViewLang.BetDetails
+                    </th>
+                    @if ((bool)ViewBag.IsDislayCheckedBy)
+                    {
+                        <th>
+                            <div style="display: inline-block;">
+                                <input type="checkbox" id="cbTrackingUser" style="vertical-align: middle;"
+                                       onclick="updateCheckedUser('', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '', true)" />
+                                <label for="cbTrackingUser" style="vertical-align: middle;"> Checked By</label>
+                            </div>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
+                {
+                    <tr>
+                        <td class="center">
+                            @item.Ind
+                        </td>
+                        <td class="left">
+                            @item.Val.TransDateString
+                        </td>
+                        <td class="numeric">
+                            <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatOdds(item.Val.Odds)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatOdds(item.Val.Stake)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
+                        </td>
+                        <td class="numeric">
+                            @if (item.Val.Ip == null || item.Val.Ip == "" || item.Val.Ip == "null")
                             {
-                                betText = " bet(S)";
-                            }
-
-                            else if (item.Val.BetType == 376)
-                            {
-                                betText = " bet(P)";
-                            }
-                            else if (item.Val.IsGOF)
-                            {
-                                betText = " bet(G)";
+                                <span>----</span>
                             }
                             else
                             {
-                                betText = item.Val.TotalBet > 1 ? " bets" : " bet";
+                                <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.Ip&date=@item.Val.TransDate'), '_blank');">@Utils.DisplayMax15Character(item.Val.Ip.Trim())</a>
                             }
-                        }
-
-                        @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
-                    </td>
-                    <td class="center">
-                        @if (item.Val.NumberWon == 0 || item.Val.BetType == (int)BetType.SingleMatchParlay)
-                        {
-                            @Html.Raw(item.Val.TotalSelection)
-                        }
-                        else
-                        {
-                            @Html.Raw(string.Format("{0}/{1}", item.Val.NumberWon, item.Val.TotalSelection))
-                        }
-                    </td>
-                    <td class="center">
-                        @item.Val.SportTypeName
-                    </td>
-                    <td>
-
-                        <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @ViewBag.CustId);">
-                            View
-                        </button>
-                    </td>
-                    @if ((bool)ViewBag.IsDislayCheckedBy)
-                    {
-                        <td>
-                            <div style="display: inline-block;">
-                                <input type="checkbox" id="cbTrackingUser-@item.Ind" onclick="updateCheckedUser('#cbTrackingUser-@item.Ind', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '@item.Val.TransId', false)"
-                                       data-transid="@item.Val.TransId" class="cbTrackingUser-item" style="vertical-align: middle;" @(item.Val.IsTrackedUser ? "checked disabled" : "") />
-                                <label for="cbTrackingUser-@item.Ind" id="cbTrackingUser-@item.Ind-text" style="vertical-align: middle;"> @item.Val.TrackingUser</label>
-                            </div>
                         </td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(item.Val.HousePT)
+                        </td>
+                        <td class="center">
+                            @{
+                                var betText = string.Empty;
+
+                                if (item.Val.BetType == 38)
+                                {
+                                    betText = " bet(S)";
+                                }
+
+                                else if (item.Val.BetType == 376)
+                                {
+                                    betText = " bet(P)";
+                                }
+                                else if (item.Val.IsGOF)
+                                {
+                                    betText = " bet(G)";
+                                }
+                                else
+                                {
+                                    betText = item.Val.TotalBet > 1 ? " bets" : " bet";
+                                }
+                            }
+
+                            @Formatter.FormatNumber3(@item.Val.TotalBet) @betText
+                        </td>
+                        <td class="center">
+                            @if (item.Val.NumberWon == 0 || item.Val.BetType == (int)BetType.SingleMatchParlay)
+                            {
+                                @Html.Raw(item.Val.TotalSelection)
+                            }
+                            else
+                            {
+                                @Html.Raw(string.Format("{0}/{1}", item.Val.NumberWon, item.Val.TotalSelection))
+                            }
+                        </td>
+                        <td class="center">
+                            @item.Val.SportTypeName
+                        </td>
+                        <td>
+
+                            <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @ViewBag.CustId);">
+                                View
+                            </button>
+                        </td>
+                        @if ((bool)ViewBag.IsDislayCheckedBy)
+                        {
+                            <td>
+                                <div style="display: inline-block;">
+                                    <input type="checkbox" id="cbTrackingUser-@item.Ind" onclick="updateCheckedUser('#cbTrackingUser-@item.Ind', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '@item.Val.TransId', false)"
+                                           data-transid="@item.Val.TransId" class="cbTrackingUser-item" style="vertical-align: middle;" @(item.Val.IsTrackedUser ? "checked disabled" : "") />
+                                    <label for="cbTrackingUser-@item.Ind" id="cbTrackingUser-@item.Ind-text" style="vertical-align: middle;"> @item.Val.TrackingUser</label>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

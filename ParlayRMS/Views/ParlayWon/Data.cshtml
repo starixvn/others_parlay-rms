@@ -1,224 +1,225 @@
-﻿@model IEnumerable<RMS_Rpt_Parlay_ParlayWon>
-@{
-    var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
-    var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
-    var start = index;
-}
-<input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
-<div style="width: 1925px;" class="maintitle">
-    <div class="information">
-        @ViewBag.Title
-    </div>
-    <div class="excel"
-         onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies', '@filterOption.Site', '@filterOption.LiveType', '@filterOption.CustomerClass')"
-         title="Export Excel">
-    </div>
-</div>
-<div style="width: 1925px">
-    <table class="main" id="header">
-        <colgroup>
-            <col width='70' />
-            <col width='150' />
-            <col width='150' />
-            <col width='75' />
-            <col width='150' />
-            <col width='100' />
-            <col width='80' />
-            <col width='80' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='150' />
-            <col width='80' />
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    @ViewLang.No
-                </th>
-                <th class="sortable" data-col-type="date" data-col-index="1">
-                    @ViewLang.TransTime
-                </th>
-                <th>
-                    @ViewLang.BetID
-                </th>
-                <th>
-                    @ViewLang.Site
-                </th>
-                <th class="sortable" data-col-index="2">
-                    @ViewLang.Username
-                </th>
-                <th>
-                    @ViewLang.CustomerClass
-                </th>
-                <th>
-                    @ViewLang.Currency
-                </th>
-                <th class="sortable" data-col-index="7">
-                    @ViewLang.Odds
-                </th>
-                <th class="sortable" data-col-index="3">
-                    @ViewLang.Stake
-                </th>
-                <th class="sortable" data-col-index="4">
-                    @ViewLang.StakeAfterPT
-                </th>
-                <th class="sortable" data-col-index="5">
-                    @ViewLang.WinningAmount
-                </th>
-                <th class="sortable" data-col-index="6">
-                    @ViewLang.HouseLoseAmount
-                </th>
-                <th>
-                    @ViewLang.TotalComboBets
-                </th>
-                <th>
-                    @ViewLang.TotalSelections
-                </th>
-                <th>
-                    @ViewLang.SportType
-                </th>
-                <th>
-                    @ViewLang.IP
-                </th>
-                <th>
-                    @ViewLang.BetDetails
-                </th>
-            </tr>
-        </thead>
-    </table>
-</div>
-<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1945px">
-    <table class="main" id="result">
-        <colgroup>
-            <col width='70' />
-            <col width='150' />
-            <col width='150' />
-            <col width='75' />
-            <col width='150' />
-            <col width='100' />
-            <col width='80' />
-            <col width='80' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='150' />
-            <col width='80' />
-        </colgroup>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="center">
-                        @Formatter.FormatNumber3(index + 1)
-                    </td>
-                    <td class="center">
-                        @Formatter.FormatDateTime(item.TransDate)
-                    </td>
-                    <td class="center">
-                        <a href="#@item.RefNo" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.TransId'), '_blank')">@item.TransId</a>
-                    </td>
-                    <td class="center">
-                        @item.SiteGroup
-                    </td>
-                    <td class="center">
-                        @item.Username
-                    </td>
-                    <td>
-                        @item.CustomerClass
-                    </td>
-                    <td>
-                        @item.Currency
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatOdds(item.Odds)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(item.Stake)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(item.StakeAfterPT)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(item.WinningAmount)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber3(item.HouseLoseAmount)
-                    </td>
-                    <td class="center">
-                        @item.TotalBet
-                    </td>
-                    <td class="center">
-                        @item.TotalSelection
-                    </td>
-                    <td class="center">
-                        @CacheRef.GetSportNameDropDown(item.SportType)
-                    </td>
-                    <td class="center">
-                        @Utils.DisplayMax15Character(item.IP.Trim())
-                    </td>
-                    <td class="center">
-                        <button class="button-disable-2" style="width:40px;" onclick="ParlayWon.ViewBetDetail('@item.RefNo', '@item.TransId', '@item.Username', '@item.CustId', @item.BetType)">
-                            View
-                        </button>
-                    </td>
-                </tr>
-                index++;
-            }
-        </tbody>
-    </table>
-</div>
-<div style="width: 1925px" class="mainfooter">
-    <table class="main" id="footer">
-        <colgroup>
-            <col width='70' />
-            <col width='150' />
-            <col width='150' />
-            <col width='75' />
-            <col width='150' />
-            <col width='100' />
-            <col width='80' />
-            <col width='80' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='150' />
-            <col width='80' />
-        </colgroup>
-        <tfoot>
-            @if (index == 0)
-            {
-                <tr><td class="noinfo" colspan="17">@ViewLang.NoInformation</td></tr>
-            }
-        </tfoot>
-    </table>
-</div>
-<br />
-@if (index > 0)
-{
-    <div id="pagination" class="pagination">
-        <div id="pageSizeDiv">
-            @Html.Label("pageSizes", ViewLang.PageSize)
-            @Html.DropDownList("ddlPageSize", new List<SelectListItem>
-            {
-            new SelectListItem { Text = "100", Value = "100" },
-            new SelectListItem { Text = "200", Value = "200" },
-            new SelectListItem { Text = "300", Value = "300" },
-            new SelectListItem { Text = "500", Value = "500" },})
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model IEnumerable<ParlayRMS.DTO.ParlayWon.RMS_Rpt_Parlay_ParlayWon>
+    @{
+        var filterOption = (ParlayWonOptions)ViewBag.FilterOption;
+        var index = (filterOption.PageIndex - 1) * filterOption.PageSize;
+        var start = index;
+    }
+    <input type="hidden" id="totalRows" name="totalRows" value="@Convert.ToInt32(ViewBag.TotalRows)">
+    <div style="width: 1925px;" class="maintitle">
+        <div class="information">
+            @ViewBag.Title
         </div>
-        <ul></ul>
-        <div id="detailPagination">Displaying <b>@start</b> to <b>@index</b> of <b>@ViewBag.TotalRows</b> item(s)</div>
+        <div class="excel"
+             onclick="ParlayWon.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.Combos',  '@filterOption.Levels','@filterOption.SportsType', '@filterOption.HouseAmountFrom', '@filterOption.HouseAmountTo', '@filterOption.Currencies', '@filterOption.Site', '@filterOption.LiveType', '@filterOption.CustomerClass')"
+             title="Export Excel">
+        </div>
     </div>
-}
+    <div style="width: 1925px">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='70' />
+                <col width='150' />
+                <col width='150' />
+                <col width='75' />
+                <col width='150' />
+                <col width='100' />
+                <col width='80' />
+                <col width='80' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='150' />
+                <col width='80' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        @ViewLang.No
+                    </th>
+                    <th class="sortable" data-col-type="date" data-col-index="1">
+                        @ViewLang.TransTime
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Site
+                    </th>
+                    <th class="sortable" data-col-index="2">
+                        @ViewLang.Username
+                    </th>
+                    <th>
+                        @ViewLang.CustomerClass
+                    </th>
+                    <th>
+                        @ViewLang.Currency
+                    </th>
+                    <th class="sortable" data-col-index="7">
+                        @ViewLang.Odds
+                    </th>
+                    <th class="sortable" data-col-index="3">
+                        @ViewLang.Stake
+                    </th>
+                    <th class="sortable" data-col-index="4">
+                        @ViewLang.StakeAfterPT
+                    </th>
+                    <th class="sortable" data-col-index="5">
+                        @ViewLang.WinningAmount
+                    </th>
+                    <th class="sortable" data-col-index="6">
+                        @ViewLang.HouseLoseAmount
+                    </th>
+                    <th>
+                        @ViewLang.TotalComboBets
+                    </th>
+                    <th>
+                        @ViewLang.TotalSelections
+                    </th>
+                    <th>
+                        @ViewLang.SportType
+                    </th>
+                    <th>
+                        @ViewLang.IP
+                    </th>
+                    <th>
+                        @ViewLang.BetDetails
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1945px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='70' />
+                <col width='150' />
+                <col width='150' />
+                <col width='75' />
+                <col width='150' />
+                <col width='100' />
+                <col width='80' />
+                <col width='80' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='150' />
+                <col width='80' />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="center">
+                            @Formatter.FormatNumber3(index + 1)
+                        </td>
+                        <td class="center">
+                            @Formatter.FormatDateTime(item.TransDate)
+                        </td>
+                        <td class="center">
+                            <a href="#@item.RefNo" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.TransId'), '_blank')">@item.TransId</a>
+                        </td>
+                        <td class="center">
+                            @item.SiteGroup
+                        </td>
+                        <td class="center">
+                            @item.Username
+                        </td>
+                        <td>
+                            @item.CustomerClass
+                        </td>
+                        <td>
+                            @item.Currency
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatOdds(item.Odds)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(item.Stake)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(item.StakeAfterPT)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(item.WinningAmount)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber3(item.HouseLoseAmount)
+                        </td>
+                        <td class="center">
+                            @item.TotalBet
+                        </td>
+                        <td class="center">
+                            @item.TotalSelection
+                        </td>
+                        <td class="center">
+                            @CacheRef.GetSportNameDropDown(item.SportType)
+                        </td>
+                        <td class="center">
+                            @Utils.DisplayMax15Character(item.IP.Trim())
+                        </td>
+                        <td class="center">
+                            <button class="button-disable-2" style="width:40px;" onclick="ParlayWon.ViewBetDetail('@item.RefNo', '@item.TransId', '@item.Username', '@item.CustId', @item.BetType)">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    index++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="width: 1925px" class="mainfooter">
+        <table class="main" id="footer">
+            <colgroup>
+                <col width='70' />
+                <col width='150' />
+                <col width='150' />
+                <col width='75' />
+                <col width='150' />
+                <col width='100' />
+                <col width='80' />
+                <col width='80' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='120' />
+                <col width='150' />
+                <col width='80' />
+            </colgroup>
+            <tfoot>
+                @if (index == 0)
+                {
+                    <tr><td class="noinfo" colspan="17">@ViewLang.NoInformation</td></tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+    <br />
+    @if (index > 0)
+    {
+        <div id="pagination" class="pagination">
+            <div id="pageSizeDiv">
+                @Html.Label("pageSizes", ViewLang.PageSize)
+                @Html.DropDownList("ddlPageSize", new List<SelectListItem>
+                {
+                new SelectListItem { Text = "100", Value = "100" },
+                new SelectListItem { Text = "200", Value = "200" },
+                new SelectListItem { Text = "300", Value = "300" },
+                new SelectListItem { Text = "500", Value = "500" },})
+            </div>
+            <ul></ul>
+            <div id="detailPagination">Displaying <b>@start</b> to <b>@index</b> of <b>@ViewBag.TotalRows</b> item(s)</div>
+        </div>
+    }

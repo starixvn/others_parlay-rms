@@ -1,130 +1,131 @@
-﻿@model IEnumerable<RmsRptLeagueWinningMonitor>
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model IEnumerable<ParlayRMS.DTO.LeagueWinningMonitor.RmsRptLeagueWinningMonitor>
 
-@{
-    var isLeague = (byte)ViewBag.ReportBy == 1;
-    var index = 0;
-    var width = isLeague ? "1415px" : "1490px";
-}
+    @{
+        var isLeague = (byte)ViewBag.ReportBy == 1;
+        var index = 0;
+        var width = isLeague ? "1415px" : "1490px";
+    }
 
-<div style="width: @width">
-    <table class="main" id="header">
-        <colgroup>
-            <col width='95' />
-            @if (!isLeague)
-            {
-                <col width='75' />
-            }
-            <col width='260' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-        </colgroup>
-        <thead>
-            <tr>
-                <th rowspan="2" class="header2rows">
-                    No
-                </th>
+    <div style="width: @width">
+        <table class="main" id="header">
+            <colgroup>
+                <col width='95' />
                 @if (!isLeague)
                 {
-                    <th rowspan="2" class="header2rows">
-                        Site
-                    </th>
+                    <col width='75' />
                 }
-                <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
-                    @(isLeague ? "League" : "Username")
-                </th>
-                <th colspan="4" class="header2rows">
-                    Base Currency
-                </th>
-            </tr>
-            <tr>
-                <th data-col-type="float" class="sortable" data-col-index="2">
-                    Total Stake
-                </th>
-                <th data-col-type="float" class="sortable" data-col-index="3">
-                    Total Winning Amount
-                </th>
-                <th data-col-type="float" class="sortable" data-col-index="4">
-                    Company Lose Amount
-                </th>
-                <th data-col-type="float" class="sortable" data-col-index="5">
-                    Total Tickets
-                </th>
-            </tr>
-        </thead>
-    </table>
-</div>
-<div class="scrollGridContent" style="max-height: 630px; width: @(isLeague ? "1432px" : "1507px")">
-    <table class="main" id="result">
-        <colgroup>
-            <col width='95' />
-            @if (!isLeague)
-            {
-                <col width='75' />
-            }
-            <col width='260' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-        </colgroup>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                index++;
-                <tr id="tr_@(isLeague ? item.LeagueId : item.CustId)">
-                    <td class="center">
-                        @index
-                    </td>
+                <col width='260' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="header2rows">
+                        No
+                    </th>
                     @if (!isLeague)
                     {
-                        <td class="center">
-                            @item.SiteGroup
-                        </td>
+                        <th rowspan="2" class="header2rows">
+                            Site
+                        </th>
                     }
-                    <td class="center">
-                        @(isLeague ? item.LeagueName : item.Username)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.TotalStake)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.TotalWinningAmount)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.CompanyLoseAmount)
-                    </td>
-                    <td class="numeric">
-                        <span id="idTotalBet" onclick="ViewTotalBetDetails('@(isLeague ? item.LeagueId : item.CustId)')">
-                            @Formatter.FormatWithoutRounding(item.TotalTickets)
-                        </span>
-                    </td>
+                    <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
+                        @(isLeague ? "League" : "Username")
+                    </th>
+                    <th colspan="4" class="header2rows">
+                        Base Currency
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                <tr>
+                    <th data-col-type="float" class="sortable" data-col-index="2">
+                        Total Stake
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="3">
+                        Total Winning Amount
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="4">
+                        Company Lose Amount
+                    </th>
+                    <th data-col-type="float" class="sortable" data-col-index="5">
+                        Total Tickets
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 630px; width: @(isLeague ? "1432px" : "1507px")">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='95' />
+                @if (!isLeague)
+                {
+                    <col width='75' />
+                }
+                <col width='260' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr id="tr_@(isLeague ? item.LeagueId : item.CustId)">
+                        <td class="center">
+                            @index
+                        </td>
+                        @if (!isLeague)
+                        {
+                            <td class="center">
+                                @item.SiteGroup
+                            </td>
+                        }
+                        <td class="center">
+                            @(isLeague ? item.LeagueName : item.Username)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.TotalStake)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.TotalWinningAmount)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.CompanyLoseAmount)
+                        </td>
+                        <td class="numeric">
+                            <span id="idTotalBet" onclick="ViewTotalBetDetails('@(isLeague ? item.LeagueId : item.CustId)')">
+                                @Formatter.FormatWithoutRounding(item.TotalTickets)
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<div style="width: @width" class="mainfooter">
-    <table class="main" id="footer">
-        <colgroup>
-            <col width='95' />
-            @if (!isLeague)
-            {
-                <col width='75' />
-            }
-            <col width='260' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-            <col width='265' />
-        </colgroup>
-        <tfoot>
-            @if (Model.Count() == 0)
-            {
-                <tr><td class="noinfo" colspan="6">@ViewLang.NoInformation</td></tr>
-            }
-        </tfoot>
-    </table>
-</div>
+    <div style="width: @width" class="mainfooter">
+        <table class="main" id="footer">
+            <colgroup>
+                <col width='95' />
+                @if (!isLeague)
+                {
+                    <col width='75' />
+                }
+                <col width='260' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+                <col width='265' />
+            </colgroup>
+            <tfoot>
+                @if (Model.Count() == 0)
+                {
+                    <tr><td class="noinfo" colspan="6">@ViewLang.NoInformation</td></tr>
+                }
+            </tfoot>
+        </table>
+    </div>

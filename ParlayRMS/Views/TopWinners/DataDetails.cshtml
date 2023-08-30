@@ -1,61 +1,62 @@
-﻿@{
+﻿@using Formatter = ParlayRMS.Utility.Formatter﻿
+@{
     var id = 0;
 }
-@model IEnumerable<RMS_Rpt_Parlay_TopWinner_Detail>
-<div class="details" custid="@ViewBag.CustId">
-    <table class="sub" style="width: 100%">
-        <colgroup>
-            <col style="width: 30px" />
-            <col style="width: 221px" />
-            <col style="width: 90px" />
-            <col style="width: 120px" />
-            <col style="width: 150px" />
-            <col style="width: 90px" />
-            <col style="width: 120px" />
-            <col style="width: 150px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 150px" />
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    @ViewLang.BetID
-                </th>
-                <th>
-                    @ViewLang.Stake
-                </th>
-                <th>
-                    @ViewLang.CustomerWinLoss
-                </th>
-                <th>
-                    @ViewLang.CompanyWinLoss
-                </th>
-                <th>
-                    @ViewLang.Stake
-                </th>
-                <th>
-                    @ViewLang.CustomerWinLoss
-                </th>
-                <th>
-                    @ViewLang.CompanyWinLoss
-                </th>
-                <th>
-                    @ViewLang.TotalComboBets
-                </th>
-                <th>
-                    @ViewLang.TotalSelections
-                </th>
-                <th>
-                    Sport Type
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+@model IEnumerable<ParlayRMS.DTO.TopWinners.RMS_Rpt_Parlay_TopWinner_Detail>
+    <div class="details" custid="@ViewBag.CustId">
+        <table class="sub" style="width: 100%">
+            <colgroup>
+                <col style="width: 30px" />
+                <col style="width: 221px" />
+                <col style="width: 90px" />
+                <col style="width: 120px" />
+                <col style="width: 150px" />
+                <col style="width: 90px" />
+                <col style="width: 120px" />
+                <col style="width: 150px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 150px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @ViewLang.BetID
+                    </th>
+                    <th>
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.CustomerWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.CompanyWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.Stake
+                    </th>
+                    <th>
+                        @ViewLang.CustomerWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.CompanyWinLoss
+                    </th>
+                    <th>
+                        @ViewLang.TotalComboBets
+                    </th>
+                    <th>
+                        @ViewLang.TotalSelections
+                    </th>
+                    <th>
+                        Sport Type
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -85,26 +86,26 @@
                     </td>
                     <td>
                         @{
-                            var betText = @item.TotalCombo > 1 ? " bets" : " bet";
+                            var betText = item.TotalCombo > 1 ? " bets" : " bet";
                             var parlayText = string.Empty;
                             if (item.IsGOF)
                             {
                                 parlayText = "(G)";
-                            }
+							}
 
-                            if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
-                            {
-                                parlayText = "(S)";
-                            }
+	                        if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
+	                        {
+								parlayText = "(S)";
+	                        }
 
-                            if (item.ParlayType == (int)ParlayType.PenaltyShootoutCombo)
-                            {
-                                parlayText = "(P)";
-                            }
+	                        if (item.ParlayType == (int)ParlayType.PenaltyShootoutCombo)
+	                        {
+								parlayText = "(P)";
+	                        }
 
                         }
 
-                        @Formatter.FormatNumber3(@item.TotalCombo) @betText @parlayText
+                        @Formatter.FormatNumber3(item.TotalCombo) @betText @parlayText
                     </td>
                     <td>
                         @item.Selection.ToString("#,##0")
@@ -114,6 +115,6 @@
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>

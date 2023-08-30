@@ -1,118 +1,119 @@
-﻿@model List<ParlayRMS.DTO.TotalOutstanding.RMS_Rpt_Parlay_Outstanding_Ag>
-@{
-    var id = 0;
-    var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
-}
-<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
-<div style="width: 731px">
-    <table class="main">
-        <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='150px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='100px' />
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    @ViewLang.MemberUsername
-                </th>
-                <th>
-                    @ViewLang.CustomerClass
-                </th>
-                <th>
-                    @ViewLang.StakeAfterPT
-                </th>
-                <th>
-                    @ViewLang.NetWinAfterPT
-                </th>
-                <th>
-                    @ViewLang.TotalBets
-                </th>
-            </tr>
-        </thead>
-    </table>
-</div>
-<div class="scrollGridContent" style="max-height: 500px; width: 750px">
-    <table class="main" id="result">
-        <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='150px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='100px' />
-        </colgroup>
-        <tbody>
-            @foreach (var item in Model)
-            {
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model List<ParlayRMS.DTO.TotalOutstanding.RMS_Rpt_Parlay_Outstanding_Ag>
+    @{
+        var id = 0;
+        var totalData = (ParlayRMS.ViewModel.TotalOutstanding.TotalDataModel)ViewBag.TotalData;
+    }
+    <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+    <div style="width: 731px">
+        <table class="main">
+            <colgroup>
+                <col width='30px' />
+                <col width='170px' />
+                <col width='150px' />
+                <col width='140px' />
+                <col width='140px' />
+                <col width='100px' />
+            </colgroup>
+            <thead>
                 <tr>
-                    <td class="numeric">
-                        @(++id)
-                    </td>
-                    <td>
-                        <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewMember('@item.Username');">
-                            @item.Username
-                        </a>
-                    </td>
-                    <td class="numeric">
-                        @item.CustomerClass
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(item.StakePt)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.MaxPayoutPt)
-                    </td>
-                    <td class="center">
-                        @item.BetCount
-                    </td>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @ViewLang.MemberUsername
+                    </th>
+                    <th>
+                        @ViewLang.CustomerClass
+                    </th>
+                    <th>
+                        @ViewLang.StakeAfterPT
+                    </th>
+                    <th>
+                        @ViewLang.NetWinAfterPT
+                    </th>
+                    <th>
+                        @ViewLang.TotalBets
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<div style="width: 731px" class="mainfooter">
-    <table class="main" id="footer">
-        <colgroup>
-            <col width='30px' />
-            <col width='170px' />
-            <col width='150px' />
-            <col width='140px' />
-            <col width='140px' />
-            <col width='100px' />
-        </colgroup>
-        <tfoot>
-            @if (totalData != null)
-            {
-                <tr>
-                    <td colspan="3" class="center">
-                        @ViewLang.Total
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(totalData.StakePt)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
-                    </td>
-                    <td class="center">
-                        @Formatter.FormatNumber3(totalData.TotalBets)
-                    </td>
-                </tr>
-            }
-            else
-            {
-                <tr>
-                    <td colspan="6" style="text-align: center; width: 721px">
-                        @ViewLang.NoInformation
-                    </td>
-                </tr>
-            }
-        </tfoot>
-    </table>
-</div>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollGridContent" style="max-height: 500px; width: 750px">
+        <table class="main" id="result">
+            <colgroup>
+                <col width='30px' />
+                <col width='170px' />
+                <col width='150px' />
+                <col width='140px' />
+                <col width='140px' />
+                <col width='100px' />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="numeric">
+                            @(++id)
+                        </td>
+                        <td>
+                            <a href="#" onclick="javascript:ParlayRMS.TotalOutstanding.ViewMember('@item.Username');">
+                                @item.Username
+                            </a>
+                        </td>
+                        <td class="numeric">
+                            @item.CustomerClass
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(item.StakePt)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.MaxPayoutPt)
+                        </td>
+                        <td class="center">
+                            @item.BetCount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="width: 731px" class="mainfooter">
+        <table class="main" id="footer">
+            <colgroup>
+                <col width='30px' />
+                <col width='170px' />
+                <col width='150px' />
+                <col width='140px' />
+                <col width='140px' />
+                <col width='100px' />
+            </colgroup>
+            <tfoot>
+                @if (totalData != null)
+                {
+                    <tr>
+                        <td colspan="3" class="center">
+                            @ViewLang.Total
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatNumber2(totalData.StakePt)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(totalData.MaxPayoutPt)
+                        </td>
+                        <td class="center">
+                            @Formatter.FormatNumber3(totalData.TotalBets)
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center; width: 721px">
+                            @ViewLang.NoInformation
+                        </td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>

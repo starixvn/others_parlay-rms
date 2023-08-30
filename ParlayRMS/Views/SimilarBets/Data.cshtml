@@ -1,7 +1,8 @@
-﻿@{
+﻿@using Formatter = ParlayRMS.Utility.Formatter﻿
+@{
     var counter = 0;
 }
-@model RMS_Similar_Parlay_Betlist
+@model ParlayRMS.DTO.SimilarBets.RMS_Similar_Parlay_Betlist
 <div>
     <table class="main">
         <thead>
@@ -194,91 +195,91 @@
             </thead>
         </table>
     </div>
-	<div class="scrollGridContent" style="max-height: 500px; width: 1263px">
-		<table class="sub tbody">
-			<colgroup>
-				<col width="50px" />
-				<col width="140px" />
-				<col width="75px" />
-				<col width="150px" />
-				<col width="100px" />
-				<col width="160px" />
-				<col width="160px" />
-				<col width="160px" />
-				<col width="150px" />
-				<col width="100px" />
-			</colgroup>
-			<tbody>
-			@foreach (var item in Model.Details)
-			{
-				counter = counter + 1;
-				<tr id="@item.TransId">
-					<td class="center">
-						@counter
-					</td>
-					<td class="numeric">
-						@item.TransId
-					</td>
-					<td class="center">
-						@item.SiteGroup
-					</td>
-					<td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
-						@item.Username
-					</td>
-					<td class="numeric">
-						@item.CustomerClass
-					</td>
-					<td class="numeric">
-						@Formatter.FormatWithoutRounding(item.Stake)
-					</td>
-					<td class="numeric">
-						@(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(item.PotentialWinningAmount) : @Formatter.FormatNumber3(item.HouseLoseAmount))
-					</td>
-					<td class="numeric">
-						@Formatter.FormatWithoutRounding(item.Max_Payout)
-					</td>
-					<td class="center">
-						@item.Similar_Selection
-					</td>
-					<td class="center">
-						<button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', '@item.TransId', '@Model.Transid', '@item.Refno','@Model.Refno', @Model.CustId, @item.CustId, @Model.BetType);">
-							@ViewLang.View
-						</button>
-					</td>
-				</tr>
-			}
-			</tbody>
-		</table>
-	</div>
-	<div style="width: 1246px" class="mainfooter">
-		<table class="main" id="footer">
-			<colgroup>
-				<col width='515px' />
-				<col width='160px'/>
-				<col width='160px'/>
-				<col width='160px'/>
-				<col width='250px'/>
-			</colgroup>
-			<tfoot>
-			@if (Model.TotalData != null)
-			{
-				<tr>
-					<td class="center">
-						Total of @Model.TotalData.SimilarBetsTotal similar bets
-					</td>
-					<td class="numeric">
-						@Formatter.FormatWithoutRounding(Model.TotalData.Stake)
-					</td>
-					<td class="numeric">
-						@(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(Model.TotalData.PotentialWinningAmount) : @Formatter.FormatNumber3(Model.TotalData.HouseLoseAmount))
-					</td>
-					<td class="numeric">
-						@Formatter.FormatWithoutRounding(Model.TotalData.MaxPayout)
-					</td>
-					<td></td>
-				</tr>
-			}
-			</tfoot>
-		</table>
-	</div>
+    <div class="scrollGridContent" style="max-height: 500px; width: 1263px">
+        <table class="sub tbody">
+            <colgroup>
+                <col width="50px" />
+                <col width="140px" />
+                <col width="75px" />
+                <col width="150px" />
+                <col width="100px" />
+                <col width="160px" />
+                <col width="160px" />
+                <col width="160px" />
+                <col width="150px" />
+                <col width="100px" />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model.Details)
+                {
+                    counter = counter + 1;
+                    <tr id="@item.TransId">
+                        <td class="center">
+                            @counter
+                        </td>
+                        <td class="numeric">
+                            @item.TransId
+                        </td>
+                        <td class="center">
+                            @item.SiteGroup
+                        </td>
+                        <td class="@ModelsHelper.GetClassByMemberLevel(item.Level)">
+                            @item.Username
+                        </td>
+                        <td class="numeric">
+                            @item.CustomerClass
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Stake)
+                        </td>
+                        <td class="numeric">
+                            @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(item.PotentialWinningAmount) : @Formatter.FormatNumber3(item.HouseLoseAmount))
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Max_Payout)
+                        </td>
+                        <td class="center">
+                            @item.Similar_Selection
+                        </td>
+                        <td class="center">
+                            <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', '@item.TransId', '@Model.Transid', '@item.Refno','@Model.Refno', @Model.CustId, @item.CustId, @Model.BetType);">
+                                @ViewLang.View
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="width: 1246px" class="mainfooter">
+        <table class="main" id="footer">
+            <colgroup>
+                <col width='515px' />
+                <col width='160px' />
+                <col width='160px' />
+                <col width='160px' />
+                <col width='250px' />
+            </colgroup>
+            <tfoot>
+                @if (Model.TotalData != null)
+                {
+                    <tr>
+                        <td class="center">
+                            Total of @Model.TotalData.SimilarBetsTotal similar bets
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(Model.TotalData.Stake)
+                        </td>
+                        <td class="numeric">
+                            @(Model.StatusID == 0 ? @Formatter.FormatWithoutRounding(Model.TotalData.PotentialWinningAmount) : @Formatter.FormatNumber3(Model.TotalData.HouseLoseAmount))
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(Model.TotalData.MaxPayout)
+                        </td>
+                        <td></td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
 </div>

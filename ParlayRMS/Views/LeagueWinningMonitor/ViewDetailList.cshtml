@@ -1,125 +1,127 @@
-﻿@model IEnumerable<RmsRptLeagueWinningMonitorDetail>
-@{
-    var filter = (LeagueWinningMonitorModel)ViewBag.Filter;
-}
-<div class="details">
-    <table class="sub" style="width: 100%" id="detailHeader">
-        <colgroup>
-            <col style="width: 50px" />
-            <col style="width: 150px" />
-            <col style="width: 126px" />
-            <col style="width: 75px" />
-            <col style="width: 130px" />
-            <col style="width: 50px" />
-            <col style="width: 70px" />
-            <col style="width: 100px" />
-            <col style="width: 100px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-        </colgroup>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th class="sortable" data-col-type="date">Trans. Time</th>
-                <th>BetID</th>
-                <th class="sortable" data-col-type="ignorecase">Site</th>
-                <th class="sortable" data-col-type="ignorecase">User Name</th>
-                <th class="sortable" data-col-type="ignorecase">Level</th>
-                <th class="sortable" data-col-type="float">Odds</th>
-                <th class="sortable" data-col-type="float">Member Stake</th>
-                <th class="sortable" data-col-type="float">Winning Amount</th>
-                <th class="sortable" data-col-type="float">Company Lose Amount</th>
-                <th>Total Combo Bets</th>
-                <th>Total Selection</th>
-                <th>Sport Type</th>
-                <th>IP</th>
-                <th>Bet Details</th>
-            </tr>
-        </thead>
-    </table>
-    <table class="sub" style="width: 100%" id="detailResult">
-        <colgroup>
-            <col style="width: 50px" />
-            <col style="width: 150px" />
-            <col style="width: 126px" />
-            <col style="width: 75px" />
-            <col style="width: 130px" />
-            <col style="width: 50px" />
-            <col style="width: 70px" />
-            <col style="width: 100px" />
-            <col style="width: 100px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 80px" />
-            <col style="width: 100px" />
-            <col style="width: 80px" />
-        </colgroup>
-        <tbody>
-            @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
-            {
+﻿@using Formatter = ParlayRMS.Utility.Formatter﻿
+@using ParlayRMS.ViewModel.LeagueWinningMonitor
+@model IEnumerable<ParlayRMS.DTO.LeagueWinningMonitor.RmsRptLeagueWinningMonitorDetail>
+    @{
+        var filter = (LeagueWinningMonitorModel)ViewBag.Filter;
+    }
+    <div class="details">
+        <table class="sub" style="width: 100%" id="detailHeader">
+            <colgroup>
+                <col style="width: 50px" />
+                <col style="width: 150px" />
+                <col style="width: 126px" />
+                <col style="width: 75px" />
+                <col style="width: 130px" />
+                <col style="width: 50px" />
+                <col style="width: 70px" />
+                <col style="width: 100px" />
+                <col style="width: 100px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
+            </colgroup>
+            <thead>
                 <tr>
-                    <td class="center">
-                        @item.Ind
-                    </td>
-                    <td class="center">
-                        @item.Val.TransDate
-                    </td>
-                    <td class="numeric">
-                        <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
-                    </td>
-                    <td class="center">
-                        @item.Val.SiteGroup
-                    </td>
-                    <td class="left">
-                        <a href="#" onclick="window.open(resolveClientUrl('TotalOutstanding?username=@item.Val.Username&combo=@filter.Combos&sportsType=@filter.SportsTypes&parlayTypes=@filter.ParlayTypes'), '_blank');">@item.Val.Username</a>
-                    </td>
-                    <td>
-                        @item.Val.Level
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatOdds(item.Val.Odds)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatOdds(item.Val.Stake)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
-                    </td>
-                    <td class="numeric">
-                        @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
-                    </td>
-                    <td class="center">
-                        @item.Val.Combo
-                    </td>
-                    <td class="center">
-                        @item.Val.TotalSelection
-                    </td>
-                    <td class="center">
-                        @item.Val.SportTypeName
-                    </td>
-                    <td class="numeric">
-                        @if (item.Val.IP == null || item.Val.IP == "" || item.Val.IP == "null")
-                        {
-                            <span>----</span>
-                        }
-                        else
-                        {
-                            <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.IP&date=@item.Val.TransDate'), '_blank');">@Utils.DisplayMax15Character(item.Val.IP.Trim())</a>
-                        }
-                    </td>
-                    <td>
-
-                        <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@item.Val.Username','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @item.Val.CustId);">
-                            View
-                        </button>
-                    </td>
+                    <th>No</th>
+                    <th class="sortable" data-col-type="date">Trans. Time</th>
+                    <th>BetID</th>
+                    <th class="sortable" data-col-type="ignorecase">Site</th>
+                    <th class="sortable" data-col-type="ignorecase">User Name</th>
+                    <th class="sortable" data-col-type="ignorecase">Level</th>
+                    <th class="sortable" data-col-type="float">Odds</th>
+                    <th class="sortable" data-col-type="float">Member Stake</th>
+                    <th class="sortable" data-col-type="float">Winning Amount</th>
+                    <th class="sortable" data-col-type="float">Company Lose Amount</th>
+                    <th>Total Combo Bets</th>
+                    <th>Total Selection</th>
+                    <th>Sport Type</th>
+                    <th>IP</th>
+                    <th>Bet Details</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+        </table>
+        <table class="sub" style="width: 100%" id="detailResult">
+            <colgroup>
+                <col style="width: 50px" />
+                <col style="width: 150px" />
+                <col style="width: 126px" />
+                <col style="width: 75px" />
+                <col style="width: 130px" />
+                <col style="width: 50px" />
+                <col style="width: 70px" />
+                <col style="width: 100px" />
+                <col style="width: 100px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col style="width: 100px" />
+                <col style="width: 80px" />
+            </colgroup>
+            <tbody>
+                @foreach (var item in Model.Select((val, ind) => new { Val = val, Ind = ind + 1 }))
+                {
+                    <tr>
+                        <td class="center">
+                            @item.Ind
+                        </td>
+                        <td class="center">
+                            @item.Val.TransDate
+                        </td>
+                        <td class="numeric">
+                            <a href="#" onclick="window.open(resolveClientUrl('SimilarBets?betid=@item.Val.TransId'), '_blank');">@item.Val.TransId</a>
+                        </td>
+                        <td class="center">
+                            @item.Val.SiteGroup
+                        </td>
+                        <td class="left">
+                            <a href="#" onclick="window.open(resolveClientUrl('TotalOutstanding?username=@item.Val.Username&combo=@filter.Combos&sportsType=@filter.SportsTypes&parlayTypes=@filter.ParlayTypes'), '_blank');">@item.Val.Username</a>
+                        </td>
+                        <td>
+                            @item.Val.Level
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatOdds(item.Val.Odds)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatOdds(item.Val.Stake)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Val.WinningAmount)
+                        </td>
+                        <td class="numeric">
+                            @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
+                        </td>
+                        <td class="center">
+                            @item.Val.Combo
+                        </td>
+                        <td class="center">
+                            @item.Val.TotalSelection
+                        </td>
+                        <td class="center">
+                            @item.Val.SportTypeName
+                        </td>
+                        <td class="numeric">
+                            @if (item.Val.IP == null || item.Val.IP == "" || item.Val.IP == "null")
+                            {
+                                <span>----</span>
+                            }
+                            else
+                            {
+                                <a href="#" onclick="window.open(resolveClientUrl('ViewIPInfo?ip=@item.Val.IP&date=@item.Val.TransDate'), '_blank');">@Utils.DisplayMax15Character(item.Val.IP.Trim())</a>
+                            }
+                        </td>
+                        <td>
+
+                            <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@item.Val.Username','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @item.Val.CustId);">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
