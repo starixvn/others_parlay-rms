@@ -4,7 +4,7 @@
 <#@ Import Namespace="System.Data" #>
 <#@ Import Namespace="System.Data.SqlClient" #>
 <#
-	string connectionString = "Persist Security Info=False;User ID=ageteam;Password=@lion#;Initial Catalog=bodb_RMS;Data Source=10.18.200.215";
+	string connectionString = "Initial Catalog=bodb_RMS;Data Source=10.18.200.58;integrated security=true";
 #>
 namespace ParlayRMS.Models.Functions
 {

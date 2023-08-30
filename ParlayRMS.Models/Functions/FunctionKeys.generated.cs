@@ -1,4 +1,4 @@
-namespace ParlayRMS.Models.Functions
+﻿namespace ParlayRMS.Models.Functions
 {
 	public class FunctionKeys
 	{
@@ -9,6 +9,7 @@ namespace ParlayRMS.Models.Functions
 		public const string Report = "Report";
 		public const string Tool = "Tool";
 		public const string ManageGroup = "ManageGroup";
+		public const string Laa = "Laa";
 		public const string ManageUser = "ManageUser";
 		public const string ManageFunction = "ManageFunction";
 		public const string ManageMenu = "ManageMenu";
@@ -17,8 +18,7 @@ namespace ParlayRMS.Models.Functions
 		public const string LeagueManagement = "LeagueManagement";
 		public const string ManageCustomer = "ManageCustomer";
 		public const string ManageAgent = "ManageAgent";
-        public const string ManageAlert = "ManageAlert";
-        public const string ManageLeague = "ManageLeague";
+		public const string ManageLeague = "ManageLeague";
 		public const string WinLossRiskControl = "WinLossRiskControl";
 		public const string ParlayWon = "ParlayWon";
 		public const string TopWinners = "TopWinners";
@@ -36,5 +36,6 @@ namespace ParlayRMS.Models.Functions
 		public const string ViewIP = "ViewIP";
 		public const string LeagueWinningMonitor = "LeagueWinningMonitor";
 		public const string LeagueEventMonitor = "LeagueEventMonitor";
+		public const string ManageAlert = "ManageAlert";
 			}
 }

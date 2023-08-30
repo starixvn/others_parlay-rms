@@ -19,6 +19,8 @@ using System.Web.Security;
 
 namespace ParlayRMS.Controllers
 {
+    using Utility;
+
     public class AccountController : Controller
     {
         private readonly MaintenanceService _maintenanceService = new MaintenanceService();
