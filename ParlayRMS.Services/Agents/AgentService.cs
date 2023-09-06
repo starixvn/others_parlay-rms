@@ -1,8 +1,8 @@
 namespace ParlayRMS.Services.Agents
 {
     using System.Collections.Generic;
-    using DataAccess.Agents;
-    using DTO;
+    using Criteria;
+    using DataAccess;
     using ParlayRMS.DTO.Agents;
 
     public class AgentService : BaseService

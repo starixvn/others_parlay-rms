@@ -1,11 +1,13 @@
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Web.Authorization;
 using System.Configuration;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.LeagueEventMonitor, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+
+    [NapAuth(FunctionKey = FunctionKeys.LeagueEventMonitor, Policy = Constant.Policy.Read)]
     public class LeagueEventMonitorController : BaseController
     {
         [HttpGet]

@@ -4,7 +4,7 @@ namespace ParlayRMS.Services.Winloss
     using System.Collections.Generic;
     using System.Linq;
     using Common;
-    using DataAccess.Winloss;
+    using DataAccess;
     using ParlayRMS.DTO.Winloss;
     using ParlayRMS.Models.Winloss;
     using Utility;
@@ -34,7 +34,7 @@ namespace ParlayRMS.Services.Winloss
             data.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
-                x.Combo = x.Combo == "10" ? string.Format("{0} UP", x.Combo) : x.Combo;
+                x.Combo = x.Combo == "10" ? $"{x.Combo} UP" : x.Combo;
                 x.Margin = x.OurPT_NetWinloss / (x.Stake_Won + x.Stake_Lose);
             });
 

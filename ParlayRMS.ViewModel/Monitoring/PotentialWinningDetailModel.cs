@@ -8,7 +8,7 @@ namespace ParlayRMS.ViewModel.Monitoring
 
         public string SportsTypes { get; set; }
 
-        public long CustId { get; set; }
+        public int CustId { get; set; }
 
         public string UserName { get; set; }
 

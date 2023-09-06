@@ -1,16 +1,18 @@
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.LeagueWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.LeagueWinningMonitor;
-using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.LeagueWinningMonitor, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+
+    [NapAuth(FunctionKey = FunctionKeys.LeagueWinningMonitor, Policy = Constant.Policy.Read)]
     public class LeagueWinningMonitorController : BaseController
     {
         private readonly LeagueWinningMonitorService leagueWinningMonitor = new LeagueWinningMonitorService();

@@ -2,7 +2,7 @@ namespace ParlayRMS.Services.TopWinners
 {
     using System.Collections.Generic;
     using Common;
-    using DataAccess.TopWinners;
+    using DataAccess;
     using ParlayRMS.DTO.TopWinners;
     using ViewModel.Report;
 

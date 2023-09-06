@@ -1,9 +1,8 @@
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
-using Fanex.Data.Configuration;
+using Fanex.NAP.Core.SignIn.Attribute;
 using Fanex.RemotingRef;
-using ONEbook.UM.Filters;
-using ParlayRMS.Web.Authorization;
+using ONEbook.UM.AspNetMVC.Filters;
 using System;
 using System.Configuration;
 using System.Web;
@@ -11,7 +10,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
 
 namespace ParlayRMS
 {
@@ -25,47 +23,15 @@ namespace ParlayRMS
                 .RegisterSupportedLanguages("en-US");
             BetListManager.RegisterRemotingRef(new CacheRef());
             FanexLogging.Register();
+            OnebookUMConfig.Register();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles();
-            DbSettingProviderManager.Current.Start();
+            FanexData.Register();
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-            if (HttpContext.Current.User != null)
-            {
-                if (HttpContext.Current.User.Identity is FormsIdentity
-                    && HttpContext.Current.User.Identity.IsAuthenticated)
-                {
-                    var cookie = FormsAuthentication.FormsCookieName;
-                    var httpCookie = Context.Request.Cookies[cookie];
-
-                    if (httpCookie == null)
-                    {
-                        return;
-                    }
-
-                    var ticket = FormsAuthentication.Decrypt(httpCookie.Value);
-                    if (ticket == null || ticket.Expired)
-                    {
-                        return;
-                    }
-
-                    var identity = new FormsIdentity(ticket);
-                    if (string.IsNullOrEmpty(ticket.UserData))
-                    {
-                        return;
-                    }
-
-                    var udata = AuthInfo.CreateUserData(ticket.UserData);
-                    var principal = new Principal(identity, udata);
-                    Context.User = principal;
-                }
-            }
-        }
-
+        
         protected void Application_Error(object sender, EventArgs e)
         {
             FanexLogging.HandleApplicationError(Server);
@@ -74,7 +40,8 @@ namespace ParlayRMS
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new CheckUMFilter());
+            filters.Add(new CheckUMFilterAttribute());
+            filters.Add(new SessionAuthorizeAttribute());
         }
 
         private static void RegisterRoutes(RouteCollection routes)
@@ -213,7 +180,6 @@ namespace ParlayRMS
             bundles.Add(new ScriptBundle("~/Scripts/Monitor/PotentialWinning/js").Include("~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.js",
                     "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.js",
                     "~/Scripts/Monitor/PotentialWinning.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Monitor/DangerMonitor/js").Include("~/Scripts/Monitor/DangerMonitor.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/Pager/js").Include("~/Scripts/Pager.js"));
 

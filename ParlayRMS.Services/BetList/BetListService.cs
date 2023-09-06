@@ -3,7 +3,7 @@ namespace ParlayRMS.Services.BetList
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccess.BetList;
+    using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using ParlayRMS.DTO.BetList;
@@ -43,7 +43,7 @@ namespace ParlayRMS.Services.BetList
                     BetCheck = item.BetCheck,
                     Stake = item.Stake,
                     TransDate = item.TransDate,
-                    TransDesc = item.TransDesc,
+                    TransDesc = item.TransDesc
                 };
 
                 result.Add(ticket);

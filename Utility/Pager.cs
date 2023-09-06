@@ -95,7 +95,7 @@ namespace ParlayRMS.Utility
             return new Pager(this)
             {
                 _takePages = count,
-                _skipPages = Math.Min(_skipPages, NumberOfPages - count),
+                _skipPages = Math.Min(_skipPages, NumberOfPages - count)
             };
         }
 

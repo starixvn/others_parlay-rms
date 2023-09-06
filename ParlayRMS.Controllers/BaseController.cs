@@ -1,14 +1,15 @@
 namespace ParlayRMS.Controllers
 {
-    using DTO;
-    using Services.Users;
+    using System;
     using Utility;
     using Web.Context;
-    using Web.Session;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.Routing;
     using System.Web.Security;
     using System.Web.SessionState;
+    using Criteria;
+    using Fanex.NAP.Core.Web.Session;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
@@ -23,7 +24,7 @@ namespace ParlayRMS.Controllers
 
         public int GetSportTypeIdByName(string name)
         {
-            var sport = 0;
+            int sport;
             if (name == ViewLang.Allsports)
             {
                 sport = 0;
@@ -42,20 +43,6 @@ namespace ParlayRMS.Controllers
             }
 
             return sport;
-        }
-
-        public bool HideGroup(out string[] hiddenGroupNameList)
-        {
-            var usersService = new UsersService();
-            var user = usersService.GetUserById(CurrentSession.UserId);
-            var groupName = user.Group.Name == null ? string.Empty : user.Group.Name;
-            hiddenGroupNameList = AppSetting.HiddenGroups;
-            if (hiddenGroupNameList.Contains(groupName))
-            {
-                return true;
-            }
-
-            return false;
         }
 
         protected JsonResult Json(Result result)
@@ -109,6 +96,13 @@ namespace ParlayRMS.Controllers
             {
                 Response.Redirect("Error/AccessDenied", false);
             }
+        }
+
+        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
+        {
+            ViewBag.UserId = CurrentSession.UserId;
+            ViewBag.Username = CurrentSession.Username;
+            return base.BeginExecute(requestContext, callback, state);
         }
     }
 }

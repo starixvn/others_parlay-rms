@@ -22,7 +22,7 @@ namespace ParlayRMS.Services.ParlayMonitor
             bool isCornerParlay,
             decimal? odds,
             string leagueGroups,
-            long? customerClass,
+            int? customerClass,
             string company,
             string username)
         {

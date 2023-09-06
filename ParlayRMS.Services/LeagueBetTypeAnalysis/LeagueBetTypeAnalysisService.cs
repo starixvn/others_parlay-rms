@@ -3,7 +3,7 @@ namespace ParlayRMS.Services.LeagueBetTypeAnalysis
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccess.LeagueBetTypeAnalysis;
+    using DataAccess;
     using ParlayRMS.DTO.LeagueBetTypeAnalysis;
     using ParlayRMS.DTO.Leagues;
     using ViewModel.Report;
@@ -46,19 +46,17 @@ namespace ParlayRMS.Services.LeagueBetTypeAnalysis
 
         private List<RMS_Rpt_LeagueBettype_Analysis> SortData(List<RMS_Rpt_LeagueBettype_Analysis> list, byte sortId, bool isSortAsc)
         {
-            if (sortId == SORT_BY_TOTAL_TICKETS)
+            switch (sortId)
             {
-                return isSortAsc ? list.OrderBy(m => m.TotalTickets).ToList() : list.OrderByDescending(m => m.TotalTickets).ToList();
+                case SORT_BY_TOTAL_TICKETS:
+                    return isSortAsc ? list.OrderBy(m => m.TotalTickets).ToList() : list.OrderByDescending(m => m.TotalTickets).ToList();
+                case SORT_BY_RATIO:
+                    return isSortAsc ? list.OrderBy(m => double.Parse(m.Ratio.Replace("%", ""))).ToList() : list.OrderByDescending(m => double.Parse(m.Ratio.Replace("%", ""))).ToList();
+                case SORT_BY_HOUSE_WIN_LOSS:
+                    return isSortAsc ? list.OrderBy(m => m.MainHouseWinloss).ToList() : list.OrderByDescending(m => m.MainHouseWinloss).ToList();
+                default:
+                    return list;
             }
-            if (sortId == SORT_BY_RATIO)
-            {
-                return isSortAsc ? list.OrderBy(m => double.Parse(m.Ratio.Replace("%", ""))).ToList() : list.OrderByDescending(m => double.Parse(m.Ratio.Replace("%", ""))).ToList();
-            }
-            if (sortId == SORT_BY_HOUSE_WIN_LOSS)
-            {
-                return isSortAsc ? list.OrderBy(m => m.MainHouseWinloss).ToList() : list.OrderByDescending(m => m.MainHouseWinloss).ToList();
-            }
-            return list;
         }
     }
 }

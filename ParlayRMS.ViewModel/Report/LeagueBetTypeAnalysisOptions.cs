@@ -34,17 +34,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public string GetTitle()
         {
-            var title = string.Format(
-                                "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} - [{7}] {8}",
-                                ViewLang.LeagueReport,
-                                FromDate.ToString("MMM dd, yyyy"),
-                                ToDate.ToString("MMM dd, yyyy"),
-                                ViewLang.ParlayType,
-                                ModelsHelper.GetSimpleParlayTitle(ParlayType),
-                                ViewLang.Group,
-                                ModelsHelper.GetLeagueGroupTitle(LeagueGroups),
-                                ViewLang.Site,
-                                ModelsHelper.GetSiteTitle(Site));
+            var title =
+                $"{ViewLang.LeagueReport} from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - [{ViewLang.ParlayType}] {ModelsHelper.GetSimpleParlayTitle(ParlayType)} - [{ViewLang.Group}] - {ModelsHelper.GetLeagueGroupTitle(LeagueGroups)} - [{ViewLang.Site}] {ModelsHelper.GetSiteTitle(Site)}";
             return title;
         }
     }

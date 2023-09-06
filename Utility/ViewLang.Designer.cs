@@ -736,11 +736,11 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Favourite Choice.
+        ///   Looks up a localized string similar to Favorite  Choice.
         /// </summary>
-        public static string FavouriteChoice {
+        public static string Favorite_Choice {
             get {
-                return ResourceManager.GetString("FavouriteChoice", resourceCulture);
+                return ResourceManager.GetString("Favorite_Choice", resourceCulture);
             }
         }
         

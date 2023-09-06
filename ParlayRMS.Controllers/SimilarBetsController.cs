@@ -3,11 +3,9 @@ using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.SimilarBets;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.SimilarBets;
 using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +13,16 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+
     public class SimilarBetsController : BaseController
     {
         private readonly SimilarBetsService _similarbetsService = new SimilarBetsService();
         private readonly BetDetailsService _betDetailService = new BetDetailsService();
 
-        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.SimilarBets, Policy = Constant.Policy.Read)]
         [HttpGet]
         public ActionResult Index()
         {
@@ -28,21 +30,16 @@ namespace ParlayRMS.Controllers
             return View("Index");
         }
 
-        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.SimilarBets, Policy = Constant.Policy.Read)]
         [HttpPost]
         public ActionResult Data(long transId, bool isSimilar)
         {
             ViewBag.TransId = transId;
             var model = _similarbetsService.GetSimilarBets(transId, isSimilar);
-            if (model == null)
-            {
-                return PartialView("NotFound");
-            }
-
-            return PartialView("Data", model);
+            return model == null ? PartialView("NotFound") : PartialView("Data", model);
         }
 
-        [Authorization(Function = FunctionKeys.SimilarBets, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.SimilarBets, Policy = Constant.Policy.Read)]
         [HttpPost]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
@@ -135,14 +132,7 @@ namespace ParlayRMS.Controllers
                     var name = Utility.CacheRef.RemotingRefService.GetBetBuilderSelectionNames(new[] { s.SelectionType }, "en-US").FirstOrDefault();
                     selectionNames.Add(name);
                     resultTexts.Add(s.Result);
-                    if (!originalSelections.Contains(s.SelectionType))
-                    {
-                        differences.Add("#");
-                    }
-                    else
-                    {
-                        differences.Add(string.Empty);
-                    }
+                    differences.Add(!originalSelections.Contains(s.SelectionType) ? "#" : string.Empty);
                 }
             }
 

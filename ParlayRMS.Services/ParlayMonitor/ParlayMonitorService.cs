@@ -3,7 +3,7 @@ namespace ParlayRMS.Services.ParlayMonitor
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using DataAccess.ParlayMonitor;
+    using DataAccess;
     using ParlayRMS.DTO.ParlayMonitor;
     using DTO.PotentialWinning;
     using Utility;
@@ -43,7 +43,7 @@ namespace ParlayRMS.Services.ParlayMonitor
             bool isCornerParlay,
             decimal? odds,
             string leagueGroups,
-            long? customerClass,
+            int? customerClass,
             string company,
             string username)
         {

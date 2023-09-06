@@ -35,11 +35,7 @@ namespace ExcelService.Utility
                 return;
             }
 
-            var newRow = sheet.GetRow(destinateRowNum);
-            if (newRow == null)
-            {
-                newRow = sheet.CreateRow(destinateRowNum);
-            }
+            var newRow = sheet.GetRow(destinateRowNum) ?? sheet.CreateRow(destinateRowNum);
 
             newRow.Height = sourceRow.Height;
 
@@ -165,12 +161,12 @@ namespace ExcelService.Utility
                         }
                         else if (mergedRegion.FirstColumn > columnIndex)
                         {
-                            mergedRegion.FirstColumn = mergedRegion.FirstColumn - 1;
-                            mergedRegion.LastColumn = mergedRegion.LastColumn - 1;
+                            mergedRegion.FirstColumn -= 1;
+                            mergedRegion.LastColumn -= 1;
                         }
                         else if (columnIndex <= mergedRegion.LastColumn)
                         {
-                            mergedRegion.LastColumn = mergedRegion.LastColumn - 1;
+                            mergedRegion.LastColumn -= 1;
                         }
                     }
                 }
@@ -232,17 +228,9 @@ namespace ExcelService.Utility
 
         public static ICell CreateCell(this ISheet sheet, int rowId, int colId)
         {
-            var row = sheet.GetRow(rowId);
-            if (row == null)
-            {
-                row = sheet.CreateRow(rowId);
-            }
+            var row = sheet.GetRow(rowId) ?? sheet.CreateRow(rowId);
 
-            var cell = row.GetCell(colId);
-            if (cell == null)
-            {
-                cell = row.CreateCell(colId);
-            }
+            var cell = row.GetCell(colId) ?? row.CreateCell(colId);
 
             return cell;
         }

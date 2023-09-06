@@ -9,10 +9,11 @@ namespace ParlayRMS.Web.Mvc
     {
         public static MvcHtmlString DropDownListWithMultipleSelected(this HtmlHelper helper, string id, List<SelectListItem> items)
         {
-            var result = string.Format("<select id='{0}' multiple='multiple'>", id);
+            var result = $"<select id='{id}' multiple='multiple'>";
             foreach (var item in items)
             {
-                result += string.Format("<option value='{0}'{1}>{2}</option>", item.Value, item.Selected ? " selected='selected'" : string.Empty, item.Text);
+                result +=
+                    $"<option value='{item.Value}'{(item.Selected ? " selected='selected'" : string.Empty)}>{item.Text}</option>";
             }
 
             result += "</select>";

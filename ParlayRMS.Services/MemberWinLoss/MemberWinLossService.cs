@@ -4,22 +4,30 @@ namespace ParlayRMS.Services.MemberWinLoss
     using System.Collections.Generic;
     using System.Linq;
     using Common;
-    using DataAccess.MemberWinLoss;
+    using DataAccess;
     using Fanex.Caching;
+    using Fanex.Caching.Memory;
+    using Members;
     using ParlayRMS.DTO.MemberWinLoss;
     using Models;
     using ParlayRMS.Models.MemberWinLoss;
     using Utility;
-    using Users;
 
     public class MemberWinLossService
     {
-        private static readonly string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
+        private const string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
 
-        private readonly CacheService _cacheService = new CacheServiceImpl();
+        private static readonly ICache CacheInstance = new MemoryCache(
+            new MemoryCacheOptions
+            {
+                ExpirationScanFrequency = TimeSpan.FromSeconds(30),
+                CompactionPercentage = 0.15,
+                CompactOnMemoryPressure = true
+            }
+        );
         private readonly MemberWinLossDataAccess _memberWinLossDataAccess = new MemberWinLossDataAccess();
         private readonly CommonService _commonService = new CommonService();
-        private readonly UsersService _usersService = new UsersService();
+        private readonly MembersService _membersService = new MembersService();
 
         private const byte SORT_BY_USERNAME = 1;
         private const byte SORT_BY_CUSTOMERCLASS = 2;
@@ -45,22 +53,18 @@ namespace ParlayRMS.Services.MemberWinLoss
                                      bool isCached,
                                      out int roleId)
         {
-            var user = _usersService.GetCustomerInfo(username);
-            MemberWinLossData result = null;
+            var user = _membersService.GetCustomerInfo(username);
+            var cacheIsAvailable = CacheInstance.TryGet(MemberWinLossReportSessionKey, out MemberWinLossData memberWinLossData);
             roleId = user.RoleId;
 
-            if (isCached)
-            {
-                result = _cacheService.Get<MemberWinLossData>(MemberWinLossReportSessionKey);
-            }
-
-            if (result == null)
+         
+            if (!isCached || !cacheIsAvailable)
             {
                 var info = _commonService.GetBalanceUpDayInfo();
 
                 if (user.RoleId == (int)RoleId.Member)
                 {
-                    result = GetMemberWinLossData(
+                    memberWinLossData = GetMemberWinLossData(
                                  fromDate,
                                  toDate,
                                  info.MoveBetsDay,
@@ -70,15 +74,15 @@ namespace ParlayRMS.Services.MemberWinLoss
                                  liveType,
                                  combos,
                                  user.CustId);
-                    _cacheService.Set(MemberWinLossReportSessionKey, result);
+                    CacheInstance.Set(MemberWinLossReportSessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
                 }
                 else if (user.RoleId == (int)RoleId.Agent || user.RoleId == (int)RoleId.Master)
                 {
                     var agentIds = user.RoleId == (int)RoleId.Agent
-                        ? new List<int> { (int)user.CustId }
-                        : _usersService.GetAgents((int)user.CustId);
+                        ? new List<int> { user.CustId }
+                        : _membersService.GetAgents(user.CustId);
 
-                    result = GetAgentWinLossData(
+                    memberWinLossData = GetAgentWinLossData(
                                  fromDate,
                                  toDate,
                                  info.MoveBetsDay,
@@ -88,12 +92,12 @@ namespace ParlayRMS.Services.MemberWinLoss
                                  liveType,
                                  combos,
                                  agentIds);
-                    _cacheService.Set(MemberWinLossReportSessionKey, result);
+                    CacheInstance.Set(MemberWinLossReportSessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
                 }
             }
 
-            result = result ?? new MemberWinLossData();
-            return result;
+            memberWinLossData = memberWinLossData ?? new MemberWinLossData();
+            return memberWinLossData;
         }
 
         private MemberWinLossData GetMemberWinLossData(
@@ -105,21 +109,20 @@ namespace ParlayRMS.Services.MemberWinLoss
                                       string sportsType,
                                       byte liveType,
                                       string combos,
-                                      long custId)
+                                      int custId)
         {
-            var records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
             var total = new RMS_Rpt_Parlay_MemberWinLoss();
 
-            records = _memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
-                                                       fromDate,
-                                                       toDate,
-                                                       moveBetsDay,
-                                                       balanceUpDay,
-                                                       parlayTypes,
-                                                       sportsType,
-                                                       liveType,
-                                                       combos,
-                                                       custId).ToList();
+            var records = _memberWinLossDataAccess.RMS_Rpt_Parlay_MemberWinLoss(
+                fromDate,
+                toDate,
+                moveBetsDay,
+                balanceUpDay,
+                parlayTypes,
+                sportsType,
+                liveType,
+                combos,
+                custId).ToList();
 
             Utils.Round(records);
             records.ToList().ForEach(x =>
@@ -178,7 +181,6 @@ namespace ParlayRMS.Services.MemberWinLoss
         private List<RMS_Rpt_Parlay_MemberWinLoss> GroupAgentDataByMonth(List<RMS_Rpt_Parlay_MemberWinLoss> rawData)
         {
             var records = new List<RMS_Rpt_Parlay_MemberWinLoss>();
-            var currentRecord = new RMS_Rpt_Parlay_MemberWinLoss();
             var subtotal = new RMS_Rpt_Parlay_MemberWinLoss();
 
             var currentRecordIndex = 0;
@@ -189,7 +191,7 @@ namespace ParlayRMS.Services.MemberWinLoss
             {
                 while (currentRecordIndex < numOfRecords)
                 {
-                    currentRecord = rawData[currentRecordIndex];
+                    var currentRecord = rawData[currentRecordIndex];
                     if (!currentRecord.Month.Equals(subtotal.Month, StringComparison.InvariantCultureIgnoreCase))
                     {
                         if (!string.IsNullOrEmpty(subtotal.Month))
@@ -227,56 +229,38 @@ namespace ParlayRMS.Services.MemberWinLoss
             var year = date.Substring(0, separatorIndex);
             var month = date.Substring(separatorIndex + 1, 2);
 
-            return string.Format("{0}-{1}", month, year);
+            return $"{month}-{year}";
         }
 
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> SortData(IEnumerable<RMS_Rpt_Parlay_MemberWinLoss> list, byte sortId, bool isSortAsc)
         {
-            if (sortId == SORT_BY_USERNAME)
+            switch (sortId)
             {
-                return isSortAsc ? list.OrderBy(m => m.Username) : list.OrderByDescending(m => m.Username);
+                case SORT_BY_USERNAME:
+                    return isSortAsc ? list.OrderBy(m => m.Username) : list.OrderByDescending(m => m.Username);
+                case SORT_BY_CUSTOMERCLASS:
+                    return isSortAsc ? list.OrderBy(m => m.CustomerClass) : list.OrderByDescending(m => m.CustomerClass);
+                case SORT_BY_TICKET_WON:
+                    return isSortAsc ? list.OrderBy(m => m.Tickets_Won) : list.OrderByDescending(m => m.Tickets_Won);
+                case SORT_BY_TICKET_LOSE:
+                    return isSortAsc ? list.OrderBy(m => m.Tickets_Lose) : list.OrderByDescending(m => m.Tickets_Lose);
+                case SORT_BY_STAKE_WON:
+                    return isSortAsc ? list.OrderBy(m => m.Stake_Won) : list.OrderByDescending(m => m.Stake_Won);
+                case SORT_BY_STAKE_LOSE:
+                    return isSortAsc ? list.OrderBy(m => m.Stake_Lose) : list.OrderByDescending(m => m.Stake_Lose);
+                case SORT_BY_WINLOSS_WON:
+                    return isSortAsc ? list.OrderBy(m => m.Member_Won) : list.OrderByDescending(m => m.Member_Won);
+                case SORT_BY_WINLOSS_LOSE:
+                    return isSortAsc ? list.OrderBy(m => m.Member_Lose) : list.OrderByDescending(m => m.Member_Lose);
+                case SORT_BY_HOUSEWL_WON:
+                    return isSortAsc ? list.OrderBy(m => m.OurPT_Won) : list.OrderByDescending(m => m.OurPT_Won);
+                case SORT_BY_HOUSEWL_LOSE:
+                    return isSortAsc ? list.OrderBy(m => m.OurPT_Lose) : list.OrderByDescending(m => m.OurPT_Lose);
+                case SORT_BY_HOUSEWL_NETWL:
+                    return isSortAsc ? list.OrderBy(m => m.OurPT_NetWinloss) : list.OrderByDescending(m => m.OurPT_NetWinloss);
+                default:
+                    return list;
             }
-            if (sortId == SORT_BY_CUSTOMERCLASS)
-            {
-                return isSortAsc ? list.OrderBy(m => m.CustomerClass) : list.OrderByDescending(m => m.CustomerClass);
-            }
-            if (sortId == SORT_BY_TICKET_WON)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Tickets_Won) : list.OrderByDescending(m => m.Tickets_Won);
-            }
-            if (sortId == SORT_BY_TICKET_LOSE)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Tickets_Lose) : list.OrderByDescending(m => m.Tickets_Lose);
-            }
-            if (sortId == SORT_BY_STAKE_WON)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Stake_Won) : list.OrderByDescending(m => m.Stake_Won);
-            }
-            if (sortId == SORT_BY_STAKE_LOSE)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Stake_Lose) : list.OrderByDescending(m => m.Stake_Lose);
-            }
-            if (sortId == SORT_BY_WINLOSS_WON)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Member_Won) : list.OrderByDescending(m => m.Member_Won);
-            }
-            if (sortId == SORT_BY_WINLOSS_LOSE)
-            {
-                return isSortAsc ? list.OrderBy(m => m.Member_Lose) : list.OrderByDescending(m => m.Member_Lose);
-            }
-            if (sortId == SORT_BY_HOUSEWL_WON)
-            {
-                return isSortAsc ? list.OrderBy(m => m.OurPT_Won) : list.OrderByDescending(m => m.OurPT_Won);
-            }
-            if (sortId == SORT_BY_HOUSEWL_LOSE)
-            {
-                return isSortAsc ? list.OrderBy(m => m.OurPT_Lose) : list.OrderByDescending(m => m.OurPT_Lose);
-            }
-            if (sortId == SORT_BY_HOUSEWL_NETWL)
-            {
-                return isSortAsc ? list.OrderBy(m => m.OurPT_NetWinloss) : list.OrderByDescending(m => m.OurPT_NetWinloss);
-            }
-            return list;
         }
 
         public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss_Detail> GetDetails(DateTime fromDate, DateTime toDate,

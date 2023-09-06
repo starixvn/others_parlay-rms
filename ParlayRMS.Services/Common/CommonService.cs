@@ -2,14 +2,22 @@ namespace ParlayRMS.Services.Common
 {
     using System;
     using System.Collections.Generic;
-    using DataAccess.Common;
+    using DataAccess;
     using Fanex.Caching;
+    using Fanex.Caching.Memory;
     using ParlayRMS.DTO.Common;
     using Utility;
-
+    
     public class CommonService : BaseService
     {
-        private static readonly CacheService CacheServiceInstance = new CacheServiceImpl();
+        private static readonly ICache CacheInstance = new MemoryCache(
+                new MemoryCacheOptions
+                {
+                     ExpirationScanFrequency = TimeSpan.FromSeconds(30),
+                     CompactionPercentage = 0.15,
+                     CompactOnMemoryPressure = true
+                }
+            );
         private readonly CommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         public RMS_SelBalanceUpDay GetBalanceUpDayInfo()
@@ -19,15 +27,16 @@ namespace ParlayRMS.Services.Common
                 return _commonDataAccess.RMS_SelBalanceUpDay();
             }
 
-            var key = "BalanceUpDayInfo";
-            var result = CacheServiceInstance.Get<RMS_SelBalanceUpDay>(key);
-            if (result == null)
+            const string key = "BalanceUpDayInfo";
+
+            var cacheIsAvailable = CacheInstance.TryGet(key, out RMS_SelBalanceUpDay balanceUpDay);
+            if (!cacheIsAvailable)
             {
-                result = _commonDataAccess.RMS_SelBalanceUpDay();
-                CacheServiceInstance.Set(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
+                balanceUpDay = _commonDataAccess.RMS_SelBalanceUpDay();
+                CacheInstance.Set(key, balanceUpDay, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
             }
 
-            return result;
+            return balanceUpDay;
         }
 
         public RMS_Rpt_Parlay_SelMinTransdate GetMinTransDate()
@@ -37,15 +46,15 @@ namespace ParlayRMS.Services.Common
                 return _commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
             }
 
-            var key = "MinTransDate";
-            var result = CacheServiceInstance.Get<RMS_Rpt_Parlay_SelMinTransdate>(key);
-            if (result == null)
+            const string key = "MinTransDate";
+            var cacheIsAvailable = CacheInstance.TryGet(key, out RMS_Rpt_Parlay_SelMinTransdate minTransdate);
+            if (!cacheIsAvailable)
             {
-                result = _commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
-                CacheServiceInstance.Set(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
+                minTransdate = _commonDataAccess.RMS_Rpt_Parlay_SelMinTransdate();
+                CacheInstance.Set(key, minTransdate, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(1) });
             }
 
-            return result;
+            return minTransdate;
         }
 
         public List<int> GetBettypeBelongsBetRadar()
@@ -55,15 +64,15 @@ namespace ParlayRMS.Services.Common
                 return _commonDataAccess.GetBettypeBelongsBetRadar();
             }
 
-            var key = "BettypeBelongsBetRadar";
-            var result = CacheServiceInstance.Get<List<int>>(key);
-            if (result == null)
+            const string key = "BettypeBelongsBetRadar";
+            var cacheIsAvailable = CacheInstance.TryGet(key, out List<int> betTypes);
+            if (!cacheIsAvailable)
             {
-                result = _commonDataAccess.GetBettypeBelongsBetRadar();
-                CacheServiceInstance.Set(key, result, new CacheItemOptions { RelativeExpiration = TimeSpan.FromDays(1) });
+                betTypes = _commonDataAccess.GetBettypeBelongsBetRadar();
+                CacheInstance.Set(key, betTypes, new CacheItemOptions { RelativeExpiration = TimeSpan.FromDays(1) });
             }
 
-            return result;
+            return betTypes;
         }
 
         public IEnumerable<Currency> GetCurrencies()

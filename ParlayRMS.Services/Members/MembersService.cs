@@ -1,8 +1,9 @@
 namespace ParlayRMS.Services.Members
 {
     using System.Collections.Generic;
-    using DataAccess.Members;
-    using DTO;
+    using System.Linq;
+    using Criteria;
+    using DataAccess;
     using ParlayRMS.DTO.Members;
 
     public class MembersService : BaseService
@@ -36,14 +37,17 @@ namespace ParlayRMS.Services.Members
 
         public Result ChangeLevelCustomer(int custId, string userName, int level, int adminId, string ip)
         {
-            if (CheckExistingCustomer(custId))
-            {
-                return UpdateLevelCustomer(custId, level, adminId, ip);
-            }
-            else
-            {
-                return AddCustomer(userName, level, adminId, ip);
-            }
+            return CheckExistingCustomer(custId) ? UpdateLevelCustomer(custId, level, adminId, ip) : AddCustomer(userName, level, adminId, ip);
+        }
+
+        public List<int> GetAgents(int masterId)
+        {
+            return _customerDataAccess.RMS_CustomerAgentOfMasterSel(masterId).ToList();
+        }
+
+        public RMS_CustomerSelInfoByUsername GetCustomerInfo(string username)
+        {
+            return _customerDataAccess.RMS_CustomerSelInfoByUsername(username);
         }
     }
 }

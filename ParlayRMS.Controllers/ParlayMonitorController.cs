@@ -1,13 +1,10 @@
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Common;
 using ParlayRMS.Services.ParlayMonitor;
-using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.PalayMonitor;
-using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +12,18 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+
+    [NapAuth(FunctionKey = FunctionKeys.ParlayMonitor, Policy = Constant.Policy.Read)]
     public class ParlayMonitorController : BaseController
     {
         private readonly ParlayMonitorCacheService _parlayMonitorCacheService = new ParlayMonitorCacheService();
-        private readonly UsersService _userService = new UsersService();
+        private readonly IUserService _userService = new UserService();
         private readonly CommonService _commonService = new CommonService();
 
         public ActionResult Filter()
@@ -90,7 +94,11 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.HasReadPermission = _userService.HasReadPermission(CurrentSession.UserId, FunctionKeys.ViewIP);
+            ViewBag.HasReadPermission = _userService.IsHavingPermission(
+                CurrentSession.UserId,
+                NapSettings.Settings.SiteId, 
+                FunctionKeys.ViewIP,
+                Constant.Policy.Read);
             return View();
         }
 

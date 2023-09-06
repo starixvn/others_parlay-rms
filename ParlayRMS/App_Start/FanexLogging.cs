@@ -4,6 +4,7 @@ namespace ParlayRMS
     using System.Configuration;
     using System.Web;
     using Fanex.Logging;
+    using Fanex.Logging.Extensions;
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.Logging.Sentry.RavenClient;
@@ -21,7 +22,7 @@ namespace ParlayRMS
             var sentryEngineOptions = new SentryEngineOptions
             {
                 Dsn = new Dsn(sentryToken),
-                FrontEndDsn = new Dsn(frontEndSentryToken),
+                FrontEndDsn = new Dsn(frontEndSentryToken)
             };
             var sentryEngine = new SentryLogging(sentryEngineOptions);
             logEngines.Add(sentryEngine);

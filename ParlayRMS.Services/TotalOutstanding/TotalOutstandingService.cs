@@ -2,7 +2,7 @@ namespace ParlayRMS.Services.TotalOutstanding
 {
     using System;
     using System.Collections.Generic;
-    using DataAccess.TotalOutstanding;
+    using DataAccess;
     using ParlayRMS.DTO.TotalOutstanding;
     using Utility;
 
@@ -10,7 +10,7 @@ namespace ParlayRMS.Services.TotalOutstanding
     {
         private readonly TotalOutstandingDataAccess _dataAccess = new TotalOutstandingDataAccess();
 
-        public List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
+        public List<RMS_Rpt_Parlay_Outstanding_Mem> GetTotalOutstandingForMember(int custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
             var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Mem(custId, combo, sportsType, parlaysType, isCornerParlay);
             foreach (var item in data)
@@ -23,7 +23,7 @@ namespace ParlayRMS.Services.TotalOutstanding
             return data;
         }
 
-        public List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(long custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
+        public List<RMS_Rpt_Parlay_Outstanding_Ag> GetTotalOutstandingForAgent(int custId, string combo, string sportsType, string parlaysType, bool isCornerParlay)
         {
             var data = _dataAccess.RMS_Rpt_Parlay_Outstanding_Ag(custId, combo, sportsType, parlaysType, isCornerParlay);
             foreach (var item in data)

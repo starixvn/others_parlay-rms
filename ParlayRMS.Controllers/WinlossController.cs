@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.Winloss;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
 
-    [Authorization(Function = FunctionKeys.Winloss, Policy = UserPolicy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.Winloss, Policy = Constant.Policy.Read)]
     public class WinlossController : BaseController
     {
         private readonly WinlossService _winlossService = new WinlossService();
@@ -36,20 +37,19 @@ namespace ParlayRMS.Controllers
                 var lastMonth = DateTime.Now.AddMonths(-1).Date;
                 if (options.FromDate.Date < lastMonth)
                 {
-                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
+                    ModelState.AddModelError("FromDate",
+                        $"FromDate must be greater or equal than {lastMonth.ToShortDateString()}");
                 }
 
                 if (!ModelState.IsValid)
                 {
                     return PartialView("_ErrorMessage", GetModelErrorMessage());
                 }
-                else
-                {
-                    var model = _winlossService.GetWinloss(options);
-                    ViewBag.Title = options.GetTitle();
-                    ViewBag.FilterOption = options;
-                    return PartialView(model);
-                }
+
+                var model = _winlossService.GetWinloss(options);
+                ViewBag.Title = options.GetTitle();
+                ViewBag.FilterOption = options;
+                return PartialView(model);
             }
             catch (Exception ex)
             {

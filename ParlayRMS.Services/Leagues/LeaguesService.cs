@@ -1,8 +1,8 @@
 namespace ParlayRMS.Services.Leagues
 {
     using System.Collections.Generic;
-    using DataAccess.Leagues;
-    using DTO;
+    using Criteria;
+    using DataAccess;
     using ParlayRMS.DTO.Leagues;
 
     public class LeaguesService : BaseService

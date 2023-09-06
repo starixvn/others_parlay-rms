@@ -70,6 +70,71 @@
             }
         }
 
+         public string NapEnvironment
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
+                        return "LIVE";
+                    default:
+                        return "UAT";
+                }
+            }
+        }
+
+        public string NapSiteId
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.UAT:
+					case SiteEnvironment.SIT:
+                        return "88";
+                    default:
+                        return "88";
+                }
+            }
+        }
+
+        public string NapEnableReCheckin
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                    case SiteEnvironment.PROAWS:
+                        return "false";
+                    default:
+                        return "false";
+                }
+            }
+        }
+
+        public string NapServiceUrls
+        {
+            get
+            {
+                switch(Environment)
+                {
+                    case SiteEnvironment.PRO:
+                        return "http://10.2.27.8:8788";
+                    case SiteEnvironment.PROAWS:
+                        return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:8788";
+					case SiteEnvironment.UAT:
+                        return "http://10.99.98.117:8788";
+					case SiteEnvironment.SIT:
+					    return "http://172.16.2.44:8788";
+                    default:
+                        return "http://nap_api_netcore.nexdev.net:8787";
+                }
+            }
+        }
        public string ONEbookUMAddress
         {
             get
@@ -107,22 +172,6 @@
                         return "true";
                     default:
                         return "false";
-                }
-            }
-        }
-
-         public string EnableRecheckIn
-        {
-            get
-            {
-                switch(Environment)
-                {
-                    case SiteEnvironment.PRO:
-                    case SiteEnvironment.PROAWS:
-                    case SiteEnvironment.MNL:
-                        return "True";
-                    default:
-                        return "False";
                 }
             }
         }

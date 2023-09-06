@@ -105,12 +105,7 @@ namespace ParlayRMS.Utility
 
         private static bool IsValid(object value)
         {
-            if (value == null || value == DBNull.Value || string.IsNullOrEmpty(value.ToString()))
-            {
-                return false;
-            }
-
-            return true;
+            return value != null && value != DBNull.Value && !string.IsNullOrEmpty(value.ToString());
         }
     }
 }

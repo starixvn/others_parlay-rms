@@ -149,7 +149,7 @@ function SearchAllLeague_onclick() {
     $('#txtLeague').val('');
     $('#searchGroupName').html('All Group');
     $('#groupColor').attr('valgroup', '0');
-    
+
     $('.level').css("background-color", "#000000");
 
     LoadSpecialLeague($("#txtLeague").val(), $("#groupColor").attr('valgroup'), $(".Pager .ActiveNumber").text().trim());
@@ -160,6 +160,6 @@ function ExportExcel() {
     window.location.href = resolveClientUrl(url);
 }
 
-function MovePage(pageNumber) {    
+function MovePage(pageNumber) {
     LoadSpecialLeague($("#txtLeague").val(), $("#groupColor").attr('valgroup'), pageNumber);
 }

@@ -49,5 +49,5 @@ function navigateToUrl(url, delayTime) {
 
 function logOff() {
     $('#loading').show('fade');
-    navigateToUrl('Account/SignOut');
+    navigateToUrl('Auth/LogOut');
 }

@@ -2,7 +2,7 @@ namespace ParlayRMS.DTO.TopWinners
 {
     public class RMS_Rpt_Parlay_TopWinner
     {
-        public long CustId { get; set; }
+        public int CustId { get; set; }
 
         public string Username { get; set; }
 

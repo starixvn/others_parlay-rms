@@ -17,17 +17,12 @@ namespace ParlayRMS.Web.Mvc.DataAnnotations
         public override bool IsValid(object value)
         {
             var date = (DateTime)value;
-            if (date >= _minDate && date <= _maxDate)
-            {
-                return true;
-            }
-
-            return false;
+            return date >= _minDate && date <= _maxDate;
         }
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format("Field {0} must be between {1} and {2}", name, _minDate.ToShortDateString(), _maxDate.ToShortDateString());
+            return $"Field {name} must be between {_minDate.ToShortDateString()} and {_maxDate.ToShortDateString()}";
         }
     }
 }

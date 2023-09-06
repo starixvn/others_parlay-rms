@@ -2,7 +2,7 @@ namespace ParlayRMS.Services.SimilarBets
 {
     using System;
     using System.Linq;
-    using DataAccess.SimilarBets;
+    using DataAccess;
     using ParlayRMS.DTO.SimilarBets;
     using Utility;
 

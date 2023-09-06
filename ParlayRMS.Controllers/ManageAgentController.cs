@@ -2,27 +2,35 @@ namespace ParlayRMS.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using PagedList;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using PagedList;
     using Services.Agents;
-    using Services.Users;
     using Utility;
     using ViewModel.ManageAgent;
-    using Web.Authorization;
 
     public class ManageAgentController : BaseController
     {
-        private readonly UsersService _userService = new UsersService();
+        private readonly IUserService _userService = new UserService();
         private readonly AgentService _agentService = new AgentService();
         private readonly int _pageSize = AppSetting.PageSize;
 
         public ManageAgentController()
         {
-            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageAgent);
+            ViewBag.HasWritePermission = _userService.IsHavingPermission(
+                CurrentSession.UserId,
+                NapSettings.Settings.SiteId,
+                FunctionKeys.ManageAgent,
+                Constant.Policy.Host
+                );
         }
 
         [HttpGet]
-        [Authorization(Function = FunctionKeys.ManageAgent, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageAgent, Policy = Constant.Policy.Read)]
         public ActionResult Index()
         {
             return View();
@@ -33,18 +41,18 @@ namespace ParlayRMS.Controllers
             return PartialView(model);
         }
 
-        [Authorization(Function = FunctionKeys.ManageCustomer, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageAgent, Policy = Constant.Policy.Read)]
         public ActionResult AgentList(AgentListModel model)
         {
             var agentList = _agentService.GetDangerousAgents(model.UserName);
-            var page = model.Page == null ? 1 : model.Page.Value;
+            var page = model.Page ?? 1;
 
             ViewBag.Pager = Pager.Items(agentList.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
             return PartialView(agentList.ToPagedList(page, _pageSize));
         }
 
         [HttpGet]
-        [Authorization(Function = FunctionKeys.ManageAgent, Policy = UserPolicy.Create)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageAgent, Policy = Constant.Policy.Host)]
         public ActionResult AddAgent()
         {
             var model = new AddAgentModel();
@@ -52,7 +60,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        [Authorization(Function = FunctionKeys.ManageAgent, Policy = UserPolicy.Create)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageAgent, Policy = Constant.Policy.Host)]
         public ActionResult AddAgent(AddAgentModel model)
         {
             if (!ModelState.IsValid)
@@ -60,12 +68,12 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var result = _agentService.AddDangerousAgent(model.UserName, CurrentSession.CustId, CurrentContext.Ip4Address);
+            var result = _agentService.AddDangerousAgent(model.UserName, CurrentSession.UserId, CurrentContext.Ip4Address);
             return Json(result);
         }
 
         [HttpPost]
-        [Authorization(Function = FunctionKeys.ManageAgent, Policy = UserPolicy.Create)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageAgent, Policy = Constant.Policy.Host)]
         public ActionResult DeleteAgent(DeleteAgentModel model)
         {
             if (!ModelState.IsValid)
@@ -73,7 +81,7 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var result = _agentService.DeleteDangerousAgent(model.AgentId, model.UserName, CurrentSession.CustId, CurrentContext.Ip4Address);
+            var result = _agentService.DeleteDangerousAgent(model.AgentId, model.UserName, CurrentSession.UserId, CurrentContext.Ip4Address);
             return Json(result);
         }
     }

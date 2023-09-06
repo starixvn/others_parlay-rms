@@ -4,7 +4,7 @@ namespace ParlayRMS.Services.BetDetails
     using System.Collections.Generic;
     using System.Linq;
     using BetList;
-    using DataAccess.BetDetails;
+    using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
@@ -33,26 +33,17 @@ namespace ParlayRMS.Services.BetDetails
             {
                 var blackListLeague = tickets.Item1[i] ? "blackListClass blackListMargin" : string.Empty;
                 var ticket = tickets.Item2[i];
-                if (tickets.Item2.Last() == ticket)
-                {
-                    builder.AddChoice(
-                        ticket,
-                        ticketHelper,
-                        null,
-                        string.Format("<div  class='" + blackListLeague + "'></div><div id='{0}'><div class='ticketDetail'>", ticket.BetId),
-                        string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div>", ticket.Status),
-                        false);
-                }
-                else
-                {
-                    builder.AddChoice(
-                        ticket,
-                        ticketHelper,
-                        null,
-                        string.Format("<div  class='" + blackListLeague + "'></div><div id='{0}'><div class='ticketDetail'>", ticket.BetId),
-                        string.Format("</div><div class='ticketStatus'><div class='divstatus'>[{0}]</div></div></div><div class='line'></div>", ticket.Status),
-                        false);
-                }
+                builder.AddChoice(
+                    ticket,
+                    ticketHelper,
+                    null,
+                    string.Format(
+                        "<div  class='" + blackListLeague + "'></div><div id='{0}'><div class='ticketDetail'>",
+                        ticket.BetId),
+                    tickets.Item2.Last() == ticket
+                        ? $"</div><div class='ticketStatus'><div class='divstatus'>[{ticket.Status}]</div></div></div>"
+                        : $"</div><div class='ticketStatus'><div class='divstatus'>[{ticket.Status}]</div></div></div><div class='line'></div>",
+                    false);
             }
 
             var comboTypeAndStake = GetComboTypeAndStake(tickets.Item2, betInfo);
@@ -174,10 +165,7 @@ namespace ParlayRMS.Services.BetDetails
             var matchNode = document.QuerySelector(".match");
             var leagueNode = document.QuerySelector(".league");
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
             document.RemoveAllChildren();
 
@@ -225,15 +213,9 @@ namespace ParlayRMS.Services.BetDetails
             var document = html.DocumentNode;
             var bettype = document.QuerySelector(".bettype");
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
-            if (bettype != null)
-            {
-                bettype.Remove();
-            }
+            bettype?.Remove();
 
             return new Tuple<bool, string>(model.IsBlacklistLeague, document.OuterHtml);
         }

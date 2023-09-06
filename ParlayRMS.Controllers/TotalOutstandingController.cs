@@ -1,21 +1,23 @@
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.TotalOutstanding;
-using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
-using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.TotalOutstanding, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services.Members;
+
+    [NapAuth(FunctionKey = FunctionKeys.TotalOutstanding, Policy = Constant.Policy.Read)]
     public class TotalOutstandingController : BaseController
     {
         private readonly TotalOutstandingService _service = new TotalOutstandingService();
-        private readonly UsersService _userService = new UsersService();
+        private readonly MembersService _membersService = new MembersService();
 
         [HttpGet]
         public ActionResult Index(IndexModel model)
@@ -77,11 +79,11 @@ namespace ParlayRMS.Controllers
         public ActionResult Data(DataModel model)
         {
             ViewBag.Username = model.Username;
-            var customerInfo = _userService.GetCustomerInfo(model.Username);
-            ViewBag.CustId = customerInfo.CustId;
+            var customerInfo = _membersService.GetCustomerInfo(model.Username);
+            ViewBag.CustId = customerInfo?.CustId;
             if (customerInfo == null || customerInfo.CustId == 0)
             {
-                return PartialView("_ErrorMessage", string.Format("{0} is not existed", model.Username));
+                return PartialView("_ErrorMessage", $"{model.Username} is not existed");
             }
 
             if (customerInfo.RoleId == (int)RoleId.Member)
@@ -111,7 +113,8 @@ namespace ParlayRMS.Controllers
 
                 return PartialView("MemberResult", data);
             }
-            else if (customerInfo.RoleId == (int)RoleId.Agent)
+
+            if (customerInfo.RoleId == (int)RoleId.Agent)
             {
                 var data = _service.GetTotalOutstandingForAgent(customerInfo.CustId, model.Combo, model.SportsType, model.ParlaysType, model.IsCornerParlay);
                 ViewBag.TotalData = null;
@@ -138,20 +141,10 @@ namespace ParlayRMS.Controllers
 
                 return PartialView("AgentResult", data);
             }
-            else
-            {
-                var roleName = string.Empty;
-                if (customerInfo.RoleId == (int)RoleId.Master)
-                {
-                    roleName = "master";
-                }
-                else
-                {
-                    roleName = "super";
-                }
+            var roleName = customerInfo.RoleId == (int)RoleId.Master ? "master" : "super";
 
-                return PartialView("_ErrorMessage", string.Format("{0} is a {1}. Please input a member or agent username", model.Username, roleName));
-            }
+            return PartialView("_ErrorMessage",
+                $"{model.Username} is a {roleName}. Please input a member or agent username");
         }
     }
 }

@@ -57,11 +57,11 @@
                             @{
                                 decimal total = 0;
                             }
-                            @foreach (KeyValuePair<DateTime, List<CombinationDetailsView>> item in Model.ViewDict)
+                            @foreach (var item in Model.ViewDict)
                             {
                                 var needSpan = true;
                                 decimal subTotal = 0;
-                                foreach (CombinationDetailsView viewModel in item.Value)
+                                foreach (var viewModel in item.Value)
                                 {
                                     var isLoseSum = false;
                                     <tr>
@@ -72,7 +72,7 @@
                                             needSpan = false;
                                         }
                                         <td class="left">
-                                            @foreach (CombinationDetailsView.EventItem eventItem in viewModel.Events)
+                                            @foreach (var eventItem in viewModel.Events)
                                             {
                                                 if (eventItem.HomeId == -1)
                                                 {

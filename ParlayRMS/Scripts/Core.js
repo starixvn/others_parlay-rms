@@ -52,7 +52,6 @@ ParlayRMS.Core =
 $(document).ready(function () {
     initValues();
 
-    ReCheckin(); // call immediately after page load complete
     kickOutIntId = setInterval('ReCheckin();', 10000); //call kickout every 10s
 });
 
@@ -62,33 +61,6 @@ function initValues() {
 function navigateToUrl(url, delayTime) {
     if (delayTime == undefined) delayTime = 2000;
     setInterval("window.location.replace('" + resolveClientUrl(url) + "');", delayTime);
-}
-
-function ReCheckin() {
-    $.ajax({
-        url: resolveClientUrl('Account/ReCheckIn'),
-        type: 'POST',
-        success: function (data) {
-            curRetryTimes = 0;
-            // alert(data);
-            var code = data.code;
-            if (code == -1) {
-                navigateToUrl('Account/Login');
-                alert('You have logged in from another session or your login session has expired!');
-            }
-            else if (code == 2) {
-                navigateToUrl('Account/Login');
-            }
-        },
-        error: function (xhr, status, err) {
-            curRetryTimes++;
-
-            if (curRetryTimes >= maxRetryTimes) {
-                clearInterval(kickOutIntId);
-                window.location.replace(resolveClientUrl('Account/Login'));
-            }
-        }
-    });
 }
 
 function limitInput(target) {
@@ -141,7 +113,7 @@ function isNumeric(value) {
 }
 function logOff() {
     loading.show();
-    navigateToUrl('Account/SignOut');
+    navigateToUrl('Auth/LogOut');
 }
 
 function Minimize(target, minimizeId, divTitle) {

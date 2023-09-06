@@ -6,20 +6,21 @@ using System.Web.Mvc;
 using PagedList;
 using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Models.MemberWinLoss;
 using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.MemberWinLoss;
 using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
 
 namespace ParlayRMS.Controllers
 {
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
 
-    [Authorization(Function = FunctionKeys.MemberWinLoss, Policy = UserPolicy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.MemberWinLoss, Policy = Constant.Policy.Read)]
     public class MemberWinLossController : BaseController
     {
         private readonly MemberWinLossService _memberWinLossService = new MemberWinLossService();
@@ -49,50 +50,47 @@ namespace ParlayRMS.Controllers
 
                 if (options.FromDate.Date < limitDate)
                 {
-                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", limitDate.ToShortDateString()));
+                    ModelState.AddModelError("FromDate",
+                        $"FromDate must be greater or equal than {limitDate.ToShortDateString()}");
                 }
 
                 if (!ModelState.IsValid)
                 {
                     return PartialView("_ErrorMessage", GetModelErrorMessage());
                 }
-                else
+
+                var model = _memberWinLossService.GetMemberWinLoss(
+                    options.FromDate,
+                    options.ToDate,
+                    options.ParlayTypes,
+                    options.SportsType,
+                    options.LiveType,
+                    options.Combos,
+                    options.Username,
+                    options.IsCached,
+                    out var roleId);
+
+
+                if (options.SortById.HasValue)
                 {
-                    var model = _memberWinLossService.GetMemberWinLoss(
-                                                              options.FromDate,
-                                                              options.ToDate,
-                                                              options.ParlayTypes,
-                                                              options.SportsType,
-                                                              options.LiveType,
-                                                              options.Combos,
-                                                              options.Username,
-                                                              options.IsCached,
-                                                              out var roleId);
-
-
-                    if (options.SortById.HasValue)
-                    {
-                        model.Records = _memberWinLossService.SortData(model.Records, options.SortById.Value, options.IsSortAsc);
-                    }
-                    var isAgent = roleId > (int)RoleId.Member;
-                    ViewBag.Title = options.GetTitle();
-                    ViewBag.FilterOption = options;
-                    ViewBag.GrandTotal = model.Total;
-                    ViewBag.CustomerClass = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
-                    ViewBag.SiteGroup = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().SiteGroup;
+                    model.Records = _memberWinLossService.SortData(model.Records, options.SortById.Value, options.IsSortAsc);
+                }
+                var isAgent = roleId > (int)RoleId.Member;
+                ViewBag.Title = options.GetTitle();
+                ViewBag.FilterOption = options;
+                ViewBag.GrandTotal = model.Total;
+                ViewBag.CustomerClass = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
+                ViewBag.SiteGroup = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().SiteGroup;
                     ViewBag.IsAgent = isAgent;
 
-                    if (isAgent)
-                    {
-                        var page = options.PageIndex ?? 1;
-                        ViewBag.Pager = Pager.Items(model.Records.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
-                        return PartialView("AgentData", model.Records.ToPagedList(page, AppSetting.PageSize));
-                    }
-                    else
-                    {
-                        return PartialView("MemberData", model);
-                    }
+                if (isAgent)
+                {
+                    var page = options.PageIndex ?? 1;
+                    ViewBag.Pager = Pager.Items(model.Records.Count()).PerPage(AppSetting.PageSize).Move(page).Segment(5).Center();
+                    return PartialView("AgentData", model.Records.ToPagedList(page, AppSetting.PageSize));
                 }
+
+                return PartialView("MemberData", model);
             }
             catch (Exception ex)
             {
@@ -114,16 +112,8 @@ namespace ParlayRMS.Controllers
                                                       options.IsCached,
                                                       out var roleId);
             var title = options.GetTitle();
-            MemoryStream ms = null;
 
-            if (roleId > (int)RoleId.Member)
-            {
-                ms = ExportAgentWinLossRpt(model, title);
-            }
-            else
-            {
-                ms = ExportMemberWinLossRpt(model, title);
-            }
+            var ms = roleId > (int)RoleId.Member ? ExportAgentWinLossRpt(model, title) : ExportMemberWinLossRpt(model, title);
 
             Response.AddHeader("content-disposition", "attachment; filename=" + "MAMemberWinLoss.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");

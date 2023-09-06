@@ -1,5 +1,6 @@
 namespace ParlayRMS.Services.BetList
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class RMS_BetList_BetBuilder_DetailCriteria : CriteriaBase

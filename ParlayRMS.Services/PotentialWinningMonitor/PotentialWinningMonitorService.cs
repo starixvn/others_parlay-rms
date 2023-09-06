@@ -1,7 +1,7 @@
 namespace ParlayRMS.Services.PotentialWinningMonitor
 {
     using System.Collections.Generic;
-    using DataAccess.PotentialWinningMonitor;
+    using DataAccess;
     using DTO.PotentialWinning;
     using Utility;
 
@@ -19,7 +19,7 @@ namespace ParlayRMS.Services.PotentialWinningMonitor
             bool isCornerParlay,
             byte filterBy,
             int? agentId,
-            long? customerClass,
+            int? customerClass,
             string company,
             string username)
         {
@@ -30,7 +30,7 @@ namespace ParlayRMS.Services.PotentialWinningMonitor
             string combos,
             string parlayTypes,
             string sportTypes,
-            long custId,
+            int custId,
             bool isCornerParlay)
         {
             var result = _potentialWinningDataAccess.RMS_Monitor_Parlay_PotentialWinningDetail(combos, parlayTypes, sportTypes, custId, isCornerParlay);

@@ -5,26 +5,28 @@ using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using ParlayRMS.DTO.ViewIPInfo;
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
 using ParlayRMS.Services.BetList;
 using ParlayRMS.Services.Common;
 using ParlayRMS.Services.ViewIPInfo;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.ViewIPInfo;
-using ParlayRMS.Web.Authorization;
 using System;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.ViewIP, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+
+    [NapAuth(FunctionKey = FunctionKeys.ViewIP, Policy = Constant.Policy.Read)]
     public class ViewIPInfoController : BaseController
     {
         private readonly ViewIPInfoService _ipinfoService = new ViewIPInfoService();
         private readonly BetListService _betlistService = new BetListService();
         private readonly CommonService _commonService = new CommonService();
-        private readonly int _pageSize = 100;
+        private const int _pageSize = 100;
 
         [HttpGet]
         public ActionResult Index()
@@ -46,7 +48,7 @@ namespace ParlayRMS.Controllers
                 return Json(new
                 {
                     code = 0,
-                    Records = records,
+                    Records = records
                 });
             }
             catch (Exception ex)
@@ -129,7 +131,7 @@ namespace ParlayRMS.Controllers
                 BetTypeId = model.BetType,
                 TransId = model.TransID,
                 IsNeutral = model.IsNeutral,
-                CustId = userId,
+                CustId = userId
             };
             index++;
             ticketHelper.Index = index;
@@ -139,10 +141,7 @@ namespace ParlayRMS.Controllers
             html.LoadHtml(choice);
             var document = html.DocumentNode;
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
             return document.OuterHtml;
         }
@@ -188,7 +187,7 @@ namespace ParlayRMS.Controllers
             {
                 var comboTypes = CacheRef.GetCombinationTypeCombo(options.BetTeam, options.BetCheck, options.Hdp1, options.Hdp2);
                 var filteredTickets = tickets.Item2.Where(x => x.Stake != 0).OrderBy(x => x.MatchId).ToList();
-                var count = comboTypes == null ? 0 : comboTypes.Length;
+                var count = comboTypes?.Length ?? 0;
                 for (var i = 0; i < count && i < filteredTickets.Count; i++)
                 {
                     openTag += "<span class=\"underdog\"> " + comboTypes[i] + " x <span class=\"odds\">" + data.CurrencyName + " " + filteredTickets[i].Stake.ToString("#,##0") + "</span></span><br />";
@@ -259,10 +258,7 @@ namespace ParlayRMS.Controllers
             html.LoadHtml(choice);
             var document = html.DocumentNode;
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
             return document.OuterHtml;
         }

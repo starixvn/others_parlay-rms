@@ -1,25 +1,28 @@
 namespace ParlayRMS.Controllers
 {
     using PagedList;
-    using Models.Functions;
     using Services.Leagues;
-    using Services.Users;
     using Utility;
-    using Web.Authorization;
     using System.Linq;
     using System.Web.Mvc;
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
     using ViewModel.ManageLeague;
 
     public class ManageLeagueController : BaseController
     {
-        private readonly UsersService _userService = new UsersService();
+        private readonly IUserService _userService = new UserService();
         private readonly LeaguesService leagueService = new LeaguesService();
         private readonly int _pageSize = AppSetting.PageSize;
         private const int SOCCER = 1;
 
 
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Read)]
         public ActionResult LeagueList(LeagueListModel model)
         {
             var specialLeagueList = leagueService.GetListLeague(model.League, model.Group, SOCCER);
@@ -29,14 +32,14 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpGet]
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Read)]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Host)]
         public ActionResult AddLeague()
         {
             var model = new AddLeagueModel();
@@ -44,7 +47,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Create)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Host)]
         public ActionResult AddLeague(AddLeagueModel model)
         {
             if (!ModelState.IsValid)
@@ -52,12 +55,12 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var result = leagueService.AddLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
+            var result = leagueService.AddLeague(model.League, model.Group, CurrentSession.UserId, CurrentContext.Ip4Address);
             return Json(result);
         }
 
         [HttpPost]
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Update)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Host)]
         public ActionResult UpdateGroup(UpdateGroupModel model)
         {
             if (!ModelState.IsValid)
@@ -65,19 +68,19 @@ namespace ParlayRMS.Controllers
                 return InvalidModelJson();
             }
 
-            var result = leagueService.UpdateLeague(model.League, model.Group, CurrentSession.CustId, CurrentContext.Ip4Address);
+            var result = leagueService.UpdateLeague(model.League, model.Group, CurrentSession.UserId, CurrentContext.Ip4Address);
             return Json(result);
         }
 
         [HttpGet]
-        [Authorization(Function = FunctionKeys.ManageLeague, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ManageLeague, Policy = Constant.Policy.Read)]
         public ActionResult ExportExcel(ExportExcelModel model)
         {
             var specialLeagueList = leagueService.GetListLeague(model.League, model.Group, SOCCER);
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\SpecialLeague.xls";
             var writer = new TemplateWriter(templatePath);
 
-            var title = "Special Leagues";
+            const string title = "Special Leagues";
             writer.WriteRow(0, new object[] { title });
 
             var header = new[]
@@ -92,7 +95,7 @@ namespace ParlayRMS.Controllers
             {
                 x.No,
                 x.LeagueName,
-                x.GroupName,
+                x.GroupName
             });
             writer.WriteRows(2, select);
             writer.SyncColumnWidths(3);
@@ -111,7 +114,11 @@ namespace ParlayRMS.Controllers
         {
             base.OnActionExecuting(filterContext);
 
-            ViewBag.HasWritePermission = CurrentSession.UserId > 0 && _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageLeague);
+            ViewBag.HasWritePermission = CurrentSession.UserId > 0 && _userService.IsHavingPermission(
+                CurrentSession.UserId, 
+                NapSettings.Settings.SiteId,
+                FunctionKeys.ManageLeague,
+                Constant.Policy.Host);
         }
     }
 }

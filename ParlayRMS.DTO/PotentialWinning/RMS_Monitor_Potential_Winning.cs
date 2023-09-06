@@ -8,7 +8,7 @@ namespace ParlayRMS.DTO.PotentialWinning
 
         public string TransDateString { get; set; }
 
-        public long CustId { get; set; }
+        public int CustId { get; set; }
 
         public string UserName { get; set; }
 

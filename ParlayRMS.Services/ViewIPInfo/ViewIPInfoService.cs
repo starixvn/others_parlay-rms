@@ -3,7 +3,7 @@ namespace ParlayRMS.Services.ViewIPInfo
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccess.ViewIPInfo;
+    using DataAccess;
     using ParlayRMS.DTO.ViewIPInfo;
     using Models.ViewIpInfo;
 
@@ -62,21 +62,25 @@ namespace ParlayRMS.Services.ViewIPInfo
 
             foreach (var item in records.Combo)
             {
-                var resultItem = new CombinationDetailsView();
-                resultItem.Date = item.WinLostDate;
-                resultItem.Events = eventInfo[item.Serial];
-                resultItem.Odds = item.Modds;
-                resultItem.Stake = item.Stake;
-                resultItem.WinLoss = item.Winlost;
-                resultItem.Status = item.StatusId;
-                resultItem.StatusString = item.Status;
+                var resultItem = new CombinationDetailsView
+                {
+                    Date = item.WinLostDate,
+                    Events = eventInfo[item.Serial],
+                    Odds = item.Modds,
+                    Stake = item.Stake,
+                    WinLoss = item.Winlost,
+                    Status = item.StatusId,
+                    StatusString = item.Status
+                };
 
                 viewList.Add(resultItem);
             }
 
-            var result = new CombinationDetailsViews();
-            result.Outstanding = records.Outstanding;
-            result.ViewList = viewList;
+            var result = new CombinationDetailsViews
+            {
+                Outstanding = records.Outstanding,
+                ViewList = viewList
+            };
             return result;
         }
 
@@ -84,9 +88,11 @@ namespace ParlayRMS.Services.ViewIPInfo
         {
             var groupByDateViewList = models.ViewList.GroupBy(x => x.Date).ToDictionary(x => x.Key, x => x.ToList());
 
-            var result = new CombinationDetailsByDateViews();
-            result.Outstanding = models.Outstanding;
-            result.ViewDict = groupByDateViewList;
+            var result = new CombinationDetailsByDateViews
+            {
+                Outstanding = models.Outstanding,
+                ViewDict = groupByDateViewList
+            };
             return result;
         }
     }

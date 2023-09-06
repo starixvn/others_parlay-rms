@@ -417,8 +417,8 @@
   <data name="byturnover" xml:space="preserve">
     <value>By Turnover</value>
   </data>
-  <data name="FavouriteChoice" xml:space="preserve">
-    <value>Favourite Choice</value>
+  <data name="Favorite Choice" xml:space="preserve">
+    <value>Favorite  Choice</value>
   </data>
   <data name="PopularBetType" xml:space="preserve">
     <value>Popular Bet Types</value>

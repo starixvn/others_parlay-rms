@@ -88,20 +88,20 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = "CUP", Value = "10" },
                 new SelectListItem { Text = "CORNER", Value = "11" },
                 new SelectListItem { Text = "WORLD CUP", Value = "12" },
-                new SelectListItem { Text = "Blacklist", Value = "8" },
+                new SelectListItem { Text = "Blacklist", Value = "8" }
 
             };
 
             ReportBy = new List<SelectListItem> {
                 new SelectListItem { Text = "League", Value = "1", Selected = true },
-                new SelectListItem { Text = "BetType", Value = "2" },
+                new SelectListItem { Text = "BetType", Value = "2" }
 
             };
 
             Sites = new List<SelectListItem> {
                 new SelectListItem { Text = "All", Value = "2" },
                 new SelectListItem { Text = "Credit", Value = "0" },
-                new SelectListItem { Text = "Deposit", Value = "1" },
+                new SelectListItem { Text = "Deposit", Value = "1" }
 
             };
 
@@ -128,20 +128,7 @@ namespace ParlayRMS.ViewModel
 
         public static List<SelectListItem> ReportTypes { get; }
 
-        public static DateTime WinlostDate
-        {
-            get
-            {
-                if (Convert.ToBoolean(ConfigurationManager.AppSettings["IsDebug"]))
-                {
-                    return new DateTime(2012, 11, 6).Date;
-                }
-                else
-                {
-                    return DateTime.Now.AddDays(-1).Date;
-                }
-            }
-        }
+        public static DateTime WinlostDate => Convert.ToBoolean(ConfigurationManager.AppSettings["IsDebug"]) ? new DateTime(2012, 11, 6).Date : DateTime.Now.AddDays(-1).Date;
 
         public static List<SelectListItem> LeagueGroups { get; }
 

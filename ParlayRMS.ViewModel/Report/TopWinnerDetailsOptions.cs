@@ -4,7 +4,7 @@ namespace ParlayRMS.ViewModel.Report
 
     public class TopWinnerDetailsOptions
     {
-        public long CustId { get; set; }
+        public int CustId { get; set; }
 
         public string Username { get; set; }
 

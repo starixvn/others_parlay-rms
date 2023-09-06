@@ -1,7 +1,7 @@
 ﻿@using Formatter = ParlayRMS.Utility.Formatter
 @model ParlayRMS.Models.MemberWinLoss.MemberWinLossData
 @{
-    var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
+    var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
 	var index = 0;
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />

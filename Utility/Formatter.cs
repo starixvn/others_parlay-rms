@@ -6,22 +6,22 @@ namespace ParlayRMS.Utility
     {
         public static string FormatNumber1(object obj)
         {
-            return string.Format("{0:G29}", obj);
+            return $"{obj:G29}";
         }
 
         public static string FormatNumber2(object obj)
         {
-            return string.Format("{0:#,##0.00}", obj);
+            return $"{obj:#,##0.00}";
         }
 
         public static string FormatNumber3(object obj)
         {
-            return string.Format("{0:#,##0}", obj);
+            return $"{obj:#,##0}";
         }
 
         public static string FormatNumber4(object obj)
         {
-            var formattedValue = string.Format("{0:#,##0.00}", obj);
+            var formattedValue = $"{obj:#,##0.00}";
 
             if (formattedValue.EndsWith("00"))
             {

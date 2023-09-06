@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ParlayRMS.DataAccess</RootNamespace>
     <AssemblyName>ParlayRMS.DataAccess</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -42,9 +42,16 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -64,34 +71,39 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agents\AgentsDataAccess.cs" />
-    <Compile Include="BetDetails\BetDetailsDataAccess.cs" />
-    <Compile Include="BetList\BetListDataAccess.cs" />
-    <Compile Include="Common\CommonDataAccess.cs" />
-    <Compile Include="LeagueBetTypeAnalysis\LeagueBetTypeAnalysisDataAccess.cs" />
-    <Compile Include="Leagues\LeaguesDataAccess.cs" />
-    <Compile Include="LeagueWinningMonitor\LeagueWinningMonitorDataAccess.cs" />
-    <Compile Include="MemberWinLoss\MemberWinLossDataAccess.cs" />
-    <Compile Include="ParlayMonitor\ParlayMonitorDataAccess.cs" />
-    <Compile Include="Members\MembersDataAccess.cs" />
-    <Compile Include="BaseDataAccess.cs" />
-    <Compile Include="Functions\FunctionsDataAccess.cs" />
-    <Compile Include="Groups\GroupsDataAccess.cs" />
-    <Compile Include="Menus\MenusDataAccess.cs" />
-    <Compile Include="ParlayWon\ParlayWonDataAccess.cs" />
-    <Compile Include="PotentialWinningMonitor\PotentialWinningMonitorDataAccess.cs" />
+    <Compile Include="AgentsDataAccess.cs" />
+    <Compile Include="BetDetailsDataAccess.cs" />
+    <Compile Include="BetListDataAccess.cs" />
+    <Compile Include="CommonDataAccess.cs" />
+    <Compile Include="LeagueBetTypeAnalysisDataAccess.cs" />
+    <Compile Include="LeaguesDataAccess.cs" />
+    <Compile Include="LeagueWinningMonitorDataAccess.cs" />
+    <Compile Include="MemberWinLossDataAccess.cs" />
+    <Compile Include="ParlayMonitorDataAccess.cs" />
+    <Compile Include="MembersDataAccess.cs" />
+    <Compile Include="ParlayWonDataAccess.cs" />
+    <Compile Include="PotentialWinningMonitorDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimilarBets\SimilarBetsDataAccess.cs" />
-    <Compile Include="TopWinners\TopWinnersDataAccess.cs" />
-    <Compile Include="TotalOutstanding\TotalOutstandingDataAccess.cs" />
-    <Compile Include="Users\UsersDataAccess.cs" />
-    <Compile Include="ViewIPInfo\ViewIPInfoDataAccess.cs" />
-    <Compile Include="Winloss\WinlossDataAccess.cs" />
+    <Compile Include="SimilarBetsDataAccess.cs" />
+    <Compile Include="TopWinnersDataAccess.cs" />
+    <Compile Include="TotalOutstandingDataAccess.cs" />
+    <Compile Include="ViewIPInfoDataAccess.cs" />
+    <Compile Include="WinlossDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ParlayRMS.Criteria\ParlayRMS.Criteria.csproj">
+      <Project>{c34bb772-66d6-49d4-8c15-52e2b67a18f0}</Project>
+      <Name>ParlayRMS.Criteria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParlayRMS.DTO\ParlayRMS.DTO.csproj">
       <Project>{B24E0E96-BC13-4217-B73D-92224E63CE03}</Project>
       <Name>ParlayRMS.DTO</Name>
