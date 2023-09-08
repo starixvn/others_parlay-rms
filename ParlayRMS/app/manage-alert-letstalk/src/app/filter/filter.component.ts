@@ -52,6 +52,8 @@ export class FilterComponent implements OnInit {
   selectedSeconds = 60;
   intervalId = -1;
 
+  isDisabledSportType = false;
+
   constructor(private filterService: FilterService, private toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -125,7 +127,7 @@ export class FilterComponent implements OnInit {
       isNoChecked: this.chkNone,
       member: this.member,
       ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(','),
-      sportType: this.selectedSport.join(','),
+      sportType: this.selectedAlertTypes.join(',') !== '1' ? '' : this.selectedSport.join(','),
       selection: this.selectedCombos.join(','),
       odds: this.odds === null || this.odds === '' ? undefined : Number(this.odds),
       pageIndex: 1,

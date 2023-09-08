@@ -89,3 +89,8 @@
 .width-60percent {
   width: 60%;
 }
+
+.disabledElement {
+  pointer-events: none;
+  opacity: 0.5;
+}
