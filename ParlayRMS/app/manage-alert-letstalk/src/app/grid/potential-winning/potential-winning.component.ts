@@ -17,6 +17,7 @@ export class PotentialWinningComponent implements DetailDataComponent {
   @Input() webInfoModel!: WebInfoModel;
   @Input() alertId: string = '0';
   @Input() combos: string = '';
+  @Input() odds?: number;
 
   body!: SafeHtml;
 
@@ -54,6 +55,6 @@ export class PotentialWinningComponent implements DetailDataComponent {
   }
 
   exportExcel(): void{
-    this.gridService.exportExcelForPotentialWinning(this.webInfoModel.apiUrl, this.alertId, this.combos);
+    this.gridService.exportExcelForPotentialWinning(this.webInfoModel.apiUrl, this.alertId, this.combos, this.odds);
   }
 }

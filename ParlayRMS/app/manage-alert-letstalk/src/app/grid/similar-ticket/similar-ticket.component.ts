@@ -16,6 +16,7 @@ export class SimilarTicketComponent implements DetailDataComponent {
   @Input() alertId: string = '0';
   @Input() apiUrl: string = '';
   @Input() combos: string = '';
+  @Input() odds?: number;
 
   body!: SafeHtml;
 
@@ -45,6 +46,6 @@ export class SimilarTicketComponent implements DetailDataComponent {
   }
   
   exportExcel(): void {
-    this.gridService.exportExcelForSimilarBet(this.apiUrl, this.alertId, this.combos);
+    this.gridService.exportExcelForSimilarBet(this.apiUrl, this.alertId, this.combos, this.odds);
   }
 }

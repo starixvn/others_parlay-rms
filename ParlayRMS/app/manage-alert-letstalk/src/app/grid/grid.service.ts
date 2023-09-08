@@ -27,12 +27,12 @@ export class GridService {
     return this.httpService.post(`${apiUrl}${this.api}alerts`, filterModel);
   }
   
-  getSimilarTickets(apiUrl: string, id: string, combos: string): Observable<SimilarTicketModel[]> {
-    return this.httpService.post(`${apiUrl}${this.api}similar-detail`, { alertId : id, selection: combos });
+  getSimilarTickets(apiUrl: string, id: string, combos: string, odds?: number): Observable<SimilarTicketModel[]> {
+    return this.httpService.post(`${apiUrl}${this.api}similar-detail`, { alertId : id, selection: combos, odds: odds });
   }
 
-  getPotentialWinning(apiUrl: string, id: string, combos: string): Observable<PotentialWinningModel[]> {
-    return this.httpService.post(`${apiUrl}${this.api}potential-winning-detail`, { alertId : id, selection: combos });
+  getPotentialWinning(apiUrl: string, id: string, combos: string, odds?: number): Observable<PotentialWinningModel[]> {
+    return this.httpService.post(`${apiUrl}${this.api}potential-winning-detail`, { alertId : id, selection: combos, odds: odds });
   }
 
   getLogs(apiUrl: string, id: string): Observable<LogModel[]> {
@@ -96,17 +96,17 @@ export class GridService {
     });
   }
 
-  public exportExcelForSimilarBet(apiUrl: string, id: string, combos: string): void {
+  public exportExcelForSimilarBet(apiUrl: string, id: string, combos: string, odds?: number): void {
     const api = `${apiUrl}${this.api}export-excel-similar-bet`;
-    this.httpService.download(api, { alertId : id, selection: combos }).subscribe(response => {
+    this.httpService.download(api, { alertId : id, selection: combos, odds: odds }).subscribe(response => {
         const fileName = `Similar-Bet.xlsx`;
         Helper.downloadFile(response, fileName);
     });
   }
 
-  public exportExcelForPotentialWinning(apiUrl: string, id: string, combos: string): void {
+  public exportExcelForPotentialWinning(apiUrl: string, id: string, combos: string, odds?: number): void {
     const api = `${apiUrl}${this.api}export-excel-potential-winning`;
-    this.httpService.download(api, { alertId : id, selection: combos }).subscribe(response => {
+    this.httpService.download(api, { alertId : id, selection: combos, odds: odds }).subscribe(response => {
         const fileName = `Potential-Winning.xlsx`;
         Helper.downloadFile(response, fileName);
     });
