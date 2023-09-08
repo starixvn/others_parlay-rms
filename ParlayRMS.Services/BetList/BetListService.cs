@@ -37,7 +37,7 @@ namespace ParlayRMS.Services.BetList
                     SportTypeId = item.SportType,
                     IsNeutral = item.IsNeutral,
                     MatchId = item.MatchId,
-                    MatchCode = item.MatchCode.ToString(),
+                    MatchCode = item.MatchCode,
                     RefNo = refNo.ToString(),
                     Status = item.Status,
                     BetCheck = item.BetCheck,

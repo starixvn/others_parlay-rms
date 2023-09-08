@@ -49,51 +49,43 @@ namespace ParlayRMS.DataAccess
 
                 using (var reader = db.ExecuteReader(criteria))
                 {
-                    return filterBy > 0
-                        ? GetRmsMonitorPotentialWinningsByAgent(reader)
-                        : GetRmsMonitorPotentialWinnings(reader);
+	                while (reader.Read())
+                    {
+                        if (filterBy > 0)
+                        {
+                            yield return new RMS_Monitor_Potential_Winning
+                            {
+	                            AgentName = reader.ToString("agentname"),
+	                            WinningAmount = reader.ToDecimal("winningamount"),
+	                            TotalMember = reader.ToInt32("totalmember"),
+	                            Recommend = reader.ToInt32("recommend"),
+	                            Stake = reader.ToDecimal("TotalStake")
+                            };
+                        }
+                        else
+                        {
+                            yield return new RMS_Monitor_Potential_Winning
+                            {
+								TransDate = reader.ToDateTime("transdate"),
+								TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
+								CustId = reader.ToInt32("custid"),
+								UserName = reader.ToString("username"),
+								Currency = reader.ToString("currency"),
+								Odds = reader.ToDecimal("odds"),
+								Stake = reader.ToDecimal("stake"),
+								WinningAmount = reader.ToDecimal("winningamount"),
+								CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
+								Level = reader.ToInt32("level"),
+								TotalTicket = reader.ToInt32("totalbets"),
+								CustomerClass = reader["CustomerClass"] == DBNull.Value
+									? "None"
+									: reader.ToInt32("CustomerClass").ToString(),
+								TotalTrackingBets = reader.ToInt32("TotalTrackingBets"),
+								SiteGroup = reader.ToString("SiteGroup")
+							};
+                        }
+                    }
                 }
-            }
-        }
-
-        private static IEnumerable<RMS_Monitor_Potential_Winning> GetRmsMonitorPotentialWinnings(IDataReader reader)
-        {
-            while (reader.Read())
-            {
-                yield return new RMS_Monitor_Potential_Winning
-                {
-                    TransDate = reader.ToDateTime("transdate"),
-                    TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-                    CustId = reader.ToInt32("custid"),
-                    UserName = reader.ToString("username"),
-                    Currency = reader.ToString("currency"),
-                    Odds = reader.ToDecimal("odds"),
-                    Stake = reader.ToDecimal("stake"),
-                    WinningAmount = reader.ToDecimal("winningamount"),
-                    CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
-                    Level = reader.ToInt32("level"),
-                    TotalTicket = reader.ToInt32("totalbets"),
-                    CustomerClass = reader["CustomerClass"] == DBNull.Value
-                        ? "None"
-                        : reader.ToInt32("CustomerClass").ToString(),
-                    TotalTrackingBets = reader.ToInt32("TotalTrackingBets"),
-                    SiteGroup = reader.ToString("SiteGroup")
-                };
-            }
-        }
-
-        private static IEnumerable<RMS_Monitor_Potential_Winning> GetRmsMonitorPotentialWinningsByAgent(IDataReader reader)
-        {
-            while (reader.Read())
-            {
-                yield return new RMS_Monitor_Potential_Winning
-                {
-                    AgentName = reader.ToString("agentname"),
-                    WinningAmount = reader.ToDecimal("winningamount"),
-                    TotalMember = reader.ToInt32("totalmember"),
-                    Recommend = reader.ToInt32("recommend"),
-                    Stake = reader.ToDecimal("TotalStake")
-                };
             }
         }
 

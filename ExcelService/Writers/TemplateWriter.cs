@@ -74,10 +74,12 @@ namespace ExcelService.Writers
 
         public void WriteCellRange(int rowId, int totalRow, int colId, int totalCol, object value)
         {
-            var cellRange = new NPOI.SS.Util.CellRangeAddress(rowId, rowId + totalRow - 1, colId, colId + totalCol - 1);
-            _sheet.AddMergedRegion(cellRange);
-
-            var cell = _sheet.GetCell(rowId, colId);
+	        if (totalRow > 1)
+	        {
+		        var cellRange = new NPOI.SS.Util.CellRangeAddress(rowId, rowId + totalRow - 1, colId, colId + totalCol - 1);
+		        _sheet.AddMergedRegion(cellRange);
+			}
+	        var cell = _sheet.GetCell(rowId, colId);
             cell.SetCellValue(value);
         }
 
