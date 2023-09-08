@@ -198,7 +198,8 @@ export class GridComponent implements OnChanges {
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
     component.instance.alertId = id;
-    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, id).subscribe(data => component.instance.data = data);
+    component.instance.combos = this.filterModel.selection;
+    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, id, this.filterModel.selection).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;
@@ -210,7 +211,8 @@ export class GridComponent implements OnChanges {
     this.componentsRef.push(component);
     component.instance.webInfoModel = this.webInfoModel;
     component.instance.alertId = id;
-    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, id).subscribe(data => component.instance.data = data);
+    component.instance.combos = this.filterModel.selection;
+    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, id, this.filterModel.selection).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;

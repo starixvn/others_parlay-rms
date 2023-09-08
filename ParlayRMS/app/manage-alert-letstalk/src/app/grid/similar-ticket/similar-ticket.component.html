@@ -55,9 +55,9 @@
     <td>{{ item.siteGroup }}</td>
     <td class="text-left">{{ item.userName }}</td>
     <td>{{ item.customerClass }}</td>
-    <td class="text-right" [napDecimalFormat]="item.stake"></td>
-    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
-    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
+    <td class="text-right" [napIntegerFormat]="item.stake"></td>
+    <td class="text-right" [napIntegerFormat]="item.winningAmt"></td>
+    <td class="text-right" [napIntegerFormat]="item.houseAmt"></td>
     <td>{{ item.status }}</td>
     <td><button type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button></td>
   </ng-template>

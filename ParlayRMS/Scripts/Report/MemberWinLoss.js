@@ -336,25 +336,45 @@
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbUserExtra.width();
         MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
     },
-    ViewDetails: function (month) {
+    ViewDetails: function (info, param, isMember) {
         var table = $('#result');
-        var found = table.find("tr[monthid='" + month + "']");
+        var found = table.find("tr[info='" + info + "']");
         if (found.length != 0) {
-            table.find("tr[monthid='" + month + "']").remove();
+            table.find("tr[info='" + info + "']").remove();
         }
         else {
-            table.find('tr[monthid]').remove();
-
-            var row = $("#tr_" + month);
-            row.after('<tr class="details" monthid="' + month + '"><td colspan="11" class="center"></td></tr>');
+            table.find('tr[info]').remove();
+            var colspanNumber = isMember ? 11 : 14;
+            var row = $("#tr_" + info);
+            row.after('<tr class="details" info="' + info + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
             var newRow = row.next();
             var td = newRow.find('td');
             var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
             var waitingImg = $('<img src="' + imgURL + '" />');
             td.html(waitingImg);
-
+            var fromDate = '';
+            var toDate = '';
+            var userName = '';
+            if (isMember) {
+                var dateInfo = info.trim().split('-');
+                var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
+                var toDateString = dateInfo[0] + '/31/' + dateInfo[1];
+                fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
+                toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
+                userName = param.Username
+            } else {
+                fromDate = param.FromDate;
+                toDate = param.ToDate;
+                userName = info;
+            }
             var data = {
-                Month: month
+                FromDate: fromDate,
+                ToDate: toDate,
+                ParlayTypes: param.ParlayTypes,
+                SportsType: param.SportsType,
+                Combos: param.Combos,
+                LiveType: param.LiveType,
+                Username: userName
             }
 
             $.ajax({
@@ -397,6 +417,18 @@ function MovePage(pageIndex) {
 String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, '');
 };
+
+function ViewBetDetail(refNo, transId, username, custId, bettype) {
+    if (bettype == 38) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+    else if (bettype == 376) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/PenaltyShootoutParlayBetDetails?&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+    else {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+}
 
 $(document).ready(function () {
     MemberWinLoss.Init();

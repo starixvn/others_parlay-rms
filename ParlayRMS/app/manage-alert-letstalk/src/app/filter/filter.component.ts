@@ -116,7 +116,6 @@ export class FilterComponent implements OnInit {
   private createQueryModel(): FilterModel {
     const fromDate = DateHelper.convertDateStructToMoment(this.fromDate);
     const toDate = DateHelper.convertDateStructToMoment(this.toDate);
-
     return {
       fromDate: DateHelper.formatMomentDate(fromDate, DateFormat.Date),
       toDate: DateHelper.formatMomentDate(toDate, DateFormat.Date),
@@ -126,6 +125,9 @@ export class FilterComponent implements OnInit {
       isNoChecked: this.chkNone,
       member: this.member,
       ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(','),
+      sportType: this.selectedSport.join(','),
+      selection: this.selectedCombos.join(','),
+      odds: this.odds === null || this.odds === '' ? undefined : Number(this.odds),
       pageIndex: 1,
       pageSize: 100
     };
@@ -134,6 +136,16 @@ export class FilterComponent implements OnInit {
   private isValid(): boolean {
     if (this.selectedAlertTypes.length === 0) {
       this.toastService.activate(`Please select at least one Alert type!`);
+      return false;
+    }
+
+    if (this.selectedSport.length === 0) {
+      this.toastService.activate(`Please select at least one Sport type!`);
+      return false;
+    }
+
+    if (this.selectedCombos.length === 0) {
+      this.toastService.activate(`Please select at least one Combo!`);
       return false;
     }
 

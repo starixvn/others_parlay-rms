@@ -754,6 +754,9 @@
     <Content Include="wwwroot\manage-alert-letstalk\fontawesome-webfont.f691f37e57f04c152e23.woff" />
     <Content Include="wwwroot\manage-alert-letstalk\index.cshtml" />
     <Content Include="Views\MemberWinLoss\DataDetails.cshtml" />
+    <Content Include="Views\MemberWinLoss\BetDetails.cshtml" />
+    <Content Include="Views\MemberWinLoss\PenaltyShootoutParlayBetDetails.cshtml" />
+    <Content Include="Views\MemberWinLoss\SingleMatchParlayBetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />

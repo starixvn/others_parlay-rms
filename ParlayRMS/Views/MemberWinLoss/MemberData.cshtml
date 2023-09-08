@@ -5,7 +5,7 @@
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpSiteGroup" value="@ViewBag.SiteGroup" />
-<div style="width: 1471px" class="maintitle">
+<div style="width: 1571px" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
@@ -128,7 +128,7 @@
                     </td>
                     @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
                     <td class="center">
-	                    <button id="btnViewDetails" data-month="@record.Month" title="Click to view detail" class="button-disable" style="width:40px;">11</button>
+	                    <button id="btnViewDetails" data-month="@record.Month" title="Click to view detail" class="button-disable" style="width:40px;">@record.TotalBets</button>
                     </td>
                 </tr>
             }
@@ -181,9 +181,12 @@
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
                     </td>
-                    <td class="numeric">
-                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
-                    </td>
+	                <td class="numeric">
+		                @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
+	                </td>
+	                <td class="center">
+		                @Formatter.FormatNumber3(Model.Total.TotalBets)
+	                </td>
                 </tr>
             }
             else
@@ -213,7 +216,7 @@
             MemberWinLoss.ExportExcel(data);
         });
         $("#btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("month"));
+            MemberWinLoss.ViewDetails($(this).data("month"), data, true);
         });
     });
 </script>

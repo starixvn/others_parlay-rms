@@ -32,6 +32,8 @@ namespace ParlayRMS.DTO.MemberWinLoss
 
         public string SiteGroup { get; set; }
 
+        public int TotalBets { get; set; }
+
         public void Add(RMS_Rpt_Parlay_MemberWinLoss obj)
         {
             Tickets_Won += obj.Tickets_Won;
@@ -44,6 +46,7 @@ namespace ParlayRMS.DTO.MemberWinLoss
             OurPT_Lose += obj.OurPT_Lose;
             OurPT_NetWinloss += obj.OurPT_NetWinloss;
             NumOfSubrows += 1;
+            TotalBets += obj.TotalBets;
         }
     }
 }

@@ -278,5 +278,14 @@ namespace ParlayRMS.Services.MemberWinLoss
             }
             return list;
         }
+
+        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss_Detail> GetDetails(DateTime fromDate, DateTime toDate,
+	        string parlayTypes, string sportsType, byte liveType, string combos, long custId)
+        {
+	        var info = _commonService.GetBalanceUpDayInfo();
+	        return _memberWinLossDataAccess.RMS_Rpt_ComboParlay_Winloss_Details(fromDate, toDate, info.MoveBetsDay,
+		        parlayTypes, sportsType, liveType, combos, custId);
+
+        }
     }
 }

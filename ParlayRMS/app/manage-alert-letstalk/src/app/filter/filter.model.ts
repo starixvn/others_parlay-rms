@@ -13,6 +13,9 @@ export interface FilterModel {
     isNoChecked: boolean;
     actionType: string;
     ticketStatus: string;
+	sportType: string;
+	selection: string;
+    odds?: number;
     pageSize: number;
     pageIndex: number;
 }

@@ -74,9 +74,9 @@
     <td>{{ item.transDateString }}</td>
     <td><span (click)="openNewTabOfSimilarBet(item.transId)">{{ item.transId }}</span></td>
     <td class="text-right" [napDecimalFormat]="item.odds"></td>
-    <td class="text-right" [napDecimalFormat]="item.stake"></td>
-    <td class="text-right" [napDecimalFormat]="item.winningAmt"></td>
-    <td class="text-right" [napDecimalFormat]="item.houseAmt"></td>
+    <td class="text-right" [napIntegerFormat]="item.stake"></td>
+    <td class="text-right" [napIntegerFormat]="item.winningAmt"></td>
+    <td class="text-right" [napIntegerFormat]="item.houseAmt"></td>
     <td><span (click)="openNewTabOfIpInfo(item.ip, item.transDateString)">{{ item.ip }}</span></td>
     <td [napDecimalFormat]="item.housePt"></td>
     <td>{{ item.totalBet }}</td>
