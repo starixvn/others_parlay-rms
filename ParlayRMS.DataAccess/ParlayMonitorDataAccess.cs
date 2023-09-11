@@ -1,15 +1,13 @@
 namespace ParlayRMS.DataAccess
 {
-    using System;
     using System.Collections.Generic;
-    using Fanex.Data;
+    using System.Linq;
     using Fanex.Data.Repository;
     using Criteria.ParlayMonitor;
     using DTO.ParlayMonitor;
     using DTO.PotentialWinning;
-    using Utility.Data;
 
-    public class ParlayMonitorDataAccess 
+    public class ParlayMonitorDataAccess
     {
         private readonly IDynamicRepository repository = new DynamicRepository();
 
@@ -51,42 +49,19 @@ namespace ParlayRMS.DataAccess
                 Username = string.IsNullOrWhiteSpace(username) ? null : username
             };
 
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            var betList = repository.Fetch<RMS_Monitor_Parlay_Betlist>(criteria).ToList();
+            betList.ForEach(b =>
             {
-                using (var reader = db.ExecuteReader(criteria))
-                {
-                    while (reader.Read())
-                    {
-                        yield return new RMS_Monitor_Parlay_Betlist
-                        {
-                            TransDate = reader.ToDateTime("transdate"),
-                            TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-                            TransId = reader.ToString("transid"),
-                            RefNo = reader.ToString("refno"),
-                            Username = reader.ToString("username"),
-                            Odds = reader.ToDecimal("odds"),
-                            Stake = reader.ToDecimal("stake"),
-                            PotentialWinningAmount = reader.ToDecimal("potentialWinningAmt"),
-                            NetWinAfterPT = reader.ToDecimal("maxpayout"),
-                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
-                            TotalBet = reader.ToInt32("totalbet"),
-                            NumberWon = reader.ToInt32("numberwon"),
-                            IP = reader.ToString("ip"),
-                            Level = reader.ToInt32("level"),
-                            IsBetRadar = reader.ToBoolean("IsBetRadar"),
-                            SportType = reader.ToInt32("sporttype"),
-                            BetType = reader.ToInt32("bettype"),
-                            CustId = reader.ToInt32("custid"),
-                            IsLive = reader.ToBoolean("islive"),
-                            IsBlacklistLeague = Convert.ToInt32(reader["isblacklistleague"]) == 1,
-                            IsGOF = reader.ToBoolean("IsGOF"),
-                            CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
-                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser"),
-                            SiteGroup = reader.ToString("SiteGroup")
-                        };
-                    }
-                }
-            }
+                b.TransDateString = b.TransDate.ToString("MM/dd/yyyy h:mm:ss tt");
+                b.CustomerClass = string.IsNullOrWhiteSpace(b.CustomerClass)
+                    ? "None"
+                    : b.CustomerClass;
+                b.TrackingUser = string.IsNullOrWhiteSpace(b.TrackingUser)
+                    ? "None"
+                    : b.TrackingUser;
+            });
+            
+            return betList;
         }
 
         public UserTracking RMS_Monitor_Parlay_UserTracking(int userid, string username, string transid)
@@ -97,7 +72,7 @@ namespace ParlayRMS.DataAccess
                 UserId = userid,
                 TransId = transid
             };
-            
+
             repository.Execute(command);
 
             var userTracking = new UserTracking

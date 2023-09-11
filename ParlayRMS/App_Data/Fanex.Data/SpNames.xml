@@ -5,7 +5,10 @@
     <Setting Key="RMS_CustomerAgentOfMasterSel" SpName="RMS_CustomerAgentOfMasterSel" DbName="DBACC.bodb02.bodbRMSNet" />
   </Function>
   <Function Name="Report">
-    <Setting Key="RMS_Monitor_ComboParlay_Betlist" SpName="RMS_Monitor_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_ComboParlay_Betlist" SpName="RMS_Monitor_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="potentialWinningAmt" ObjectProperty="PotentialWinningAmount" />
+      <Mapping DataField="maxpayout" ObjectProperty="NetWinAfterPT" />
+    </Setting>
     <Setting Key="RMS_Monitor_ComboParlay_BetInfo" SpName="RMS_Monitor_ComboParlay_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_ComboParlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_ComboParlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
@@ -32,7 +35,10 @@
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_ComboParlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_ComboParlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="TotalStake" ObjectProperty="Stake" />
+      <Mapping DataField="totalbets" ObjectProperty="TotalTicket" />
+    </Setting>
     <Setting Key="RMS_Monitor_ComboParlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_ComboParlay_PotentialWinning_UserTracking" SpName="RMS_ComboParlay_PotentialWinning_UserTracking" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_ParlayWon" SpName="RMS_Rpt_ParlayWon" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
@@ -100,6 +106,10 @@
     <Setting Key="RMS_BetList_PenaltyShootout_MatchDetail" SpName="RMS_BetList_PenaltyShootout_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="LeagueWinningMonitor">
-    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="totalWinningAmt" ObjectProperty="TotalWinningAmount" />
+      <Mapping DataField="companyLoseAmt" ObjectProperty="CompanyLoseAmount" />
+      <Mapping DataField="totalTicket" ObjectProperty="TotalTickets" />
+    </Setting>
   </Function>
 </Functions>

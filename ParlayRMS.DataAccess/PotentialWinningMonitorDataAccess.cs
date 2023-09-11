@@ -1,18 +1,16 @@
 namespace ParlayRMS.DataAccess
 {
-    using System;
     using System.Collections.Generic;
-    using System.Data;
+    using System.Linq;
     using Criteria.PotentialWinningMonitor;
-    using Fanex.Data;
     using Fanex.Data.Repository;
     using Criteria.ParlayMonitor;
     using DTO.PotentialWinning;
-    using Utility.Data;
 
-    public class PotentialWinningMonitorDataAccess 
+    public class PotentialWinningMonitorDataAccess
     {
         private readonly IDynamicRepository repository = new DynamicRepository();
+
         public IEnumerable<RMS_Monitor_Potential_Winning> RMS_Monitor_Parlay_PotentialWinning(
             string combos,
             string parlayTypes,
@@ -43,50 +41,30 @@ namespace ParlayRMS.DataAccess
                 Username = string.IsNullOrWhiteSpace(username) ? null : username
             };
 
+            return filterBy > 0
+                ? GetDataForAgent(criteria)
+                : GetDataForMember(criteria);
+        }
 
-            using (var db = ObjectDbFactory.CreateInstance("RMS_Monitor_ComboParlay_PotentialWinning"))
+        private IEnumerable<RMS_Monitor_Potential_Winning> GetDataForMember(Monitor_ComboParlay_PotentialWinning_Criteria criteria)
+        {
+            var dataForMember = repository.Fetch<RMS_Monitor_Potential_Winning>(criteria).ToList();
+            dataForMember.ForEach(d =>
             {
+                d.TransDateString = d.TransDate.ToString("MM/dd/yyyy h:mm:ss tt");
+                d.CustomerClass = string.IsNullOrWhiteSpace(d.CustomerClass)
+                    ? "None"
+                    : d.CustomerClass;
 
-                using (var reader = db.ExecuteReader(criteria))
-                {
-	                while (reader.Read())
-                    {
-                        if (filterBy > 0)
-                        {
-                            yield return new RMS_Monitor_Potential_Winning
-                            {
-	                            AgentName = reader.ToString("agentname"),
-	                            WinningAmount = reader.ToDecimal("winningamount"),
-	                            TotalMember = reader.ToInt32("totalmember"),
-	                            Recommend = reader.ToInt32("recommend"),
-	                            Stake = reader.ToDecimal("TotalStake")
-                            };
-                        }
-                        else
-                        {
-                            yield return new RMS_Monitor_Potential_Winning
-                            {
-								TransDate = reader.ToDateTime("transdate"),
-								TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-								CustId = reader.ToInt32("custid"),
-								UserName = reader.ToString("username"),
-								Currency = reader.ToString("currency"),
-								Odds = reader.ToDecimal("odds"),
-								Stake = reader.ToDecimal("stake"),
-								WinningAmount = reader.ToDecimal("winningamount"),
-								CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
-								Level = reader.ToInt32("level"),
-								TotalTicket = reader.ToInt32("totalbets"),
-								CustomerClass = reader["CustomerClass"] == DBNull.Value
-									? "None"
-									: reader.ToInt32("CustomerClass").ToString(),
-								TotalTrackingBets = reader.ToInt32("TotalTrackingBets"),
-								SiteGroup = reader.ToString("SiteGroup")
-							};
-                        }
-                    }
-                }
-            }
+            });
+
+            return dataForMember;
+        }
+
+        private IEnumerable<RMS_Monitor_Potential_Winning> GetDataForAgent(Monitor_ComboParlay_PotentialWinning_Criteria criteria)
+        {
+            var dataForAgent = repository.Fetch<RMS_Monitor_Potential_Winning>(criteria).ToList();
+            return dataForAgent;
         }
 
         public IEnumerable<RMS_Monitor_Potential_Winning_Detail> RMS_Monitor_Parlay_PotentialWinningDetail(
@@ -105,35 +83,16 @@ namespace ParlayRMS.DataAccess
                 IsCornerParlay = isCornerParlay
             };
 
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            var details = repository.Fetch<RMS_Monitor_Potential_Winning_Detail>(criteria).ToList();
+            details.ForEach(d =>
             {
-                using (var reader = db.ExecuteReader(criteria))
-                {
-                    while (reader.Read())
-                    {
-                        yield return new RMS_Monitor_Potential_Winning_Detail
-                        {
-                            TransDate = reader.ToDateTime("transdate"),
-                            TransDateString = reader.ToDateTime("transdate").ToString("MM/dd/yyyy h:mm:ss tt"),
-                            TransId = reader.ToInt64("transid"),
-                            Odds = reader.ToDecimal("odds"),
-                            RefNo = reader.ToInt64("refno"),
-                            Stake = reader.ToDecimal("stake"),
-                            WinningAmount = reader.ToDecimal("winningamount"),
-                            CompanyLoseAmount = reader.ToDecimal("companyloseamount"),
-                            Ip = reader.ToString("ip"),
-                            HousePT = reader.ToDecimal("housept"),
-                            TotalBet = reader.ToInt32("totalbet"),
-                            TotalSelection = Convert.ToInt32(reader.ToDecimal("totalselection")),
-                            NumberWon = Convert.ToInt32(reader.ToDecimal("numberwon")),
-                            SportType = reader.ToInt32("sporttype"),
-                            BetType = reader.ToInt32("bettype"),
-                            IsGOF = reader.ToBoolean("IsGOF"),
-                            TrackingUser = reader["TrackingUser"] == DBNull.Value ? "None" : reader.ToString("TrackingUser")
-                        };
-                    }
-                }
-            }
+                d.TransDateString = d.TransDate.ToString("MM/dd/yyyy h:mm:ss tt");
+                d.TrackingUser = string.IsNullOrWhiteSpace(d.TrackingUser)
+                    ? "None"
+                    : d.TrackingUser;
+            });
+            
+            return details;
         }
 
         public UserTracking RMS_ComboParlay_PotentialWinning_UserTracking(int userid, string username, string transid)
