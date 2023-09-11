@@ -26,10 +26,10 @@
           </div>
         </div>
       </div>
-      <div class="nap-col">
+      <div class="nap-col" [hidden]="selectedAlertTypes.join(',') !== '1'">
         <div class="nap-group">
           <label>Sport type</label>
-          <div class="nap-control" [ngClass]="{'disabledElement': selectedAlertTypes.join(',') !== '1'}">
+          <div class="nap-control">
             <ngx-dropdown-treeview [items]="sportItems | sportTreeview"
               [config]="itemConfig" (selectedChange)="selectedSport = $event">
             </ngx-dropdown-treeview>
