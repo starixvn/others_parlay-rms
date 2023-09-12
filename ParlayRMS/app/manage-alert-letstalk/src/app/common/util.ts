@@ -14,6 +14,9 @@ export class Sort {
             }
             case "string": {
                 return (a: any, b: any) => {
+                    if (a[property] === null && b[property] === null) {
+                        return 0;
+                    }
                     if (a[property] === null) {
                         return 1 * this.sortOrder;
                     }
