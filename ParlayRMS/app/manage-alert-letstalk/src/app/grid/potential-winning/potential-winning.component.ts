@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PotentialWinningModel } from './potential-winning.model';
-import { BetDetails, DetailDataComponent } from '../grid.model';
+import { AlertDetailModel, BetDetails, DetailDataComponent } from '../grid.model';
 import { GridService } from '../grid.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -15,9 +15,7 @@ import { WebInfoModel } from 'src/app/app.model';
 export class PotentialWinningComponent implements DetailDataComponent {
   @Input() data: PotentialWinningModel[] = [];
   @Input() webInfoModel!: WebInfoModel;
-  @Input() alertId: string = '0';
-  @Input() combos: string = '';
-  @Input() odds?: number;
+  @Input() alertDetail!: AlertDetailModel;
 
   body!: SafeHtml;
 
@@ -55,6 +53,6 @@ export class PotentialWinningComponent implements DetailDataComponent {
   }
 
   exportExcel(): void{
-    this.gridService.exportExcelForPotentialWinning(this.webInfoModel.apiUrl, this.alertId, this.combos, this.odds);
+    this.gridService.exportExcelForPotentialWinning(this.webInfoModel.apiUrl, this.alertDetail);
   }
 }

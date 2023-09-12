@@ -1,5 +1,5 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnChanges, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
-import { BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
+import { AlertDetailModel, BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
 import { AlertTypeConstants, PotentialWinningLevelConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
 import { GridService } from './grid.service';
@@ -197,10 +197,14 @@ export class GridComponent implements OnChanges {
     const factory = this.componentFactoryResolver.resolveComponentFactory(SimilarTicketComponent);
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
-    component.instance.alertId = id;
-    component.instance.combos = this.filterModel.selection;
-    component.instance.odds = this.filterModel.odds;
-    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, id, this.filterModel.selection, this.filterModel.odds).subscribe(data => component.instance.data = data);
+    const alertDetail: AlertDetailModel ={
+      alertId: id,
+      selection: this.filterModel.selection,
+      odds: this.filterModel.odds,
+      ticketStatus: this.filterModel.ticketStatus
+    }
+    component.instance.alertDetail = alertDetail;
+    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, alertDetail).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;
@@ -210,11 +214,15 @@ export class GridComponent implements OnChanges {
     const factory = this.componentFactoryResolver.resolveComponentFactory(PotentialWinningComponent);
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
+    const alertDetail: AlertDetailModel ={
+      alertId: id,
+      selection: this.filterModel.selection,
+      odds: this.filterModel.odds,
+      ticketStatus: this.filterModel.ticketStatus
+    }
     component.instance.webInfoModel = this.webInfoModel;
-    component.instance.alertId = id;
-    component.instance.combos = this.filterModel.selection;
-    component.instance.odds = this.filterModel.odds;
-    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, id, this.filterModel.selection, this.filterModel.odds).subscribe(data => component.instance.data = data);
+    component.instance.alertDetail = alertDetail;
+    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, alertDetail).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;
