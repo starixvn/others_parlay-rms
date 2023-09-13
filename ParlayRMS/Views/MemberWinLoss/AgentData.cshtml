@@ -5,7 +5,8 @@
         var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
     }
-    <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+<input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
     <div style="width: 1706px" class="maintitle">
         <div class="information">
             @ViewBag.Title
@@ -177,7 +178,7 @@
 
                     foreach (var record in Model)
                     {
-                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)  id="tr_@record.Username">
+                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)  id="tr_@(record.Month+record.Username)">
                             @if (!record.IsSutotalRow)
                             {
                                 <td class="center">
@@ -231,7 +232,7 @@
                                 }
                                 else
                                 {
-	                                <button data-username="@record.Username" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+	                                <button data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
                                 }
                             </td>
                         </tr>
@@ -327,7 +328,7 @@
         });
 
         $(".btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("username"), data, false);
+            MemberWinLoss.ViewDetails($(this).data("month"), data, false, $(this).data("username"));
         });
     });
     </script>

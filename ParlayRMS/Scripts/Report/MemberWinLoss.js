@@ -331,22 +331,23 @@
         MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedObject.SortById, MemberWinLoss.CachedObject.IsSortAsc);
     },
     DisplayInfoExtra: function () {
-        var html = '(Site: <b>' + $("#inpSiteGroup").val() + '</b>, CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
+        var html = $("#inpIsAgent").val() ? '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)' :
+            '(Site: <b>' + $("#inpSiteGroup").val() + '</b>, CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
         MemberWinLoss.CachedDOM.lbUserExtra.html(html);
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbUserExtra.width();
         MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
     },
-    ViewDetails: function (info, param, isMember) {
+    ViewDetails: function (month, param, isMember, username) {
         var table = $('#result');
-        var found = table.find("tr[info='" + info + "']");
+        var found = table.find("tr[info='" + month + username + "']");
         if (found.length != 0) {
-            table.find("tr[info='" + info + "']").remove();
+            table.find("tr[info='" + month + username + "']").remove();
         }
         else {
             table.find('tr[info]').remove();
             var colspanNumber = isMember ? 11 : 14;
-            var row = $("#tr_" + info);
-            row.after('<tr class="details" info="' + info + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
+            var row = $("#tr_" + month + username);
+            row.after('<tr class="details" info="' + month + username + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
             var newRow = row.next();
             var td = newRow.find('td');
             var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
@@ -354,19 +355,12 @@
             td.html(waitingImg);
             var fromDate = '';
             var toDate = '';
-            var userName = '';
-            if (isMember) {
-                var dateInfo = info.trim().split('-');
-                var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
-                var toDateString = dateInfo[0] + '/31/' + dateInfo[1];
-                fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
-                toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
-                userName = param.Username
-            } else {
-                fromDate = param.FromDate;
-                toDate = param.ToDate;
-                userName = info;
-            }
+            var userNameInfo = isMember ? param.Username : username;
+            var dateInfo = month.trim().split('-');
+            var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
+            var toDateString = dateInfo[0] + '/31/' + dateInfo[1];
+            fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
+            toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
             var data = {
                 FromDate: fromDate,
                 ToDate: toDate,
@@ -374,7 +368,7 @@
                 SportsType: param.SportsType,
                 Combos: param.Combos,
                 LiveType: param.LiveType,
-                Username: userName
+                Username: userNameInfo
             }
 
             $.ajax({
