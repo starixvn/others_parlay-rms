@@ -72,7 +72,7 @@
         <div class="nap-group">
           <label class="width-50">Odds=&lt;</label>
           <div class="nap-control">
-            <input class="form-control" type="number" [(ngModel)]="odds">
+            <input class="form-control" [(ngModel)]="odds" (keypress)="onlyDigits($event)">
           </div>
         </div>
       </div>

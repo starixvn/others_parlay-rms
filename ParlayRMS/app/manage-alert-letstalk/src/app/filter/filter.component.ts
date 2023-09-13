@@ -179,4 +179,10 @@ export class FilterComponent implements OnInit {
   private clearTimer(): void {
     window.clearInterval(this.intervalId);
   }
+
+  onlyDigits(event: KeyboardEvent) {
+    let code = event.charCode;
+    return ((code >= 48 && code <= 57)
+      || (code === 46 && this.odds?.toString().length > 0 && !this.odds?.toString().includes('.')));
+  }
 }
