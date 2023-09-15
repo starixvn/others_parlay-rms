@@ -4,6 +4,7 @@
     @{
         var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
+	    var index = 0;
     }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
@@ -178,7 +179,8 @@
 
                     foreach (var record in Model)
                     {
-                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)  id="tr_@(record.Month+record.Username)">
+	                    index++;
+                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)  id="tr_@index">
                             @if (!record.IsSutotalRow)
                             {
                                 <td class="center">
@@ -232,7 +234,7 @@
                                 }
                                 else
                                 {
-	                                <button data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
                                 }
                             </td>
                         </tr>
@@ -328,7 +330,7 @@
         });
 
         $(".btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("month"), data, false, $(this).data("username"));
+            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"));
         });
     });
     </script>

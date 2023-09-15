@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 
 namespace ParlayRMS.ViewModel.Report
 {
@@ -16,6 +17,7 @@ namespace ParlayRMS.ViewModel.Report
 
 		public string Combos { get; set; }
 
+		[AllowHtml]
 		public string Username { get; set; }
 	}
 }

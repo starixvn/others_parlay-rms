@@ -337,17 +337,17 @@
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbUserExtra.width();
         MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
     },
-    ViewDetails: function (month, param, isMember, username) {
+    ViewDetails: function (index, month, param, isMember, username) {
         var table = $('#result');
-        var found = table.find("tr[info='" + month + username + "']");
+        var found = table.find("tr[info='" + index + "']");
         if (found.length != 0) {
-            table.find("tr[info='" + month + username + "']").remove();
+            table.find("tr[info='" + index + "']").remove();
         }
         else {
             table.find('tr[info]').remove();
             var colspanNumber = isMember ? 11 : 14;
-            var row = $("#tr_" + month + username);
-            row.after('<tr class="details" info="' + month + username + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
+            var row = $("#tr_" + index);
+            row.after('<tr class="details" info="' + index + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
             var newRow = row.next();
             var td = newRow.find('td');
             var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
@@ -355,7 +355,7 @@
             td.html(waitingImg);
             var fromDate = '';
             var toDate = '';
-            var userNameInfo = isMember ? param.Username : username;
+            var userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
             var dateInfo = month.trim().split('-');
             var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
             var toDateString = dateInfo[0] + '/31/' + dateInfo[1];
