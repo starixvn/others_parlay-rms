@@ -88,13 +88,13 @@ export class GridComponent implements OnChanges {
 
   getColorViaSportType(sportType: string, alertType: string): string {
     if (alertType === AlertTypeConstants.POTENTIAL_WINNING) {
-      if (sportType.toLowerCase().includes('red')) {
+      if (sportType?.toLowerCase().includes('red')) {
         return PotentialWinningLevelConstants.RED;
       }
-      if (sportType.toLowerCase().includes('orange')) {
+      if (sportType?.toLowerCase().includes('orange')) {
         return PotentialWinningLevelConstants.ORANGE;
       }
-      if (sportType.toLowerCase().includes('yellow')) {
+      if (sportType?.toLowerCase().includes('yellow')) {
         return PotentialWinningLevelConstants.YELLOW;
       }
     }
