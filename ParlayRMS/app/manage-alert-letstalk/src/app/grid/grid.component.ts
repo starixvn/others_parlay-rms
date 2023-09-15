@@ -203,6 +203,7 @@ export class GridComponent implements OnChanges {
       odds: this.filterModel.odds,
       ticketStatus: this.filterModel.ticketStatus
     }
+    component.instance.apiUrl = this.webInfoModel.apiUrl;
     component.instance.alertDetail = alertDetail;
     this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, alertDetail).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
