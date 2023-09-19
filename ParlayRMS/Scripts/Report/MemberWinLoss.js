@@ -357,8 +357,9 @@
             var toDate = '';
             var userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
             var dateInfo = month.trim().split('-');
+            var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
             var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
-            var toDateString = dateInfo[0] + '/31/' + dateInfo[1];
+            var toDateString = dateInfo[0] + '/' + lastDateOfMonth + '/' + dateInfo[1];
             fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
             toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
             var data = {
