@@ -1,3 +1,5 @@
+using System.Web.Mvc;
+
 namespace ParlayRMS.ViewModel.Report
 {
     public class BetDetailsOptions
@@ -10,6 +12,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public long OriginalRefNo { get; set; }
 
+        [AllowHtml]
         public string Username { get; set; }
     }
 }

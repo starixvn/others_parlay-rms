@@ -43,3 +43,10 @@ export interface TakeActionModel {
     isChecked: boolean;
     actionId: number;
 }
+
+export interface AlertDetailModel {
+    alertId : string;
+    selection: string;
+    odds?: number;
+    ticketStatus: string;
+}

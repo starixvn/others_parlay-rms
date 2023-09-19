@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SimilarTicketModel } from './similar-ticket.model';
-import { BetDetails, DetailDataComponent } from '../grid.model';
+import { AlertDetailModel, BetDetails, DetailDataComponent } from '../grid.model';
 import { GridService } from '../grid.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -13,6 +13,8 @@ import { BetDetailsComponent } from '../bet-details/bet-details.component';
 })
 export class SimilarTicketComponent implements DetailDataComponent {
   @Input() data: SimilarTicketModel[] = [];
+  @Input() apiUrl: string = '';
+  @Input() alertDetail!: AlertDetailModel;
 
   body!: SafeHtml;
 
@@ -39,5 +41,9 @@ export class SimilarTicketComponent implements DetailDataComponent {
       this.body = this.sanitized.bypassSecurityTrustHtml(body);
       componentInstance.body = this.body;
     });
+  }
+  
+  exportExcel(): void {
+    this.gridService.exportExcelForSimilarBet(this.apiUrl, this.alertDetail);
   }
 }

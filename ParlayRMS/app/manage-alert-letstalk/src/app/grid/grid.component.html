@@ -5,14 +5,14 @@
         <col style="width: 150px" />
         <col style="width: 130px" />
         <col style="width: 100px" />
-        <col style="width: 150px" />
-        <col style="width: 100px" />
-        <col style="width: 100px" />
+        <col style="width: 220px" />
+        <col style="width: 85px" />
+        <col style="width: 85px" />
         <col style="width: 70px" />
-        <col style="width: 150px" />
-        <col style="width: 150px" />
-        <col style="width: 150px" />
-        <col style="width: 150px" />
+        <col style="width: 50px" />
+        <col style="width: 130px" />
+        <col style="width: 140px" />
+        <col style="width: 140px" />
         <col style="width: 50px" />
         <col style="width: 100px" />
         <col style="width: 130px" />
@@ -29,13 +29,13 @@
             </th>
             <th scope="col">BETID</th>
             <th scope="col">Alert Type</th>
-            <th scope="col">Sports Type</th>
+            <th scope="col">Sport Type</th>
             <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="userName" data-type="string">
               User Name
               <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
             </th>
             <th scope="col">Total Similar Tickets</th>
-            <th scope="col">Total Selection</th>
+            <th scope="col">Total Selections</th>
             <th scope="col" [appSort]="[displayedData]" (clickedSort)="removeDetailComponent()" data-order="desc" data-prop="odds" data-type="number">
               Odds
               <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
@@ -63,17 +63,17 @@
   <ng-template #rowItem let-item="item" let-index="index">
     <td>{{ index }}</td>
     <td>{{ item.alertTime | date: 'M/d/yyyy hh:mm:ss aa' }}</td>
-    <td class="to-open-new-tab" (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId??'-' }}</td>
+    <td><span (click)="openNewTabOfSimilarBet(item.betId)">{{ item.betId??'-' }}</span></td>
     <td [ngStyle]="{'background-color': getColorViaAlertType(item.alertType)}">{{ item.alertType }}</td>
     <td>{{ item.sportType }}</td>
-    <td class="to-open-new-tab text-left" (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</td>
+    <td [ngStyle]="{'background-color': getColorViaSportType(item.sportType, item.alertType)}" class="text-left"><span (click)="openNewTabOfTotalOutstanding(item.userName)">{{ item.userName }}</span></td>
     <td>{{ item.similarTickets??'-' }}</td>
     <td>{{ item.selection }}</td>
     <td class="text-right" [napDecimalFormat]="item.odds"></td>
     <td class="text-right">{{ item.totalBets??'-' }}</td>
-    <td class="text-right" [napDecimalFormat]="item.memberStake"></td>
-    <td class="text-right" [napDecimalFormat]="item.potentialWinning"></td>
-    <td class="text-right" [napDecimalFormat]="item.companyLose"></td>
+    <td class="text-right" [napIntegerFormat]="item.memberStake"></td>
+    <td class="text-right" [napIntegerFormat]="item.potentialWinning"></td>
+    <td class="text-right" [napIntegerFormat]="item.companyLose"></td>
     <td>
       <button *ngIf="isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showDetailData(index, item)">View</button>
       <button *ngIf="!isDisplayDetailData(item.alertType)" type="button" class="btn btn-outline-secondary text-black" (click)="showBetDetails(item)">View</button>
@@ -93,7 +93,10 @@
   </ng-template>
   <div *ngIf="displayedData" [ngSwitch]="displayedData.length > 0">
     <div class="nap-grid">
-        <div style="width: 1943px;">
+        <div style="width: 1843px;">
+          <div *ngIf="displayedData.length > 0" class="toolbar">
+            <i class="nap-icon-breadcrumb-excel float-right mb-1 btn" aria-hidden="true" title="Export excel" (click)="exportExcel()"></i>
+          </div>
             <div class="header">
                 <table>
                     <ng-template [ngTemplateOutlet]="colgroup"></ng-template>

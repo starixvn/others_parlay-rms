@@ -14,13 +14,16 @@ export class Sort {
             }
             case "string": {
                 return (a: any, b: any) => {
+                    if (a[property] === null && b[property] === null) {
+                        return 0;
+                    }
                     if (a[property] === null) {
                         return 1 * this.sortOrder;
                     }
                     if (b[property] === null) {
                         return -1 * this.sortOrder;
                     }
-                    return (a[property].trim().localeCompare(b[property].trim())) * this.sortOrder;
+                    return (a[property].toString().trim().localeCompare(b[property].toString().trim())) * this.sortOrder;
                 };
             }
             case "datetime": {

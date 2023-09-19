@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FilterModel, ItemModel } from './filter.model';
+import { FilterModel, ItemModel, SportModel } from './filter.model';
 import { TreeviewConfig } from 'ngx-treeview';
 import { DateHelper, DateFormat } from 'nap-components/date';
 import { CONFIG } from '../common/config';
@@ -20,11 +20,16 @@ export class FilterComponent implements OnInit {
   selectedAlertTypes:string[] = [];
   member: string = '';
   checkedBy: string = '';
-  chkNone: boolean = true;
+  chkNone: boolean = false;
   actionItems: ItemModel[] = [];
   selectedActions: string[] = [];
   ticketStatusItems: ItemModel[] = [];
   selectedTicketStatuses: string[] = [];
+  comboItems: ItemModel[] = [];
+  selectedCombos: string[] = [];
+  odds: string = '';
+  sportItems: SportModel[] = [];
+  selectedSport: string[] = [];
   itemConfig = TreeviewConfig.create({
     hasAllCheckBox: true,
     hasCollapseExpand: false,
@@ -47,6 +52,8 @@ export class FilterComponent implements OnInit {
   selectedSeconds = 60;
   intervalId = -1;
 
+  isDisabledSportType = false;
+
   constructor(private filterService: FilterService, private toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -54,6 +61,8 @@ export class FilterComponent implements OnInit {
     this.actionItems = this.filterService.getActions();
     this.ticketStatusItems = this.filterService.getTicketStatuses();
     this.refreshItems = this.filterService.getRefreshs();
+    this.comboItems = this.filterService.getCombos();
+    this.filterService.getSports(this.apiUrl).subscribe(data => this.sportItems = data);
   }
 
   getData(): void {
@@ -109,7 +118,6 @@ export class FilterComponent implements OnInit {
   private createQueryModel(): FilterModel {
     const fromDate = DateHelper.convertDateStructToMoment(this.fromDate);
     const toDate = DateHelper.convertDateStructToMoment(this.toDate);
-
     return {
       fromDate: DateHelper.formatMomentDate(fromDate, DateFormat.Date),
       toDate: DateHelper.formatMomentDate(toDate, DateFormat.Date),
@@ -119,6 +127,9 @@ export class FilterComponent implements OnInit {
       isNoChecked: this.chkNone,
       member: this.member,
       ticketStatus: this.selectedTicketStatuses.length === this.ticketStatusItems.length ? '-1' : this.selectedTicketStatuses.join(','),
+      sportType: this.selectedAlertTypes.join(',') !== '1' ? '' : this.selectedSport.join(','),
+      selection: this.selectedCombos.join(','),
+      odds: this.odds === null || this.odds === '' ? undefined : Number(this.odds),
       pageIndex: 1,
       pageSize: 100
     };
@@ -127,6 +138,16 @@ export class FilterComponent implements OnInit {
   private isValid(): boolean {
     if (this.selectedAlertTypes.length === 0) {
       this.toastService.activate(`Please select at least one Alert type!`);
+      return false;
+    }
+
+    if (this.selectedSport.length === 0) {
+      this.toastService.activate(`Please select at least one Sport type!`);
+      return false;
+    }
+
+    if (this.selectedCombos.length === 0) {
+      this.toastService.activate(`Please select at least one Combo!`);
       return false;
     }
 
@@ -157,5 +178,11 @@ export class FilterComponent implements OnInit {
 
   private clearTimer(): void {
     window.clearInterval(this.intervalId);
+  }
+
+  onlyDigits(event: KeyboardEvent) {
+    let code = event.charCode;
+    return ((code >= 48 && code <= 57)
+      || (code === 46 && this.odds?.toString().length > 0 && !this.odds?.toString().includes('.')));
   }
 }

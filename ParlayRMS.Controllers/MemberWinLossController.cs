@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
+using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.Models;
 using ParlayRMS.Models.Functions;
 using ParlayRMS.Models.MemberWinLoss;
+using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.MemberWinLoss;
+using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using ParlayRMS.Web.Authorization;
@@ -20,8 +23,10 @@ namespace ParlayRMS.Controllers
     public class MemberWinLossController : BaseController
     {
         private readonly MemberWinLossService _memberWinLossService = new MemberWinLossService();
+        private readonly BetDetailsService _betDetailsService = new BetDetailsService();
+        private readonly UsersService _usersService = new UsersService();
 
-        [HttpGet]
+		[HttpGet]
         public ActionResult Index()
         {
             ViewBag.LimitDate = MemberWinLossOptions.GetLimitDate();
@@ -75,6 +80,7 @@ namespace ParlayRMS.Controllers
                     ViewBag.GrandTotal = model.Total;
                     ViewBag.CustomerClass = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
                     ViewBag.SiteGroup = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().SiteGroup;
+                    ViewBag.IsAgent = isAgent;
 
                     if (isAgent)
                     {
@@ -141,8 +147,11 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 ViewLang.WinLoss,
                 string.Empty,
-                ViewLang.OurPT
-            };
+                ViewLang.OurPT,
+                string.Empty,
+                string.Empty,
+				ViewLang.TotalBets
+			};
 
             var header2 = new object[]
             {
@@ -169,7 +178,8 @@ namespace ParlayRMS.Controllers
                 model.Total.Member_Lose,
                 model.Total.OurPT_Won,
                 model.Total.OurPT_Lose,
-                model.Total.OurPT_NetWinloss
+                model.Total.OurPT_NetWinloss,
+                model.Total.TotalBets
             };
 
             writer.WriteRows(1, new List<object[]> { header1, header2 });
@@ -187,14 +197,15 @@ namespace ParlayRMS.Controllers
                     item.Member_Lose,
                     item.OurPT_Won,
                     item.OurPT_Lose,
-                    item.OurPT_NetWinloss
+                    item.OurPT_NetWinloss,
+                    item.TotalBets
                 };
                 writer.WriteRow(3, record);
             }
 
             writer.WriteRow(4, footer);
 
-            writer.SyncColumnWidths(10);
+            writer.SyncColumnWidths(11);
 
             return writer.Render("MemberWinLoss");
         }
@@ -209,6 +220,7 @@ namespace ParlayRMS.Controllers
             var header1 = new object[]
             {
                 ViewLang.Month,
+                ViewLang.Site,
                 ViewLang.Username,
                 ViewLang.CustomerClass,
                 ViewLang.Ticket,
@@ -217,7 +229,10 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 ViewLang.WinLoss,
                 string.Empty,
-                ViewLang.OurPT
+                ViewLang.OurPT,
+                string.Empty,
+                string.Empty,
+                ViewLang.TotalBets
             };
 
             var header2 = new object[]
@@ -225,6 +240,7 @@ namespace ParlayRMS.Controllers
                 string.Empty,
                 string.Empty,
                 string.Empty,
+                string.Empty,
                 ViewLang.Won,
                 ViewLang.Lose,
                 ViewLang.Won,
@@ -233,12 +249,14 @@ namespace ParlayRMS.Controllers
                 ViewLang.Lose,
                 ViewLang.Won,
                 ViewLang.Lose,
-                ViewLang.NetWinloss
+                ViewLang.NetWinloss,
+                string.Empty
             };
 
             var footer = new object[]
             {
                 ViewLang.Total,
+                string.Empty,
                 string.Empty,
                 string.Empty,
                 model.Total.Tickets_Won,
@@ -249,7 +267,8 @@ namespace ParlayRMS.Controllers
                 model.Total.Member_Lose,
                 model.Total.OurPT_Won,
                 model.Total.OurPT_Lose,
-                model.Total.OurPT_NetWinloss
+                model.Total.OurPT_NetWinloss,
+                model.Total.TotalBets
             };
 
             writer.WriteRows(1, new List<object[]> { header1, header2 });
@@ -263,6 +282,7 @@ namespace ParlayRMS.Controllers
                         ViewLang.Subtotal,
                         string.Empty,
                         string.Empty,
+                        string.Empty,
                         item.Tickets_Won,
                         item.Tickets_Lose,
                         item.Stake_Won,
@@ -271,7 +291,8 @@ namespace ParlayRMS.Controllers
                         item.Member_Lose,
                         item.OurPT_Won,
                         item.OurPT_Lose,
-                        item.OurPT_NetWinloss
+                        item.OurPT_NetWinloss,
+                        item.TotalBets
                     };
                     writer.WriteRow(4, subtotal);
                 }
@@ -280,6 +301,7 @@ namespace ParlayRMS.Controllers
                     var record = new object[]
                     {
                         item.Month,
+                        item.SiteGroup,
                         item.Username,
                         item.CustomerClass,
                         item.Tickets_Won,
@@ -290,7 +312,8 @@ namespace ParlayRMS.Controllers
                         item.Member_Lose,
                         item.OurPT_Won,
                         item.OurPT_Lose,
-                        item.OurPT_NetWinloss
+                        item.OurPT_NetWinloss,
+                        item.TotalBets
                     };
                     writer.WriteRow(3, record);
                 }
@@ -298,9 +321,68 @@ namespace ParlayRMS.Controllers
 
             writer.WriteRow(5, footer);
 
-            writer.SyncColumnWidths(12);
+            writer.SyncColumnWidths(14);
 
             return writer.Render("AgentWinLoss");
         }
-    }
+
+        [HttpPost]
+        public ActionResult DataDetails(MemberWinLossDetailOptions options)
+        {
+	        var user = _usersService.GetCustomerInfo(options.Username);
+			ViewBag.CustId = user.CustId;
+	        ViewBag.Username = options.Username;
+	        
+			var records = _memberWinLossService.GetDetails(options.FromDate, options.ToDate, options.ParlayTypes,
+		        options.SportsType, options.LiveType, options.Combos, user.CustId);
+	        return PartialView(records);
+        }
+
+        [HttpGet]
+        public ActionResult BetDetails(BetDetailsOptions options)
+        {
+	        ViewBag.BetId = options.TransId;
+	        ViewBag.Username = options.Username;
+	        var data = _betDetailsService.GetBetDetail(options.TransId, options.RefNo);
+
+	        var model = new BetDetails
+	        {
+		        TicketDetail = data.TicketDetail,
+		        ComboTypes = data.ComboTypes
+	        };
+
+	        return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult SingleMatchParlayBetDetails(int custId, long transId, string username)
+        {
+	        ViewBag.TransId = transId;
+	        ViewBag.Username = username;
+
+	        var selectionAndResult = _betDetailsService.GetSelectionAndResult(custId, transId, username);
+	        var choice = _betDetailsService.GetChoiceForSingleMatchParlay(transId);
+
+	        ViewBag.SelectionNames = selectionAndResult.Item1;
+	        ViewBag.ResultTexts = selectionAndResult.Item2;
+	        ViewBag.Choice = choice.Item2;
+	        ViewBag.IsBlackListLeague = choice.Item1;
+
+	        return View();
+        }
+
+        [HttpGet]
+        public ActionResult PenaltyShootoutParlayBetDetails(long transId, string username)
+        {
+	        ViewBag.TransId = transId;
+	        ViewBag.Username = username;
+
+	        var detail = _betDetailsService.GetPenaltyShootoutDetail(transId);
+	        ViewBag.Choice = detail.Item2;
+
+	        ViewBag.IsBlackListLeague = detail.Item1;
+
+	        return View();
+        }
+	}
 }

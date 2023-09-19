@@ -331,10 +331,69 @@
         MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedObject.SortById, MemberWinLoss.CachedObject.IsSortAsc);
     },
     DisplayInfoExtra: function () {
-        var html = '(Site: <b>' + $("#inpSiteGroup").val() + '</b>, CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
+        var html = $("#inpIsAgent").val() ? '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)' :
+            '(Site: <b>' + $("#inpSiteGroup").val() + '</b>, CC: <b>' + $("#inpCustomerClass").val() + '</b>)';
         MemberWinLoss.CachedDOM.lbUserExtra.html(html);
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbUserExtra.width();
         MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
+    },
+    ViewDetails: function (index, month, param, isMember, username) {
+        var table = $('#result');
+        var found = table.find("tr[info='" + index + "']");
+        if (found.length != 0) {
+            table.find("tr[info='" + index + "']").remove();
+        }
+        else {
+            table.find('tr[info]').remove();
+            var colspanNumber = isMember ? 11 : 14;
+            var row = $("#tr_" + index);
+            row.after('<tr class="details" info="' + index + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
+            var newRow = row.next();
+            var td = newRow.find('td');
+            var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
+            var waitingImg = $('<img src="' + imgURL + '" />');
+            td.html(waitingImg);
+            var fromDate = '';
+            var toDate = '';
+            var userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
+            var dateInfo = month.trim().split('-');
+            var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
+            var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
+            var toDateString = dateInfo[0] + '/' + lastDateOfMonth + '/' + dateInfo[1];
+            fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
+            toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
+            var data = {
+                FromDate: fromDate,
+                ToDate: toDate,
+                ParlayTypes: param.ParlayTypes,
+                SportsType: param.SportsType,
+                Combos: param.Combos,
+                LiveType: param.LiveType,
+                Username: userNameInfo
+            }
+
+            $.ajax({
+                url: resolveClientUrl('MemberWinLoss/DataDetails'),
+                type: 'POST',
+                data: data,
+                dataType: 'html',
+                cache: false,
+                beforeSend: function (xhr) {
+                },
+                success: function (result) {
+                    result = result.replace(/\s+/g, ' ');
+                    td.html(result);
+                },
+                error: function (xhr, status, err) {
+                    alertBox.showError(xhr);
+                },
+                complete: function () {
+                    loading.hide();
+                }
+            });
+        }
+
+        return false;
     }
 }
 function MovePage(pageIndex) {
@@ -353,6 +412,18 @@ function MovePage(pageIndex) {
 String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, '');
 };
+
+function ViewBetDetail(refNo, transId, username, custId, bettype) {
+    if (bettype == 38) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/SingleMatchParlayBetDetails?custid=' + custId + '&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+    else if (bettype == 376) {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/PenaltyShootoutParlayBetDetails?&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+    else {
+        ParlayRMS.Core.OpenWindow(resolveClientUrl('MemberWinLoss/BetDetails?refno=' + refNo + '&TransId=' + transId + '&username=' + username), 700, 600);
+    }
+}
 
 $(document).ready(function () {
     MemberWinLoss.Init();

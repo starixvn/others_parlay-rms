@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnChanges, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
-import { BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
-import { AlertTypeConstants } from '../common/constants';
+import { AlertDetailModel, BetDetails, DataModel, DataModelItem, DetailDataComponent, TakeActionModel } from './grid.model';
+import { AlertTypeConstants, PotentialWinningLevelConstants } from '../common/constants';
 import { SimilarTicketComponent } from './similar-ticket/similar-ticket.component';
 import { GridService } from './grid.service';
 import { PotentialWinningComponent } from './potential-winning/potential-winning.component';
@@ -84,6 +84,21 @@ export class GridComponent implements OnChanges {
       return AlertTypeConstants.SMALL_LEAGUE_ODDS_COLOR;
     }
     return AlertTypeConstants.POTENTIAL_WINNING_COLOR;
+  }
+
+  getColorViaSportType(sportType: string, alertType: string): string {
+    if (alertType === AlertTypeConstants.POTENTIAL_WINNING) {
+      if (sportType?.toLowerCase().includes('red')) {
+        return PotentialWinningLevelConstants.RED;
+      }
+      if (sportType?.toLowerCase().includes('orange')) {
+        return PotentialWinningLevelConstants.ORANGE;
+      }
+      if (sportType?.toLowerCase().includes('yellow')) {
+        return PotentialWinningLevelConstants.YELLOW;
+      }
+    }
+    return PotentialWinningLevelConstants.WHITE;
   }
 
   openNewTabOfSimilarBet(betId: number) {
@@ -182,7 +197,15 @@ export class GridComponent implements OnChanges {
     const factory = this.componentFactoryResolver.resolveComponentFactory(SimilarTicketComponent);
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
-    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, id).subscribe(data => component.instance.data = data);
+    const alertDetail: AlertDetailModel ={
+      alertId: id,
+      selection: this.filterModel.selection,
+      odds: this.filterModel.odds,
+      ticketStatus: this.filterModel.ticketStatus
+    }
+    component.instance.apiUrl = this.webInfoModel.apiUrl;
+    component.instance.alertDetail = alertDetail;
+    this.gridService.getSimilarTickets(this.webInfoModel.apiUrl, alertDetail).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;
@@ -192,8 +215,15 @@ export class GridComponent implements OnChanges {
     const factory = this.componentFactoryResolver.resolveComponentFactory(PotentialWinningComponent);
     const component = factory.create(this.injector);
     this.componentsRef.push(component);
+    const alertDetail: AlertDetailModel ={
+      alertId: id,
+      selection: this.filterModel.selection,
+      odds: this.filterModel.odds,
+      ticketStatus: this.filterModel.ticketStatus
+    }
     component.instance.webInfoModel = this.webInfoModel;
-    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, id).subscribe(data => component.instance.data = data);
+    component.instance.alertDetail = alertDetail;
+    this.gridService.getPotentialWinning(this.webInfoModel.apiUrl, alertDetail).subscribe(data => component.instance.data = data);
     this.applicationRef.attachView(component.hostView);
     const element = (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     return element;
@@ -243,5 +273,9 @@ export class GridComponent implements OnChanges {
 
   getIndex(index: number): number {
     return index + (this.paginationInstance.currentPage - 1) * this.paginationInstance.itemsPerPage;
+  }
+
+  exportExcel(): void {
+    this.gridService.exportExcel(this.webInfoModel.apiUrl, this.filterModel);
   }
 }

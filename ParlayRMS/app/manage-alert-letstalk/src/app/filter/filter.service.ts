@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ItemModel } from './filter.model';
+import { ItemModel, SportModel } from './filter.model';
+import { HttpService } from 'nap-components/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
-  constructor() { }
+  private api = 'api/manage-alert/filter';
+
+  constructor(private httpService: HttpService) { }
 
   public getAlertTypes(): ItemModel[] {
     return [
@@ -28,8 +32,8 @@ export class FilterService {
 
   public getTicketStatuses(): ItemModel[] {
     return [
-      { id: '112', name: 'Won', checked: true },
-      { id: '113', name: 'Lose', checked: true },
+      { id: '112', name: 'Won', checked: false },
+      { id: '113', name: 'Lose', checked: false },
       { id: '0', name: 'Running', checked: true }
     ]
   }
@@ -40,5 +44,18 @@ export class FilterService {
       { id: '60', name: '60', checked: true },
       { id: '120', name: '120', checked: false }
     ]
+  }
+
+  public getCombos(): ItemModel[] {
+    var combos: ItemModel[] = [];
+    for(let i = 2; i <= 9; i++) {
+      combos.push({ id: i.toString(), name: i.toString(), checked: true})
+    };
+    combos.push({ id: '10', name: '10 UP', checked: true});
+    return combos;
+  }
+
+  getSports(apiUrl: string): Observable<SportModel[]> {
+    return this.httpService.get(`${apiUrl}${this.api}/sports`);
   }
 }

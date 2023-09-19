@@ -10,3 +10,10 @@ export class AlertTypeConstants {
     static readonly SMALL_LEAGUE_ODDS = 'Small League & Odds';
     static readonly SMALL_LEAGUE_ODDS_COLOR = '#f9cb9c';
 }
+
+export class PotentialWinningLevelConstants {
+    static readonly RED = '#ff0000';
+    static readonly YELLOW = '#ffeb3b';
+    static readonly ORANGE = '#ff5722';
+    static readonly WHITE = '#ffffff';
+}

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'nap-components/http';
-import { Observable, of } from 'rxjs';
+import { Helper } from 'nap-components/helper';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SimilarTicketModel } from './similar-ticket/similar-ticket.model';
 import { PotentialWinningModel } from './potential-winning/potential-winning.model';
 import { LogModel } from './log/log.model';
 import { FilterModel, ItemModel } from '../filter/filter.model';
-import { BetDetails, DataModel, TakeActionModel } from './grid.model';
+import { AlertDetailModel, BetDetails, DataModel, TakeActionModel } from './grid.model';
 import { HttpClient } from '@angular/common/http';
 import { SpinnerService } from 'nap-components/spinner';
 
@@ -26,12 +27,12 @@ export class GridService {
     return this.httpService.post(`${apiUrl}${this.api}alerts`, filterModel);
   }
   
-  getSimilarTickets(apiUrl: string, id: string): Observable<SimilarTicketModel[]> {
-    return this.httpService.post(`${apiUrl}${this.api}similar-detail`, { alertId : id });
+  getSimilarTickets(apiUrl: string, alertDetail: AlertDetailModel): Observable<SimilarTicketModel[]> {
+    return this.httpService.post(`${apiUrl}${this.api}similar-detail`, alertDetail);
   }
 
-  getPotentialWinning(apiUrl: string, id: string): Observable<PotentialWinningModel[]> {
-    return this.httpService.post(`${apiUrl}${this.api}potential-winning-detail`, { alertId : id });
+  getPotentialWinning(apiUrl: string, alertDetail: AlertDetailModel): Observable<PotentialWinningModel[]> {
+    return this.httpService.post(`${apiUrl}${this.api}potential-winning-detail`, alertDetail);
   }
 
   getLogs(apiUrl: string, id: string): Observable<LogModel[]> {
@@ -85,5 +86,29 @@ export class GridService {
     this.spinnerService.show();
     return this.httpClient.post(url, model, { responseType: 'text' })
             .pipe(tap(() => this.spinnerService.hide()));
+  }
+
+  public exportExcel(apiUrl: string, filterModel: FilterModel): void {
+    const api = `${apiUrl}${this.api}export-excel-alerts`;
+    this.httpService.download(api, filterModel).subscribe(response => {
+        const fileName = `Manage-Alerts.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
+  }
+
+  public exportExcelForSimilarBet(apiUrl: string, alertDetail: AlertDetailModel): void {
+    const api = `${apiUrl}${this.api}export-excel-similar-bet`;
+    this.httpService.download(api, alertDetail).subscribe(response => {
+        const fileName = `Similar-Bet.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
+  }
+
+  public exportExcelForPotentialWinning(apiUrl: string, alertDetail: AlertDetailModel): void {
+    const api = `${apiUrl}${this.api}export-excel-potential-winning`;
+    this.httpService.download(api, alertDetail).subscribe(response => {
+        const fileName = `Potential-Winning.xlsx`;
+        Helper.downloadFile(response, fileName);
+    });
   }
 }

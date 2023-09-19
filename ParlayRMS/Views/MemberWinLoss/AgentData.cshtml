@@ -1,33 +1,37 @@
 ﻿@using Formatter = ParlayRMS.Utility.Formatter
-@model IEnumerable<ParlayRMS.DTO.MemberWinLoss.RMS_Rpt_Parlay_MemberWinLoss>
+@using ParlayRMS.DTO.MemberWinLoss
+@model IEnumerable<RMS_Rpt_Parlay_MemberWinLoss>
     @{
         var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
+	    var index = 0;
     }
-    <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
-    <div style="width: 1606px" class="maintitle">
+<input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
+<input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
+    <div style="width: 1706px" class="maintitle">
         <div class="information">
             @ViewBag.Title
         </div>
         <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
         </div>
     </div>
-    <div style="width: 1606px">
+    <div style="width: 1706px">
         <table class="main">
             <colgroup>
-                <col width='110' />
-                <col width='75' />
-                <col width='140' />
-                <col width='100' />
-                <col width='100' />
-                <col width='100' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
+                <col width="110" />
+                <col width="75" />
+                <col width="140" />
+                <col width="100" />
+                <col width="100" />
+                <col width="100" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="100" />
             </colgroup>
             <thead id="header">
                 <tr>
@@ -66,7 +70,10 @@
                         @ViewLang.WinLoss
                     </th>
                     <th colspan="3">
-                        @ViewLang.OurPT
+	                    @ViewLang.OurPT
+                    </th>
+                    <th rowspan="2" class="header2rows">
+	                    @ViewLang.TotalBets
                     </th>
                 </tr>
                 <tr>
@@ -134,22 +141,23 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 530px; width: 1625px">
+    <div class="scrollGridContent" style="max-height: 530px; width: 1725px">
         <table class="main" id="result">
             <colgroup>
-                <col width='110' />
-                <col width='75' />
-                <col width='140' />
-                <col width='100' />
-                <col width='100' />
-                <col width='100' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
+                <col width="110" />
+                <col width="75" />
+                <col width="140" />
+                <col width="100" />
+                <col width="100" />
+                <col width="100" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="100" />
             </colgroup>
             <tbody>
                 @{
@@ -171,7 +179,8 @@
 
                     foreach (var record in Model)
                     {
-                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)>
+	                    index++;
+                        <tr @(record.IsSutotalRow ? "class=subTotal" : string.Empty)  id="tr_@index">
                             @if (!record.IsSutotalRow)
                             {
                                 <td class="center">
@@ -218,28 +227,39 @@
                                 @Formatter.FormatNumber2(record.OurPT_Lose)
                             </td>
                             @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
+                            <td class="center">
+                                @if (record.IsSutotalRow)
+                                {
+	                                @record.TotalBets
+                                }
+                                else
+                                {
+	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+                                }
+                            </td>
                         </tr>
                     }
                 }
             </tbody>
         </table>
     </div>
-    <div style="width: 1606px" class="mainfooter">
+    <div style="width: 1706px" class="mainfooter">
         <table class="main" id="footer">
             <colgroup>
-                <col width='110' />
-                <col width='75' />
-                <col width='140' />
-                <col width='100' />
-                <col width='100' />
-                <col width='100' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
-                <col width='140' />
+                <col width="110" />
+                <col width="75" />
+                <col width="140" />
+                <col width="100" />
+                <col width="100" />
+                <col width="100" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="100" />
             </colgroup>
             <tfoot>
                 @if (Model.Any())
@@ -275,13 +295,16 @@
                         <td class="numeric">
                             @Formatter.FormatNumber2(ViewBag.GrandTotal.OurPT_NetWinloss)
                         </td>
-                        @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
+	                    @*@RazorHelper.RenderNumberCell(Model.Total.OurPT_NetWinloss)*@
+                    <td class="center">
+                        @Formatter.FormatNumber3(ViewBag.GrandTotal.TotalBets)
+                    </td>
                     </tr>
                 }
                 else
                 {
                     <tr>
-                        <td colspan="13" style="text-align: center; width: 1606px">
+                        <td colspan="14" style="text-align: center; width: 1706px">
                             @ViewLang.NoInformation
                         </td>
                     </tr>
@@ -290,7 +313,7 @@
         </table>
     </div>
     @Html.Partial("_Pager", (object)@ViewBag.Pager)
-    <script type="text/javascript">
+<script type="text/javascript">
     var data = {
         FromDate: '@filterOption.FromDate',
         ToDate: '@filterOption.ToDate',
@@ -304,6 +327,10 @@
     $(document).ready(function () {
         $("#exportMemberWinLoss").on("click", function () {
             MemberWinLoss.ExportExcel(data);
+        });
+
+        $(".btnViewDetails").on("click", function () {
+            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"));
         });
     });
     </script>

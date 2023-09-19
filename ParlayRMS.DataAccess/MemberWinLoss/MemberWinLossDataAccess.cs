@@ -50,7 +50,8 @@ namespace ParlayRMS.DataAccess.MemberWinLoss
                             OurPT_Won = reader.ToDecimal("ourpt_won"),
                             OurPT_Lose = reader.ToDecimal("ourpt_lose"),
                             CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
-                            SiteGroup = reader.ToString("SiteGroup")
+                            SiteGroup = reader.ToString("SiteGroup"),
+                            TotalBets = reader.ToInt32("TotalBets")
                         });
                     }
                 }
@@ -101,13 +102,65 @@ namespace ParlayRMS.DataAccess.MemberWinLoss
                             OurPT_Won = reader.ToDecimal("ourpt_won"),
                             OurPT_Lose = reader.ToDecimal("ourpt_lose"),
                             CustomerClass = reader["CustomerClass"] == DBNull.Value ? "None" : reader.ToInt32("CustomerClass").ToString(),
-                            SiteGroup = reader.ToString("SiteGroup")
-                        });
+                            SiteGroup = reader.ToString("SiteGroup"),
+                            TotalBets = reader.ToInt32("TotalBets")
+						});
                     }
                 }
             }
 
             return result;
         }
-    }
+
+		public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss_Detail> RMS_Rpt_ComboParlay_Winloss_Details(
+															 DateTime fromDate,
+															 DateTime toDate,
+															 DateTime moveBetsDay,
+															 string parlayTypes,
+															 string sportsType,
+															 byte liveType,
+															 string combos,
+															 long custId)
+		{
+			var result = new List<RMS_Rpt_Parlay_MemberWinLoss_Detail>();
+
+			using (var db = new ObjectDb("RMS_Rpt_ComboParlay_Winloss_Details"))
+			{
+				db.AddInParameter("fromdate", DbType.DateTime, fromDate);
+				db.AddInParameter("todate", DbType.DateTime, toDate);
+				db.AddInParameter("MoveBetsDay", DbType.DateTime, moveBetsDay);
+				db.AddInParameter("parlaytype", DbType.String, parlayTypes);
+				db.AddInParameter("selection", DbType.String, combos);
+				db.AddInParameter("custid", DbType.Int64, custId);
+				db.AddInParameter("sporttype", DbType.String, sportsType);
+				db.AddInParameter("LiveStatus", DbType.Int16, liveType);
+
+				using (var reader = db.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(new RMS_Rpt_Parlay_MemberWinLoss_Detail
+						{
+							TransId = reader.ToInt64("transid"),
+							RefNo = reader.ToInt64("refno"),
+							SportType = reader.ToInt32("sporttype"),
+							BetType = reader.ToInt32("bettype"),
+							Stake = reader.ToDecimal("stake"),
+							Winlost = reader.ToDecimal("winlost"),
+							Company_Winlost = reader.ToDecimal("company_winlost"),
+							Stake_BaseRM = reader.ToDecimal("stake_baseRM"),
+							Winlost_BaseRM = reader.ToDecimal("winlost_baseRM"),
+							Company_Winlost_BaseRM = reader.ToDecimal("company_winlost_baseRM"),
+							TotalCombo = reader.ToInt32("totalcombo"),
+							Selection = reader.ToInt32("combo"),
+							ParlayType = reader.ToInt32("ParlayType"),
+							IsGOF = reader.ToBoolean("IsGOF")
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+	}
 }

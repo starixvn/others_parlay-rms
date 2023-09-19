@@ -8,7 +8,7 @@
         max-height: none;
         td {
             text-align: center;
-            &.to-open-new-tab {
+            span {
                 cursor: pointer !important;
                 color: #1155cc;
             }
@@ -16,7 +16,7 @@
     } 
 }
 ::ng-deep app-similar-ticket {
-    width: 1140px;
+    width: 1200px;
     display: block;
 }
 
