@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Utility", "Utility\ParlayRMS.Utility.csproj", "{EC4B916C-B380-4940-9CE0-9332BBDAB5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.ExcelService", "ExcelService\ParlayRMS.ExcelService.csproj", "{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.ExcelService", "ParlayRMS.ExcelService\ParlayRMS.ExcelService.csproj", "{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParlayRMS.Web", "ParlayRMS.Web\ParlayRMS.Web.csproj", "{394BDA6C-2AD4-42E7-AA31-D022C73BFA7D}"
 EndProject

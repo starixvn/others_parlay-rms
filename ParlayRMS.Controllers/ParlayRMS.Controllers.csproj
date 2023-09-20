@@ -325,7 +325,7 @@
     <Compile Include="WinLossRiskControlController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExcelService\ParlayRMS.ExcelService.csproj">
+    <ProjectReference Include="..\ParlayRMS.ExcelService\ParlayRMS.ExcelService.csproj">
       <Project>{5BC4EF1D-F3C2-4851-ACC4-0F8555CEB28E}</Project>
       <Name>ParlayRMS.ExcelService</Name>
     </ProjectReference>
