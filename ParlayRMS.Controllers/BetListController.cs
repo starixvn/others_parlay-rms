@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    using Criteria.BetList;
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
@@ -92,7 +93,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult SingleMatchParlay(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        public ActionResult SingleMatchParlay(BetList_BetBuilder_DetailCriteria criteria)
         {
             var result = new StringBuilder();
             var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
@@ -114,7 +115,7 @@ namespace ParlayRMS.Controllers
 
 
         [HttpPost]
-        public ActionResult SingleMatchParlayDetailPopup(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        public ActionResult SingleMatchParlayDetailPopup(BetList_BetBuilder_DetailCriteria criteria)
         {
             ViewBag.TransId = criteria.TransId;
             ViewBag.Username = criteria.Username;
@@ -144,7 +145,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult PenaltyShootoutParlayDetailPopup(RMS_BetList_PenaltyShootout_DetailCriteria criteria)
+        public ActionResult PenaltyShootoutParlayDetailPopup(BetList_PenaltyShootout_DetailCriteria criteria)
         {
             ViewBag.TransId = criteria.TransId;
             ViewBag.Username = criteria.Username;

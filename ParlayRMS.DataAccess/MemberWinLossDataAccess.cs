@@ -78,5 +78,30 @@ namespace ParlayRMS.DataAccess
 
             return winlosses;
         }
+
+        public IEnumerable<RMS_Rpt_Parlay_MemberWinLoss_Detail> RMS_Rpt_ComboParlay_Winloss_Details(
+            DateTime fromDate,
+            DateTime toDate,
+            DateTime moveBetsDay,
+            string parlayTypes,
+            string sportsType,
+            byte liveType,
+            string combos,
+            int custId)
+        {
+            var criteria = new Rpt_ComboParlay_Winloss_Details_Criteria
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                MoveBetsDay = moveBetsDay,
+                Parlaytype = parlayTypes,
+                Selection = combos,
+                CustId = custId,
+                SportType = sportsType,
+                LiveStatus = liveType
+            };
+
+            return  repository.Fetch<RMS_Rpt_Parlay_MemberWinLoss_Detail>(criteria);
+        }
     }
 }

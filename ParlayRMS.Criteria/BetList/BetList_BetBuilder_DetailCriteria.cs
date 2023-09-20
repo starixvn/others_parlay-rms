@@ -1,11 +1,13 @@
-namespace ParlayRMS.Services.BetList
+namespace ParlayRMS.Criteria.BetList
 {
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class RMS_BetList_PenaltyShootout_DetailCriteria : CriteriaBase
+    public class BetList_BetBuilder_DetailCriteria : CriteriaBase
     {
         public long TransId { get; set; }
+
+        public int CustId { get; set; }
 
         [SpParam(Ignored = true)]
         public string Username { get; set; }

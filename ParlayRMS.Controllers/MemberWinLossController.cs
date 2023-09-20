@@ -4,12 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
-using ParlayRMS.DTO.MemberWinLoss;
 using ParlayRMS.Models;
 using ParlayRMS.Models.MemberWinLoss;
 using ParlayRMS.Services.BetDetails;
 using ParlayRMS.Services.MemberWinLoss;
-using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 
@@ -19,13 +17,14 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services.Members;
 
     [NapAuth(FunctionKey = FunctionKeys.MemberWinLoss, Policy = Constant.Policy.Read)]
     public class MemberWinLossController : BaseController
     {
         private readonly MemberWinLossService _memberWinLossService = new MemberWinLossService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
-        private readonly UsersService _usersService = new UsersService();
+        private readonly MembersService _membersService = new MembersService();
 
 		[HttpGet]
         public ActionResult Index()
@@ -319,7 +318,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult DataDetails(MemberWinLossDetailOptions options)
         {
-	        var user = _usersService.GetCustomerInfo(options.Username);
+	        var user = _membersService.GetCustomerInfo(options.Username);
 			ViewBag.CustId = user.CustId;
 	        ViewBag.Username = options.Username;
 	        

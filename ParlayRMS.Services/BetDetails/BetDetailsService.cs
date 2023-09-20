@@ -4,6 +4,7 @@ namespace ParlayRMS.Services.BetDetails
     using System.Collections.Generic;
     using System.Linq;
     using BetList;
+    using Criteria.BetList;
     using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
@@ -67,7 +68,7 @@ namespace ParlayRMS.Services.BetDetails
 
         public Tuple<List<string>, List<string>> GetSelectionAndResult(int custId, long transId, string username)
         {
-            var criteria = new RMS_BetList_BetBuilder_DetailCriteria
+            var criteria = new BetList_BetBuilder_DetailCriteria
             {
                 CustId = custId,
                 TransId = transId,
@@ -92,7 +93,7 @@ namespace ParlayRMS.Services.BetDetails
 
         public List<RMS_BetList_BetBuilder_DetailModel> GetSingleMatchParlaySelection(int custId, long transId)
         {
-            var criteria = new RMS_BetList_BetBuilder_DetailCriteria
+            var criteria = new BetList_BetBuilder_DetailCriteria
             {
                 CustId = custId,
                 TransId = transId

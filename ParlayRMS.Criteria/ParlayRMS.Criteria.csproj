@@ -71,6 +71,10 @@
     <Compile Include="Agents\DangerousAgentSel_Criteria.cs" />
     <Compile Include="BetList\Monitor_ComboParlay_BetInfo_Criteria.cs" />
     <Compile Include="BetList\ComboParlay_TransDetails_Criteria.cs" />
+    <Compile Include="BetList\BetList_BetBuilder_DetailCriteria.cs" />
+    <Compile Include="BetList\BetList_BetBuilder_MailDetailCriteria.cs" />
+    <Compile Include="BetList\BetList_PenaltyShootout_DetailCriteria.cs" />
+    <Compile Include="BetList\BetList_PenaltyShootout_MatchDetailCriteria.cs" />
     <Compile Include="Common\Rpt_Parlay_SelMinTransdate_Criteria.cs" />
     <Compile Include="Common\CurrencySel_Criteria.cs" />
     <Compile Include="Common\SelBalanceUpDay_Criteria.cs" />
@@ -91,6 +95,7 @@
     <Compile Include="Members\CustomerIns_Command.cs" />
     <Compile Include="Members\CustomerSel_Criteria.cs" />
     <Compile Include="MemberWinLoss\Rpt_ComboParlay_Winloss_Ag_Criteria.cs" />
+    <Compile Include="MemberWinLoss\Rpt_ComboParlay_Winloss_Details_Criteria.cs" />
     <Compile Include="MemberWinLoss\Rpt_ComboParlay_Winloss_Mem_Criteria.cs" />
     <Compile Include="ViewIPInfo\Rpt_ComboParlay_BetsStatisticsByIP_Sporttype_Criteria.cs" />
     <Compile Include="ViewIPInfo\SystemParlay_CombinationDetails_Criteria.cs" />

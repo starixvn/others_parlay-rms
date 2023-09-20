@@ -3,6 +3,7 @@ namespace ParlayRMS.Services.BetList
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Criteria.BetList;
     using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -71,7 +72,7 @@ namespace ParlayRMS.Services.BetList
         }
 
 
-        public List<RMS_BetList_BetBuilder_DetailModel> RMS_BetList_BetBuilder_Detail(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        public List<RMS_BetList_BetBuilder_DetailModel> RMS_BetList_BetBuilder_Detail(BetList_BetBuilder_DetailCriteria criteria)
         {
             var repository = new DynamicRepository();
 
@@ -91,7 +92,7 @@ namespace ParlayRMS.Services.BetList
 
         public List<RMS_BetList_PenaltyShootout_MatchDetailModel> RMS_BetList_PenaltyShootout_MatchDetail(long transId)
         {
-            var criteria = new RMS_BetList_PenaltyShootout_MatchDetailCriteria
+            var criteria = new BetList_PenaltyShootout_MatchDetailCriteria
             {
                 TransId = transId
             };
