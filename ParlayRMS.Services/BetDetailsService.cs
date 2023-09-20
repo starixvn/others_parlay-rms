@@ -1,16 +1,15 @@
-namespace ParlayRMS.Services.BetDetails
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using BetList;
-    using Criteria.BetList;
-    using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using Fizzler.Systems.HtmlAgilityPack;
     using HtmlAgilityPack;
+    using ParlayRMS.Criteria.BetList;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.BetDetails;
     using ParlayRMS.DTO.BetList;
 

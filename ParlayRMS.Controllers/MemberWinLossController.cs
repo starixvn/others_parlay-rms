@@ -6,8 +6,6 @@ using System.Web.Mvc;
 using PagedList;
 using ParlayRMS.Models;
 using ParlayRMS.Models.MemberWinLoss;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.MemberWinLoss;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 
@@ -17,7 +15,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
-    using Services.Members;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.MemberWinLoss, Policy = Constant.Policy.Read)]
     public class MemberWinLossController : BaseController

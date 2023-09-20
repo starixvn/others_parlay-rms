@@ -1,33 +1,15 @@
-namespace ParlayRMS.Services.ParlayMonitor
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.ParlayMonitor;
-    using DTO.PotentialWinning;
-    using Utility;
-    using SignalR;
-    using SignalR.Hubs;
+    using ParlayRMS.DTO.PotentialWinning;
+    using ParlayRMS.Utility;
 
     public class ParlayMonitorService : BaseService
     {
-        private static readonly IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<ParlayMonitorHub>();
-
         private readonly ParlayMonitorDataAccess _parlayDataAccess = new ParlayMonitorDataAccess();
-
-        public static void Start()
-        {
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                while (true)
-                {
-                    _hub.Clients.Broadcast();
-
-                    Thread.Sleep(2000);
-                }
-            });
-        }
 
         public IEnumerable<RMS_Monitor_Parlay_Betlist> GetParlayMonitorTickets(
             string combos,

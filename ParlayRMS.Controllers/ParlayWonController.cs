@@ -1,7 +1,4 @@
 using ParlayRMS.DTO.ParlayWon;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 using System;
@@ -15,6 +12,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.ParlayWon, Policy = Constant.Policy.Read)]
     public class ParlayWonController : BaseController

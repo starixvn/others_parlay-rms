@@ -1,13 +1,13 @@
-namespace ParlayRMS.Services.Common
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
-    using DataAccess;
     using Fanex.Caching;
     using Fanex.Caching.Memory;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.Common;
-    using Utility;
-    
+    using ParlayRMS.Utility;
+
     public class CommonService : BaseService
     {
         private static readonly ICache CacheInstance = new MemoryCache(

@@ -4,8 +4,6 @@ using Fanex.BetList.Core.TicketHelper;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using ParlayRMS.DTO.BetList;
-using ParlayRMS.Services.BetList;
-using ParlayRMS.Services.Common;
 using ParlayRMS.ViewModel.BetList;
 using System;
 using System.Collections.Generic;
@@ -19,6 +17,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     public class BetListController : BaseController
     {

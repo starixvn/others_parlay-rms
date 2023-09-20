@@ -1,12 +1,12 @@
-namespace ParlayRMS.Services.BetList
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Criteria.BetList;
-    using DataAccess;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
+    using ParlayRMS.Criteria.BetList;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.BetList;
 
     public class BetListService : BaseService

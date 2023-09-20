@@ -1,7 +1,4 @@
 using ParlayRMS.DTO.TopWinners;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.TopWinners;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
@@ -19,6 +16,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Service.Interface;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.TopWinners, Policy = Constant.Policy.Read)]
     public class TopWinnersController : BaseController

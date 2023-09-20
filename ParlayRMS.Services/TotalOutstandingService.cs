@@ -1,10 +1,10 @@
-namespace ParlayRMS.Services.TotalOutstanding
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.TotalOutstanding;
-    using Utility;
+    using ParlayRMS.Utility;
 
     public class TotalOutstandingService
     {

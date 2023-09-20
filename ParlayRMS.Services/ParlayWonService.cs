@@ -1,10 +1,9 @@
-namespace ParlayRMS.Services.ParlayWon
+namespace ParlayRMS.Services
 {
     using System.Collections.Generic;
-    using Common;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.ParlayWon;
-    using ViewModel.Report;
+    using ParlayRMS.ViewModel.Report;
 
     public class ParlayWonService : BaseService
     {

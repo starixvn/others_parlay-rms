@@ -1,10 +1,10 @@
-namespace ParlayRMS.Services.SimilarBets
+namespace ParlayRMS.Services
 {
     using System;
     using System.Linq;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.SimilarBets;
-    using Utility;
+    using ParlayRMS.Utility;
 
     public class SimilarBetsService : BaseService
     {

@@ -1,6 +1,4 @@
 using ParlayRMS.Models;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using System.Collections.Generic;
@@ -12,6 +10,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.PotentialWinningMonitor, Policy = Constant.Policy.Read)]
     public class PotentialWinningController : BaseController

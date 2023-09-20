@@ -1,17 +1,15 @@
-namespace ParlayRMS.Services.MemberWinLoss
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Common;
-    using DataAccess;
     using Fanex.Caching;
     using Fanex.Caching.Memory;
-    using Members;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.MemberWinLoss;
-    using Models;
+    using ParlayRMS.Models;
     using ParlayRMS.Models.MemberWinLoss;
-    using Utility;
+    using ParlayRMS.Utility;
 
     public class MemberWinLossService
     {

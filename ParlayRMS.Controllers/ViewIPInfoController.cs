@@ -5,9 +5,6 @@ using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using ParlayRMS.DTO.ViewIPInfo;
 using ParlayRMS.Models;
-using ParlayRMS.Services.BetList;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.ViewIPInfo;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.ViewIPInfo;
 using System;
@@ -19,6 +16,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.ViewIP, Policy = Constant.Policy.Read)]
     public class ViewIPInfoController : BaseController

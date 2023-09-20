@@ -1,14 +1,13 @@
-namespace ParlayRMS.Services.Winloss
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Common;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.Winloss;
     using ParlayRMS.Models.Winloss;
-    using Utility;
-    using ViewModel.Report;
+    using ParlayRMS.Utility;
+    using ParlayRMS.ViewModel.Report;
 
     public class WinlossService
     {

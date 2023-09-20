@@ -1,7 +1,7 @@
-namespace ParlayRMS.Services.LeagueWinningMonitor
+namespace ParlayRMS.Services
 {
     using System.Collections.Generic;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.LeagueWinningMonitor;
 
     public class LeagueWinningMonitorService : BaseService

@@ -1,10 +1,9 @@
-namespace ParlayRMS.Services.TopWinners
+namespace ParlayRMS.Services
 {
     using System.Collections.Generic;
-    using Common;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.TopWinners;
-    using ViewModel.Report;
+    using ParlayRMS.ViewModel.Report;
 
     public class TopWinnersService : BaseService
     {

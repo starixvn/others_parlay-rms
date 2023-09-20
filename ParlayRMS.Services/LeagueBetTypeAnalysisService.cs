@@ -1,12 +1,12 @@
-namespace ParlayRMS.Services.LeagueBetTypeAnalysis
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.LeagueBetTypeAnalysis;
     using ParlayRMS.DTO.Leagues;
-    using ViewModel.Report;
+    using ParlayRMS.ViewModel.Report;
 
     public class LeagueBetTypeAnalysisService : BaseService
     {

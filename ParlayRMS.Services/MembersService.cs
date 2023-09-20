@@ -1,9 +1,9 @@
-namespace ParlayRMS.Services.Members
+namespace ParlayRMS.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Criteria;
-    using DataAccess;
+    using ParlayRMS.Criteria;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.Members;
 
     public class MembersService : BaseService

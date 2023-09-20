@@ -3,8 +3,6 @@ using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using ParlayRMS.DTO.BetList;
 using ParlayRMS.DTO.SimilarBets;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.SimilarBets;
 using ParlayRMS.ViewModel.Report;
 using System;
 using System.Collections.Generic;
@@ -16,6 +14,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     public class SimilarBetsController : BaseController
     {

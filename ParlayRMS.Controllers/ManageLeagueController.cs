@@ -1,7 +1,6 @@
 namespace ParlayRMS.Controllers
 {
     using PagedList;
-    using Services.Leagues;
     using Utility;
     using System.Linq;
     using System.Web.Mvc;
@@ -12,6 +11,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Service.Interface;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
     using ViewModel.ManageLeague;
 
     public class ManageLeagueController : BaseController

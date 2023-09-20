@@ -1,5 +1,4 @@
 using ParlayRMS.Models;
-using ParlayRMS.Services.TotalOutstanding;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.TotalOutstanding;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
-    using Services.Members;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.TotalOutstanding, Policy = Constant.Policy.Read)]
     public class TotalOutstandingController : BaseController

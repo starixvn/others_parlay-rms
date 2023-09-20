@@ -1,11 +1,11 @@
-namespace ParlayRMS.Services.ViewIPInfo
+namespace ParlayRMS.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccess;
+    using ParlayRMS.DataAccess;
     using ParlayRMS.DTO.ViewIPInfo;
-    using Models.ViewIpInfo;
+    using ParlayRMS.Models.ViewIpInfo;
 
     public class ViewIPInfoService : BaseService
     {

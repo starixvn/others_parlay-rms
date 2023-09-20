@@ -1,5 +1,4 @@
 using ParlayRMS.Models;
-using ParlayRMS.Services.LeagueWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.LeagueWinningMonitor;
@@ -11,6 +10,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.LeagueWinningMonitor, Policy = Constant.Policy.Read)]
     public class LeagueWinningMonitorController : BaseController

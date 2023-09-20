@@ -1,7 +1,5 @@
 using ParlayRMS.DTO.ParlayMonitor;
 using ParlayRMS.Models;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.ParlayMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
 using ParlayRMS.ViewModel.PalayMonitor;
@@ -18,11 +16,12 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Service.Interface;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.ParlayMonitor, Policy = Constant.Policy.Read)]
     public class ParlayMonitorController : BaseController
     {
-        private readonly ParlayMonitorCacheService _parlayMonitorCacheService = new ParlayMonitorCacheService();
+        private readonly ParlayMonitorService _parlayMonitorService = new ParlayMonitorService();
         private readonly IUserService _userService = new UserService();
         private readonly CommonService _commonService = new CommonService();
 
@@ -114,7 +113,7 @@ namespace ParlayRMS.Controllers
 
             var isValidCustomerClass = !(model.CustomerClass.HasValue && model.CustomerClass.Value > short.MaxValue);
 
-            var data = isValidCustomerClass ? _parlayMonitorCacheService.GetParlayMonitorTickets(
+            var data = isValidCustomerClass ? _parlayMonitorService.GetParlayMonitorTickets(
                 model.Combos,
                 model.ParlayTypes,
                 model.SportsTypes,
@@ -149,7 +148,7 @@ namespace ParlayRMS.Controllers
         [HttpPost]
         public ActionResult CheckBy(UserTrackingCriteria criteria)
         {
-            var data = _parlayMonitorCacheService.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
+            var data = _parlayMonitorService.UpdateCheckedUser(criteria.UserId, criteria.Username, criteria.TransId);
             return Json(data);
         }
 

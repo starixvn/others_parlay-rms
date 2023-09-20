@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ParlayRMS.Models;
-using ParlayRMS.Services.Winloss;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
 
@@ -12,6 +11,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
 
     [NapAuth(FunctionKey = FunctionKeys.Winloss, Policy = Constant.Policy.Read)]
     public class WinlossController : BaseController

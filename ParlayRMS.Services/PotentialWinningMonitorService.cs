@@ -1,9 +1,9 @@
-namespace ParlayRMS.Services.PotentialWinningMonitor
+namespace ParlayRMS.Services
 {
     using System.Collections.Generic;
-    using DataAccess;
-    using DTO.PotentialWinning;
-    using Utility;
+    using ParlayRMS.DataAccess;
+    using ParlayRMS.DTO.PotentialWinning;
+    using ParlayRMS.Utility;
 
     public class PotentialWinningMonitorService : BaseService
     {

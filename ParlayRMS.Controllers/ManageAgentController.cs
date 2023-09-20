@@ -9,7 +9,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
     using PagedList;
-    using Services.Agents;
+    using Services;
     using Utility;
     using ViewModel.ManageAgent;
 

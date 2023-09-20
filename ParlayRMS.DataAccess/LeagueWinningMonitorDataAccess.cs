@@ -11,7 +11,6 @@ namespace ParlayRMS.DataAccess
 
     public class LeagueWinningMonitorDataAccess
     {
-        private const byte ReportByLeague = 1;
         private readonly IDynamicRepository repository = new DynamicRepository();
 
 

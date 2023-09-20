@@ -2,8 +2,6 @@
 namespace ParlayRMS.Controllers
 {
     using PagedList;
-    using Services.LeagueBetTypeAnalysis;
-    using Services.Leagues;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,6 +10,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
+    using Services;
     using Utility;
     using ViewModel.Report;
 
