@@ -7,7 +7,7 @@ namespace ParlayRMS.Controllers
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
 
-    [NapAuth(FunctionKey = FunctionKeys.Winloss, Policy = Constant.Policy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.WinLossRiskControl, Policy = Constant.Policy.Read)]
     public class WinLossRiskControlController : BaseController
     {
         [HttpGet]
