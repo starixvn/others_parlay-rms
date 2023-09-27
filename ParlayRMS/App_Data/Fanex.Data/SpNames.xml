@@ -26,6 +26,7 @@
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
       <Mapping DataField="cnt_soccer" ObjectProperty="Soccer" />
       <Mapping DataField="cnt_others" ObjectProperty="Orders" />
+      <Mapping DataField="custid" ObjectProperty="UserId" />
     </Setting>     
     <Setting Key="RMS_Rpt_ComboParlay_Winloss_Details" SpName="RMS_Rpt_ComboParlay_Winloss_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
       <Mapping DataField="combo" ObjectProperty="Selection" />
