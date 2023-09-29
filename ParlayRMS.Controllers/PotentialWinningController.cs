@@ -101,8 +101,8 @@ namespace ParlayRMS.Controllers
         public ActionResult ViewDetailList(PotentialWinningDetailModel detailModel)
         {
             var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId, detailModel.IsCornerParlay);
-            ViewBag.UserName = detailModel.UserName;
             ViewBag.CustId = detailModel.CustId;
+            ViewBag.BetDetailUserName = detailModel.UserName;
             ViewBag.IsDislayCheckedBy = !detailModel.AgentId.HasValue;
             return PartialView(model);
         }

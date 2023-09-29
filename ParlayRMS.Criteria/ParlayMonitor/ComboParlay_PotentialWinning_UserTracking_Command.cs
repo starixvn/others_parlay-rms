@@ -10,7 +10,7 @@
 
         public string TransId { get; set; }
 
-        public byte StatusId { get; set; }
+        public int StatusId { get; set; }
 
         public string Message { get; set; }
 
