@@ -333,24 +333,18 @@
             if (currentColIndex == ParlayWon.cachedObject.sortById) {
                 if (ParlayWon.cachedObject.isSortAsc) {
                     ParlayWon.cachedObject.isSortAsc = false;
-                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
                 } else {
                     ParlayWon.cachedObject.isSortAsc = true;
-                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
                 }
             } else {
-                if (currentObject.sortDirection == 'asc') {
-                    ParlayWon.cachedObject.isSortAsc = false;
-                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
-                } else {
-                    ParlayWon.cachedObject.isSortAsc = true;
-                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
-                }
+                ParlayWon.cachedObject.isSortAsc = false;
+                $(this).removeClass("headerSortUp").addClass("headerSortDown");
 
                 $('#header').find(".sortable").each(function () {
                     if ($(currentObject).index() != $(this).index()) {
                         $(this).removeClass("headerSortDown").removeClass("headerSortUp");
-                        this.sortDirection = "";
                     }
                 });
             }
@@ -416,9 +410,9 @@
                 $('#header').find(".sortable").each(function () {
                     if ($(this).attr("data-col-index") == ParlayWon.cachedObject.sortById) {
                         if (ParlayWon.cachedObject.isSortAsc) {
-                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
-                        } else {
                             $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                        } else {
+                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
                         }
                     }
                 });

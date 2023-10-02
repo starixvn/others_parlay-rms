@@ -43,6 +43,7 @@ namespace ParlayRMS.DataAccess
                 FromHouseAmt = houseAmountFrom,
                 ToHouseAmt = houseAmountTo,
                 SortById = sortById,
+                IsSortAsc = isSortAsc,
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 Currency = currency,

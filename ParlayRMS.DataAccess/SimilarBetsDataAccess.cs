@@ -67,7 +67,7 @@ namespace ParlayRMS.DataAccess
                                     HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(row["houseLoseAmt"]),
                                     Similar_Selection = DbConverter.ToInt32(row["similar_selection"]),
                                     CustomerClass = row["CustomerClass"] == DBNull.Value ? "None" : DbConverter.ToString(row["CustomerClass"]),
-                                    SiteGroup = DbConverter.ToString(info["SiteGroup"])
+                                    SiteGroup = DbConverter.ToString(row["SiteGroup"])
                                 })
                             };
                         }
