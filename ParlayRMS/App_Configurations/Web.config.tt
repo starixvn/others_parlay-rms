@@ -69,6 +69,8 @@
     <add key="ONEbook.UM:ResultCacheDuration" value="60" />
     <add key="ONEbook.UM:UMLoggingCategory" value="ONEbook-UM" />
     <add key="ONEbook.UM:ErrorUMPageUrl" value="" />
+    <add key="PropagationAuth" value="<#= site.PropagationAuth #>" />
+    <add key="RootUrl" value="<#= site.RootUrl #>" />
   </appSettings>
   <system.web>
     <customErrors mode="<#=site.ErrorMode#>" />

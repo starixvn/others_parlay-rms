@@ -94,7 +94,7 @@
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.UAT:
 					case SiteEnvironment.SIT:
-                        return "88";
+                        return "37";
                     default:
                         return "88";
                 }
@@ -273,7 +273,55 @@
 					case SiteEnvironment.LOCAL:
                         return "https://prms-core.nexdev.net";
                     default:
+                        return "http://localhost:61034";
+                }
+            }
+        }
+
+        public string PropagationAuth
+        {
+            get
+            {
+                switch(Environment)
+                {
+					case SiteEnvironment.UAT:
+					 return "https://prmscore.starixuat.com/Auth/Propagation";
+                    case SiteEnvironment.PRO:
+                        return "https://prmscore.oneops.net/Auth/Propagation";
+                    case SiteEnvironment.PROAWS:
+                        return "https://prmscore.oneops.net/Auth/Propagation";
+                    case SiteEnvironment.MNL:
                         return "";
+                    case SiteEnvironment.SIT:
+                        return "";
+					case SiteEnvironment.LOCAL:
+                        return "https://prms-core.nexdev.net/Auth/Propagation";
+                    default:
+                        return "http://localhost:61034/Auth/Propagation";
+                }
+            }
+        }
+
+        public string RootUrl
+        {
+            get
+            {
+                switch(Environment)
+                {
+					case SiteEnvironment.UAT:
+					 return "https://napparlayrms.starixuat.com/V1";
+                    case SiteEnvironment.PRO:
+                        return "https://parlayrms.oneops.net/V1";
+                    case SiteEnvironment.PROAWS:
+                        return "https://parlayrms.oneops.net/V1";
+                    case SiteEnvironment.MNL:
+                        return "";
+                    case SiteEnvironment.SIT:
+                        return "";
+					case SiteEnvironment.LOCAL:
+                        return "https://prms.nexdev.net/V4";
+                    default:
+                        return "http://localhost:57421/";
                 }
             }
         }
