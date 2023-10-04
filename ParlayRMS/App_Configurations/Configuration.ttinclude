@@ -46,31 +46,8 @@
     {
         public SiteEnvironment Environment { get; set; }
 
-        public string MSMQPath
-        {
-            get
-            {
-                switch(Environment)
-                {
-					case SiteEnvironment.UAT:
-                    case SiteEnvironment.PRO:
-                        return @"tcp:10.40.40.22\private$\entlib";
-                    case SiteEnvironment.PROAWS:
-                        return @"tcp:10.2.27.19\private$\entlib";
-
-                    case SiteEnvironment.MNL:
-                        return @"tcp:10.2.98.3\private$\entlib";
-
-                    case SiteEnvironment.SIT:
-                        return @"tcp:172.16.4.106\private$\entlib";
-
-                    default:
-                        return @"tcp:10.18.200.103\private$\entlib";
-                }
-            }
-        }
-
-         public string NapEnvironment
+       
+        public string NapEnvironment
         {
             get
             {
@@ -183,7 +160,7 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
-                        return "http://10.99.99.101:7207/Main/";
+                        return "http://10.99.99.51:7258/";
                     case SiteEnvironment.PRO:
                         return "http://10.99.99.51:7258/";
                     case SiteEnvironment.PROAWS:
