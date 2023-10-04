@@ -1,7 +1,6 @@
 ﻿/* File Created: May 7, 2012 */
 var tooltip;
 
-var kickOutIntId;
 var maxRetryTimes = 3;
 var curRetryTimes = 0;
 
@@ -51,8 +50,6 @@ ParlayRMS.Core =
 
 $(document).ready(function () {
     initValues();
-
-    kickOutIntId = setInterval('ReCheckin();', 10000); //call kickout every 10s
 });
 
 function initValues() {
