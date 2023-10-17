@@ -1,13 +1,7 @@
 using ParlayRMS.DTO.TopWinners;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.TopWinners;
-using ParlayRMS.Services.Users;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel;
 using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +10,19 @@ using System.Web.Mvc;
 namespace ParlayRMS.Controllers
 {
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services;
 
-    [Authorization(Function = FunctionKeys.TopWinners, Policy = UserPolicy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.TopWinners, Policy = Constant.Policy.Read)]
     public class TopWinnersController : BaseController
     {
         private readonly TopWinnersService _topwinnersService = new TopWinnersService();
-        private readonly UsersService _userService = new UsersService();
+        private readonly IUserService _userService = new UserService();
         private readonly BetDetailsService _betDetailsService = new BetDetailsService();
         private readonly CommonService commonService = new CommonService();
 
@@ -51,7 +52,11 @@ namespace ParlayRMS.Controllers
             }
             ViewBag.Currencies = currencies;
 
-            ViewBag.HasWritePermission = _userService.HasWritePermission(CurrentSession.UserId, FunctionKeys.ManageCustomer);
+            ViewBag.HasWritePermission = _userService.IsHavingPermission(
+                CurrentSession.UserId,
+                NapSettings.Settings.SiteId,
+                FunctionKeys.ManageMember,
+                Constant.Policy.Host);
 
             return View();
         }

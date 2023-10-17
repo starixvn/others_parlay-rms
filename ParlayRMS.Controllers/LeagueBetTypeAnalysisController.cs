@@ -1,21 +1,20 @@
 
 namespace ParlayRMS.Controllers
 {
-    using Models.Functions;
     using PagedList;
-    using DTO.Leagues;
-    using Services.LeagueBetTypeAnalysis;
-    using Services.Leagues;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services;
     using Utility;
     using ViewModel.Report;
-    using Web.Authorization;
 
-    [Authorization(Function = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = UserPolicy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.LeagueBetTypeDataAnalysis, Policy = Constant.Policy.Read)]
     public class LeagueBetTypeAnalysisController : BaseController
     {
         private readonly LeaguesService leagueService = new LeaguesService();
@@ -37,15 +36,7 @@ namespace ParlayRMS.Controllers
         public ActionResult GroupsAndLeagues(int sportType, DateTime fromDate, DateTime toDate)
         {
             var leagueGroups = service.GetLeagueGroups(sportType);
-            List<RMS_LeagueSel> leagueList;
-            if (sportType == SOCCER)
-            {
-                leagueList = leagueService.GetListLeague("", 0, sportType);
-            }
-            else
-            {
-                leagueList = service.GetListLeague("", 0, sportType, fromDate, toDate);
-            }    
+            var leagueList = sportType == SOCCER ? leagueService.GetListLeague("", 0, sportType) : service.GetListLeague("", 0, sportType, fromDate, toDate);    
             return Json(new
             {
                 Groups = leagueGroups,

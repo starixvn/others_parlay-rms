@@ -67,7 +67,7 @@
                         <th>
                             <div style="display: inline-block;">
                                 <input type="checkbox" id="cbTrackingUser" style="vertical-align: middle;"
-                                       onclick="updateCheckedUser('', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '', true)" />
+                                       onclick="updateCheckedUser('', '@ViewBag.UserId', '@ViewBag.Username', '', true)" />
                                 <label for="cbTrackingUser" style="vertical-align: middle;"> Checked By</label>
                             </div>
                         </th>
@@ -152,7 +152,7 @@
                         </td>
                         <td>
 
-                            <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.UserName','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @ViewBag.CustId);">
+                            <button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails('@ViewBag.BetDetailUserName','@item.Val.TransId', '@item.Val.RefNo', @item.Val.BetType, @ViewBag.CustId);">
                                 View
                             </button>
                         </td>
@@ -160,7 +160,7 @@
                         {
                             <td>
                                 <div style="display: inline-block;">
-                                    <input type="checkbox" id="cbTrackingUser-@item.Ind" onclick="updateCheckedUser('#cbTrackingUser-@item.Ind', '@CurrentSession.Instance.UserId', '@CurrentSession.Instance.UserName', '@item.Val.TransId', false)"
+                                    <input type="checkbox" id="cbTrackingUser-@item.Ind" onclick="updateCheckedUser('#cbTrackingUser-@item.Ind', '@ViewBag.UserId', '@ViewBag.Username', '@item.Val.TransId', false)"
                                            data-transid="@item.Val.TransId" class="cbTrackingUser-item" style="vertical-align: middle;" @(item.Val.IsTrackedUser ? "checked disabled" : "") />
                                     <label for="cbTrackingUser-@item.Ind" id="cbTrackingUser-@item.Ind-text" style="vertical-align: middle;"> @item.Val.TrackingUser</label>
                                 </div>

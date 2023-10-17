@@ -1,5 +1,4 @@
-﻿@using ParlayRMS.Web.Session
-@model Dictionary<string, ParlayRMS.ViewModel.Shared.MenuItem>
+﻿@model Dictionary<string, ParlayRMS.ViewModel.Shared.MenuItem>
 <div class="menu">
     <div class="content">
         <a href="@Url.Content("~/")" class="logo over-em"></a>
@@ -26,17 +25,17 @@
             <div class="welcomehead">
                 @ViewLang.Loggedinas<span style="color: #ff6300; font-weight: bold">
                     &nbsp;
-                    @CurrentSession.Instance.UserName
+                    @HttpContext.Current.User.Identity.Name
                 </span>
                 <div class="arrow">
                 </div>
             </div>
             <div class="welcomebody">
                 <div class="welcomebody-sub">
-                    <a href="javascript:ChangePassword(@CurrentSession.Instance.UserId, @CurrentSession.Instance.UserId, '@CurrentSession.Instance.UserName');">@ViewLang.ChangePassword</a>
+                    <a href="@Url.Content("~/Auth/ChangePassword")">@ViewLang.ChangePassword</a>
                 </div>
                 <div class="welcomebody-sub">
-                    <a href="javascript:logOff()">@ViewLang.Logout</a>
+                    <a href="@Url.Content("~/Auth/LogOut")">@ViewLang.Logout</a>
                 </div>
             </div>
         </div>

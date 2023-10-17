@@ -56,20 +56,8 @@ namespace ParlayRMS.ViewModel.Report
                 combosTitle = string.Join(",", combos.Select(x => x == "10" ? ViewLang.TenUp : x));
             }
 
-            var title = string.Format(
-                                "{0} of {1} - from {2} to {3} - {4} [{5}] - {6} [{7}] - {8} [{9}] - {10}[{11}]",
-                                ViewLang.AgentMemberWinLoss,
-                                Username,
-                                FromDate.ToString("MMM dd, yyyy"),
-                                ToDate.ToString("MMM dd, yyyy"),
-                                ViewLang.ParlayType,
-                                ModelsHelper.GetParlayTitle(ParlayTypes),
-                                ViewLang.Combo,
-                                combosTitle,
-                                ViewLang.SportsType,
-                                ModelsHelper.GetSportType(SportsType),
-                                ViewLang.LiveType,
-                                ModelsHelper.GetLiveTypeTitle(LiveType));
+            var title =
+                $"{ViewLang.AgentMemberWinLoss} of {Username} - from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - {ViewLang.ParlayType} [{ModelsHelper.GetParlayTitle(ParlayTypes)}] - {ViewLang.Combo} [{combosTitle}] - {ViewLang.SportsType} [{ModelsHelper.GetSportType(SportsType)}] - {ViewLang.LiveType}[{ModelsHelper.GetLiveTypeTitle(LiveType)}]";
             return title;
         }
     }

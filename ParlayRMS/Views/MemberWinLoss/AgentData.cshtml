@@ -2,7 +2,7 @@
 @using ParlayRMS.DTO.MemberWinLoss
 @model IEnumerable<RMS_Rpt_Parlay_MemberWinLoss>
     @{
-        var filterOption = (ParlayRMS.ViewModel.Report.MemberWinLossOptions)ViewBag.FilterOption;
+        var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
 	    var index = 0;
     }

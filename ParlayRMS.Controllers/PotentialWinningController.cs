@@ -1,17 +1,18 @@
 using ParlayRMS.Models;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.PotentialWinningMonitor;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Monitoring;
-using ParlayRMS.Web.Authorization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
-    [Authorization(Function = FunctionKeys.MonitorPotentialWinning, Policy = UserPolicy.Read)]
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services;
+
+    [NapAuth(FunctionKey = FunctionKeys.PotentialWinningMonitor, Policy = Constant.Policy.Read)]
     public class PotentialWinningController : BaseController
     {
         private readonly PotentialWinningMonitorService _potentialWinning = new PotentialWinningMonitorService();
@@ -92,7 +93,7 @@ namespace ParlayRMS.Controllers
             return Json(new
             {
                 Code = 0,
-                Records = data,
+                Records = data
             });
         }
 
@@ -100,8 +101,8 @@ namespace ParlayRMS.Controllers
         public ActionResult ViewDetailList(PotentialWinningDetailModel detailModel)
         {
             var model = _potentialWinning.GetPotentialWinningDetailList(detailModel.Combos, detailModel.ParlayTypes, detailModel.SportsTypes, detailModel.CustId, detailModel.IsCornerParlay);
-            ViewBag.UserName = detailModel.UserName;
             ViewBag.CustId = detailModel.CustId;
+            ViewBag.BetDetailUserName = detailModel.UserName;
             ViewBag.IsDislayCheckedBy = !detailModel.AgentId.HasValue;
             return PartialView(model);
         }

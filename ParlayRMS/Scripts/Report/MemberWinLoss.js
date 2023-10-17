@@ -26,7 +26,7 @@
         liveType: null
     },
     GetCachedDOM: function () {
-        MemberWinLoss.CachedDOM.username = $("#username");
+        MemberWinLoss.CachedDOM.username = $("#usernameOfMember");
         MemberWinLoss.CachedDOM.parlayType = $("#parlayType");
         MemberWinLoss.CachedDOM.combo = $("#combo");
         MemberWinLoss.CachedDOM.sportsType = $("#sportsType");
@@ -286,7 +286,7 @@
         var fromDate = MemberWinLoss.CachedDOM.fromDate.val();
         var toDate = MemberWinLoss.CachedDOM.toDate.val();
 
-        if (validator.validateRequired("#username")) {
+        if (validator.validateRequired("#usernameOfMember")) {
             return;
         }
 

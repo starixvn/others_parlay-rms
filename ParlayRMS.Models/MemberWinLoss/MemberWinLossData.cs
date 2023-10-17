@@ -1,7 +1,7 @@
 namespace ParlayRMS.Models.MemberWinLoss
 {
     using System.Collections.Generic;
-    using ParlayRMS.DTO.MemberWinLoss;
+    using DTO.MemberWinLoss;
 
     public class MemberWinLossData
     {

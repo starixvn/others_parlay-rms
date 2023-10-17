@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ParlayRMS.DTO</RootNamespace>
     <AssemblyName>ParlayRMS.DTO</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -54,29 +54,23 @@
     <Compile Include="BetList\RMS_BetList_BetBuilder_MatchDetailModel.cs" />
     <Compile Include="BetList\RMS_BetList_PenaltyShootout_MatchDetailModel.cs" />
     <Compile Include="BetList\RMS_Monitor_Parlay_BetInfo.cs" />
+    <Compile Include="Common\Acc_SportBettypeMatrix_Sel.cs" />
     <Compile Include="Common\Company.cs" />
     <Compile Include="Common\Currency.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
-    <Compile Include="Functions\RMS_FunctionSel.cs" />
-    <Compile Include="Groups\RMS_GroupInfoSel.cs" />
-    <Compile Include="Groups\RMS_GroupInfoSelAllGroup.cs" />
-    <Compile Include="Groups\RMS_GroupInfoSelByGroupID.cs" />
-    <Compile Include="Groups\RMS_GroupPolicySel.cs" />
     <Compile Include="LeagueBetTypeAnalysis\LeagueGroup.cs" />
     <Compile Include="LeagueBetTypeAnalysis\RMS_Rpt_LeagueBettype_Analysis.cs" />
     <Compile Include="Leagues\RMS_LeagueSel.cs" />
     <Compile Include="LeagueWinningMonitor\RmsRptLeagueWinningMonitor.cs" />
     <Compile Include="LeagueWinningMonitor\RmsRptLeagueWinningMonitorDetail.cs" />
+    <Compile Include="Members\RMS_CustomerSelInfoByUsername.cs" />
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss.cs" />
     <Compile Include="MemberWinLoss\RMS_Rpt_Parlay_MemberWinLoss_Detail.cs" />
-    <Compile Include="Menus\RMS_MenuSel.cs" />
     <Compile Include="BetList\RMS_Parlay_TransDetails.cs" />
     <Compile Include="ParlayWon\RMS_Rpt_Parlay_ParlayWon.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning.cs" />
     <Compile Include="PotentialWinning\RMS_Monitor_Potential_Winning_Detail.cs" />
     <Compile Include="PotentialWinning\UserTracking.cs" />
-    <Compile Include="Request.cs" />
-    <Compile Include="Result.cs" />
     <Compile Include="SimilarBets\SingleMatchParlaySimilarDetailOption.cs" />
     <Compile Include="SimilarBets\TotalDataModel.cs" />
     <Compile Include="TopWinners\RMS_Rpt_Parlay_TopWinner_Detail.cs" />
@@ -89,15 +83,7 @@
     <Compile Include="SimilarBets\RMS_Similar_Parlay_Betlist_Detail.cs" />
     <Compile Include="TotalOutstanding\RMS_Rpt_Parlay_Outstanding_Ag.cs" />
     <Compile Include="TotalOutstanding\RMS_Rpt_Parlay_Outstanding_Mem.cs" />
-    <Compile Include="Users\RMS_CustomerSelInfoByUsername.cs" />
-    <Compile Include="Users\RMS_MenuSelByUserID.cs" />
-    <Compile Include="Users\RMS_MenuSelByUserID_Function.cs" />
-    <Compile Include="Users\RMS_MenuSelByUserID_Menu.cs" />
-    <Compile Include="Users\RMS_UserInfoSel.cs" />
-    <Compile Include="Users\RMS_UserInfoSelByUserID.cs" />
-    <Compile Include="Users\RMS_UserPolicySel.cs" />
     <Compile Include="BetList\RMS_BetList_BetBuilder_DetailModel.cs" />
-    <Compile Include="Users\UserLoginParameter.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP.cs" />
     <Compile Include="ViewIPInfo\RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats.cs" />
     <Compile Include="ViewIPInfo\RMS_SystemParlay_CombinationDetails_ComboRef.cs" />

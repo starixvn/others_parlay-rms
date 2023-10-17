@@ -1,13 +1,7 @@
 using ParlayRMS.DTO.ParlayWon;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.BetDetails;
-using ParlayRMS.Services.Common;
-using ParlayRMS.Services.ParlayWon;
 using ParlayRMS.Utility;
 using ParlayRMS.ViewModel.Report;
-using ParlayRMS.Web.Authorization;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,8 +9,12 @@ using System.Web.Mvc;
 namespace ParlayRMS.Controllers
 {
     using ExcelService.Writers;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services;
 
-    [Authorization(Function = FunctionKeys.ParlayWon, Policy = UserPolicy.Read)]
+    [NapAuth(FunctionKey = FunctionKeys.ParlayWon, Policy = Constant.Policy.Read)]
     public class ParlayWonController : BaseController
     {
         private readonly ParlayWonService _service = new ParlayWonService();
@@ -58,7 +56,6 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                Hashtable outputParams = null;
                 ModelState.Remove("CustomerClass");
                 ModelState.Remove("HouseAmountFrom");
                 ModelState.Remove("HouseAmountTo");
@@ -73,22 +70,22 @@ namespace ParlayRMS.Controllers
                 var lastMonth = DateTime.Now.AddMonths(-1).Date;
                 if (options.FromDate.Date < lastMonth)
                 {
-                    ModelState.AddModelError("FromDate", string.Format("FromDate must be greater or equal than {0}", lastMonth.ToShortDateString()));
+                    ModelState.AddModelError("FromDate",
+                        $"FromDate must be greater or equal than {lastMonth.ToShortDateString()}");
                 }
 
                 if (!ModelState.IsValid)
                 {
                     return PartialView("_ErrorMessage", GetModelErrorMessage());
                 }
-                else
-                {
-                    var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
-                    var model = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
-                    ViewBag.FilterOption = options;
-                    ViewBag.Title = options.GetTitle();
-                    ViewBag.TotalRows = outputParams == null ? 0 : Convert.ToInt32(outputParams["totalrows"]);
-                    return PartialView(model);
-                }
+
+                var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
+                var totalRows = 0;
+                var model = isValidCustomerClass ? _service.GetParlayWonList(options, out totalRows) : new List<RMS_Rpt_Parlay_ParlayWon>();
+                ViewBag.FilterOption = options;
+                ViewBag.Title = options.GetTitle();
+                ViewBag.TotalRows = totalRows;
+                return PartialView(model);
             }
             catch (Exception ex)
             {
@@ -133,9 +130,8 @@ namespace ParlayRMS.Controllers
         [ValidateInput(false)]
         public void Excel(ParlayWonOptions options)
         {
-            Hashtable outputParams = null;
             var isValidCustomerClass = !(options.CustomerClass.HasValue && options.CustomerClass.Value > short.MaxValue);
-            var records = isValidCustomerClass ? _service.GetParlayWonList(options, ref outputParams) : new List<RMS_Rpt_Parlay_ParlayWon>();
+            var records = isValidCustomerClass ? _service.GetParlayWonList(options, out _) : new List<RMS_Rpt_Parlay_ParlayWon>();
 
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\ParlayWon.xls";
             var writer = new TemplateWriter(templatePath);

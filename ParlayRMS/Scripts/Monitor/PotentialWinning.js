@@ -602,7 +602,7 @@ function ViewTotalBetDetails(custId, agentid) {
         td.html(waitingImg);
 
         var userSettings = settingsController.get();
-        var username = row.children('td').eq(2).text();
+        var username = row.children('td').eq(3).text();
         var data = {
             Combos: userSettings.combos,
             parlayTypes: userSettings.parlaysTypes,

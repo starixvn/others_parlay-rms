@@ -1,17 +1,6 @@
 namespace ParlayRMS.Models
 {
-    public enum StatusKickedOut
-    {
-        KickedOut = -1,
-
-        Continue = 1,
-
-        Maintenance = 2,
-
-        Login = 3,
-    }
-
-    public enum ParlayType : int
+    public enum ParlayType
     {
         All = 0,
 
@@ -26,7 +15,7 @@ namespace ParlayRMS.Models
         GodOfFortune = 5
     }
 
-    public enum SportsType : int
+    public enum SportsType
     {
         AllSports = 0,
 
@@ -37,7 +26,7 @@ namespace ParlayRMS.Models
         CombinedSports = 3
     }
 
-    public enum DateRange : int
+    public enum DateRange
     {
         Yesterday = 1,
 
@@ -54,7 +43,7 @@ namespace ParlayRMS.Models
         SpecificDate = 7
     }
 
-    public enum RoleId : int
+    public enum RoleId
     {
         Super = 4,
 
@@ -65,7 +54,7 @@ namespace ParlayRMS.Models
         Member = 1
     }
 
-    public enum BetType : int
+    public enum BetType
     {
         MixParlay = 9,
 
@@ -76,37 +65,7 @@ namespace ParlayRMS.Models
         PenaltyShootout = 376
     }
 
-    public enum SystemParlayCombo : int
-    {
-        Trixie = 3,
-
-        Yankee = 4,
-
-        Canadian = 5,
-
-        Heinz = 6,
-
-        SuperHeinz = 7,
-
-        Goliath = 8
-    }
-
-    public enum SystemParlayBets : int
-    {
-        Trixie = 4,
-
-        Yankee = 11,
-
-        Canadian = 26,
-
-        Heinz = 57,
-
-        SuperHeinz = 120,
-
-        Goliath = 247
-    }
-
-    public enum Market : int
+    public enum Market
     {
         TodayOnly = 1,
 
@@ -115,7 +74,7 @@ namespace ParlayRMS.Models
         Combined = 3
     }
 
-    public enum ReportType : int
+    public enum ReportType
     {
         Combo = 1,
         SportType = 2

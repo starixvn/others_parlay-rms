@@ -4,11 +4,7 @@ using Fanex.BetList.Core.TicketHelper;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using ParlayRMS.DTO.BetList;
-using ParlayRMS.Models.Functions;
-using ParlayRMS.Services.BetList;
-using ParlayRMS.Services.Common;
 using ParlayRMS.ViewModel.BetList;
-using ParlayRMS.Web.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +13,19 @@ using System.Web.Mvc;
 
 namespace ParlayRMS.Controllers
 {
+    using Criteria.BetList;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Web.Attribute;
+    using Models.Functions;
+    using Services;
+
     public class BetListController : BaseController
     {
         private readonly BetListService _betlistService = new BetListService();
         private readonly CommonService _commonService = new CommonService();
 
         [HttpPost]
-        [Authorization(Function = FunctionKeys.MonitorMixParlay, Policy = UserPolicy.Read)]
+        [NapAuth(FunctionKey = FunctionKeys.ParlayMonitor, Policy = Constant.Policy.Read)]
         public ActionResult BetDetails(BetDetailsOptions options)
         {
             ViewBag.TransId = options.TransId;
@@ -90,7 +92,7 @@ namespace ParlayRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult SingleMatchParlay(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        public ActionResult SingleMatchParlay(BetList_BetBuilder_DetailCriteria criteria)
         {
             var result = new StringBuilder();
             var selections = _betlistService.RMS_BetList_BetBuilder_Detail(criteria);
@@ -112,7 +114,7 @@ namespace ParlayRMS.Controllers
 
 
         [HttpPost]
-        public ActionResult SingleMatchParlayDetailPopup(RMS_BetList_BetBuilder_DetailCriteria criteria)
+        public ActionResult SingleMatchParlayDetailPopup(BetList_BetBuilder_DetailCriteria criteria)
         {
             ViewBag.TransId = criteria.TransId;
             ViewBag.Username = criteria.Username;
@@ -136,20 +138,20 @@ namespace ParlayRMS.Controllers
             ViewBag.ResultTexts = resultTexts;
             ViewBag.SelectionNames = selectionNames;
             ViewBag.Choice = choice;
-            ViewBag.IsBlackListLeague = model == null ? false : model.IsBlacklistLeague;
+            ViewBag.IsBlackListLeague = model?.IsBlacklistLeague ?? false;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult PenaltyShootoutParlayDetailPopup(RMS_BetList_PenaltyShootout_DetailCriteria criteria)
+        public ActionResult PenaltyShootoutParlayDetailPopup(BetList_PenaltyShootout_DetailCriteria criteria)
         {
             ViewBag.TransId = criteria.TransId;
             ViewBag.Username = criteria.Username;
             var model = _betlistService.RMS_BetList_PenaltyShootout_MatchDetail(criteria.TransId).FirstOrDefault();
             var choice = GetChoiceForPenaltyShootoutParlayDetailPopup(model);
             ViewBag.Choice = choice;
-            ViewBag.IsBlackListLeague = model == null ? false : model.IsBlacklistLeague;
+            ViewBag.IsBlackListLeague = model?.IsBlacklistLeague ?? false;
 
             return View();
         }
@@ -183,10 +185,7 @@ namespace ParlayRMS.Controllers
             var matchNode = document.QuerySelector(".match");
             var leagueNode = document.QuerySelector(".league");
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
             document.RemoveAllChildren();
 
@@ -232,15 +231,9 @@ namespace ParlayRMS.Controllers
             var document = html.DocumentNode;
             var bettype = document.QuerySelector(".bettype");
             var eventDateNode = document.QuerySelector(".event-date");
-            if (eventDateNode != null)
-            {
-                eventDateNode.Remove();
-            }
+            eventDateNode?.Remove();
 
-            if (bettype != null)
-            {
-                bettype.Remove();
-            }
+            bettype?.Remove();
 
             return document.OuterHtml;
         }

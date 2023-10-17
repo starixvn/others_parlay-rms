@@ -1,8 +1,8 @@
-using ParlayRMS.DTO.Winloss;
-using System.Collections.Generic;
-
 namespace ParlayRMS.Models.Winloss
 {
+    using System.Collections.Generic;
+    using DTO.Winloss;
+
     public class WinlossItemData
     {
         public WinlossItemData()

@@ -9,5 +9,7 @@ namespace ParlayRMS.ViewModel.Shared
         public string Url { get; set; }
 
         public List<MenuItem> Children { get; set; }
+
+        public int DisplayOrder { get; set; }
     }
 }

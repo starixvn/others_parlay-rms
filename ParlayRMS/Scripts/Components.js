@@ -309,7 +309,12 @@ var popup = function () {
         hideErrorMessage: function () {
             messageContainer.hide('fade');
             messageContainer.html('');
-        }
+        },
+        showMessage: function (msg) {
+            popup.hideLoading();
+            messageContainer.html(msg);
+            messageContainer.show('fade');
+        },
     };
 }();
 

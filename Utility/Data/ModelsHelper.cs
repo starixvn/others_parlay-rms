@@ -52,7 +52,7 @@ namespace ParlayRMS.Utility.Data
             { 10, "#fbbcc7"},
             { 11, "#772677"},
             { 12, "#1d8191" },
-            { 8, "#ff0000" },
+            { 8, "#ff0000" }
         };
         public static string GetColorByLeagueGroup(int groupId)
         {
@@ -73,7 +73,7 @@ namespace ParlayRMS.Utility.Data
             { 10, "CUP"},
             { 11, "CORNER"},
             { 12, "WORLD CUP" },
-            { 8, "Blacklisted" },
+            { 8, "Blacklisted" }
         };
         public static string GetNameByLeagueGroup(int groupId)
         {
@@ -116,18 +116,17 @@ namespace ParlayRMS.Utility.Data
         public static string GetSportType(string sportTypes)
         {
             var list = sportTypes.Split(',');
-            if (list.Length == 14)
+            switch (list.Length)
             {
-                return ViewLang.All;
-            }
-            else if (list.Length == 1)
-            {
-                var sportType = Convert.ToInt32(list[0]);
-                return GetSportType(sportType);
-            }
-            else
-            {
-                return string.Format("{0} options", list.Length);
+                case 14:
+                    return ViewLang.All;
+                case 1:
+                {
+                    var sportType = Convert.ToInt32(list[0]);
+                    return GetSportType(sportType);
+                }
+                default:
+                    return $"{list.Length} options";
             }
         }
 
@@ -245,22 +244,21 @@ namespace ParlayRMS.Utility.Data
         public static string GetLeagueGroupTitle(string leagueGroups)
         {
             var list = leagueGroups.Split(',');
-            if (list.Length == 10)
+            switch (list.Length)
             {
-                return ViewLang.All;
-            }
-            else if (list.Length == 1)
-            {
-                var sportType = Convert.ToInt32(list[0]);
-                return GetLeagueGroup(sportType);
-            }
-            else
-            {
-                return string.Format("{0} options", list.Length);
+                case 10:
+                    return ViewLang.All;
+                case 1:
+                {
+                    var sportType = Convert.ToInt32(list[0]);
+                    return GetLeagueGroup(sportType);
+                }
+                default:
+                    return $"{list.Length} options";
             }
         }
 
-        public static string GetCustomerClassTitle(long? customerClass)
+        public static string GetCustomerClassTitle(int? customerClass)
         {
             return customerClass == null ? "All" : customerClass.ToString();
         }

@@ -2,7 +2,7 @@ namespace ParlayRMS.DTO.TotalOutstanding
 {
     public class RMS_Rpt_Parlay_Outstanding_Ag
     {
-        public long CustId { get; set; }
+        public int CustId { get; set; }
 
         public string Username { get; set; }
 

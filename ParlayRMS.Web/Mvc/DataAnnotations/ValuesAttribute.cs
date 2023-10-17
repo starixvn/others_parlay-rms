@@ -43,7 +43,7 @@ namespace ParlayRMS.Web.Mvc.DataAnnotations
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format("Field {0} only accepts values: {1}", name, string.Join(", ", Values));
+            return $"Field {name} only accepts values: {string.Join(", ", Values)}";
         }
     }
 }

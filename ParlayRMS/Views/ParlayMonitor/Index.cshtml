@@ -1,5 +1,4 @@
-﻿@using ParlayRMS.Web.Session
-@{
+﻿@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.ParlayMonitor;
 }
 @Styles.Render("~/Content/ParlayMonitor")
@@ -133,6 +132,6 @@
         'otherSports': '@ViewLang.Othersports'
     };
     var hasIpPermission = @JavascriptHelper.GetString(ViewBag.HasReadPermission);
-    var userId = @CurrentSession.Instance.UserId;
-    var userName = '@CurrentSession.Instance.UserName';
+    var userId = @ViewBag.UserId;
+    var userName = '@ViewBag.Username';
 </script>

@@ -1,82 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteName="NAP - Parlay RMS">
   <Function Name="User">
-    <Setting Key="RMS_UserLogin" SpName="RMS_UserLogin" DbName="DBCUST.CustDB.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoUpdAll" SpName="RMS_UserInfoUpdAll" DbName="DBCUST.CustDB.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoAddNew" SpName="RMS_UserInfoAddNew" DbName="DBCUST.CustDB.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoUpdUserPwd" SpName="RMS_UserInfoUpdUserPwd" DbName="DBCUST.CustDB.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoAddExisting" SpName="RMS_UserInfoAddExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserLogout" SpName="RMS_UserLogout" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserRecheckIn" SpName="RMS_UserRecheckIn" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserCheckIn" SpName="RMS_UserCheckIn" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserCheckPermission" SpName="RMS_UserCheckPermission" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoSel" SpName="RMS_UserInfoSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoSelByUserID" SpName="RMS_UserInfoSelByUserID" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoUpdateUserGroup" SpName="RMS_UserInfoUpdateUserGroup" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserInfoUpdStatus" SpName="RMS_UserInfoUpdStatus" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserPolicySel" SpName="RMS_UserPolicySel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_UserPolicyUpd" SpName="RMS_UserPolicyUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerSelInfoByUsername" SpName="RMS_CustomerSelInfoByUsername" DbName="DBACC.bodb02.bodbRMSNet" />
     <Setting Key="RMS_CustomerAgentOfMasterSel" SpName="RMS_CustomerAgentOfMasterSel" DbName="DBACC.bodb02.bodbRMSNet" />
   </Function>
-  <Function Name="Menu">
-    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
-  <Function Name="Group">
-    <Setting Key="RMS_GroupInfoIns" SpName="RMS_GroupInfoIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupInfoUpd" SpName="RMS_GroupInfoUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupPolicyUpd" SpName="RMS_GroupPolicyUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupInfoSel" SpName="RMS_GroupInfoSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupInfoSelAllGroup" SpName="RMS_GroupInfoSelAllGroup" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupInfoSelByGroupID" SpName="RMS_GroupInfoSelByGroupID" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupInfoSelUserGroup" SpName="RMS_GroupInfoSelUserGroup" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_GroupPolicySel" SpName="RMS_GroupPolicySel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
-  <Function Name="Function">
-    <Setting Key="RMS_FunctionIns" SpName="RMS_FunctionIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_FunctionSel" SpName="RMS_FunctionSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_FunctionUpd" SpName="RMS_FunctionUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
-  <Function Name="Menu">
-    <Setting Key="RMS_MenuIns" SpName="RMS_MenuIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MenuSel" SpName="RMS_MenuSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MenuUpd" SpName="RMS_MenuUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MenuUpdStatus" SpName="RMS_MenuUpdStatus" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_MenuSelByUserID" SpName="RMS_MenuSelByUserID" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
   <Function Name="Report">
-    <Setting Key="RMS_Monitor_Parlay_Betlist" SpName="RMS_Monitor_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_BetInfo" SpName="RMS_Monitor_ComboParlay_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinners_Details_old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_Old" DbName="DBARC.bodb_Archive.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_ComboParlay_Betlist" SpName="RMS_Monitor_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="potentialWinningAmt" ObjectProperty="PotentialWinningAmount" />
+      <Mapping DataField="maxpayout" ObjectProperty="NetWinAfterPT" />
+    </Setting>
+    <Setting Key="RMS_Monitor_ComboParlay_BetInfo" SpName="RMS_Monitor_ComboParlay_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_TopWinners" SpName="RMS_Rpt_ComboParlay_TopWinners" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_TopWinners_Details" SpName="RMS_Rpt_ComboParlay_TopWinners_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="combo" ObjectProperty="Selection" />
+    </Setting>
+    <Setting Key="RMS_Rpt_ComboParlay_TopWinners_Details_Old" SpName="RMS_Rpt_ComboParlay_TopWinners_Details_Old" DbName="DBARC.bodb_Archive.bodbRMSNet" >
+      <Mapping DataField="combo" ObjectProperty="Selection" />
+    </Setting>
     <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_TopWinner_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Similar_Parlay_Betlist" SpName="RMS_Similar_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Parlay_TransDetails" SpName="RMS_ComboParlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_Winloss" SpName="RMS_Rpt_ComboParlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_MemberWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_AgentWinLoss" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Details" SpName="RMS_Rpt_ComboParlay_Winloss_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Similar_ComboParlay_Betlist" SpName="RMS_Similar_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_ComboParlay_TransDetails" SpName="RMS_ComboParlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss" SpName="RMS_Rpt_ComboParlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Mem" SpName="RMS_Rpt_ComboParlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Ag" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="cnt_soccer" ObjectProperty="Soccer" />
+      <Mapping DataField="cnt_others" ObjectProperty="Orders" />
+      <Mapping DataField="custid" ObjectProperty="UserId" />
+    </Setting>     
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Details" SpName="RMS_Rpt_ComboParlay_Winloss_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="combo" ObjectProperty="Selection" />
+    </Setting>
+    <Setting Key="RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype" SpName="RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" />
+      <Mapping DataField="sporttype" ObjectProperty="SportTypeId" />
+    </Setting>
     <Setting Key="RMS_SystemParlay_CombinationDetails" SpName="RMS_SystemParlay_CombinationDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    
     <Setting Key="RMS_Rpt_Parlay_UsersStatisticsByIP" SpName="RMS_Rpt_Parlay_UsersStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Monitor_Parlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Monitor_ComboParlay_PotentialWinning" SpName="RMS_Monitor_ComboParlay_PotentialWinning" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="TotalStake" ObjectProperty="Stake" />
+      <Mapping DataField="totalbets" ObjectProperty="TotalTicket" />
+    </Setting>
+    <Setting Key="RMS_Monitor_ComboParlay_PotentialWinningDetails" SpName="RMS_Monitor_ComboParlay_PotentialWinningDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_ComboParlay_PotentialWinning_UserTracking" SpName="RMS_ComboParlay_PotentialWinning_UserTracking" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_ParlayWon" SpName="RMS_Rpt_ParlayWon" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ParlayWon" SpName="RMS_Rpt_ParlayWon" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="currencyName" ObjectProperty="Currency" />
+    </Setting>
     <Setting Key="RMS_Rpt_LeagueBettype_Analysis" SpName="RMS_Rpt_LeagueBettype_Analysis" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-	<Setting Key="RMS_LeagueGroupSel" SpName="RMS_LeagueGroupSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-	<Setting Key="RMS_SiteByGroupSel" SpName="RMS_SiteByGroupSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_LeagueGroupSel" SpName="RMS_LeagueGroupSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="LeagueGroupName" ObjectProperty="Name" />
+      <Mapping DataField="LeagueGroupID" ObjectProperty="Id" />
+    </Setting>
   </Function>
   <Function Name="Member">
     <Setting Key="RMS_CustomerIns" SpName="RMS_CustomerIns" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerUpd" SpName="RMS_CustomerUpd" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_CustomerUpdStatus" SpName="RMS_CustomerUpdStatus" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_CustomerSel" SpName="RMS_CustomerSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="SiteGroup" ObjectProperty="Site" />
+    </Setting>
     <Setting Key="RMS_CustomerCheckExisting" SpName="RMS_CustomerCheckExisting" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="League">
@@ -90,17 +73,27 @@
     <Setting Key="RMS_DangerousAgentSel" SpName="RMS_DangerousAgentSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="TotalOutstanding">
-    <Setting Key="RMS_Rpt_Parlay_Outstanding_Mem" SpName="RMS_Rpt_ComboParlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_Outstanding_Ag" SpName="RMS_Rpt_ComboParlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_Outstanding_Mem" SpName="RMS_Rpt_ComboParlay_Outstanding_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="potentialWinningAmt" ObjectProperty="PotentialWinningAmount" />
+      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
+    </Setting>
+    <Setting Key="RMS_Rpt_ComboParlay_Outstanding_Ag" SpName="RMS_Rpt_ComboParlay_Outstanding_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="net_win" ObjectProperty="MaxPayoutPt" />
+    </Setting>
   </Function>
-  <Function Name="DangerMonitor">
-    <Setting Key="RMS_Rpt_Parlay_DangerMonitor" SpName="RMS_Rpt_Parlay_DangerMonitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_DangerMonitor_Details" SpName="RMS_Rpt_Parlay_DangerMonitor_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-  </Function>
+  
 
   <Function Name="common">
     <Setting Key="Acc_SportBettypeMatrix_Sel" SpName="Acc_SportBettypeMatrix_Sel" DbName="DBACC.bodb02.bodbRMSNet" />
-    <Setting Key="RMS_CurrencySel" SpName="RMS_CurrencySel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_CurrencySel" SpName="RMS_CurrencySel" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="currency" ObjectProperty="Id" />
+      <Mapping DataField="currencyName" ObjectProperty="CurrencyCode" />
+    </Setting>
+    <Setting Key="RMS_Rpt_Parlay_SelMinTransdate" SpName="RMS_Rpt_Parlay_SelMinTransdate" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="transdate_min" ObjectProperty="MinTransdate" />
+    </Setting>
+    <Setting Key="RMS_SelBalanceUpDay" SpName="RMS_SelBalanceUpDay" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_SiteByGroupSel" SpName="RMS_SiteByGroupSel" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
 
   <Function Name="BetBuilder">
@@ -109,13 +102,17 @@
   </Function>
 
   <Function Name="BetDetail">
-    <Setting Key="RMS_Rpt_Parlay_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
-    <Setting Key="RMS_Rpt_Parlay_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_Parlay_TopWinners_Bet_Details" SpName="RMS_Rpt_Parlay_TopWinners_Bet_Details" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_ComboParlay_TopWinner_BetInfo" SpName="RMS_Rpt_ComboParlay_TopWinner_BetInfo" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="PenaltyShootout">
     <Setting Key="RMS_BetList_PenaltyShootout_MatchDetail" SpName="RMS_BetList_PenaltyShootout_MatchDetail" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
   </Function>
   <Function Name="LeagueWinningMonitor">
-    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
+    <Setting Key="RMS_Rpt_League_Winning_Monitor" SpName="RMS_Rpt_League_Winning_Monitor" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
+      <Mapping DataField="totalWinningAmt" ObjectProperty="TotalWinningAmount" />
+      <Mapping DataField="companyLoseAmt" ObjectProperty="CompanyLoseAmount" />
+      <Mapping DataField="totalTicket" ObjectProperty="TotalTickets" />
+    </Setting>
   </Function>
 </Functions>

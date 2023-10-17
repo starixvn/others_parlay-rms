@@ -3,23 +3,24 @@ namespace ParlayRMS.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Services.Menus;
+    using Fanex.NAP.Core.Web.Session;
     using Utility;
     using ViewModel.Shared;
 
     public class SharedController : BaseController
     {
-        private readonly MenusService _menuService = new MenusService();
+        private readonly ICurrentSession session = new CurrentSession();
 
-        public ActionResult _AuthInfo()
-        {
-            return PartialView();
-        }
-
+    
         public ActionResult _Menu()
         {
-            var menuList = _menuService.GetMenusByUserId(CurrentSession.UserId);
-            var rootMenuList = menuList.Where(x => x.Parent == null);
+            if (session.UserId == 0)
+            {
+                return Content(string.Empty);
+            }
+
+            var menuList = session.MenuItemList;
+            var rootMenuList = menuList.Where(x => x.ParentId == 0);
             var menuDict = new Dictionary<string, MenuItem>();
 
             foreach (var item in rootMenuList)
@@ -29,15 +30,18 @@ namespace ParlayRMS.Controllers
                 {
                     Name = item.Name,
                     Url = item.Url,
-                    Children = new List<MenuItem>()
+                    Children = new List<MenuItem>(),
+                    DisplayOrder = item.DisplayOrder
                 };
 
-                var value = menuList.Where(x => x.Parent != null && x.Parent.Id == item.Id).Select(
+                var value = menuList.Where(x => x.ParentId == item.Id).Select(
                     x => new MenuItem
                     {
                         Name = x.Name,
-                        Url = x.Url
-                    });
+                        Url = x.Url,
+                        DisplayOrder = x.DisplayOrder
+                    })
+                    .OrderBy(x=>x.DisplayOrder);
                 menuItem.Children.AddRange(value.ToList());
 
                 if (menuItem.Children.Count > 0 || !string.IsNullOrEmpty(menuItem.Url))
@@ -54,11 +58,6 @@ namespace ParlayRMS.Controllers
             ViewBag.Title = title;
             ViewBag.Content = content;
 
-            return PartialView();
-        }
-
-        public virtual ActionResult _SearchBar()
-        {
             return PartialView();
         }
 

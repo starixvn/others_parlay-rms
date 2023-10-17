@@ -4,7 +4,7 @@
 <#@ Import Namespace="System.Data" #>
 <#@ Import Namespace="System.Data.SqlClient" #>
 <#
-	string connectionString = "Persist Security Info=False;User ID=ageteam;Password=@lion#;Initial Catalog=bodb_RMS;Data Source=10.18.200.215";
+	string connectionString = "data source=10.18.200.54;initial catalog=NAP_UserControl;User Id=vnteam; pwd=@readonly#;";
 #>
 namespace ParlayRMS.Models.Functions
 {
@@ -12,20 +12,23 @@ namespace ParlayRMS.Models.Functions
 	{
 	<#
 		SqlConnection conn = new SqlConnection(connectionString);
-		string sql = "RMS_FunctionSel";
-		SqlCommand command = new SqlCommand(sql, conn);
-		command.CommandType = CommandType.StoredProcedure;
+
+		string command = string.Format("SELECT DISTINCT FunctionKey FROM [NAP_Functions] WHERE SiteId = 88 AND IsActive = 1");
+
+		SqlCommand comm = new SqlCommand(command, conn);
+
 		conn.Open();
-		SqlDataReader reader = command.ExecuteReader();
-		bool loop = reader.Read();
-		while (loop)
-		{
-	#>
-	public const string <#= reader["FuncKey"].ToString() #> = "<#= reader["FuncKey"].ToString() #>"<#loop = reader.Read();#><#=loop ? ";" : ";" #>
-	<#}#>
-	<#
+
+		SqlDataReader reader = comm.ExecuteReader();
+
+		while(reader.Read())
+		{#>
+		public const string <#= reader["FunctionKey"].ToString() #> = "<#= reader["FunctionKey"].ToString() #>";
+
+		<#}#>
+		<#  
 		reader.Close();
 		conn.Close();
-	#>
-	}
+		#> 
+	}	
 }

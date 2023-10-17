@@ -36,7 +36,7 @@ namespace ParlayRMS.ViewModel.Report
 
         public byte LiveType { get; set; }
 
-        public long? CustomerClass { get; set; }
+        public int? CustomerClass { get; set; }
 
         public int SortById { get; set; }
 
@@ -69,25 +69,8 @@ namespace ParlayRMS.ViewModel.Report
 
             levelTitle = levelTitle.Replace("0,", "None,");
 
-            var title = string.Format(
-                                "{0} from {1} to {2} - [{3}] {4} - [{5}] - {6} [{7}] - {8} - [{9}] {10} - [{11}] {12} - [{13}] {14} - {15} [{16}]",
-                                ViewLang.ParlayWon,
-                                FromDate.ToString("MMM dd, yyyy"),
-                                ToDate.ToString("MMM dd, yyyy"),
-                                ViewLang.ParlayType,
-                                ModelsHelper.GetParlayTitle(ParlayTypes),
-                                ViewLang.Combo,
-                                combosTitle,
-                                ViewLang.SportsType,
-                                ModelsHelper.GetSportType(SportsType),
-                                ViewLang.Level,
-                                levelTitle,
-                                ViewLang.Site,
-                                ModelsHelper.GetSiteTitle(Site),
-                                ViewLang.LiveType,
-                                ModelsHelper.GetLiveTypeTitle(LiveType),
-                                ViewLang.CustomerClass,
-                                ModelsHelper.GetCustomerClassTitle(CustomerClass));
+            var title =
+                $"{ViewLang.ParlayWon} from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - [{ViewLang.ParlayType}] {ModelsHelper.GetParlayTitle(ParlayTypes)} - [{ViewLang.Combo}] - {combosTitle} [{ViewLang.SportsType}] - {ModelsHelper.GetSportType(SportsType)} - [{ViewLang.Level}] {levelTitle} - [{ViewLang.Site}] {ModelsHelper.GetSiteTitle(Site)} - [{ViewLang.LiveType}] {ModelsHelper.GetLiveTypeTitle(LiveType)} - {ViewLang.CustomerClass} [{ModelsHelper.GetCustomerClassTitle(CustomerClass)}]";
             return title;
         }
     }
