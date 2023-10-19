@@ -56,8 +56,11 @@
     @Html.Partial("_Language")
     @Html.Partial("_ConfirmBox", "Shared")
     @Html.Partial("_UpdateLevel", "Shared")
-
-    <script src="@Url.Content("~/auth/recheckinscript")" type="text/javascript"></script>
+    
+<script type="text/ecmascript">
+    window.rootUrl ='@Url.Content("~/")';
+</script>
+<script src="@Url.Content("~/wwwroot/nap-auth/ReCheckIn.js")" type="text/javascript"></script>
 
 </body>
 </html>
