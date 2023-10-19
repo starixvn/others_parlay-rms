@@ -128,16 +128,28 @@
                             <div style="display:none" class="Expand" id="exp_@item.RefNo">
                             </div>
                         </td>
-                        <td class="numeric">
-                            @if (item.BetType == (int)BetType.SystemParlay)
+	                    <td class="numeric">
+                            @if (item.IsBoostBonus)
                             {
-                                @Html.Raw("-")
+	                            <span style="color: #8f8787; "><b><del>@item.Odds</del></b></span><br/>
+	                            <span><b>@item.Odds2</b></span><br/>
+	                            <div style="background-color: yellow; float: right; display: flex; justify-content: center; align-items: center; padding: 2px;">
+                                    <div class="boostBonus" style="padding-left: 2px; margin-right: 0px;"></div>
+                                    <div style="color: blue;"><b>+@((item.Bbp * 100).ToString("#,##0.##"))% Boost</b></div>
+	                            </div>
                             }
                             else
                             {
-                                @item.Odds.ToString("#,##0.000")
+	                            if (item.BetType == (int)BetType.SystemParlay)
+	                            {
+		                            @Html.Raw("-")
+	                            }
+	                            else
+	                            {
+		                            @item.Odds.ToString("#,##0.000")
+	                            }
                             }
-                        </td>
+	                    </td>
                         <td class="numeric">
                             @if (item.IsGOF)
                             {

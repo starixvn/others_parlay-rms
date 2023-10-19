@@ -14,6 +14,10 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public decimal Odds { get; set; }
 
+        public decimal Odds2 { get; set; }
+
+        public decimal Bbp { get; set; }
+
         public decimal Stake { get; set; }
 
         public decimal ActualStake { get; set; }
@@ -53,5 +57,7 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public string ExtraInfo { get; set; }
 
         public bool IsGOF { get; set; }
+
+        public bool IsBoostBonus { get; set; }
     }
 }
