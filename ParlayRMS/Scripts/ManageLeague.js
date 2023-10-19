@@ -130,7 +130,7 @@ function AddLeaguePost() {
                 popup.showErrorMessage(json.message);
                 return;
             }
-            LoadSpecialLeague($("#txtLeague").val(), $("#groupColor").attr('valgroup'), $(".Pager .ActiveNumber").text().trim());
+            location.reload();
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
