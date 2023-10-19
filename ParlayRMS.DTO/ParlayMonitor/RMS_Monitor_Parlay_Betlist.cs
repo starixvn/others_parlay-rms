@@ -57,5 +57,6 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public string SiteGroup { get; set; }
 
         public bool IsBoostBonus { get; set; }
-    }
+        public bool IsParlayGenerator { get; set; }
+	}
 }
