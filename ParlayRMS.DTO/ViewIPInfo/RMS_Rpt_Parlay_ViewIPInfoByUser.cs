@@ -18,6 +18,8 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public decimal Bbp { get; set; }
 
+        public decimal Bba { get; set; }
+
         public decimal Stake { get; set; }
 
         public decimal ActualStake { get; set; }
