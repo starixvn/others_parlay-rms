@@ -129,7 +129,7 @@
                             </div>
                         </td>
 	                    <td class="numeric">
-                            @if (item.IsBoostBonus)
+		                    @*@if (item.IsBoostBonus)
                             {
 	                            if ((item.StatusId == 112 && item.Bba > 0) || item.StatusId == 0 || item.StatusId == 1)
 	                            {
@@ -156,7 +156,15 @@
 	                            {
 		                            @item.Odds.ToString("#,##0.000")
 	                            }
-                            }
+                            }*@
+		                    @if (item.BetType == (int)BetType.SystemParlay)
+		                    {
+								@Html.Raw("-")
+		                    }
+		                    else
+		                    {
+								@item.Odds.ToString("#,##0.000")
+		                    }
 	                    </td>
                         <td class="numeric">
                             @if (item.IsGOF)
