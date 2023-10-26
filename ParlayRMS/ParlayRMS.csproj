@@ -78,7 +78,7 @@
       <HintPath>..\packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.3.0.0.5\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetList.Core.3.0.0.8\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.BetList.Core.RemotingRef.2.0.0\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -649,6 +649,7 @@
     <Content Include="Content\images\Content\icon\1340071335_jajuk.png" />
     <Content Include="Content\images\Content\icon\excel_icon_small.gif" />
     <Content Include="Content\images\Content\icon\icon_blacklist.png" />
+    <Content Include="Content\images\Content\icon\icon_boost.PNG" />
     <Content Include="Content\images\Content\icon\icon_live.png" />
     <Content Include="Content\images\Content\icon_wait.gif" />
     <Content Include="Content\images\Content\lastGoal.gif" />

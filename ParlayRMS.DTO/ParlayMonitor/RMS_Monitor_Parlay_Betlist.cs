@@ -55,5 +55,7 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public bool IsTrackedUser { get; set; }
 
         public string SiteGroup { get; set; }
+
+        public bool IsBoostBonus { get; set; }
     }
 }
