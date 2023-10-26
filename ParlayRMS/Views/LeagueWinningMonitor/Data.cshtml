@@ -5,6 +5,7 @@
         var isLeague = (byte)ViewBag.ReportBy == 1;
         var index = 0;
         var width = isLeague ? "1415px" : "1490px";
+	    var colIndex = (byte)ViewBag.ReportBy == 1 ? 1 : 2;
     }
 
     <div style="width: @width">
@@ -32,7 +33,7 @@
                             Site
                         </th>
                     }
-                    <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="1">
+                    <th rowspan="2" class="header2rows sortable" data-col-type="ignorecase" data-col-index="@(colIndex++)">
                         @(isLeague ? "League" : "Username")
                     </th>
                     <th colspan="4" class="header2rows">
@@ -40,16 +41,16 @@
                     </th>
                 </tr>
                 <tr>
-                    <th data-col-type="float" class="sortable" data-col-index="2">
+                    <th data-col-type="float" class="sortable" data-col-index="@(colIndex++)">
                         Total Stake
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="3">
+                    <th data-col-type="float" class="sortable" data-col-index="@(colIndex++)">
                         Total Winning Amount
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="4">
+                    <th data-col-type="float" class="sortable" data-col-index="@(colIndex++)">
                         Company Lose Amount
                     </th>
-                    <th data-col-type="float" class="sortable" data-col-index="5">
+                    <th data-col-type="float" class="sortable" data-col-index="@colIndex">
                         Total Tickets
                     </th>
                 </tr>
