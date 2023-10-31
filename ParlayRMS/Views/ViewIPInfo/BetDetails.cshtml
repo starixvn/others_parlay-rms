@@ -13,8 +13,8 @@
             <table class="main" id="header">
                 <colgroup>
                     <col width='80px' />
-                    <col width='300px' />
-                    <col width='80px' />
+                    <col width='250px' />
+                    <col width='130px' />
                     <col width='80px' />
                     <col width='80px' />
                     <col width='70px' />
@@ -47,8 +47,8 @@
                     <table class="main" id="header">
                         <colgroup>
                             <col width='80px' />
-                            <col width='300px' />
-                            <col width='80px' />
+                            <col width='250px' />
+                            <col width='130px' />
                             <col width='80px' />
                             <col width='80px' />
                             <col width='70px' />
@@ -86,14 +86,43 @@
                                             }
                                         </td>
                                         <td class="numeric">
-                                            @if (isLoseSum)
-                                            {
-                                                @Html.Raw("-")
-                                            }
-                                            else
-                                            {
-                                                @viewModel.Odds.ToString("#,##0.0000")
-                                            }
+	                                        @if (viewModel.IsBoostBonus)
+	                                        {
+		                                        if ((viewModel.Status == 112 && viewModel.Bba > 0) || viewModel.Status == 0 || viewModel.Status == 1)
+		                                        {
+			                                        <span style="color: #8f8787; "><b><del>@viewModel.OriginalOdds.ToString("#,##0.####")</del></b></span><br/>
+			                                        <span><b>@viewModel.BoostOdds.ToString("#,##0.####")</b></span><br/>
+			                                        <div style="background-color: yellow; float: right; display: flex; justify-content: center; align-items: center; padding: 2px;">
+				                                        <div class="boostBonus" style="padding-left: 2px; margin-right: 0px;"></div>
+				                                        <div style="color: blue;"><b>+@((viewModel.BoostRate * 100).ToString("#,##0.##"))% Boost</b></div>
+			                                        </div>
+		                                        }
+		                                        else
+		                                        {
+			                                        if (viewModel.Status == 113)
+			                                        {
+				                                        var oddsData = viewModel.Odds > 0 ? viewModel.Odds : viewModel.OriginalOdds;
+				                                        @oddsData.ToString("#,##0.####");
+			                                        }
+			                                        else
+			                                        {
+				                                        @viewModel.Odds.ToString("#,##0.####")
+			                                        }
+			                                        
+		                                        }
+
+	                                        }
+	                                        else
+	                                        {
+		                                        if (isLoseSum)
+		                                        {
+			                                        @Html.Raw("-")
+		                                        }
+		                                        else
+		                                        {
+			                                        @viewModel.Odds.ToString("#,##0.0000")
+		                                        }
+	                                        }
                                         </td>
                                         <td class="numeric">@viewModel.Stake.ToString("#,##0")</td>
                                         @{
@@ -129,8 +158,8 @@
                     <table class="main" id="result">
                         <colgroup>
                             <col width='80px' />
-                            <col width='300px' />
-                            <col width='80px' />
+                            <col width='250px' />
+                            <col width='130px' />
                             <col width='80px' />
                             <col width='80px' />
                             <col width='70px' />
@@ -143,8 +172,8 @@
                 <table class="main foot" id="footer">
                     <colgroup>
                         <col width='80px' />
-                        <col width='300px' />
-                        <col width='80px' />
+                        <col width='250px' />
+                        <col width='130px' />
                         <col width='80px' />
                         <col width='80px' />
                         <col width='70px' />

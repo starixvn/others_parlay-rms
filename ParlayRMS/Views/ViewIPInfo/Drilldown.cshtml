@@ -172,7 +172,7 @@
                             var winLossNegative = item.Winlost < 0 && item.StatusId != 0 ? "negative" : "";
                         }
                         <td class="numeric @winLossNegative">
-                            @if (item.StatusId == 0)
+                            @if (item.StatusId == 0 || item.StatusId == 1)
                             {
                                 @Html.Raw("-")
                             }

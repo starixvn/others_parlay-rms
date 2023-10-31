@@ -70,7 +70,12 @@ namespace ParlayRMS.Services
                     Stake = item.Stake,
                     WinLoss = item.Winlost,
                     Status = item.StatusId,
-                    StatusString = item.Status
+                    StatusString = item.Status,
+                    IsBoostBonus = item.IsBoostBonus,
+                    OriginalOdds = item.OriginalOdds,
+                    BoostOdds = item.BoostOdds,
+                    BoostRate = item.BoostRate,
+                    Bba = item.Bba
                 };
 
                 viewList.Add(resultItem);

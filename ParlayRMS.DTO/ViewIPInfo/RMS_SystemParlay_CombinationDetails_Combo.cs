@@ -19,5 +19,16 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public decimal Stake { get; set; }
 
         public decimal Winlost { get; set; }
+
+        public bool IsBoostBonus { get; set; }
+
+        public decimal OriginalOdds { get; set; }
+
+        public decimal BoostOdds { get; set; }
+
+        public decimal BoostRate { get; set; }
+
+        public decimal Bba { get; set; }
+
     }
 }
