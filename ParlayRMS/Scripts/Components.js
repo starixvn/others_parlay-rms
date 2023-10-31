@@ -249,6 +249,10 @@ var tableSorter = function () {
                     y = Number.isNaN(y) ? 32767 : y;
                 }
 
+                if (x == y) {
+                    return 0;
+                }
+
                 if (sortDirection == 'asc') {
                     return x > y ? -1 : 1;
                 }
