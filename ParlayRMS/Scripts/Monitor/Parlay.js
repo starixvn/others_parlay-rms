@@ -319,7 +319,7 @@ $(document).ready(function () {
 
     $("#parlayType").multiselect({
         buttonWidth: 210,
-        menuHeight: 229,
+        menuHeight: 220,
         selectedList: 1,
         create: function () {
             $("#parlayType").multiselect();
@@ -665,10 +665,6 @@ function CreateRow(order, item) {
 
     if (item.BetType === 376) {
         betSuffix = ' (P)';
-    }
-
-    if (item.IsGOF == true) {
-        betSuffix = ' (G)';
     }
 
     if (item.IsParlayGenerator == true) {
