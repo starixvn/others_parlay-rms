@@ -12,7 +12,9 @@ namespace ParlayRMS.Models
 
         PenaltyShootoutCombo = 4,
 
-        GodOfFortune = 5
+        GodOfFortune = 5,
+
+        ParlayGenerator = 6
     }
 
     public enum SportsType

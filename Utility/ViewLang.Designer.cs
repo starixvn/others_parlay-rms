@@ -740,7 +740,7 @@ namespace ParlayRMS.Utility {
         /// </summary>
         public static string Favorite_Choice {
             get {
-                return ResourceManager.GetString("Favorite_Choice", resourceCulture);
+                return ResourceManager.GetString("Favorite Choice", resourceCulture);
             }
         }
         
@@ -1587,6 +1587,15 @@ namespace ParlayRMS.Utility {
         public static string Parent {
             get {
                 return ResourceManager.GetString("Parent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parlay Generator.
+        /// </summary>
+        public static string ParlayGenerator {
+            get {
+                return ResourceManager.GetString("ParlayGenerator", resourceCulture);
             }
         }
         

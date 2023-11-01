@@ -957,4 +957,7 @@
   <data name="Margin" xml:space="preserve">
     <value>Margin %</value>
   </data>
+  <data name="ParlayGenerator" xml:space="preserve">
+    <value>Parlay Generator</value>
+  </data>
 </root>

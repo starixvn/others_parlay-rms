@@ -46,8 +46,6 @@ namespace ParlayRMS.DTO.ParlayMonitor
 
         public bool IsBlacklistLeague { get; set; }
 
-        public bool IsGOF { get; set; }
-
         public string CustomerClass { get; set; }
 
         public string TrackingUser { get; set; }
@@ -57,5 +55,6 @@ namespace ParlayRMS.DTO.ParlayMonitor
         public string SiteGroup { get; set; }
 
         public bool IsBoostBonus { get; set; }
-    }
+        public bool IsParlayGenerator { get; set; }
+	}
 }

@@ -296,7 +296,7 @@ $(document).ready(function () {
 
     $("#combo").multiselect({
         buttonWidth: 132,
-        height: 136,
+        menuHeight: 200,
         selectedList: 1,
         create: function () {
             $("#combo").multiselect();
@@ -319,7 +319,7 @@ $(document).ready(function () {
 
     $("#parlayType").multiselect({
         buttonWidth: 210,
-        height: 138,
+        menuHeight: 220,
         selectedList: 1,
         create: function () {
             $("#parlayType").multiselect();
@@ -342,7 +342,7 @@ $(document).ready(function () {
 
     $("#sportsType").multiselect({
         buttonWidth: 205,
-        height: 300,
+        menuHeight: 300,
         selectedList: 1,
         groupsCollapsable: true,
         create: function () {
@@ -414,7 +414,7 @@ $(document).ready(function () {
 
     $("#selectTop").multiselect({
         buttonWidth: 80,
-        height: 105,
+        menuHeight: 200,
         header: false,
         multiple: false,
         selectedList: 1
@@ -422,7 +422,7 @@ $(document).ready(function () {
 
     $("#market").multiselect({
         buttonWidth: 132,
-        height: 100,
+        menuHeight: 200,
         noneSelectedText: "Select options",
         selectedList: 1,
         create: function () {
@@ -446,7 +446,7 @@ $(document).ready(function () {
 
     $("#ddlGroup").multiselect({
         buttonWidth: 132,
-        height: 136,
+        menuHeight: 200,
         selectedList: 1,
         create: function () {
             $("#ddlGroup").multiselect("checkAll");
@@ -469,7 +469,7 @@ $(document).ready(function () {
 
     $("#refreshTime").multiselect({
         buttonWidth: 60,
-        height: 60,
+        menuHeight: 100,
         header: false,
         multiple: false,
         selectedList: 1,
@@ -667,8 +667,8 @@ function CreateRow(order, item) {
         betSuffix = ' (P)';
     }
 
-    if (item.IsGOF == true) {
-        betSuffix = ' (G)';
+    if (item.IsParlayGenerator == true) {
+        betSuffix = ' (PG)';
     }
 
     var r = new Array();
