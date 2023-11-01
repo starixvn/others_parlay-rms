@@ -170,7 +170,7 @@ namespace ParlayRMS.Utility.Data
 
         public static string GetParlayTitle(string parlayTypes)
         {
-            if (parlayTypes == "1,5,2,3,4")
+            if (parlayTypes == "1,5,2,4,3")
             {
                 return ViewLang.All;
             }
@@ -183,7 +183,22 @@ namespace ParlayRMS.Utility.Data
                 .Replace(",", ", ");
         }
 
-        public static string GetSimpleParlayTitle(string parlayTypes)
+        public static string GetSpecialParlayTitle(string parlayTypes)
+        {
+	        if (parlayTypes == "1,6,2,4,3")
+	        {
+		        return ViewLang.All;
+	        }
+
+	        return parlayTypes.Replace("1", ViewLang.MixparLay)
+		        .Replace("6", ViewLang.ParlayGenerator)
+		        .Replace("2", ViewLang.ComboParlay)
+		        .Replace("3", ViewLang.SingleMatchParlay)
+		        .Replace("4", ViewLang.PenaltyShootoutCombo)
+		        .Replace(",", ", ");
+        }
+
+		public static string GetSimpleParlayTitle(string parlayTypes)
         {
             if (parlayTypes == "1,2")
             {
