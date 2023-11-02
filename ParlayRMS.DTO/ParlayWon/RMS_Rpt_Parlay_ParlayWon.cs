@@ -30,7 +30,7 @@ namespace ParlayRMS.DTO.ParlayWon
 
         public decimal HouseLoseAmount { get; set; }
 
-        public int TotalBet { get; set; }
+        public string TotalBet { get; set; }
 
         public int TotalSelection { get; set; }
 
@@ -39,5 +39,8 @@ namespace ParlayRMS.DTO.ParlayWon
         public string IP { get; set; }
 
         public string SiteGroup { get; set; }
-    }
+
+        public bool IsParlayGenerator { get; set; }
+
+	}
 }
