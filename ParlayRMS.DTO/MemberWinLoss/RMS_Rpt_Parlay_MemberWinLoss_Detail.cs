@@ -31,5 +31,7 @@
 		public int ParlayType { get; set; }
 
 		public bool IsGOF { get; set; }
+
+		public bool IsParlayGenerator { get; set; }
 	}
 }

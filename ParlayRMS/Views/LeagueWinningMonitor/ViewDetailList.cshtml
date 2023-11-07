@@ -96,7 +96,14 @@
                             @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
                         </td>
                         <td class="center">
-                            @item.Val.Combo
+                            @if (item.Val.IsParlayGenerator)
+                            {
+                                @(item.Val.Combo + " (PG)")
+                            }
+                            else
+                            {
+                                @item.Val.Combo
+                            }
                         </td>
                         <td class="center">
                             @item.Val.TotalSelection

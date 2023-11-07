@@ -41,5 +41,7 @@ namespace ParlayRMS.DTO.PotentialWinning
         public string TrackingUser { get; set; }
 
         public bool IsTrackedUser { get; set; }
-    }
+
+        public bool IsParlayGenerator { get; set; }
+	}
 }

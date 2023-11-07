@@ -23,7 +23,7 @@
 
         $("#ddlParlayType").multiselect({
             minWidth: 165,
-            height: 55,
+            height: 85,
             create: function () {
                 $("#ddlParlayType").multiselect("checkAll");
             },

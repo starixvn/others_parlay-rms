@@ -66,7 +66,8 @@ namespace ParlayRMS.ViewModel
             SimpleParlayTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
-                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
+                new SelectListItem { Text = ViewLang.ParlayGenerator, Value = ((int)ParlayType.ParlayGenerator).ToString() },
+				new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
             };
 
             SpecialParlayTypes = new List<SelectListItem>

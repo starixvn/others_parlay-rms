@@ -37,5 +37,7 @@ namespace ParlayRMS.DTO.TotalOutstanding
         public bool IsGOF { get; set; }
 
         public string CustomerClass { get; set; }
-    }
+
+        public bool IsParlayGenerator { get; set; }
+	}
 }

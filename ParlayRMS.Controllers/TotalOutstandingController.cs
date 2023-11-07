@@ -45,9 +45,9 @@ namespace ParlayRMS.Controllers
                 },
                 new SelectListItem
                 {
-                    Text = ViewLang.GodOfFortune,
-                    Value = ((int)ParlayType.GodOfFortune).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.GodOfFortune).ToString())
+                    Text = ViewLang.ParlayGenerator,
+                    Value = ((int)ParlayType.ParlayGenerator).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ParlayGenerator).ToString())
                 },
                 new SelectListItem
                 {
