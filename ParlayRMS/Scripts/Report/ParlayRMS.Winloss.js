@@ -145,7 +145,7 @@ ParlayRMS.Winloss = {
             var parlayTypes = $("#parlayType").multiselect("getChecked").map(function () {
                 return this.value;
             }).get().join(',');
-            if (combos == '') {
+            if (parlayTypes == '') {
                 Validators.show($("#parlayType").multiselect("getButton").get(0), 'Please select your options');
                 return;
             }

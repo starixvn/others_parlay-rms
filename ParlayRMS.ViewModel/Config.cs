@@ -69,7 +69,16 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() }
             };
 
-            ReportTypes = new List<SelectListItem>
+            SpecialParlayTypes = new List<SelectListItem>
+            {
+	            new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
+	            new SelectListItem { Text = ViewLang.ParlayGenerator, Value = ((int)ParlayType.ParlayGenerator).ToString() },
+	            new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
+	            new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() },
+	            new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
+            };
+
+			ReportTypes = new List<SelectListItem>
             {
                 new SelectListItem { Text = "Combo", Value = ((int)ReportType.Combo).ToString(), Selected = true },
                 new SelectListItem { Text = "Sport type", Value = ((int)ReportType.SportType).ToString() }
@@ -126,7 +135,9 @@ namespace ParlayRMS.ViewModel
 
         public static List<SelectListItem> SimpleParlayTypes { get; }
 
-        public static List<SelectListItem> ReportTypes { get; }
+        public static List<SelectListItem> SpecialParlayTypes { get; }
+
+		public static List<SelectListItem> ReportTypes { get; }
 
         public static DateTime WinlostDate => Convert.ToBoolean(ConfigurationManager.AppSettings["IsDebug"]) ? new DateTime(2012, 11, 6).Date : DateTime.Now.AddDays(-1).Date;
 
