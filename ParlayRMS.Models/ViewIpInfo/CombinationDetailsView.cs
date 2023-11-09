@@ -19,7 +19,17 @@ namespace ParlayRMS.Models.ViewIpInfo
 
         public string StatusString { get; set; }
 
-        public class EventItem
+        public decimal BoostOdds { get; set; }
+
+        public bool IsBoostBonus { get; set; }
+
+        public decimal OriginalOdds { get; set; }
+
+        public decimal BoostRate { get; set; }
+
+        public decimal Bba { get; set; }
+
+		public class EventItem
         {
             public EventItem(int homeId, int awayId)
             {
