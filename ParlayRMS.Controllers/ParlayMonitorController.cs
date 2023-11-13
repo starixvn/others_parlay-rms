@@ -106,7 +106,8 @@ namespace ParlayRMS.Controllers
         {
             ModelState.Remove("Odds");
             ModelState.Remove("CustomerClass");
-            if (!ModelState.IsValid)
+            ModelState.Remove("Ip");
+			if (!ModelState.IsValid)
             {
                 return InvalidModelJson();
             }
@@ -129,6 +130,8 @@ namespace ParlayRMS.Controllers
                 model.LeagueGroups,
                 model.CustomerClass,
                 model.Company,
+                model.Ip,
+                model.LiveType,
                 model.UserName) : new List<RMS_Monitor_Parlay_Betlist>();
             var maxTransId = model.MaxTransId;
             if (data.Any())

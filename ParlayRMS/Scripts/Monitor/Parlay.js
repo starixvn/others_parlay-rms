@@ -467,6 +467,14 @@ $(document).ready(function () {
         }
     });
 
+    $("#ddlLiveType").multiselect({
+        buttonWidth: 100,
+        menuHeight: 125,
+        header: false,
+        multiple: false,
+        selectedList: 1
+    });
+
     $("#refreshTime").multiselect({
         buttonWidth: 60,
         menuHeight: 100,

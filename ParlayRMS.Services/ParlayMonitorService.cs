@@ -27,9 +27,11 @@ namespace ParlayRMS.Services
             string leagueGroups,
             int? customerClass,
             string company,
+            string ip,
+            byte liveType,
             string username)
         {
-            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass, company, username);
+            var data = _parlayDataAccess.RMS_Monitor_Parlay_Betlist(combos, parlayTypes, sportTypes, levels, stakeAfterPT, netWinAfterPT, reportType, selectTop, maxTransId, markets, isCornerParlay, odds, leagueGroups, customerClass, company, ip, liveType, username);
             foreach (var item in data)
             {
                 item.Stake = Math.Round(item.Stake, 2);

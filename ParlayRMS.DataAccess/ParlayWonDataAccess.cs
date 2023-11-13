@@ -29,6 +29,7 @@ namespace ParlayRMS.DataAccess
                                                        byte site,
                                                        byte liveType,
                                                        int? customerClass,
+                                                       string ip,
                                                        out int totalRows)
         {
             var criteria = new Rpt_ParlayWon_Criteria
@@ -49,7 +50,8 @@ namespace ParlayRMS.DataAccess
                 Currency = currency,
                 Site = site,
                 LiveStatus = liveType,
-                CustomerClass = customerClass
+                CustomerClass = customerClass,
+                Ip = ip
             };
 
             var list = repository.Fetch<RMS_Rpt_Parlay_ParlayWon>(criteria).ToList();
