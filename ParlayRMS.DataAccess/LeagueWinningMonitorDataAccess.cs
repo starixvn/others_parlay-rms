@@ -93,8 +93,9 @@ namespace ParlayRMS.DataAccess
                             CustId = reader.ToInt32("custid"),
                             BetType = reader.ToInt32("bettype"),
                             RefNo = reader.ToInt64("refno"),
-                            SiteGroup = reader.ToString("SiteGroup")
-                        });
+                            SiteGroup = reader.ToString("SiteGroup"),
+                            IsParlayGenerator = reader.ToBoolean("IsParlayGenerator")
+						});
                     }
                 }
             }
