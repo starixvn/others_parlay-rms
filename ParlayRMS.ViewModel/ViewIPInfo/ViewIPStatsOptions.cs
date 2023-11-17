@@ -13,5 +13,7 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
         public int TotalItems { get; set; }
 
         public long MaxTransId { get; set; }
+
+        public string TicketStatus { get; set; }
     }
 }

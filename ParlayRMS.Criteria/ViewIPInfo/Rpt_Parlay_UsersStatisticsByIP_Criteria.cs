@@ -15,7 +15,10 @@
 
         public long Max_TransId { get; set; }
 
-        public override string GetSettingKey() => "RMS_Rpt_Parlay_UsersStatisticsByIP";
+        public string TicketStatus { get; set; }
+
+
+		public override string GetSettingKey() => "RMS_Rpt_Parlay_UsersStatisticsByIP";
 
         public override bool IsValid() => true;
     }

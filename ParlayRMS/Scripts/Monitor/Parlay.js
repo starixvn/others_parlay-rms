@@ -25,6 +25,8 @@ function UserSettings() {
     this.customerClass = null;
     this.company = '';
     this.username = '';
+    this.ip = '';
+    this.liveType = 3;
     this.isDiff = function (settings) {
         if (this.combos == settings.combos
             && this.parlayTypes == settings.parlayTypes
@@ -40,7 +42,9 @@ function UserSettings() {
             && this.leagueGroups == settings.leagueGroups
             && this.customerClass == settings.customerClass
             && this.company == settings.company
-            && this.username == settings.username) {
+            && this.username == settings.username
+            && this.ip == settings.ip
+            && this.liveType == settings.liveType) {
             return false;
         }
 
@@ -145,6 +149,10 @@ var settingsController = function () {
 
             var username = $.trim($("#smaMember").val());
 
+            var ip = $.trim($("#txtIp").val());
+
+            var liveType = parseInt($("#ddlLiveType").val());
+
             var userSettings = new UserSettings();
             userSettings.combos = combos;
             userSettings.parlayTypes = parlayTypes;
@@ -167,6 +175,8 @@ var settingsController = function () {
             userSettings.customerClass = customerClass;
             userSettings.company = company;
             userSettings.username = username;
+            userSettings.ip = ip;
+            userSettings.liveType = liveType;
             return userSettings;
         }
     }
@@ -202,7 +212,9 @@ var timerController = function () {
             leagueGroups: settings.leagueGroups,
             customerClass: settings.customerClass,
             company: settings.company,
-            username: settings.username
+            username: settings.username,
+            ip: settings.ip,
+            liveType: settings.liveType
         }
 
         $.ajax({

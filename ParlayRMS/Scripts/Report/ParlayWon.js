@@ -250,7 +250,7 @@
 
             var customerClass = parseInt($("#txtCustomerClass").val());
 
-            var ip = parseInt($("#txtIp").val());
+            var ip = $("#txtIp").val().trim();
 
             var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
             var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));

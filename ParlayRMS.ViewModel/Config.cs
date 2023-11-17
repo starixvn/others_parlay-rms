@@ -121,7 +121,16 @@ namespace ParlayRMS.ViewModel
                 new SelectListItem { Text = "Mix", Value = "2" }
 
             };
-        }
+
+            TicketStatus = new List<SelectListItem> {
+	            new SelectListItem { Text = "Running", Value = "0", Selected = true },
+	            new SelectListItem { Text = "Won", Value = "112", Selected = true },
+	            new SelectListItem { Text = "Lose", Value = "113", Selected = true },
+	            new SelectListItem { Text = "Draw", Value = "111", Selected = true },
+	            new SelectListItem { Text = "Void", Value = "102", Selected = true },
+	            new SelectListItem { Text = "Reject", Value = "101", Selected = true }
+			};
+		}
 
         public static List<SelectListItem> Combos { get; }
 
@@ -148,5 +157,7 @@ namespace ParlayRMS.ViewModel
         public static List<SelectListItem> ReportBy { get; }
 
         public static List<SelectListItem> LiveTypes { get; }
-    }
+
+        public static List<SelectListItem> TicketStatus { get; }
+	}
 }

@@ -6,7 +6,7 @@
     </ul>
     <div id="tabs-ip-statistics" style="display: inline-block">
         <div class="filter">
-            <div class="filter-control" style="width: 400px">
+            <div class="filter-control" style="width: 505px">
                 <div class="minimizetitle">
                     <div class="minimizecontent">
                         @ViewLang.FilterControl
@@ -17,10 +17,14 @@
                 </div>
                 <div id="filtercontent-ip-stats" class="container">
                     <div class="row">
-                        <div class="group">
-                            @Html.Label("", ViewLang.Date + ":")
-                            @Html.TextBox("date-ipstats")
-                        </div>
+	                    <div class="group">
+		                    @Html.Label("", ViewLang.Date + ":")
+		                    @Html.TextBox("date-ipstats")
+	                    </div>
+	                    <div class="group">
+		                    @Html.Label("", ViewLang.TicketStatus + ":")
+		                    @Html.DropDownList("ticketStatus-ipstats", Config.TicketStatus, new { multiple = "multiple" })
+	                    </div>
                         <div class="group">
                             <button id="btnSearchIPStats">
                                 <span class="text">@ViewLang.Submit</span>
@@ -35,7 +39,7 @@
     </div>
     <div id="tabs-view-ip-info" style="display: inline-block">
         <div class="filter">
-            <div class="filter-control" style="width: 680px">
+            <div class="filter-control" style="width: 915px">
                 <div class="minimizetitle">
                     <div class="minimizecontent">
                         @ViewLang.FilterControl
@@ -50,9 +54,13 @@
                             @Html.Label("ip", ViewLang.IP + ":")
                             @Html.TextBox("ip")
                         </div>
+	                    <div class="group">
+		                    @Html.Label("", ViewLang.Date + ":")
+		                    @Html.TextBox("date-ipinfo")
+	                    </div>
                         <div class="group">
-                            @Html.Label("", ViewLang.Date + ":")
-                            @Html.TextBox("date-ipinfo")
+                            @Html.Label("", ViewLang.TicketStatus + ":")
+                            @Html.DropDownList("ticketStatus-ipinfo", Config.TicketStatus, new { multiple = "multiple" })
                         </div>
                         <div class="group">
                             <button id="btnSearchIpInfo">
@@ -139,5 +147,5 @@
         MinDate: '@ViewBag.minDate'
     }
 </script>
-@Scripts.Render("~/Scripts/Report/ViewIPInfo/js")
+@Scripts.Render("~/Scripts/Report/ViewIPInfo/js?v=1")
 @Scripts.Render("~/Scripts/Member/Core/js")

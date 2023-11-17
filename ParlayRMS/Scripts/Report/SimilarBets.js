@@ -85,6 +85,11 @@ function CloseSimilarBets() {
     $('#similarbetlist').hide();
 }
 
+function OpenViewIpInfo(ip, transDate) {
+    const url = resolveClientUrl('ViewIPInfo?ip=' + ip + '&date=' + transDate);
+    window.open(url, "_blank");
+}
+
 function ViewBetDetails(username, transId, originalTransId, refNo, originalRefNo, custId, originalCustId, betType) {
     if (betType === 38) {
         ViewSingleMatchParlayDetails(transId, originalTransId, custId, originalCustId, username);

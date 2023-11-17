@@ -5,5 +5,11 @@ namespace ParlayRMS.DTO.ViewIPInfo
         public string IP { get; set; }
 
         public int? CntUsers { get; set; }
-    }
+
+        public decimal Stake { get; set; }
+
+        public decimal WinningAmount { get; set; }
+
+        public decimal HouseLoseAmount { get; set; }
+	}
 }
