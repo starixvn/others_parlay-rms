@@ -74,70 +74,92 @@
                 </div>
             </div>
         </div>
-        <div style="clear: both; display: none" id="divResultIpInfo">
-            <div style="width: 815px">
-                <table class="main">
-                    <colgroup>
-                        <col width='120' />
-                        <col width='75' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>
-                                @ViewLang.No
-                            </th>
-                            <th>
-                                @ViewLang.Site
-                            </th>
-                            <th>
-                                @ViewLang.Username
-                            </th>
-                            <th>
-                                @ViewLang.Socceronly
-                            </th>
-                            <th>
-                                @ViewLang.Others
-                            </th>
-                            <th>
-                                @ViewLang.Total
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div class="scrollGridContent" style="max-height: 680px; width: 795px">
-                <table class="main" id="result-ip-info">
-                    <colgroup>
-                        <col width='120' />
-                        <col width='75' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                    </colgroup>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div style="width: 795px" class="separateFooter">
-                <table class="total" id="total-footer-ip-info">
-                    <colgroup>
-                        <col width='120' />
-                        <col width='75' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                        <col width='150' />
-                    </colgroup>
-                    <tfoot>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
+	    <div style="clear: both; display: none" id="divResultIpInfo">
+		    <div style="width: 1345px; height: 30px; background-color: #3f536b">
+			    <div class="excel" onclick="ExportExcelForIpInfo();" title="Export Excel">
+			    </div>
+		    </div>
+		    <div style="width: 1365px">
+			    <table class="main" id="header">
+				    <colgroup>
+					    <col width='120'/>
+					    <col width='75'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150px' />
+					    <col width='200px' />
+					    <col width='200px' />
+				    </colgroup>
+				    <thead>
+				    <tr>
+					    <th>
+						    @ViewLang.No
+					    </th>
+					    <th>
+						    @ViewLang.Site
+					    </th>
+					    <th>
+						    @ViewLang.Username
+					    </th>
+					    <th>
+						    @ViewLang.Socceronly
+					    </th>
+					    <th>
+						    @ViewLang.Others
+					    </th>
+					    <th>
+						    @ViewLang.Total
+					    </th>
+					    <th data-col-type="float" class="sortable" data-col-index="6">
+						    @ViewLang.Stake
+					    </th>
+					    <th data-col-type="float" class="sortable" data-col-index="7">
+						    @ViewLang.WinningAmount
+					    </th>
+					    <th data-col-type="float" class="sortable" data-col-index="8">
+						    @ViewLang.HouseLoseAmount
+					    </th>
+				    </tr>
+				    </thead>
+			    </table>
+		    </div>
+		    <div class="scrollGridContent" style="max-height: 680px; width: 1345px">
+			    <table class="main" id="result-ip-info">
+				    <colgroup>
+					    <col width='120'/>
+					    <col width='75'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150px' />
+					    <col width='200px' />
+					    <col width='200px' />
+				    </colgroup>
+				    <tbody>
+				    </tbody>
+			    </table>
+		    </div>
+		    <div style="width: 1345px" class="separateFooter">
+			    <table class="total" id="total-footer-ip-info">
+				    <colgroup>
+					    <col width='120'/>
+					    <col width='75'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150'/>
+					    <col width='150px' />
+					    <col width='200px' />
+					    <col width='200px' />
+				    </colgroup>
+				    <tfoot>
+				    </tfoot>
+			    </table>
+		    </div>
+	    </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -147,5 +169,5 @@
         MinDate: '@ViewBag.minDate'
     }
 </script>
-@Scripts.Render("~/Scripts/Report/ViewIPInfo/js?v=1")
+@Scripts.Render("~/Scripts/Report/ViewIPInfo/js?v=2")
 @Scripts.Render("~/Scripts/Member/Core/js")

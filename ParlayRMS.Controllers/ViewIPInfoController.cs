@@ -57,7 +57,72 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
+        [ValidateInput(false)]
+        public void ExcelForIpInfo(ViewIPInfoOptions options)
+        {
+	        var data = _ipinfoService.GetIPInfo(options.IP, options.Date, options.TicketStatus);
+
+	        var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\IpInfo.xls";
+	        var writer = new TemplateWriter(templatePath);
+	        writer.WriteRow(0, new object[] { "View IP Info" });
+
+	        var header = new object[]
+	        {
+		        ViewLang.No,
+		        ViewLang.Site,
+		        ViewLang.Username,
+		        ViewLang.Socceronly,
+		        ViewLang.Others,
+		        ViewLang.Total,
+		        ViewLang.Stake,
+		        ViewLang.WinningAmount,
+		        ViewLang.HouseLoseAmount,
+			};
+
+	        writer.WriteRows(1, new List<object[]> { header });
+
+	        var id = 0;
+	        var select = data.Select(x => new
+	        {
+		        No = ++id,
+		        x.SiteGroup,
+		        x.Username,
+		        SoccerOnly = x.Soccer == 0 ? "-" : x.Soccer.ToString(),
+		        Others = x.Others == 0 ? "-" : x.Others.ToString(),
+                Total = x.Soccer + x.Others,
+				Stake = Formatter.FormatNumber3(x.Stake),
+				WinningAmount = Formatter.FormatNumber3(x.WinningAmount),
+				HouseLoseAmount = Formatter.FormatNumber3(x.HouseLoseAmount)
+			});
+	        writer.WriteRows(2, select);
+
+            var total = new RMS_Rpt_Parlay_ViewIPInfo();
+            data.ToList().ForEach(x => total.Add(x));
+            var footer = new object[]
+            {
+                ViewLang.Total,
+                string.Empty,
+                string.Empty,
+				total.Soccer,
+                total.Others,
+                total.Soccer + total.Others,
+                Formatter.FormatNumber3(total.Stake),
+                Formatter.FormatNumber3(total.WinningAmount),
+                Formatter.FormatNumber3(total.HouseLoseAmount)
+            };
+            writer.WriteRow(3, footer);
+
+            writer.SyncColumnWidths(9);
+
+	        var ms = writer.Render("IpInfo");
+	        Response.AddHeader("content-disposition", "attachment; filename=" + "IpInfo.xls");
+	        Response.AddHeader("content-type", "application/vnd.ms-excel");
+	        Response.BinaryWrite(ms.ToArray());
+	        Response.End();
+        }
+
+		[HttpPost]
         public ActionResult IpStatsData(ViewIPStatsOptions options)
         {
             var data = _ipinfoService.GetIPStats(

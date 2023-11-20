@@ -89,7 +89,7 @@
 
     $("#ticketStatus-ipinfo").multiselect({
         buttonWidth: 132,
-        menuHeight: 240,
+        menuHeight: 250,
         selectedList: 1,
         create: function () {
             $("#ticketStatus-ipinfo").multiselect();
@@ -170,6 +170,8 @@
         var date = $("#date-ipstats").val();
         OpenViewIpInfoTab(ip, date);
     });
+
+    InitTableSorter($('#result-ip-info'), $('#header'));
 });
 
 function OpenViewIpInfoTab(ip, date) {
@@ -238,6 +240,7 @@ function LoadMainReportIpInfo() {
             //maxTransId = json.MaxTransId;
             var table = $('#result-ip-info');
             FillData(table, json);
+            
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -292,17 +295,7 @@ function LoadReportIpStats(pageIndex, isNewSubmit) {
         success: function (result) {
             $('#divResultIpStats').show();
             $('#divResultIpStats').html(result);
-            tableSorter.bind2($('#header'), $('#result-ip-stats'), {
-                onStart: function () {
-                    $('#result').find('tr[dataid]').remove();
-                },
-                onFinish: function () {
-                    var trs = $('#result').children('tbody').children("tr");
-                    trs.each(function (index, tr) {
-                        $(tr).children('td:first').text(index + 1);
-                    });
-                }
-            });
+            InitTableSorter($('#result-ip-stats'), $('#header'));
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -332,6 +325,9 @@ function FillData(table, data) {
     var totalSoccer = 0.0;
     var totalOthers = 0.0;
     var total = 0.0;
+    var stake = 0.0;
+    var winningAmount = 0.0;
+    var houseLoseAmount = 0.0;
 
     if (length > 0) {
         var rows = tbody.children('tr');
@@ -346,16 +342,19 @@ function FillData(table, data) {
             totalSoccer += 0.0 + item.Soccer;
             totalOthers += 0.0 + item.Others;
             total += 0.0 + item.Soccer + item.Others;
+            stake += 0.0 + item.Stake;
+            winningAmount += 0.0 + item.WinningAmount;
+            houseLoseAmount += 0.0 + item.HouseLoseAmount;
         }
         tbody.html(r.join(''));
 
         //Add total row
-        var totalRow = CreateTotalRow(totalSoccer, totalOthers, total);
+        var totalRow = CreateTotalRow(totalSoccer, totalOthers, total, stake, winningAmount, houseLoseAmount);
         tfooter.html(totalRow);
     }
     else {
         if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
-            var noInfo = CreateNoInfoRow(6);
+            var noInfo = CreateNoInfoRow(9);
             tbody.html(noInfo);
             tfooter.html('');
         }
@@ -417,6 +416,9 @@ function CreateRow(order, item) {
         r[++j] = '<td class="center"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
     }
     r[++j] = '<td class="center">' + total + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.Stake).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.WinningAmount).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.HouseLoseAmount).format('0,0') + '</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -432,7 +434,7 @@ function CreateRowIpStats(order, item) {
     return r.join('');
 }
 
-function CreateTotalRow(totalSoccer, totalOthers, total) {
+function CreateTotalRow(totalSoccer, totalOthers, total, stake, winningAmount, houseLoseAmount) {
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 29px;">';
@@ -440,6 +442,9 @@ function CreateTotalRow(totalSoccer, totalOthers, total) {
     r[++j] = '<td class="center">' + numeral(totalSoccer).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(totalOthers).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(total).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(stake).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(winningAmount).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(houseLoseAmount).format('0,0') + '</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -472,4 +477,35 @@ function ExportExcelForIpStats() {
     };
     var url = 'ViewIPInfo/ExcelForIpStats?' + $.param(queryData);
     window.location.href = resolveClientUrl(url);
+}
+
+function ExportExcelForIpInfo() {
+    var ip = $.trim($('#ip').val().replace(/,/g, ''));
+    var date = $("#date-ipinfo").val();
+    var ticketStatus = $("#ticketStatus-ipinfo").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+
+    queryData = {
+        ip: ip,
+        date: date,
+        ticketStatus: ticketStatus.split(',').length == 6 ? '-1' : ticketStatus
+    };
+    var url = 'ViewIPInfo/ExcelForIpInfo?' + $.param(queryData);
+    window.location.href = resolveClientUrl(url);
+}
+
+function InitTableSorter(table, header) {
+    tableSorter.bind2(header, table, {
+        type: 'text',
+        onStart: function () {
+            table.find('tr[custid]').remove();
+        },
+        onFinish: function () {
+            var trs = table.children('tbody').children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(index + 1);
+            });
+        }
+    });
 }
