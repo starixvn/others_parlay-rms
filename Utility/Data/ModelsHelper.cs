@@ -206,7 +206,7 @@ namespace ParlayRMS.Utility.Data
             }
 
             return parlayTypes.Replace("1", ViewLang.MixparLay)
-                .Replace("2", ViewLang.ComboParlay)
+	            .Replace("2", ViewLang.ComboParlay)
                 .Replace(",", ", ");
         }
 

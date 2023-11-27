@@ -52,5 +52,7 @@ namespace ParlayRMS.DTO.SimilarBets
         public IEnumerable<RMS_Similar_Parlay_Betlist_Detail> Details { get; set; }
 
         public TotalDataModel TotalData { get; set; }
-    }
+
+        public bool IsParlayGenerator { get; set; }
+	}
 }

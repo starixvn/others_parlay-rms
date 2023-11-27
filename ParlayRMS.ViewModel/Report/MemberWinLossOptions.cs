@@ -57,7 +57,7 @@ namespace ParlayRMS.ViewModel.Report
             }
 
             var title =
-                $"{ViewLang.AgentMemberWinLoss} of {Username} - from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - {ViewLang.ParlayType} [{ModelsHelper.GetParlayTitle(ParlayTypes)}] - {ViewLang.Combo} [{combosTitle}] - {ViewLang.SportsType} [{ModelsHelper.GetSportType(SportsType)}] - {ViewLang.LiveType}[{ModelsHelper.GetLiveTypeTitle(LiveType)}]";
+                $"{ViewLang.AgentMemberWinLoss} of {Username} - from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - {ViewLang.ParlayType} [{ModelsHelper.GetSpecialParlayTitle(ParlayTypes)}] - {ViewLang.Combo} [{combosTitle}] - {ViewLang.SportsType} [{ModelsHelper.GetSportType(SportsType)}] - {ViewLang.LiveType}[{ModelsHelper.GetLiveTypeTitle(LiveType)}]";
             return title;
         }
     }

@@ -49,7 +49,7 @@
               House PT
               <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
             </th>
-            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="totalBet" data-type="number">
+            <th scope="col" [appSort]="[data]" data-order="desc" data-prop="totalBetString" data-type="string">
               Total Combo Bets
               <span><em class="fa fa-sort-up"></em><em class="fa fa-sort-down"></em></span>
             </th>
@@ -79,7 +79,7 @@
     <td class="text-right" [napIntegerFormat]="item.houseAmt"></td>
     <td><span (click)="openNewTabOfIpInfo(item.ip, item.transDateString)">{{ item.ip }}</span></td>
     <td [napDecimalFormat]="item.housePt"></td>
-    <td>{{ item.totalBet }}</td>
+    <td>{{ item.totalBetString }}</td>
     <td>{{ item.totalSelection }}</td>
     <td>{{ item.sportType }}</td>
     <td>{{ item.status }}</td>

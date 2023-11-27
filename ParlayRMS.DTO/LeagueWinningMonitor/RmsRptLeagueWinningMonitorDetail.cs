@@ -35,5 +35,8 @@ namespace ParlayRMS.DTO.LeagueWinningMonitor
         public int CustId { get; set; }
 
         public string SiteGroup { get; set; }
-    }
+
+        public bool IsParlayGenerator { get; set; }
+
+	}
 }

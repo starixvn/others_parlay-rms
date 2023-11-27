@@ -54,6 +54,7 @@ namespace ParlayRMS.DataAccess
                                 HouseLoseAmount = isRunningStatus ? 0 : DbConverter.ToDecimal(info["houseLoseAmt"]),
                                 CustomerClass = info["CustomerClass"] == DBNull.Value ? "None" : DbConverter.ToString(info["CustomerClass"]),
                                 SiteGroup = DbConverter.ToString(info["SiteGroup"]),
+                                IsParlayGenerator = DbConverter.ToBoolean(info["IsParlayGenerator"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),

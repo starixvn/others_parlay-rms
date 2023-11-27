@@ -25,6 +25,7 @@ export class FilterService {
   public getParlayTypes(): ItemModel[] {
     return [
       { name: 'Mix Parlay', id: '1', checked: true },
+      { name: 'Parlay Generator', id: '6', checked: true },
       { name: 'Combo Parlay', id: '2', checked: true },
     ]
   }

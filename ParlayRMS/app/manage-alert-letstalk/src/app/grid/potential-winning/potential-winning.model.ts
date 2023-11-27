@@ -8,7 +8,7 @@ export interface PotentialWinningModel {
     houseAmt: number;
     ip: string;
     housePt: number;
-    totalBet: string;
+    totalBetString: string;
     totalSelection: number;
     sportType: string;
     status: string;
