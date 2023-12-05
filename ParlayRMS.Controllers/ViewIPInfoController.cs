@@ -199,7 +199,7 @@ namespace ParlayRMS.Controllers
             ViewBag.SportType = model.SportType;
             ViewBag.UserName = model.UserName;
 
-            var models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
+            var models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType, model.TicketStatus);
             var singleMatchParlayTickets = models.Where(m => m.BetType == (int)BetType.SingleMatchParlay).ToArray();
             if (singleMatchParlayTickets.Any())
             {

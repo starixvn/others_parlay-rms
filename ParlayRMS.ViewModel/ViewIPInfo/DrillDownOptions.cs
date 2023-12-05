@@ -13,5 +13,8 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
         public string UserName { get; set; }
 
         public int SportType { get; set; }
-    }
+
+        public string TicketStatus { get; set; }
+
+	}
 }

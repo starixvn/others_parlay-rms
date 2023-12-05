@@ -13,6 +13,8 @@
 
         public int SportType { get; set; }
 
+        public string TicketStatus { get; set; }
+
         public override string GetSettingKey() => "RMS_Rpt_ComboParlay_BetsStatisticsByIP_Sporttype";
 
         public override bool IsValid() => true;

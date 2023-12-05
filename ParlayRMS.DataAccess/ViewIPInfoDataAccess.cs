@@ -44,14 +44,15 @@ namespace ParlayRMS.DataAccess
             return result;
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType, string ticketStatus)
         {
             var criteria = new Rpt_ComboParlay_BetsStatisticsByIP_Sporttype_Criteria
             {
                 FromDate = date,
                 Ip = ip,
                 CustId = userId,
-                SportType = sportType
+                SportType = sportType,
+                TicketStatus = ticketStatus
             };
 
             return repository.Fetch<RMS_Rpt_Parlay_ViewIPInfoByUser>(criteria);

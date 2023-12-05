@@ -458,7 +458,8 @@ function OpenDrillDown(id, name, type) {
     window.open(url, '_blank');
 }
 function GenerateUrl(id, name, type) {
-    var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
+    var statuses = $("#ticketStatus-ipinfo").val().join(",");
+    var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type + '&ticketstatus=' + statuses);
     return url;
 }
 

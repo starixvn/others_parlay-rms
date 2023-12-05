@@ -21,9 +21,9 @@ namespace ParlayRMS.Services
             return _viewIPInfoDataAccess.RMS_Rpt_Parlay_UsersStatisticsByIP(fromDate, pageIndex, pageSize, totalItems, maxTransId, ticketStatus);
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> GetIPInfoByUser(string ip, DateTime date, int userId, int sportType)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> GetIPInfoByUser(string ip, DateTime date, int userId, int sportType, string ticketStatus)
         {
-            var records = _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(ip, date, userId, sportType);
+            var records = _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(ip, date, userId, sportType, ticketStatus);
 
             return records;
         }
