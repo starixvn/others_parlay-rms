@@ -34,7 +34,7 @@ namespace ParlayRMS.Controllers
                     ModelState.AddModelError("FromDate", "FromDate must be less than ToDate");
                 }
 
-                var lastMonth = DateTime.Now.AddMonths(-1).Date;
+                var lastMonth = DateTime.Now.AddMonths(-3).Date;
                 if (options.FromDate.Date < lastMonth)
                 {
                     ModelState.AddModelError("FromDate",

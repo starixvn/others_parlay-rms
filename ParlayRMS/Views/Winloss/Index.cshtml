@@ -60,10 +60,10 @@
     </div>
     <div style="clear: both; margin-bottom: 10px;" id="divResult">
     </div>
-    @Scripts.Render("~/Scripts/Report/Winloss/js?v=1")
+    @Scripts.Render("~/Scripts/Report/Winloss/js?v=2")
     <script type="text/javascript">
         var dateRanges = {
-            LimitDataFromDate: '@DateTime.Now.AddMonths(-1)',
+            LimitDataFromDate: '@DateTime.Now.AddMonths(-3)',
             NowDate: '@DateTime.Now'
         };
     </script>

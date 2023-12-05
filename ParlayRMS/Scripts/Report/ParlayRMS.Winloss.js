@@ -5,6 +5,7 @@
 ParlayRMS.Winloss = {
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
+        var minDate = moment(dateRanges.LimitDataFromDate).format('MMMM DD, YYYY');
 
         $("#parlayType").multiselect({
             minWidth: 210,
@@ -93,7 +94,7 @@ ParlayRMS.Winloss = {
             showButtonPanel: true,
             changeMonth: true,
             changeYear: true,
-            minDate: (diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) > 60 ? 60 * -1 : diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) * -1),
+            minDate: minDate,
             maxDate: nowDate,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
@@ -111,7 +112,7 @@ ParlayRMS.Winloss = {
             showButtonPanel: true,
             changeMonth: true,
             changeYear: true,
-            minDate: (diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) > 60 ? 60 * -1 : diffDate(dateRanges.LimitDataFromDate, dateRanges.NowDate) * -1),
+            minDate: minDate,
             maxDate: nowDate,
             onSelect: function (dateText, inst) {
                 if (dateText != inst.lastVal) {
