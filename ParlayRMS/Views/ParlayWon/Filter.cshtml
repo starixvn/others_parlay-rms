@@ -48,11 +48,11 @@
                 <div class="group">
                     @Html.Label("", ViewLang.HouseLoseAmount)
                     @Html.Label("", ViewLang.From)
-                    @Html.TextBox("houseLoseAmountFrom", (object)ViewBag.HouseLoseAmountFrom)
+                    @Html.TextBox("houseLoseAmountFrom", (object)ViewBag.HouseLoseAmountFrom, new { onkeypress = "return ParlayWon.IsNumber(event)" })
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.To)
-                    @Html.TextBox("houseLoseAmountTo", (object)ViewBag.HouseLoseAmountTo)
+                    @Html.TextBox("houseLoseAmountTo", (object)ViewBag.HouseLoseAmountTo, new { onkeypress = "return ParlayWon.IsNumber(event)" })
                 </div>
             </div>
             <div class="row">
@@ -68,10 +68,14 @@
                     @Html.Label("", ViewLang.LiveType)
                     @Html.DropDownList("ddlLiveType", Config.LiveTypes)
                 </div>
-                <div class="group">
-                    @Html.Label("", ViewLang.CustomerClass)
-                    @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return ParlayWon.IsNumber(event)" })
-                </div>
+	            <div class="group">
+		            @Html.Label("", ViewLang.CustomerClass)
+		            @Html.TextBox("txtCustomerClass", "", new { @class = "inputtext w100", maxlength = "6", onkeypress = "return ParlayWon.IsNumber(event)" })
+	            </div>
+	            <div class="group">
+		            @Html.Label("", ViewLang.IP)
+		            @Html.TextBox("txtIp", "", new { @class = "inputtext w100" })
+	            </div>
             </div>
         </div>
     </div>

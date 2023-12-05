@@ -25,5 +25,9 @@ namespace ParlayRMS.DTO.SimilarBets
         public string CustomerClass { get; set; }
 
         public string SiteGroup { get; set; }
+
+        public string Ip { get; set; }
+
+        public string TransDateString { get; set; }
     }
 }

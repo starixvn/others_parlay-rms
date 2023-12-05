@@ -38,6 +38,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public int? CustomerClass { get; set; }
 
+        public string Ip { get; set; }
+
         public int SortById { get; set; }
 
         public bool IsSortAsc { get; set; }

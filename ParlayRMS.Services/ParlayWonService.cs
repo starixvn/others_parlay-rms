@@ -32,6 +32,7 @@ namespace ParlayRMS.Services
                 options.Site,
                 options.LiveType,
                 options.CustomerClass,
+                options.Ip,
                 out totalRows);
         }
     }

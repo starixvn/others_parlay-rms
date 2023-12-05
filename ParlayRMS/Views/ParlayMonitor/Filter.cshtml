@@ -70,10 +70,18 @@
                     @Html.Label("company", "Company", new { @class = "lable" })
                     @Html.DropDownList("ddlCompany", new List<SelectListItem>(), new { multiple = "multiple" })
                 </div>
-                <div class="group">
-                    @Html.Label("username", "SMA/Member", new { @class = "lable" })
-                    @Html.TextBox("smaMember", "", new { @class = "inputtext w100" })
-                </div>
+	            <div class="group">
+		            @Html.Label("username", "SMA/Member", new { @class = "lable" })
+		            @Html.TextBox("smaMember", "", new { @class = "inputtext w100" })
+	            </div>
+	            <div class="group">
+		            @Html.Label("ip", @ViewLang.IP, new { @class = "lable" })
+		            @Html.TextBox("txtIp", "", new { @class = "inputtext w100" })
+	            </div>
+	            <div class="group">
+		            @Html.Label("", ViewLang.LiveType)
+		            @Html.DropDownList("ddlLiveType", Config.LiveTypes)
+	            </div>
                 <div class="group">
                     @Html.Label("refreshTime", @ViewLang.Refreshtime, new { @class = "lable" })
                     @Html.DropDownList("refreshTime", (List<SelectListItem>)ViewBag.RefreshTimes) @ViewLang.Seconds

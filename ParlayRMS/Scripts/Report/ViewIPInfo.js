@@ -64,6 +64,52 @@
         }
     });
 
+    $("#ticketStatus-ipstats").multiselect({
+        buttonWidth: 132,
+        menuHeight: 250,
+        selectedList: 1,
+        create: function () {
+            $("#ticketStatus-ipstats").multiselect();
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return checkedItems[0].labels[0].innerText;
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
+    $("#ticketStatus-ipinfo").multiselect({
+        buttonWidth: 132,
+        menuHeight: 250,
+        selectedList: 1,
+        create: function () {
+            $("#ticketStatus-ipinfo").multiselect();
+        },
+        selectedText: function (numChecked, numTotal, checkedItems) {
+            if (numChecked == 0) {
+                return "Select options";
+            }
+            else if (numChecked == 1) {
+                return checkedItems[0].labels[0].innerText;
+            }
+            else if (numChecked == numTotal) {
+                return "All";
+            }
+            else {
+                return numChecked + ' options';
+            }
+        }
+    });
+
     //set datepicker default value.
     $("#date-ipstats").val(today);
     $("#date-ipinfo").val(inputDate);
@@ -124,6 +170,8 @@
         var date = $("#date-ipstats").val();
         OpenViewIpInfoTab(ip, date);
     });
+
+    InitTableSorter($('#result-ip-info'), $('#header'), 0);
 });
 
 function OpenViewIpInfoTab(ip, date) {
@@ -133,6 +181,10 @@ function OpenViewIpInfoTab(ip, date) {
     }
     if (ip) {
         $("#ip").val(ip);
+    }
+    var statuses = $('#ticketStatus-ipstats').val();
+    if (statuses.length > 0) {
+        $('#ticketStatus-ipinfo').val(statuses).multiselect('refresh');
     }
     LoadMainReportIpInfo();
 }
@@ -159,9 +211,19 @@ function LoadMainReportIpInfo() {
         Validators.show($('#date-ipinfo').get(0), 'This field is required');
         return false;
     }
+
+    var ticketStatus = $("#ticketStatus-ipinfo").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+    if (ticketStatus == '') {
+        Validators.show($("#ticketStatus-ipinfo").multiselect("getButton").get(0), 'Please select your options');
+        return false;
+    }
+
     queryData = {
         ip: ip,
-        date: date
+        date: date,
+        ticketStatus: ticketStatus.split(',').length == 6 ? '-1' : ticketStatus
     };
 
     $.ajax({
@@ -182,6 +244,7 @@ function LoadMainReportIpInfo() {
             //maxTransId = json.MaxTransId;
             var table = $('#result-ip-info');
             FillData(table, json);
+            
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -199,12 +262,20 @@ function LoadReportIpStats(pageIndex, isNewSubmit) {
         Validators.show($('#date-ipstats').get(0), 'This field is required');
         return false;
     }
+    var ticketStatus = $("#ticketStatus-ipstats").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+    if (ticketStatus == '') {
+        Validators.show($("#ticketStatus-ipstats").multiselect("getButton").get(0), 'Please select your options');
+        return false;
+    }
     queryData = {
         FromDate: fromDate,
         PageIndex: pageIndex,
         PageSize: 100,
         TotalItems: 0,
-        MaxTransId: 0
+        MaxTransId: 0,
+        TicketStatus: ticketStatus.split(',').length == 6 ? '-1' : ticketStatus
     };
 
     if (typeof pageData !== "undefined" && !isNewSubmit) {
@@ -228,6 +299,7 @@ function LoadReportIpStats(pageIndex, isNewSubmit) {
         success: function (result) {
             $('#divResultIpStats').show();
             $('#divResultIpStats').html(result);
+            InitTableSorter($('#result-ip-stats'), $('#header'), startCounter);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -257,6 +329,9 @@ function FillData(table, data) {
     var totalSoccer = 0.0;
     var totalOthers = 0.0;
     var total = 0.0;
+    var stake = 0.0;
+    var winningAmount = 0.0;
+    var houseLoseAmount = 0.0;
 
     if (length > 0) {
         var rows = tbody.children('tr');
@@ -271,16 +346,19 @@ function FillData(table, data) {
             totalSoccer += 0.0 + item.Soccer;
             totalOthers += 0.0 + item.Others;
             total += 0.0 + item.Soccer + item.Others;
+            stake += 0.0 + item.Stake;
+            winningAmount += 0.0 + item.WinningAmount;
+            houseLoseAmount += 0.0 + item.HouseLoseAmount;
         }
         tbody.html(r.join(''));
 
         //Add total row
-        var totalRow = CreateTotalRow(totalSoccer, totalOthers, total);
+        var totalRow = CreateTotalRow(totalSoccer, totalOthers, total, stake, winningAmount, houseLoseAmount);
         tfooter.html(totalRow);
     }
     else {
         if (tbody.children('tr:first-child').children('td.noinfo').length === 0) {
-            var noInfo = CreateNoInfoRow(5);
+            var noInfo = CreateNoInfoRow(9);
             tbody.html(noInfo);
             tfooter.html('');
         }
@@ -342,6 +420,9 @@ function CreateRow(order, item) {
         r[++j] = '<td class="center"><a href="#" class= "rowOthers" data-id ="' + item.UserId + '" data-name= "' + item.Username + '" >' + item.Others + '</a></td>';
     }
     r[++j] = '<td class="center">' + total + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.Stake).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.WinningAmount).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(item.HouseLoseAmount).format('0,0') + '</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -357,7 +438,7 @@ function CreateRowIpStats(order, item) {
     return r.join('');
 }
 
-function CreateTotalRow(totalSoccer, totalOthers, total) {
+function CreateTotalRow(totalSoccer, totalOthers, total, stake, winningAmount, houseLoseAmount) {
     var r = new Array();
     var j = -1;
     r[++j] = '<tr style="height: 29px;">';
@@ -365,6 +446,9 @@ function CreateTotalRow(totalSoccer, totalOthers, total) {
     r[++j] = '<td class="center">' + numeral(totalSoccer).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(totalOthers).format('0,0') + '</td>';
     r[++j] = '<td class="center">' + numeral(total).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(stake).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(winningAmount).format('0,0') + '</td>';
+    r[++j] = '<td class="center">' + numeral(houseLoseAmount).format('0,0') + '</td>';
     r[++j] = '</tr>';
     return r.join('');
 }
@@ -374,10 +458,59 @@ function OpenDrillDown(id, name, type) {
     window.open(url, '_blank');
 }
 function GenerateUrl(id, name, type) {
-    var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type);
+    var statuses = $("#ticketStatus-ipinfo").val().join(",");
+    var url = '\ViewIpInfo/Drilldown' + resolveClientUrl('?date=' + queryData.date + '&ip=' + queryData.ip + '&userid=' + id + '&username=' + name + '&sporttype=' + type + '&ticketstatus=' + statuses);
     return url;
 }
 
 function MovePage(pageNumber) {
     this.LoadReportIpStats(pageNumber, false);
+}
+
+function ExportExcelForIpStats() {
+    var fromDate = $("#date-ipstats").val();
+    var ticketStatus = $("#ticketStatus-ipstats").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+    queryData = {
+        FromDate: fromDate,
+        PageIndex: 1,
+        PageSize: 1000000,
+        TotalItems: 0,
+        MaxTransId: 0,
+        TicketStatus: ticketStatus.split(',').length == 6 ? '-1' : ticketStatus
+    };
+    var url = 'ViewIPInfo/ExcelForIpStats?' + $.param(queryData);
+    window.location.href = resolveClientUrl(url);
+}
+
+function ExportExcelForIpInfo() {
+    var ip = $.trim($('#ip').val().replace(/,/g, ''));
+    var date = $("#date-ipinfo").val();
+    var ticketStatus = $("#ticketStatus-ipinfo").multiselect("getChecked").map(function () {
+        return this.value;
+    }).get().join(',');
+
+    queryData = {
+        ip: ip,
+        date: date,
+        ticketStatus: ticketStatus.split(',').length == 6 ? '-1' : ticketStatus
+    };
+    var url = 'ViewIPInfo/ExcelForIpInfo?' + $.param(queryData);
+    window.location.href = resolveClientUrl(url);
+}
+
+function InitTableSorter(table, header, counter) {
+    tableSorter.bind2(header, table, {
+        type: 'text',
+        onStart: function () {
+            table.find('tr[custid]').remove();
+        },
+        onFinish: function () {
+            var trs = table.children('tbody').children("tr");
+            trs.each(function (index, tr) {
+                $(tr).children('td:first').text(counter + index + 1);
+            });
+        }
+    });
 }

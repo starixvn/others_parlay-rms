@@ -9,18 +9,19 @@ namespace ParlayRMS.DataAccess
     public class ViewIPInfoDataAccess 
     {
         private readonly IDynamicRepository repository = new DynamicRepository();
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> RMS_Rpt_Parlay_BetsStatisticsByIP(string ip, DateTime date, string ticketStatus)
         {
             var criteria = new Rpt_Parlay_BetsStatisticsByIP_Criteria
             {
                 Ip = ip,
-                FromDate = date
+                FromDate = date,
+                TicketStatus = ticketStatus
             };
 
             return repository.Fetch<RMS_Rpt_Parlay_ViewIPInfo>(criteria);
         }
 
-        public RMS_Rpt_Parlay_UsersStatisticsByIP RMS_Rpt_Parlay_UsersStatisticsByIP(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId)
+        public RMS_Rpt_Parlay_UsersStatisticsByIP RMS_Rpt_Parlay_UsersStatisticsByIP(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId, string ticketStatus)
         {
             var criteria = new Rpt_Parlay_UsersStatisticsByIP_Criteria
             {
@@ -28,7 +29,8 @@ namespace ParlayRMS.DataAccess
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                Max_TransId = maxTransId
+                Max_TransId = maxTransId,
+                TicketStatus = ticketStatus
             };
 
             var ipStats = repository.Fetch<RMS_Rpt_Parlay_UsersStatisticsByIP_IPStats>(criteria);
@@ -42,14 +44,15 @@ namespace ParlayRMS.DataAccess
             return result;
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(string ip, DateTime date, int userId, int sportType, string ticketStatus)
         {
             var criteria = new Rpt_ComboParlay_BetsStatisticsByIP_Sporttype_Criteria
             {
                 FromDate = date,
                 Ip = ip,
                 CustId = userId,
-                SportType = sportType
+                SportType = sportType,
+                TicketStatus = ticketStatus
             };
 
             return repository.Fetch<RMS_Rpt_Parlay_ViewIPInfoByUser>(criteria);

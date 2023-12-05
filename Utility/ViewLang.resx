@@ -960,4 +960,7 @@
   <data name="ParlayGenerator" xml:space="preserve">
     <value>Parlay Generator</value>
   </data>
+  <data name="TicketStatus" xml:space="preserve">
+    <value>Ticket status</value>
+  </data>
 </root>

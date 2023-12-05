@@ -3,6 +3,24 @@
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
 
+        $("#houseLoseAmountFrom").autoNumeric({
+            aSep: ',',
+            aDec: '.',
+            vMin: '0.00',
+            vMax: '999999999999',
+            aPad: false,
+            aForm: false
+        });
+
+        $("#houseLoseAmountTo").autoNumeric({
+            aSep: ',',
+            aDec: '.',
+            vMin: '0.00',
+            vMax: '999999999999',
+            aPad: false,
+            aForm: false
+        });
+
         $("#parlayType").multiselect({
             minWidth: 210,
             height: 138,
@@ -232,6 +250,8 @@
 
             var customerClass = parseInt($("#txtCustomerClass").val());
 
+            var ip = $("#txtIp").val().trim();
+
             var houseLoseAmountFrom = parseFloat(($('#houseLoseAmountFrom').val()).replace(/,/g, ''));
             var houseLoseAmountTo = parseFloat(($('#houseLoseAmountTo').val()).replace(/,/g, ''));
 
@@ -257,6 +277,7 @@
                 site,
                 liveType,
                 customerClass,
+                ip,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -278,6 +299,7 @@
                 ParlayWon.cachedObject.site,
                 ParlayWon.cachedObject.liveType,
                 ParlayWon.cachedObject.customerClass,
+                ParlayWon.cachedObject.ip,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -320,6 +342,7 @@
                 ParlayWon.cachedObject.site,
                 ParlayWon.cachedObject.liveType,
                 ParlayWon.cachedObject.customerClass,
+                ParlayWon.cachedObject.ip,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
@@ -366,13 +389,14 @@
                 ParlayWon.cachedObject.site,
                 ParlayWon.cachedObject.liveType,
                 ParlayWon.cachedObject.customerClass,
+                ParlayWon.cachedObject.ip,
                 ParlayWon.cachedObject.sortById,
                 ParlayWon.cachedObject.isSortAsc,
                 ParlayWon.cachedObject.pageIndex,
                 ParlayWon.cachedObject.pageSize);
         });
     },
-    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass, sortById, isSortAsc, pageIndex, pageSize) {
+    Data: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass, ip, sortById, isSortAsc, pageIndex, pageSize) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -386,6 +410,7 @@
             site: site,
             liveType: liveType,
             customerClass: customerClass,
+            ip: ip,
             sortById: sortById,
             isSortAsc: isSortAsc,
             pageIndex: pageIndex,
@@ -429,7 +454,7 @@
             }
         });
     },
-    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass) {
+    ExportExcel: function (parlayTypes, fromDate, toDate, combos, levels, sportsType, houseLoseAmountFrom, houseLoseAmountTo, currencies, site, liveType, customerClass, ip) {
         var data = {
             fromDate: fromDate,
             toDate: toDate,
@@ -443,6 +468,7 @@
             site: site,
             liveType: liveType,
             customerClass: customerClass,
+            ip: ip,
             sortById: null,
             isSortAsc: null,
             pageIndex: 0,
@@ -559,6 +585,7 @@
         ParlayWon.cachedObject.site = '2';
         ParlayWon.cachedObject.liveType = '3';
         ParlayWon.cachedObject.customerClass = null;
+        ParlayWon.cachedObject.ip = null;
         ParlayWon.cachedObject.sortById = null;
         ParlayWon.cachedObject.isSortAsc = null;
         ParlayWon.cachedObject.pageIndex = 1;

@@ -140,12 +140,12 @@
         </tbody>
     </table>
 </div>
-<div id="similarbetlist" class="details" style="display: none; width: 1245px">
+<div id="similarbetlist" class="details" style="display: none; width: 1345px">
     <div class="title">
         <span class="title" style="padding-left: 10px;">@ViewLang.SimilarBetList</span>
         <img class="close" src="Content/Images/Content/closeButton.png" alt="@ViewLang.Close" title="@ViewLang.Close" onclick="CloseSimilarBets();" />
     </div>
-    <div style="width: 1249px">
+    <div style="width: 1349px">
         <table class="sub thead">
             <colgroup>
                 <col width="50px" />
@@ -157,6 +157,7 @@
                 <col width="160px" />
                 <col width="160px" />
                 <col width="150px" />
+                <col width="100px" />
                 <col width="100px" />
             </colgroup>
             <thead>
@@ -185,9 +186,12 @@
                     <th class="sortable">
                         @(Model.StatusID == 0 ? ViewLang.NetWinAfterPT : ViewLang.WinningAmount)
                     </th>
-                    <th>
-                        @ViewLang.SimilarSelectionFound
-                    </th>
+	                <th>
+		                @ViewLang.SimilarSelectionFound
+	                </th>
+	                <th>
+		                @ViewLang.IP
+	                </th>
                     <th>
                         @ViewLang.BetDetails
                     </th>
@@ -195,7 +199,7 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 500px; width: 1263px">
+    <div class="scrollGridContent" style="max-height: 500px; width: 1363px">
         <table class="sub tbody">
             <colgroup>
                 <col width="50px" />
@@ -207,6 +211,7 @@
                 <col width="160px" />
                 <col width="160px" />
                 <col width="150px" />
+                <col width="100px" />
                 <col width="100px" />
             </colgroup>
             <tbody>
@@ -238,9 +243,12 @@
                         <td class="numeric">
                             @Formatter.FormatWithoutRounding(item.Max_Payout)
                         </td>
-                        <td class="center">
-                            @item.Similar_Selection
-                        </td>
+	                    <td class="center">
+		                    @item.Similar_Selection
+	                    </td>
+	                    <td class="center">
+                            <a href="#" onclick="OpenViewIpInfo('@item.Ip', '@item.TransDateString')">@item.Ip</a>
+	                    </td>
                         <td class="center">
                             <button class="button-disable" style="width:40px;" onclick="ViewBetDetails('@item.Username', '@item.TransId', '@Model.Transid', '@item.Refno','@Model.Refno', @Model.CustId, @item.CustId, @Model.BetType);">
                                 @ViewLang.View
@@ -251,14 +259,14 @@
             </tbody>
         </table>
     </div>
-    <div style="width: 1246px" class="mainfooter">
+    <div style="width: 1346px" class="mainfooter">
         <table class="main" id="footer">
             <colgroup>
                 <col width='515px' />
                 <col width='160px' />
                 <col width='160px' />
                 <col width='160px' />
-                <col width='250px' />
+                <col width='350px' />
             </colgroup>
             <tfoot>
                 @if (Model.TotalData != null)

@@ -27,6 +27,8 @@ namespace ParlayRMS.DataAccess
             string leagueGroups,
             int? customerClass,
             string company,
+            string ip,
+            byte liveType,
             string username)
         {
             var criteria = new Monitor_ComboParlay_Betlist_Criteria
@@ -46,6 +48,8 @@ namespace ParlayRMS.DataAccess
                 CustomerClass = customerClass,
                 LeagueGroupId = leagueGroups,
                 Company = company,
+                Ip = ip,
+                LiveStatus = liveType,
                 Username = string.IsNullOrWhiteSpace(username) ? null : username
             };
 

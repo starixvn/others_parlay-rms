@@ -2149,6 +2149,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket status.
+        /// </summary>
+        public static string TicketStatus {
+            get {
+                return ResourceManager.GetString("TicketStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To.
         /// </summary>
         public static string To {

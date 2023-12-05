@@ -10,13 +10,15 @@ using ParlayRMS.ViewModel.ViewIPInfo;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using ExcelService.Writers;
 
 namespace ParlayRMS.Controllers
 {
-    using Fanex.NAP.Core.Business;
+	using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
     using Models.Functions;
-    using Services;
+	using Services;
+	using System.Collections.Generic;
 
     [NapAuth(FunctionKey = FunctionKeys.ViewIP, Policy = Constant.Policy.Read)]
     public class ViewIPInfoController : BaseController
@@ -41,7 +43,7 @@ namespace ParlayRMS.Controllers
         {
             try
             {
-                var records = _ipinfoService.GetIPInfo(options.IP, options.Date);
+                var records = _ipinfoService.GetIPInfo(options.IP, options.Date, options.TicketStatus);
 
                 return Json(new
                 {
@@ -55,7 +57,72 @@ namespace ParlayRMS.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
+        [ValidateInput(false)]
+        public void ExcelForIpInfo(ViewIPInfoOptions options)
+        {
+	        var data = _ipinfoService.GetIPInfo(options.IP, options.Date, options.TicketStatus);
+
+	        var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\IpInfo.xls";
+	        var writer = new TemplateWriter(templatePath);
+	        writer.WriteRow(0, new object[] { "View IP Info" });
+
+	        var header = new object[]
+	        {
+		        ViewLang.No,
+		        ViewLang.Site,
+		        ViewLang.Username,
+		        ViewLang.Socceronly,
+		        ViewLang.Others,
+		        ViewLang.Total,
+		        ViewLang.Stake,
+		        ViewLang.WinningAmount,
+		        ViewLang.HouseLoseAmount,
+			};
+
+	        writer.WriteRows(1, new List<object[]> { header });
+
+	        var id = 0;
+	        var select = data.Select(x => new
+	        {
+		        No = ++id,
+		        x.SiteGroup,
+		        x.Username,
+		        SoccerOnly = x.Soccer == 0 ? "-" : x.Soccer.ToString(),
+		        Others = x.Others == 0 ? "-" : x.Others.ToString(),
+                Total = x.Soccer + x.Others,
+				Stake = Formatter.FormatNumber3(x.Stake),
+				WinningAmount = Formatter.FormatNumber3(x.WinningAmount),
+				HouseLoseAmount = Formatter.FormatNumber3(x.HouseLoseAmount)
+			});
+	        writer.WriteRows(2, select);
+
+            var total = new RMS_Rpt_Parlay_ViewIPInfo();
+            data.ToList().ForEach(x => total.Add(x));
+            var footer = new object[]
+            {
+                ViewLang.Total,
+                string.Empty,
+                string.Empty,
+				total.Soccer,
+                total.Others,
+                total.Soccer + total.Others,
+                Formatter.FormatNumber3(total.Stake),
+                Formatter.FormatNumber3(total.WinningAmount),
+                Formatter.FormatNumber3(total.HouseLoseAmount)
+            };
+            writer.WriteRow(3, footer);
+
+            writer.SyncColumnWidths(9);
+
+	        var ms = writer.Render("IpInfo");
+	        Response.AddHeader("content-disposition", "attachment; filename=" + "IpInfo.xls");
+	        Response.AddHeader("content-type", "application/vnd.ms-excel");
+	        Response.BinaryWrite(ms.ToArray());
+	        Response.End();
+        }
+
+		[HttpPost]
         public ActionResult IpStatsData(ViewIPStatsOptions options)
         {
             var data = _ipinfoService.GetIPStats(
@@ -63,7 +130,8 @@ namespace ParlayRMS.Controllers
                                                                             options.PageIndex,
                                                                             options.PageSize,
                                                                             options.TotalItems,
-                                                                            options.MaxTransId);
+                                                                            options.MaxTransId,
+                                                                            options.TicketStatus);
             var page = options.PageIndex;
 
             ViewBag.StartCounter = (page - 1) * _pageSize;
@@ -73,13 +141,65 @@ namespace ParlayRMS.Controllers
             return PartialView("IpStats", data);
         }
 
-        [HttpGet]
+		[HttpGet]
+		[ValidateInput(false)]
+		public void ExcelForIpStats(ViewIPStatsOptions options)
+		{
+			var data = _ipinfoService.GetIPStats(
+				options.FromDate,
+				options.PageIndex,
+				options.PageSize,
+				options.TotalItems,
+				options.MaxTransId,
+				options.TicketStatus);
+
+			var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\IpStats.xls";
+			var writer = new TemplateWriter(templatePath);
+
+			var title = "IP Statistics";
+			writer.WriteRow(0, new object[] { title });
+
+			var header = new object[]
+			{
+				ViewLang.No,
+				ViewLang.IP,
+				ViewLang.TotalMembers,
+				ViewLang.Stake,
+				ViewLang.WinningAmount,
+				ViewLang.HouseLoseAmount,
+			};
+
+			writer.WriteRows(1, new List<object[]> { header });
+
+			var id = 0;
+			var select = data.IPStats.Select(x => new
+			{
+				No = ++id,
+				x.IP,
+				x.CntUsers,
+				Stake = Formatter.FormatNumber3(x.Stake),
+				WinningAmount = Formatter.FormatNumber3(x.WinningAmount),
+				HouseLoseAmount = Formatter.FormatNumber3(x.HouseLoseAmount)
+			});
+
+			writer.WriteRows(2, select);
+
+			writer.SyncColumnWidths(6);
+
+			var ms = writer.Render("IpStats");
+			Response.AddHeader("content-disposition", "attachment; filename=" + "IpStats.xls");
+			Response.AddHeader("content-type", "application/vnd.ms-excel");
+			Response.BinaryWrite(ms.ToArray());
+			Response.End();
+		}
+
+		[HttpGet]
         public ActionResult Drilldown(DrillDownOptions model)
         {
             ViewBag.SportType = model.SportType;
             ViewBag.UserName = model.UserName;
 
-            var models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType);
+            var models = _ipinfoService.GetIPInfoByUser(model.IP, model.Date, model.UserId, model.SportType, model.TicketStatus);
             var singleMatchParlayTickets = models.Where(m => m.BetType == (int)BetType.SingleMatchParlay).ToArray();
             if (singleMatchParlayTickets.Any())
             {

@@ -9,5 +9,7 @@ namespace ParlayRMS.ViewModel.ViewIPInfo
         public DateTime Date { get; set; }
 
         public int UserId { get; set; }
+
+        public string TicketStatus { get; set; }
     }
 }

@@ -19,7 +19,8 @@
         public int? CustomerClass { get; set; }
         public string LeagueGroupId { get; set; }
         public string Company { get; set; }
-
+        public string Ip { get; set; }
+        public int LiveStatus { get; set; }
         public string Username { get; set; }
 
         public override string GetSettingKey() => "RMS_Monitor_ComboParlay_Betlist";

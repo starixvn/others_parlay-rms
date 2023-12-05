@@ -24,6 +24,8 @@
         public int LiveStatus { get; set; }
         public int? CustomerClass { get; set; }
 
+        public string Ip { get; set; }
+
         public override string GetSettingKey() => "RMS_Rpt_ParlayWon";
 
         public override bool IsValid() => true;

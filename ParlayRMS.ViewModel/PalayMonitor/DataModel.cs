@@ -37,6 +37,10 @@ namespace ParlayRMS.ViewModel.PalayMonitor
 
         public int? CustomerClass { get; set; }
 
+        public string Ip { get; set; }
+
+        public byte LiveType { get; set; }
+
         public string Company { get; set; }
 
         public string UserName { get; set; }

@@ -115,7 +115,9 @@ namespace ParlayRMS
               "~/Content/LeagueWinningMonitor.css"));
 
             bundles.Add(new StyleBundle("~/Content/ViewIPInfo").Include(
-              "~/Content/ViewIpInfo.css"));
+	            "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.css",
+	            "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.css",
+				"~/Content/ViewIpInfo.css"));
 
             bundles.Add(new StyleBundle("~/Content/ParlayMonitor").Include(
                 "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.css",
@@ -163,7 +165,9 @@ namespace ParlayRMS
 
             bundles.Add(new ScriptBundle("~/Scripts/Member/Core/js").Include("~/Scripts/Member/Core.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/SimilarBets/js").Include("~/Scripts/Report/SimilarBets.js"));
-            bundles.Add(new ScriptBundle("~/Scripts/Report/ViewIPInfo/js").Include("~/Scripts/Report/ViewIPInfo.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Report/ViewIPInfo/js").Include("~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.js",
+	            "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.js",
+	            "~/Scripts/Report/ViewIPInfo.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Report/ViewIPInfoByUser/js").Include("~/Scripts/Report/ViewIPInfoByUser.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/ManageUser/js").Include("~/Scripts/ManageUser.js"));

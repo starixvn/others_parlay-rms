@@ -11,19 +11,19 @@ namespace ParlayRMS.Services
     {
         private readonly ViewIPInfoDataAccess _viewIPInfoDataAccess = new ViewIPInfoDataAccess();
 
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> GetIPInfo(string ip, DateTime date)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfo> GetIPInfo(string ip, DateTime date, string ticketStatus)
         {
-            return _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP(ip, date);
+            return _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP(ip, date, ticketStatus);
         }
 
-        public RMS_Rpt_Parlay_UsersStatisticsByIP GetIPStats(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId)
+        public RMS_Rpt_Parlay_UsersStatisticsByIP GetIPStats(DateTime fromDate, int pageIndex, int pageSize, int totalItems, long maxTransId, string ticketStatus)
         {
-            return _viewIPInfoDataAccess.RMS_Rpt_Parlay_UsersStatisticsByIP(fromDate, pageIndex, pageSize, totalItems, maxTransId);
+            return _viewIPInfoDataAccess.RMS_Rpt_Parlay_UsersStatisticsByIP(fromDate, pageIndex, pageSize, totalItems, maxTransId, ticketStatus);
         }
 
-        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> GetIPInfoByUser(string ip, DateTime date, int userId, int sportType)
+        public IEnumerable<RMS_Rpt_Parlay_ViewIPInfoByUser> GetIPInfoByUser(string ip, DateTime date, int userId, int sportType, string ticketStatus)
         {
-            var records = _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(ip, date, userId, sportType);
+            var records = _viewIPInfoDataAccess.RMS_Rpt_Parlay_BetsStatisticsByIP_Sporttype(ip, date, userId, sportType, ticketStatus);
 
             return records;
         }
