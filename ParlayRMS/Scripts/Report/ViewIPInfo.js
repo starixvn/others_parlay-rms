@@ -171,7 +171,7 @@
         OpenViewIpInfoTab(ip, date);
     });
 
-    InitTableSorter($('#result-ip-info'), $('#header'));
+    InitTableSorter($('#result-ip-info'), $('#header'), 0);
 });
 
 function OpenViewIpInfoTab(ip, date) {
@@ -181,6 +181,10 @@ function OpenViewIpInfoTab(ip, date) {
     }
     if (ip) {
         $("#ip").val(ip);
+    }
+    var statuses = $('#ticketStatus-ipstats').val();
+    if (statuses.length > 0) {
+        $('#ticketStatus-ipinfo').val(statuses).multiselect('refresh');
     }
     LoadMainReportIpInfo();
 }
@@ -295,7 +299,7 @@ function LoadReportIpStats(pageIndex, isNewSubmit) {
         success: function (result) {
             $('#divResultIpStats').show();
             $('#divResultIpStats').html(result);
-            InitTableSorter($('#result-ip-stats'), $('#header'));
+            InitTableSorter($('#result-ip-stats'), $('#header'), startCounter);
         },
         error: function (xhr, status, err) {
             alertBox.showError(xhr);
@@ -495,7 +499,7 @@ function ExportExcelForIpInfo() {
     window.location.href = resolveClientUrl(url);
 }
 
-function InitTableSorter(table, header) {
+function InitTableSorter(table, header, counter) {
     tableSorter.bind2(header, table, {
         type: 'text',
         onStart: function () {
@@ -504,7 +508,7 @@ function InitTableSorter(table, header) {
         onFinish: function () {
             var trs = table.children('tbody').children("tr");
             trs.each(function (index, tr) {
-                $(tr).children('td:first').text(index + 1);
+                $(tr).children('td:first').text(counter + index + 1);
             });
         }
     });
