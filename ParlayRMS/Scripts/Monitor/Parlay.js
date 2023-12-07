@@ -331,7 +331,7 @@ $(document).ready(function () {
 
     $("#parlayType").multiselect({
         buttonWidth: 210,
-        menuHeight: 220,
+        menuHeight: 230,
         selectedList: 1,
         create: function () {
             $("#parlayType").multiselect();
@@ -508,13 +508,17 @@ $(document).ready(function () {
     $("#pause").prop('disabled', true);
 
     $('#parlayType').on('change', function () {
-        var selectedParlays = $("#parlayType").multiselect("getChecked").map(function () {
+        var selectedParlays = $(this).multiselect("getChecked").map(function () {
             return this.value;
-        }).get().join(',');
-        if (selectedParlays == '5') {
-            $('#filterAfterPT').val(500);
-        } else {
-            $('#filterAfterPT').val('5,000');
+        });
+        if ($.inArray('1', selectedParlays) > -1) {
+            if ($.inArray('7', selectedParlays) < 0) {
+                selectedParlays.push('7');
+            }
+            if ($.inArray('6', selectedParlays) < 0) {
+                selectedParlays.push('6');
+            }
+            $(this).val(selectedParlays).multiselect('refresh');
         }
     });
 
@@ -677,18 +681,21 @@ function FillData(table, data) {
 function CreateRow(order, item) {
     var liveClass = item.IsLive ? 'live' : '';
     var blackListClass = item.IsBlacklistLeague ? 'blackListClass' : '';
-    var boostBonusClass = item.IsBoostBonus ? 'boostBonus' : '';
     var betSuffix = '';
     if (item.BetType === 38) {
-        betSuffix = ' (S)';
+        betSuffix += ' (S)';
     }
 
     if (item.BetType === 376) {
-        betSuffix = ' (P)';
+        betSuffix += ' (P)';
     }
 
     if (item.IsParlayGenerator == true) {
-        betSuffix = ' (PG)';
+        betSuffix += ' (PG)';
+    }
+
+    if (item.IsBoostBonus == true) {
+        betSuffix += ' (B)';
     }
 
     var r = new Array();
@@ -698,9 +705,9 @@ function CreateRow(order, item) {
     r[++j] = '<td>' + item.TransDateString + '</td>';
 
     if (item.IsBetRadar) {
-        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a href="#" class="' + boostBonusClass + '"' + ' title="boost bonus"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric betRadar" title="Betradar"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px; href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     } else {
-        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a href="#" class="' + boostBonusClass + '"' + ' title="boost bonus"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
+        r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     }
 
     r[++j] = '<td class="center">' + item.SiteGroup + '</td>';

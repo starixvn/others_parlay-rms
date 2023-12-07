@@ -58,11 +58,26 @@ namespace ParlayRMS.DataAccess
             list.ForEach(l =>
             {
                 l.CustomerClass = string.IsNullOrWhiteSpace(l.CustomerClass)?"None":l.CustomerClass;
+                l.TotalBet = GetTotalBet(l.TotalBet, l.IsParlayGenerator, l.IsParlayBoost);
             });
 
             totalRows = criteria.TotalRows;
 
             return list;
         }
-    }
+
+        private string GetTotalBet(string totalBet, bool isParlayGenerator, bool isParlayBoost)
+        {
+	        var result = totalBet;
+	        if (isParlayGenerator)
+	        {
+		        result += " (PG)";
+	        }
+	        if (isParlayBoost)
+	        {
+		        result += " (B)";
+	        }
+	        return result;
+        }
+	}
 }

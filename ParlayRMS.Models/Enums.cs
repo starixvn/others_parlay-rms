@@ -14,7 +14,9 @@ namespace ParlayRMS.Models
 
         GodOfFortune = 5,
 
-        ParlayGenerator = 6
+        ParlayGenerator = 6,
+
+        ParlayBoost = 7
     }
 
     public enum SportsType
