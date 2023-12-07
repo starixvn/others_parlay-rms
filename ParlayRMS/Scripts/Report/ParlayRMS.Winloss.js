@@ -9,7 +9,7 @@ ParlayRMS.Winloss = {
 
         $("#parlayType").multiselect({
             minWidth: 210,
-            height: 138,
+            height: 165,
             create: function () {
                 $("#parlayType").multiselect("checkAll");
             },
@@ -25,6 +25,22 @@ ParlayRMS.Winloss = {
                 }
                 else {
                     return numChecked + ' options';
+                }
+            }
+        });
+
+        $('#parlayType').on('change', function () {
+            var selectedParlays = $(this).multiselect("getChecked").map(function () {
+                return this.value;
+            });
+            if ($.inArray('1', selectedParlays) > -1) {
+                if ($.inArray('7', selectedParlays) < 0) {
+                    selectedParlays.push('7');
+                    $('input[name^=multiselect_parlayType]')[1].checked = true;
+                }
+                if ($.inArray('6', selectedParlays) < 0) {
+                    selectedParlays.push('6');
+                    $('input[name^=multiselect_parlayType]')[2].checked = true;
                 }
             }
         });

@@ -42,7 +42,7 @@ namespace ParlayRMS.DTO.ParlayWon
 
         public bool IsParlayGenerator { get; set; }
 
-        public bool IsParlayBoost { get; set; }
+        public bool IsBoostBonus { get; set; }
 
 	}
 }
