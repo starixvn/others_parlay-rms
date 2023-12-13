@@ -28,6 +28,10 @@
         new SiteInfo
         {
             Environment = SiteEnvironment.PROAWS
+        },
+        new SiteInfo
+        {
+            Environment = SiteEnvironment.KLDR
         }
     };
 #>
@@ -41,6 +45,7 @@
         MNL,
         PRO,
         PROAWS,
+        KLDR,
     }
     class SiteInfo
     {
@@ -55,6 +60,7 @@
                 {
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.PROAWS:
+                    case SiteEnvironment.KLDR:
                         return "LIVE";
                     default:
                         return "UAT";
@@ -71,6 +77,7 @@
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.UAT:
 					case SiteEnvironment.SIT:
+                    case SiteEnvironment.KLDR:
                         return "37";
                     default:
                         return "88";
@@ -86,6 +93,7 @@
                 {
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.PROAWS:
+                    case SiteEnvironment.KLDR:
                         return "false";
                     default:
                         return "false";
@@ -103,6 +111,8 @@
                         return "http://10.2.27.8:8788";
                     case SiteEnvironment.PROAWS:
                         return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:8788";
+                    case SiteEnvironment.KLDR:
+                        return "http://10.143.8.200:1710";
 					case SiteEnvironment.UAT:
                         return "http://10.99.98.117:8788";
 					case SiteEnvironment.SIT:
@@ -131,6 +141,8 @@
                         return "http://172.16.2.44:7446/api";
                     case SiteEnvironment.MNL:
                         return "http://10.40.40.202:8889/api";
+                    case SiteEnvironment.KLDR:
+                        return "http://10.143.8.200:8889/api";
                     default:
                         return string.Empty;
                 }
@@ -167,6 +179,8 @@
                         return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:7258/";
                     case SiteEnvironment.MNL:
                         return "http://10.40.40.202:7258/";
+                    case SiteEnvironment.KLDR:
+                        return "http://10.143.8.200:7258/";
                     case SiteEnvironment.SIT:
                         return "http://172.16.4.105:6207/Main/";
                     default:
@@ -183,6 +197,7 @@
                 {
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.PROAWS:
+                    case SiteEnvironment.KLDR:
                              return "On";
 
                     default:
@@ -199,6 +214,7 @@
                 {
                     case SiteEnvironment.PRO:
                     case SiteEnvironment.PROAWS:
+                    case SiteEnvironment.KLDR:
                         return "false";
 
                     default:
@@ -221,6 +237,8 @@
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"1440\" stateConnectionString=\"tcpip=vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:42424\" />";
                     case SiteEnvironment.MNL:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"1440\" stateConnectionString=\"tcpip=10.2.12.10:42424\" />";
+                    case SiteEnvironment.KLDR:
+                        return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"1440\" stateConnectionString=\"tcpip=10.143.8.200:42424\" />";
                     case SiteEnvironment.SIT:
                         return "<sessionState cookieName=\".ParlayRMS_ASP.NET_SessionId\" mode=\"StateServer\" timeout=\"1440\" stateConnectionString=\"tcpip=172.16.4.107:42424\" />";
 
@@ -245,6 +263,8 @@
                         return "https://prmscore.sportsfun.app";
                     case SiteEnvironment.MNL:
                         return "";
+                    case SiteEnvironment.KLDR:
+                        return "http://parlayrms-new.byb6181.com";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
@@ -269,6 +289,8 @@
                         return "https://prmscore.oneops.net/Auth/Propagation";
                     case SiteEnvironment.MNL:
                         return "";
+                    case SiteEnvironment.KLDR:
+                        return "http://parlayrms-new.byb6181.com/Auth/Propagation";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
@@ -293,6 +315,8 @@
                         return "https://parlayrms.oneops.net/V1";
                     case SiteEnvironment.MNL:
                         return "";
+                    case SiteEnvironment.KLDR:
+                        return "http://parlayrms.byb6181.com";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
@@ -320,6 +344,7 @@
                     case SiteEnvironment.MNL:
 					case SiteEnvironment.PRO:
                     case SiteEnvironment.PROAWS:
+                    case SiteEnvironment.KLDR:
 						return "NAP-PRMS";
 
 					default:
@@ -343,6 +368,9 @@
                     case SiteEnvironment.PRO:
 					case SiteEnvironment.MNL:
 						return "http://3e032e61e03e42c69dc27792ec2df25e@10.99.99.51:801/99";
+
+                    case SiteEnvironment.KLDR:
+						return "https://3e032e61e03e42c69dc27792ec2df25e@vn-st-sentry.byb6181.com/99";
 
                     case SiteEnvironment.PROAWS:
                         return "https://3e032e61e03e42c69dc27792ec2df25e@vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:9003/99";

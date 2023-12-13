@@ -414,6 +414,9 @@
     <Content Include="App_Configurations\Web.ConnectionString.UAT.config">
       <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
     </Content>
+    <Content Include="App_Configurations\Web.ConnectionString.KLDR.config">
+      <DependentUpon>Web.ConnectionString.DEV.config</DependentUpon>
+    </Content>
     <Content Include="App_Data\Fanex.Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -867,10 +870,10 @@
     <Content Include="Views\Auth\AccessDenied.cshtml" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
-    <Content Include="T4.FileManager.VisualStudio19.ttinclude" />
-    <Content Include="T4.FileManager.VisualStudio.ttinclude" />
     <Content Include="Views\MemberWinLoss\PenaltyShootoutParlayBetDetails.cshtml" />
     <Content Include="Views\MemberWinLoss\SingleMatchParlayBetDetails.cshtml" />
+    <Content Include="T4.FileManager.VisualStudio19.ttinclude" />
+    <Content Include="T4.FileManager.VisualStudio.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BetList.css" />
@@ -956,6 +959,9 @@
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="App_Configurations\Web.UAT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Configurations\Web.KLDR.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\Libs\multiselect\jquery.multiselect.filter.css" />
