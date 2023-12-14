@@ -264,7 +264,7 @@
                     case SiteEnvironment.MNL:
                         return "";
                     case SiteEnvironment.KLDR:
-                        return "http://parlayrms-new.byb6181.com";
+                        return "http://prmscore.byb6181.com";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
@@ -290,7 +290,7 @@
                     case SiteEnvironment.MNL:
                         return "";
                     case SiteEnvironment.KLDR:
-                        return "http://parlayrms-new.byb6181.com/Auth/Propagation";
+                        return "http://prmscore.byb6181.com/Auth/Propagation";
                     case SiteEnvironment.SIT:
                         return "";
 					case SiteEnvironment.LOCAL:
