@@ -370,7 +370,7 @@
 						return "http://3e032e61e03e42c69dc27792ec2df25e@10.99.99.51:801/99";
 
                     case SiteEnvironment.KLDR:
-						return "https://3e032e61e03e42c69dc27792ec2df25e@vn-st-sentry.byb6181.com/99";
+						return "http://3e032e61e03e42c69dc27792ec2df25e@10.143.8.200:9005/99";
 
                     case SiteEnvironment.PROAWS:
                         return "https://3e032e61e03e42c69dc27792ec2df25e@vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:9003/99";
