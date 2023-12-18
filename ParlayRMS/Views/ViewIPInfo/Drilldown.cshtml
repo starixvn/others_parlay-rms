@@ -128,36 +128,29 @@
                             <div style="display:none" class="Expand" id="exp_@item.RefNo">
                             </div>
                         </td>
-	                    <td class="numeric">
-		                    @if (item.IsBoostBonus)
+                        <td class="numeric">
+                            @if (item.IsBoostBonus)
                             {
-	                            if ((item.StatusId == 112 && item.Bba > 0) || item.StatusId == 0 || item.StatusId == 1)
-	                            {
-		                            <span style="color: #8f8787; "><b><del>@item.Odds.ToString("#,##0.####")</del></b></span><br/>
-		                            <span><b>@item.Odds2.ToString("#,##0.####")</b></span><br/>
-		                            <div style="background-color: yellow; float: right; display: flex; justify-content: center; align-items: center; padding: 2px;">
-			                            <div class="boostBonus" style="padding-left: 2px; margin-right: 0px;"></div>
-			                            <div style="color: blue;"><b>+@((item.Bbp * 100).ToString("#,##0.##"))% Boost</b></div>
-		                            </div>
-	                            }
-	                            else
-	                            {
-		                            @item.Odds.ToString("#,##0.####")
-	                            }
+                                if ((item.StatusId == 112 && item.Bba > 0) || item.StatusId == 0 || item.StatusId == 1)
+                                {
+                                    <span style="color: #8f8787; "><b><del>@(item.Odds.HasValue ? item.Odds.Value.ToString("#,##0.####") : "-")</del></b></span><br />
+                                    <span><b>@item.Odds2.ToString("#,##0.####")</b></span><br />
+                                    <div style="background-color: yellow; float: right; display: flex; justify-content: center; align-items: center; padding: 2px;">
+                                        <div class="boostBonus" style="padding-left: 2px; margin-right: 0px;"></div>
+                                        <div style="color: blue;"><b>+@((item.Bbp * 100).ToString("#,##0.##"))% Boost</b></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @(item.Odds.HasValue ? item.Odds.Value.ToString("#,##0.####") : "-")
+                                }
 
                             }
                             else
                             {
-	                            if (item.BetType == (int)BetType.SystemParlay)
-	                            {
-		                            @Html.Raw("-")
-	                            }
-	                            else
-	                            {
-		                            @item.Odds.ToString("#,##0.000")
-	                            }
+	                            @(item.Odds.HasValue ? item.Odds.Value.ToString("#,##0.####") : "-")
                             }
-	                    </td>
+                        </td>
                         <td class="numeric">
                             @if (item.IsGOF)
                             {
