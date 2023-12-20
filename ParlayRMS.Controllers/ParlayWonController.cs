@@ -177,7 +177,7 @@ namespace ParlayRMS.Controllers
                 StakeAfterPT = Formatter.FormatNumber3(x.StakeAfterPT),
                 WinningAmount = Formatter.FormatNumber3(x.WinningAmount),
                 HouseLoseAmount = Formatter.FormatNumber3(x.HouseLoseAmount),
-                TotalBet = x.IsParlayGenerator ? x.TotalBet + " (PG)" : x.TotalBet,
+                x.TotalBet,
                 x.TotalSelection,
                 TotalBets = CacheRef.GetSportNameDropDown(x.SportType),
                 x.IP

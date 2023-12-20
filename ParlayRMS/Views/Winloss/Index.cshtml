@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="group">
                     @Html.Label("parlayType", ViewLang.ParlayType)
-                    @Html.DropDownList("parlayType", Config.SpecialParlayTypes)
+                    @Html.DropDownList("parlayType", Config.ParlayTypes)
                 </div>
                 <div class="group">
                     @Html.Label("", ViewLang.From)
@@ -60,7 +60,7 @@
     </div>
     <div style="clear: both; margin-bottom: 10px;" id="divResult">
     </div>
-    @Scripts.Render("~/Scripts/Report/Winloss/js?v=2")
+    @Scripts.Render("~/Scripts/Report/Winloss/js?v=3")
     <script type="text/javascript">
         var dateRanges = {
             LimitDataFromDate: '@DateTime.Now.AddMonths(-3)',

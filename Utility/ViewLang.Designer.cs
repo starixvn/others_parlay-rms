@@ -1591,6 +1591,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parlay Boost.
+        /// </summary>
+        public static string ParlayBoost {
+            get {
+                return ResourceManager.GetString("ParlayBoost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parlay Generator.
         /// </summary>
         public static string ParlayGenerator {

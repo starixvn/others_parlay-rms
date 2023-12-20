@@ -12,7 +12,7 @@ namespace ParlayRMS.DTO.ViewIPInfo
 
         public int BetType { get; set; }
 
-        public decimal Odds { get; set; }
+        public decimal? Odds { get; set; }
 
         public decimal Odds2 { get; set; }
 

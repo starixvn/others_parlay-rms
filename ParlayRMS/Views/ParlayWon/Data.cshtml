@@ -155,14 +155,7 @@
                             @Formatter.FormatNumber3(item.HouseLoseAmount)
                         </td>
                         <td class="center">
-                            @if (item.IsParlayGenerator)
-                            {
-	                            @(item.TotalBet + " (PG)")
-                            }
-                            else
-                            {
-                                @item.TotalBet
-                            }
+	                        @item.TotalBet
                         </td>
                         <td class="center">
                             @item.TotalSelection
