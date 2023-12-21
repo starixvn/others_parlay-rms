@@ -172,19 +172,19 @@
                 switch(Environment)
                 {
 					case SiteEnvironment.UAT:
-                        return "http://10.99.99.51:7258/";
+                        return "http://vn-remotingref-prod.nebula.prod/";
                     case SiteEnvironment.PRO:
-                        return "http://10.99.99.51:7258/";
+                        return "http://vn-remotingref-prod.nebula.prod/";
                     case SiteEnvironment.PROAWS:
                         return "http://vn-net-lb-fb2f50db9dc92512.elb.ap-northeast-1.amazonaws.com:7258/";
                     case SiteEnvironment.MNL:
-                        return "http://10.40.40.202:7258/";
+                        return "http://vn-remotingref-prod.nebula.prod/";
                     case SiteEnvironment.KLDR:
-                        return "http://10.143.8.200:7258/";
+                        return "http://vn-remotingref.gamora.prod/";
                     case SiteEnvironment.SIT:
                         return "http://172.16.4.105:6207/Main/";
                     default:
-                        return "http://remotingref-api.nexdev.net/main/";
+                        return "http://remotingref-api-core.nexdev.net/";
                 }
             }
         }
