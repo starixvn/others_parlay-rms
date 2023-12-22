@@ -53,6 +53,7 @@ namespace ParlayRMS.DataAccess
                             No = index++,
                             Bettype = reportBy == 2 ? CacheRef.GetBettype(reader.ToInt32("Bettype")) : "",
                             League = reportBy == 1  ? CacheRef.GetLeagueName(reader.ToInt32("leagueId")) : "",
+                            LeagueId = reader.ToInt32("leagueId"),
                             GroupName = reportBy == 1 ? reader.ToString("GroupName") : "",
                             TotalTickets = reader.ToInt32("TotalTickets"),
                             WonTickets = reader.ToInt32("WonTickets"),

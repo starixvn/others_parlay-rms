@@ -1,11 +1,6 @@
-﻿@{
-    ViewBag.Title = ViewBag.HeaderText = "League & Bet Type Data Analysis";
-}
-@Styles.Render("~/Content/simplepagination")
+﻿@Styles.Render("~/Content/simplepagination")
 @Styles.Render("~/Content/LeagueBetTypeAnalysis")
 @Html.Action("Filter")
-<div style="clear: both; margin-bottom: 10px;" id="divResult">
-</div>
 @Scripts.Render("~/Scripts/Report/LeagueBetTypeAnalysis/js?v=1")
 <script type="text/javascript">
     var dateRanges = {

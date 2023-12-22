@@ -11,6 +11,8 @@ namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
 
         public string League { get; set; }
 
+        public int LeagueId { get; set; }
+
         public int TotalTickets { get; set; }
 
         public int DrawTickets { get; set; }

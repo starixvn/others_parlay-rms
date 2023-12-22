@@ -25,3 +25,8 @@ ul.ddlLeague.ui-multiselect-checkboxes {
   -webkit-appearance: none;
   appearance: none;
 }
+
+.filter {
+    padding: 1em 0em 0em 1.4em;
+    margin-bottom: 0px;
+}
