@@ -58,7 +58,10 @@
     <Compile Include="Common\Company.cs" />
     <Compile Include="Common\Currency.cs" />
     <Compile Include="Common\RMS_Rpt_Parlay_SelMinTransdate.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\BetTypeDetail.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueDetail.cs" />
     <Compile Include="LeagueBetTypeAnalysis\LeagueGroup.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\ModelBase.cs" />
     <Compile Include="LeagueBetTypeAnalysis\RMS_Rpt_LeagueBettype_Analysis.cs" />
     <Compile Include="Leagues\RMS_LeagueSel.cs" />
     <Compile Include="LeagueWinningMonitor\RmsRptLeagueWinningMonitor.cs" />

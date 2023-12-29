@@ -966,4 +966,7 @@
   <data name="ParlayBoost" xml:space="preserve">
     <value>Parlay Boost</value>
   </data>
+  <data name="BetChoice" xml:space="preserve">
+    <value>Bet Choice</value>
+  </data>
 </root>

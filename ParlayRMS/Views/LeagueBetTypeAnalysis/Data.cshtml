@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ParlayRMS.DTO.LeagueBetTypeAnalysis.RMS_Rpt_LeagueBettype_Analysis>
     @{
-        var filterOption = (LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
+        var filterOption = (ParlayRMS.ViewModel.LeagueBetTypeAnalysis.LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
         var totalRows = @Convert.ToInt32(ViewBag.TotalRows);
         var isReportByLeague = filterOption.ReportBy == 1 ? true : false;
     }
@@ -26,7 +26,7 @@
     <br />
     @if (totalRows > 100)
     {
-        <div style="width: @(isReportByLeague ? "1290px" : "1190px")">
+        <div style="width: @(isReportByLeague ? "1290px" : "1190px")" id="leagueBettype">
             @Html.Partial("_Pager", (object)@ViewBag.Pager)
         </div>
     }

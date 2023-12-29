@@ -232,6 +232,15 @@ namespace ParlayRMS.Utility {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Choice.
+        /// </summary>
+        public static string BetChoice {
+            get {
+                return ResourceManager.GetString("BetChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Details.
         /// </summary>
         public static string BetDetails {

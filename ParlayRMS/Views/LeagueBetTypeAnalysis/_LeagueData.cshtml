@@ -1,7 +1,7 @@
 ﻿@using Formatter = ParlayRMS.Utility.Formatter
 @model IEnumerable<ParlayRMS.DTO.LeagueBetTypeAnalysis.RMS_Rpt_LeagueBettype_Analysis>
     @{
-        var filterOption = (LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
+        var filterOption = (ParlayRMS.ViewModel.LeagueBetTypeAnalysis.LeagueBetTypeAnalysisOptions)ViewBag.FilterOption;
         var index = (filterOption.Page - 1) * filterOption.PageSize;
     }
 

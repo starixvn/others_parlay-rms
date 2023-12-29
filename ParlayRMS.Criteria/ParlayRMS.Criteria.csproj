@@ -78,6 +78,8 @@
     <Compile Include="Common\Rpt_Parlay_SelMinTransdate_Criteria.cs" />
     <Compile Include="Common\CurrencySel_Criteria.cs" />
     <Compile Include="Common\SelBalanceUpDay_Criteria.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\BetTypeDetailCriteria.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueDetailCriteria.cs" />
     <Compile Include="LeagueBetTypeAnalysis\LeagueSel_Criteria.cs" />
     <Compile Include="LeagueBetTypeAnalysis\LeagueByGroupSel_Criteria.cs" />
     <Compile Include="Common\SiteByGroupSel_Criteria.cs" />

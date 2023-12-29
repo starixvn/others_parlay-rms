@@ -71,7 +71,112 @@ namespace ParlayRMS.DataAccess
             return result;
         }
 
-        private string GetRatio(int wonTickets, int totalTickets)
+		public List<LeagueDetail> LeagueDetails(
+											   DateTime fromDate,
+											   DateTime toDate,
+											   string parlayTypes,
+											   string leagueGroups,
+											   string leagues,
+											   int site,
+											   double houseWinloss,
+											   int sportType)
+		{
+			var criteria = new LeagueDetailCriteria
+			{
+				FromDate = fromDate,
+				ToDate = toDate,
+				ParlayType = parlayTypes,
+				LeagueGroups = leagueGroups,
+				Leagues = leagues,
+				Site = site,
+				HouseWinLoss = houseWinloss,
+				SportType = sportType
+			};
+
+			var result = new List<LeagueDetail>();
+
+			using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+			{
+				using (var reader = db.ExecuteReader(criteria))
+				{
+					var index = 1;
+					while (reader.Read())
+					{
+						result.Add(new LeagueDetail
+						{
+							No = index++,
+							Bettype = CacheRef.GetBettype(reader.ToInt32("Bettype")),
+							Event = reader.ToString("Event"),
+							TotalTickets = reader.ToInt32("TotalTickets"),
+							WonTickets = reader.ToInt32("WonTickets"),
+							DrawTickets = reader.ToInt32("DrawTickets"),
+							Ratio = GetRatio(reader.ToInt32("WonTickets"), reader.ToInt32("TotalTickets")),
+							ParlayWonTickets = reader.ToInt32("ParlayWonTickets"),
+							TurnOver = reader.ToDecimal("Stake"),
+							MemberWinloss = reader.ToDecimal("MemberWinloss"),
+							MainHouseWinloss = reader.ToDecimal("MainHouseWinloss")
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public List<BetTypeDetail> BetTypeDetails(
+			DateTime fromDate,
+			DateTime toDate,
+			string parlayTypes,
+			string leagueGroups,
+			string betType,
+			int site,
+			double houseWinloss,
+			int sportType)
+		{
+			var criteria = new BetTypeDetailCriteria
+			{
+				FromDate = fromDate,
+				ToDate = toDate,
+				ParlayType = parlayTypes,
+				LeagueGroups = leagueGroups,
+				BetType = betType,
+				Site = site,
+				HouseWinLoss = houseWinloss,
+				SportType = sportType
+			};
+
+			var result = new List<BetTypeDetail>();
+
+			using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+			{
+				using (var reader = db.ExecuteReader(criteria))
+				{
+					var index = 1;
+					while (reader.Read())
+					{
+						result.Add(new BetTypeDetail
+						{
+							No = index++,
+							League = CacheRef.GetLeagueName(reader.ToInt32("leagueId")),
+							GroupName = reader.ToString("GroupName"),
+							Event = reader.ToString("Event"),
+							TotalTickets = reader.ToInt32("TotalTickets"),
+							WonTickets = reader.ToInt32("WonTickets"),
+							DrawTickets = reader.ToInt32("DrawTickets"),
+							Ratio = GetRatio(reader.ToInt32("WonTickets"), reader.ToInt32("TotalTickets")),
+							ParlayWonTickets = reader.ToInt32("ParlayWonTickets"),
+							TurnOver = reader.ToDecimal("Stake"),
+							MemberWinloss = reader.ToDecimal("MemberWinloss"),
+							MainHouseWinloss = reader.ToDecimal("MainHouseWinloss")
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		private string GetRatio(int wonTickets, int totalTickets)
         {
             if (wonTickets == 0 || totalTickets == 0)
             {

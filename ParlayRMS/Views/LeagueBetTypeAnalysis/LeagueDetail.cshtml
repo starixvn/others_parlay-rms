@@ -1,0 +1,167 @@
+﻿@using Formatter = ParlayRMS.Utility.Formatter
+@model IEnumerable<ParlayRMS.DTO.LeagueBetTypeAnalysis.LeagueDetail>
+@{
+    var filterOption = (ParlayRMS.ViewModel.LeagueBetTypeAnalysis.LeagueDetailOptions)ViewBag.FilterOption;
+    var totalRows = @Convert.ToInt32(ViewBag.TotalRows);
+	var index = (filterOption.Page - 1) * filterOption.PageSize;
+}
+@if (totalRows > 0)
+{
+    <div style="width: 1460px" class="maintitle">
+        <div class="information">
+            @ViewBag.Title
+        </div>
+        <div class="excel" onclick="LeagueBetTypeAnalysis.ExportExcelForLeagueDetail('@filterOption.ParlayType', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.BetType',  '@filterOption.LeagueGroups','@filterOption.Site', '@filterOption.HouseWinLoss', '@filterOption.SportType')" title="Export Excel">
+        </div>
+    </div>
+}
+<div style="width: 1460px">
+    <table class="main" id="leagueDetailHeader">
+        <colgroup>
+            <col width='70px' />
+            <col width='170px' />
+            <col width='150px' />
+            <col width='150px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    @ViewLang.No
+                </th>
+                <th>
+                    @ViewLang.Event
+                </th>
+	            <th>
+		            @ViewLang.Bettype
+	            </th>
+                <th>
+                    @ViewLang.BetChoice
+                </th>
+                <th class="sortable" data-col-index="1">
+                    @ViewLang.TotalTickets
+                </th>
+                <th>
+                    @ViewLang.WonTickets
+                </th>
+                <th>
+                    @ViewLang.DrawTickets
+                </th>
+                <th class="sortable" data-col-index="2">
+                    @ViewLang.Ratio
+                </th>
+                <th>
+                    @ViewLang.ParlayWonTickets
+                </th>
+                <th>
+                    @ViewLang.Turnover
+                </th>
+                <th>
+                    @ViewLang.MemberWinLoss
+                </th>
+                <th class="sortable" data-col-index="3">
+                    @ViewLang.HouseWinLoss
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="scrollGridContent" id="scrollGridContent" style="max-height: 500px; width: 1460px">
+    <table class="main" id="result">
+        <colgroup>
+	        <col width='70px' />
+	        <col width='170px' />
+	        <col width='150px' />
+	        <col width='150px' />
+	        <col width='120px' />
+	        <col width='120px' />
+	        <col width='120px' />
+	        <col width='80px' />
+	        <col width='120px' />
+	        <col width='120px' />
+	        <col width='120px' />
+	        <col width='120px' />
+        </colgroup>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">
+                        @(index + 1)
+                    </td>
+                    <td class="center">
+                        @item.Event
+                    </td>
+	                <td class="left">
+		                @item.Bettype
+	                </td>
+	                <td class="left">
+		                @item.BetChoice
+	                </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.TotalTickets)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.WonTickets)
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.DrawTickets)
+                    </td>
+                    <td class="center">
+                        @item.Ratio
+                    </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber3(item.ParlayWonTickets)
+                    </td>
+                    <td class="numeric">
+                        @item.TurnOver.ToString("#,##0.00")
+                    </td>
+                    <td class="numeric">
+                        @((Math.Floor(item.MemberWinloss * 100) / 100).ToString("#,##0.00"))
+                    </td>
+                    <td class="numeric" style="color: @(item.MainHouseWinloss < 0 ? "red" : "#3f4142")">
+                        @((Math.Floor(item.MainHouseWinloss * 100) / 100).ToString("#,##0.00"))
+                    </td>
+                </tr>
+                index++;
+            }
+        </tbody>
+    </table>
+</div>
+<div style="width: 1460px" class="mainfooter">
+    <table class="main" style="width: 1460px;" id="footer">
+        <colgroup>
+            <col width='70px' />
+            <col width='100px' />
+            <col width='170px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='80px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+            <col width='120px' />
+        </colgroup>
+        <tfoot>
+            @if (Model.Count() == 0)
+            {
+                <tr><td class="noinfo" colspan="12">@ViewLang.NoInformation</td></tr>
+            }
+        </tfoot>
+    </table>
+</div>
+<br />
+@if (totalRows > 100)
+{
+    <div style="width: 1460px" id="leagueDetail">
+        @Html.Partial("_Pager", (object)@ViewBag.Pager)
+    </div>
+}

@@ -69,6 +69,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LeagueBetTypeAnalysis\BetTypeDetailOptions.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueBetTypeAnalysisOptions.cs" />
+    <Compile Include="LeagueBetTypeAnalysis\LeagueDetailOptions.cs" />
     <Compile Include="LeagueWinningMonitor\LeagueWinningMonitorModel.cs" />
     <Compile Include="ManageAgent\AddAgentModel.cs" />
     <Compile Include="ManageAgent\AgentListModel.cs" />
@@ -100,7 +103,6 @@
     <Compile Include="Config.cs" />
     <Compile Include="Report\BetDetails.cs" />
     <Compile Include="Report\BetDetailsOptions.cs" />
-    <Compile Include="Report\LeagueBetTypeAnalysisOptions.cs" />
     <Compile Include="Report\MemberWinLossDetailOptions.cs" />
     <Compile Include="Report\ParlayWonOptions.cs" />
     <Compile Include="ViewIPInfo\ParlayBetDetailsOptions.cs" />

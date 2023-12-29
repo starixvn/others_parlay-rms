@@ -1,7 +1,7 @@
 
 namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
 {
-    public class RMS_Rpt_LeagueBettype_Analysis
+    public class RMS_Rpt_LeagueBettype_Analysis: ModelBase
     {
         public int No { get; set; }
 
@@ -13,11 +13,7 @@ namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
 
         public int LeagueId { get; set; }
 
-        public int TotalTickets { get; set; }
-
         public int DrawTickets { get; set; }
-
-        public string Ratio { get; set; }
 
         public int WonTickets { get; set; }
 
@@ -26,7 +22,5 @@ namespace ParlayRMS.DTO.LeagueBetTypeAnalysis
         public decimal TurnOver { get; set; }
 
         public decimal MemberWinloss { get; set; }
-
-        public decimal MainHouseWinloss { get; set; }
     }
 }
