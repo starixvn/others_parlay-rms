@@ -274,7 +274,7 @@ $(document).ready(function () {
 
     $("#parlaysType").multiselect({
         buttonWidth: 210,
-        menuHeight: 178,
+        menuHeight: 300,
         create: function () {
             $("#parlaysType").multiselect("checkAll");
         },
@@ -296,7 +296,7 @@ $(document).ready(function () {
 
     $("#sportsType").multiselect({
         buttonWidth: 205,
-        height: 300,
+        menuHeight: 300,
         selectedList: 1,
         groupsCollapsable: true,
         create: function () {
@@ -594,7 +594,7 @@ function ViewTotalBetDetails(custId, agentid) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="10" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="11" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');

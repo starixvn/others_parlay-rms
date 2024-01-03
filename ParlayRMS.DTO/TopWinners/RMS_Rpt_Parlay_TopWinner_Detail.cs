@@ -33,5 +33,7 @@ namespace ParlayRMS.DTO.TopWinners
         public bool IsGOF { get; set; }
 
         public bool IsParlayGenerator { get; set; }
+
+        public bool IsBoostBonus { get; set; }
 	}
 }

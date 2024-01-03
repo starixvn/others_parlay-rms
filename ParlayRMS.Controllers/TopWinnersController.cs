@@ -29,20 +29,7 @@ namespace ParlayRMS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var tempSelectTop = new SelectListItem[4];
-            var selectTop = new List<SelectListItem>();
-            var moreSelection = new List<int> { 200, 500, 1000, 2000, 3000 };
-            Config.SelectTops.CopyTo(tempSelectTop);
-            selectTop.AddRange(tempSelectTop);
-            foreach (var option in moreSelection)
-            {
-                selectTop.Add(new SelectListItem
-                {
-                    Text = option.ToString(),
-                    Value = option.ToString()
-                });
-            }
-            ViewBag.SelectTops = selectTop;
+	        ViewBag.SelectTops = Config.SelectTops;
 
             var currenciesList = commonService.GetCurrencies();
             var currencies = new List<SelectListItem>();

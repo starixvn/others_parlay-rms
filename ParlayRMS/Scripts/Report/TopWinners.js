@@ -223,7 +223,7 @@ $(function () {
 
     $("#parlayType").multiselect({
         minWidth: 210,
-        height: 138,
+        height: 165,
         create: function () {
             $("#parlayType").multiselect('checkAll');
         },

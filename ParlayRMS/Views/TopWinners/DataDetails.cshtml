@@ -90,17 +90,22 @@
                             var parlayText = string.Empty;
                             if (item.IsParlayGenerator)
                             {
-                                parlayText = "(PG)";
+                                parlayText += " (PG)";
 							}
+
+	                        if (item.IsBoostBonus)
+	                        {
+		                        parlayText += " (B)";
+	                        }
 
 	                        if (item.ParlayType == (int)ParlayType.SingleMatchParlay)
 	                        {
-								parlayText = "(S)";
+								parlayText += " (S)";
 	                        }
 
 	                        if (item.ParlayType == (int)ParlayType.PenaltyShootoutCombo)
 	                        {
-								parlayText = "(P)";
+								parlayText = " (P)";
 	                        }
 
                         }

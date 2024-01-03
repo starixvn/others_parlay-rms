@@ -4,6 +4,7 @@ using ParlayRMS.ViewModel.Monitoring;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ParlayRMS.ViewModel;
 
 namespace ParlayRMS.Controllers
 {
@@ -33,16 +34,7 @@ namespace ParlayRMS.Controllers
 
             combos.Add(new SelectListItem { Text = ViewLang.TenUp, Value = "10", Selected = true });
             ViewBag.Combos = combos;
-
-            var parlayTypes = new List<SelectListItem>
-            {
-                new SelectListItem { Text = ViewLang.MixparLay, Value = ((int)ParlayType.MixParlay).ToString() },
-                new SelectListItem { Text = ViewLang.ParlayGenerator, Value = ((int)ParlayType.ParlayGenerator).ToString() },
-                new SelectListItem { Text = ViewLang.ComboParlay, Value = ((int)ParlayType.ComboParlay).ToString() },
-                new SelectListItem { Text = ViewLang.PenaltyShootoutCombo, Value = ((int)ParlayType.PenaltyShootoutCombo).ToString() },
-                new SelectListItem { Text = ViewLang.SingleMatchParlay, Value = ((int)ParlayType.SingleMatchParlay).ToString() }
-            };
-            ViewBag.ParlayTypes = parlayTypes;
+            ViewBag.ParlayTypes = Config.ParlayTypes;
 
             var levels = new List<SelectListItem> { new SelectListItem { Text = ViewLang.None, Value = "0" } };
             for (var i = 1; i <= 10; i++)
