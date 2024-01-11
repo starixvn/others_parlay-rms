@@ -55,6 +55,7 @@ namespace ParlayRMS.DataAccess
                                 CustomerClass = info["CustomerClass"] == DBNull.Value ? "None" : DbConverter.ToString(info["CustomerClass"]),
                                 SiteGroup = DbConverter.ToString(info["SiteGroup"]),
                                 IsParlayGenerator = DbConverter.ToBoolean(info["IsParlayGenerator"]),
+                                IsBoostBonus = DbConverter.ToBoolean(info["IsBoostBonus"]),
                                 Details = details.AsEnumerable().Select(row => new RMS_Similar_Parlay_Betlist_Detail
                                 {
                                     TransId = DbConverter.ToInt64(row["transid"]),

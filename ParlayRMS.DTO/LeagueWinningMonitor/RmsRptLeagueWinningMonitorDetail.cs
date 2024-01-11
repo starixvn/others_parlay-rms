@@ -38,5 +38,7 @@ namespace ParlayRMS.DTO.LeagueWinningMonitor
 
         public bool IsParlayGenerator { get; set; }
 
+        public bool IsBoostBonus { get; set; }
+
 	}
 }

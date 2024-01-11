@@ -82,25 +82,27 @@
                 </td>
                 <td class="center">
                     @{
-                        var totalBetText = string.Empty;
+                        var totalBetText = Model.TotalBet > 1 ? " bets" : " bet";
 
                         if (Model.BetType == 38)
                         {
-                            totalBetText = " bet(S)";
+                            totalBetText += " (S)";
                         }
 
-                        else if (Model.BetType == 376)
+                        if (Model.BetType == 376)
                         {
-                            totalBetText = " bet(P)";
+                            totalBetText += " (P)";
                         }
-                        else if (Model.IsParlayGenerator)
+
+                        if (Model.IsParlayGenerator)
                         {
-                            totalBetText = " bet(PG)";
+                            totalBetText += " (PG)";
                         }
-                        else
-                        {
-                            totalBetText = Model.TotalBet > 1 ? " bets" : " bet";
-                        }
+
+	                    if (Model.IsBoostBonus)
+	                    {
+		                    totalBetText += " (B)";
+	                    }
                     }
                     @string.Format("{0} {1}", Model.TotalBet, totalBetText)
                 </td>

@@ -94,7 +94,8 @@ namespace ParlayRMS.DataAccess
                             BetType = reader.ToInt32("bettype"),
                             RefNo = reader.ToInt64("refno"),
                             SiteGroup = reader.ToString("SiteGroup"),
-                            IsParlayGenerator = reader.ToBoolean("IsParlayGenerator")
+                            IsParlayGenerator = reader.ToBoolean("IsParlayGenerator"),
+                            IsBoostBonus = reader.ToBoolean("IsBoostBonus")
 						});
                     }
                 }

@@ -114,25 +114,27 @@
                         </td>
                         <td class="center">
                             @{
-                                var betText = string.Empty;
+                                var betText = item.Val.TotalBet > 1 ? " bets" : " bet";
 
                                 if (item.Val.BetType == 38)
                                 {
-                                    betText = " bet(S)";
+                                    betText += " (S)";
                                 }
 
-                                else if (item.Val.BetType == 376)
+                                if (item.Val.BetType == 376)
                                 {
-                                    betText = " bet(P)";
+                                    betText += " (P)";
                                 }
-                                else if (item.Val.IsParlayGenerator)
+
+                                if (item.Val.IsParlayGenerator)
                                 {
-                                    betText = " bet(PG)";
+                                    betText += " (PG)";
                                 }
-                                else
-                                {
-                                    betText = item.Val.TotalBet > 1 ? " bets" : " bet";
-                                }
+
+	                            if (item.Val.IsBoostBonus)
+	                            {
+		                            betText += " (B)";
+	                            }
                             }
 
                             @Formatter.FormatNumber3(@item.Val.TotalBet) @betText

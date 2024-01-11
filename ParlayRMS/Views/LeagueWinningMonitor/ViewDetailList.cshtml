@@ -95,16 +95,22 @@
                         <td class="numeric">
                             @Formatter.FormatWithoutRounding(item.Val.CompanyLoseAmount)
                         </td>
-                        <td class="center">
-                            @if (item.Val.IsParlayGenerator)
-                            {
-                                @(item.Val.Combo + " (PG)")
-                            }
-                            else
-                            {
-                                @item.Val.Combo
-                            }
-                        </td>
+	                    <td class="center">
+		                    @{
+			                    var totalBetText = string.Empty;
+
+			                    if (item.Val.IsParlayGenerator)
+			                    {
+				                    totalBetText += " (PG)";
+			                    }
+
+			                    if (item.Val.IsBoostBonus)
+			                    {
+				                    totalBetText += " (B)";
+			                    }
+		                    }
+		                    @string.Format("{0} {1}", item.Val.Combo, totalBetText)
+	                    </td>
                         <td class="center">
                             @item.Val.TotalSelection
                         </td>

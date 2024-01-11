@@ -274,7 +274,7 @@ $(document).ready(function () {
 
     $("#parlaysType").multiselect({
         buttonWidth: 210,
-        menuHeight: 178,
+        menuHeight: 300,
         create: function () {
             $("#parlaysType").multiselect("checkAll");
         },
@@ -296,7 +296,7 @@ $(document).ready(function () {
 
     $("#sportsType").multiselect({
         buttonWidth: 205,
-        height: 300,
+        menuHeight: 300,
         selectedList: 1,
         groupsCollapsable: true,
         create: function () {
@@ -400,6 +400,22 @@ $(document).ready(function () {
         if (userSettings != null) {
             settingsController.set(userSettings);
             timerController.start();
+        }
+    });
+
+    $('#parlaysType').on('change', function () {
+        var selectedParlays = $(this).multiselect("getChecked").map(function () {
+            return this.value;
+        });
+        if ($.inArray('1', selectedParlays) > -1) {
+            if ($.inArray('7', selectedParlays) < 0) {
+                selectedParlays.push('7');
+                $('input[name^=multiselect_parlaysType]')[1].checked = true;
+            }
+            if ($.inArray('6', selectedParlays) < 0) {
+                selectedParlays.push('6');
+                $('input[name^=multiselect_parlaysType]')[2].checked = true;
+            }
         }
     });
 
@@ -594,7 +610,7 @@ function ViewTotalBetDetails(custId, agentid) {
         table.find('tr[custid]').remove();
 
         var row = $("#tr_" + custId);
-        row.after('<tr class="details" custid="' + custId + '"><td colspan="10" class="center"></td></tr>');
+        row.after('<tr class="details" custid="' + custId + '"><td colspan="11" class="center"></td></tr>');
         var newRow = row.next();
         var td = newRow.find('td');
         var imgURL = resolveClientUrl('Content/Images/Content/icon_wait.gif');
