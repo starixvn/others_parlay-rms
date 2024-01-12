@@ -706,6 +706,7 @@
     <Content Include="Content\LeagueBetTypeAnalysis.css" />
     <Content Include="Content\LeagueWinningMonitor.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
+    <Content Include="Content\MemberWinLoss.css" />
     <Content Include="Content\Menu.css" />
     <Content Include="Content\ParlayMonitor.css" />
     <Content Include="Content\ParlayWon.css" />

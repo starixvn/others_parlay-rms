@@ -5,14 +5,24 @@
         var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
 	    var index = 0;
+	    var isReportByDate = (bool)ViewBag.ReportByDate;
+	    var btnViewDetails = isReportByDate ? "btnViewDetails-ByDate" : "btnViewDetails";
+	    var exportMemberWinLoss = isReportByDate ? "exportMemberWinLoss-ByDate" : "exportMemberWinLoss";
     }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
     <div style="width: 1706px" class="maintitle">
         <div class="information">
-            @ViewBag.Title
+	        @if (isReportByDate)
+	        {
+		        <span id="reportByMonth" onclick="MemberWinLoss.BackReportByMonth()">Report by Month</span> <span>/</span> @ViewBag.Title
+	        }
+	        else
+	        {
+		        @ViewBag.Title
+	        }
         </div>
-        <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
+        <div class="excel" id="@exportMemberWinLoss" title="@ViewLang.ExportExcel">
         </div>
     </div>
     <div style="width: 1706px">
@@ -36,7 +46,7 @@
             <thead id="header">
                 <tr>
                     <th rowspan="2" class="header2rows">
-                        @ViewLang.Month
+	                    @(isReportByDate ? ViewLang.Date : ViewLang.Month)
                     </th>
                     <th rowspan="2" class="header2rows">
                         @ViewLang.Site
@@ -184,7 +194,14 @@
                             @if (!record.IsSutotalRow)
                             {
                                 <td class="center">
-                                    @record.Month
+                                    @if (isReportByDate)
+                                    {
+                                        @record.Date.ToString("MM/dd/yyyy")
+                                    }
+                                    else
+                                    {
+                                        <a href="#" onclick="MemberWinLoss.ShowReportByDate('@record.Month', false)">@record.Month</a>
+                                    }
                                 </td>
                                 <td class="center">
                                     @record.SiteGroup
@@ -234,7 +251,7 @@
                                 }
                                 else
                                 {
-	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" data-date="@record.Date.ToString("MM/dd/yyyy")" title="Click to view detail" class="@btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
                                 }
                             </td>
                         </tr>
@@ -314,23 +331,21 @@
     </div>
     @Html.Partial("_Pager", (object)@ViewBag.Pager)
 <script type="text/javascript">
-    var data = {
-        FromDate: '@filterOption.FromDate',
-        ToDate: '@filterOption.ToDate',
-        ParlayTypes: '@filterOption.ParlayTypes',
-        SportsType: '@filterOption.SportsType',
-        Combos: '@filterOption.Combos',
-        LiveType: '@filterOption.LiveType',
-        Username: '@filterOption.Username',
-        IsCached: false
-    }
+	var data = {
+	    FromDate: '@filterOption.FromDate',
+	    ToDate: '@filterOption.ToDate',
+	    ParlayTypes: '@filterOption.ParlayTypes',
+	    SportsType: '@filterOption.SportsType',
+	    Combos: '@filterOption.Combos',
+	    LiveType: '@filterOption.LiveType',
+	    Username: '@filterOption.Username',
+	    IsCached: false
+	}
+    var isReportByDate = @isReportByDate.ToString().ToLower();
     $(document).ready(function () {
-        $("#exportMemberWinLoss").on("click", function () {
-            MemberWinLoss.ExportExcel(data);
-        });
-
-        $(".btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"));
+        $(".@btnViewDetails").on("click", function () {
+            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"), $(this).data("date"));
         });
     });
-    </script>
+
+</script>

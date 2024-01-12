@@ -1,7 +1,11 @@
+using System;
+
 namespace ParlayRMS.DTO.MemberWinLoss
 {
     public class RMS_Rpt_Parlay_MemberWinLoss
     {
+        public DateTime Date { get; set; }
+
         public string Month { get; set; }
 
         public int Tickets_Won { get; set; }

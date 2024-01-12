@@ -1,0 +1,32 @@
+﻿#divReportByDate div.maintitle div.information {
+    float: left;
+    line-height: 20px;
+    margin-left: 20px;
+    flex: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#divReportByDate div.maintitle {
+    clear: both;
+    background-color: #454513;
+    color: #fff;
+    border: soild 1px #454513;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 1px;
+    display: flex;
+}
+
+#divReportByDate div.mainfooter {
+    background-color: #3F536B;
+    color: #fff;
+    border: solid 1px #3F536B;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#divReportByDate span#reportByMonth {
+    cursor: pointer;
+    text-decoration: underline;
+}

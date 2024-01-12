@@ -35,6 +35,8 @@ namespace ParlayRMS.ViewModel.Report
 
         public bool IsSortAsc { get; set; }
 
+        public byte ReportBy { get; set; }
+
         [AllowHtml]
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }

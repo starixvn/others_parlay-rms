@@ -10,7 +10,23 @@
         PageIndex: null,
         IsCached: null,
         SortById: null,
-        IsSortAsc: null
+        IsSortAsc: null,
+        ReportBy: null
+    },
+
+    CachedFilteredObject: {
+        FromDate: null,
+        ToDate: null,
+        ParlayTypes: null,
+        SportsType: null,
+        LiveType: null,
+        Combos: null,
+        Username: null,
+        PageIndex: null,
+        IsCached: null,
+        SortById: null,
+        IsSortAsc: null,
+        ReportBy: null
     },
 
     CachedDOM: {
@@ -21,6 +37,7 @@
         toDate: null,
         btnSearch: null,
         divResult: null,
+        divReportByDate: null,
         lbUserExtra: null,
         filterControl: null,
         liveType: null
@@ -34,12 +51,14 @@
         MemberWinLoss.CachedDOM.toDate = $("#toDate");
         MemberWinLoss.CachedDOM.btnSearch = $("#btnSearch");
         MemberWinLoss.CachedDOM.divResult = $("#divResult");
+        MemberWinLoss.CachedDOM.divReportByDate = $("#divReportByDate");
         MemberWinLoss.CachedDOM.lbUserExtra = $("#lbUserExtra");
         MemberWinLoss.CachedDOM.filterControl = $(".filter-control");
         MemberWinLoss.CachedDOM.liveType = $("#ddlLiveType");
     },
 
     filterWidth: 0,
+    clickedMonth: '',
 
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
@@ -181,7 +200,54 @@
             MemberWinLoss.GetData(1, false);
         });
 
-        $(document).on("click", '#header .sortable', function () {
+        $(document).on("click", '#divResult #header .sortable', function () {
+            var currentObject = this;
+            var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
+
+            if (currentColIndex == MemberWinLoss.CachedFilteredObject.SortById) {
+                if (MemberWinLoss.CachedFilteredObject.IsSortAsc) {
+                    MemberWinLoss.CachedFilteredObject.IsSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                } else {
+                    MemberWinLoss.CachedFilteredObject.IsSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                }
+            } else {
+                if (currentObject.sortDirection == 'asc') {
+                    MemberWinLoss.CachedFilteredObject.IsSortAsc = true;
+                    $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                } else {
+                    MemberWinLoss.CachedFilteredObject.IsSortAsc = false;
+                    $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                }
+
+                $('#header').find(".sortable").each(function () {
+                    if ($(currentObject).index() != $(this).index()) {
+                        $(this).removeClass("headerSortDown").removeClass("headerSortUp");
+                        this.sortDirection = "";
+                    }
+                });
+            }
+
+            if (!currentColIndex) {
+                currentColIndex = $(currentObject).index();
+            }
+
+            MemberWinLoss.CachedFilteredObject.SortById = parseInt(currentColIndex);
+            MemberWinLoss.Data(MemberWinLoss.CachedFilteredObject.ParlayTypes,
+                MemberWinLoss.CachedFilteredObject.FromDate,
+                MemberWinLoss.CachedFilteredObject.ToDate,
+                MemberWinLoss.CachedFilteredObject.SportsType,
+                MemberWinLoss.CachedFilteredObject.LiveType,
+                MemberWinLoss.CachedFilteredObject.Combos,
+                MemberWinLoss.CachedFilteredObject.Username,
+                1,
+                true,
+                MemberWinLoss.CachedFilteredObject.SortById,
+                MemberWinLoss.CachedFilteredObject.IsSortAsc);
+        });
+
+        $(document).on("click", '#divReportByDate #header .sortable', function () {
             var currentObject = this;
             var currentColIndex = parseInt($(currentObject).attr("data-col-index"));
 
@@ -215,17 +281,37 @@
             }
 
             MemberWinLoss.CachedObject.SortById = parseInt(currentColIndex);
-            MemberWinLoss.Data(MemberWinLoss.CachedObject.ParlayTypes,
-                MemberWinLoss.CachedObject.FromDate,
-                MemberWinLoss.CachedObject.ToDate,
-                MemberWinLoss.CachedObject.SportsType,
-                MemberWinLoss.CachedObject.LiveType,
-                MemberWinLoss.CachedObject.Combos,
-                MemberWinLoss.CachedObject.Username,
-                1,
-                true,
-                MemberWinLoss.CachedObject.SortById,
-                MemberWinLoss.CachedObject.IsSortAsc);
+            MemberWinLoss.ShowReportByDate(MemberWinLoss.clickedMonth, true);
+        });
+
+        $(document).on("click", '#exportMemberWinLoss-ByDate', function () {
+            var data = {
+                FromDate: MemberWinLoss.CachedObject.FromDate,
+                ToDate: MemberWinLoss.CachedObject.ToDate,
+                ParlayTypes: MemberWinLoss.CachedObject.ParlayTypes,
+                SportsType: MemberWinLoss.CachedObject.SportsType,
+                Combos: MemberWinLoss.CachedObject.Combos,
+                LiveType: MemberWinLoss.CachedObject.LiveType,
+                Username: MemberWinLoss.CachedObject.Username,
+                ReportBy: MemberWinLoss.CachedObject.ReportBy,
+                IsCached: false
+            }
+            MemberWinLoss.ExportExcel(data);
+        });
+
+        $(document).on("click", '#exportMemberWinLoss', function () {
+            var data = {
+                FromDate: MemberWinLoss.CachedFilteredObject.FromDate,
+                ToDate: MemberWinLoss.CachedFilteredObject.ToDate,
+                ParlayTypes: MemberWinLoss.CachedFilteredObject.ParlayTypes,
+                SportsType: MemberWinLoss.CachedFilteredObject.SportsType,
+                Combos: MemberWinLoss.CachedFilteredObject.Combos,
+                LiveType: MemberWinLoss.CachedFilteredObject.LiveType,
+                Username: MemberWinLoss.CachedFilteredObject.Username,
+                ReportBy: MemberWinLoss.CachedFilteredObject.ReportBy,
+                IsCached: false
+            }
+            MemberWinLoss.ExportExcel(data);
         });
 
         MemberWinLoss.filterWidth = MemberWinLoss.CachedDOM.filterControl.width();
@@ -242,10 +328,11 @@
             PageIndex: pageIndex,
             IsCached: isCached,
             SortById: sortById,
-            IsSortAsc: isSortAsc
+            IsSortAsc: isSortAsc,
+            ReportBy: 1
         }
 
-        MemberWinLoss.CachedObject = data;
+        MemberWinLoss.CachedFilteredObject = data;
 
         $.ajax({
             url: resolveClientUrl('MemberWinLoss/Data'),
@@ -257,10 +344,12 @@
                 loading.show();
             },
             success: function (result) {
+                MemberWinLoss.CachedDOM.divReportByDate.hide();
                 MemberWinLoss.CachedDOM.divResult.html(result);
-                $('#header').find(".sortable").each(function () {
-                    if ($(this).attr("data-col-index") == MemberWinLoss.CachedObject.SortById) {
-                        if (MemberWinLoss.CachedObject.IsSortAsc) {
+                MemberWinLoss.CachedDOM.divResult.show();
+                $('#divResult #header').find(".sortable").each(function () {
+                    if ($(this).attr("data-col-index") == MemberWinLoss.CachedFilteredObject.SortById) {
+                        if (MemberWinLoss.CachedFilteredObject.IsSortAsc) {
                             $(this).removeClass("headerSortDown").addClass("headerSortUp");
                         } else {
                             $(this).removeClass("headerSortUp").addClass("headerSortDown");
@@ -328,7 +417,7 @@
 
         var liveType = parseInt(MemberWinLoss.CachedDOM.liveType.val());
 
-        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, MemberWinLoss.CachedObject.SortById, MemberWinLoss.CachedObject.IsSortAsc);
+        MemberWinLoss.Data(parlayTypes, fromDate, toDate, sportsTypes, liveType, combos, username, pageIndex, isCached, null, null);
     },
     DisplayInfoExtra: function () {
         var html = $("#inpIsAgent").val() ? '(CC: <b>' + $("#inpCustomerClass").val() + '</b>)' :
@@ -337,8 +426,8 @@
         var filterCustomerClass = MemberWinLoss.CachedDOM.lbUserExtra.width();
         MemberWinLoss.CachedDOM.filterControl.width(MemberWinLoss.filterWidth + filterCustomerClass);
     },
-    ViewDetails: function (index, month, param, isMember, username) {
-        var table = $('#result');
+    ViewDetails: function (index, month, param, isMember, username, date) {
+        var table = isReportByDate ? $("#divReportByDate #result") : $('#divResult #result');
         var found = table.find("tr[info='" + index + "']");
         if (found.length != 0) {
             table.find("tr[info='" + index + "']").remove();
@@ -346,7 +435,7 @@
         else {
             table.find('tr[info]').remove();
             var colspanNumber = isMember ? 11 : 14;
-            var row = $("#tr_" + index);
+            var row = table.find("#tr_" + index);
             row.after('<tr class="details" info="' + index + '"><td colspan="' + colspanNumber +' " class="center"></td></tr>');
             var newRow = row.next();
             var td = newRow.find('td');
@@ -356,12 +445,17 @@
             var fromDate = '';
             var toDate = '';
             var userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
-            var dateInfo = month.trim().split('-');
-            var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
-            var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
-            var toDateString = dateInfo[0] + '/' + lastDateOfMonth + '/' + dateInfo[1];
-            fromDate = new Date(fromDateString) < new Date(param.FromDate) ? param.FromDate : fromDateString;
-            toDate = new Date(toDateString) > new Date(param.ToDate) ? param.ToDate : toDateString;
+            if (isReportByDate) {
+                fromDate = date;
+                toDate = date;
+            } else {
+                var dateInfo = month.trim().split('-');
+                var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
+                var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
+                var toDateString = dateInfo[0] + '/' + lastDateOfMonth + '/' + dateInfo[1];
+                fromDate = new Date(fromDateString) < new Date(MemberWinLoss.CachedFilteredObject.FromDate) ? MemberWinLoss.CachedFilteredObject.FromDate : fromDateString;
+                toDate = new Date(toDateString) > new Date(MemberWinLoss.CachedFilteredObject.ToDate) ? MemberWinLoss.CachedFilteredObject.ToDate : toDateString;
+            }
             var data = {
                 FromDate: fromDate,
                 ToDate: toDate,
@@ -394,19 +488,87 @@
         }
 
         return false;
+    },
+
+    ShowReportByDate: function (month, isCached) {
+        MemberWinLoss.clickedMonth = month;
+        MemberWinLoss.CachedDOM.divResult.hide();
+        if (!isCached) {
+            MemberWinLoss.CachedObject.SortById = null;
+            MemberWinLoss.CachedObject.IsSortAsc = null;
+        }
+        var dateInfo = month.trim().split('-');
+        var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
+        var fromDate = dateInfo[0] + '/1/' + dateInfo[1];
+        var toDate = dateInfo[0] + '/' + lastDateOfMonth + '/' + dateInfo[1];
+        var data = {
+            FromDate: fromDate,
+            ToDate: toDate,
+            ParlayTypes: MemberWinLoss.CachedFilteredObject.ParlayTypes,
+            SportsType: MemberWinLoss.CachedFilteredObject.SportsType,
+            LiveType: MemberWinLoss.CachedFilteredObject.LiveType,
+            Combos: MemberWinLoss.CachedFilteredObject.Combos,
+            Username: MemberWinLoss.CachedFilteredObject.Username,
+            PageIndex: MemberWinLoss.CachedObject.PageIndex,
+            IsCached: isCached,
+            SortById: MemberWinLoss.CachedObject.SortById,
+            IsSortAsc: MemberWinLoss.CachedObject.IsSortAsc,
+            ReportBy: 2
+        }
+        MemberWinLoss.CachedObject = data;
+        $.ajax({
+            url: resolveClientUrl('MemberWinLoss/Data'),
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            cache: false,
+            beforeSend: function (xhr) {
+                loading.show();
+            },
+            success: function (result) {
+                MemberWinLoss.CachedDOM.divReportByDate.html(result);
+                MemberWinLoss.CachedDOM.divReportByDate.show();
+                $('#divReportByDate #header').find(".sortable").each(function () {
+                    if ($(this).attr("data-col-index") == MemberWinLoss.CachedObject.SortById) {
+                        if (MemberWinLoss.CachedObject.IsSortAsc) {
+                            $(this).removeClass("headerSortDown").addClass("headerSortUp");
+                        } else {
+                            $(this).removeClass("headerSortUp").addClass("headerSortDown");
+                        }
+                    }
+                });
+            },
+            error: function (xhr, status, err) {
+                alertBox.showError(xhr);
+            },
+            complete: function () {
+                loading.hide();
+            }
+        });
+    },
+
+    BackReportByMonth: function () {
+        MemberWinLoss.CachedDOM.divReportByDate.hide();
+        MemberWinLoss.CachedDOM.divResult.show();
+        isReportByDate = false;
     }
 }
 function MovePage(pageIndex) {
-    MemberWinLoss.Data(MemberWinLoss.CachedObject.ParlayTypes,
-        MemberWinLoss.CachedObject.FromDate,
-        MemberWinLoss.CachedObject.ToDate,
-        MemberWinLoss.CachedObject.SportsType,
-        MemberWinLoss.CachedObject.LiveType,
-        MemberWinLoss.CachedObject.Combos,
-        MemberWinLoss.CachedObject.Username,
-        pageIndex, true,
-        MemberWinLoss.CachedObject.SortById,
-        MemberWinLoss.CachedObject.IsSortAsc);
+    if (isReportByDate) {
+        MemberWinLoss.ShowReportByDate(MemberWinLoss.clickedMonth, true)
+    } else {
+        MemberWinLoss.Data(MemberWinLoss.CachedFilteredObject.ParlayTypes,
+            MemberWinLoss.CachedFilteredObject.FromDate,
+            MemberWinLoss.CachedFilteredObject.ToDate,
+            MemberWinLoss.CachedFilteredObject.SportsType,
+            MemberWinLoss.CachedFilteredObject.LiveType,
+            MemberWinLoss.CachedFilteredObject.Combos,
+            MemberWinLoss.CachedFilteredObject.Username,
+            pageIndex, true,
+            MemberWinLoss.CachedFilteredObject.SortById,
+            MemberWinLoss.CachedFilteredObject.IsSortAsc);
+    }
+    
 };
 
 String.prototype.trim = function () {
