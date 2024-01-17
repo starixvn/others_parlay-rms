@@ -41,31 +41,37 @@ namespace ParlayRMS.Controllers
                 {
                     Text = ViewLang.MixparLay,
                     Value = ((int)ParlayType.MixParlay).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.MixParlay).ToString())
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.MixParlay).ToString())
+                },
+                new SelectListItem
+                {
+                    Text = ViewLang.ParlayBoost,
+                    Value = ((int)ParlayType.ParlayBoost).ToString(),
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.ParlayBoost).ToString())
                 },
                 new SelectListItem
                 {
                     Text = ViewLang.ParlayGenerator,
                     Value = ((int)ParlayType.ParlayGenerator).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ParlayGenerator).ToString())
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.ParlayGenerator).ToString())
                 },
                 new SelectListItem
                 {
                     Text = ViewLang.ComboParlay,
                     Value = ((int)ParlayType.ComboParlay).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.ComboParlay).ToString())
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.ComboParlay).ToString())
                 },
                 new SelectListItem
                 {
                     Text = ViewLang.PenaltyShootoutCombo,
                     Value = ((int)ParlayType.PenaltyShootoutCombo).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.PenaltyShootoutCombo).ToString())
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.PenaltyShootoutCombo).ToString())
                 },
                 new SelectListItem
                 {
                     Text = ViewLang.SingleMatchParlay,
                     Value = ((int)ParlayType.SingleMatchParlay).ToString(),
-                    Selected = string.IsNullOrEmpty(model.ParlayTypes) || model.ParlayTypes.Contains(((int)ParlayType.SingleMatchParlay).ToString())
+                    Selected = string.IsNullOrEmpty(model.ParlaysType) || model.ParlaysType.Contains(((int)ParlayType.SingleMatchParlay).ToString())
                 }
             };
 

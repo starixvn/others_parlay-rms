@@ -28,7 +28,7 @@ ParlayRMS.TotalOutstanding = {
 
         $("#parlaysType").multiselect({
             minWidth: 210,
-            height: 138,
+            height: 165,
             create: function () {
                 $("#parlaysType").multiselect();
             },
@@ -81,6 +81,22 @@ ParlayRMS.TotalOutstanding = {
             if (event.keyCode == 13) {
                 $('#username').blur();
                 $('#submit').click();
+            }
+        });
+
+        $('#parlaysType').on('change', function () {
+            var selectedParlays = $(this).multiselect("getChecked").map(function () {
+                return this.value;
+            });
+            if ($.inArray('1', selectedParlays) > -1) {
+                if ($.inArray('7', selectedParlays) < 0) {
+                    selectedParlays.push('7');
+                    $('input[name^=multiselect_parlaysType]')[1].checked = true;
+                }
+                if ($.inArray('6', selectedParlays) < 0) {
+                    selectedParlays.push('6');
+                    $('input[name^=multiselect_parlaysType]')[2].checked = true;
+                }
             }
         });
     },
@@ -273,7 +289,7 @@ ParlayRMS.TotalOutstanding = {
         var parlayTypes = $("#parlaysType").multiselect("getChecked").map(function () {
             return this.value;
         }).get().join(',');
-        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlayTypes=' + parlayTypes;
+        var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlaysType=' + parlayTypes;
         window.open(url, '_blank');
     },
     DisplayCustomerClass: function () {

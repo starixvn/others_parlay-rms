@@ -752,7 +752,7 @@ function ViewTotalOutstanding(username) {
     var sportsTypes = $("#sportsType").multiselect("getChecked").map(function () {
         return this.value;
     }).get().join(',');
-    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlayTypes=' + parlaysTypes;
+    var url = resolveClientUrl('TotalOutstanding?username=') + username + '&combo=' + combos + '&sportsType=' + sportsTypes + '&parlaysType=' + parlaysTypes;
     window.open(url, '_blank');
 }
 function ViewBetDetails(username, transId, refNo, betType, custId) {

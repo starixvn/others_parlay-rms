@@ -6,7 +6,7 @@ namespace ParlayRMS.ViewModel.TotalOutstanding
 
         public string Combo { get; set; } = string.Empty;
 
-        public string ParlayTypes { get; set; } = string.Empty;
+        public string ParlaysType { get; set; } = string.Empty;
 
         public string SportsType { get; set; } = string.Empty;
     }
