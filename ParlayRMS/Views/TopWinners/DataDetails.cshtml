@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th>
-                        #
+	                    @ViewLang.No
                     </th>
                     <th>
                         @ViewLang.BetID
@@ -50,9 +50,11 @@
                     <th>
                         @ViewLang.TotalSelections
                     </th>
-                    <th>
-                        Sport Type
-                    </th>
+	                <th class="position-relative">
+		                Sport Type
+		                <div class="excel data-detail-excel-icon" onclick="ExportExcelForDataDetails();" title="Export Excel">
+		                </div>
+	                </th>
                 </tr>
             </thead>
             <tbody>

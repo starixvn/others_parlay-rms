@@ -281,7 +281,7 @@
             }
 
             MemberWinLoss.CachedObject.SortById = parseInt(currentColIndex);
-            MemberWinLoss.ShowReportByDate(MemberWinLoss.clickedMonth, true);
+            MemberWinLoss.ShowReportByDate(1, MemberWinLoss.clickedMonth, true);
         });
 
         $(document).on("click", '#exportMemberWinLoss-ByDate', function () {
@@ -490,7 +490,7 @@
         return false;
     },
 
-    ShowReportByDate: function (month, isCached) {
+    ShowReportByDate: function (pageIndex, month, isCached) {
         MemberWinLoss.clickedMonth = month;
         MemberWinLoss.CachedDOM.divResult.hide();
         if (!isCached) {
@@ -509,7 +509,7 @@
             LiveType: MemberWinLoss.CachedFilteredObject.LiveType,
             Combos: MemberWinLoss.CachedFilteredObject.Combos,
             Username: MemberWinLoss.CachedFilteredObject.Username,
-            PageIndex: MemberWinLoss.CachedObject.PageIndex,
+            PageIndex: pageIndex,
             IsCached: isCached,
             SortById: MemberWinLoss.CachedObject.SortById,
             IsSortAsc: MemberWinLoss.CachedObject.IsSortAsc,
@@ -555,7 +555,7 @@
 }
 function MovePage(pageIndex) {
     if (isReportByDate) {
-        MemberWinLoss.ShowReportByDate(MemberWinLoss.clickedMonth, true)
+        MemberWinLoss.ShowReportByDate(pageIndex, MemberWinLoss.clickedMonth, true)
     } else {
         MemberWinLoss.Data(MemberWinLoss.CachedFilteredObject.ParlayTypes,
             MemberWinLoss.CachedFilteredObject.FromDate,

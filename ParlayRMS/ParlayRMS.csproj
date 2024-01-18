@@ -719,6 +719,7 @@
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
     <Content Include="ExcelTemplates\IpStats.xls" />
     <Content Include="ExcelTemplates\IpInfo.xls" />
+    <Content Include="ExcelTemplates\TopWinners-DataDetails.xls" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />

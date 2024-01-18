@@ -21,8 +21,8 @@
     <Setting Key="RMS_Similar_ComboParlay_Betlist" SpName="RMS_Similar_ComboParlay_Betlist" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_ComboParlay_TransDetails" SpName="RMS_ComboParlay_TransDetails" DbName="DBRMS.bodb_RMS.bodbRMSNet" />
     <Setting Key="RMS_Rpt_ComboParlay_Winloss" SpName="RMS_Rpt_ComboParlay_Winloss" DbName="DBRMS.bodb_RMS.bodbRMSNet" TimeOut="0" />
-    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Mem" SpName="RMS_Rpt_ComboParlay_Winloss_Mem_xpre" DbName="DBRMS.bodb_RMS.bodbRMSNet" TimeOut="0" />
-    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Ag" SpName="RMS_Rpt_ComboParlay_Winloss_Ag_xpre" DbName="DBRMS.bodb_RMS.bodbRMSNet" TimeOut="0" />
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Mem" SpName="RMS_Rpt_ComboParlay_Winloss_Mem" DbName="DBRMS.bodb_RMS.bodbRMSNet" TimeOut="0" />
+    <Setting Key="RMS_Rpt_ComboParlay_Winloss_Ag" SpName="RMS_Rpt_ComboParlay_Winloss_Ag" DbName="DBRMS.bodb_RMS.bodbRMSNet" TimeOut="0" />
     <Setting Key="RMS_Rpt_Parlay_BetsStatisticsByIP" SpName="RMS_Rpt_Parlay_BetsStatisticsByIP" DbName="DBRMS.bodb_RMS.bodbRMSNet" >
       <Mapping DataField="cnt_soccer" ObjectProperty="Soccer" />
       <Mapping DataField="cnt_others" ObjectProperty="Others" />
