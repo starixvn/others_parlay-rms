@@ -1,6 +1,7 @@
 @import '~nap-theme/scss/grid';
 .nap-grid {
     padding: 0.3rem;
+    overflow: visible;
     .header {
         background-color: #1f4e78 !important;
     }

@@ -177,7 +177,10 @@ namespace ParlayRMS.Services
             rawData.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
-                x.Month = ReFormatMonthStr(x.Month.Trim());
+                if (reportBy == 1)
+                {
+                    x.Month = ReFormatMonthStr(x.Month.Trim());
+                }
                 total.Add(x);
             });
 

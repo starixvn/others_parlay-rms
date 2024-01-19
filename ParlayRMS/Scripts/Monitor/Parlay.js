@@ -710,7 +710,7 @@ function CreateRow(order, item) {
     } else {
         r[++j] = '<td class="numeric"><a href="#" class="' + liveClass + '"' + ' title="live"></a><a href="#" class="' + blackListClass + '"' + ' title="black list"></a><a href="#" class="' + boostBonusClass + '"' + ' title="boost bonus"></a><a style="line-height: 18px;" href="#" onclick="window.open(resolveClientUrl(\'SimilarBets?betid=' + item.TransId + '\'), \'_blank\');">' + item.TransId + '</a></td>';
     }
-
+    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', \'' + item.TransId + '\', \'' + item.RefNo + '\', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
     r[++j] = '<td class="center">' + item.SiteGroup + '</td>';
     r[++j] = CreateLinkLevelCell(item.Username, item.Level, "ViewTotalOutstanding('" + item.Username + "')");
     r[++j] = '<td class="numeric">' + item.CustomerClass + '</td>';
@@ -728,7 +728,6 @@ function CreateRow(order, item) {
     else {
         r[++j] = '<td class="numeric"><a href="#" onclick="OpenViewIpInfo(resolveClientUrl(\'ViewIPInfo?ip=' + item.IP + '&date=' + item.TransDateString + '\'));">' + displayMax15Character(item.IP.trim()) + '</a></td>';
     }
-    r[++j] = '<td class="center"><button class="button-disable-2" style="width:40px;" onclick="ViewBetDetails(\'' + item.Username + '\', \'' + item.TransId + '\', \'' + item.RefNo + '\', ' + item.BetType + ', ' + item.CustId + ');">View</td>';
     r[++j] = '<td>' + renderCheckedBy(order, userId, userName, item.TrackingUser, item.IsTrackedUser, item.TransId) + '</td>';
     r[++j] = '</tr>';
     return r.join('');

@@ -121,7 +121,7 @@ namespace ParlayRMS.Controllers
 
             var header1 = new object[]
             {
-                "#",
+                ViewLang.No,
                 ViewLang.Site,
                 ViewLang.Username,
                 ViewLang.CustomerClass,
@@ -239,7 +239,7 @@ namespace ParlayRMS.Controllers
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\TopWinners-DataDetails.xls";
             var writer = new TemplateWriter(templatePath);
 
-            var title = $"Top Winner - Data Details - CustId({options.CustId}) - Username({options.Username})";
+            var title = options.GetTile();
             writer.WriteRow(0, new object[] { title });
 
             var header = new object[]
@@ -249,17 +249,15 @@ namespace ParlayRMS.Controllers
                 ViewLang.Stake,
                 ViewLang.CustomerWinLoss,
                 ViewLang.CompanyWinLoss,
-                ViewLang.OriginalCurrency,
                 ViewLang.Stake,
                 ViewLang.CustomerWinLoss,
                 ViewLang.CompanyWinLoss,
-                ViewLang.OriginalCurrency,
                 ViewLang.TotalComboBets,
                 ViewLang.TotalSelections,
                 ViewLang.SportType
             };
 
-            writer.WriteRow(1, new object[] { header });
+            writer.WriteRow(1, header);
 
             var id = 0;
             var select = records.Select(x => new

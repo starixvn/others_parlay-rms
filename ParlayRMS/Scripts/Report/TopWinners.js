@@ -559,7 +559,9 @@ function ExportExcelForDataDetails() {
         Combos: userOptions.Combos,
         ParlayTypes: userOptions.ParlayTypes,
         LiveType: userOptions.LiveType,
-        Currencies: userOptions.Currencies
+        Currencies: userOptions.Currencies,
+        CustomerClass: userOptions.CustomerClass,
+        Site: userOptions.Site
     }
 
     var url = 'TopWinners/ExcelForDataDetails?' + $.param(data);

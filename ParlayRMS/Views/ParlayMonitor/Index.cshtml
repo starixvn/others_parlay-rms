@@ -30,6 +30,7 @@
                 <col width="50" />
                 <col width="150" />
                 <col width="180" />
+                <col width="100" />
                 <col width="75" />
                 <col width="150" />
                 <col width="100" />
@@ -41,7 +42,6 @@
                 <col width="90" />
                 <col width="130" />
                 <col width="100" />
-                <col width="100" />
                 <col width="140" />
             </colgroup>
             <thead>
@@ -52,9 +52,12 @@
                     <th class="sortable" data-col-type="date" id="transTime">
                         @ViewLang.TransTime
                     </th>
-                    <th>
-                        @ViewLang.BetID
-                    </th>
+	                <th>
+		                @ViewLang.BetID
+	                </th>
+	                <th>
+		                @ViewLang.BetDetails
+	                </th>
                     <th class="sortable" data-col-type="ignorecase">
                         @ViewLang.Site
                     </th>
@@ -88,10 +91,7 @@
                     <th>
                         @ViewLang.IP
                     </th>
-                    <th>
-                        @ViewLang.BetDetails
-                    </th>
-                    <th>
+	                <th>
                         Checked By
                     </th>
                 </tr>
@@ -104,6 +104,7 @@
                 <col width="50" />
                 <col width="150" />
                 <col width="180" />
+                <col width="100" />
                 <col width="75" />
                 <col width="150" />
                 <col width="100" />
@@ -115,14 +116,13 @@
                 <col width="90" />
                 <col width="130" />
                 <col width="100" />
-                <col width="100" />
                 <col width="140" />
             </colgroup>
             <tbody></tbody>
         </table>
     </div>
 </div>
-@Scripts.Render("~/Scripts/Monitor/Parlay/js?v=4")
+@Scripts.Render("~/Scripts/Monitor/Parlay/js?v=5")
 @Scripts.Render("~/Scripts/Member/Core/js")
 <script type="text/javascript">
     var _resource = {
