@@ -59,6 +59,7 @@
 
     filterWidth: 0,
     clickedMonth: '',
+    clickedUserName: '',
 
     Init: function () {
         var nowDate = moment(dateRanges.NowDate).format('MMMM DD, YYYY');
@@ -281,7 +282,7 @@
             }
 
             MemberWinLoss.CachedObject.SortById = parseInt(currentColIndex);
-            MemberWinLoss.ShowReportByDate(1, MemberWinLoss.clickedMonth, true);
+            MemberWinLoss.ShowReportByDate(1, MemberWinLoss.clickedMonth, true, MemberWinLoss.clickedUserName);
         });
 
         $(document).on("click", '#exportMemberWinLoss-ByDate', function () {
@@ -444,11 +445,13 @@
             td.html(waitingImg);
             var fromDate = '';
             var toDate = '';
-            var userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
+            var userNameInfo = '';
             if (isReportByDate) {
                 fromDate = date;
                 toDate = date;
+                userNameInfo = MemberWinLoss.clickedUserName
             } else {
+                userNameInfo = isMember ? MemberWinLoss.CachedDOM.username.val() : username;
                 var dateInfo = month.trim().split('-');
                 var lastDateOfMonth = new Date(dateInfo[1], dateInfo[0], 0).getDate();
                 var fromDateString = dateInfo[0] + '/1/' + dateInfo[1];
@@ -490,8 +493,9 @@
         return false;
     },
 
-    ShowReportByDate: function (pageIndex, month, isCached) {
+    ShowReportByDate: function (pageIndex, month, isCached, userName) {
         MemberWinLoss.clickedMonth = month;
+        MemberWinLoss.clickedUserName = userName;
         MemberWinLoss.CachedDOM.divResult.hide();
         if (!isCached) {
             MemberWinLoss.CachedObject.SortById = null;
@@ -508,7 +512,7 @@
             SportsType: MemberWinLoss.CachedFilteredObject.SportsType,
             LiveType: MemberWinLoss.CachedFilteredObject.LiveType,
             Combos: MemberWinLoss.CachedFilteredObject.Combos,
-            Username: MemberWinLoss.CachedFilteredObject.Username,
+            Username: MemberWinLoss.clickedUserName,
             PageIndex: pageIndex,
             IsCached: isCached,
             SortById: MemberWinLoss.CachedObject.SortById,
@@ -555,7 +559,7 @@
 }
 function MovePage(pageIndex) {
     if (isReportByDate) {
-        MemberWinLoss.ShowReportByDate(pageIndex, MemberWinLoss.clickedMonth, true)
+        MemberWinLoss.ShowReportByDate(pageIndex, MemberWinLoss.clickedMonth, true, MemberWinLoss.clickedUserName)
     } else {
         MemberWinLoss.Data(MemberWinLoss.CachedFilteredObject.ParlayTypes,
             MemberWinLoss.CachedFilteredObject.FromDate,

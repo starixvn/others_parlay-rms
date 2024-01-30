@@ -272,7 +272,7 @@ namespace ParlayRMS.Controllers
                 x.Company_Winlost_BaseRM,
                 TotalComboBets = _topwinnersService.GetTotalComboBets(x),
                 TotalSelection = x.Selection.ToString("#,##0"),
-                SportType = CacheRef.GetSportName(x.SportType)
+                SportType = CacheRef.GetSportNameDropDown(x.SportType)
             });
 
             writer.WriteRows(2, select);

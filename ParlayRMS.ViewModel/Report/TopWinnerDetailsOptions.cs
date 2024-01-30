@@ -42,7 +42,7 @@ namespace ParlayRMS.ViewModel.Report
             }
 
             var title =
-                $"Top {SelectTop} winners - User Name [{Username}], from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - {ViewLang.Combo} [{combosTitle}] - {ViewLang.ParlayType} [{ModelsHelper.GetParlayTitle(ParlayTypes)}] - {ViewLang.SportsType} [{ModelsHelper.GetSportType(SportsType)}] - {ViewLang.Site} [{ModelsHelper.GetSiteTitle(Site)}] - {ViewLang.CustomerClass} [{ModelsHelper.GetCustomerClassTitle(CustomerClass)}] - {ViewLang.LiveType} [{ModelsHelper.GetLiveTypeTitle(LiveType)}]";
+                $"Top winners - User Name [{Username}], from {FromDate:MMM dd, yyyy} to {ToDate:MMM dd, yyyy} - {ViewLang.Combo} [{combosTitle}] - {ViewLang.ParlayType} [{ModelsHelper.GetParlayTitle(ParlayTypes)}] - {ViewLang.SportsType} [{ModelsHelper.GetSportType(SportsType)}] - {ViewLang.Site} [{ModelsHelper.GetSiteTitle(Site)}] - {ViewLang.CustomerClass} [{ModelsHelper.GetCustomerClassTitle(CustomerClass)}] - {ViewLang.LiveType} [{ModelsHelper.GetLiveTypeTitle(LiveType)}]";
             return title;
         }
     }
