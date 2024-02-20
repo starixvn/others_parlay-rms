@@ -63,6 +63,8 @@ namespace ParlayRMS.Services
             {
                 var info = _commonService.GetBalanceUpDayInfo();
 
+                memberWinLossData = new MemberWinLossData();
+
                 if (user.RoleId == (int)RoleId.Member)
                 {
                     memberWinLossData = GetMemberWinLossData(

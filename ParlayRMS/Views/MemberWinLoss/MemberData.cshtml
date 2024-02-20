@@ -6,6 +6,7 @@
 	var isReportByDate = (bool)ViewBag.ReportByDate;
 	var btnViewDetails = isReportByDate ? "btnViewDetails-ByDate" : "btnViewDetails";
 	var exportMemberWinLoss = isReportByDate ? "exportMemberWinLoss-ByDate" : "exportMemberWinLoss";
+	var sortedClass = Model.Records.Any() ? "sortable" : "";
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpSiteGroup" value="@ViewBag.SiteGroup" />
@@ -61,31 +62,31 @@
                 </th>
             </tr>
             <tr>
-                <th class="sortable" data-col-index="3">
+                <th class="@sortedClass" data-col-index="3">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="4">
+                <th class="@sortedClass" data-col-index="4">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="5">
+                <th class="@sortedClass" data-col-index="5">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="6">
+                <th class="@sortedClass" data-col-index="6">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="7">
+                <th class="@sortedClass" data-col-index="7">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="8">
+                <th class="@sortedClass" data-col-index="8">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="9">
+                <th class="@sortedClass" data-col-index="9">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="10">
+                <th class="@sortedClass" data-col-index="10">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="11">
+                <th class="@sortedClass" data-col-index="11">
                     @ViewLang.NetWinloss
                 </th>
             </tr>
