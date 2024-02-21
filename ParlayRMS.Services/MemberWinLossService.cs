@@ -14,6 +14,7 @@ namespace ParlayRMS.Services
     public class MemberWinLossService
     {
         private const string MemberWinLossReportSessionKey = "Fanex.ParlayRMS.MemberWinLossReport";
+        private const string MemberWinLossReportByDateSessionKey = "Fanex.ParlayRMS.MemberWinLossReportByDate";
 
         private static readonly ICache CacheInstance = new MemoryCache(
             new MemoryCacheOptions
@@ -49,16 +50,20 @@ namespace ParlayRMS.Services
                                      string combos,
                                      string username,
                                      bool isCached,
-                                     out int roleId)
+                                     out int roleId,
+                                     byte reportBy)
         {
             var user = _membersService.GetCustomerInfo(username);
-            var cacheIsAvailable = CacheInstance.TryGet(MemberWinLossReportSessionKey, out MemberWinLossData memberWinLossData);
+            var sessionKey = reportBy == 1 ? MemberWinLossReportSessionKey : MemberWinLossReportByDateSessionKey;
+            var cacheIsAvailable = CacheInstance.TryGet(sessionKey, out MemberWinLossData memberWinLossData);
             roleId = user.RoleId;
 
          
             if (!isCached || !cacheIsAvailable)
             {
                 var info = _commonService.GetBalanceUpDayInfo();
+
+                memberWinLossData = new MemberWinLossData();
 
                 if (user.RoleId == (int)RoleId.Member)
                 {
@@ -71,8 +76,9 @@ namespace ParlayRMS.Services
                                  sportsType,
                                  liveType,
                                  combos,
-                                 user.CustId);
-                    CacheInstance.Set(MemberWinLossReportSessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
+                                 user.CustId,
+                                 reportBy);
+                    CacheInstance.Set(sessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
                 }
                 else if (user.RoleId == (int)RoleId.Agent || user.RoleId == (int)RoleId.Master)
                 {
@@ -89,8 +95,9 @@ namespace ParlayRMS.Services
                                  sportsType,
                                  liveType,
                                  combos,
-                                 agentIds);
-                    CacheInstance.Set(MemberWinLossReportSessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
+                                 agentIds,
+                                 reportBy);
+                    CacheInstance.Set(sessionKey, memberWinLossData, new CacheItemOptions { RelativeExpiration = TimeSpan.FromMinutes(30) });
                 }
             }
 
@@ -107,7 +114,8 @@ namespace ParlayRMS.Services
                                       string sportsType,
                                       byte liveType,
                                       string combos,
-                                      int custId)
+                                      int custId,
+                                      byte reportBy)
         {
             var total = new RMS_Rpt_Parlay_MemberWinLoss();
 
@@ -120,13 +128,17 @@ namespace ParlayRMS.Services
                 sportsType,
                 liveType,
                 combos,
-                custId).ToList();
+                custId,
+                reportBy).ToList();
 
             Utils.Round(records);
             records.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
-                x.Month = ReFormatMonthStr(x.Month.Trim());
+                if (reportBy == 1)
+                {
+                    x.Month = ReFormatMonthStr(x.Month.Trim());
+                }
                 total.Add(x);
             });
 
@@ -146,7 +158,8 @@ namespace ParlayRMS.Services
                                       string sportsType,
                                       byte liveType,
                                       string combos,
-                                      List<int> custIds)
+                                      List<int> custIds,
+                                      byte reportBy)
         {
             var total = new RMS_Rpt_Parlay_MemberWinLoss();
 
@@ -159,13 +172,17 @@ namespace ParlayRMS.Services
                                                        sportsType,
                                                        liveType,
                                                        combos,
-                                                       custIds).ToList();
+                                                       custIds,
+                                                       reportBy).ToList();
 
             Utils.Round(rawData);
             rawData.ToList().ForEach(x =>
             {
                 x.OurPT_NetWinloss = x.OurPT_Won + x.OurPT_Lose;
-                x.Month = ReFormatMonthStr(x.Month.Trim());
+                if (reportBy == 1)
+                {
+                    x.Month = ReFormatMonthStr(x.Month.Trim());
+                }
                 total.Add(x);
             });
 

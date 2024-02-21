@@ -1,25 +1,36 @@
 ﻿@using Formatter = ParlayRMS.Utility.Formatter
 @model ParlayRMS.Models.MemberWinLoss.MemberWinLossData
 @{
-    var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
+	var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
 	var index = 0;
+	var isReportByDate = (bool)ViewBag.ReportByDate;
+	var btnViewDetails = isReportByDate ? "btnViewDetails-ByDate" : "btnViewDetails";
+	var exportMemberWinLoss = isReportByDate ? "exportMemberWinLoss-ByDate" : "exportMemberWinLoss";
+	var sortedClass = Model.Records.Any() ? "sortable" : "";
 }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpSiteGroup" value="@ViewBag.SiteGroup" />
 <input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
-<div style="width: 1571px" class="maintitle">
+<div style="width: 1391px" class="maintitle">
     <div class="information">
-        @ViewBag.Title
+        @if (isReportByDate)
+        {
+	        <span id="reportByMonth" onclick="MemberWinLoss.BackReportByMonth()">Report by Month</span> <span>/</span> @ViewBag.Title
+        }
+        else
+        {
+            @ViewBag.Title
+        }
     </div>
-    <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
+    <div class="excel" id="@exportMemberWinLoss" title="@ViewLang.ExportExcel">
     </div>
 </div>
 <div style="width: 1571px">
     <table class="main">
         <colgroup>
-            <col width="160px" />
-            <col width="140px" />
-            <col width="120px" />
+            <col width="100px" />
+            <col width="70px" />
+            <col width="70px" />
             <col width="140px" />
             <col width="140px" />
             <col width="140px" />
@@ -32,7 +43,7 @@
         <thead id="header">
             <tr>
                 <th rowspan="2" class="header2rows">
-                    @ViewLang.Month
+                    @(isReportByDate ? ViewLang.Date : ViewLang.Month)
                 </th>
                 <th colspan="2">
                     @ViewLang.Ticket
@@ -43,51 +54,51 @@
                 <th colspan="2">
                     @ViewLang.WinLoss
                 </th>
-	            <th colspan="3">
-		            @ViewLang.OurPT
-	            </th>
-	            <th rowspan="2" class="header2rows">
-		            @ViewLang.TotalBets
-	            </th>
+                <th colspan="3">
+                    @ViewLang.OurPT
+                </th>
+                <th rowspan="2" class="header2rows">
+                    @ViewLang.TotalBets
+                </th>
             </tr>
             <tr>
-                <th class="sortable" data-col-index="3">
+                <th class="@sortedClass" data-col-index="3">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="4">
+                <th class="@sortedClass" data-col-index="4">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="5">
+                <th class="@sortedClass" data-col-index="5">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="6">
+                <th class="@sortedClass" data-col-index="6">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="7">
+                <th class="@sortedClass" data-col-index="7">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="8">
+                <th class="@sortedClass" data-col-index="8">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="9">
+                <th class="@sortedClass" data-col-index="9">
                     @ViewLang.Won
                 </th>
-                <th class="sortable" data-col-index="10">
+                <th class="@sortedClass" data-col-index="10">
                     @ViewLang.Lose
                 </th>
-                <th class="sortable" data-col-index="11">
+                <th class="@sortedClass" data-col-index="11">
                     @ViewLang.NetWinloss
                 </th>
             </tr>
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 600px; width: 1591px">
+<div class="scrollGridContent" style="max-height: 600px; width: 1391px">
     <table class="main" id="result">
         <colgroup>
-            <col width="160px" />
-            <col width="140px" />
-            <col width="120px" />
+            <col width="100px" />
+            <col width="70px" />
+            <col width="70px" />
             <col width="140px" />
             <col width="140px" />
             <col width="140px" />
@@ -103,7 +114,14 @@
                 index++;
                 <tr id="tr_@index">
                     <td class="center">
-                        @record.Month
+                        @if (isReportByDate)
+                        {
+	                        @record.Date.ToString("MM/dd/yyyy")
+                        }
+                        else
+                        {
+	                        <a href="#" onclick="MemberWinLoss.ShowReportByDate(1, '@record.Month', false, '@filterOption.Username')">@record.Month</a>
+                        }
                     </td>
                     <td class="numeric">
                         @Formatter.FormatNumber3(record.Tickets_Won)
@@ -131,19 +149,19 @@
                     </td>
                     @RazorHelper.RenderNumberCell(record.OurPT_NetWinloss)
                     <td class="center">
-	                    <button data-index="@index" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+                        <button data-index="@index" data-month="@record.Month" data-date="@record.Date.ToString("MM/dd/yyyy")" title="Click to view detail" class="@btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div style="width: 1571px" class="mainfooter">
+<div style="width: 1391px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width="160px" />
-            <col width="140px" />
-            <col width="120px" />
+            <col width="100px" />
+            <col width="70px" />
+            <col width="70px" />
             <col width="140px" />
             <col width="140px" />
             <col width="140px" />
@@ -184,18 +202,18 @@
                     <td class="numeric">
                         @Formatter.FormatNumber2(Model.Total.OurPT_Lose)
                     </td>
-	                <td class="numeric">
-		                @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
-	                </td>
-	                <td class="center">
-		                @Formatter.FormatNumber3(Model.Total.TotalBets)
-	                </td>
+                    <td class="numeric">
+                        @Formatter.FormatNumber2(Model.Total.OurPT_NetWinloss)
+                    </td>
+                    <td class="center">
+                        @Formatter.FormatNumber3(Model.Total.TotalBets)
+                    </td>
                 </tr>
             }
             else
             {
                 <tr>
-                    <td colspan="11" style="text-align: center; width: 1571px">
+                    <td colspan="11" style="text-align: center; width: 1391px">
                         @ViewLang.NoInformation
                     </td>
                 </tr>
@@ -204,22 +222,22 @@
     </table>
 </div>
 <script type="text/javascript">
-    var data = {
-        FromDate: '@filterOption.FromDate',
-        ToDate: '@filterOption.ToDate',
-        ParlayTypes: '@filterOption.ParlayTypes',
-        SportsType: '@filterOption.SportsType',
-        Combos: '@filterOption.Combos',
-        LiveType: '@filterOption.LiveType',
-        Username: '@filterOption.Username',
-        IsCached: false
-    }
+	var data = {
+	    FromDate: '@filterOption.FromDate',
+	    ToDate: '@filterOption.ToDate',
+	    ParlayTypes: '@filterOption.ParlayTypes',
+	    SportsType: '@filterOption.SportsType',
+	    Combos: '@filterOption.Combos',
+	    LiveType: '@filterOption.LiveType',
+	    Username: '@filterOption.Username',
+	    ReportBy: @filterOption.ReportBy,
+	    IsCached: false
+	}
+    var isReportByDate = @isReportByDate.ToString().ToLower();
     $(document).ready(function () {
-        $("#exportMemberWinLoss").on("click", function () {
-            MemberWinLoss.ExportExcel(data);
-        });
-        $(".btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, true, "");
+        $(".@btnViewDetails").on("click", function () {
+            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, true, "", $(this).data("date"));
         });
     });
+
 </script>

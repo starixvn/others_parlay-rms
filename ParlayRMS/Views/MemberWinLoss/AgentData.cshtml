@@ -5,48 +5,59 @@
         var filterOption = (MemberWinLossOptions)ViewBag.FilterOption;
         var isShowSort = filterOption.FromDate.Month == filterOption.ToDate.Month;
 	    var index = 0;
+	    var isReportByDate = (bool)ViewBag.ReportByDate;
+	    var btnViewDetails = isReportByDate ? "btnViewDetails-ByDate" : "btnViewDetails";
+	    var exportMemberWinLoss = isReportByDate ? "exportMemberWinLoss-ByDate" : "exportMemberWinLoss";
+	    var sortedClass = Model.Any() ? "sortable" : "";
     }
 <input type="hidden" id="inpCustomerClass" value="@ViewBag.CustomerClass" />
 <input type="hidden" id="inpIsAgent" value="@ViewBag.IsAgent" />
-    <div style="width: 1706px" class="maintitle">
+    <div style="width: 1471px" class="maintitle">
         <div class="information">
-            @ViewBag.Title
+	        @if (isReportByDate)
+	        {
+		        <span id="reportByMonth" onclick="MemberWinLoss.BackReportByMonth()">Report by Month</span> <span>/</span> @ViewBag.Title
+	        }
+	        else
+	        {
+		        @ViewBag.Title
+	        }
         </div>
-        <div class="excel" id="exportMemberWinLoss" title="@ViewLang.ExportExcel">
+        <div class="excel" id="@exportMemberWinLoss" title="@ViewLang.ExportExcel">
         </div>
     </div>
     <div style="width: 1706px">
         <table class="main">
             <colgroup>
-                <col width="110" />
-                <col width="75" />
+                <col width="100" />
+                <col width="50" />
                 <col width="140" />
                 <col width="100" />
-                <col width="100" />
-                <col width="100" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
+                <col width="70" />
+                <col width="70" />
+                <col width="120" />
+                <col width="120" />
+                <col width="120" />
+                <col width="120" />
+                <col width="120" />
+                <col width="120" />
+                <col width="120" />
                 <col width="100" />
             </colgroup>
             <thead id="header">
                 <tr>
                     <th rowspan="2" class="header2rows">
-                        @ViewLang.Month
+	                    @(isReportByDate ? ViewLang.Date : ViewLang.Month)
                     </th>
                     <th rowspan="2" class="header2rows">
                         @ViewLang.Site
                     </th>
                     @if (isShowSort)
                     {
-                        <th rowspan="2" class="header2rows sortable" data-col-index="1">
+                        <th rowspan="2" class="header2rows @sortedClass" data-col-index="1">
                             @ViewLang.Username
                         </th>
-                        <th rowspan="2" class="header2rows sortable" data-col-index="2">
+                        <th rowspan="2" class="header2rows @sortedClass" data-col-index="2">
                             @ViewLang.CustomerClass
                         </th>
                     }
@@ -79,31 +90,31 @@
                 <tr>
                     @if (isShowSort)
                     {
-                        <th class="sortable" data-col-index="3">
+                        <th class="@sortedClass" data-col-index="3">
                             @ViewLang.Won
                         </th>
-                        <th class="sortable" data-col-index="4">
+                        <th class="@sortedClass" data-col-index="4">
                             @ViewLang.Lose
                         </th>
-                        <th class="sortable" data-col-index="5">
+                        <th class="@sortedClass" data-col-index="5">
                             @ViewLang.Won
                         </th>
-                        <th class="sortable" data-col-index="6">
+                        <th class="@sortedClass" data-col-index="6">
                             @ViewLang.Lose
                         </th>
-                        <th class="sortable" data-col-index="7">
+                        <th class="@sortedClass" data-col-index="7">
                             @ViewLang.Won
                         </th>
-                        <th class="sortable" data-col-index="8">
+                        <th class="@sortedClass" data-col-index="8">
                             @ViewLang.Lose
                         </th>
-                        <th class="sortable" data-col-index="9">
+                        <th class="@sortedClass" data-col-index="9">
                             @ViewLang.Won
                         </th>
-                        <th class="sortable" data-col-index="10">
+                        <th class="@sortedClass" data-col-index="10">
                             @ViewLang.Lose
                         </th>
-                        <th class="sortable" data-col-index="11">
+                        <th class="@sortedClass" data-col-index="11">
                             @ViewLang.NetWinloss
                         </th>
                     }
@@ -141,23 +152,23 @@
             </thead>
         </table>
     </div>
-    <div class="scrollGridContent" style="max-height: 530px; width: 1725px">
+    <div class="scrollGridContent" style="max-height: 530px; width: 1490px">
         <table class="main" id="result">
             <colgroup>
-                <col width="110" />
-                <col width="75" />
-                <col width="140" />
-                <col width="100" />
-                <col width="100" />
-                <col width="100" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="100" />
+	            <col width="100" />
+	            <col width="50" />
+	            <col width="140" />
+	            <col width="100" />
+	            <col width="70" />
+	            <col width="70" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="100" />
             </colgroup>
             <tbody>
                 @{
@@ -184,7 +195,14 @@
                             @if (!record.IsSutotalRow)
                             {
                                 <td class="center">
-                                    @record.Month
+                                    @if (isReportByDate)
+                                    {
+                                        @record.Date.ToString("MM/dd/yyyy")
+                                    }
+                                    else
+                                    {
+                                        <a href="#" onclick="MemberWinLoss.ShowReportByDate(1, '@record.Month', false, '@record.Username')">@record.Month</a>
+                                    }
                                 </td>
                                 <td class="center">
                                     @record.SiteGroup
@@ -234,7 +252,7 @@
                                 }
                                 else
                                 {
-	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" title="Click to view detail" class="btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
+	                                <button data-index="@index" data-username="@record.Username" data-month="@record.Month" data-date="@record.Date.ToString("MM/dd/yyyy")" title="Click to view detail" class="@btnViewDetails button-disable" style="width:40px;">@record.TotalBets</button>
                                 }
                             </td>
                         </tr>
@@ -243,23 +261,23 @@
             </tbody>
         </table>
     </div>
-    <div style="width: 1706px" class="mainfooter">
+    <div style="width: 1471px" class="mainfooter">
         <table class="main" id="footer">
             <colgroup>
-                <col width="110" />
-                <col width="75" />
-                <col width="140" />
-                <col width="100" />
-                <col width="100" />
-                <col width="100" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="140" />
-                <col width="100" />
+	            <col width="100" />
+	            <col width="50" />
+	            <col width="140" />
+	            <col width="100" />
+	            <col width="70" />
+	            <col width="70" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="120" />
+	            <col width="100" />
             </colgroup>
             <tfoot>
                 @if (Model.Any())
@@ -304,7 +322,7 @@
                 else
                 {
                     <tr>
-                        <td colspan="14" style="text-align: center; width: 1706px">
+                        <td colspan="14" style="text-align: center; width: 1471px">
                             @ViewLang.NoInformation
                         </td>
                     </tr>
@@ -314,23 +332,21 @@
     </div>
     @Html.Partial("_Pager", (object)@ViewBag.Pager)
 <script type="text/javascript">
-    var data = {
-        FromDate: '@filterOption.FromDate',
-        ToDate: '@filterOption.ToDate',
-        ParlayTypes: '@filterOption.ParlayTypes',
-        SportsType: '@filterOption.SportsType',
-        Combos: '@filterOption.Combos',
-        LiveType: '@filterOption.LiveType',
-        Username: '@filterOption.Username',
-        IsCached: false
-    }
+	var data = {
+	    FromDate: '@filterOption.FromDate',
+	    ToDate: '@filterOption.ToDate',
+	    ParlayTypes: '@filterOption.ParlayTypes',
+	    SportsType: '@filterOption.SportsType',
+	    Combos: '@filterOption.Combos',
+	    LiveType: '@filterOption.LiveType',
+	    Username: '@filterOption.Username',
+	    IsCached: false
+	}
+    var isReportByDate = @isReportByDate.ToString().ToLower();
     $(document).ready(function () {
-        $("#exportMemberWinLoss").on("click", function () {
-            MemberWinLoss.ExportExcel(data);
-        });
-
-        $(".btnViewDetails").on("click", function () {
-            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"));
+        $(".@btnViewDetails").on("click", function () {
+            MemberWinLoss.ViewDetails($(this).data("index"), $(this).data("month"), data, false, $(this).data("username"), $(this).data("date"));
         });
     });
-    </script>
+
+</script>

@@ -12,3 +12,15 @@
   -webkit-appearance: none;
   appearance: none;
 }
+
+.data-detail-excel-icon {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 18px;
+    width: 18px;
+}
+
+.position-relative {
+    position: relative
+}

@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th>
-                        #
+	                    @ViewLang.No
                     </th>
                     <th class="sortable" data-col-type="date" id="transTime">
                         @ViewLang.TransTime
@@ -78,7 +78,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="numeric">
+                        <td class="center">
                             @(++id)
                         </td>
                         <td>

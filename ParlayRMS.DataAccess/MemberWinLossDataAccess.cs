@@ -20,7 +20,8 @@ namespace ParlayRMS.DataAccess
                                                              string sportsType,
                                                              byte liveType,
                                                              string combos,
-                                                             int custId)
+                                                             int custId,
+                                                             byte reportBy)
         {
             var criteria = new Rpt_ComboParlay_Winloss_Mem_Criteria
             {
@@ -32,7 +33,8 @@ namespace ParlayRMS.DataAccess
                 SportType = sportsType,
                 LiveStatus = liveType,
                 Selection = combos,
-                Parlaytype = parlayTypes
+                Parlaytype = parlayTypes,
+                ReportBy = reportBy
             };
 
             var winlosses = repository.Fetch<RMS_Rpt_Parlay_MemberWinLoss>(criteria).ToList();
@@ -54,7 +56,8 @@ namespace ParlayRMS.DataAccess
                                                              string sportsType,
                                                              byte liveType,
                                                              string combos,
-                                                             List<int> custIds)
+                                                             List<int> custIds,
+                                                             byte reportBy)
         {
             var criteria = new Rpt_ComboParlay_Winloss_Ag_Criteria
             {
@@ -66,7 +69,8 @@ namespace ParlayRMS.DataAccess
                 SportType = sportsType,
                 LiveStatus = liveType,
                 Selection = combos,
-                Parlaytype = parlayTypes
+                Parlaytype = parlayTypes,
+                ReportBy = reportBy
             };
 
             var winlosses = repository.Fetch<RMS_Rpt_Parlay_MemberWinLoss>(criteria).ToList();

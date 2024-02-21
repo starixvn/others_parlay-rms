@@ -9,6 +9,8 @@
     LiveType: 3,
     Currencies: '',
     CustomerClass: '',
+    CustId: 0,
+    UserName: '',
     Save: function (fromDate, toDate, sportsType, selectTop, combos, site, parlayTypes, liveType, currencies, customerClass) {
         this.FromDate = fromDate;
         this.ToDate = toDate;
@@ -471,6 +473,9 @@ function ViewDetails(custId) {
         td.html(waitingImg);
 
         var username = row.children('td').eq(2).text();
+        userOptions.CustId = custId;
+        userOptions.UserName = username;
+
         var data = {
             CustId: custId,
             Username: username,
@@ -540,6 +545,26 @@ function ExportExcel() {
     }
 
     var url = 'TopWinners/Excel?' + $.param(data);
+    window.location.href = resolveClientUrl(url);
+}
+
+function ExportExcelForDataDetails() {
+    var data = {
+        CustId: userOptions.CustId,
+        Username: userOptions.UserName,
+        FromDate: userOptions.FromDate,
+        ToDate: userOptions.ToDate,
+        SportsType: userOptions.SportsType,
+        SelectTop: userOptions.SelectTop,
+        Combos: userOptions.Combos,
+        ParlayTypes: userOptions.ParlayTypes,
+        LiveType: userOptions.LiveType,
+        Currencies: userOptions.Currencies,
+        CustomerClass: userOptions.CustomerClass,
+        Site: userOptions.Site
+    }
+
+    var url = 'TopWinners/ExcelForDataDetails?' + $.param(data);
     window.location.href = resolveClientUrl(url);
 }
 

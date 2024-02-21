@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = ViewBag.HeaderText = ViewLang.AgentMemberWinLoss;
 }
+@Styles.Render("~/Content/MemberWinLoss")
 <div class="filter">
     <div class="filter-control" style="width: 1015px">
         <div class="minimizetitle">
@@ -54,9 +55,9 @@
             </div>
         </div>
     </div>
-    <div style="clear: both; padding-top: 20px;" id="divResult">
-    </div>
-    @Scripts.Render("~/Scripts/Report/MemberWinLoss/js?v=1")
+    <div style="clear: both; padding-top: 20px;" id="divResult"></div>
+    <div style="clear: both; padding-top: 20px;" id="divReportByDate"></div>
+    @Scripts.Render("~/Scripts/Report/MemberWinLoss/js?v=3")
     <script type="text/javascript">
         var dateRanges = {
             LimitDataFromDate: '@ViewBag.LimitDate', //Minimun date that support query data

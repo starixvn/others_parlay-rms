@@ -706,6 +706,7 @@
     <Content Include="Content\LeagueBetTypeAnalysis.css" />
     <Content Include="Content\LeagueWinningMonitor.css" />
     <Content Include="Content\Libs\simplepagination\simplePagination.css" />
+    <Content Include="Content\MemberWinLoss.css" />
     <Content Include="Content\Menu.css" />
     <Content Include="Content\ParlayMonitor.css" />
     <Content Include="Content\ParlayWon.css" />
@@ -718,6 +719,7 @@
     <Content Include="ExcelTemplates\LeagueDataAnalysis.xls" />
     <Content Include="ExcelTemplates\IpStats.xls" />
     <Content Include="ExcelTemplates\IpInfo.xls" />
+    <Content Include="ExcelTemplates\TopWinners-DataDetails.xls" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\autoNumeric\autoNumeric-min.js" />

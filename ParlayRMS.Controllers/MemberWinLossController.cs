@@ -65,7 +65,8 @@ namespace ParlayRMS.Controllers
                     options.Combos,
                     options.Username,
                     options.IsCached,
-                    out var roleId);
+                    out var roleId,
+                    options.ReportBy);
 
 
                 if (options.SortById.HasValue)
@@ -79,7 +80,7 @@ namespace ParlayRMS.Controllers
                 ViewBag.CustomerClass = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().CustomerClass;
                 ViewBag.SiteGroup = isAgent || !model.Records.Any() ? string.Empty : model.Records.FirstOrDefault().SiteGroup;
                     ViewBag.IsAgent = isAgent;
-
+                ViewBag.ReportByDate = options.ReportBy == 2;
                 if (isAgent)
                 {
                     var page = options.PageIndex ?? 1;
@@ -107,10 +108,12 @@ namespace ParlayRMS.Controllers
                                                       options.Combos,
                                                       options.Username,
                                                       options.IsCached,
-                                                      out var roleId);
+                                                      out var roleId,
+                                                      options.ReportBy);
+            var isReportByDate = options.ReportBy == 2;
             var title = options.GetTitle();
 
-            var ms = roleId > (int)RoleId.Member ? ExportAgentWinLossRpt(model, title) : ExportMemberWinLossRpt(model, title);
+            var ms = roleId > (int)RoleId.Member ? ExportAgentWinLossRpt(model, title, isReportByDate) : ExportMemberWinLossRpt(model, title, isReportByDate);
 
             Response.AddHeader("content-disposition", "attachment; filename=" + "MAMemberWinLoss.xls");
             Response.AddHeader("content-type", "application/vnd.ms-excel");
@@ -118,7 +121,7 @@ namespace ParlayRMS.Controllers
             Response.End();
         }
 
-        private MemoryStream ExportMemberWinLossRpt(MemberWinLossData model, string title)
+        private MemoryStream ExportMemberWinLossRpt(MemberWinLossData model, string title, bool isReportByDate)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\MemberWinLoss.xls";
             var writer = new TemplateWriter(templatePath);
@@ -127,7 +130,7 @@ namespace ParlayRMS.Controllers
 
             var header1 = new object[]
             {
-                ViewLang.Month,
+                isReportByDate ? ViewLang.Date : ViewLang.Month,
                 ViewLang.Ticket,
                 string.Empty,
                 ViewLang.StakeAfterPT,
@@ -175,7 +178,7 @@ namespace ParlayRMS.Controllers
             {
                 var record = new object[]
                 {
-                    item.Month,
+                    isReportByDate ? item.Date.ToString("MM/dd/yyyy") : item.Month,
                     item.Tickets_Won,
                     item.Tickets_Lose,
                     item.Stake_Won,
@@ -197,7 +200,7 @@ namespace ParlayRMS.Controllers
             return writer.Render("MemberWinLoss");
         }
 
-        private MemoryStream ExportAgentWinLossRpt(MemberWinLossData model, string title)
+        private MemoryStream ExportAgentWinLossRpt(MemberWinLossData model, string title, bool isReportByDate)
         {
             var templatePath = CurrentContext.Context.Server.MapPath("~") + "\\ExcelTemplates\\AgentWinLoss.xls";
             var writer = new TemplateWriter(templatePath);
@@ -206,7 +209,7 @@ namespace ParlayRMS.Controllers
 
             var header1 = new object[]
             {
-                ViewLang.Month,
+                isReportByDate ? ViewLang.Date : ViewLang.Month,
                 ViewLang.Site,
                 ViewLang.Username,
                 ViewLang.CustomerClass,
@@ -287,7 +290,7 @@ namespace ParlayRMS.Controllers
                 {
                     var record = new object[]
                     {
-                        item.Month,
+                        isReportByDate ? item.Date.ToString("MM/dd/yyyy") : item.Month,
                         item.SiteGroup,
                         item.Username,
                         item.CustomerClass,
@@ -371,5 +374,5 @@ namespace ParlayRMS.Controllers
 
 	        return View();
         }
-	}
+    }
 }

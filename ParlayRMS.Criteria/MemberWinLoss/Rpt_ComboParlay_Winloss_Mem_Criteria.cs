@@ -14,7 +14,7 @@
         public int CustId { get; set; }
         public string SportType { get; set; }
         public int LiveStatus { get; set; }
-
+        public byte ReportBy { get; set; }
         public override string GetSettingKey() => "RMS_Rpt_ComboParlay_Winloss_Mem";
 
         public override bool IsValid() => true;

@@ -129,6 +129,9 @@ namespace ParlayRMS
                 "~/Scripts/Libs/multiselect/jquery-ui-multiselect-widget-3.0.0/jquery.multiselect.filter.css",
                 "~/Content/PotentialWinning.css"));
 
+            bundles.Add(new StyleBundle("~/Content/MemberWinLoss").Include(
+                "~/Content/MemberWinLoss.css"));
+
             bundles.Add(new ScriptBundle("~/Scripts/Libs/js").Include(
                      "~/Scripts/jquery-1.9.0.js",
                      "~/Scripts/Libs/bettertooltip/jquery.betterTooltip.js",

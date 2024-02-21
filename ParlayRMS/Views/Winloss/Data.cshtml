@@ -3,18 +3,18 @@
 @{
     var filterOption = (WinlossOptions)ViewBag.FilterOption;
 }
-<div style="width: 1540px;" class="maintitle">
+<div style="width: 1391px;" class="maintitle">
     <div class="information">
         @ViewBag.Title
     </div>
     <div class="excel" onclick="ParlayRMS.Winloss.ExportExcel('@filterOption.ParlayTypes', '@filterOption.FromDate', '@filterOption.ToDate', '@filterOption.SportsType', '@filterOption.Combos', '@((int)filterOption.Site)', '@((int)filterOption.LiveType)', '@((int)filterOption.ReportType)');" title="Export Excel">
     </div>
 </div>
-<div style="width: 1540px">
+<div style="width: 1391px">
     <table class="main">
         <colgroup>
-            <col width='150' />
-            <col width='199' />
+            <col width='100' />
+            <col width='100' />
             <col width='100' />
             <col width='100' />
             <col width='120' />
@@ -89,21 +89,21 @@
         </thead>
     </table>
 </div>
-<div class="scrollGridContent" style="max-height: 500px; width: 1557px">
+<div class="scrollGridContent" style="max-height: 500px; width: 1408px">
     <table class="main" id="result">
         <colgroup>
-            <col width='150' />
-            <col width='199' />
-            <col width='100' />
-            <col width='100' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='130' />
-            <col width='130' />
-            <col width='150' />
-            <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='130' />
+	        <col width='130' />
+	        <col width='150' />
+	        <col width='100' />
         </colgroup>
         <tbody>
             @foreach (var group in Model.Records)
@@ -192,21 +192,21 @@
         </tbody>
     </table>
 </div>
-<div style="width: 1540px" class="mainfooter">
+<div style="width: 1391px" class="mainfooter">
     <table class="main" id="footer">
         <colgroup>
-            <col width='150' />
-            <col width='199' />
-            <col width='100' />
-            <col width='100' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='120' />
-            <col width='130' />
-            <col width='130' />
-            <col width='150' />
-            <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='100' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='120' />
+	        <col width='130' />
+	        <col width='130' />
+	        <col width='150' />
+	        <col width='100' />
         </colgroup>
         <tfoot>
             @if (Model.Records.Any())

@@ -118,7 +118,7 @@ namespace ParlayRMS.Utility.Data
             var list = sportTypes.Split(',');
             switch (list.Length)
             {
-                case 14:
+                case 17:
                     return ViewLang.All;
                 case 1:
                 {
@@ -142,6 +142,9 @@ namespace ParlayRMS.Utility.Data
 
                 case -3:
                     return "Combined sports";
+
+                case -4:
+                    return "Virtual Soccer";
 
                 default:
                     return CacheRef.GetSportName(sportType);
