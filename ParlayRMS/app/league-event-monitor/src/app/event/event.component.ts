@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EventGroupModel, EventModel, MatchBettypeModel } from './event.model';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  styleUrls: ['./event.component.scss'],
+  providers: [DecimalPipe]
 })
 export class EventComponent implements OnInit {
   @Input() data: EventGroupModel[] = [];
@@ -12,7 +14,7 @@ export class EventComponent implements OnInit {
   @Output() showBackLeague = new EventEmitter();
   @Output() clickedOnEvent = new EventEmitter<MatchBettypeModel>();
   @Output() clickedExportExcel = new EventEmitter<MatchBettypeModel>();
-  constructor() { }
+  constructor(private readonly decimalPipe: DecimalPipe) { }
 
   ngOnInit(): void {
   }
@@ -45,5 +47,10 @@ export class EventComponent implements OnInit {
       bettypeName: bettypeName
     };
     this.clickedExportExcel.emit(matchBettype);
+  }
+
+  public formatDecimal(value: number) {
+    const digitsInfo = value < 10 ? '1.2-2' : '1.0-0';
+    return this.decimalPipe.transform(value, digitsInfo);
   }
 }
