@@ -49,7 +49,7 @@
     <td *ngIf="index == 0" [attr.rowspan]="rowsTotal" class="font-weight-bold text-center">
         {{ item.leagueName }}
     </td>
-    <td *ngIf="index == 0" [attr.rowspan]="rowsTotal" class="font-weight-bold text-center" [napDecimalFormat]="totalStake"></td>
+    <td *ngIf="index == 0" [attr.rowspan]="rowsTotal" class="font-weight-bold text-center">{{ formatDecimal(totalStake)}}</td>
     <td *ngIf="isNormalRow(item) && index == 0" [attr.rowspan]="fixedBettypes" class="font-weight-bold text-center">
         {{ item.homeName }}
     </td>
@@ -69,13 +69,13 @@
         <td *ngIf="isNormalRow(item) && index === 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="!isNormalRow(item) && item.isOther" (click)="showEventDetail(item.event, matchId, 1)"
-            class="font-weight-bold text-center link" [napDecimalFormat]="item.homeTotalStake"></td>
-        <td *ngIf="!isNormalRow(item) && !item.isOther" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+            class="font-weight-bold text-center link">{{ formatDecimal(item.homeTotalStake) }}</td>
+        <td *ngIf="!isNormalRow(item) && !item.isOther" class="font-weight-bold text-center">{{ formatDecimal(item.homeTotalStake) }}</td>
         <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" (click)="exportExcel(item, matchId, 1, item.market)"
-            [napDecimalFormat]="item.homeTotalStake" class="text-center link"></td>
+            class="text-center link">{{ formatDecimal(item.homeTotalStake) }}</td>
         <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" (click)="exportExcel(item, matchId, 3, item.homeName)"
-            [napDecimalFormat]="item.homeTotalStake" class="font-weight-bold text-center link"></td>
-        <td *ngIf="isNormalRow(item) && index === 0" class="font-weight-bold text-center" [napDecimalFormat]="item.homeTotalStake"></td>
+            class="font-weight-bold text-center link">{{ formatDecimal(item.homeTotalStake) }}</td>
+        <td *ngIf="isNormalRow(item) && index === 0" class="font-weight-bold text-center">{{ formatDecimal(item.homeTotalStake) }}</td>
         <td *ngIf="!isNormalRow(item)" class="font-weight-bold text-center" [napIntegerFormat]="item.homeTotalTicket"></td>
         <td *ngIf="isNormalRow(item) && index > 0 && !item.isOther" [napIntegerFormat]="item.homeTotalTicket" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index > 0 && item.isOther" [napIntegerFormat]="item.homeTotalTicket"
@@ -101,8 +101,8 @@
         <td *ngIf="isNormalRow(item) && index == 0"></td>
         <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="isNormalRow(item) && index > 0" (click)="exportExcel(item, matchId, 0, item.awayMarket)"
-            [napDecimalFormat]="item.awayTotalStake" class="text-center link"></td>
-        <td *ngIf="isNormalRow(item) && index === 0" [napDecimalFormat]="item.awayTotalStake" class="font-weight-bold text-center"></td>
+            class="text-center link">{{ formatDecimal(item.awayTotalStake)}}</td>
+        <td *ngIf="isNormalRow(item) && index === 0" class="font-weight-bold text-center">{{ formatDecimal(item.awayTotalStake)}}</td>
         <td *ngIf="!isNormalRow(item)"></td>
         <td *ngIf="isNormalRow(item) && index > 0" [napIntegerFormat]="item.awayTotalTicket" class="text-center"></td>
         <td *ngIf="isNormalRow(item) && index === 0" [napIntegerFormat]="item.awayTotalTicket" class="font-weight-bold text-center"></td>
